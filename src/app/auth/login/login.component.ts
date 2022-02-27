@@ -11,6 +11,11 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent implements OnInit {
   socialUser!: SocialUser;
   isLoggedin?: boolean = true;
+  alert = {
+    type: 'danger',
+    message: "sdfsd",
+    display: true
+  }
 
   constructor(
     private socialAuthService: SocialAuthService,
@@ -28,9 +33,21 @@ export class LoginComponent implements OnInit {
       .subscribe(status => {
         this.isLoggedin = status
         if(status == true){
+          this.alert = {
+            type: 'success',
+            message: "Đăng nhập thành công!",
+            display: true
+          }
+          
           setTimeout(() => {
             this.router.navigate(['/']);
           }, 1000)
+        }else{
+          this.alert = {
+            type: 'danger',
+            message: "Đăng nhập thất bại, vui lòng sử dụng tài khoản khác!",
+            display: true
+          }
         }
       })
     })
@@ -38,5 +55,6 @@ export class LoginComponent implements OnInit {
   logOut(): void {
     this.socialAuthService.signOut();
   }
+  
 
 }
