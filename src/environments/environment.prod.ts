@@ -1,4 +1,4 @@
-const baseApiUrl = "http://localhost:8000/api";
+const baseApiUrl = "http://api.svpoly.xyz/api";
 const authApi =  `${baseApiUrl}/auth`;
 export const jwtApiUrl = `${baseApiUrl}/v1`; 
 const publicApiUrl = `${baseApiUrl}/public`;
