@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="wrap">
+        <div class="login-box">
+            <div class="log-go">
+                <a href=""><img class="logo_go-img" src="../../../assets/img/logo.png" alt=""></a>
+            </div>
+            <div class="login_google-box">
+                <a href="javascript:;" (click)="loginWithGoogle()" class="btn_login-google">
+                    <i class="fab fa-google"></i>
+                    Google
+                </a>
+                
+            </div>
+            <div class="">
+              <ngb-alert *ngIf="alert.display" [type]="alert.type" (closed)="alert.display = false">{{ alert.message }}</ngb-alert>
+            </div>
+            
+        </div>
+    </div>
+</div>
