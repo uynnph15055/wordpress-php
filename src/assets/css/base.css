@@ -1,0 +1,18 @@
+:root {
+    --primary-color: #ff5622;
+    --color-white: #ffff;
+    --primary-color-sub: #ff6638;
+    --text-color: #424242;
+    --color-cate: #ff663e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 62, 5%;
+}

@@ -1,12 +1,15 @@
-<div class="container" style="max-width: 550px">
-    <h2 class="text-center mb-5">Angular Login with Google</h2>
-    <div>
-      <div>
-        <button type="button" (click)="loginWithGoogle()" class="btn btn-danger">Login with Google</button>
-      </div>
+<div class="container">
+    <div class="wrap">
+        <div class="login-box">
+            <div class="log-go">
+                <a href=""><img class="logo_go-img" src="../../../assets/img/logo.png" alt=""></a>
+            </div>
+            <div class="login_google-box">
+                <a href="" class="btn_login-google">
+                    <i class="fab fa-google"></i>
+                    Google
+                </a>
+            </div>
+        </div>
     </div>
-    <div *ngIf="isLoggedin === false">
-      <p class="text-danger">Kiểm tra lại tài khoản @fpt.edu.vn</p>
-    </div>
-    
-  </div>
+</div>

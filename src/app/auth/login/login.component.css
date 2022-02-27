@@ -1,0 +1,62 @@
+.container {
+  background-image: url("../../../assets/img/login-bg.jpg");
+}
+
+.wrap {
+  width: 430px;
+  height: 100vh;
+  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  text-align: center;
+  width: 400px;
+  height: 50%;
+}
+
+.logo_go-img {
+  width: 60%;
+}
+
+.login_google-box {
+  margin-top: 20px;
+}
+
+.btn_login-google {
+  padding: 10px 150px;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  color: #ffff;
+  border-radius: 6px;
+  box-shadow: 2px 5px 7px rgb(196, 193, 193);
+}
+
+.btn_login-google:hover {
+  opacity: 0.8;
+}
+
+/*
+*   responsive
+*/
+/* -----Mobile----- */
+@media (max-width :767px) {
+  .wrap {
+    width: 330px;
+  }
+
+  .login-box {
+    height: 40%;
+  }
+
+  .logo_go-img {
+    width: 55%;
+  }
+
+  .btn_login-google {
+    padding: 10px 90px;
+  }
+
+}
