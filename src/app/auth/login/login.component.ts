@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +10,12 @@ import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-soc
 })
 export class LoginComponent implements OnInit {
   socialUser!: SocialUser;
-  isLoggedin?: boolean = false;
+  isLoggedin?: boolean = true;
 
   constructor(
-    private socialAuthService: SocialAuthService
+    private socialAuthService: SocialAuthService,
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -20,7 +24,15 @@ export class LoginComponent implements OnInit {
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
     .then(data => {
-      console.log(data);
+      this.userService.login(data.authToken)
+      .subscribe(status => {
+        this.isLoggedin = status
+        if(status == true){
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 1000)
+        }
+      })
     })
   }
   logOut(): void {

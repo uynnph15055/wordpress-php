@@ -1,1 +1,7 @@
-<p>home works!</p>
+<div *ngIf="checkLogin(); then loggedIn else unLoggedIn"></div>
+<ng-template #loggedIn>
+    <p>Xin chào, {{loggedInUser.name}}, <a (click)="logout()">Đăng xuất</a></p>
+</ng-template>
+<ng-template #unLoggedIn>
+    <a routerLink="/login">Đăng nhập</a>
+</ng-template>
