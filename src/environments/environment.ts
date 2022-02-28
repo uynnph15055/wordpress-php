@@ -1,9 +1,9 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-const baseApiUrl = "http://localhost:8000/api";
-const authApi =  `${baseApiUrl}/auth`;
-export const jwtApiUrl = `${baseApiUrl}/v1`; 
+const baseApiUrl = "http://svpoly.xyz/api";
+const authApi = `${baseApiUrl}/auth`;
+export const jwtApiUrl = `${baseApiUrl}/v1`;
 const publicApiUrl = `${baseApiUrl}/public`;
 export const environment = {
   production: false,

@@ -16,25 +16,24 @@ export class HomeComponent implements OnInit {
   constructor(
     private userService: UserService,
     private spnsorService: SponsorService
-  ) 
-  { 
+  ) {
     this.loggedInUser = this.userService.getUserValue();
   }
 
   ngOnInit(): void {
-    this.userService.listUser().subscribe(resp => {
-      console.log(resp);
-    });
+    // this.userService.listUser().subscribe(resp => {
+    //   console.log(resp);
+    // });
     this.spnsorService.list().subscribe(resp => {
       console.log(resp);
     });
   }
 
-  checkLogin(): boolean{
+  checkLogin(): boolean {
     return this.loggedInUser.id !== undefined
   }
 
-  logout():void{
+  logout(): void {
     this.userService.logout();
   }
 
