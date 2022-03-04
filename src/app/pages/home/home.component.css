@@ -70,3 +70,8 @@
   width: 10%;
   background: linear-gradient(to left, #2260bf, #03bcca);
 }
+
+.contest-img img{
+  object-fit: cover;
+  height: 200px;
+}

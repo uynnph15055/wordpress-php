@@ -4,6 +4,9 @@ import { User } from 'src/app/models/user';
 import { SponsorService } from 'src/app/services/sponsor.service';
 import { UserService } from 'src/app/services/user.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ContestService } from 'src/app/services/contest.service';
+import { Contest } from 'src/app/models/contest';
+import { Team } from 'src/app/models/team';
 
 @Component({
   selector: 'app-home',
@@ -14,34 +17,42 @@ export class HomeComponent implements OnInit {
   users: Array<User>;
   loggedInUser: User;
   sponsors: Array<Sponsor>;
-
+  contests: Array<Contest> = [];
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: true,
+    dots: false,
     navSpeed: 700,
     navText: ['', ''],
+    margin: 10,
     responsive: {
-      0: {
+      400: {
         items: 1
       },
-      400: {
+      576: {
         items: 2
-      },
-      740: {
+      },      
+      978: {
         items: 3
       },
-      940: {
+      1200: {
         items: 4
       }
     },
     nav: true
   }
 
+  constructor(private contestService: ContestService){}
+
 
   ngOnInit(): void {
+    this.contestService.list().subscribe(resp => {
+      if(resp.status == true){
+        this.contests = resp.payload;
+      }
+    });
     // this.userService.listUser().subscribe(resp => {
     //   console.log(resp);
     // });
@@ -52,6 +63,16 @@ export class HomeComponent implements OnInit {
 
   checkLogin(): boolean {
     return this.loggedInUser.id !== undefined
+  }
+
+  getMembers(teams: Array<Team> = []): number{
+    let totalMember = 0;
+    teams.forEach(t => {
+      if(t.members != undefined){
+        totalMember += t.members.length;
+      }
+    });
+    return totalMember;
   }
 
   // logout(): void {
