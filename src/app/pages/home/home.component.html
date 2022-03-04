@@ -1,5 +1,4 @@
 <div class="container">
-    
     <div class="row intro-header my-3">
         <div class="col-xl-6 col-md-12 col-sm-12">
             <div class="intro-detail-box my-5">
@@ -20,14 +19,6 @@
                 <img style="margin-top: 30px;" src="./../../../assets/img/image 407.svg" alt="">
             </span>
         </div>
-    </div>
-    <hr>
-    <div class="col-12">
-        <owl-carousel-o [options]="customOptions">
-            <ng-template carouselSlide>Slide 1</ng-template>
-            <ng-template carouselSlide>Slide 2</ng-template>
-            <ng-template carouselSlide>Slide 3</ng-template>
-        </owl-carousel-o>
     </div>
     <hr>
     <h4 class="text-left py-4 color-title"><strong>Lợi ích khi tham gia</strong></h4>
@@ -55,8 +46,8 @@
             <input type="text" class="input-search border-0" placeholder="Tìm kiếm">
         </div>
     </div>
-    <div class="row mb-5">
-        <div class="col-md-6 col-xl-3 col-sm-12 mb-2">
+    <owl-carousel-o class="row mb-5" [options]="customOptions">
+        <ng-template class="col-md-6 col-xl-3 col-sm-12 pd-20" carouselSlide>
             <img src="./../../../assets/img/3785bbb8cd0b0155581a.jpg" class="card-img-top rounded" alt="...">
             <div class="mt-3">
                 <h5 class="cart-title font-size-ml color-title">Tên cuộc thi</h5>
@@ -66,19 +57,8 @@
                 </p>
                 <a class="btn btn-register w-100">Đăng ký</a>
             </div>
-        </div>
-        <div class="col-md-6 col-xl-3 col-sm-12 mb-2">
-            <img src="./../../../assets/img/9966735b05e8c9b690f9.jpg" class="card-img-top rounded" alt="...">
-            <div class="mt-3">
-                <h5 class="cart-title font-size-ml color-title">Tên cuộc thi</h5>
-                <span class="text-Secondary d-block font-size-sml">Thời gian : 20h00 ngày 08-12-2022</span>
-                <p class="font-size-sml mt-3">Số người tham gia <span
-                        class="bg-primary p-1 rounded text-white">23</span>
-                </p>
-                <a class="btn btn-register w-100">Đăng ký</a>
-            </div>
-        </div>
-        <div class="col-md-6 col-xl-3 col-sm-12 mb-2">
+        </ng-template>
+        <ng-template class="col-md-6 col-xl-3 col-sm-12 m-2  pd-20" carouselSlide>
             <img src="./../../../assets/img/3785bbb8cd0b0155581a.jpg" class="card-img-top rounded" alt="...">
             <div class="mt-3">
                 <h5 class="cart-title font-size-ml color-title">Tên cuộc thi</h5>
@@ -88,9 +68,9 @@
                 </p>
                 <a class="btn btn-register w-100">Đăng ký</a>
             </div>
-        </div>
-        <div class="col-md-6 col-xl-3 col-sm-12 mb-2">
-            <img src="./../../../assets/img/9966735b05e8c9b690f9.jpg" class="card-img-top rounded" alt="...">
+        </ng-template>
+        <ng-template class="col-md-6 col-xl-3 col-sm-12 m-2 pd-20" carouselSlide>
+            <img src="./../../../assets/img/3785bbb8cd0b0155581a.jpg" class="card-img-top rounded" alt="...">
             <div class="mt-3">
                 <h5 class="cart-title font-size-ml color-title">Tên cuộc thi</h5>
                 <span class="text-Secondary d-block font-size-sml">Thời gian : 20h00 ngày 08-12-2022</span>
@@ -99,8 +79,30 @@
                 </p>
                 <a class="btn btn-register w-100">Đăng ký</a>
             </div>
-        </div>
-    </div>
+        </ng-template>
+        <ng-template class="col-md-6 col-xl-3 col-sm-12 pd-20" carouselSlide>
+            <img src="./../../../assets/img/3785bbb8cd0b0155581a.jpg" class="card-img-top rounded" alt="...">
+            <div class="mt-3">
+                <h5 class="cart-title font-size-ml color-title">Tên cuộc thi</h5>
+                <span class="text-Secondary d-block font-size-sml">Thời gian : 20h00 ngày 08-12-2022</span>
+                <p class="font-size-sml mt-3">Số người tham gia <span
+                        class="bg-primary p-1 rounded text-white">23</span>
+                </p>
+                <a class="btn btn-register w-100">Đăng ký</a>
+            </div>
+        </ng-template>
+        <ng-template class="col-md-6 col-xl-3 col-sm-12 pd-20" carouselSlide>
+            <img src="./../../../assets/img/3785bbb8cd0b0155581a.jpg" class="card-img-top rounded" alt="...">
+            <div class="mt-3">
+                <h5 class="cart-title font-size-ml color-title">Tên cuộc thi</h5>
+                <span class="text-Secondary d-block font-size-sml">Thời gian : 20h00 ngày 08-12-2022</span>
+                <p class="font-size-sml mt-3">Số người tham gia <span
+                        class="bg-primary p-1 rounded text-white">23</span>
+                </p>
+                <a class="btn btn-register w-100">Đăng ký</a>
+            </div>
+        </ng-template>
+    </owl-carousel-o>
     <div class="row mb-5">
         <div class="col-md-6 col-xl-3 col-sm-12 mb-2">
             <img src="./../../../assets/img/3785bbb8cd0b0155581a.jpg" class="card-img-top rounded" alt="...">

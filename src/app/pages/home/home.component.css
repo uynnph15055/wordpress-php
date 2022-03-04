@@ -9,6 +9,10 @@
   color: var(--text-color);
 }
 
+/* LIST CONTEST */
+.ng-tns-c105-0 {
+  padding: 0px 20px !important;
+}
 
 /* LIST Competition */
 .btn-register {
