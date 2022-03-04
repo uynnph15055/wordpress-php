@@ -1,3 +1,71 @@
+/* @import "~node_modules/swiper/css";
+@import "~node_modules/swiper/css/navigation"; */
+
+/* COMMOM */
+.font-size-sml {
+  font-size: 13px;
+  color: var(--text-color);
+}
+
+.font-size-ml {
+  font-size: 19px;
+  color: var(--text-color);
+}
 
 
-/* ---END HEADER---- */
+/* LIST Competition */
+.btn-register {
+  color: var(--warning);
+  border: 1px solid var(--warning);
+}
+
+.btn-register:hover {
+  background-color: var(--warning);
+  color: #fff;
+}
+
+/* INPUT SEARCH */
+.icon-search {
+  font-size: 20px;
+  padding-top: 2px;
+  color: #488FB1;
+}
+
+.input-search {
+  background-color: #daf3f5;
+  width: 85%;
+  font-size: 16px;
+}
+
+#form-search {
+  background-color: #daf3f5;
+  border-radius: 10px;
+  padding: 3px 5px 2px 4px;
+}
+
+.input-search:focus {
+  outline: none;
+}
+
+/* Rating */
+
+.subject-item {
+  font-size: 13px
+}
+
+.title-sub {
+  color: var(--text-color);
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.title-sub::before {
+  position: absolute;
+  bottom: 0;
+  top: 20;
+  left: 0;
+  content: '';
+  height: 5px;
+  width: 10%;
+  background: linear-gradient(to left, #2260bf, #03bcca);
+}

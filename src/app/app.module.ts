@@ -12,12 +12,16 @@ import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,10 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
     FormsModule,
     ReactiveFormsModule,
     SocialLoginModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule,
+    FontAwesomeModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {
@@ -54,4 +61,8 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas);
+  }
+}
