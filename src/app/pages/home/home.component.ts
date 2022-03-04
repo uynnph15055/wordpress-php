@@ -14,28 +14,13 @@ export class HomeComponent implements OnInit {
   users: Array<User>;
   loggedInUser: User;
   sponsors: Array<Sponsor>;
-  constructor(
-    private userService: UserService,
-    private spnsorService: SponsorService
-  ) {
-    this.loggedInUser = this.userService.getUserValue();
-  }
 
-  ngOnInit(): void {
-    // this.userService.listUser().subscribe(resp => {
-    //   console.log(resp);
-    // });
-    this.spnsorService.list().subscribe(resp => {
-      console.log(resp);
-    });
-  }
-  
   customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
@@ -54,9 +39,24 @@ export class HomeComponent implements OnInit {
     },
     nav: true
   }
+  constructor(
+    private userService: UserService,
+    private sponsorService: SponsorService,
+    iconLib: FaIconLibrary
+  ) {
+    this.loggedInUser = this.userService.getUserValue();
+    this.library.addIconPacks(fas, fab);
+  }
 
-
-
+  ngOnInit(): void {
+    // this.userService.listUser().subscribe(resp => {
+    //   console.log(resp);
+    // });
+    // this.spnsorService.list().subscribe(resp => {
+    //   console.log(resp);
+    // });
+  }
+  
   checkLogin(): boolean {
     return this.loggedInUser.id !== undefined
   }

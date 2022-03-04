@@ -1,9 +1,5 @@
 <div class="container">
-    <owl-carousel-o [options]="customOptions">
-        <ng-template carouselSlide>Slide 1</ng-template>
-        <ng-template carouselSlide>Slide 2</ng-template>
-        <ng-template carouselSlide>Slide 3</ng-template>
-    </owl-carousel-o>
+    
     <div class="row intro-header my-3">
         <div class="col-xl-6 col-md-12 col-sm-12">
             <div class="intro-detail-box my-5">
@@ -25,6 +21,15 @@
             </span>
         </div>
     </div>
+    <hr>
+    <div class="col-12">
+        <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide>Slide 1</ng-template>
+            <ng-template carouselSlide>Slide 2</ng-template>
+            <ng-template carouselSlide>Slide 3</ng-template>
+        </owl-carousel-o>
+    </div>
+    <hr>
     <h4 class="text-left py-4 color-title"><strong>Lợi ích khi tham gia</strong></h4>
     <div class="row benefit-join-box">
         <div class="col-md-6 col-xl-4 col-sm-12 text-center">
@@ -46,7 +51,7 @@
     <div class="row py-4">
         <h4 class="col-xl-9 col-lg-9 col-sm-12 col-md-6 text-left color-title"><strong>Các cuộc thi</strong></h4>
         <div id="form-search" class="col-xl-3 col-lg-3 text-center col-sm-12 col-md-6">
-            <fa-icon class="icon-search p-1" [icon]="['fas' , 'search']"></fa-icon>
+            <!-- <fa-icon class="icon-search p-1" [icon]="['fas' , 'search']"></fa-icon> -->
             <input type="text" class="input-search border-0" placeholder="Tìm kiếm">
         </div>
     </div>
