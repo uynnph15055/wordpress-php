@@ -1,0 +1,48 @@
+@media (max-width:568px) {
+  .menu_login-box {
+    display: none;
+  }
+
+  .img-header-box img {
+    height: 65px;
+  }
+
+  .btn-outline-login {
+    padding: 2px 20px;
+    font-size: 16px;
+  }
+
+  .img-header-box {
+    margin-right: -5%;
+  }
+
+
+  .btn-outline-login {
+    display: none;
+  }
+
+  .fa-icon-menu,
+  .fa-icon-login {
+    display: block;
+  }
+
+  .nav-response {
+    display: block;
+  }
+}
+
+
+@media (max-width:978px) {
+  .menu_login-box {
+    display: none;
+  }
+
+  .img-header-box {
+    padding-left: 10%;
+  }
+
+  .nav-response,
+  .fa-icon-menu {
+    display: block;
+  }
+}
