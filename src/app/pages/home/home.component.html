@@ -1,11 +1,3 @@
-<div *ngIf="checkLogin(); then loggedIn else unLoggedIn"></div>
-<ng-template #loggedIn>
-    <p>Xin chào, {{loggedInUser.name}}, <a (click)="logout()">Đăng xuất</a></p>
-</ng-template>
-<ng-template #unLoggedIn>
-    <a routerLink="/login">Đăng nhập</a>
-</ng-template>
-
 <div class="container">
     <div class="row intro-header my-1">
         <div class="col-xl-6 col-md-12 col-sm-12">
@@ -33,19 +25,28 @@
     <hr>
     <h4 class="text-left py-4 color-title"><strong>Lợi ích khi tham gia</strong></h4>
     <div class="row benefit-join-box">
+        <div class="col-md-6 col-xl-4 col-sm-12">
+            <span>
+                <img src="./../../../assets/img/image 408.svg" alt="" class="w-100 text-center">
+                <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias voluptatum, suscipit
+                    voluptate, similique quaerat earum libero delectus error sunt aliquam, doloribus porro perspiciatis
+                    beatae dolore asperiores corrupti laboriosam quis eum.</p>
+            </span>
+        </div>
         <div class="col-md-6 col-xl-4 col-sm-12 text-center">
             <span>
-                <img src="./../../../assets/img/image 408.svg" alt="" class="w-100">
+                <img src="./../../../assets/img/image 409.svg" alt="" style="width: 65%;" class=" text-center">
+                <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias voluptatum, suscipit
+                    voluptate, similique quaerat earum libero delectus error sunt aliquam, doloribus porro perspiciatis
+                    beatae dolore asperiores corrupti laboriosam quis eum.</p>
             </span>
         </div>
-        <div class="col-md-6 col-xl-4  col-sm-12 text-center text-center">
+        <div class="col-md-6 col-xl-4   col-sm-12">
             <span>
-                <img src="./../../../assets/img/image 409.svg" alt="" class="w-100">
-            </span>
-        </div>
-        <div class="col-md-6 col-xl-4   col-sm-12 text-center">
-            <span>
-                <img src="./../../../assets/img/image 410.svg" alt="" class="w-100">
+                <img src="./../../../assets/img/image 410.svg" alt="" class="w-100 text-center">
+                <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias voluptatum, suscipit
+                    voluptate, similique quaerat earum libero delectus error sunt aliquam, doloribus porro perspiciatis
+                    beatae dolore asperiores corrupti laboriosam quis eum.</p>
             </span>
         </div>
         <!-- <div class="col-md-6 col-xl-4 col-sm-12 text-center">
@@ -82,7 +83,7 @@
 
     <h4 class="text-left py-2 color-title"><strong>Bảng xếp hạng trong tháng</strong></h4>
     <h5 class="text-left py-2 color-title-sub title-sub"><strong>Thiết kế web</strong></h5>
-    <owl-carousel-o class="row mb-3" [options]="customOptions">
+    <owl-carousel-o class="row mb-3" [options]="listStudent">
         <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
             <div class="d-flex justify-content-center">
                 <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
@@ -261,7 +262,7 @@
         </ng-template>
     </owl-carousel-o>
     <h5 class="text-left py-2 color-title-sub title-sub"><strong>Thiết kế đồ họa</strong></h5>
-    <owl-carousel-o class="row mb-3" [options]="customOptions">
+    <owl-carousel-o class="row mb-3" [options]="listStudent">
         <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
             <div class="d-flex justify-content-center">
                 <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
@@ -438,4 +439,43 @@
             </div>
         </ng-template>
     </owl-carousel-o>
+</div>
+<div class="container-fluid assess-enterprise-wrapper">
+    <h4 class="text-center text-white pt-5">ĐÁNH GIÁ CỦA DOANH NGHIỆP</h4>
+    <div class="d-flex justify-content-center align-items-center">
+        <owl-carousel-o class=" assess-enterprise-box bg-white mt-3 container ">
+            <ng-template class="row  row-assess-enterprise" carouselSlide>
+                <div class="col-xl-5 col-lg-5 col-ml-12 col-sm-12">
+                    <div class="logo-enterprise-box">
+                        <img src="https://solution.com.vn/upload_images/images/thiet-ke-logo-thuong-hieu.jpg"
+                            class="logo-enterprise w-100 h-100" alt="">
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-5 col-ml-12 col-sm-12">
+                    <h5 class="name-enterprise fw-bold text-left">Mandy Zhuang </h5>
+                    <h6>CIO - Motion Global</h6>
+                    <p class="fst-italic">“Fpoly helps MotionGlobal to expand business all over the world. Fpoly has a
+                        good
+                        pool of talented
+                        developers. Responsiveness is fast. Developers are experienced, talented, and hard-working”</p>
+                </div>
+            </ng-template>
+            <ng-template class="row  row-assess-enterprise" carouselSlide>
+                <div class="col-xl-5 col-lg-5 col-ml-12 col-sm-12">
+                    <div class="logo-enterprise-box">
+                        <img src="https://solution.com.vn/upload_images/images/thiet-ke-logo-thuong-hieu.jpg"
+                            class="logo-enterprise w-100 h-100" alt="">
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-5 col-ml-12 col-sm-12">
+                    <h5 class="name-enterprise fw-bold text-left">Mandy Zhuang </h5>
+                    <h6>CIO - Motion Global</h6>
+                    <p class="fst-italic">“Fpoly helps MotionGlobal to expand business all over the world. Fpoly has a
+                        good
+                        pool of talented
+                        developers. Responsiveness is fast. Developers are experienced, talented, and hard-working”</p>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
 </div>

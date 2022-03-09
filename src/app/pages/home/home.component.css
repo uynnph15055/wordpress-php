@@ -21,12 +21,13 @@
 }
 
 .btn-register:hover {
+  transition: all ease-in-out 0.5s;
   background-color: var(--warning);
-  color: #fff;
+  color: var(--white);
 }
 
 /* INPUT SEARCH */
-.icon-search {
+/* .icon-search {
   font-size: 20px;
   padding-top: 2px;
   color: #488FB1;
@@ -46,7 +47,7 @@
 
 .input-search:focus {
   outline: none;
-}
+} */
 
 /* Rating */
 
@@ -71,7 +72,29 @@
   background: linear-gradient(to left, #2260bf, #03bcca);
 }
 
-.contest-img img{
+.contest-img img {
   object-fit: cover;
   height: 200px;
 }
+
+/* DOANH NGHIỆP */
+
+.assess-enterprise-wrapper {
+  background: linear-gradient(to bottom, #010a3b, #040644);
+  height: 500px;
+}
+
+.assess-enterprise-box {
+  width: 70%;
+  border-radius: 30px;
+}
+
+
+@media (max-width:568px) {
+  .assess-enterprise-wrapper {
+    height: 700px;
+  }
+}
+
+
+@media (max-width:987px) {}

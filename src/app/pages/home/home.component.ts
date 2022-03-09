@@ -28,55 +28,95 @@ export class HomeComponent implements OnInit {
     navText: ['', ''],
     margin: 10,
     responsive: {
-      400: {
+      300: {
         items: 1
       },
       576: {
         items: 2
-      },      
+      },
       978: {
         items: 3
       },
-      1200: {
+      1024: {
         items: 4
       }
     },
     nav: true
   }
 
-  constructor(private contestService: ContestService){}
+  AssessEnterprise: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navText: ['', ''],
+    responsive: {
+      300: {
+        items: 1
+      },
+      576: {
+        items: 1
+      },
+      978: {
+        items: 1
+      },
+      1024: {
+        items: 1
+      }
+    },
+    nav: true
+  }
+
+  listStudent: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    margin: 10,
+    responsive: {
+      300: {
+        items: 1
+      },
+      576: {
+        items: 2
+      },
+      978: {
+        items: 3
+      },
+      1024: {
+        items: 4
+      }
+    },
+    nav: true
+  }
+
+  constructor(private contestService: ContestService) { }
 
 
   ngOnInit(): void {
     this.contestService.list().subscribe(resp => {
-      if(resp.status == true){
+      if (resp.status == true) {
         this.contests = resp.payload;
       }
     });
-    // this.userService.listUser().subscribe(resp => {
-    //   console.log(resp);
-    // });
-    // this.spnsorService.list().subscribe(resp => {
-    //   console.log(resp);
-    // });
+
   }
 
   checkLogin(): boolean {
     return this.loggedInUser.id !== undefined
   }
 
-  getMembers(teams: Array<Team> = []): number{
+  getMembers(teams: Array<Team> = []): number {
     let totalMember = 0;
     teams.forEach(t => {
-      if(t.members != undefined){
+      if (t.members != undefined) {
         totalMember += t.members.length;
       }
     });
     return totalMember;
   }
-
-  // logout(): void {
-  //   this.UserService.logout();
-  // }
-
 }
