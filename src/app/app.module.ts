@@ -15,6 +15,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { ContestComponent } from './pages/contest/contest.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
     AppComponent,
     LoginComponent,
     HomeComponent,
+    ContestComponent,
   ],
   imports: [
     BrowserModule,

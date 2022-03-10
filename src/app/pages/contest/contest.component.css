@@ -1,0 +1,58 @@
+/* 
+* SLIDER BAR
+ */
+
+.list-major-contest {
+  margin-left: -30px;
+}
+
+.major-contest-link {
+  padding: 10px 15px;
+  color: #000;
+}
+
+
+
+.major-contest-item .major-contest-link:hover,
+.active {
+  background-color: var(--warning);
+  color: var(--white);
+}
+
+/* 
+SEARCH
+ */
+
+.input-search:focus {
+  outline: none;
+  color: var(--title-blue)
+}
+
+
+/* 
+PAGINATION
+ */
+.page-link {
+  color: var(--black);
+}
+
+.page-link:hover {
+  background-color: var(--warning);
+  color: var(--white);
+}
+
+
+/* IMAGE CONTEST
+ */
+
+.contest-img img {
+  object-fit: cover;
+  height: 170px;
+}
+
+/* CONTEST-ITEM
+ */
+
+.fs-name-time {
+  font-size: 12px;
+}

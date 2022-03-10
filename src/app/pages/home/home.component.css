@@ -14,17 +14,7 @@
   padding: 0px 20px !important;
 }
 
-/* LIST Competition */
-.btn-register {
-  color: var(--warning);
-  border: 1px solid var(--warning);
-}
 
-.btn-register:hover {
-  transition: all ease-in-out 0.5s;
-  background-color: var(--warning);
-  color: var(--white);
-}
 
 /* INPUT SEARCH */
 /* .icon-search {
