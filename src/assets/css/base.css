@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300&display=swap');
-
 :root {
   --primary-color: #ff5622;
   --black: #000;
   --white: #ffff;
   --primary-color-sub: #ff6638;
   --text-color: #83838b;
-  --color-cate: #ff663e;
+  --gray: #ccc;
+  --color-yellow: #fbc531;
+  --text-gray: #808e9b;
   --warning: #F26F21;
-  --title-blue: #2C5282;
+  --title-blue: #192a56;
   --title-footer: #F26F21;
 }
 
@@ -19,8 +19,31 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  font-size: 62, 5%;
+  font-size: 62%;
+}
+
+.fs-text {
+  font-size: 16px;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin-left: -30px;
+}
+
+
+.margin-header {
+  padding-top: 40px;
+}
+
+.text-justify {
+  text-align: justify;
 }
 
 .primary-color {
@@ -28,15 +51,16 @@ body {
 }
 
 .color-title {
-  color: var(--title-blue);
+  color: var(--primary-color-sub);
 }
 
-.color-title-sub {
-  color: var(--text-color);
+.color-gray {
+  color: #3c4753;
 }
+
 
 .color-blue {
-  color: var(--btn-blue)
+  color: var(--title-blue)
 }
 
 /* FONT - SIZE */

@@ -8,9 +8,8 @@
 
 .major-contest-link {
   padding: 10px 15px;
-  color: #000;
+  color: #2c3e50;
 }
-
 
 
 .major-contest-item .major-contest-link:hover,
@@ -22,10 +21,20 @@
 /* 
 SEARCH
  */
+.form-search {
+  transition: 0.4s;
+  border-radius: 6px;
+}
 
 .input-search:focus {
   outline: none;
   color: var(--title-blue)
+}
+
+.form-search:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 10px var(--gray);
+  transition: all ease-in-out 0.4s;
 }
 
 

@@ -4,9 +4,10 @@ import { User } from 'src/app/models/user';
 import { SponsorService } from 'src/app/services/sponsor.service';
 import { UserService } from 'src/app/services/user.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { ContestService } from 'src/app/services/contest.service';
+
 import { Contest } from 'src/app/models/contest';
 import { Team } from 'src/app/models/team';
+import { ContestService } from 'src/app/services/contest.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
   sponsors: Array<Sponsor>;
   contests: Array<Contest> = [];
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
@@ -43,33 +44,9 @@ export class HomeComponent implements OnInit {
     },
     nav: true
   }
-
-  AssessEnterprise: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: false,
-    navText: ['', ''],
-    responsive: {
-      300: {
-        items: 1
-      },
-      576: {
-        items: 1
-      },
-      978: {
-        items: 1
-      },
-      1024: {
-        items: 1
-      }
-    },
-    nav: true
-  }
-
+  
   listStudent: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,

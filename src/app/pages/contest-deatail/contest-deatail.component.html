@@ -1,0 +1,17 @@
+<div class="margin-header contest-detail-box container my-4">
+    <div class="contest-detail-header">
+        <div class=" contest-detail-left ">
+            <app-contest-detail-header></app-contest-detail-header>
+            <app-round *ngIf="display == ''" [forwardComponent]="forwardComponent" (roundDetail)="roundDetailNow()">
+            </app-round>
+        </div>
+        <div class="contest-detail-right">
+            <app-contest-detail-header-right>
+            </app-contest-detail-header-right>
+            <div class="mt-3">
+                <img src="https://caodang.fpt.edu.vn/wp-content/uploads/%C4%91%E1%BB%8Bnh-h%C6%B0%E1%BB%9Bng.png" alt=""
+                    class="w-100">
+            </div>
+        </div>
+    </div>
+</div>

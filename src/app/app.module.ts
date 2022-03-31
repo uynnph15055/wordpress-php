@@ -16,14 +16,34 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { ContestComponent } from './pages/contest/contest.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
+import { ContestDeatailComponent } from './pages/contest-deatail/contest-deatail.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { BannerComponent } from './component/banner/banner.component';
+import { BackTimeComponent } from './component/back-time/back-time.component';
+import { TeamExamComponent } from './component/team-exam/team-exam.component';
 
-
+import { RoundComponent } from './component/round/round.component';
+import { BackTopComponent } from './component/back-top/back-top.component';
+import { RoundDetailComponent } from './pages/round-detail/round-detail.component';
+import { ContestDetailHeaderComponent } from './component/contest-detail-header/contest-detail-header.component';
+import { ContestDetailHeaderRightComponent } from './component/contest-detail-header-right/contest-detail-header-right.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
     ContestComponent,
+    HomeLayoutComponent,
+    ContestDeatailComponent,
+    BannerComponent,
+    BackTimeComponent,
+    TeamExamComponent,
+    RoundComponent,
+    BackTopComponent,
+    RoundDetailComponent,
+    ContestDetailHeaderComponent,
+    ContestDetailHeaderRightComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +55,8 @@ import { ContestComponent } from './pages/contest/contest.component';
     HttpClientModule,
     CarouselModule,
     BrowserAnimationsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatExpansionModule
   ],
   providers: [
     {
@@ -43,6 +64,7 @@ import { ContestComponent } from './pages/contest/contest.component';
       useValue: {
         autoLogin: false,
         providers: [
+          { provide: Window, useValue: window },
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(environment.GG_CLIENT_ID),
@@ -64,5 +86,5 @@ import { ContestComponent } from './pages/contest/contest.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  
+
 }

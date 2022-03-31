@@ -1,0 +1,15 @@
+.p-justify {
+  text-align: justify;
+}
+
+.contest-detail-left-header,
+.list-team-in {
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px var(--gray);
+  /* margin-right: 30px; */
+}
+
+.contest-detail-right {
+  margin-left: 50px;
+  height: 340px;
+}

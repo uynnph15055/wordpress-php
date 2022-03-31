@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ContestService } from 'src/app/services/contest.service';
-import { Contest } from 'src/app/models/contest';
+
 @Component({
-  selector: 'app-contest',
-  templateUrl: './contest.component.html',
-  styleUrls: ['./contest.component.css']
+  selector: 'app-contest-detail-header-right',
+  templateUrl: './contest-detail-header-right.component.html',
+  styleUrls: ['./contest-detail-header-right.component.css']
 })
-export class ContestComponent implements OnInit {
-  contests: Array<Contest> = [];
+export class ContestDetailHeaderRightComponent implements OnInit {
   days: number = 5;
   hours: number = 16;
   minutes: number = 20;
   seconds: number = 25;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 
 
   x = setInterval(() => {
@@ -24,12 +27,4 @@ export class ContestComponent implements OnInit {
     this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
   }, 1000);
 
-  constructor(private contestService: ContestService) { }
-
-  ngOnInit(): void {
-    this.contestService.list().subscribe(resp => {
-      this.contests = resp.payload;
-      console.log(this.contests);
-    });
-  }
 }

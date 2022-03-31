@@ -1,0 +1,30 @@
+/* LIST ROUND */
+.round-header {
+  box-shadow: 0px 0px 5px var(--gray);
+  /* margin-bottom: 15px; */
+}
+
+.icon-close {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.img-avatar-round {
+  height: 35px;
+  width: 35px;
+}
+
+.img-avatar-round img {
+  border-radius: 50px;
+  object-fit: cover;
+}
+
+.round-content {
+  margin-bottom: -15px;
+}
+
+/* LIST TEAM */
+.list-team-in {
+  padding: 10px 25px;
+  margin-bottom: 10px;
+}
