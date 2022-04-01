@@ -2,6 +2,7 @@
   --primary-color: #ff5622;
   --black: #000;
   --white: #ffff;
+  --red: #e55039;
   --primary-color-sub: #ff6638;
   --text-color: #83838b;
   --gray: #ccc;
@@ -48,6 +49,10 @@ ul {
 
 .primary-color {
   color: var(--primary-color);
+}
+
+.color-red {
+  color: var(--red);
 }
 
 .color-title {

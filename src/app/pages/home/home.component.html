@@ -74,7 +74,6 @@
                     <img [src]="item.img" class="card-img-top rounded img-fluid">
                 </a>
             </div>
-
             <div class="mt-3">
                 <h5 class="name-contest font-size-ml color-title"><a class="text-dark"
                         routerLink="chi-tiet-cuoc-thi">{{item.name}}</a></h5>
@@ -82,7 +81,7 @@
                 <p class="font-list-content text-Secondary mt-3">Số người tham gia :
                     <span class="bg-primary p-1 rounded text-white">{{getMembers(item.teams)}}</span>
                 </p>
-                <a routerLink="chi-tiet-cuoc-thi" class="btn btn-register w-100">Đăng ký</a>
+                <a [routerLink]="['chi-tiet-cuoc-thi' , item.id]" class="btn btn-register w-100">Đăng ký</a>
             </div>
         </ng-template>
     </owl-carousel-o>

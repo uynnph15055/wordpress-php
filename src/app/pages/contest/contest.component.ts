@@ -7,29 +7,51 @@ import { Contest } from 'src/app/models/contest';
   styleUrls: ['./contest.component.css']
 })
 export class ContestComponent implements OnInit {
+  major_slug: any;
+  major_id: any;
   contests: Array<Contest> = [];
-  days: number = 5;
-  hours: number = 16;
-  minutes: number = 20;
-  seconds: number = 25;
-
-
-  x = setInterval(() => {
-    let futureDate = new Date("Apr 30, 2022 15:24:35").getTime();
-    let today = new Date().getTime();
-    let distance = futureDate - today;
-    this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  }, 1000);
+  majors: Array<any> = [
+    {
+      'id': 5,
+      'name': 'Thiết kế web',
+      'slug': 'thiet-ke-web',
+    },
+    {
+      'id': 7,
+      'name': 'Thiết kế đồ họa',
+      'slug': 'thiet-ke-do-hoa',
+    },
+    {
+      'id': 8,
+      'name': 'Quản trị khách sạn',
+      'slug': 'quan-tri-khach-san',
+    },
+    {
+      'id': 9,
+      'name': 'Lập trình máy tính',
+      'slug': 'lap-trinh-may-tinh',
+    },
+    {
+      'id': 10,
+      'name': 'Ứng dụng phần mềm',
+      'slug': 'ung-dung-phan-mem',
+    }
+  ]
 
   constructor(private contestService: ContestService) { }
 
   ngOnInit(): void {
-    this.contestService.list().subscribe(resp => {
+    this.contestService.getWhereStatus(1).subscribe(resp => {
       this.contests = resp.payload;
-      console.log(this.contests);
     });
   }
+
+
+  // Lọc theo chuyên ngành
+  filterContestMajor(major_id: number) {
+    this.contestService.getWhereMajor(major_id).subscribe(res => {
+      this.contests = res.payload;
+    });
+  }
+
 }

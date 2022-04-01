@@ -12,7 +12,8 @@ export const environment = {
   loginUrl: authApi + "/login-token",
   userListUrl: `${jwtApiUrl}/users`,
   sponsorListUrl: `${publicApiUrl}/sponsors`,
-  contestListUrl: `${publicApiUrl}/contests`
+  contestListUrl: `${publicApiUrl}/contests`,
+  majorListUrl: `${publicApiUrl}/majors`,
 };
 
 /*

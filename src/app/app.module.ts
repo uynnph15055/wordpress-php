@@ -28,6 +28,8 @@ import { BackTopComponent } from './component/back-top/back-top.component';
 import { RoundDetailComponent } from './pages/round-detail/round-detail.component';
 import { ContestDetailHeaderComponent } from './component/contest-detail-header/contest-detail-header.component';
 import { ContestDetailHeaderRightComponent } from './component/contest-detail-header-right/contest-detail-header-right.component';
+import { ContestStatusComponent } from './component/contest-status/contest-status.component';
+import { LoadingItemComponent } from './component/loading-item/loading-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,8 @@ import { ContestDetailHeaderRightComponent } from './component/contest-detail-he
     RoundDetailComponent,
     ContestDetailHeaderComponent,
     ContestDetailHeaderRightComponent,
+    ContestStatusComponent,
+    LoadingItemComponent,
   ],
   imports: [
     BrowserModule,

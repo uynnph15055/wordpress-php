@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-contest-detail-header',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contest-detail-header.component.css']
 })
 export class ContestDetailHeaderComponent implements OnInit {
-
+  @Input() contestDetail: any;
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.contestDetail);
   }
 
 }

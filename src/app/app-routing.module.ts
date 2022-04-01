@@ -21,7 +21,11 @@ const routes: Routes = [
         component: ContestComponent,
       },
       {
-        path: "chi-tiet-cuoc-thi",
+        path: 'cuoc-thi/:slug',
+        component: ContestComponent,
+      },
+      {
+        path: "chi-tiet-cuoc-thi/:id",
         component: ContestDeatailComponent,
       },
       {

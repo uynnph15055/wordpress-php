@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
+import * as moment from 'moment/moment';
 @Component({
   selector: 'app-contest-detail-header-right',
   templateUrl: './contest-detail-header-right.component.html',
   styleUrls: ['./contest-detail-header-right.component.css']
 })
 export class ContestDetailHeaderRightComponent implements OnInit {
+  @Input() contestDetail: any;
+  roundEndTime: any;
+
+
   days: number = 5;
   hours: number = 16;
   minutes: number = 20;
@@ -14,11 +18,12 @@ export class ContestDetailHeaderRightComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.roundEndTime = moment(this.contestDetail.end_time).format('lll');
   }
 
 
   x = setInterval(() => {
-    let futureDate = new Date("Apr 30, 2022 15:24:35").getTime();
+    let futureDate = new Date(this.roundEndTime).getTime();
     let today = new Date().getTime();
     let distance = futureDate - today;
     this.days = Math.floor(distance / (1000 * 60 * 60 * 24));

@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
     },
     nav: true
   }
-  
+
   listStudent: OwlOptions = {
     loop: false,
     mouseDrag: true,
@@ -73,14 +73,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private contestService: ContestService) { }
 
-
   ngOnInit(): void {
-    this.contestService.list().subscribe(resp => {
+    this.contestService.getWhereStatus(1).subscribe(resp => {
       if (resp.status == true) {
         this.contests = resp.payload;
       }
     });
-
   }
 
   checkLogin(): boolean {

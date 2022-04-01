@@ -8,6 +8,7 @@
 
 .major-contest-link {
   padding: 10px 15px;
+  box-shadow: 0px 0px 10px var(--gray);
   color: #2c3e50;
 }
 
@@ -16,52 +17,7 @@
 .active {
   background-color: var(--warning);
   color: var(--white);
-}
-
-/* 
-SEARCH
- */
-.form-search {
-  transition: 0.4s;
-  border-radius: 6px;
-}
-
-.input-search:focus {
-  outline: none;
-  color: var(--title-blue)
-}
-
-.form-search:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 0px 10px var(--gray);
-  transition: all ease-in-out 0.4s;
+  cursor: pointer;
 }
 
 
-/* 
-PAGINATION
- */
-.page-link {
-  color: var(--black);
-}
-
-.page-link:hover {
-  background-color: var(--warning);
-  color: var(--white);
-}
-
-
-/* IMAGE CONTEST
- */
-
-.contest-img img {
-  object-fit: cover;
-  height: 170px;
-}
-
-/* CONTEST-ITEM
- */
-
-.fs-name-time {
-  font-size: 12px;
-}

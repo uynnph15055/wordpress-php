@@ -19,11 +19,11 @@
                     </div>
 
                     <ul class="menu-res mt-5 border-top">
-                        <li class="menu-res-item py-3"><a routerLink="trang-chu"
+                        <li class="menu-res-item py-3"><a routerLink="/"
                                 class="menu-res-link text-decoration-none text-uppercase fw-bold py-3">Trang
                                 chủ</a>
                         </li>
-                        <li class="menu-res-item py-3"><a routerLink="cuoc-thi"
+                        <li class="menu-res-item py-3"><a routerLink="/cuoc-thi"
                                 class="menu-res-link text-decoration-none text-uppercase fw-bold">
                                 Cuộc thi
                             </a></li>
@@ -48,11 +48,11 @@
             <div class="d-flex" id="menu_login-box">
                 <ul class="nav menu_login-box d-flex align-items-center mr-auto home-nav pr-2">
                     <li class="nav-item active"><a class=" fw-bold text-decoration-none text-uppercase nav-link-item "
-                            href="">Trang
+                            routerLink="">Trang
                             Chủ</a>
                     </li>
-                    <li class="nav-item active"><a
-                            class="  fw-bold nav-link-item  text-uppercase  text-decoration-none " href="">Các
+                    <li class="nav-item active"><a class="  fw-bold nav-link-item  text-uppercase  text-decoration-none"
+                            [routerLink]="['/cuoc-thi']">Các
                             cuộc
                             thi</a>
                     </li>

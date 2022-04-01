@@ -10,8 +10,28 @@ import { ResponsePayload } from '../models/response-payload';
 export class ContestService {
 
   constructor(private http: HttpClient) { }
-  list(): Observable<ResponsePayload>
-  {
+  // Gọi tất cả các cuộc thi
+  getAll(): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(environment.contestListUrl);
+  }
+
+  // Lấy ra cuộc thi theo id
+  getWhereId(id: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}/${id}`);
+  }
+
+  // Gọi cuộc thi theo trạng thái
+  getWhereStatus(status: number): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${status}`);
+  }
+
+  // Tìm kiếm cuộc thi
+  searchContest(keyword: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?keyword=${keyword}`);
+  }
+
+  // Lọc theo chuyên ngành
+  getWhereMajor(major_id: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?major=${major_id}`);
   }
 }

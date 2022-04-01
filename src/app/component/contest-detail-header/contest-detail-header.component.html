@@ -1,17 +1,10 @@
 <div class="contest-detail-left-header">
     <div class="p-3">
-        <p class="fw-bold fs-5 primary-color">Cuộc thi laravel</p>
-        <p class="text-gray fs-text fw-bold">Bắt đầu : <span class="fw-normal">10h 45 29-3-2022</span></p>
-        <p class="text-gray fs-text fw-bold">Kết thúc : <span class="fw-normal">10h 45 29-3-2022</span></p>
-        <p class="fw-bold p-justify fs-text">Nội dung : <span class="fw-normal">Lorem ipsum dolor
-                sit
-                amet
-                consectetur
-                adipisicing
-                elit. Laudantium
-                distinctio quae vero
-                tempora consequuntur quaerat saepe inventore, libero vitae quisquam recusandae labore error
-                minus
-                accusantium accusamus neque sequi aut laboriosam.</span></p>
+        <p class="fw-bold fs-5 primary-color">{{contestDetail.name}}</p>
+        <p class="color-gray fs-text fw-bold">Bắt đầu : <span class="fw-normal">{{contestDetail.date_start}}</span></p>
+        <p class="color-gray fs-text fw-bold">Kết thúc : <span
+                class="fw-normal">{{contestDetail.register_deadline}}</span></p>
+        <p class="fw-bold color-gray p-justify fs-text">Nội dung : <span
+                class="fw-normal">{{contestDetail.description}}</span></p>
     </div>
 </div>

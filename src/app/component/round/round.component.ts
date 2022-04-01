@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Team } from 'src/app/models/team';
 
 @Component({
   selector: 'app-round',
@@ -6,14 +7,20 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./round.component.css']
 })
 export class RoundComponent implements OnInit {
-  @Input() forwardComponent: any;
-  @Output() roundDetail = new EventEmitter();
+  @Input() contestDetail: any;
   constructor() { }
 
   ngOnInit(): void {
+    console.log();
   }
 
-  forwardRoundDetail() {
-    this.roundDetail.emit();
+  getMembers(teams: Array<Team> = []): number {
+    let totalMember = 0;
+    teams.forEach(t => {
+      if (t.members != undefined) {
+        totalMember += t.members.length;
+      }
+    });
+    return totalMember;
   }
 }
