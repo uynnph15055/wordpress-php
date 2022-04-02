@@ -1,4 +1,8 @@
 /* LIST ROUND */
+.list-round-box {
+  min-height: 400px;
+}
+
 .round-header {
   box-shadow: 0px 0px 5px var(--gray);
   /* margin-bottom: 15px; */

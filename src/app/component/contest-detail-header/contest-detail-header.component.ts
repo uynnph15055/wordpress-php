@@ -6,11 +6,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./contest-detail-header.component.css']
 })
 export class ContestDetailHeaderComponent implements OnInit {
+  contest: any = [];
+
   @Input() contestDetail: any;
+  @Input() roundDetail: any;
+  @Input() status: any;
+
+
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.contestDetail);
   }
 
 }

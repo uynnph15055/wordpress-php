@@ -1,17 +1,18 @@
 .dots {
-  width: 3em;
-  height: 3em;
+  width: 6em;
+  height: 6em;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   align-items: center;
+  margin: 30px 0px;
 }
 
 .dots>div {
   width: 0.5em;
   height: 0.5em;
-  background-color: #3cefff;
+  background-color: var(--primary-color);
   border-radius: 50%;
   animation: fade 1.5s alternate ease-in-out infinite;
 }

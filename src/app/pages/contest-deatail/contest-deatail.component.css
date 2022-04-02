@@ -10,3 +10,23 @@
   min-height: 1000px;
   padding-top: 60px;
 }
+
+
+
+/* Danh sánh các nhà tài trợ */
+.img-company-box {
+  height: 150px;
+  width: 150px;
+  display: block;
+  margin: 0px auto;
+  object-fit: cover;
+}
+
+.img-company-box img {
+  object-fit: cover;
+}
+
+.name-company {
+  font-size: 1rem;
+  color: var(--midnight-blue)
+}

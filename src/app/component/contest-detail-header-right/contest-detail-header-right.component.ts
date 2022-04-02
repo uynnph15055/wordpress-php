@@ -7,6 +7,7 @@ import * as moment from 'moment/moment';
 })
 export class ContestDetailHeaderRightComponent implements OnInit {
   @Input() contestDetail: any;
+  @Input() status: any;
   roundEndTime: any;
 
 

@@ -16,6 +16,7 @@ import { ContestService } from 'src/app/services/contest.service';
 })
 export class HomeComponent implements OnInit {
   users: Array<User>;
+  status: string = 'pending';
   loggedInUser: User;
   sponsors: Array<Sponsor>;
   contests: Array<Contest> = [];
@@ -74,11 +75,17 @@ export class HomeComponent implements OnInit {
   constructor(private contestService: ContestService) { }
 
   ngOnInit(): void {
-    this.contestService.getWhereStatus(1).subscribe(resp => {
-      if (resp.status == true) {
-        this.contests = resp.payload;
+    this.contestService.getWhereStatus(1).subscribe(res => {
+      if (res.status == true) {
+        this.contests = res.payload;
+        if (this.contests) {
+          this.status = 'done'
+        }
       }
+
     });
+
+    console.log(this.status);
   }
 
   checkLogin(): boolean {

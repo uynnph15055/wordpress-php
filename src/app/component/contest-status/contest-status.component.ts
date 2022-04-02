@@ -30,7 +30,6 @@ export class ContestStatusComponent implements OnInit {
   constructor(private contestService: ContestService) { }
 
   ngOnInit(): void {
-  
   }
 
   searchContest(e: any) {
@@ -49,7 +48,7 @@ export class ContestStatusComponent implements OnInit {
     });
   }
 
-  // Điểm cố người tham gia
+  // Điểm số người tham gia
   getMembers(teams: Array<Team> = []): number {
     let totalMember = 0;
     teams.forEach(t => {

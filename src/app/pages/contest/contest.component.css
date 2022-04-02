@@ -1,6 +1,9 @@
 /* 
 * SLIDER BAR
  */
+.list-contest {
+  min-height: 700px;
+}
 
 .list-major-contest {
   margin-left: -30px;
@@ -19,5 +22,3 @@
   color: var(--white);
   cursor: pointer;
 }
-
-

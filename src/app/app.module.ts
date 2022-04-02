@@ -30,6 +30,7 @@ import { ContestDetailHeaderComponent } from './component/contest-detail-header/
 import { ContestDetailHeaderRightComponent } from './component/contest-detail-header-right/contest-detail-header-right.component';
 import { ContestStatusComponent } from './component/contest-status/contest-status.component';
 import { LoadingItemComponent } from './component/loading-item/loading-item.component';
+import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { LoadingItemComponent } from './component/loading-item/loading-item.comp
     ContestDetailHeaderRightComponent,
     ContestStatusComponent,
     LoadingItemComponent,
+    TypeExamPipe,
   ],
   imports: [
     BrowserModule,

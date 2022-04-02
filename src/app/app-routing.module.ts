@@ -29,14 +29,10 @@ const routes: Routes = [
         component: ContestDeatailComponent,
       },
       {
-        path: "vong-thi",
+        path: "vong-thi/:id",
         component: RoundDetailComponent,
       }
     ]
-  },
-  {
-    path: "cuoc-thi",
-    component: ContestComponent
   },
   {
     path: "login",

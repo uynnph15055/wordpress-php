@@ -8,6 +8,7 @@ import { Team } from 'src/app/models/team';
 })
 export class RoundComponent implements OnInit {
   @Input() contestDetail: any;
+  @Input() status: any;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 <div class="list-round-box mt-4">
-    <p class="fw-bold fs-5 primary-color">Danh sách vòng thi</p>
-    <mat-accordion>
+    <p class="fw-bold fs-5 color-blue">Danh sách vòng thi</p>
+    <mat-accordion *ngIf="status == 'done'">
         <mat-expansion-panel class="round-header mb-3" *ngFor="let item of contestDetail.rounds">
             <mat-expansion-panel-header class="test">
                 <mat-panel-title class="round-item">
@@ -24,9 +24,12 @@
                         Thiện...<a href="" class="color-blue">Chi
                             tiết
                         </a></span></p>
-                <a class="btn btn-register float-end" routerLink="./../vong-thi">Chi tiết</a>
+                <a class="btn btn-register float-end" [routerLink]="['./../../vong-thi' , 4]">Chi tiết</a>
 
             </ul>
         </mat-expansion-panel>
     </mat-accordion>
+    <div class="d-flex justify-content-center">
+        <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
+    </div>
 </div>
