@@ -28,9 +28,11 @@ import { BackTopComponent } from './component/back-top/back-top.component';
 import { RoundDetailComponent } from './pages/round-detail/round-detail.component';
 import { ContestDetailHeaderComponent } from './component/contest-detail-header/contest-detail-header.component';
 import { ContestDetailHeaderRightComponent } from './component/contest-detail-header-right/contest-detail-header-right.component';
-import { ContestStatusComponent } from './component/contest-status/contest-status.component';
+
 import { LoadingItemComponent } from './component/loading-item/loading-item.component';
 import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
+import { FormatDatePipe } from './helper/pipe/format-date.pipe';
+import { ListAvatarUserComponent } from './component/list-avatar-user/list-avatar-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,9 +49,10 @@ import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
     RoundDetailComponent,
     ContestDetailHeaderComponent,
     ContestDetailHeaderRightComponent,
-    ContestStatusComponent,
     LoadingItemComponent,
     TypeExamPipe,
+    FormatDatePipe,
+    ListAvatarUserComponent,
   ],
   imports: [
     BrowserModule,

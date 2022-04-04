@@ -26,12 +26,12 @@ export class ContestService {
   }
 
   // Tìm kiếm cuộc thi
-  searchContest(keyword: any): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?keyword=${keyword}`);
+  searchContest(keyword: string): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>('http://127.0.0.1:8000/api/public/contests?q=' + keyword);
   }
 
   // Lọc theo chuyên ngành
   getWhereMajor(major_id: any): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?major=${major_id}`);
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?major_id=${major_id}`);
   }
 }
