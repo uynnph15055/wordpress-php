@@ -12,7 +12,13 @@ export class MajorService {
 
   constructor(private http: HttpClient) { }
 
+  // Lấy tất cả chuyên ngành
   getAll(): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(environment.majorListUrl);
+  }
+
+  // Lấy chuyên ngành theo slug
+  getMajorWhereSlug(slug: string): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.majorListUrl}/${slug}`);
   }
 }

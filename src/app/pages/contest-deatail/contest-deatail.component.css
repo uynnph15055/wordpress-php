@@ -28,5 +28,29 @@
 
 .name-company {
   font-size: 1rem;
-  color: var(--midnight-blue)
+  color: var(--midnight-blue);
+
+}
+
+/* Idea contest */
+.idea-contest {
+  border: rgb(168, 164, 164) solid 1px;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.idea-contest:focus {
+  outline: none;
+}
+
+.social-network {}
+
+.social-network-item {
+  margin-right: 20px;
+}
+
+.social-network-link {
+  padding: 10px;
+  border-radius: 50px;
+  background-color: aqua;
 }

@@ -19,7 +19,9 @@ export class ContestDetailHeaderRightComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.roundEndTime = moment(this.contestDetail.end_time).format('lll');
+    console.log(this.contestDetail);
+
+    this.roundEndTime = moment(this.contestDetail.register_deadline).format('lll');
   }
 
 

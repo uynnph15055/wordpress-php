@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ContestService } from 'src/app/services/contest.service';
 import { Contest } from 'src/app/models/contest';
 import { ActivatedRoute } from '@angular/router';
+import { MajorService } from 'src/app/services/major.service';
+import { map, switchMap } from 'rxjs';
 @Component({
   selector: 'app-contest',
   templateUrl: './contest.component.html',
@@ -13,67 +15,48 @@ export class ContestComponent implements OnInit {
   major_id: any = '';
   contests: Array<Contest> = [];
   majorItem: Array<Contest> = [];
-  majors: Array<any> = [
-    {
-      'id': 5,
-      'name': 'Thiết kế web',
-      'slug': 'thiet-ke-web',
-    },
-    {
-      'id': 7,
-      'name': 'Thiết kế đồ họa',
-      'slug': 'thiet-ke-do-hoa',
-    },
-    {
-      'id': 8,
-      'name': 'Quản trị khách sạn',
-      'slug': 'quan-tri-khach-san',
-    },
-    {
-      'id': 9,
-      'name': 'Lập trình máy tính',
-      'slug': 'lap-trinh-may-tinh',
-    },
-    {
-      'id': 10,
-      'name': 'Ứng dụng phần mềm',
-      'slug': 'ung-dung-phan-mem',
-    }
-  ]
+  majors: Array<any> = []
 
-  constructor(private contestService: ContestService, private route: ActivatedRoute) { }
+  constructor(private contestService: ContestService, private route: ActivatedRoute, private majorService: MajorService) {
+
+  }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.major_slug = params.get('slug')
-      this.majorItem = this.majors.filter(res => {
-        return this.major_slug == res.slug;
-      });
-      this.major_id = this.majorItem[0].id;
-    });
+    // Get id
+    this.route.paramMap.pipe(
+      map((params: any) => params.get('slug')),
+      switchMap((slug: string) => this.majorService.getMajorWhereSlug(slug))
+    ).subscribe(res => {
+      this.major_id = res.payload.id;
+      console.log(this.major_id);
+    })
 
-    if (this.major_slug != null) {
-      this.contests = [];
-      this.contestService.getWhereMajor(this.major_id).subscribe(res => {
+
+    // Gọi tất cả chuyên ngành
+    this.majorService.getAll().subscribe(res => {
+      if (res.status == true) {
+        this.majors = res.payload.data;
+        if (this.majors) {
+          this.status = 'done';
+        };
+      };
+      // console.log(this.majors);
+    })
+
+    if (this.major_id == '') {
+      this.contestService.getAll().subscribe(res => {
         this.contests = res.payload;
         if (this.contests) {
           this.status = 'done';
         }
       })
     } else {
-      this.contestService.getWhereStatus(1).subscribe(resp => {
-        this.contests = resp.payload;
+      this.contestService.getWhereMajor(this.major_id).subscribe(res => {
+        this.contests = res.payload;
         if (this.contests) {
           this.status = 'done';
         }
-      });
+      })
     }
-  }
-
-  // Lọc theo chuyên ngành
-  filterContestMajor(major_id: number) {
-    this.contestService.getWhereMajor(major_id).subscribe(res => {
-      this.contests = res.payload;
-    });
   }
 }

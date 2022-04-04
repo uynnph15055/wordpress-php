@@ -16,4 +16,8 @@ export class BackTopComponent implements OnInit {
 
   }
 
+  backTop() {
+    alert('Nguyễn Ngọc Uy');
+  }
+
 }

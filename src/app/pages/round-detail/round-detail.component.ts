@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./round-detail.component.css']
 })
 export class RoundDetailComponent implements OnInit {
-
+  contestDetail: Array<any> = [];
   roundDetail: any = [
     {
       "id": 4,
@@ -94,11 +94,12 @@ export class RoundDetailComponent implements OnInit {
         "updated_at": "2022-03-02T04:30:28.000000Z"
       }
     }
-  ]
+  ];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.contestDetail = this.roundDetail.contest;
   }
 
 }
