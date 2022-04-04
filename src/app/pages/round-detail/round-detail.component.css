@@ -1,0 +1,12 @@
+.contest-detail-header {
+  display: grid;
+  grid-template-columns: 70% 25%;
+  grid-gap: 50px;
+}
+
+/* ---- */
+
+.contest-detail-box {
+  min-height: 1000px;
+  padding-top: 60px;
+}

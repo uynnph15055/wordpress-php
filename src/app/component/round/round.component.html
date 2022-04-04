@@ -1,0 +1,36 @@
+<div class="list-round-box mt-4">
+    <p class="fw-bold fs-5 color-blue">Danh sách vòng thi</p>
+    <mat-accordion *ngIf="status == 'done'">
+        <mat-expansion-panel class="round-header mb-3" *ngFor="let item of contestDetail.rounds">
+            <mat-expansion-panel-header class="test">
+                <mat-panel-title class="round-item">
+                    <div class="img-avatar-round my-2">
+                        <img [src]="item.image" alt="" class="w-100 h-100">
+                    </div>
+                    &nbsp;
+                    {{item.name}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul class="mt-2 round-content">
+                <p class="color-gray fs-text fw-bold">Bắt đầu : <span class="fw-normal">{{item.start_time}}</span></p>
+                <p class="color-gray fs-text fw-bold">Kết thúc : <span class="fw-normal">{{item.end_time}}</span></p>
+                <p class="fw-bold color-gray p-justify fs-text">Nội dung : <span
+                        class="fw-normal">{{item.description}}</span></p>
+                <p class="fw-bold fs-text color-gray">Số đội : <span class="fw-normal"> 10 đội</span> <a
+                        class="fw-normal" href="" class="fw-normal"> Chi
+                        tiết</a></p>
+                <p class="fw-bold fs-text color-gray">Ban giảm khảo :<span class="fw-normal">Nguyễn Đức Anh Tuấn , Trần
+                        Hữu
+                        Thiện...<a href="" class="color-blue">Chi
+                            tiết
+                        </a></span></p>
+                <a class="btn btn-register float-end" [routerLink]="['./../../vong-thi' , 4]">Chi tiết</a>
+
+            </ul>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div class="d-flex justify-content-center">
+        <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
+    </div>
+ 
+</div>

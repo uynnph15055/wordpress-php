@@ -1,0 +1,236 @@
+/* COMMOM */
+@import url('https://fonts.googleapis.com/css2?family=Gelasio&display=swap');
+
+.font-size-sml {
+  font-size: 13px;
+  color: var(--text-color);
+}
+
+.color-yellow {
+  color: var(--color-yellow)
+}
+
+.font-size-ml {
+  font-size: 19px;
+  color: var(--text-color);
+}
+
+
+.title {
+  font-size: 1.4rem;
+}
+
+
+/* LIST CONTEST */
+.ng-tns-c105-0 {
+  padding: 0px 20px !important;
+}
+
+.font-list-content {
+  font-size: 0.9rem;
+}
+
+.description-software {
+  font-size: 1rem;
+}
+
+/* LIST CONTEST */
+.name-contest {
+  color: #111;
+}
+
+/* Rating */
+.subject-item {
+  font-size: 13px;
+}
+
+.title-sub {
+  position: relative;
+  color: #46464b;
+}
+
+.title-sub::before {
+  position: absolute;
+  margin-top: 10px;
+  bottom: 0;
+  top: 10;
+  left: 0;
+  content: '';
+  height: 4px;
+  width: 8%;
+  background-color: var(--primary-color-sub);
+}
+
+.contest-img img {
+  object-fit: cover;
+  height: 200px;
+}
+
+/* STATISTICAL */
+.section_plan {
+  background-image: url("//bizweb.dktcdn.net/100/226/207/themes/552753/assets/anh-ly-do.jpg?1625208439171");
+  height: 350px;
+}
+
+.section_plan-title {
+  padding-top: 30px;
+  font-size: 1.2rem;
+}
+
+.section_plan-text {
+  font-size: 16px;
+}
+
+.section_plan-bag-number {
+  font-size: 3rem;
+}
+
+.value-receive-item {
+  border: 1px solid var(--color-primary);
+  border-radius: 10px;
+  margin-left: 20px;
+}
+
+.section_plan-box {
+  padding-top: 70px;
+}
+
+/* LIST STUDENT */
+.name-student,
+.icon-star {
+  font-size: 1.1rem;
+
+}
+
+/* DOANH NGHIỆP */
+
+.assess-enterprise-wrapper {
+  background-image: url(./../../../assets/img/2c261a344f4c8012d95d.jpg);
+  background-size: cover;
+  /* background: linear-gradient(var(--gray)); */
+  height: 500px;
+  position: relative;
+  user-select: none;
+}
+
+.assess-enterprise-title {
+  padding-top: 40px;
+}
+
+.assess-enterprise-wrapper img {
+  pointer-events: none;
+}
+
+.assess-img-box {
+  height: 150px;
+  /* object-fit: cover; */
+}
+
+.assess-img-box img {
+  object-fit: cover;
+}
+
+.fornt-gelasio {
+  font-family: 'Gelasio', serif;
+}
+
+.assess-content {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.assess-represent {
+  font-size: 17px;
+  font-weight: 600;
+  color: #222;
+}
+
+.assess-enterprise-box {
+  margin-top: 20px;
+  overflow: hidden;
+  position: absolute;
+  width: 900px;
+  border-radius: 20px;
+  height: 350px;
+  background-color: #ffff;
+  top: 10;
+  left: 16%;
+  right: 15%;
+  box-shadow: 0px 0px 15px var(--gray);
+}
+
+@keyframes slider_animation {
+  0% {
+    left: 0px;
+  }
+
+  10% {
+    left: 0px;
+  }
+
+  20% {
+    left: 900px;
+    ;
+  }
+
+  30% {
+    left: 900px;
+    ;
+  }
+
+  40% {
+    left: 1800px;
+  }
+
+  50% {
+    left: 1800px;
+  }
+
+  60% {
+    left: 900px;
+    ;
+  }
+
+  70% {
+    left: 1800px;
+    ;
+  }
+
+  80% {
+    left: 0px;
+  }
+
+  90% {
+    left: 0px;
+  }
+
+  100% {
+    left: 0px;
+  }
+}
+
+.assess-enterprise-in {
+  width: 2700px;
+  margin: 0 0 0 -1800px;
+  position: relative;
+  animation-name: slider_animation;
+  animation-duration: 33s;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+}
+
+.assess-content-box {
+  width: 900px;
+  position: relative;
+  float: left;
+  padding: 30px 50px;
+}
+
+@media (max-width:568px) {
+  .assess-enterprise-wrapper {
+    height: 700px;
+  }
+}
+
+
+@media (max-width:987px) {}

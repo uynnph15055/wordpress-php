@@ -1,0 +1,39 @@
+<app-banner></app-banner>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-3 slider-bar">
+            <h3 class="title-major fw-bold fs-4 color-blue">Chuyên ngành</h3>
+            <ul class="list-major-contest mt-2">
+                <li *ngFor="let m of majors" class="list-unstyled major-contest-item mb-3"><a
+                        [routerLink]="['/cuoc-thi' , m.slug]" routerLinkActive="active" [state]="{major_id : m.id}"
+                        [routerLinkActiveOptions]="{exact: true}"
+                        class="major-contest-link text-decoration-none fw-bold fs-6 w-100 rounded d-inline-block">{{m.name}}</a>
+                </li>
+            </ul>
+            <div class="d-flex justify-content-center" style="margin-top: 50px;">
+                <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
+            </div>
+        </div>
+        <div class="col-9 list-contest">
+            <app-contest-status [contests]="contests"></app-contest-status>
+            <div class="d-flex justify-content-center">
+                <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
+            </div>
+        </div>
+        <div class="paying-contest float-end">
+            <!-- <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link " href="#">
+                            <fa-icon class="" [icon]="['fas' , 'angle-double-left']"></fa-icon>
+                        </a></li>
+                    <li class="page-item"><a class="page-link " href="#">1</a></li>
+                    <li class="page-item"><a class="page-link " href="#">2</a></li>
+                    <li class="page-item"><a class="page-link " href="#">3</a></li>
+                    <li class="page-item"><a class="page-link " href="#">
+                            <fa-icon class="" [icon]="['fas' , 'angle-double-right']"></fa-icon>
+                        </a></li>
+                </ul>
+            </nav> -->
+        </div>
+    </div>
+</div>

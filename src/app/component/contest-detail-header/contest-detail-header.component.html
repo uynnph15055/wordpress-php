@@ -1,0 +1,13 @@
+<div class="contest-detail-left-header">
+    <div class="p-3" *ngIf="status == 'done'">
+        <p class="fw-bold fs-5 color-blue">{{contestDetail.name}}</p>
+        <p class="color-gray fs-text fw-bold">Bắt đầu : <span class="fw-normal">{{contestDetail.date_start}}</span></p>
+        <p class="color-gray fs-text fw-bold">Kết thúc : <span
+                class="fw-normal">{{contestDetail.register_deadline}}</span></p>
+        <p class="fw-bold color-gray p-justify fs-text">Nội dung : <span
+                class="fw-normal">{{contestDetail.description}}</span></p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
+    </div>
+</div>
