@@ -6,6 +6,7 @@ import { ContestComponent } from './pages/contest/contest.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { ContestDeatailComponent } from './pages/contest-deatail/contest-deatail.component';
 import { RoundDetailComponent } from './pages/round-detail/round-detail.component';
+import { ListAvatarUserComponent } from './component/list-avatar-user/list-avatar-user.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginComponent
+  },
+  {
+    path: "avatar",
+    component: ListAvatarUserComponent,
   }
 
 ];

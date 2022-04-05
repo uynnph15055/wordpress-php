@@ -3,7 +3,14 @@
     <div class="row">
         <div class="col-3 slider-bar">
             <h3 class="title-major fw-bold fs-4 color-blue">Chuyên ngành</h3>
-            <ul class="list-major-contest mt-2">
+            <select (change)="statusContest($event)" class="form-select" aria-label="Default select example">
+                <option selected>Trạng thái</option>
+                <option value="0">Tất cả</option>
+                <option value="1">Đang diễn ra</option>
+                <option value="2">Sắp diễn ra </option>
+                <option value="3">Đã kết thúc</option>
+            </select>
+            <ul class="list-major-contest mt-3">
                 <li *ngFor="let m of majors" class="list-unstyled major-contest-item mb-3"><a
                         [routerLink]="['/cuoc-thi' , m.slug]" routerLinkActive="active" [state]="{major_id : m.id}"
                         [routerLinkActiveOptions]="{exact: true}"
@@ -15,25 +22,87 @@
             </div>
         </div>
         <div class="col-9 list-contest">
-            <app-contest-status [contests]="contests"></app-contest-status>
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mt-4 fs-5 fw-bold">Các cuộc thi</h5>
+                <div class="form-search mt-2 ">
+                    <form class="pt-2" [formGroup]="formSearch">
+                        <input type="text" class="color-title w-75 input-search border-0 fs-6" formControlName="keyword"
+                            placeholder="Tìm kiếm">
+                        <fa-icon class="color-blue float-end  fs-6 icon-search" (click)="searchContest()"
+                            [icon]="['fas' , 'search']">
+                        </fa-icon>
+                    </form>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div *ngFor="let s of contests" class="col-md-6 col-lg-4 col-xl-4 col-sm-12 mb-3">
+
+                    <div class="contest-img">
+                        <a [routerLink]="['./../chi-tiet-cuoc-thi' , s.id]">
+                            <img [src]="s.img" class="card-img-top rounded
+                            img-fluid">
+                        </a>
+                    </div>
+
+                    <div class="mt-3">
+                        <a [routerLink]="['./../chi-tiet-cuoc-thi' , s.id]">
+                            <h5 class=" font-size-ml text-dark fs-6 fw-bold">{{s.name}}
+                            </h5>
+                        </a>
+                        <div class="text-Secondary mt-3 d-flex justify-content-evenly a font-size-sml fs-text-contest">
+                            <p class="time">
+                                Thời gian :
+                            </p>
+                            <div class="text-center">
+                                <span class="fw-bold text-primary">{{days}}</span>
+                                <br>
+                                <span class="fs-name-time"> Ngày </span>
+                            </div>
+                            <span class="fw-bold text-primary">:</span>
+                            <div class="text-center">
+                                <span class="fw-bold text-primary">{{hours}}</span>
+                                <br>
+                                <span class="fs-name-time"> Giờ</span>
+                            </div>
+                            <span class="fw-bold text-primary">:</span>
+                            <div class="text-center">
+                                <span class="fw-bold text-primary">{{minutes}}</span>
+                                <br>
+                                <span class="fs-name-time"> Phút</span>
+                            </div>
+                            <span class="fw-bold text-primary">:</span>
+                            <div class="text-center">
+                                <span class="fw-bold text-primary">{{seconds}}</span>
+                                <br>
+                                <span class="fs-name-time">Giây</span>
+                            </div>
+                        </div>
+                        <p class="font-size-sml mt-3 fs-text-contest">Số người tham gia :
+                            <span class="bg-primary p-1 rounded text-white">{{getMembers(s.teams)}}</span>
+                        </p>
+                        <a [routerLink]="['./../chi-tiet-cuoc-thi' , s.id]" class="btn btn-register w-100">Đăng ký</a>
+                    </div>
+                </div>
+
+            </div>
             <div class="d-flex justify-content-center">
                 <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
             </div>
-        </div>
-        <div class="paying-contest float-end">
-            <!-- <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link " href="#">
-                            <fa-icon class="" [icon]="['fas' , 'angle-double-left']"></fa-icon>
-                        </a></li>
-                    <li class="page-item"><a class="page-link " href="#">1</a></li>
-                    <li class="page-item"><a class="page-link " href="#">2</a></li>
-                    <li class="page-item"><a class="page-link " href="#">3</a></li>
-                    <li class="page-item"><a class="page-link " href="#">
-                            <fa-icon class="" [icon]="['fas' , 'angle-double-right']"></fa-icon>
-                        </a></li>
-                </ul>
-            </nav> -->
+            <div class="paying-contest float-end" *ngIf="status == 'done'">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link " href="#">
+                                <fa-icon class="" [icon]="['fas' , 'angle-double-left']"></fa-icon>
+                            </a></li>
+                        <li class="page-item"><a class="page-link " href="#">1</a></li>
+                        <li class="page-item"><a class="page-link " href="#">2</a></li>
+                        <li class="page-item"><a class="page-link " href="#">3</a></li>
+                        <li class="page-item"><a class="page-link " href="#">
+                                <fa-icon class="" [icon]="['fas' , 'angle-double-right']"></fa-icon>
+                            </a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </div>
