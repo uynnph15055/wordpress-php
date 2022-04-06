@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { ContestComponent } from './pages/contest/contest.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
-import { ContestDeatailComponent } from './pages/contest-deatail/contest-deatail.component';
+import { ContestDeatailComponent } from './pages/contest-detail/contest-deatail.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BannerComponent } from './component/banner/banner.component';
 import { BackTimeComponent } from './component/back-time/back-time.component';

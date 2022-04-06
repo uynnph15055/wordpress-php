@@ -66,6 +66,9 @@ export class ContestComponent implements OnInit {
       })
     });
 
+    console.log(this.contests);
+
+
     // Gọi tất cả chuyên ngành
     this.majorService.getAll().subscribe(res => {
       if (res.status == true) {
@@ -82,6 +85,9 @@ export class ContestComponent implements OnInit {
     this.contestService.getAll().subscribe(res => {
       this.contests = res.payload;
     })
+
+    console.log(this.contests);
+
   }
 
   // Tìm kiếm cuộc thi
