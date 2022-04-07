@@ -56,9 +56,8 @@
                         </div>
                     </div>
                 </ng-template>
-                <div *ngIf="roundDetail" class=" list-team-in">
-                    <div *ngFor="let item of roundDetail.teams"
-                        class="team-item d-flex justify-content-between align-items-center">
+                <div *ngFor="let item of roundDetail.teams" class="list-team-in mb-2">
+                    <div class="team-item d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="img-avatar-round my-2">
                                 <img [src]="item.image" alt="" class="w-100 h-100">
