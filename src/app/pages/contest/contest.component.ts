@@ -46,13 +46,13 @@ export class ContestComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.major_slug = params.get('slug');
       this.majorService.getMajorWhereSlug(this.major_slug).subscribe(res => {
-        console.log(this.major_slug);
 
         if (this.major_slug == null) {
           // this.status = 'pending'
           this.getAllContest();
         } else {
           this.major_id = res.payload.id;
+          // console.log(this.major_id);
 
           this.contestService.getWhereMajor(this.major_id).subscribe(res => {
             this.contests = res.payload;
@@ -66,18 +66,15 @@ export class ContestComponent implements OnInit {
       })
     });
 
-    console.log(this.contests);
-
-
     // Gọi tất cả chuyên ngành
     this.majorService.getAll().subscribe(res => {
       if (res.status == true) {
-        this.majors = res.payload.data;
+        this.majors = res.payload;
         if (this.majors) {
           this.status = 'done';
         };
       };
-      // console.log(this.majors);
+      // console.log(res);
     })
   }
 
@@ -86,7 +83,7 @@ export class ContestComponent implements OnInit {
       this.contests = res.payload;
     })
 
-    console.log(this.contests);
+    // console.log(this.contests);
 
   }
 

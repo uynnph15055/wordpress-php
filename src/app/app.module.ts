@@ -21,7 +21,6 @@ import { ContestDeatailComponent } from './pages/contest-detail/contest-deatail.
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BannerComponent } from './component/banner/banner.component';
 import { BackTimeComponent } from './component/back-time/back-time.component';
-import { TeamExamComponent } from './component/team-exam/team-exam.component';
 
 import { RoundComponent } from './component/round/round.component';
 import { BackTopComponent } from './component/back-top/back-top.component';
@@ -43,7 +42,6 @@ import { ListAvatarUserComponent } from './component/list-avatar-user/list-avata
     ContestDeatailComponent,
     BannerComponent,
     BackTimeComponent,
-    TeamExamComponent,
     RoundComponent,
     BackTopComponent,
     RoundDetailComponent,

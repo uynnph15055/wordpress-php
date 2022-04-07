@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ContestDetailHeaderComponent implements OnInit {
   contest: any = [];
 
+
   @Input() contestDetail: any;
   @Input() roundDetail: any;
   @Input() status: any;
@@ -16,6 +17,7 @@ export class ContestDetailHeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

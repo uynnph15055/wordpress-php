@@ -4,5 +4,6 @@ export class Team {
     id: number;
     image: string;
     contest_id: number;
+    name: string;
     members: Array<ContestMember>
 }

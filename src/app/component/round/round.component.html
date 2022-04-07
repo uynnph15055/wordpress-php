@@ -5,7 +5,7 @@
             <mat-expansion-panel-header class="test">
                 <mat-panel-title class="round-item">
                     <div class="img-avatar-round my-2">
-                        <img [src]="item.image" alt="" class="w-100 h-100">
+                        <img [src]="item.image" class="w-100 h-100">
                     </div>
                     &nbsp;
                     {{item.name}}
@@ -19,22 +19,26 @@
                 <p class="fw-bold color-gray p-justify fs-text">Nội dung : <span
                         class="fw-normal">{{item.description}}</span></p>
                 <div class="d-flex justify-content-start align-items-center">
-                    <p class="fw-bold fs-text mt-2 color-gray">Số đội :
+                    <p class="fw-bold fs-text mt-3 color-gray">Số đội :
                     </p>
-                    <div class="m-3">
-                        <app-list-avatar-user>
+                    &nbsp;
+                    <p class="mt-3" *ngIf="item.teams == ''">Chưa có team nào !</p>
+                    <div class="m-3" *ngIf="item.teams.length > 0">
+                        <app-list-avatar-user [listTeam]="item.teams">
                         </app-list-avatar-user>
                     </div>
                 </div>
                 <div class="d-flex justify-content-start align-items-center">
-                    <p class="fw-bold fs-text color-gray mt-2">Ban giám khảo :
+                    <p class="fw-bold fs-text color-gray mt-3">Ban giám khảo :
                     </p>
-                    <div class="m-3">
-                        <app-list-avatar-user>
+                    &nbsp;
+                    <p class="mt-3" *ngIf="item.teams == ''">Chưa có ban giám khảo nào !</p>
+                    <div class="m-3" *ngIf="item.teams.length > 0">
+                        <app-list-avatar-user [listTeam]="item.judges">
                         </app-list-avatar-user>
                     </div>
                 </div>
-                <a class="btn btn-register float-end" [routerLink]="['./../../vong-thi' , 4]">Chi tiết</a>
+                <a class="btn btn-register float-end" [routerLink]="['./../../../vong-thi' , item.id ]">Chi tiết</a>
 
             </ul>
         </mat-expansion-panel>

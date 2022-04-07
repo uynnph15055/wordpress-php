@@ -13,7 +13,7 @@
             <ul class="list-major-contest mt-3">
                 <li *ngFor="let m of majors" class="list-unstyled major-contest-item mb-3"><a
                         [routerLink]="['/cuoc-thi/chuyen-nganh/' , m.slug]" routerLinkActive="active"
-                        [state]="{major_id : m.id}" [routerLinkActiveOptions]="{exact: true}"
+                        [routerLinkActiveOptions]="{exact: true}"
                         class="major-contest-link text-decoration-none fw-bold fs-6 w-100 rounded d-inline-block">{{m.name}}</a>
                 </li>
             </ul>

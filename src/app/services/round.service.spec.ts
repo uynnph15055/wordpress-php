@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MajorContestService } from './major-contest.service';
+import { RoundService } from './round.service';
 
-describe('MajorContestService', () => {
-  let service: MajorContestService;
+describe('RoundService', () => {
+  let service: RoundService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MajorContestService);
+    service = TestBed.inject(RoundService);
   });
 
   it('should be created', () => {

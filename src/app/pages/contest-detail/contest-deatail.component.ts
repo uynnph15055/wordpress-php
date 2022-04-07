@@ -38,6 +38,8 @@ export class ContestDeatailComponent implements OnInit {
     })
   }
 
+
+
   listCompany: OwlOptions = {
     loop: false,
     mouseDrag: true,

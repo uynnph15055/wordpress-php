@@ -1,16 +1,9 @@
 <ul class="d-flex">
-    <li class="avatar-item"><img class="avatar"
-            src="https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg" alt="">
+    <li *ngFor="let item of avatarTeam" class="avatar-item"><img class="avatar" [src]=" item.image" alt="">
     </li>
-    <li class="avatar-item"><img class="avatar"
-            src="https://haycafe.vn/wp-content/uploads/2021/12/anh-dai-dien-con-gai-view-cuc-chill.jpg" alt="">
-    </li>
-    <li class="avatar-item"><img class="avatar"
-            src="https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien.jpg" alt="">
-    </li>
-    <li class="avatar-item">
-        <a href="">
-            <p class="icon-list-round"><i class="far fa-plus"></i>9</p>
+    <li class="avatar-item" *ngIf="lengthTeam > 4">
+        <a [routerLink]="['./../../../vong-thi' , round_id]">
+            <p class="icon-list-round"><i class="far fa-plus"></i>{{viewMore}}</p>
         </a>
     </li>
 </ul>
