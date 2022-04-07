@@ -24,17 +24,21 @@ export class ContestDeatailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
-      map(params => params.get('id')),
+      map(params => params.get('slug')),
       switchMap(id => this.contestService.getWhereId(id))
     ).subscribe(res => {
       if (res.status == true) {
         this.contestDetail = res.payload;
+        console.log(this.contestDetail);
+
         if (this.contestDetail) {
           this.status = 'done';
         }
       }
     })
   }
+
+
 
   listCompany: OwlOptions = {
     loop: false,

@@ -4,7 +4,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContestComponent } from './pages/contest/contest.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
-import { ContestDeatailComponent } from './pages/contest-deatail/contest-deatail.component';
+import { ContestDeatailComponent } from './pages/contest-detail/contest-deatail.component';
 import { RoundDetailComponent } from './pages/round-detail/round-detail.component';
 import { ListAvatarUserComponent } from './component/list-avatar-user/list-avatar-user.component';
 
@@ -22,11 +22,11 @@ const routes: Routes = [
         component: ContestComponent,
       },
       {
-        path: 'cuoc-thi/:slug',
+        path: 'cuoc-thi/chuyen-nganh/:slug',
         component: ContestComponent,
       },
       {
-        path: "chi-tiet-cuoc-thi/:id",
+        path: "cuoc-thi/chi-tiet/:slug",
         component: ContestDeatailComponent,
       },
       {

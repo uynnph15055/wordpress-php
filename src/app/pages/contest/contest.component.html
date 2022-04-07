@@ -12,7 +12,7 @@
             </select>
             <ul class="list-major-contest mt-3">
                 <li *ngFor="let m of majors" class="list-unstyled major-contest-item mb-3"><a
-                        [routerLink]="['/cuoc-thi' , m.slug]" routerLinkActive="active" [state]="{major_id : m.id}"
+                        [routerLink]="['/cuoc-thi/chuyen-nganh/' , m.slug]" routerLinkActive="active"
                         [routerLinkActiveOptions]="{exact: true}"
                         class="major-contest-link text-decoration-none fw-bold fs-6 w-100 rounded d-inline-block">{{m.name}}</a>
                 </li>
@@ -38,14 +38,14 @@
                 <div *ngFor="let s of contests" class="col-md-6 col-lg-4 col-xl-4 col-sm-12 mb-3">
 
                     <div class="contest-img">
-                        <a [routerLink]="['./../chi-tiet-cuoc-thi' , s.id]">
+                        <a [routerLink]="['./../../../cuoc-thi/chi-tiet' , s.id]">
                             <img [src]="s.img" class="card-img-top rounded
                             img-fluid">
                         </a>
                     </div>
 
                     <div class="mt-3">
-                        <a [routerLink]="['./../chi-tiet-cuoc-thi' , s.id]">
+                        <a [routerLink]="['./../../../cuoc-thi/chi-tiet' , s.id]">
                             <h5 class=" font-size-ml text-dark fs-6 fw-bold">{{s.name}}
                             </h5>
                         </a>
@@ -80,7 +80,8 @@
                         <p class="font-size-sml mt-3 fs-text-contest">Số người tham gia :
                             <span class="bg-primary p-1 rounded text-white">{{getMembers(s.teams)}}</span>
                         </p>
-                        <a [routerLink]="['./../chi-tiet-cuoc-thi' , s.id]" class="btn btn-register w-100">Đăng ký</a>
+                        <a [routerLink]="['../../../cuoc-thi/chi-tiet' , s.id]" class="btn btn-register w-100">Đăng
+                            ký</a>
                     </div>
                 </div>
 

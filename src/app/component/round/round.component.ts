@@ -7,12 +7,15 @@ import { Team } from 'src/app/models/team';
   styleUrls: ['./round.component.css']
 })
 export class RoundComponent implements OnInit {
+  listTeam: any = [];
   @Input() contestDetail: any;
   @Input() status: any;
+
+
   constructor() { }
 
   ngOnInit(): void {
-    console.log();
+
   }
 
   getMembers(teams: Array<Team> = []): number {
