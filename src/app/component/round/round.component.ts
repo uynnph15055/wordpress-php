@@ -18,6 +18,21 @@ export class RoundComponent implements OnInit {
 
   }
 
+  // Lấy image ban giám khảo
+  getImageJudges(judges: any): Array<any> {
+    let arrayImage: any = [];
+    let imageItem = {
+      image: ''
+    }
+    judges.forEach((res: any) => {
+      imageItem.image = res.user.avatar;
+      arrayImage.push(imageItem);
+    })
+    return arrayImage;
+  }
+
+
+  //  Điếm số thành viên tham gia vòng thi 
   getMembers(teams: Array<Team> = []): number {
     let totalMember = 0;
     teams.forEach(t => {
