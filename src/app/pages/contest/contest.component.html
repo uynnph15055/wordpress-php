@@ -38,14 +38,14 @@
                 <div *ngFor="let s of contests" class="col-md-6 col-lg-4 col-xl-4 col-sm-12 mb-3">
 
                     <div class="contest-img">
-                        <a [routerLink]="['./../../../cuoc-thi/chi-tiet' , s.id]">
+                        <a [routerLink]="['./../cuoc-thi/chi-tiet' , s.id]">
                             <img [src]="s.img" class="card-img-top rounded
                             img-fluid">
                         </a>
                     </div>
 
                     <div class="mt-3">
-                        <a [routerLink]="['./../../../cuoc-thi/chi-tiet' , s.id]">
+                        <a [routerLink]="['./../cuoc-thi/chi-tiet' , s.id]">
                             <h5 class=" font-size-ml text-dark fs-6 fw-bold">{{s.name}}
                             </h5>
                         </a>
@@ -80,7 +80,7 @@
                         <p class="font-size-sml mt-3 fs-text-contest">Số người tham gia :
                             <span class="bg-primary p-1 rounded text-white">{{getMembers(s.teams)}}</span>
                         </p>
-                        <a [routerLink]="['../../../cuoc-thi/chi-tiet' , s.id]" class="btn btn-register w-100">Đăng
+                        <a [routerLink]="['./../cuoc-thi/chi-tiet' , s.id]" class="btn btn-register w-100">Đăng
                             ký</a>
                     </div>
                 </div>
