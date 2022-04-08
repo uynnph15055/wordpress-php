@@ -7,6 +7,17 @@
                 formatDate}}</span></p>
         <p class="fw-bold color-gray p-justify fs-text">Nội dung : <span
                 class="fw-normal">{{contestDetail.description}}</span></p>
+        <div class="d-flex justify-content-start align-items-center">
+            <p class="fw-bold fs-text color-gray">Tổng số đội :
+            </p>
+            &nbsp;
+            &nbsp;
+            <p class="" *ngIf="contestDetail.teams == ''">Chưa có team nào !</p>
+            <div class="" *ngIf="contestDetail.teams.length > 0">
+                <app-list-avatar-user [listTeam]="contestDetail.teams">
+                </app-list-avatar-user>
+            </div>
+        </div>
     </div>
     <div class="d-flex justify-content-center">
         <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
