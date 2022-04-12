@@ -145,7 +145,7 @@
 }
 
 /* STATISTICAL */
-/* .section_plan {
+.section_plan {
   background-image: url("//bizweb.dktcdn.net/100/226/207/themes/552753/assets/anh-ly-do.jpg?1625208439171");
   height: 350px;
 }
@@ -160,7 +160,7 @@
 }
 
 .section_plan-bag-number {
-  font-size: 3rem;
+  font-size: 30px;
 }
 
 .value-receive-item {
@@ -171,7 +171,7 @@
 
 .section_plan-box {
   padding-top: 70px;
-} */
+}
 
 /* LIST STUDENT */
 /* .name-student,
@@ -229,6 +229,11 @@
   opacity: 0;
   display: none;
   transition: all ease-in-out 0.3s;
+}
+
+.assess-compacity-name {
+  padding-left: 40px;
+  font-size: 20px;
 }
 
 .student-point-dropdown-item {
@@ -373,137 +378,33 @@
   background: linear-gradient(45deg, #EE5A24, #F79F1F);
   width: 15%;
   border-radius: 6px;
+  transition: all ease-in-out 0.4s;
 }
 
 .btn-review-more:hover {
-  opacity: 0.8;
+  box-shadow: 0px 0px 10px #F79F1F;
+  transition: all ease-in-out 0.4s;
 }
 
 
 /* DOANH NGHIỆP */
-
-.assess-enterprise-wrapper {
-  background-image: url(./../../../assets/img/2c261a344f4c8012d95d.jpg);
-  background-size: cover;
-  /* background: linear-gradient(var(--gray)); */
-  height: 500px;
-  position: relative;
-  user-select: none;
+.assess-content-box {
+  width: 100%;
+  min-height: 500px;
+  box-shadow: 0px 0px 10px var(--primary-color-sub);
+  border-radius: 20px;
 }
 
-.assess-enterprise-title {
-  padding-top: 40px;
-}
-
-.assess-enterprise-wrapper img {
-  pointer-events: none;
-}
-
-.assess-img-box {
-  height: 150px;
-  /* object-fit: cover; */
-}
-
-.assess-img-box img {
+.assess-compacity-logo {
+  width: 300px;
+  max-height: 250px;
   object-fit: cover;
 }
 
-.fornt-gelasio {
-  font-family: 'Gelasio', serif;
-}
 
-.assess-content {
-  font-size: 17px;
-  line-height: 1.5;
-}
 
-.assess-represent {
-  font-size: 17px;
-  font-weight: 600;
-  color: #222;
-}
 
-.assess-enterprise-box {
-  margin-top: 20px;
-  overflow: hidden;
-  position: absolute;
-  width: 900px;
-  border-radius: 20px;
-  height: 350px;
-  background-color: #ffff;
-  top: 10;
-  left: 16%;
-  right: 15%;
-  box-shadow: 0px 0px 15px var(--gray);
-}
-
-@keyframes slider_animation {
-  0% {
-    left: 0px;
-  }
-
-  10% {
-    left: 0px;
-  }
-
-  20% {
-    left: 900px;
-    ;
-  }
-
-  30% {
-    left: 900px;
-    ;
-  }
-
-  40% {
-    left: 1800px;
-  }
-
-  50% {
-    left: 1800px;
-  }
-
-  60% {
-    left: 900px;
-    ;
-  }
-
-  70% {
-    left: 1800px;
-    ;
-  }
-
-  80% {
-    left: 0px;
-  }
-
-  90% {
-    left: 0px;
-  }
-
-  100% {
-    left: 0px;
-  }
-}
-
-.assess-enterprise-in {
-  width: 2700px;
-  margin: 0 0 0 -1800px;
-  position: relative;
-  animation-name: slider_animation;
-  animation-duration: 33s;
-  animation-iteration-count: infinite;
-  animation-play-state: running;
-}
-
-.assess-content-box {
-  width: 900px;
-  position: relative;
-  float: left;
-  padding: 30px 50px;
-}
-
+/*  RESPONSIVE */
 @media (max-width:568px) {
   .assess-enterprise-wrapper {
     height: 700px;

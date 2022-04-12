@@ -33,6 +33,8 @@ import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
 import { FormatDatePipe } from './helper/pipe/format-date.pipe';
 import { ListAvatarUserComponent } from './component/list-avatar-user/list-avatar-user.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { ContestLoadItemComponent } from './loading/contest-load-item/contest-load-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     TypeExamPipe,
     FormatDatePipe,
     ListAvatarUserComponent,
+    ContestLoadItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     BrowserAnimationsModule,
     FontAwesomeModule,
     MatExpansionModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    NgxSkeletonLoaderModule,
   ],
   providers: [
     {

@@ -64,7 +64,41 @@
             </span>
         </div>
     </div>
+</div>
 
+<div class="container-fluid section_plan text-center ">
+    <h2 class=" text-center section_plan-title text-white">Hãy thử nghiệp những cuộc thi trên hệ thống và trải
+        nghiệm
+    </h2>
+    <div class="row section_plan-box">
+        <div class="col-3">
+            <h3 class="section_plan-bag-number text-white">8+</h3>
+            <span class="text-white section_plan-bag-text fs-5">
+                Năm hoạt động
+            </span>
+        </div>
+        <div class="col-3">
+            <h3 class="section_plan-bag-number  text-white">2700+</h3>
+            <span class="text-white section_plan-bag-text fs-5">
+                Sinh viên
+            </span>
+        </div>
+        <div class="col-3">
+            <h3 class="section_plan-bag-number  text-white">500+</h3>
+            <span class="text-white section_plan-bag-text fs-5">
+                Dược nhận
+            </span>
+        </div>
+        <div class="col-3">
+            <h3 class="section_plan-bag-number  text-white">40+</h3>
+            <span class="text-white section_plan-bag-text fs-5">
+                Đối tác
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4">
     <!-- Cuộc thi -->
     <h3 class="fw-bold title text-uppercase text-center color-blue">Các cuộc thi</h3>
     <div class="contest-list" *ngIf="contests.length > 0">
@@ -113,407 +147,27 @@
             <i class="fas fa-chevron-right"></i>
         </div>
     </div>
-    <div class="d-flex justify-content-center">
-        <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
+    <div *ngIf="statusContest == 'pending'" class="d-flex justify-content-center mb-3">
+        <div class="container row">
+            <app-contest-load-item class="col-3">
+            </app-contest-load-item>
+            <app-contest-load-item class="col-3">
+            </app-contest-load-item>
+            <app-contest-load-item class="col-3">
+            </app-contest-load-item>
+            <app-contest-load-item class="col-3">
+            </app-contest-load-item>
+        </div>
     </div>
 </div>
 
-<!-- <div class="container-fluid section_plan text-center ">
-    <h2 class=" text-center section_plan-title text-white">Hãy thử nghiệp những cuộc thi trên hệ thống và trải nghiệm
-    </h2>
-    <div class="row section_plan-box">
-        <div class="col-3">
-            <h3 class="section_plan-bag-number text-white">8+</h3>
-            <span class="text-white section_plan-bag-text fs-5">
-                Năm hoạt động
-            </span>
-        </div>
-        <div class="col-3">
-            <h3 class="section_plan-bag-number  text-white">2700+</h3>
-            <span class="text-white section_plan-bag-text fs-5">
-                Sinh viên
-            </span>
-        </div>
-        <div class="col-3">
-            <h3 class="section_plan-bag-number  text-white">500+</h3>
-            <span class="text-white section_plan-bag-text fs-5">
-                Dược nhận
-            </span>
-        </div>
-        <div class="col-3">
-            <h3 class="section_plan-bag-number  text-white">40+</h3>
-            <span class="text-white section_plan-bag-text fs-5">
-                Đối tác
-            </span>
-        </div>
+
+
+
+<div class="container-fluid list-student-point-box ">
+    <div class="prev-student-arrow arrow-list-student">
+        <i class="fas fa-chevron-left"></i>
     </div>
-</div> -->
-
-<!-- <div class="container mt-4">
-
-    <h3 class="fw-bold title text-uppercase text-center color-blue">Bảng xếp hạng theo tháng</h3>
-    <h5 class="text-left py-2 mb-4 fs-5 title-sub fw-bold">Thiết kế web</h5>
-    <owl-carousel-o class="row mb-3" [options]="listStudent">
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-    </owl-carousel-o>
-    <h5 class="text-left py-2 mb-4 fs-5 title-sub fw-bold">Thiết kế đồ họa</h5>
-    <owl-carousel-o class="row mb-3" [options]="listStudent">
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-        <ng-template class="col-md-6 col-xl-3 col-sm-12 mb-2 " carouselSlide>
-            <div class="d-flex justify-content-center">
-                <img src="./../../../assets/img/0c4da496f02b3c75653a.jpg" class="card-img-top rounded-circle w-50"
-                    alt="...">
-            </div>
-            <div class="info-footer-box">
-                <div class="text-center">
-                    <h6 class="pt-3 name-student">Nguyễn Ngọc Uy</h6>
-                    <p>
-                        <i class="far fa-star color-yellow"></i>
-                        &nbsp;
-                        Point :<span>150</span>
-                    </p>
-                </div>
-                <ul class="nav d-flex justify-content-evenly align-items-center mt-2">
-                    <li class="subject-item p-1 bg-primary text-white rounded">Javascript</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Html/Css</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Java</li>
-                    <li class="subject-item p-1 bg-primary text-white rounded">Php</li>
-                </ul>
-            </div>
-        </ng-template>
-    </owl-carousel-o>
-</div> -->
-
-
-<div class="container-fluid list-student-point-box">
     <div class="container py-4">
         <h4 class="text-center mb-3 title-student-point text-white">SINH VIÊN CÓ THÀNH TÍCH XUẤT SẮC</h4>
         <div class="student-point-select-major">
@@ -528,10 +182,8 @@
                 <div class="student-point-dropdown-item">Thiết kế web</div>
             </div>
         </div>
+
         <div class="list-student-point-hight mt-3">
-            <div class="prev-student-arrow arrow-list-student">
-                <i class="fas fa-chevron-left"></i>
-            </div>
             <ngx-slick-carousel class="carousel row slick-slide-student" [config]="sliderStudentPointHight">
                 <div ngxSlickItem class="student-point-item slide">
                     <div class="student-point-item-in text-center">
@@ -650,101 +302,17 @@
     </div>
 </div>
 
-
-
-<div class="container-fluid assess-enterprise-wrapper">
-    <h4 class="text-center fs-4  assess-enterprise-title text-white ">ĐÁNH GIÁ CỦA DOANH NGHIỆP</h4>
-    <div class="assess-enterprise-box col-8">
-        <div class="assess-enterprise-in">
-            <div class="assess-content-box">
-                <div class="row pt-4">
-                    <div class="col-4">
-                        <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/business-logo-design-template-78655edda18bc1196ab28760f1535baa_screen.jpg?ts=1617645324"
-                            alt="" class="w-100 ">
-                    </div>
-                    <div class="col-8 pt-4">
-                        <h4 class="fw-bold fs-5 color-blue">Fpt Software</h4>
-                        <ul class="d-flex justify-content-start">
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                            &nbsp;
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                            &nbsp;
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                            &nbsp;
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                        </ul>
-                        <p class="assess-content fst-italic">
-                        <p class="assess-content color-gray fornt-gelasio fst-italic">"Đây là trang thông tin
-                            chính thức
-                            được vận
-                            hành bởi
-                            PRC -
-                            Trung tâm mua bán của FSOFT. PRC là bộ phận chịu trách nhiệm đảm bảo quá trình mua sắm
-                            hàng
-                            hóa cũng như các dịch vụ bên ngoài được thuận lợi, minh bạch và hợp lý."</p>
-                        <p class="assess-represent fornt-gelasio float-end">HT. Vũ Trí Thành</p>
-                    </div>
-                </div>
+<div class="assess-compacity-wraper py-4" style="height: 600px;">
+    <div class="container">
+        <h3 class="fw-bold title text-uppercase text-center text-uppercase color-blue">Đánh giá của DOANH NGHIỆP</h3>
+        <div class="assess-content-box row">
+            <div class="col-7">
+                <img class="assess-compacity-logo"
+                    src="https://cdn5.f-cdn.com/contestentries/743244/19276592/57bd8f137a0e3_thumb900.jpg" alt="">
+                <p class="fw-bold assess-compacity-name color-blue">Trường cao đẳng FPOLY</p>
             </div>
-            <div class="assess-content-box">
-                <div class="row pt-4">
-                    <div class="col-4">
-                        <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/business-logo-design-template-78655edda18bc1196ab28760f1535baa_screen.jpg?ts=1617645324"
-                            alt="" class="w-100 ">
-                    </div>
-                    <div class="col-8 pt-4">
-                        <h4 class="fw-bold fs-5 color-blue">Fpt Software</h4>
-                        <ul class="d-flex justify-content-start">
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                            &nbsp;
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                            &nbsp;
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                            &nbsp;
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                        </ul>
-                        <p class="assess-content fst-italic">
-                        <p class="assess-content color-gray fornt-gelasio fst-italic">"Đây là trang thông tin
-                            chính thức
-                            được vận
-                            hành bởi
-                            PRC -
-                            Trung tâm mua bán của FSOFT. PRC là bộ phận chịu trách nhiệm đảm bảo quá trình mua sắm
-                            hàng
-                            hóa cũng như các dịch vụ bên ngoài được thuận lợi, minh bạch và hợp lý."</p>
-                        <p class="assess-represent fornt-gelasio float-end">HT. Vũ Trí Thành</p>
-                    </div>
-                </div>
-            </div>
-            <div class="assess-content-box">
-                <div class="row pt-4">
-                    <div class="col-4">
-                        <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/business-logo-design-template-78655edda18bc1196ab28760f1535baa_screen.jpg?ts=1617645324"
-                            alt="" class="w-100 ">
-                    </div>
-                    <div class="col-8 pt-4">
-                        <h4 class="fw-bold fs-5 color-blue">Fpt Software</h4>
-                        <ul class="d-flex justify-content-start">
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                            &nbsp;
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                            &nbsp;
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                            &nbsp;
-                            <li><i class="fas fa-star color-yellow"></i></li>
-                        </ul>
-                        <p class="assess-content fst-italic">
-                        <p class="assess-content color-gray fornt-gelasio fst-italic">"Đây là trang thông tin
-                            chính thức
-                            được vận
-                            hành bởi
-                            PRC -
-                            Trung tâm mua bán của FSOFT. PRC là bộ phận chịu trách nhiệm đảm bảo quá trình mua sắm
-                            hàng
-                            hóa cũng như các dịch vụ bên ngoài được thuận lợi, minh bạch và hợp lý."</p>
-                        <p class="assess-represent fornt-gelasio float-end">HT. Vũ Trí Thành</p>
-                    </div>
-                </div>
+            <div class="col-4">
+                <img src="./../../../assets/img/Tạo-dáng-chụp-ảnh-doanh-nhân-nam-removebg-preview.png" alt="">
             </div>
         </div>
     </div>

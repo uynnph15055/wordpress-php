@@ -35,6 +35,7 @@
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "ngx-owl-carousel-o": "^7.0.1",
+    "ngx-skeleton-loader": "^5.0.0",
     "ngx-slick-carousel": "^0.6.0",
     "rxjs": "~7.5.0",
     "slick-carousel": "^1.8.1",

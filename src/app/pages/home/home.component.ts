@@ -16,7 +16,7 @@ import { ContestService } from 'src/app/services/contest.service';
 })
 export class HomeComponent implements OnInit {
   users: Array<User>;
-  status: string = 'pending';
+  statusContest: string = 'pending';
   loggedInUser: User;
   sponsors: Array<Sponsor>;
   contests: Array<Contest> = [];
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
       if (res.status == true) {
         this.contests = res.payload;
         if (this.contests) {
-          this.status = 'done'
+          this.statusContest = 'done'
         }
       }
     });

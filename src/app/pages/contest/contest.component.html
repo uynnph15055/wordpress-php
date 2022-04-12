@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-3 slider-bar">
             <h3 class="title-major fw-bold fs-4 color-blue">Chuyên ngành</h3>
-            <select (change)="statusContest($event)" class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example">
                 <option selected>Trạng thái</option>
                 <option value="0">Tất cả</option>
                 <option value="1">Đang diễn ra</option>
@@ -17,14 +17,17 @@
                         class="major-contest-link text-decoration-none fw-bold fs-6 w-100 rounded d-inline-block">{{m.name}}</a>
                 </li>
             </ul>
-            <div class="d-flex justify-content-center" style="margin-top: 50px;">
-                <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
+            <div style="">
+                <ngx-skeleton-loader [theme]="{ 
+                    'height.px': 50,
+                    'margin-bottom' : '15px'
+                  }" count="8" animation="pulse"></ngx-skeleton-loader>
             </div>
         </div>
         <div class="col-9 list-contest">
             <div class="d-flex justify-content-between align-items-center">
                 <h5 class="mt-4 fs-5 fw-bold">Các cuộc thi</h5>
-                <div class="form-search mt-2 ">
+                <div class="form-search">
                     <form class="pt-2" [formGroup]="formSearch">
                         <input type="text" class="color-title w-75 input-search border-0 fs-6" formControlName="keyword"
                             placeholder="Tìm kiếm">
@@ -34,7 +37,7 @@
                     </form>
                 </div>
             </div>
-            <div class="row mt-4">
+            <div class="row mt-2">
                 <div *ngFor="let s of contests" class="col-md-6 col-lg-4 col-xl-4 col-sm-12 mb-3">
 
                     <div class="contest-img">
@@ -86,10 +89,20 @@
                 </div>
 
             </div>
-            <div class="d-flex justify-content-center">
-                <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
+            <div *ngIf="statusContest == 'pending'" class="container">
+                <div class="row">
+                    <app-contest-load-item class="col-4"></app-contest-load-item>
+                    <app-contest-load-item class="col-4"></app-contest-load-item>
+                    <app-contest-load-item class="col-4"></app-contest-load-item>
+                    <app-contest-load-item class="col-4  mt-2"></app-contest-load-item>
+                    <app-contest-load-item class="col-4  mt-2"></app-contest-load-item>
+                    <app-contest-load-item class="col-4  mt-2"></app-contest-load-item>
+                    <app-contest-load-item class="col-4  mt-2"></app-contest-load-item>
+                    <app-contest-load-item class="col-4  mt-2"></app-contest-load-item>
+                    <app-contest-load-item class="col-4  mt-2"></app-contest-load-item>
+                </div>
             </div>
-            <div class="paying-contest float-end" *ngIf="status == 'done'">
+            <div class="paying-contest float-end" *ngIf="statusContest == 'done'">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link " href="#">

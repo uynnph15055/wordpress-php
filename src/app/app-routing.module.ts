@@ -7,6 +7,7 @@ import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component
 import { ContestDeatailComponent } from './pages/contest-detail/contest-deatail.component';
 import { RoundDetailComponent } from './pages/round-detail/round-detail.component';
 import { ListAvatarUserComponent } from './component/list-avatar-user/list-avatar-user.component';
+import { ContestLoadItemComponent } from './loading/contest-load-item/contest-load-item.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginComponent
+  },
+  {
+    path: "test",
+    component: ContestLoadItemComponent
   },
   {
     path: "avatar",
