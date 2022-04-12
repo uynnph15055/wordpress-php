@@ -67,30 +67,58 @@
 
     <!-- Cuộc thi -->
     <h3 class="fw-bold title text-uppercase text-center color-blue">Các cuộc thi</h3>
-    <owl-carousel-o *ngIf="contests.length > 0" class="row mb-3" [options]="customOptions">
-        <ng-template *ngFor="let item of contests" class="col-md-6 col-lg-3 col-xl-3 col-sm-12 pd-20" carouselSlide>
-            <div class="contest-img">
-                <a [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]">
-                    <img [src]="item.img" class="card-img-top rounded img-fluid">
-                </a>
+    <div class="contest-list" *ngIf="contests.length > 0">
+        <div class="prev-arrow arrow-list-contest">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <ngx-slick-carousel class="carousel row slick-list-contest row" [config]="sliderContest">
+            <div ngxSlickItem *ngFor="let item of contests" class="contest-item col-3 slide">
+                <a href=""><img class="contest-item-img" [src]="item.img" alt=""></a>
+                <h3><a class="contest-name" href="">{{item.name}}</a></h3>
+                <div class="text-Secondary d-flex justify-content-between font-size-sml fs-text-contest">
+                    <p class="contest-register-dealine">
+                        Thời gian :
+                    </p>
+                    <div class="text-center ">
+                        <span class="fw-bold primary-color">7</span>
+                        <br>
+                        <span class="fs-name-time"> Ngày </span>
+                    </div>
+                    <span class="fw-bold text-dark">:</span>
+                    <div class="text-center">
+                        <span class="fw-bold primary-color">6</span>
+                        <br>
+                        <span class="fs-name-time"> Giờ</span>
+                    </div>
+                    <span class="fw-bold primary-color text-dark">:</span>
+                    <div class="text-center">
+                        <span class="fw-bold primary-color">6</span>
+                        <br>
+                        <span class="fs-name-time"> Phút</span>
+                    </div>
+                    <span class="fw-bold primary-color text-dark">:</span>
+                    <div class="text-center">
+                        <span class="fw-bold primary-color">48</span>
+                        <br>
+                        <span class="fs-name-time">Giây</span>
+                    </div>
+                </div>
+                <p class="contest-count-team mt-2 fs-text-contest">Số đội tham gia : <span
+                        class="count-team text-white">{{getMembers(item.teams)}}</span></p>
+                <a [routerLink]="['chi-tiet-cuoc-thi' , item.id]"
+                    class="btn-register contest-btn-register text-center d-block w-100">Đăng ký</a>
             </div>
-            <div class="mt-3">
-                <h5 class="name-contest font-size-ml color-title"><a class="text-dark"
-                        [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]">{{item.name}}</a></h5>
-                <span class="text-Secondary d-block font-list-content">Hạn đăng ký : {{item.date_start}}</span>
-                <p class="font-list-content text-Secondary mt-3">Số người tham gia :
-                    <span class="bg-primary p-1 rounded text-white">{{getMembers(item.teams)}}</span>
-                </p>
-                <a [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]" class="btn btn-register w-100">Đăng ký</a>
-            </div>
-        </ng-template>
-    </owl-carousel-o>
+        </ngx-slick-carousel>
+        <div class="next-arrow arrow-list-contest">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+    </div>
     <div class="d-flex justify-content-center">
         <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
     </div>
 </div>
 
-<div class="container-fluid section_plan text-center ">
+<!-- <div class="container-fluid section_plan text-center ">
     <h2 class=" text-center section_plan-title text-white">Hãy thử nghiệp những cuộc thi trên hệ thống và trải nghiệm
     </h2>
     <div class="row section_plan-box">
@@ -119,10 +147,10 @@
             </span>
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="container mt-4">
-    <!-- Bảng xếp hạng -->
+<!-- <div class="container mt-4">
+
     <h3 class="fw-bold title text-uppercase text-center color-blue">Bảng xếp hạng theo tháng</h3>
     <h5 class="text-left py-2 mb-4 fs-5 title-sub fw-bold">Thiết kế web</h5>
     <owl-carousel-o class="row mb-3" [options]="listStudent">
@@ -482,7 +510,148 @@
             </div>
         </ng-template>
     </owl-carousel-o>
+</div> -->
+
+
+<div class="container-fluid list-student-point-box">
+    <div class="container py-4">
+        <h4 class="text-center mb-3 title-student-point text-white">SINH VIÊN CÓ THÀNH TÍCH XUẤT SẮC</h4>
+        <div class="student-point-select-major">
+            <div class="student-point-select-in">
+                <span>Chọn chuyên ngành</span>
+                <i class="fas fa-caret-down"></i>
+            </div>
+            <div class="student-point-dropdown">
+                <div class="student-point-dropdown-item">Thiết kế web</div>
+                <div class="student-point-dropdown-item">Thiết kế đồ họa</div>
+                <div class="student-point-dropdown-item">Lập trình máy tính</div>
+                <div class="student-point-dropdown-item">Thiết kế web</div>
+            </div>
+        </div>
+        <div class="list-student-point-hight mt-3">
+            <div class="prev-student-arrow arrow-list-student">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <ngx-slick-carousel class="carousel row slick-slide-student" [config]="sliderStudentPointHight">
+                <div ngxSlickItem class="student-point-item slide">
+                    <div class="student-point-item-in text-center">
+                        <img class="student-point-avatar text-center"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPcwuMSsEauNcV2tGRze-Zxsac5NkF02rWxQ&usqp=CAU"
+                            alt="">
+                        <h4 class="student-name">Nguyễn Ngọc Tín </h4>
+                        <p class="student-ponit-number"><i class="fas fa-star"></i> <span>150</span></p>
+                        <p class="student-skill">BACK END (WED)</p>
+                        <ul class="student-social d-flex justify-content-center">
+                            <li class="student-social-item facebook"><a href=""><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="student-social-item twitter"><a href=""><i class="fab fa-twitter"></i></a></li>
+                            <li class="student-social-item instagram"><a href=""><i
+                                        class="fab fs-5 fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div ngxSlickItem class="student-point-item slide">
+                    <div class="student-point-item-in text-center">
+                        <img class="student-point-avatar text-center"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPcwuMSsEauNcV2tGRze-Zxsac5NkF02rWxQ&usqp=CAU"
+                            alt="">
+                        <h4 class="student-name">Nguyễn Ngọc Tín </h4>
+                        <p class="student-ponit-number"><i class="fas fa-star"></i> <span>150</span></p>
+                        <p class="student-skill">BACK END (WED)</p>
+                        <ul class="student-social d-flex justify-content-center">
+                            <li class="student-social-item facebook"><a href=""><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="student-social-item twitter"><a href=""><i class="fab fa-twitter"></i></a></li>
+                            <li class="student-social-item instagram"><a href=""><i
+                                        class="fab fs-5 fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div ngxSlickItem class="student-point-item slide">
+                    <div class="student-point-item-in text-center">
+                        <img class="student-point-avatar text-center"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPcwuMSsEauNcV2tGRze-Zxsac5NkF02rWxQ&usqp=CAU"
+                            alt="">
+                        <h4 class="student-name">Nguyễn Ngọc Tín </h4>
+                        <p class="student-ponit-number"><i class="fas fa-star"></i> <span>150</span></p>
+                        <p class="student-skill">BACK END (WED)</p>
+                        <ul class="student-social d-flex justify-content-center">
+                            <li class="student-social-item facebook"><a href=""><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="student-social-item twitter"><a href=""><i class="fab fa-twitter"></i></a></li>
+                            <li class="student-social-item instagram"><a href=""><i
+                                        class="fab fs-5 fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div ngxSlickItem class="student-point-item slide">
+                    <div class="student-point-item-in text-center">
+                        <img class="student-point-avatar text-center"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPcwuMSsEauNcV2tGRze-Zxsac5NkF02rWxQ&usqp=CAU"
+                            alt="">
+                        <h4 class="student-name">Nguyễn Ngọc Tín </h4>
+                        <p class="student-ponit-number"><i class="fas fa-star"></i> <span>150</span></p>
+                        <p class="student-skill">BACK END (WED)</p>
+                        <ul class="student-social d-flex justify-content-center">
+                            <li class="student-social-item facebook"><a href=""><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="student-social-item twitter"><a href=""><i class="fab fa-twitter"></i></a></li>
+                            <li class="student-social-item instagram"><a href=""><i
+                                        class="fab fs-5 fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div ngxSlickItem class="student-point-item slide">
+                    <div class="student-point-item-in text-center">
+                        <img class="student-point-avatar text-center"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPcwuMSsEauNcV2tGRze-Zxsac5NkF02rWxQ&usqp=CAU"
+                            alt="">
+                        <h4 class="student-name">Nguyễn Ngọc Tín </h4>
+                        <p class="student-ponit-number"><i class="fas fa-star"></i> <span>150</span></p>
+                        <p class="student-skill">BACK END (WED)</p>
+                        <ul class="student-social d-flex justify-content-center">
+                            <li class="student-social-item facebook"><a href=""><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="student-social-item twitter"><a href=""><i class="fab fa-twitter"></i></a></li>
+                            <li class="student-social-item instagram"><a href=""><i
+                                        class="fab fs-5 fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div ngxSlickItem class="student-point-item slide">
+                    <div class="student-point-item-in text-center">
+                        <img class="student-point-avatar text-center"
+                            src="https://cdn.dribbble.com/users/6384228/screenshots/17870009/media/4413e07802f56300571dcbbac8ecc4b3.jpg?compress=1&resize=1200x900&vertical=top"
+                            alt="">
+                        <h4 class="student-name">Nguyễn Ngọc Uy</h4>
+                        <p><i class="fas fa-star"></i> <span>150</span></p>
+                        <p class="student-skill">BACK END (WED)</p>
+                        <ul class="student-social d-flex justify-content-center">
+                            <li class="student-social-item"><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="student-social-item"><a href=""><i class="fab fa-twitter"></i></a></li>
+                            <li class="student-social-item"><a href=""><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </ngx-slick-carousel>
+        </div>
+        <div class="next-student-arrow arrow-list-student">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="" class="btn-review-more text-center">Xem thêm
+            </a>
+        </div>
+    </div>
 </div>
+
+
+
 <div class="container-fluid assess-enterprise-wrapper">
     <h4 class="text-center fs-4  assess-enterprise-title text-white ">ĐÁNH GIÁ CỦA DOANH NGHIỆP</h4>
     <div class="assess-enterprise-box col-8">

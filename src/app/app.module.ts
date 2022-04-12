@@ -32,6 +32,7 @@ import { LoadingItemComponent } from './component/loading-item/loading-item.comp
 import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
 import { FormatDatePipe } from './helper/pipe/format-date.pipe';
 import { ListAvatarUserComponent } from './component/list-avatar-user/list-avatar-user.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import { ListAvatarUserComponent } from './component/list-avatar-user/list-avata
     CarouselModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    MatExpansionModule
+    MatExpansionModule,
+    SlickCarouselModule
   ],
   providers: [
     {

@@ -20,57 +20,11 @@ export class HomeComponent implements OnInit {
   loggedInUser: User;
   sponsors: Array<Sponsor>;
   contests: Array<Contest> = [];
-  customOptions: OwlOptions = {
-    loop: false,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    margin: 10,
-    responsive: {
-      300: {
-        items: 1
-      },
-      576: {
-        items: 2
-      },
-      978: {
-        items: 3
-      },
-      1024: {
-        items: 4
-      }
-    },
-    nav: true
-  }
 
-  listStudent: OwlOptions = {
-    loop: false,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    margin: 10,
-    responsive: {
-      300: {
-        items: 1
-      },
-      576: {
-        items: 2
-      },
-      978: {
-        items: 3
-      },
-      1024: {
-        items: 4
-      }
-    },
-    nav: true
-  }
+  sliderContest = { "slidesToShow": 4, dots: true, infinite: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000 };
+
+  sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', nextArrow: '.next-student-arrow', slidesToScroll: 1, dots: true, fadeSpeed: 3000, centerMode: true, };
+
 
   constructor(private contestService: ContestService) { }
 
@@ -82,10 +36,8 @@ export class HomeComponent implements OnInit {
           this.status = 'done'
         }
       }
-
     });
-
-    console.log(this.status);
+    // console.log(this.status);
   }
 
   checkLogin(): boolean {
