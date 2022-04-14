@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', autoplay: true, nextArrow: '.next-student-arrow', slidesToScroll: 1, dots: true, fadeSpeed: 3000, centerMode: true, };
 
 
-  sliderAssessCompacity = { "slidesToShow": 1, prevArrow: '.prev-student-arrow', nextArrow: '.next-student-arrow', slidesToScroll: 1, dots: true, fadeSpeed: 3000, centerMode: true, };
+  sliderAssessCompacity = { "slidesToShow": 1, prevArrow: '.prev-compacity-arrow', nextArrow: '.next-compacity-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true, };
 
   constructor(private contestService: ContestService) { }
 

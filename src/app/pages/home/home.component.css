@@ -331,8 +331,6 @@
   background-color: #E4405F;
 }
 
-
-
 .student-social-item {
   transition: all ease-in-out 0.3s;
   position: relative;
@@ -401,11 +399,37 @@
 
 
 /* DOANH NGHIỆP */
+
+
 .assess-content-box {
   width: 100%;
   min-height: 500px;
   box-shadow: 0px 0px 10px var(--gray);
   border-radius: 20px;
+  z-index: -1;
+}
+
+.arrow-list-compacity {
+  position: absolute;
+  font-size: 27px;
+  cursor: pointer;
+  color: #1e272e;
+  border-radius: 50px;
+  transition: 0.3s;
+  background-color: var(--white);
+  padding: 10px 15px;
+  box-shadow: 0px 0px 10px var(--gray);
+}
+
+.prev-compacity-arrow {
+  transform: translateY(232px);
+  left: 0%;
+  z-index: 10;
+}
+
+.next-compacity-arrow {
+  transform: translateY(-270px);
+  right: 0%;
 }
 
 .assess-compacity-logo {

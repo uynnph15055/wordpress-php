@@ -115,8 +115,9 @@
         </div>
         <ngx-slick-carousel class="carousel row slick-list-contest row" [config]="sliderContest">
             <div ngxSlickItem *ngFor="let item of contests" class="contest-item col-3 slide">
-                <a href=""><img class="contest-item-img" [src]="item.img" alt=""></a>
-                <h3><a class="contest-name" href="">{{item.name}}</a></h3>
+                <a [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]"><img class="contest-item-img" [src]="item.img"
+                        alt=""></a>
+                <h3><a class="contest-name" [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]">{{item.name}}</a></h3>
                 <div class="text-Secondary d-flex justify-content-between font-size-sml fs-text-contest">
                     <p class="contest-register-dealine">
                         Thời gian :
@@ -147,7 +148,7 @@
                 </div>
                 <p class="contest-count-team mt-2 fs-text-contest">Số đội tham gia : <span
                         class="count-team text-white">{{getMembers(item.teams)}}</span></p>
-                <a [routerLink]="['chi-tiet-cuoc-thi' , item.id]"
+                <a [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]"
                     class="btn-register contest-btn-register text-center d-block w-100">Đăng ký</a>
             </div>
         </ngx-slick-carousel>
@@ -168,9 +169,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <div class="container-fluid list-student-point-box ">
     <div class="prev-student-arrow arrow-list-student">
@@ -310,13 +308,16 @@
     </div>
 </div>
 
-<div class="assess-compacity-wraper py-4" style="height: 600px;">
-    <div class="container">
+<div class="assess-compacity-wraper py-4">
+    <div class="container position-relative">
         <div class="mb-4">
             <h3 class="fw-bold title text-uppercase text-center text-uppercase color-blue">Đánh giá của DOANH NGHIỆP
             </h3>
             <div class="title-line">
             </div>
+        </div>
+        <div class="prev-compacity-arrow arrow-list-compacity">
+            <i class="fas fa-chevron-left"></i>
         </div>
         <div class="assess-content-box">
             <ngx-slick-carousel class="carousel container" [config]="sliderAssessCompacity">
@@ -389,11 +390,13 @@
                     </div>
                     <div class="col-5">
                         <img class="ml-5"
-                            src="./../../../assets/img/" alt="">
+                            src="./../../../assets/img/Tạo-dáng-chụp-ảnh-doanh-nhân-nam-removebg-preview.png" alt="">
                     </div>
                 </div>
             </ngx-slick-carousel>
-
+        </div>
+        <div class="next-compacity-arrow arrow-list-compacity">
+            <i class="fas fa-chevron-right"></i>
         </div>
     </div>
 </div>

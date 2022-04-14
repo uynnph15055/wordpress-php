@@ -3,6 +3,7 @@ import * as moment from 'moment/moment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TeamService } from 'src/app/services/team.service';
+import { HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-contest-detail-header-right',
   templateUrl: './contest-detail-header-right.component.html',
@@ -13,11 +14,18 @@ export class ContestDetailHeaderRightComponent implements OnInit {
   @Input() status: any;
   closeResult: string;
   roundEndTime: any;
+  selectedImage: any;
+  public imagePath: string;
+  imgURL: any = 'https://pic.onlinewebfonts.com/svg/img_550783.png';
+  public message: string;
 
 
   // set up form control
   formRegister = new FormGroup({
     nameTeam: new FormControl('', Validators.required),
+    image: new FormControl(),
+    contest_id: new FormControl(),
+    user_id: new FormControl(),
   })
 
 
@@ -27,9 +35,7 @@ export class ContestDetailHeaderRightComponent implements OnInit {
   seconds: number = 25;
 
   constructor(private modalService: NgbModal, private teamService: TeamService) { }
-  public imagePath: string;
-  imgURL: any = 'https://pic.onlinewebfonts.com/svg/img_550783.png';
-  public message: string;
+
   ngOnInit(): void {
 
 
@@ -47,7 +53,9 @@ export class ContestDetailHeaderRightComponent implements OnInit {
     }
 
     var reader = new FileReader();
-    this.imagePath = files;
+    this.imagePath = files[0];
+    console.log(this.imagePath);
+
 
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
@@ -58,21 +66,15 @@ export class ContestDetailHeaderRightComponent implements OnInit {
   // Add team
 
   addTeam() {
-    let data = {
-      name: '',
-      files: {},
-      contest_id: 0,
-    }
     let dataTeam = { ...this.formRegister.value }
-    data.name = dataTeam.nameTeam;
-    data.files = this.imagePath[0];
-    data.contest_id = this.contestDetail.id;
+    const formDataTeam = new FormData();
+    dataTeam.image = this.imagePath;
+    dataTeam.contest_id = this.contestDetail.id;
+    dataTeam.user_id = 54;
 
-    console.log(data);
+    dataTeam.append('name', dataTeam.nameTeam);
+    console.log(formDataTeam);
 
-    // this.teamService.addTeam(data).subscribe(res => {
-    //   alert('Thêm thành công !!!');
-    // })
   }
 
 

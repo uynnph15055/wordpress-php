@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Injectable } from '@angular/core';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-back-top',
   templateUrl: './back-top.component.html',
@@ -10,14 +10,24 @@ export class BackTopComponent implements OnInit {
 
 
   constructor() {
+    $(window).scroll(() => {
+      if ($(this).scrollTop()) {
+        $('.back-top').fadeIn();
+      } else {
+        $('.back-top').fadeOut();
+      }
+    });
   }
 
   ngOnInit(): void {
 
+
   }
 
   backTop() {
-    alert('Nguyễn Ngọc Uy');
+    $('html , body').animate({
+      scrollTop: 0
+    }, 2000);
   }
 
 }
