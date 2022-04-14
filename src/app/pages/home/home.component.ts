@@ -9,6 +9,7 @@ import { Contest } from 'src/app/models/contest';
 import { Team } from 'src/app/models/team';
 import { ContestService } from 'src/app/services/contest.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,10 +22,13 @@ export class HomeComponent implements OnInit {
   sponsors: Array<Sponsor>;
   contests: Array<Contest> = [];
 
-  sliderContest = { "slidesToShow": 4, dots: true, infinite: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000 };
 
-  sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', nextArrow: '.next-student-arrow', slidesToScroll: 1, dots: true, fadeSpeed: 3000, centerMode: true, };
+  sliderContest = { "slidesToShow": 4, dots: true, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000 };
 
+  sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', autoplay: true, nextArrow: '.next-student-arrow', slidesToScroll: 1, dots: true, fadeSpeed: 3000, centerMode: true, };
+
+
+  sliderAssessCompacity = { "slidesToShow": 1, prevArrow: '.prev-student-arrow', nextArrow: '.next-student-arrow', slidesToScroll: 1, dots: true, fadeSpeed: 3000, centerMode: true, };
 
   constructor(private contestService: ContestService) { }
 
@@ -36,8 +40,9 @@ export class HomeComponent implements OnInit {
           this.statusContest = 'done'
         }
       }
-    });
+    })
     // console.log(this.status);
+
   }
 
   checkLogin(): boolean {

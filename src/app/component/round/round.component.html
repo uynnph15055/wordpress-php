@@ -43,8 +43,17 @@
             </ul>
         </mat-expansion-panel>
     </mat-accordion>
-    <div class="d-flex justify-content-center">
-        <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
+    <div *ngIf="status == 'pending'">
+        <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
+        </ngx-skeleton-loader>
     </div>
 
 </div>

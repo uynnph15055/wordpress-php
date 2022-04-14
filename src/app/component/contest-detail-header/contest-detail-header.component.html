@@ -19,7 +19,31 @@
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center">
-        <app-loading-item *ngIf="status == 'pending'"></app-loading-item>
+    <div *ngIf="status == 'pending'" class="p-3">
+        <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'margin-bottom' : '10px' , 'width' : '50%' }"
+            appearance="line">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{ 'height.px' : 10, 'margin-bottom' : '10px'}" appearance="line">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{ 'height.px' : 10, 'margin-bottom' : '10px'  }" appearance="line">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{ 'height.px' : 30, 'margin-bottom' : '10px'  }" appearance="line">
+        </ngx-skeleton-loader>
+        <div class="d-flex align-items-center">
+            <div class="col-3">
+                <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'margin-bottom' : '10px' }" appearance="line">
+                </ngx-skeleton-loader>
+            </div>
+            <div class="col-7">
+                <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }" appearance="circle">
+                </ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }" appearance="circle">
+                </ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }" appearance="circle">
+                </ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }" appearance="circle">
+                </ngx-skeleton-loader>
+            </div>
+        </div>
     </div>
 </div>

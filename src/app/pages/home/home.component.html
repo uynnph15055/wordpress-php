@@ -26,7 +26,11 @@
         </div>
     </div>
     <hr>
-    <h3 class="fw-bold title text-uppercase text-center color-blue">Lợi ích khi tham gia</h3>
+    <div class="mb-3">
+        <h3 class="fw-bold title text-uppercase text-center color-blue">Lợi ích khi tham gia</h3>
+        <div class="title-line">
+        </div>
+    </div>
     <div class="row benefit-join-box">
         <div class="col-md-6 col-xl-4 col-sm-12">
             <span>
@@ -100,7 +104,11 @@
 
 <div class="container py-4">
     <!-- Cuộc thi -->
-    <h3 class="fw-bold title text-uppercase text-center color-blue">Các cuộc thi</h3>
+    <div class="mb-4">
+        <h3 class="fw-bold title text-uppercase text-center color-blue">Các cuộc thi</h3>
+        <div class="title-line">
+        </div>
+    </div>
     <div class="contest-list" *ngIf="contests.length > 0">
         <div class="prev-arrow arrow-list-contest">
             <i class="fas fa-chevron-left"></i>
@@ -304,16 +312,88 @@
 
 <div class="assess-compacity-wraper py-4" style="height: 600px;">
     <div class="container">
-        <h3 class="fw-bold title text-uppercase text-center text-uppercase color-blue">Đánh giá của DOANH NGHIỆP</h3>
-        <div class="assess-content-box row">
-            <div class="col-7">
-                <img class="assess-compacity-logo"
-                    src="https://cdn5.f-cdn.com/contestentries/743244/19276592/57bd8f137a0e3_thumb900.jpg" alt="">
-                <p class="fw-bold assess-compacity-name color-blue">Trường cao đẳng FPOLY</p>
+        <div class="mb-4">
+            <h3 class="fw-bold title text-uppercase text-center text-uppercase color-blue">Đánh giá của DOANH NGHIỆP
+            </h3>
+            <div class="title-line">
             </div>
-            <div class="col-4">
-                <img src="./../../../assets/img/Tạo-dáng-chụp-ảnh-doanh-nhân-nam-removebg-preview.png" alt="">
-            </div>
+        </div>
+        <div class="assess-content-box">
+            <ngx-slick-carousel class="carousel container" [config]="sliderAssessCompacity">
+                <div class="row d-flex " ngxSlickItem>
+                    <div class="col-7 assess-content-left">
+                        <div class="my-5">
+                            <img class="assess-compacity-logo"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShxdlbXdd7jnjF6SPFII6bnLNa8hsK1Npf1w&usqp=CAU"
+                                alt="">
+                            <p class="fw-bold fs-6 mb-5 assess-compacity-name color-blue">Công ty phần mềm FPT</p>
+                            <p class="assess-compacity-content">Thuật ngữ Feedback được sử dụng rất phổ biến trong nhiều
+                                lĩnh
+                                vực,
+                                nó được sử dụng để chỉ về hành động phản hồi lại thông tin nào đó được gửi từ người này
+                                sang
+                                người
+                                khác với những vai trò khác nhau. Đa phần thì những thông tin của feedback được gửi qua
+                                Email
+                            </p>
+                            <h4 class="assess-compacity-name float-end mx-3">HT.Vũ Chí Thành</h4>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <img class="ml-5"
+                            src="./../../../assets/img/Tạo-dáng-chụp-ảnh-doanh-nhân-nam-removebg-preview.png" alt="">
+                    </div>
+                </div>
+                <div class="row d-flex " ngxSlickItem>
+                    <div class="col-7 assess-content-left">
+                        <div class="my-5">
+                            <img class="assess-compacity-logo"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShxdlbXdd7jnjF6SPFII6bnLNa8hsK1Npf1w&usqp=CAU"
+                                alt="">
+                            <p class="fw-bold fs-6 mb-5 assess-compacity-name color-blue">Công ty phần mềm FPT</p>
+                            <p class="assess-compacity-content">Thuật ngữ Feedback được sử dụng rất phổ biến trong nhiều
+                                lĩnh
+                                vực,
+                                nó được sử dụng để chỉ về hành động phản hồi lại thông tin nào đó được gửi từ người này
+                                sang
+                                người
+                                khác với những vai trò khác nhau. Đa phần thì những thông tin của feedback được gửi qua
+                                Email
+                            </p>
+                            <h4 class="assess-compacity-name float-end mx-3">HT.Vũ Chí Thành</h4>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <img class="ml-5"
+                            src="./../../../assets/img/Tạo-dáng-chụp-ảnh-doanh-nhân-nam-removebg-preview.png" alt="">
+                    </div>
+                </div>
+                <div class="row d-flex " ngxSlickItem>
+                    <div class="col-7 assess-content-left">
+                        <div class="my-5">
+                            <img class="assess-compacity-logo"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShxdlbXdd7jnjF6SPFII6bnLNa8hsK1Npf1w&usqp=CAU"
+                                alt="">
+                            <p class="fw-bold fs-6 mb-5 assess-compacity-name color-blue">Công ty phần mềm FPT</p>
+                            <p class="assess-compacity-content">Thuật ngữ Feedback được sử dụng rất phổ biến trong nhiều
+                                lĩnh
+                                vực,
+                                nó được sử dụng để chỉ về hành động phản hồi lại thông tin nào đó được gửi từ người này
+                                sang
+                                người
+                                khác với những vai trò khác nhau. Đa phần thì những thông tin của feedback được gửi qua
+                                Email
+                            </p>
+                            <h4 class="assess-compacity-name float-end mx-3">HT.Vũ Chí Thành</h4>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <img class="ml-5"
+                            src="./../../../assets/img/" alt="">
+                    </div>
+                </div>
+            </ngx-slick-carousel>
+
         </div>
     </div>
 </div>
