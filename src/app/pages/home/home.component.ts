@@ -9,6 +9,7 @@ import { Contest } from 'src/app/models/contest';
 import { Team } from 'src/app/models/team';
 import { ContestService } from 'src/app/services/contest.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,61 +17,18 @@ import { ContestService } from 'src/app/services/contest.service';
 })
 export class HomeComponent implements OnInit {
   users: Array<User>;
-  status: string = 'pending';
+  statusContest: string = 'pending';
   loggedInUser: User;
   sponsors: Array<Sponsor>;
   contests: Array<Contest> = [];
-  customOptions: OwlOptions = {
-    loop: false,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    margin: 10,
-    responsive: {
-      300: {
-        items: 1
-      },
-      576: {
-        items: 2
-      },
-      978: {
-        items: 3
-      },
-      1024: {
-        items: 4
-      }
-    },
-    nav: true
-  }
 
-  listStudent: OwlOptions = {
-    loop: false,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    margin: 10,
-    responsive: {
-      300: {
-        items: 1
-      },
-      576: {
-        items: 2
-      },
-      978: {
-        items: 3
-      },
-      1024: {
-        items: 4
-      }
-    },
-    nav: true
-  }
+
+  sliderContest = { "slidesToShow": 4, dots: true, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000 };
+
+  sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', autoplay: true, nextArrow: '.next-student-arrow', slidesToScroll: 1, dots: true, fadeSpeed: 3000, centerMode: true, };
+
+
+  sliderAssessCompacity = { "slidesToShow": 1, prevArrow: '.prev-compacity-arrow', nextArrow: '.next-compacity-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true, };
 
   constructor(private contestService: ContestService) { }
 
@@ -79,13 +37,12 @@ export class HomeComponent implements OnInit {
       if (res.status == true) {
         this.contests = res.payload;
         if (this.contests) {
-          this.status = 'done'
+          this.statusContest = 'done'
         }
       }
+    })
+    // console.log(this.status);
 
-    });
-
-    console.log(this.status);
   }
 
   checkLogin(): boolean {

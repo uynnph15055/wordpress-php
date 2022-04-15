@@ -4,6 +4,7 @@ import { map, switchMap } from 'rxjs';
 import { Contest } from 'src/app/models/contest';
 import { ContestService } from 'src/app/services/contest.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-contest-deatail',
@@ -20,21 +21,13 @@ export class ContestDeatailComponent implements OnInit {
   status: any = 'pending';
   contest_id: any = 0;
 
-  constructor(private route: ActivatedRoute, private contestService: ContestService) { }
+  constructor(private route: ActivatedRoute, private contestService: ContestService) {
+
+  }
 
   ngOnInit(): void {
-    this.route.paramMap.pipe(
-      map(params => params.get('slug')),
-      switchMap(id => this.contestService.getWhereId(id))
-    ).subscribe(res => {
-      if (res.status == true) {
-        this.contestDetail = res.payload;
-        console.log(this.contestDetail);
-
-        if (this.contestDetail) {
-          this.status = 'done';
-        }
-      }
+    window.addEventListener('load', () => {
+      $('body').scrollTop();
     })
   }
 

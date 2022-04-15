@@ -12,7 +12,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./contest.component.css']
 })
 export class ContestComponent implements OnInit {
-  status: string = 'pending';
+  statusMajor: string = 'pending';
+  statusContest: string = 'pending';
   days: number = 5;
   hours: number = 16;
   minutes: number = 20;
@@ -48,7 +49,7 @@ export class ContestComponent implements OnInit {
       this.majorService.getMajorWhereSlug(this.major_slug).subscribe(res => {
 
         if (this.major_slug == null) {
-          // this.status = 'pending'
+          // this.statusMajor = 'pending'
           this.getAllContest();
         } else {
           this.major_id = res.payload.id;
@@ -57,9 +58,9 @@ export class ContestComponent implements OnInit {
           this.contestService.getWhereMajor(this.major_id).subscribe(res => {
             this.contests = res.payload;
             if (this.contests) {
-              this.status = 'done';
+              this.statusMajor = 'done';
             } else {
-              this.status = 'pending';
+              this.statusMajor = 'pending';
             }
           })
         }
@@ -71,7 +72,7 @@ export class ContestComponent implements OnInit {
       if (res.status == true) {
         this.majors = res.payload;
         if (this.majors) {
-          this.status = 'done';
+          this.statusMajor = 'done';
         };
       };
       // console.log(res);
@@ -83,8 +84,9 @@ export class ContestComponent implements OnInit {
       this.contests = res.payload;
     })
 
-    // console.log(this.contests);
-
+    if (this.contests) {
+      this.statusContest == 'done';
+    }
   }
 
   // Tìm kiếm cuộc thi
@@ -110,13 +112,16 @@ export class ContestComponent implements OnInit {
   }
 
   // Lọc theo trạng thái
-  statusContest(e: any) {
-    let status = e.target.value;
-    if (status == 0) {
+  statusMajorContest(e: any) {
+    let statusMajor = e.target.value;
+    if (statusMajor == 0) {
       this.getAllContest();
     }
-    this.contestService.getWhereStatus(status).subscribe(res => {
+    this.contestService.getWhereStatus(statusMajor).subscribe(res => {
       this.contests = res.payload;
+      if (this.contests) {
+        this.statusContest = 'done';
+      }
     })
   }
 }

@@ -1,0 +1,9 @@
+.home-banner-img-box {
+  max-height: 550px;
+  min-width: 100%;
+}
+
+.banner-name-major {
+  font-size: 35px;
+  text-shadow: 0px 2px 10px var(--primary-color);
+}
