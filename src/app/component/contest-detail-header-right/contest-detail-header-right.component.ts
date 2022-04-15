@@ -18,6 +18,7 @@ export class ContestDetailHeaderRightComponent implements OnInit {
   public imagePath: string;
   imgURL: any = 'https://pic.onlinewebfonts.com/svg/img_550783.png';
   public message: string;
+  user_id: any = 4;
 
 
   // set up form control
@@ -37,7 +38,6 @@ export class ContestDetailHeaderRightComponent implements OnInit {
   constructor(private modalService: NgbModal, private teamService: TeamService) { }
 
   ngOnInit(): void {
-
 
     this.roundEndTime = moment(this.contestDetail.register_deadline).format('lll');
   }
@@ -64,17 +64,18 @@ export class ContestDetailHeaderRightComponent implements OnInit {
   }
 
   // Add team
-
   addTeam() {
     let dataTeam = { ...this.formRegister.value }
-    const formDataTeam = new FormData();
-    dataTeam.image = this.imagePath;
-    dataTeam.contest_id = this.contestDetail.id;
-    dataTeam.user_id = 54;
+    var formDataTeam = new FormData();
 
-    dataTeam.append('name', dataTeam.nameTeam);
-    console.log(formDataTeam);
+    formDataTeam.append('name', dataTeam.nameTeam);
+    formDataTeam.append('image', this.imagePath);
+    formDataTeam.append('contest_id', this.contestDetail.id);
+    formDataTeam.append('user_id', this.user_id);
 
+    this.teamService.addTeam(formDataTeam).subscribe(res => {
+      console.log(res);
+    })
   }
 
 

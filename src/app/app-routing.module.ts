@@ -23,11 +23,11 @@ const routes: Routes = [
         component: ContestComponent,
       },
       {
-        path: 'cuoc-thi/chuyen-nganh/:slug',
+        path: 'cuoc-thi/:slug',
         component: ContestComponent,
       },
       {
-        path: "cuoc-thi/chi-tiet/:slug",
+        path: "cuoc-thi/chi-tiet/:id",
         component: ContestDeatailComponent,
       },
       {

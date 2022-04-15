@@ -22,7 +22,19 @@ export class ContestDeatailComponent implements OnInit {
   contest_id: any = 0;
 
   constructor(private route: ActivatedRoute, private contestService: ContestService) {
+    this.route.paramMap.pipe(
+      map(params => params.get('id')),
+      switchMap(id => this.contestService.getWhereId(id))
+    ).subscribe(res => {
+      if (res.status == true) {
+        this.contestDetail = res.payload;
+        console.log(this.contestDetail);
 
+        if (this.contestDetail) {
+          this.status = 'done';
+        }
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -30,8 +42,6 @@ export class ContestDeatailComponent implements OnInit {
       $('body').scrollTop();
     })
   }
-
-
 
   listCompany: OwlOptions = {
     loop: false,
