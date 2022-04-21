@@ -18,7 +18,7 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { ContestComponent } from './pages/contest/contest.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { ContestDeatailComponent } from './pages/contest-detail/contest-deatail.component';
-import { MatExpansionModule } from '@angular/material/expansion';
+
 import { BannerComponent } from './component/banner/banner.component';
 import { BackTimeComponent } from './component/back-time/back-time.component';
 
@@ -35,6 +35,8 @@ import { ListAvatarUserComponent } from './component/list-avatar-user/list-avata
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ContestLoadItemComponent } from './loading/contest-load-item/contest-load-item.component';
+import { MaterialModule } from './material/material.module';
+import { ModalAddTeamComponent } from './component/modal-add-team/modal-add-team.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +57,7 @@ import { ContestLoadItemComponent } from './loading/contest-load-item/contest-lo
     FormatDatePipe,
     ListAvatarUserComponent,
     ContestLoadItemComponent,
+    ModalAddTeamComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,9 +70,9 @@ import { ContestLoadItemComponent } from './loading/contest-load-item/contest-lo
     CarouselModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    MatExpansionModule,
     SlickCarouselModule,
     NgxSkeletonLoaderModule,
+    MaterialModule
   ],
   providers: [
     {

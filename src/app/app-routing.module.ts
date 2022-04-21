@@ -48,7 +48,6 @@ const routes: Routes = [
     path: "avatar",
     component: ListAvatarUserComponent,
   }
-
 ];
 
 @NgModule({

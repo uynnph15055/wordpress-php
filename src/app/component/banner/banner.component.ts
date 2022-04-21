@@ -21,7 +21,7 @@ export class BannerComponent implements OnInit {
         if (this.banner) {
           setTimeout(() => {
             this.bannerStatus = 'done';
-          }, 3000);
+          }, 2000);
         }
 
       }

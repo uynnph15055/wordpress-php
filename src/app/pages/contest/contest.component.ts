@@ -82,11 +82,10 @@ export class ContestComponent implements OnInit {
   getAllContest() {
     this.contestService.getAll().subscribe(res => {
       this.contests = res.payload;
+      if (this.contests) {
+        this.statusContest = 'done';
+      }
     })
-
-    if (this.contests) {
-      this.statusContest == 'done';
-    }
   }
 
   // Tìm kiếm cuộc thi
@@ -123,5 +122,15 @@ export class ContestComponent implements OnInit {
         this.statusContest = 'done';
       }
     })
+  }
+
+  // Mở form search
+  formSearchOpen() {
+    // alert('Uy nguyễn ')
+    let formBox = document.querySelector('.header-form-search');
+
+    console.log(formBox);
+
+    formBox?.classList.toggle('max-with');
   }
 }

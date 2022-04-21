@@ -13,6 +13,7 @@
 
 .nav-item {
   padding: 10px 20px;
+  margin-top: 8px;
 }
 
 .menu_login-box .nav-link-item {
@@ -20,6 +21,10 @@
   color: var(--title-blue);
   position: relative;
   font-size: 15px;
+}
+
+.menu_login-box .nav-link-item {
+  padding-bottom: 5px;
 }
 
 .menu_login-box .nav-link-item::before {
@@ -246,10 +251,23 @@
   }
 }
 
+/* ----BACK_TOP */
+
+.back-top {
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  bottom: 40px;
+  right: 20px;
+}
+
+
 
 @media (max-width:987px) {
   .menu_login-box {
-    display: none;
+    visibility: hidden;
   }
 
   .img-header-box {
@@ -266,7 +284,3 @@
     display: block;
   }
 }
-
-
-
-

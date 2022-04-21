@@ -45,7 +45,7 @@
             </div>
 
             <a href="" class="img-header-box"><img class="" src="./../../../assets/img/logo.png" alt=""></a>
-            <div class="d-flex" id="menu_login-box">
+            <div class="d-flex mt-2" id="menu_login-box">
                 <ul class="nav menu_login-box d-flex align-items-center mr-auto home-nav pr-2">
                     <li class="nav-item active"><a class=" fw-bold text-decoration-none text-uppercase nav-link-item "
                             routerLink="">Trang
@@ -61,7 +61,7 @@
                             năng
                             lực</a></li>
                     <li>
-                        <a href="" class="text-decoration-none  btn-outline-login">Đăng nhập</a>
+                        <a href="" class="text-decoration-none mb-2 btn-outline-login">Đăng nhập</a>
                     </li>
                 </ul>
             </div>
@@ -121,7 +121,7 @@
                                         Tòa nhà FPT Polytechnic, Phố Trịnh Văn Bô, Nam Từ Liêm, Hà Nội
                                     </p>
                                     <p>
-                                        <!-- <fa-icon [icon]="faCoffee"></fa-icon> -->
+                                        <fa-icon class="fa-icon-phone " [icon]="['fas' , 'phone-square']"></fa-icon>
                                         &nbsp;
                                         (024) 7300 1955
                                     </p>
@@ -157,7 +157,7 @@
                                         Thơ.
                                     </p>
                                     <p>
-                                        <!-- <fa-icon class="fa-icon-phone " [icon]="['fas' , 'phone-square']"></fa-icon> -->
+                                        <fa-icon class="fa-icon-phone " [icon]="['fas' , 'phone-square']"></fa-icon>
                                         &nbsp;(0292) 7300 468
                                     </p>
                                 </div>
@@ -176,7 +176,7 @@
                                         Minh
                                     </p>
                                     <p>
-                                        <!-- <fa-icon class="fa-icon-phone " [icon]="['fas' , 'phone-square']"></fa-icon> -->
+                                        <fa-icon class="fa-icon-phone " [icon]="['fas' , 'phone-square']"></fa-icon>
                                         &nbsp;
                                         (028) 3526 8799 – (028)
                                         62523434
@@ -192,6 +192,7 @@
                                         </svg>&nbsp;Số 300/6 đường Hà Huy Tập, p. Tân An, TP. Buôn Ma Thuột, Đắk Lắk
                                     </p>
                                     <p>
+                                        <fa-icon class="fa-icon-phone " [icon]="['fas' , 'phone-square']"></fa-icon>
                                         &nbsp;(0262) 355 5678
                                     </p>
                                 </div>
@@ -203,5 +204,6 @@
         </div>
     </div>
 </div>
-<app-back-top></app-back-top>
-<script src="./../../../../src/assets/js/back-top.js"></script>
+<div class="back-top d-flex justify-content-center align-items-center position-fixed" (click)="backTop()">
+    <i class="fas fa-angle-up text-white fs-4"></i>
+</div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-home-layout',
   templateUrl: './home-layout.component.html',
@@ -8,9 +7,23 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class HomeLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    $(window).scroll(() => {
+      if ($(this).scrollTop()) {
+        $('.back-top').fadeIn();
+      } else {
+        $('.back-top').fadeOut();
+      }
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+  backTop() {
+    $('html , body').animate({
+      scrollTop: 0
+    }, 1000);
   }
 
 }

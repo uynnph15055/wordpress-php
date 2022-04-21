@@ -15,6 +15,7 @@ export class RoundComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.contestDetail.rounds);
 
   }
 
