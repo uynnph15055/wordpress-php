@@ -57,6 +57,7 @@ export class ContestDetailHeaderRightComponent implements OnInit {
   // Mở modal đăng ký thêm đội
   openDialog(): void {
     const dialogRef = this.dialog.open(ModalAddTeamComponent, {
+      // id: this.
     });
 
     dialogRef.afterClosed().subscribe(result => {

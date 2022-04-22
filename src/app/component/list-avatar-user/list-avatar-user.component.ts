@@ -25,7 +25,7 @@ export class ListAvatarUserComponent implements OnInit {
     }
 
     this.avatarTeam = this.listTeam.slice(0, 3);
-    this.round_id = this.listTeam[0].pivot.round_id;
+    // this.round_id = this.listTeam[0].pivot.round_id;
   }
 
 }

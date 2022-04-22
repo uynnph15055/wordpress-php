@@ -18,7 +18,6 @@ export class RoundComponent implements OnInit {
     // console.log(this.contestDetail.rounds);
 
   }
-
   // Lấy image ban giám khảo
   getImageJudges(judges: any): Array<any> {
     let arrayImage: any = [];
