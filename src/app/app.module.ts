@@ -80,7 +80,7 @@ import { ModalAddTeamComponent } from './component/modal-add-team/modal-add-team
       useValue: {
         autoLogin: false,
         providers: [
-          { provide: Window, useValue: window },
+          // { provide: Window, useValue: window },
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(environment.GG_CLIENT_ID),

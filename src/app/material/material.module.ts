@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
 
 const MaterialComponent = [
   MatExpansionModule,
-  MatDialogModule
+  MatDialogModule,
+  MatMenuModule,
+  MatBadgeModule
 ]
 
 @NgModule({

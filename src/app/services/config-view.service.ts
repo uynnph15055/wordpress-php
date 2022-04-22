@@ -20,6 +20,6 @@ export class ConfigViewService {
       } else {
         el.innerText = Math.ceil(from) + '+'
       }
-    }, 1)
+    }, 5)
   }
 }

@@ -45,6 +45,7 @@ export class UserService {
         return response.status;
       }));
    }
+
    logout(){
     localStorage.removeItem("user");
     localStorage.removeItem('auth_token')

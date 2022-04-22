@@ -60,8 +60,30 @@
                             href="">Test
                             năng
                             lực</a></li>
-                    <li>
-                        <a href="" class="text-decoration-none mb-2 btn-outline-login">Đăng nhập</a>
+                    <li *ngIf="statusLogin == true"><i matBadge="4" matBadgePosition="after"
+                            class="fas fa-bell header-icon-message  color-blue" matBadgeColor="warn"></i>
+                    </li>
+                    <li *ngIf="statusLogin == false">
+                        <a routerLink="/login" class="text-decoration-none mb-2 btn-outline-login">Đăng nhập</a>
+                    </li>
+                    <li *ngIf="statusLogin == true">
+
+                        <img mat-icon-button [matMenuTriggerFor]="menu" class="header-avatar-user" [src]="user.avatar"
+                            alt="">
+                        <mat-menu class="mt-2" #menu="matMenu">
+                            <button mat-menu-item>
+
+                                <span>Thông tin tài khoản</span>
+                            </button>
+                            <button mat-menu-item>
+
+                                <span>Thành tích</span>
+                            </button>
+                            <button (click)="logOut()" mat-menu-item>
+
+                                <span>Đăng xuất</span>
+                            </button>
+                        </mat-menu>
                     </li>
                 </ul>
             </div>

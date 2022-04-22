@@ -134,8 +134,6 @@
   font-size: 13px;
 }
 
-
-
 .contest-img img {
   object-fit: cover;
   height: 200px;
@@ -144,7 +142,7 @@
 /* STATISTICAL */
 .section_plan {
   height: 320px;
-  background: linear-gradient(20deg, #EE5A24, #F79F1F);
+  background-image: linear-gradient(to bottom, #0e254e, #122035);
   position: relative;
 }
 

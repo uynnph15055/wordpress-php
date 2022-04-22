@@ -90,12 +90,15 @@ export class ContestComponent implements OnInit {
 
   // Tìm kiếm cuộc thi
   searchContest() {
+    this.contests = [];
+    this.statusContest = 'pending';
     let keyword = { ...this.formSearch.value }
-    // console.log(res);
 
     this.contestService.searchContest(keyword.keyword).subscribe(res => {
       this.contests = res.payload;
-      // console.log(res);
+      if (this.contests) {
+        this.statusContest = 'done';
+      }
     });
   }
 
@@ -132,5 +135,14 @@ export class ContestComponent implements OnInit {
     console.log(formBox);
 
     formBox?.classList.toggle('max-with');
+  }
+
+  // Đóng formSearch
+  formSearchClose() {
+    // alert('Uy nguyễn ')
+    let formBox = document.querySelector('.header-form-search');
+
+
+    formBox?.classList.remove('max-with');
   }
 }
