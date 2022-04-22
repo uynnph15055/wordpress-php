@@ -21,6 +21,8 @@ export class ContestDeatailComponent implements OnInit {
   status: any = 'pending';
   contest_id: any = 0;
 
+  sliderSupporter = { "slidesToShow": 3, dots: true, infinite: true, autoplay: true, arrows: true, prevArrow: '.supporters-arrow-left', nextArrow: '.supporters-arrow-right', slidesToScroll: 1, fadeSpeed: 1000 };
+
   constructor(private route: ActivatedRoute, private contestService: ContestService) {
     this.route.paramMap.pipe(
       map(params => params.get('id')),

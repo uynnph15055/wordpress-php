@@ -44,16 +44,17 @@
         </mat-expansion-panel>
     </mat-accordion>
     <div *ngIf="status == 'pending'">
-        <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
+        <ngx-skeleton-loader count="6" [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
         </ngx-skeleton-loader>
-        <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
-        </ngx-skeleton-loader>
-        <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
-        </ngx-skeleton-loader>
-        <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
-        </ngx-skeleton-loader>
-        <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
-        </ngx-skeleton-loader>
+    </div>
+    <div class="text-center" *ngIf="status == 'done' && contestDetail.rounds.length == 0">
+        <div class=""><img
+                src="
+        https://img.freepik.com/free-vector/tiny-people-examining-operating-system-error-warning-web-page-isolated-flat-illustration_74855-11104.jpg?t=st=1650442354~exp=1650442954~hmac=8f7b8e030616e950ec8b0bb7b1a388560f06cee34fa16654fc95a2f9faad5635&w=740"
+                alt="" class="image-warn-round"></div>
+        <h3 class="color-red fw-bold">Chưa có vòng thi nào !!! <img
+                src="https://cdn-icons.flaticon.com/png/512/2335/premium/2335167.png?token=exp=1650443988~hmac=83275e887fb90c71605ec0b09dfc7078"
+                alt="" style="height: 30px;margin-bottom: 5px;"></h3>
     </div>
 
 </div>
