@@ -50,12 +50,14 @@ export class ModalAddTeamComponent implements OnInit {
 
   // Add team
   addTeam() {
+
+
     let dataTeam = { ...this.formRegister.value }
     var formDataTeam = new FormData();
 
     formDataTeam.append('name', dataTeam.nameTeam);
     formDataTeam.append('image', this.imagePath);
-
+    formDataTeam.append('contest_id', this.dialogRef.id);
     formDataTeam.append('user_id', this.user_id);
 
     this.teamService.addTeam(formDataTeam).subscribe(res => {
