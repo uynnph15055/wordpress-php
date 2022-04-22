@@ -36,8 +36,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.contestService.getWhereStatus(1).subscribe(res => {
       if (res.status == true) {
-        this.contests = res.payload;
+        this.contests = res.payload.data;
         if (this.contests) {
+          // console.log(this.contests);
           this.statusContest = 'done'
         }
       }

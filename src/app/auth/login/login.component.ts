@@ -26,6 +26,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then(data => {
@@ -52,6 +54,8 @@ export class LoginComponent implements OnInit {
           })
       })
   }
+
+
   logOut(): void {
     this.socialAuthService.signOut();
   }

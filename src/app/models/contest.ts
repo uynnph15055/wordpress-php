@@ -1,3 +1,4 @@
+import { Round } from "./round.model";
 import { Team } from "./team";
 
 export class Contest {
@@ -10,4 +11,5 @@ export class Contest {
     major_id: number;
     status: number;
     teams: Array<Team>
+    rounds: Array<Round>
 }

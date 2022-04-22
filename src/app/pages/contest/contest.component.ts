@@ -81,8 +81,9 @@ export class ContestComponent implements OnInit {
 
   getAllContest() {
     this.contestService.getAll().subscribe(res => {
-      this.contests = res.payload;
+      this.contests = res.payload.data;
       if (this.contests) {
+        console.log(this.contests);
         this.statusContest = 'done';
       }
     })
@@ -96,6 +97,8 @@ export class ContestComponent implements OnInit {
 
     this.contestService.searchContest(keyword.keyword).subscribe(res => {
       this.contests = res.payload;
+
+
       if (this.contests) {
         this.statusContest = 'done';
       }
