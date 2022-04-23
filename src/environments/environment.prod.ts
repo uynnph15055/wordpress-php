@@ -1,5 +1,6 @@
 const baseApiUrl = "http://api.svpoly.xyz/api";
 const authApi = `${baseApiUrl}/auth`;
+
 export const jwtApiUrl = `${baseApiUrl}/v1`;
 const publicApiUrl = `${baseApiUrl}/public`;
 export const environment = {
