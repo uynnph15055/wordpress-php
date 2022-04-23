@@ -1,10 +1,21 @@
 /* HEADER */
 .header {
-  position: fixed;
+  position: absolute;
+  z-index: 99;
+  top: 0;
   left: 0;
   right: 0;
-  top: 0;
-  z-index: 10;
+  background: transparent;
+  transition: all 0.4s ease-out;
+}
+
+.header .fixed {
+  position: fixed !important;
+  background: #fff;
+  margin: 0 !important;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-shadow: 0 13px 35px -12px rgb(35 35 35 / 10%);
 }
 
 .header-icon-message {
