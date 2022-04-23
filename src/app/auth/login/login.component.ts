@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
   isLoggedin?: boolean = true;
   alert = {
     type: 'danger',
-    message: "sdfsd",
-    display: true
+    message: "",
+    display: false
   }
 
   constructor(
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  
+
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then(data => {
