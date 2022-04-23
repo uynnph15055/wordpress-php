@@ -1,0 +1,26 @@
+.left-to-right {
+  transform: translateX(-150%);
+}
+
+.left-to-right.start {
+  transition: 0.7s ease-in-out;
+  transform: translateX(0);
+}
+
+.right-to-left {
+  transform: translateX(20%);
+}
+
+.right-to-left.start {
+  transition: 0.7s ease-in-out;
+  transform: translateX(0);
+}
+
+.zoom {
+  transform: scale(0);
+}
+
+.zoom.start {
+  transition: 0.5s ease-in-out;
+  transform: unset;
+}

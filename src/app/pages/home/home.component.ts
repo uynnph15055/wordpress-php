@@ -23,17 +23,16 @@ export class HomeComponent implements OnInit {
   sponsors: Array<Sponsor>;
   contests: Array<Contest> = [];
 
+  sliderContest = { "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', dots: true, nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000 };
 
-  sliderContest = { "slidesToShow": 4, dots: true, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000 };
-
-  sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', autoplay: true, nextArrow: '.next-student-arrow', slidesToScroll: 1, dots: true, fadeSpeed: 3000, centerMode: true, };
-
+  sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', autoplay: true, nextArrow: '.next-student-arrow', slidesToScroll: 1, fadeSpeed: 3000, dots: true, centerMode: true };
 
   sliderAssessCompacity = { "slidesToShow": 1, prevArrow: '.prev-compacity-arrow', nextArrow: '.next-compacity-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true, };
 
   constructor(private contestService: ContestService, private configView: ConfigViewService) { }
 
   ngOnInit(): void {
+    let elToShow = document.querySelectorAll('.show-on-scroll')
     this.contestService.getWhereStatus(1).subscribe(res => {
       if (res.status == true) {
         this.contests = res.payload.data;
@@ -48,6 +47,7 @@ export class HomeComponent implements OnInit {
     let yearStatistic = document.querySelector('.section_plan-year');
     let passStatistic = document.querySelector('.section_plan-pass');
 
+    this.configView.activityStrollView(elToShow);
 
     this.configView.runStatisticHome(studentStatistic, 10);
     this.configView.runStatisticHome(yearStatistic, 4000);
