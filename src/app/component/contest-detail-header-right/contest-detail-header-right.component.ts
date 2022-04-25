@@ -45,7 +45,7 @@ export class ContestDetailHeaderRightComponent implements OnInit {
 
     if (this.routeStateRegister == true && this.getUserLocal.getValueLocalUser('user')) {
       this.openDialog();
-    } else {
+    } else if (!this.getUserLocal.getValueLocalUser('user')) {
       this.route.navigate(['/login']);
     }
   }
