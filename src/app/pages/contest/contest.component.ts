@@ -52,15 +52,14 @@ export class ContestComponent implements OnInit {
           // this.statusMajor = 'pending'
           this.getAllContest();
         } else {
+          this.statusContest = 'pending';
           this.major_id = res.payload.id;
-          // console.log(this.major_id);
-
           this.contestService.getWhereMajor(this.major_id).subscribe(res => {
-            this.contests = res.payload;
+            this.contests = res.payload.data;
             if (this.contests) {
-              this.statusMajor = 'done';
+              this.statusContest = 'done';
             } else {
-              this.statusMajor = 'pending';
+              this.statusContest = 'pending';
             }
           })
         }

@@ -4,7 +4,20 @@ import * as $ from 'jquery';
   providedIn: 'root'
 })
 export class ConfigViewService {
-
+  toasts: any = {
+    success: {
+      icon: '<i class="fas fa-check-circle"></i>',
+      msg: 'This is a success message !',
+    },
+    error: {
+      icon: '<i class="fas fa-exclamation-triangle"></i>',
+      msg: 'This is a error message !',
+    },
+    pending: {
+      icon: '<i class="fas fa-exclamation-circle"></i>',
+      msg: 'This is a warning message !',
+    },
+  }
   constructor() { }
 
   // Chạy thống kê trang chủ
@@ -55,7 +68,6 @@ export class ConfigViewService {
     loop()
   }
 
-
   // Event stroll top
   eventStrollTop(): boolean {
     window.addEventListener('scroll', () => {
@@ -63,4 +75,28 @@ export class ConfigViewService {
     })
     return false;
   }
+
+  createToast(status: string) {
+
+    let toast = document.createElement('div')
+    toast.className = `toast ${status}`
+
+    toast.innerHTML = `
+      ${this.toasts[status].icon}
+      <span class="msg">${this.toasts[status].msg}</span>
+      <span class="countdown"></span>
+      `
+      
+    document.querySelector('#toasts')?.appendChild(toast);
+
+    console.log(document.querySelector('#toasts'));
+
+    setTimeout(() => {
+      toast.style.animation = 'hide_slide 1s ease forwards'
+    }, 5000)
+    setTimeout(() => {
+      toast.remove()
+    }, 6000)
+  }
+
 }

@@ -142,7 +142,7 @@
 /* STATISTICAL */
 .section_plan {
   height: 320px;
-  background-image: linear-gradient(to bottom, #0e254e, #122035);
+  background-color: #34495e;
   position: relative;
 }
 
@@ -162,7 +162,7 @@
 }
 
 .section_plan-item {
-  background-color: #f7440e;
+  background-color: #1c2b3a;
   color: white;
   text-align: center;
   border-radius: 10px;
