@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   alert = {
     type: 'danger',
     message: "",
-    display: false,
+
   }
 
   constructor(
