@@ -1,7 +1,7 @@
 <form action="" style="width: 500px;" class="form-resgister-bg" [formGroup]="formRegister" (submit)="addTeam()">
     <div class="modal-header d-flex  justify-content-between align-items-center">
         <i class="fas icon-add-team fa-user-plus d-block"></i>
-        <h5 class="mt-2 fs-6 fw-bold mx-2 color-blue">Đăng Ký</h5>
+        <h5 class="mt-2 fs-6 fw-bold mx-2 color-blue">Thêm đội tham gia thi</h5>
         <i aria-label="Close" (click)="onNoClick()" class="fas fa-times icon-close-modal d-block"></i>
     </div>
     <div class="modal-body">
@@ -29,13 +29,12 @@
                 Bạn chưa nhập tên nhóm</p>
         </div>
         <div class="info-team-list mt-3">
-            <div class="px-3 d-flex justify-content-between align-items-center">
+            <div class="px-2 d-flex justify-content-between align-items-center">
                 <div class="d-flex justify-content-start align-items-center">
-                    <img src="https://thumbs.dreamstime.com/b/male-avatar-icon-flat-style-male-user-icon-cartoon-man-avatar-hipster-vector-stock-91462914.jpg"
-                        alt="" class="info-team-list-avatar d-block">
+                    <img [src]="user.avatar" alt="" class="info-team-list-avatar d-block">
                     <div class="mx-3">
-                        <h5 class="info-team-list-name">Nguyen Ngoc Ngoc Uy PH 1 5 0 5 5 (you)</h5>
-                        <p class="info-team-list-email">uynnph15055@fpt.edu.vn</p>
+                        <h5 class="info-team-list-name">{{user.name}}</h5>
+                        <p class="info-team-list-email">{{user.email}}</p>
                     </div>
                 </div>
                 <p class="info-team-list-position">Trưởng nhóm</p>

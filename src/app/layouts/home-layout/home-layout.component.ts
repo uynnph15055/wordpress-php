@@ -17,15 +17,7 @@ export class HomeLayoutComponent implements OnInit {
 
   statusLogin: boolean = false;
   constructor(private userInfo: GetValueLocalService, private configView: ConfigViewService) {
-    let wrapperBox = document.querySelector('#main-wrapper');
-    window.addEventListener('scroll', () => {
-      console.log(wrapperBox?.scrollTop.toFixed);
 
-      if (window.innerHeight) {
-
-      }
-
-    })
   }
 
 
@@ -34,6 +26,13 @@ export class HomeLayoutComponent implements OnInit {
     if (this.user) {
       this.statusLogin = true;
     }
+
+    let wrapperBox = document.querySelector('#main-wrapper');
+
+    window.addEventListener('scroll', () => {
+      console.log(wrapperBox?.scrollTop.valueOf());
+
+    })
   }
 
 

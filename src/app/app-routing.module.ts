@@ -23,7 +23,7 @@ const routes: Routes = [
         component: ContestComponent,
       },
       {
-        path: 'cuoc-thi/:slug',
+        path: 'cuoc-thi/chuyen-nganh/:slug',
         component: ContestComponent,
       },
       {

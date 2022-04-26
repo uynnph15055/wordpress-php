@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TeamService } from 'src/app/services/team.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { User } from 'src/app/models/user';
+import { GetValueLocalService } from 'src/app/services/get-value-local.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-modal-add-team',
   templateUrl: './modal-add-team.component.html',
@@ -10,7 +13,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 export class ModalAddTeamComponent implements OnInit {
   selectedImage: any;
   public imagePath: string;
-  imgURL: any = 'https://pic.onlinewebfonts.com/svg/img_550783.png';
+  user: User;
+  imgURL: any = 'https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png';
   public message: string;
   user_id: any = 4;
   // set up form control
@@ -21,10 +25,14 @@ export class ModalAddTeamComponent implements OnInit {
     user_id: new FormControl(),
   })
 
-  constructor(private teamService: TeamService, public dialogRef: MatDialogRef<ModalAddTeamComponent>) { }
+  constructor(private teamService: TeamService, public dialogRef: MatDialogRef<ModalAddTeamComponent>, private getUserLocal: GetValueLocalService, private router: ActivatedRoute) { }
 
   // --------
   ngOnInit(): void {
+    this.user = this.getUserLocal.getValueLocalUser("user");
+
+   
+
   }
 
   // Render image after add
@@ -50,8 +58,6 @@ export class ModalAddTeamComponent implements OnInit {
 
   // Add team
   addTeam() {
-
-
     let dataTeam = { ...this.formRegister.value }
     var formDataTeam = new FormData();
 

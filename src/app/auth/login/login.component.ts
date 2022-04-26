@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
+import { ConfigViewService } from 'src/app/services/config-view.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,17 +11,19 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
   socialUser!: SocialUser;
-  isLoggedin?: boolean = true;
+  c?: boolean = true;
+  statusLogin: string = '';
   alert = {
     type: 'danger',
     message: "",
-    display: false
+
   }
 
   constructor(
     private socialAuthService: SocialAuthService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private configView: ConfigViewService
   ) { }
 
   ngOnInit(): void {
@@ -29,27 +32,22 @@ export class LoginComponent implements OnInit {
 
 
   loginWithGoogle(): void {
+
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then(data => {
+        this.configView.createToast('success');
         this.userService.login(data.authToken)
           .subscribe(status => {
-            this.isLoggedin = status
+
             if (status == true) {
-              this.alert = {
-                type: 'success',
-                message: "Đăng nhập thành công!",
-                display: true
-              }
+              this.statusLogin = 'done';
+
 
               setTimeout(() => {
                 this.router.navigate(['/']);
               }, 1000)
             } else {
-              this.alert = {
-                type: 'danger',
-                message: "Đăng nhập thất bại, vui lòng sử dụng tài khoản khác!",
-                display: true
-              }
+
             }
           })
       })

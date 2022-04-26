@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import * as moment from 'moment/moment';
 import { Contest } from 'src/app/models/contest';
 import { ContestService } from 'src/app/services/contest.service';
+import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import { ModalAddTeamComponent } from '../modal-add-team/modal-add-team.component';
 
 @Component({
@@ -13,19 +15,20 @@ import { ModalAddTeamComponent } from '../modal-add-team/modal-add-team.componen
 export class ContestDetailHeaderRightComponent implements OnInit {
   @Input() contestDetail: any;
   @Input() status: any;
+  @Input() routeStateRegister: any;
   closeResult: string;
   roundEndTime: any;
   contestRelateTo: Array<Contest>;
+  // routeStateRegister : a
 
   days: number = 5;
   hours: number = 16;
   minutes: number = 20;
   seconds: number = 25;
 
-  constructor(public dialog: MatDialog, private contestService: ContestService) { }
+  constructor(public dialog: MatDialog, private contestService: ContestService, private getUserLocal: GetValueLocalService, private route: Router) { }
 
   ngOnInit(): void {
-    console.log(this.contestDetail);
 
     this.roundEndTime = moment(this.contestDetail.register_deadline).format('lll');
 
@@ -39,10 +42,12 @@ export class ContestDetailHeaderRightComponent implements OnInit {
       this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
     }, 1000);
 
-    console.log(this.contestDetail);
 
-
-    this.openDialog();
+    if (this.routeStateRegister == true && this.getUserLocal.getValueLocalUser('user')) {
+      this.openDialog();
+    } else if (!this.getUserLocal.getValueLocalUser('user')) {
+      this.route.navigate(['/login']);
+    }
   }
 
   // Các cuộc thi liên quan

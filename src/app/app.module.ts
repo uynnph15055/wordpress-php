@@ -37,6 +37,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ContestLoadItemComponent } from './loading/contest-load-item/contest-load-item.component';
 import { MaterialModule } from './material/material.module';
 import { ModalAddTeamComponent } from './component/modal-add-team/modal-add-team.component';
+import { ToastComponent } from './component/toast/toast.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { ModalAddTeamComponent } from './component/modal-add-team/modal-add-team
     ListAvatarUserComponent,
     ContestLoadItemComponent,
     ModalAddTeamComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,
