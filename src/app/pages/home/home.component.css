@@ -91,6 +91,8 @@
   cursor: pointer;
 }
 
+
+
 /* -------- */
 
 .contest-list {
@@ -142,7 +144,7 @@
 /* STATISTICAL */
 .section_plan {
   height: 320px;
-  background-color: #34495e;
+  background-color: #091529;
   position: relative;
 }
 
@@ -168,7 +170,7 @@
   border-radius: 10px;
   padding: 30px 0px;
   font-size: 40px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 15px 30px rgba(2, 2, 2, 0.15);
   margin-right: 40px;
 }
 
@@ -482,6 +484,8 @@
   bottom: -30px;
   margin-left: 5px;
 }
+
+
 
 .assess-compacity-content::before,
 .assess-compacity-content::after {

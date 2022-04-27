@@ -1,13 +1,19 @@
 /* 
 SEARCH
  */
-.header-form-search {
+.header-form-search,
+.reset-contest-start {
   width: 40px;
   height: 40px;
   border-radius: 50px;
   box-shadow: 0 0 3px #ccc;
   position: relative;
   cursor: pointer;
+  margin: 0px 10px;
+}
+
+.header-form-search {
+
   transition: 0.5s linear;
   overflow: hidden;
 }
@@ -16,14 +22,21 @@ SEARCH
   width: 280px;
 }
 
-.header-form-icon-search {
+.header-form-icon-search,
+.icon-reset-contests {
   position: absolute;
   left: 21px;
   top: 52%;
   transform: translate(-50%, -50%);
 }
 
-.header-form-icon-search i {
+.icon-reset-contests {
+  top: 47%;
+}
+
+
+.header-form-icon-search i,
+.icon-reset-contests {
   font-size: 17px;
 }
 
@@ -55,6 +68,11 @@ SEARCH
 }
 
 
+.bg-number-join-contest {
+  background-color: var(--primary-color);
+}
+
+
 /* 
   PAGINATION
    */
@@ -62,7 +80,8 @@ SEARCH
   color: var(--black);
 }
 
-.page-link:hover {
+.page-link:hover,
+.page-item .active {
   background-color: var(--warning);
   color: var(--white);
 }

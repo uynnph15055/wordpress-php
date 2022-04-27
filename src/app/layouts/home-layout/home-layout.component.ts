@@ -30,8 +30,7 @@ export class HomeLayoutComponent implements OnInit {
     let wrapperBox = document.querySelector('#main-wrapper');
 
     window.addEventListener('scroll', () => {
-      console.log(wrapperBox?.scrollTop.valueOf());
-
+    
     })
   }
 

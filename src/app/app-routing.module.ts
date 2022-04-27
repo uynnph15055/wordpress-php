@@ -27,6 +27,10 @@ const routes: Routes = [
         component: ContestComponent,
       },
       {
+        path: 'cuoc-thi/trang-thai/:status',
+        component: ContestComponent,
+      },
+      {
         path: "cuoc-thi/chi-tiet/:id",
         component: ContestDeatailComponent,
       },

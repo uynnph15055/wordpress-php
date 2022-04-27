@@ -38,6 +38,8 @@ import { ContestLoadItemComponent } from './loading/contest-load-item/contest-lo
 import { MaterialModule } from './material/material.module';
 import { ModalAddTeamComponent } from './component/modal-add-team/modal-add-team.component';
 import { ToastComponent } from './component/toast/toast.component';
+import { NgToastModule } from 'ng-angular-popup';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +76,8 @@ import { ToastComponent } from './component/toast/toast.component';
     FontAwesomeModule,
     SlickCarouselModule,
     NgxSkeletonLoaderModule,
-    MaterialModule
+    MaterialModule,
+    NgToastModule
   ],
   providers: [
     {
