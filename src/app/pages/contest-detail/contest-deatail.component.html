@@ -1,4 +1,4 @@
-<div class="margin-header contest-detail-box container my-4">
+<div class="margin-header contest-detail-box container my-5">
     <div class="contest-detail-header">
         <div class=" contest-detail-left ">
             <app-contest-detail-header [contestDetail]="contestDetail" [status]="status"></app-contest-detail-header>
@@ -64,7 +64,8 @@
             </div>
         </div>
         <div class="contest-detail-right">
-            <app-contest-detail-header-right [contestDetail]="contestDetail" [status]="status" [routeStateRegister]="routeStateRegister">
+            <app-contest-detail-header-right [contestDetail]="contestDetail" [status]="status"
+                [routeStateRegister]="routeStateRegister">
             </app-contest-detail-header-right>
             <div class="mt-3">
                 <img src="https://caodang.fpt.edu.vn/wp-content/uploads/%C4%91%E1%BB%8Bnh-h%C6%B0%E1%BB%9Bng.png" alt=""
@@ -84,7 +85,7 @@
                         <img src="
                         https://avatarfiles.alphacoders.com/645/thumb-64509.png" alt=""
                             class="student-rank-avatar d-block">
-                        <p class="student-rank-name fw-bold mt-2">Team ngọc toàn</p>
+                        <p class="student-rank-name mt-2">Team ngọc toàn</p>
                         <span class="student-rank-cup color-top-one">
                             <i class="fas fa-trophy"></i>
                         </span>
@@ -93,7 +94,7 @@
                         <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/Vladimir_2.jpg" alt=""
                             class="student-rank-avatar d-block">
-                        <p class="student-rank-name fw-bold mt-2">Team ngọc uy</p>
+                        <p class="student-rank-name  mt-2">Team ngọc uy</p>
                         <span class="student-rank-cup color-top-two">
                             <i class="fas fa-trophy"></i>
                         </span>
@@ -102,7 +103,7 @@
                         <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
                             class="student-rank-avatar d-block">
-                        <p class="student-rank-name fw-bold mt-2">Team Văn trọng</p>
+                        <p class="student-rank-name  mt-2">Team Văn trọng</p>
                         <span class="student-rank-cup color-top-three">
                             <i class="fas fa-trophy"></i>
                         </span>
@@ -111,7 +112,7 @@
                         <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
                             class="student-rank-avatar d-block">
-                        <p class="student-rank-name fw-bold mt-2">Team Đức Bình</p>
+                        <p class="student-rank-name mt-2">Team Đức Bình</p>
                         <span class="student-rank-cup color-top-all">
                             <i class="fas fa-trophy"></i>
                         </span>
@@ -120,7 +121,7 @@
                         <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
                             class="student-rank-avatar d-block">
-                        <p class="student-rank-name fw-bold mt-2">Team Đức Bình</p>
+                        <p class="student-rank-name  mt-2">Team Đức Bình</p>
                         <span class="student-rank-cup color-top-all">
                             <i class="fas fa-trophy"></i>
                         </span>
@@ -129,7 +130,7 @@
                         <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
                             class="student-rank-avatar d-block">
-                        <p class="student-rank-name fw-bold mt-2">Team Đức Bình</p>
+                        <p class="student-rank-name  mt-2">Team Đức Bình</p>
                         <span class="student-rank-cup color-top-all">
                             <i class="fas fa-trophy"></i>
                         </span>
@@ -138,7 +139,7 @@
                         <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
                             class="student-rank-avatar d-block">
-                        <p class="student-rank-name fw-bold mt-2">Team Đức Bình</p>
+                        <p class="student-rank-name  mt-2">Team Đức Bình</p>
                         <span class="student-rank-cup color-top-all">
                             <i class="fas fa-trophy"></i>
                         </span>
@@ -147,7 +148,7 @@
                         <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
                             class="student-rank-avatar d-block">
-                        <p class="student-rank-name fw-bold mt-2">Team Đức Bình</p>
+                        <p class="student-rank-name mt-2">Team Đức Bình</p>
                         <span class="student-rank-cup color-top-all">
                             <i class="fas fa-trophy"></i>
                         </span>
@@ -163,35 +164,87 @@
                 src="https://lh6.googleusercontent.com/-4fiEqQAA0-4/VTb-7_RbA2I/AAAAAAAAM6U/3s--XsaPfMY/w441-h553-no/dang%2Bhuynh%2Bpoly.jpg"
                 alt="">
             <h3 class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</h3>
-            <div class="related-contest-list">
-                <div class="related-contest-item d-flex justify-content-between align-items-center">
-                    <img src="
-                    https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjfkbbTQlfH8TVItuHWJ12Qj2Vr9n_K5-b32svPjHxRaJLh8QGqtPoyPQHVOPMCinoVS8&usqp=CAU"
-                        alt="" class="related-contest-image">
+            <div class="related-contest-list" *ngIf="statusContestRelated == true">
+                <div *ngFor="let item of contestRelated"
+                    class="related-contest-item d-flex justify-content-start align-items-center">
+                    <img [src]="
+                          item.img" alt="" class="related-contest-image">
                     <div class="related-contest-info">
-                        <h3 class="related-contest-name fw-bold">Thiết kế website với html</h3>
+                        <h3 class="related-contest-name fw-bold">{{ item.name}}</h3>
                         <p class="related-contest-time">Thời gian còn : <span> 2 ngày</span></p>
                         <a class="btn btn-register related-contest-detail">Chi tiết</a>
                     </div>
                 </div>
-                <div class="related-contest-item d-flex justify-content-between align-items-center">
-                    <img src="
-                    https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjfkbbTQlfH8TVItuHWJ12Qj2Vr9n_K5-b32svPjHxRaJLh8QGqtPoyPQHVOPMCinoVS8&usqp=CAU"
-                        alt="" class="related-contest-image">
-                    <div class="related-contest-info">
-                        <h3 class="related-contest-name fw-bold">Thiết kế website với html</h3>
-                        <p class="related-contest-time">Thời gian còn : <span> 2 ngày</span></p>
-                        <a class="btn btn-register related-contest-detail">Chi tiết</a>
+            </div>
+            <div class="" *ngIf="statusContestRelated == false">
+                <div class="related-contest-item d-flex justify-content-start align-items-center">
+                    <div class="load-item">
+                        <ngx-skeleton-loader [theme]=" { 'width' : '100px' , 'height' : '90px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                    <div class="related-contest-info mt-1">
+                        <ngx-skeleton-loader [theme]=" { 'width' : '150px' , 'height' : '20px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]=" { 'width' : '120px' , 'height' : '10px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]=" { 'width' : '100px' , 'height' : '30px' }" appearance="line">
+                        </ngx-skeleton-loader>
                     </div>
                 </div>
-                <div class="related-contest-item d-flex justify-content-between align-items-center">
-                    <img src="
-                    https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjfkbbTQlfH8TVItuHWJ12Qj2Vr9n_K5-b32svPjHxRaJLh8QGqtPoyPQHVOPMCinoVS8&usqp=CAU"
-                        alt="" class="related-contest-image">
-                    <div class="related-contest-info">
-                        <h3 class="related-contest-name fw-bold">Thiết kế website với html</h3>
-                        <p class="related-contest-time">Thời gian còn : <span> 2 ngày</span></p>
-                        <a class="btn btn-register related-contest-detail">Chi tiết</a>
+                <div class="related-contest-item mt-3 d-flex justify-content-start align-items-center">
+                    <div class="load-item">
+                        <ngx-skeleton-loader [theme]=" { 'width' : '100px' , 'height' : '90px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                    <div class="related-contest-info mt-1">
+                        <ngx-skeleton-loader [theme]=" { 'width' : '150px' , 'height' : '20px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]=" { 'width' : '120px' , 'height' : '10px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]=" { 'width' : '100px' , 'height' : '30px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
+                <div class="related-contest-item mt-3 d-flex justify-content-start align-items-center">
+                    <div class="load-item">
+                        <ngx-skeleton-loader [theme]=" { 'width' : '100px' , 'height' : '90px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                    <div class="related-contest-info mt-1">
+                        <ngx-skeleton-loader [theme]=" { 'width' : '150px' , 'height' : '20px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]=" { 'width' : '120px' , 'height' : '10px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]=" { 'width' : '100px' , 'height' : '30px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
+                <div class="related-contest-item mt-3 d-flex justify-content-start align-items-center">
+                    <div class="load-item">
+                        <ngx-skeleton-loader [theme]=" { 'width' : '100px' , 'height' : '90px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                    <div class="related-contest-info mt-1">
+                        <ngx-skeleton-loader [theme]=" { 'width' : '150px' , 'height' : '20px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]=" { 'width' : '120px' , 'height' : '10px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]=" { 'width' : '100px' , 'height' : '30px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
+                <div class="related-contest-item mt-3 d-flex justify-content-start align-items-center">
+                    <div class="load-item">
+                        <ngx-skeleton-loader [theme]=" { 'width' : '100px' , 'height' : '90px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                    <div class="related-contest-info mt-1">
+                        <ngx-skeleton-loader [theme]=" { 'width' : '150px' , 'height' : '20px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]=" { 'width' : '120px' , 'height' : '10px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]=" { 'width' : '100px' , 'height' : '30px' }" appearance="line">
+                        </ngx-skeleton-loader>
                     </div>
                 </div>
             </div>

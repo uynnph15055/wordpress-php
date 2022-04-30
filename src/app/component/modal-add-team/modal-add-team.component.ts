@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TeamService } from 'src/app/services/team.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/models/user';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDirectionTeamComponent } from '../modal-direction-team/modal-direction-team.component';
 @Component({
   selector: 'app-modal-add-team',
   templateUrl: './modal-add-team.component.html',
@@ -12,7 +15,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ModalAddTeamComponent implements OnInit {
   selectedImage: any;
+  titleModel: string = 'Thêm đội tham gia thi'
   public imagePath: string;
+  contest_id: any;
+  team_id: any;
   user: User;
   imgURL: any = 'https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png';
   public message: string;
@@ -21,18 +27,32 @@ export class ModalAddTeamComponent implements OnInit {
   formRegister = new FormGroup({
     nameTeam: new FormControl('', Validators.required),
     image: new FormControl(),
-    contest_id: new FormControl(),
     user_id: new FormControl(),
   })
 
-  constructor(private teamService: TeamService, public dialogRef: MatDialogRef<ModalAddTeamComponent>, private getUserLocal: GetValueLocalService, private router: ActivatedRoute) { }
+  constructor(private teamService: TeamService,
+    public dialogRef: MatDialogRef<ModalAddTeamComponent>,
+    private getUserLocal: GetValueLocalService,
+    private router: ActivatedRoute,
+    private toast: NgToastService,
+    public dialog: MatDialog,
+    config: NgbModalConfig, private modalService: NgbModal,
+    @Inject(MAT_DIALOG_DATA) public data: { contest_id: number, team_id: any }) {
+    this.contest_id = data.contest_id;
+    if (data.team_id !== '') {
+      this.team_id = data.team_id;
+    }
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   // --------
   ngOnInit(): void {
     this.user = this.getUserLocal.getValueLocalUser("user");
 
-   
-
+    if (this.team_id) {
+      this.titleModel = 'Sửa đội thi'
+    }
   }
 
   // Render image after add
@@ -48,7 +68,6 @@ export class ModalAddTeamComponent implements OnInit {
 
     var reader = new FileReader();
     this.imagePath = files[0];
-    console.log(this.imagePath);
 
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
@@ -56,18 +75,35 @@ export class ModalAddTeamComponent implements OnInit {
     }
   }
 
+  openDialog(idTeamNew: any) {
+    const dialogRef = this.dialog.open(ModalDirectionTeamComponent, {
+      width: "400px",
+      data: { idTeamNew: idTeamNew },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+
   // Add team
   addTeam() {
+    this.toast.warning({ summary: 'Đăng thêm đội , xin đợi giây lát ...', duration: 5000 });
     let dataTeam = { ...this.formRegister.value }
     var formDataTeam = new FormData();
 
     formDataTeam.append('name', dataTeam.nameTeam);
     formDataTeam.append('image', this.imagePath);
-    formDataTeam.append('contest_id', this.dialogRef.id);
+    formDataTeam.append('contest_id', this.contest_id);
     formDataTeam.append('user_id', this.user_id);
 
     this.teamService.addTeam(formDataTeam).subscribe(res => {
-      console.log(res);
+      if (res.status == false) {
+        this.toast.error({ summary: res.payload, duration: 5000 });
+      } else {
+        this.openDialog(res.id_team);
+      }
     })
   }
 

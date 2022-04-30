@@ -39,6 +39,14 @@ import { MaterialModule } from './material/material.module';
 import { ModalAddTeamComponent } from './component/modal-add-team/modal-add-team.component';
 import { ToastComponent } from './component/toast/toast.component';
 import { NgToastModule } from 'ng-angular-popup';
+import { ModalDirectionTeamComponent } from './component/modal-direction-team/modal-direction-team.component';
+import { InfoTeamComponent } from './pages/info-team/info-team.component';
+import { ProfileUserComponent } from './component/profile-user/profile-user.component';
+import { ContestUserJoinComponent } from './component/contest-user-join/contest-user-join.component';
+import { TeamUserJoinComponent } from './component/team-user-join/team-user-join.component';
+import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/team-user-join-detail.component';
+import { ModalAddMemberComponent } from './component/modal-add-member/modal-add-member.component';
+import { ContestItemComponent } from './component/contest-item/contest-item.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +70,14 @@ import { NgToastModule } from 'ng-angular-popup';
     ContestLoadItemComponent,
     ModalAddTeamComponent,
     ToastComponent,
+    ModalDirectionTeamComponent,
+    InfoTeamComponent,
+    ProfileUserComponent,
+    ContestUserJoinComponent,
+    TeamUserJoinComponent,
+    TeamUserJoinDetailComponent,
+    ModalAddMemberComponent,
+    ContestItemComponent,
   ],
   imports: [
     BrowserModule,

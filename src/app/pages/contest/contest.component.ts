@@ -26,7 +26,8 @@ export class ContestComponent implements OnInit {
   major_id: any;
   contests: Array<Contest> = [];
   majorItem: Array<Contest> = [];
-  majors: Array<any> = []
+  majors: Array<any> = [];
+  item: Contest;
 
   formSearch = new FormGroup({
     keyword: new FormControl()
@@ -40,24 +41,7 @@ export class ContestComponent implements OnInit {
   }
 
 
-
-
-  getDateRegister(time: any) {
-    let formaTimeOff: any = moment(time).format('lll');
-    setInterval(() => {
-      let today = new Date().getTime();
-      let distance = formaTimeOff - today;
-      this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    }, 1000);
-    return [this.days, this.hours, this.minutes, this.seconds];
-  }
-
   ngOnInit(): void {
-    console.log(this.getDateRegister(('2022-04-30 04:29:33')));
 
     // Get id
     this.route.paramMap.subscribe(params => {

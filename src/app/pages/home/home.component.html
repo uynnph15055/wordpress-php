@@ -112,43 +112,8 @@
             <i class="fas fa-chevron-left"></i>
         </div>
         <ngx-slick-carousel class="carousel row slick-list-contest row" [config]="sliderContest">
-            <div ngxSlickItem *ngFor="let item of contests" class="contest-item col-3 slide">
-                <a [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]"><img class="contest-item-img" [src]="item.img"
-                        alt=""></a>
-                <h3><a class="contest-name" [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]">{{item.name}}</a></h3>
-                <div class="text-Secondary d-flex justify-content-between font-size-sml fs-text-contest">
-                    <p class="contest-register-dealine">
-                        Thời gian :
-                    </p>
-                    <div class="text-center ">
-                        <span class="fw-bold primary-color">7</span>
-                        <br>
-                        <span class="fs-name-time"> Ngày </span>
-                    </div>
-                    <span class="fw-bold text-dark">:</span>
-                    <div class="text-center">
-                        <span class="fw-bold primary-color">6</span>
-                        <br>
-                        <span class="fs-name-time"> Giờ</span>
-                    </div>
-                    <span class="fw-bold primary-color text-dark">:</span>
-                    <div class="text-center">
-                        <span class="fw-bold primary-color">6</span>
-                        <br>
-                        <span class="fs-name-time"> Phút</span>
-                    </div>
-                    <span class="fw-bold primary-color text-dark">:</span>
-                    <div class="text-center">
-                        <span class="fw-bold primary-color">48</span>
-                        <br>
-                        <span class="fs-name-time">Giây</span>
-                    </div>
-                </div>
-                <p class="contest-count-team mt-2 fs-text-contest">Số đội tham gia : <span
-                        class="count-team text-white">{{getMembers(item.teams)}}</span></p>
-                <a [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]" [state]="{registerNow : true}"
-                    class="btn-register contest-btn-register text-center d-block w-100">Đăng ký</a>
-            </div>
+            <app-contest-item ngxSlickItem *ngFor="let item of contests" class="col-3 contest-item" [item]="item">
+            </app-contest-item>
         </ngx-slick-carousel>
         <div class="next-arrow arrow-list-contest">
             <i class="fas fa-chevron-right"></i>

@@ -47,57 +47,10 @@
                 </div>
             </div>
             <div class="row mt-2" *ngIf="statusContest == 'done'">
-                <div *ngFor="let s of contests" class="col-md-6 col-lg-4 col-xl-4 col-sm-12 mb-3">
+                <app-contest-item *ngFor="let item of contests" class="col-md-6 col-lg-4 col-xl-4 col-sm-12 mb-3"
+                    [item]="item">
+                </app-contest-item>
 
-                    <div class="contest-img">
-                        <a [routerLink]="['./../cuoc-thi/chi-tiet' , s.id]">
-                            <img [src]="s.img" class="card-img-top rounded
-                            img-fluid">
-                        </a>
-                    </div>
-
-                    <div class="mt-3">
-                        <a [routerLink]="['./../cuoc-thi/chi-tiet' , s.id]">
-                            <h5 class=" font-size-ml text-dark fs-6 fw-bold">{{s.name}}
-                            </h5>
-                        </a>
-                        <div class="text-Secondary mt-3 d-flex justify-content-evenly a font-size-sml fs-text-contest">
-                            <p class="time">
-                                Thời gian :
-                            </p>
-                            <div class="text-center">
-                                <span class="fw-bold primary-color "></span>
-                                <br>
-                                <span class="fs-name-time"> Ngày </span>
-                            </div>
-
-                            <span class="fw-bold text-primary">:</span>
-                            <div class="text-center">
-                                <span class="fw-bold primary-color">5</span>
-                                <br>
-                                <span class="fs-name-time"> Giờ</span>
-                            </div>
-                            <span class="fw-bold text-primary">:</span>
-                            <div class="text-center">
-                                <span class="fw-bold primary-color">6</span>
-                                <br>
-                                <span class="fs-name-time"> Phút</span>
-                            </div>
-                            <span class="fw-bold text-primary">:</span>
-                            <div class="text-center">
-                                <span class="fw-bold primary-color">7</span>
-                                <br>
-                                <span class="fs-name-time">Giây</span>
-                            </div>
-                        </div>
-                        <p class="font-size-sml mt-3 fs-text-contest primary-color">Số người tham gia :
-                            <span class="p-1 rounded text-white bg-number-join-contest">{{getMembers(s.teams)}}</span>
-                        </p>
-                        <a [routerLink]="['./../cuoc-thi/chi-tiet' , s.id]" [state]="{registerNow : true}"
-                            class="btn btn-register w-100">Đăng
-                            ký</a>
-                    </div>
-                </div>
                 <div *ngIf="array_page_link.length > 1" class="paying-contest d-flex justify-content-end">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">

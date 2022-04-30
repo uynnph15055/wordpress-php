@@ -18,4 +18,9 @@ export class TeamService {
       headers: headers
     });
   }
+
+  // Lấy ra chi tiết đội thi
+  getTeamDetail(team_id: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.teamListUrl}/${team_id}`);
+  }
 }

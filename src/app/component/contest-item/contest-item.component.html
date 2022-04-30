@@ -1,0 +1,36 @@
+<div class="  slide">
+    <a [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]"><img class="contest-item-img" [src]="item.img" alt=""></a>
+    <h3><a class="contest-name" [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]">{{item.name}}</a></h3>
+    <div class="text-Secondary d-flex justify-content-between font-size-sml fs-text-contest">
+        <p class="contest-register-dealine">
+            Thời gian :
+        </p>
+        <div class="text-center ">
+            <span class="fw-bold primary-color">{{days}}</span>
+            <br>
+            <span class="fs-name-time"> Ngày </span>
+        </div>
+        <span class="fw-bold text-dark">:</span>
+        <div class="text-center">
+            <span class="fw-bold primary-color">{{hours}}</span>
+            <br>
+            <span class="fs-name-time"> Giờ</span>
+        </div>
+        <span class="fw-bold primary-color text-dark">:</span>
+        <div class="text-center">
+            <span class="fw-bold primary-color">{{minutes}}</span>
+            <br>
+            <span class="fs-name-time"> Phút</span>
+        </div>
+        <span class="fw-bold primary-color text-dark">:</span>
+        <div class="text-center">
+            <span class="fw-bold primary-color">{{seconds}}</span>
+            <br>
+            <span class="fs-name-time">Giây</span>
+        </div>
+    </div>
+    <p class="contest-count-team mt-2 fs-text-contest">Số đội tham gia : <span
+            class="count-team text-white">{{getMembers(item.teams)}}</span></p>
+    <a [routerLink]="['./../cuoc-thi/chi-tiet' , item.id]" [state]="{registerNow : true}"
+        class="btn-register contest-btn-register text-center d-block w-100">Đăng ký</a>
+</div>

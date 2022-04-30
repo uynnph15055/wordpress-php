@@ -41,17 +41,6 @@
   z-index: -1;
 }
 
-.img-company-box {
-  height: 150px;
-  width: 150px;
-  display: block;
-  margin: 0px auto;
-  object-fit: cover;
-}
-
-.img-company-box img {
-  object-fit: cover;
-}
 
 .name-company {
   font-size: 1rem;
@@ -113,7 +102,6 @@
 .student-rank-list {
   margin-top: 15px;
   width: 100%;
-  overflow-y: auto;
   max-height: 300px;
   overflow-y: auto;
   padding: 0px 20px;
@@ -202,6 +190,7 @@
 
 .related-contest-info {
   margin-left: 15px;
+  margin-top: -7px;
 }
 
 .related-contest-info .related-contest-time {

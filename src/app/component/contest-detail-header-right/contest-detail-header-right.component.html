@@ -1,7 +1,7 @@
 <div class="contest-detail-right-in rounded border">
     <div class="p-2 text-center" *ngIf="status == 'done'">
         <div class="img-detail-box">
-            <img src="https://i.ytimg.com/vi/j0TNZH7gppQ/maxresdefault.jpg" class="w-100" alt="">
+            <img [src]="contestDetail.img" class="w-100" alt="">
             <p class=" fs-5 pt-2 text-dark">{{contestDetail.name}}</p>
             <p class="number-team">Số đội tham gia : <span>{{contestDetail.teams.length}}</span></p>
             <div class="text-Secondary d-flex justify-content-center font-size-sml fs-text-contest fs-6">
@@ -9,7 +9,7 @@
                     Thời gian :
                 </p>
 
-                <div *ngIf="days > 0" class="d-flex">
+                <div *ngIf="dateCheck == true" class="d-flex">
                     <div class="text-center">
                         <span class="fw-bold text-primary">{{days}}</span>
                         <br>
@@ -30,7 +30,7 @@
                         <br>
                     </div>
                 </div>
-                <span *ngIf="days < 0" class="block color-red">Đã hết hạn</span>
+                <span *ngIf=" dateCheck == false" class="block color-red">Đã hết hạn</span>
             </div>
             <a (click)="openDialog()" class=" btn btn-register w-100">Đăng ký</a>
         </div>

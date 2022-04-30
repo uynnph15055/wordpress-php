@@ -15,16 +15,22 @@ import * as $ from 'jquery';
 
 export class ContestDeatailComponent implements OnInit {
   forwardComponent: Array<any> = [];
-  contestDetail: Array<Contest> = [];
+  contestDetail: Contest;
+  contestRelated: Array<any>;
+  statusContestRelated: boolean = false;
   contentItem: Array<Contest> = [];
   closeResult: string;
   status: any = 'pending';
   routeStateRegister: any = false;
   contest_id: any = 0;
 
-  sliderSupporter = { "slidesToShow": 3, dots: true, infinite: true, autoplay: true, arrows: true, prevArrow: '.supporters-arrow-left', nextArrow: '.supporters-arrow-right', slidesToScroll: 1, fadeSpeed: 1000 };
+  sliderSupporter = { "slidesToShow": 3, infinite: true, autoplay: true, arrows: true, prevArrow: '.supporters-arrow-left', nextArrow: '.supporters-arrow-right', slidesToScroll: 1, fadeSpeed: 1000 };
 
   constructor(private route: ActivatedRoute, private contestService: ContestService) {
+
+  }
+
+  ngOnInit(): void {
     this.route.paramMap.pipe(
       map(params => params.get('id')),
       switchMap(id => this.contestService.getWhereId(id))
@@ -35,10 +41,22 @@ export class ContestDeatailComponent implements OnInit {
           this.status = 'done';
         }
       }
-    })
-  }
 
-  ngOnInit(): void {
+      this.contestService.getWhereMajor(this.contestDetail.major_id).subscribe(res => {
+        this.contestRelated = res.payload.data.filter((item: any) => {
+          return item.id != this.contestDetail.id;
+        })
+        if (this.contestRelated) {
+          this.statusContestRelated = true;
+        }
+
+      })
+
+    });
+
+    // Get các cuộc thi liên quan
+
+
     this.routeStateRegister = history.state.registerNow;
   }
 

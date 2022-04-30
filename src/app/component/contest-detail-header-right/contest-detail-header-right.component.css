@@ -1,33 +1,8 @@
-
-
 /*----------- */
 
-.info-team-list-avatar {
-  width: 50px;
-  max-height: 50px;
-  border-radius: 50%;
-}
-
-.info-team-list {
-  background-color: #fafafa;
-  border-radius: 50px;
-}
-
-.info-team-list-name {
-  font-size: 14px;
-  margin: 12px 0px 0px -5px;
-  font-weight: 600;
-}
-
-.info-team-list-email {
-  margin-left: -5px;
-  color: #596275;
-  font-size: 14px;
-}
-
-.info-team-list-position {
-  font-style: italic;
-  margin-top: 12px;
-  color: #596275;
-  font-size: 13px;
+.img-detail-box img {
+  object-fit: cover;
+  max-height: 170px;
+  width: 170px;
+  border-radius: 5px;
 }

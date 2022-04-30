@@ -13,29 +13,37 @@ import { ModalAddTeamComponent } from '../modal-add-team/modal-add-team.componen
   styleUrls: ['./contest-detail-header-right.component.css']
 })
 export class ContestDetailHeaderRightComponent implements OnInit {
-  @Input() contestDetail: any;
+  @Input() contestDetail: Contest;
   @Input() status: any;
   @Input() routeStateRegister: any;
   closeResult: string;
   roundEndTime: any;
   contestRelateTo: Array<Contest>;
-  // routeStateRegister : a
+  dateCheck: boolean = true;
 
-  days: number = 5;
-  hours: number = 16;
-  minutes: number = 20;
-  seconds: number = 25;
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
 
   constructor(public dialog: MatDialog, private contestService: ContestService, private getUserLocal: GetValueLocalService, private route: Router) { }
 
+
   ngOnInit(): void {
 
-    this.roundEndTime = moment(this.contestDetail.register_deadline).format('lll');
-
     setInterval(() => {
+      this.roundEndTime = moment(this.contestDetail.register_deadline).format('lll');
+
+
       let futureDate = new Date(this.roundEndTime).getTime();
+
       let today = new Date().getTime();
       let distance = futureDate - today;
+      if (distance < 0) {
+        this.dateCheck = false;
+      }
+      console.log(distance);
+
       this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
       this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -54,19 +62,20 @@ export class ContestDetailHeaderRightComponent implements OnInit {
   getContestRelateTo() {
     this.contestService.getWhereMajor(this.contestDetail.major_id).subscribe(res => {
       this.contestRelateTo = res.payload.data;
-      console.log(this.contestRelateTo);
-
     });
   }
 
   // Mở modal đăng ký thêm đội
   openDialog(): void {
     const dialogRef = this.dialog.open(ModalAddTeamComponent, {
-      // id: this.
+      width: "490px",
+      data: {
+        contest_id: this.contestDetail.id,
+        team_id: '',
+      },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 

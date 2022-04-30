@@ -14,6 +14,19 @@
   --title-footer: #F26F21;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #EE5A24, #F79F1F);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #EE5A24, #683f01);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -61,7 +74,7 @@ ul {
 }
 
 .color-gray {
-  color: #3c4753;
+  color: #616a74;
 }
 
 
@@ -97,5 +110,3 @@ ul {
   background-color: var(--warning);
   color: var(--white);
 }
-
-
