@@ -54,8 +54,6 @@
                 <div *ngIf="array_page_link.length > 1" class="paying-contest d-flex justify-content-end">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
-
-
                             <li *ngFor="let link of array_page_link" class="page-item"><a
                                     class="page-link {{link.active ? 'active' : ''}}"
                                     (click)="getContestWherePage(link.url)">{{link.label}}</a>

@@ -58,27 +58,14 @@
             </div>
             <app-round [contestDetail]="contestDetail" [status]="status">
             </app-round>
-            <div class="supporters-box">
+            <div class="supporters-box" *ngIf="contestDetail.enterprises.length > 0">
                 <h5 class="fw-bold fs-5 color-blue">Các nhà tài trợ</h5>
                 <div class="supporters-arrow-left arrow-list-supporter ">
                     <i class="fas fa-long-arrow-left"></i>
                 </div>
                 <ngx-slick-carousel class="carousel row slick-list-supporter row" [config]="sliderSupporter">
-                    <div ngxSlickItem class="col-4">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSblj5JjxXz_gxZgMFMEURvMEQ4ZoFEkxgGgGCAkczYBCJIZlZZ-XHbNQERUV06Vg6VN2k&usqp=CAU"
-                            alt="">
-                    </div>
-                    <div ngxSlickItem class="col-4">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSblj5JjxXz_gxZgMFMEURvMEQ4ZoFEkxgGgGCAkczYBCJIZlZZ-XHbNQERUV06Vg6VN2k&usqp=CAU"
-                            alt="">
-                    </div>
-                    <div ngxSlickItem class="col-4">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSblj5JjxXz_gxZgMFMEURvMEQ4ZoFEkxgGgGCAkczYBCJIZlZZ-XHbNQERUV06Vg6VN2k&usqp=CAU"
-                            alt="">
-                    </div>
-                    <div ngxSlickItem class="col-4">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSblj5JjxXz_gxZgMFMEURvMEQ4ZoFEkxgGgGCAkczYBCJIZlZZ-XHbNQERUV06Vg6VN2k&usqp=CAU"
-                            alt="">
+                    <div ngxSlickItem class="col-4" *ngFor="let slider of contestDetail.enterprises">
+                        <img [src]="slider.logo" alt="">
                     </div>
                 </ngx-slick-carousel>
                 <div class="supporters-arrow-right arrow-list-supporter ">
