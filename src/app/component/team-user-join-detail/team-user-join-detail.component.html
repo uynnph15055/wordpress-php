@@ -3,15 +3,22 @@
         <h3 class=" fs-5 primary-color">Chi tiết đội thi</h3>
         <p style="margin-top: -12px;" class="color-gray">Xem thông tin các thành viên</p>
     </div>
-    <div *ngIf="statusTeamDetail == true" class="body-team-user-box text-center ">
+    <div class="body-team-user-box text-center ">
         <div class="header-team-user-box">
             <img [src]="teamDetail.image" alt="" class="header-team-user-img">
             <h3 class="header-team-user-name color-blue fw-bold">{{teamDetail.name}}</h3>
             <p (click)="openDialog()" class="header-team-user-edit"><i class="fas fa-pen"></i> Sửa thông tin đội</p>
         </div>
-        <div class="form-search-members">
-            <input type="text" class="form-search-members-input">
-        </div>
+        <form class="form-search-members d-flex justify-content-center align-items-center w-50">
+            <input type=" text" class="form-search-members-input" placeholder="Tìm đồng đội ...">
+            <button class="form-search-members-icon">
+                <i class="fas fa-search"></i>
+            </button>
+            <div class="search-suggest-members">
+
+            </div>
+        </form>
+
 
         <div class=" table-team-info my-3">
             <table mat-table class=" w-100 example-container" [dataSource]="arrayMembers">

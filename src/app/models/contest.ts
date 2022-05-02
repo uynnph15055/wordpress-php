@@ -13,5 +13,5 @@ export class Contest {
     status: number;
     teams: Array<Team>
     rounds: Array<Round>
-    enterprises: Array<Enterprise>;
+    enterprise: Array<Enterprise>;
 }

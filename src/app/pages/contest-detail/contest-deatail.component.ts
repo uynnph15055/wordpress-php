@@ -7,6 +7,7 @@ import * as moment from 'moment/moment';
 import { ModalAddTeamComponent } from 'src/app/component/modal-add-team/modal-add-team.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
+import { Enterprise } from 'src/app/models/enterprise.model';
 
 @Component({
   selector: 'app-contest-deatail',
@@ -19,6 +20,7 @@ export class ContestDeatailComponent implements OnInit {
   forwardComponent: Array<any> = [];
   contestDetail: Contest;
   contestRelated: Array<any>;
+  contestCompanySuppor: Enterprise;
   statusContestRelated: boolean = false;
   contentItem: Array<Contest> = [];
   closeResult: string;
@@ -49,6 +51,8 @@ export class ContestDeatailComponent implements OnInit {
     ).subscribe(res => {
       if (res.status == true) {
         this.contestDetail = res.payload;
+       this.contestDetail.enterprise;
+
         if (this.contestDetail) {
           this.status = 'done';
         }
