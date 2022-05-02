@@ -23,9 +23,6 @@
   border-radius: 6px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #EE5A24, #683f01);
-}
 
 * {
   margin: 0;
@@ -74,7 +71,7 @@ ul {
 }
 
 .color-gray {
-  color: #616a74;
+  color: #272a2e;
 }
 
 
@@ -95,14 +92,9 @@ ul {
   border: 1px solid var(--warning);
 }
 
-.btn-register-end {
-  background-color: var(--text-color);
-  color: var(--white);
-}
-
-.btn-register-end:hover {
-  color: var(--white);
-  cursor: default;
+.btn-register-disable {
+  background-color: #7f8c8d;
+  color: white;
 }
 
 .btn-register:hover {

@@ -14,7 +14,7 @@ import { RoundService } from 'src/app/services/round.service';
   styleUrls: ['./round-detail.component.css']
 })
 export class RoundDetailComponent implements OnInit {
-  contestDetail: Array<Contest> = [];
+  contestDetail: Contest;
   status: string = 'pending';
   roundDetail: Round;
   round_id: any;
@@ -27,25 +27,12 @@ export class RoundDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.round_id = params.get('id');
     });
-
-    // Lấy ra vòng tiết
     this.roundService.getRoundWhereId(this.round_id).subscribe(res => {
       this.roundDetail = res.payload;
       if (this.roundDetail) {
         this.status = 'done';
       }
     });
-
-
-  }
-
-  // Đếm số thành viên
-  getMembers(member: Array<ContestMember> = []): number {
-    let totalMember = 0;
-    member.forEach(t => {
-      totalMember++;
-    });
-    return totalMember;
   }
 
   openVerticallyCentered(content: any, item: Team, listMember: any) {
@@ -53,4 +40,15 @@ export class RoundDetailComponent implements OnInit {
     this.listMember = listMember;
     this.team = item;
   }
+
+  getMembers(teams: Array<Team> = []): number {
+    let totalMember = 0;
+    teams.forEach(t => {
+      if (t.members != undefined) {
+        totalMember += t.members.length;
+      }
+    });
+    return totalMember;
+  }
 }
+

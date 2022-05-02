@@ -24,9 +24,7 @@ import { BackTimeComponent } from './component/back-time/back-time.component';
 
 import { RoundComponent } from './component/round/round.component';
 import { BackTopComponent } from './component/back-top/back-top.component';
-import { RoundDetailComponent } from './pages/round-detail/round-detail.component';
-import { ContestDetailHeaderComponent } from './component/contest-detail-header/contest-detail-header.component';
-import { ContestDetailHeaderRightComponent } from './component/contest-detail-header-right/contest-detail-header-right.component';
+
 
 import { LoadingItemComponent } from './component/loading-item/loading-item.component';
 import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
@@ -60,9 +58,6 @@ import { ContestItemComponent } from './component/contest-item/contest-item.comp
     BackTimeComponent,
     RoundComponent,
     BackTopComponent,
-    RoundDetailComponent,
-    ContestDetailHeaderComponent,
-    ContestDetailHeaderRightComponent,
     LoadingItemComponent,
     TypeExamPipe,
     FormatDatePipe,

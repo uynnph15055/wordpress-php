@@ -13,20 +13,18 @@
                         </h3>
                     </div>
                     <p *ngIf="roundDetail" class="fs-6 fw-bold color-blue mt-3">
-                        {{roundDetail.end_time | formatDate
+                        {{roundDetail.end_time
                         }} <i class="fas fa-calendar-alt"></i>
                     </p>
                 </div>
                 <p *ngIf="roundDetail" class="fw-bold mt-3 fs-text">Kiểu thi : <span
                         class="fw-normal">{{roundDetail.type_exam_id
-                        |typeExam}}</span></p>
+                        }}</span></p>
                 <p *ngIf="roundDetail" class="fw-bold fs-text">Nội dung : <span
                         class="fw-normal">{{roundDetail.description}}</span></p>
 
             </div>
             <div class="d-flex justify-content-center align-items-center">
-                <app-loading-item *ngIf="status == 'pending'">
-                </app-loading-item>
             </div>
             <div class="list-team-box mt-4">
                 <p class="fw-bold fs-5 primary-color">Danh sách đội thi</p>
@@ -77,15 +75,13 @@
                     </div>
                 </div>
                 <div *ngIf="roundDetail.teams.length > 0" class="d-flex justify-content-center align-items-center">
-                    <app-loading-item *ngIf="status == 'pending'">
-                    </app-loading-item>
                 </div>
                 <div class="text-center">
                     <p class="w-50 " style="margin: 0px auto;"><img
                             src="https://img.freepik.com/free-vector/isometric-team-success-teamwork-together-miniature-people-climb-up_130740-832.jpg"
                             alt="" class="w-100">
                     </p>
-                    <p class="fs-6 mt-3">Chưa có thành đội thi nào !!!</p>
+                    <p class="fs-5 mt-3">Chưa có thành đội thi nào !!!</p>
                 </div>
             </div>
         </div>

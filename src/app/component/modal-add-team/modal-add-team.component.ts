@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalDirectionTeamComponent } from '../modal-direction-team/modal-direction-team.component';
+import { Team } from 'src/app/models/team';
 @Component({
   selector: 'app-modal-add-team',
   templateUrl: './modal-add-team.component.html',
@@ -18,15 +19,17 @@ export class ModalAddTeamComponent implements OnInit {
   titleModel: string = 'Thêm đội tham gia thi'
   public imagePath: string;
   contest_id: any;
-  team_id: any;
+  buttonName: string = 'Đăng ký';
+  teamDetail = new Team();
   user: User;
   imgURL: any = 'https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png';
   public message: string;
   user_id: any = 4;
   // set up form control
   formRegister = new FormGroup({
-    nameTeam: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
     image: new FormControl(),
+    id: new FormControl(),
     user_id: new FormControl(),
   })
 
@@ -37,21 +40,28 @@ export class ModalAddTeamComponent implements OnInit {
     private toast: NgToastService,
     public dialog: MatDialog,
     config: NgbModalConfig, private modalService: NgbModal,
-    @Inject(MAT_DIALOG_DATA) public data: { contest_id: number, team_id: any }) {
+    @Inject(MAT_DIALOG_DATA) public data: { contest_id: number, team_id: Team }) {
     this.contest_id = data.contest_id;
-    if (data.team_id !== '') {
-      this.team_id = data.team_id;
+    if (data.team_id != null) {
+      this.teamDetail = { ...data.team_id };
     }
     config.backdrop = 'static';
     config.keyboard = false;
+
+
+
+
   }
 
   // --------
   ngOnInit(): void {
     this.user = this.getUserLocal.getValueLocalUser("user");
+    console.log(this.teamDetail);
 
-    if (this.team_id) {
-      this.titleModel = 'Sửa đội thi'
+    if (this.teamDetail.name) {
+      this.titleModel = 'Sửa đội thi';
+      this.imgURL = this.teamDetail.image;
+      this.buttonName = 'Sửa đội';
     }
   }
 
@@ -93,7 +103,7 @@ export class ModalAddTeamComponent implements OnInit {
     let dataTeam = { ...this.formRegister.value }
     var formDataTeam = new FormData();
 
-    formDataTeam.append('name', dataTeam.nameTeam);
+    formDataTeam.append('name', dataTeam.name);
     formDataTeam.append('image', this.imagePath);
     formDataTeam.append('contest_id', this.contest_id);
     formDataTeam.append('user_id', this.user_id);

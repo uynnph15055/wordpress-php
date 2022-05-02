@@ -46,9 +46,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-2" *ngIf="statusContest == 'done'">
+            <div class="row mt-2" *ngIf="statusContest == 'done' &&  contests.length > 0">
                 <app-contest-item *ngFor="let item of contests" class="col-md-6 col-lg-4 col-xl-4 col-sm-12 mb-3"
-                    [item]="item">
+                    [item]="item" [major_slug]="major_slug">
                 </app-contest-item>
 
                 <div *ngIf="array_page_link.length > 1" class="paying-contest d-flex justify-content-end">

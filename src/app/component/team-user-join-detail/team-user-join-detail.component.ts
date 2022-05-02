@@ -31,9 +31,11 @@ export class TeamUserJoinDetailComponent implements OnInit {
       width: "490px",
       data: {
         contest_id: 40,
-        team_id: this.team_id
+        team_id: this.teamDetail
       },
 
+    });
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 

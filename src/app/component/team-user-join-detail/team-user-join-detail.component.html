@@ -9,10 +9,9 @@
             <h3 class="header-team-user-name color-blue fw-bold">{{teamDetail.name}}</h3>
             <p (click)="openDialog()" class="header-team-user-edit"><i class="fas fa-pen"></i> Sửa thông tin đội</p>
         </div>
-        <div class="example-button-row">
-            <button mat-raised-button color="primary">Thêm thành viên</button>
+        <div class="form-search-members">
+            <input type="text" class="form-search-members-input">
         </div>
-
 
         <div class=" table-team-info my-3">
             <table mat-table class=" w-100 example-container" [dataSource]="arrayMembers">

@@ -10,13 +10,16 @@ import * as moment from 'moment/moment';
 })
 export class ContestItemComponent implements OnInit {
   @Input() item: Contest;
-  
+  @Input() major_slug: any;
 
+  checkStatusDate: boolean = true;
+  nameButton: string = 'Đăng ký';
   date_end: string;
   days: number = 5;
   hours: number = 16;
   minutes: number = 20;
   seconds: number = 25;
+
 
   constructor() { }
 
@@ -29,12 +32,19 @@ export class ContestItemComponent implements OnInit {
       let today = new Date().getTime();
 
       let distance = futureDate - today;
-      
-
-      this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      if (distance < 0) {
+        this.checkStatusDate = false;
+        this.nameButton = 'Đã hết hạn'
+        this.days = 0;
+        this.hours = 0;
+        this.minutes = 0;
+        this.seconds = 0;
+      } else {
+        this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      }
     }, 1000);
   }
 

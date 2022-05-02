@@ -1,8 +1,0 @@
-/*----------- */
-
-.img-detail-box img {
-  object-fit: cover;
-  max-height: 170px;
-  width: 170px;
-  border-radius: 5px;
-}
