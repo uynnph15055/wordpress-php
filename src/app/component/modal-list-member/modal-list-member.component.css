@@ -6,6 +6,11 @@
   font-size: 13px;
 }
 
+.item-member-img {
+  height: 30px;
+  object-fit: cover;
+}
+
 .member-item-img {
   width: 40px;
   max-height: 40px;

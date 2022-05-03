@@ -96,7 +96,7 @@ export class ModalAddTeamComponent implements OnInit {
 
   // Add team
   addTeam() {
-    // this.toast.warning({ summary: 'Đăng thêm đội , xin đợi giây lát ...', duration: 5000 });
+    this.toast.warning({ summary: 'Đăng thêm đội , xin đợi giây lát ...', duration: 5000 });
     let dataTeam = { ...this.formRegister.value }
     var formDataTeam = new FormData();
 
@@ -105,15 +105,13 @@ export class ModalAddTeamComponent implements OnInit {
     formDataTeam.append('contest_id', this.contest_id);
     formDataTeam.append('user_id', this.user_id);
 
-    this.openDialog(324);
-
-
-    // this.teamService.addTeam(formDataTeam).subscribe(res => {
-    //   if (res.status == false) {
-    //     this.toast.error({ summary: res.payload, duration: 5000 });
-    //   } else {
-    //   }
-    // })
+    this.teamService.addTeam(formDataTeam).subscribe(res => {
+      if (res.status == false) {
+        this.toast.error({ summary: res.payload, duration: 5000 });
+      } else {
+        this.openDialog(res.id_team);
+      }
+    })
   }
 
   onNoClick(): void {

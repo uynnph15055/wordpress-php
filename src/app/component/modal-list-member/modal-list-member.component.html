@@ -13,7 +13,7 @@
             <ng-container matColumnDef="img">
                 <th mat-header-cell *matHeaderCellDef class=" table-member-th"> Ảnh </th>
                 <td mat-cell *matCellDef="let element">
-                    <img width="30px" class="rounded-circle " [src]="element.avatar" alt="">
+                    <img width="30px" class="rounded-circle item-member-img" [src]="element.avatar" alt="">
                 </td>
             </ng-container>
             <ng-container matColumnDef="email">
@@ -28,7 +28,7 @@
                     </mat-checkbox>
                 </th>
                 <td mat-cell *matCellDef=" let element">
-                    <mat-checkbox color="warn" class="example-margin">
+                    <mat-checkbox (change)=addItemUser(element.id) color="warn" class="example-margin">
                     </mat-checkbox>
                 </td>
             </ng-container>
@@ -48,5 +48,6 @@
 </div>
 <div mat-dialog-actions class="float-end">
     <button mat-button mat-dialog-close>Đóng</button>
-    <button mat-button class="btn-register btn-add-member" mat-dialog-close>Thêm thành viên</button>
+    <button mat-button class="btn-register btn-add-member" mat-dialog-close (click)="addUserTeam()">Thêm thành
+        viên</button>
 </div>
