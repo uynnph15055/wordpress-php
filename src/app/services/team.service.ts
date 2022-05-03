@@ -28,4 +28,9 @@ export class TeamService {
   searchMembers(contest_id: number, data: Object): Observable<ResponsePayload> {
     return this.http.post<ResponsePayload>(`${environment.teamListUrl}/user-team-search/${contest_id}`, data);
   }
+
+  // thêm thành viên vào mảng
+  addMemberJoinTeam(contest_id: number, team_id: number, data: any): Observable<ResponsePayload> {
+    return this.http.post<ResponsePayload>(`${environment.teamListUrl}/add-user-team-contest/${contest_id}/${team_id}`, data);
+  }
 }

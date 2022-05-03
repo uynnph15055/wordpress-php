@@ -8,6 +8,10 @@
   color: var(--primary-color)
 }
 
+.nav-bar-info-item {
+  cursor: pointer;
+}
+
 .info-team-user {
   width: 50px;
   max-height: 50px;

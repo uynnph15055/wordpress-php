@@ -36,7 +36,6 @@ export class TeamUserJoinDetailComponent implements OnInit {
   searchMembers() {
     let key_word = { ...this.formSearchMembers.value }
 
-    console.log(key_word.keyWord);
     this.openListMemberJoinTeam(key_word.keyWord);
 
 
@@ -63,7 +62,8 @@ export class TeamUserJoinDetailComponent implements OnInit {
       width: "800px",
       data: {
         keyWord: keyWord,
-        contest_id: 76,
+        contest_id: this.teamDetail.contest_id,
+        team_id: this.team_id,
       },
     });
 
