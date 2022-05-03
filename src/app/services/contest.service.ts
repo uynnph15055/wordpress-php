@@ -25,6 +25,14 @@ export class ContestService {
     return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${status}`);
   }
 
+  getContestWherePage(url: string): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(url);
+  }
+
+  getWhereStatusAndMajor(status: number, major_id: number): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${status}&major_id=${major_id}`);
+  }
+
   // Tìm kiếm cuộc thi
   searchContest(keyword: string): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>('http://127.0.0.1:8000/api/public/contests?q=' + keyword);

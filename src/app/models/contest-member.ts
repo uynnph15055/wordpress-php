@@ -4,4 +4,5 @@ export class ContestMember {
     team_id: number;
     name: string;
     avatar: string;
+  checked: any;
 }

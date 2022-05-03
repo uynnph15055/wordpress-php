@@ -1,0 +1,35 @@
+<div class="container-fluid box-info-team mt-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-3 nav-bar-info-user mt-1">
+                <div class="d-flex justify-content-start align-items-center border-bottom">
+                    <img [src]="user.avatar" class="info-team-user" alt="">
+                    <div class="mx-2 mt-3">
+                        <h4 class="info-name-user fs-5 color-blue fw-bold">{{user.name}}</h4>
+                        <p class="color-gray mt-2" style="cursor: pointer;">
+                            <i class="fas fa-pen"></i>
+                            Sửa thông tin
+                        </p>
+                    </div>
+                </div>
+                <mat-list class=" nav-bar-info-list">
+                    <mat-list-item routerLinkActive="active" class="nav-bar-info-item active"> <i
+                            class="fas fa-user color-blue"></i>
+                        <span class="px-3" routerLink="/ca-nhan">Hồ sơ cá nhân</span>
+                    </mat-list-item>
+                    <mat-list-item routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                        class="nav-bar-info-item"><i class="fas fa-pager color-blue"></i> <span class="px-3">
+                            Tham gia cuộc thi</span>
+                    </mat-list-item>
+                    <mat-list-item routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                        class="nav-bar-info-item"><i class="fas fa-users color-blue"></i><span class="px-3">Các đội
+                            thi</span>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+            <div class="col-9 box-component-right my-2">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

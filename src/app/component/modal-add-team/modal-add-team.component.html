@@ -1,10 +1,11 @@
-<form action="" style="width: 500px;" class="form-resgister-bg" [formGroup]="formRegister" (submit)="addTeam()">
+<form action="" class="form-resgister-bg" [formGroup]="formRegister" (submit)="addTeam()">
     <div class="modal-header d-flex  justify-content-between align-items-center">
         <i class="fas icon-add-team fa-user-plus d-block"></i>
-        <h5 class="mt-2 fs-6 fw-bold mx-2 color-blue">Thêm đội tham gia thi</h5>
+        <h5 class="mt-2 fs-5 fw-bold mx-2 color-blue">{{titleModel}}</h5>
         <i aria-label="Close" (click)="onNoClick()" class="fas fa-times icon-close-modal d-block"></i>
     </div>
     <div class="modal-body">
+        <input type="text" hidden [value]="teamDetail.id">
         <div class="avatar-upload d-flex justify-content-center">
             <div class="avatar-edit">
                 <input #file type='file' accept='image/*' (change)="preview(file.files)" id="imageUpload"
@@ -17,15 +18,15 @@
         </div>
         <h5 class="text-center fs-6 fw-bold">Ảnh nhóm</h5>
         <div class="register-input-box">
-            <input type="text" formControlName="nameTeam" class="register-input-text" placeholder=" ">
+            <input [value]="teamDetail.name" type="text" formControlName="name" class="register-input-text">
             <label for="" class="register-label">Tên nhóm</label>
         </div>
-        <div *ngIf="formRegister.controls['nameTeam'].errors 
+        <div *ngIf="formRegister.controls['name'].errors 
         && (
-            formRegister.controls['nameTeam'].touched 
-            || formRegister.controls['nameTeam'].dirty
+            formRegister.controls['name'].touched 
+            || formRegister.controls['name'].dirty
         )">
-            <p class="text-danger" *ngIf="formRegister.controls['nameTeam'].hasError('required')">
+            <p class="text-danger" *ngIf="formRegister.controls['name'].hasError('required')">
                 Bạn chưa nhập tên nhóm</p>
         </div>
         <div class="info-team-list mt-3">
@@ -37,12 +38,12 @@
                         <p class="info-team-list-email">{{user.email}}</p>
                     </div>
                 </div>
-                <p class="info-team-list-position">Trưởng nhóm</p>
+                <p class="info-team-list-position" style="padding-right: 10px;">Trưởng nhóm</p>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button [disabled]="formRegister.invalid" type="submit" class="btn btn-register-save">Đăng
-            ký</button>
+        <button [disabled]="formRegister.invalid" type="submit" mat-dialog-close
+            class="btn btn-register-save">{{buttonName}}</button>
     </div>
 </form>
