@@ -6,6 +6,9 @@ import { MajorService } from 'src/app/services/major.service';
 import { map, switchMap } from 'rxjs';
 import { Team } from 'src/app/models/team';
 import { FormControl, FormGroup } from '@angular/forms';
+import { NgToastService } from 'ng-angular-popup';
+import * as moment from 'moment/moment';
+import { ConfigFunctionService } from 'src/app/services/config-function.service';
 @Component({
   selector: 'app-contest',
   templateUrl: './contest.component.html',
@@ -17,32 +20,29 @@ export class ContestComponent implements OnInit {
   days: number = 5;
   hours: number = 16;
   minutes: number = 20;
+  array_page_link: Array<any> = [];
   seconds: number = 25;
   major_slug: any = '';
   major_id: any;
   contests: Array<Contest> = [];
   majorItem: Array<Contest> = [];
-  majors: Array<any> = []
+  majors: Array<any> = [];
+  item: Contest;
 
   formSearch = new FormGroup({
     keyword: new FormControl()
   })
 
-  constructor(private contestService: ContestService, private route: ActivatedRoute, private majorService: MajorService) {
+  constructor(private contestService: ContestService,
+    private route: ActivatedRoute,
+    private majorService: MajorService,
+    private toast: NgToastService,
+    private configFuctionDate: ConfigFunctionService) {
   }
-
-  x = setInterval(() => {
-    let futureDate = new Date("Apr 30, 2022 15:24:35").getTime();
-    let today = new Date().getTime();
-    let distance = futureDate - today;
-    this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  }, 1000);
 
 
   ngOnInit(): void {
+
     // Get id
     this.route.paramMap.subscribe(params => {
       this.major_slug = params.get('slug');
@@ -52,16 +52,11 @@ export class ContestComponent implements OnInit {
           // this.statusMajor = 'pending'
           this.getAllContest();
         } else {
+          this.contests = [];
+          this.toast.warning({ summary: 'Đang tải dữ liệu ...', duration: 5000 });
           this.statusContest = 'pending';
           this.major_id = res.payload.id;
-          this.contestService.getWhereMajor(this.major_id).subscribe(res => {
-            this.contests = res.payload.data;
-            if (this.contests) {
-              this.statusContest = 'done';
-            } else {
-              this.statusContest = 'pending';
-            }
-          })
+          this.getWhereMajor(this.major_id);
         }
       })
     });
@@ -74,13 +69,64 @@ export class ContestComponent implements OnInit {
           this.statusMajor = 'done';
         };
       };
-      // console.log(res);
+
+    })
+  }
+
+  // Lọc theo trạng thái
+  filterContestWithStatus(e: any) {
+    this.contests = [];
+
+    this.statusContest = 'pending';
+    this.toast.warning({ summary: 'Đang tải dữ liệu , xin đợi giây lát ...', duration: 5000 });
+    let status = e.target.value;
+    if (status == 0) {
+      this.getWhereMajor(this.major_id);
+    }
+    if (this.major_id == undefined) {
+      this.contestService.getWhereStatus(status).subscribe(res => {
+        this.contests = res.payload.data;
+        if (this.contests.length > 0) {
+          this.statusContest = 'done';
+        } else {
+          this.toast.warning({ summary: 'Trạng thái này không có cuộc thi nào ', duration: 5000 });
+          this.statusContest = 'done';
+        }
+      })
+
+    } else {
+      this.contestService.getWhereStatusAndMajor(status, this.major_id).subscribe(res => {
+        this.contests = res.payload.data;
+        if (this.contests.length > 0) {
+          this.statusContest = 'done';
+        } else {
+          this.toast.warning({ summary: 'Trạng thái này không có cuộc thi nào ', duration: 5000 });
+          this.statusContest = 'done';
+        }
+      })
+    }
+  }
+
+  // Phân trang
+  getContestWherePage(url: string) {
+    this.contests = [];
+    this.toast.warning({ summary: 'Đang tải dữ liệu , xin đợi giây lát ...', duration: 5000 });
+    this.statusContest = 'pending';
+    this.contestService.getContestWherePage(url).subscribe(res => {
+      this.contests = res.payload.data;
+      console.log(this.contests);
+
+      this.array_page_link = res.payload.links;
+      if (this.contests) {
+        this.statusContest = 'done';
+      }
     })
   }
 
   getAllContest() {
     this.contestService.getAll().subscribe(res => {
       this.contests = res.payload.data;
+      this.array_page_link = res.payload.links;
       if (this.contests) {
         console.log(this.contests);
         this.statusContest = 'done';
@@ -89,14 +135,15 @@ export class ContestComponent implements OnInit {
   }
 
   // Tìm kiếm cuộc thi
-  searchContest() {
+  searchContest(e: any) {
     this.contests = [];
+    this.toast.warning({ summary: 'Đang tải dữ liệu , xin đợi giây lát ...', duration: 5000 });
     this.statusContest = 'pending';
-    let keyword = { ...this.formSearch.value }
+    let keyword = e.target.value;
 
-    this.contestService.searchContest(keyword.keyword).subscribe(res => {
-      this.contests = res.payload;
 
+    this.contestService.searchContest(keyword).subscribe(res => {
+      this.contests = res.payload.data;
 
       if (this.contests) {
         this.statusContest = 'done';
@@ -137,6 +184,18 @@ export class ContestComponent implements OnInit {
     console.log(formBox);
 
     formBox?.classList.toggle('max-with');
+  }
+
+  getWhereMajor(major_id: number) {
+    this.contestService.getWhereMajor(this.major_id).subscribe(res => {
+      this.contests = res.payload.data;
+      if (this.contests.length > 0) {
+        this.statusContest = 'done';
+      } else {
+        this.toast.warning({ summary: 'Chuyên ngành này chưa có cuộc thi nào', duration: 5000 });
+        this.statusContest = 'done';
+      }
+    })
   }
 
   // Đóng formSearch

@@ -39,8 +39,6 @@ export class ConfigViewService {
   // Hiệu ứng chuyển động
   activityStrollView(elToShow: any) {
 
-    console.log(elToShow);
-
     function isElInViewPort(el: any) {
       let rect = el.getBoundingClientRect()
       // some browsers support innerHeight, others support documentElement.clientHeight

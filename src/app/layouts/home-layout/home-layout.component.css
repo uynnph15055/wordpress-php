@@ -2,6 +2,7 @@
 .header {
   position: fixed;
   z-index: 99;
+  box-shadow: 0 5px 10px -1px #ccc;
   top: 0;
   left: 0;
   right: 0;

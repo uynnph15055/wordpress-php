@@ -24,9 +24,7 @@ import { BackTimeComponent } from './component/back-time/back-time.component';
 
 import { RoundComponent } from './component/round/round.component';
 import { BackTopComponent } from './component/back-top/back-top.component';
-import { RoundDetailComponent } from './pages/round-detail/round-detail.component';
-import { ContestDetailHeaderComponent } from './component/contest-detail-header/contest-detail-header.component';
-import { ContestDetailHeaderRightComponent } from './component/contest-detail-header-right/contest-detail-header-right.component';
+
 
 import { LoadingItemComponent } from './component/loading-item/loading-item.component';
 import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
@@ -38,6 +36,17 @@ import { ContestLoadItemComponent } from './loading/contest-load-item/contest-lo
 import { MaterialModule } from './material/material.module';
 import { ModalAddTeamComponent } from './component/modal-add-team/modal-add-team.component';
 import { ToastComponent } from './component/toast/toast.component';
+import { NgToastModule } from 'ng-angular-popup';
+import { ModalDirectionTeamComponent } from './component/modal-direction-team/modal-direction-team.component';
+import { InfoTeamComponent } from './pages/info-team/info-team.component';
+import { ProfileUserComponent } from './component/profile-user/profile-user.component';
+import { ContestUserJoinComponent } from './component/contest-user-join/contest-user-join.component';
+import { TeamUserJoinComponent } from './component/team-user-join/team-user-join.component';
+import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/team-user-join-detail.component';
+import { ModalAddMemberComponent } from './component/modal-add-member/modal-add-member.component';
+import { ContestItemComponent } from './component/contest-item/contest-item.component';
+import { ModalListMemberComponent } from './component/modal-list-member/modal-list-member.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,9 +59,6 @@ import { ToastComponent } from './component/toast/toast.component';
     BackTimeComponent,
     RoundComponent,
     BackTopComponent,
-    RoundDetailComponent,
-    ContestDetailHeaderComponent,
-    ContestDetailHeaderRightComponent,
     LoadingItemComponent,
     TypeExamPipe,
     FormatDatePipe,
@@ -60,6 +66,15 @@ import { ToastComponent } from './component/toast/toast.component';
     ContestLoadItemComponent,
     ModalAddTeamComponent,
     ToastComponent,
+    ModalDirectionTeamComponent,
+    InfoTeamComponent,
+    ProfileUserComponent,
+    ContestUserJoinComponent,
+    TeamUserJoinComponent,
+    TeamUserJoinDetailComponent,
+    ModalAddMemberComponent,
+    ContestItemComponent,
+    ModalListMemberComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +89,8 @@ import { ToastComponent } from './component/toast/toast.component';
     FontAwesomeModule,
     SlickCarouselModule,
     NgxSkeletonLoaderModule,
-    MaterialModule
+    MaterialModule,
+    NgToastModule
   ],
   providers: [
     {

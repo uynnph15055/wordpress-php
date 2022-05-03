@@ -1,17 +1,48 @@
+/* COMMOM */
+/* ---- */
+.p-justify {
+  text-align: justify;
+}
+
+.contest-detail-box {
+  padding-top: 60px;
+}
+
+/* ------ */
+
+
 .contest-detail-header {
   display: grid;
   grid-template-columns: 70% 25%;
   grid-gap: 50px;
 }
 
-/* ---- */
+.related-contest-list {
+  margin-top: -5px;
+}
 
-.contest-detail-box {
-  min-height: 1000px;
-  padding-top: 60px;
+.contest-detail-left-name-contest {
+  background-color: var(--warning);
+  color: white;
 }
 
 
+.contest-detail-left-header,
+.list-team-in,
+.contest-detail-right-in {
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px var(--gray);
+}
+
+
+/*  */
+
+.img-detail-box img {
+  object-fit: cover;
+  max-height: 170px;
+  width: 170px;
+  border-radius: 5px;
+}
 
 /* Danh sánh các nhà tài trợ */
 .arrow-list-supporter {
@@ -33,7 +64,7 @@
 
 .supporters-arrow-right {
   right: 31%;
-  transform: translateY(-147px);
+  transform: translateY(-110px);
 }
 
 .slick-list-supporter {
@@ -41,17 +72,6 @@
   z-index: -1;
 }
 
-.img-company-box {
-  height: 150px;
-  width: 150px;
-  display: block;
-  margin: 0px auto;
-  object-fit: cover;
-}
-
-.img-company-box img {
-  object-fit: cover;
-}
 
 .name-company {
   font-size: 1rem;
@@ -68,18 +88,6 @@
 
 .idea-contest:focus {
   outline: none;
-}
-
-.social-network {}
-
-.social-network-item {
-  margin-right: 20px;
-}
-
-.social-network-link {
-  padding: 10px;
-  border-radius: 50px;
-  background-color: aqua;
 }
 
 /* List student point rank */
@@ -113,7 +121,6 @@
 .student-rank-list {
   margin-top: 15px;
   width: 100%;
-  overflow-y: auto;
   max-height: 300px;
   overflow-y: auto;
   padding: 0px 20px;
@@ -202,6 +209,7 @@
 
 .related-contest-info {
   margin-left: 15px;
+  margin-top: -7px;
 }
 
 .related-contest-info .related-contest-time {
@@ -214,4 +222,27 @@
 
 .related-contest-info .related-contest-detail {
   padding: 3px 10px;
+}
+
+
+/* COUNT DOWN */
+.contest-detail-right-countdown {
+  display: flex;
+  justify-content: center;
+  /* margin: 20px 10px; */
+}
+
+.contest-detail-right-countdown-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 5px;
+  width: 20%;
+  background-color: var(--primary-color);
+  margin: 0px 5px;
+  border-radius: 6px;
+  font-size: 17px;
+  font-weight: 500;
+  color: white;
 }

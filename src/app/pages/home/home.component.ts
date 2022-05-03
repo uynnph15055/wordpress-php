@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   loggedInUser: User;
   sponsors: Array<Sponsor>;
   contests: Array<Contest> = [];
+  item: Contest;
 
   sliderContest = { "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', dots: true, nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000 };
 
@@ -59,14 +60,5 @@ export class HomeComponent implements OnInit {
     return this.loggedInUser.id !== undefined
   }
 
-  // Điếm số thành viên và đội tham gia 
-  getMembers(teams: Array<Team> = []): number {
-    let totalMember = 0;
-    teams.forEach(t => {
-      if (t.members != undefined) {
-        totalMember += t.members.length;
-      }
-    });
-    return totalMember;
-  }
+
 }
