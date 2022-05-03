@@ -7,6 +7,8 @@ import { map, switchMap } from 'rxjs';
 import { TeamService } from 'src/app/services/team.service';
 import { Team } from 'src/app/models/team';
 import { ContestMember } from 'src/app/models/contest-member';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ModalListMemberComponent } from '../modal-list-member/modal-list-member.component';
 
 @Component({
   selector: 'app-team-user-join-detail',
@@ -25,6 +27,21 @@ export class TeamUserJoinDetailComponent implements OnInit {
     private teamService: TeamService) {
   }
 
+  formSearchMembers = new FormGroup({
+    keyWord: new FormControl('', Validators.required),
+  });
+
+
+  // Timf kiếm thành viên
+  searchMembers() {
+    let key_word = { ...this.formSearchMembers.value }
+
+    console.log(key_word.keyWord);
+    this.openListMemberJoinTeam(key_word.keyWord);
+
+
+  }
+
   openDialog(): void {
     // Lấy dữ liệu từ modal điều hướng sang chi tiết đội thi
     const dialogRef = this.dialog.open(ModalAddTeamComponent, {
@@ -36,6 +53,22 @@ export class TeamUserJoinDetailComponent implements OnInit {
 
     });
     dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+
+  // Mở danh sách các member theo keyword
+  openListMemberJoinTeam(keyWord: any) {
+    const dialogRef = this.dialog.open(ModalListMemberComponent, {
+      width: "800px",
+      data: {
+        keyWord: keyWord,
+        contest_id: 76,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 

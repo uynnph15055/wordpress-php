@@ -45,6 +45,7 @@ import { TeamUserJoinComponent } from './component/team-user-join/team-user-join
 import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/team-user-join-detail.component';
 import { ModalAddMemberComponent } from './component/modal-add-member/modal-add-member.component';
 import { ContestItemComponent } from './component/contest-item/contest-item.component';
+import { ModalListMemberComponent } from './component/modal-list-member/modal-list-member.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ContestItemComponent } from './component/contest-item/contest-item.comp
     TeamUserJoinDetailComponent,
     ModalAddMemberComponent,
     ContestItemComponent,
+    ModalListMemberComponent,
   ],
   imports: [
     BrowserModule,

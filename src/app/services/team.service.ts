@@ -23,4 +23,9 @@ export class TeamService {
   getTeamDetail(team_id: any): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.teamListUrl}/${team_id}`);
   }
+
+  // Search members
+  searchMembers(contest_id: number, data: Object): Observable<ResponsePayload> {
+    return this.http.post<ResponsePayload>(`${environment.teamListUrl}/user-team-search/${contest_id}`, data);
+  }
 }

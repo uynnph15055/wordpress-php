@@ -63,11 +63,11 @@
   transition: all ease-in-out 0.3s;
 }
 
-.search-suggest-members {
+/* .search-suggest-members {
   position: absolute;
   background-color: #000;
   width: 100%;
   height: 300px;
   top: 40px;
   border-radius: 6px;
-}
+} */
