@@ -18,6 +18,11 @@
 
 }
 
+.item-member-img {
+  height: 30px;
+  object-fit: cover;
+}
+
 th {
   font-size: 15px;
   font-weight: bold;
