@@ -14,6 +14,7 @@ import { TeamUserJoinComponent } from './component/team-user-join/team-user-join
 import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/team-user-join-detail.component';
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
 import { RoundComponent } from './component/round/round.component';
+import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'cuoc-thi',
         component: ContestComponent,
+      },
+      {
+        path: 'vao-thi/:contest_id',
+        component: IntoExamComponent,
       },
       {
         path: 'thong-tin',
@@ -48,7 +53,8 @@ const routes: Routes = [
           {
             path: 'chi-tiet-doi/:team_id',
             component: TeamUserJoinDetailComponent,
-          }
+          },
+
         ]
       },
       {
@@ -60,18 +66,12 @@ const routes: Routes = [
         component: ContestComponent,
       },
       {
-        path: "cuoc-thi/chi-tiet/:id",
+        path: "cuoc-thi/chi-tiet/:contest_id",
         component: ContestDeatailComponent,
-        children: [
-          {
-            path: "cuoc-thi/chi-tiet/:id",
-            component: RoundComponent,
-          },
-          {
-            path: "cuoc-thi/chi-tiet/vong/:id",
-            component: RoundDetailComponent
-          }
-        ]
+      },
+      {
+        path: "cuoc-thi/chi-tiet/:contest_id/vong/:round_id",
+        component: ContestDeatailComponent,
       }
     ]
   },

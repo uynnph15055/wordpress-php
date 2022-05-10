@@ -19,7 +19,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #EE5A24, #F79F1F);
+  background-color: #8a8a8a;
   border-radius: 6px;
 }
 
@@ -71,7 +71,7 @@ ul {
 }
 
 .color-gray {
-  color: #272a2e;
+  color: #383b3f;
 }
 
 

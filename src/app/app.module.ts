@@ -46,6 +46,9 @@ import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/t
 import { ModalAddMemberComponent } from './component/modal-add-member/modal-add-member.component';
 import { ContestItemComponent } from './component/contest-item/contest-item.component';
 import { ModalListMemberComponent } from './component/modal-list-member/modal-list-member.component';
+import { RoundDetailComponent } from './component/round-detail/round-detail.component';
+import { IntoExamComponent } from './pages/into-exam/into-exam.component';
+import { ModalSubmitAssComponent } from './modal/modal-submit-ass/modal-submit-ass.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +78,9 @@ import { ModalListMemberComponent } from './component/modal-list-member/modal-li
     ModalAddMemberComponent,
     ContestItemComponent,
     ModalListMemberComponent,
+    RoundDetailComponent,
+    IntoExamComponent,
+    ModalSubmitAssComponent
   ],
   imports: [
     BrowserModule,
