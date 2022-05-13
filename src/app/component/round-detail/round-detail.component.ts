@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { map, switchMap } from 'rxjs';
@@ -14,9 +14,8 @@ import { RoundService } from 'src/app/services/round.service';
   styleUrls: ['./round-detail.component.css']
 })
 export class RoundDetailComponent implements OnInit {
-  contestDetail: Contest;
-  status: string = 'pending';
-  roundDetail: Round;
+  @Input() roundDetail: Round;
+  status: boolean = false;
   round_id: any;
   listMember: any;
   team: Team;
@@ -24,15 +23,11 @@ export class RoundDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private modalService: NgbModal, private roundService: RoundService) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.round_id = params.get('id');
-    });
-    this.roundService.getRoundWhereId(this.round_id).subscribe(res => {
-      this.roundDetail = res.payload;
-      if (this.roundDetail) {
-        this.status = 'done';
-      }
-    });
+    console.log(this.roundDetail);
+
+    if (this.roundDetail) {
+      this.status = true;
+    }
   }
 
   openVerticallyCentered(content: any, item: Team, listMember: any) {

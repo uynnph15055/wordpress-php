@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
 import * as moment from 'moment/moment';
 import { ConfigFunctionService } from 'src/app/services/config-function.service';
+import { Major } from 'src/app/models/major';
 @Component({
   selector: 'app-contest',
   templateUrl: './contest.component.html',
@@ -26,7 +27,7 @@ export class ContestComponent implements OnInit {
   major_id: any;
   contests: Array<Contest> = [];
   majorItem: Array<Contest> = [];
-  majors: Array<any> = [];
+  majors: Array<Major> = [];
   item: Contest;
 
   formSearch = new FormGroup({
@@ -42,7 +43,6 @@ export class ContestComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     // Get id
     this.route.paramMap.subscribe(params => {
       this.major_slug = params.get('slug');
@@ -114,9 +114,8 @@ export class ContestComponent implements OnInit {
     this.statusContest = 'pending';
     this.contestService.getContestWherePage(url).subscribe(res => {
       this.contests = res.payload.data;
-      console.log(this.contests);
-
       this.array_page_link = res.payload.links;
+      this.changeArrayLinks(this.array_page_link);
       if (this.contests) {
         this.statusContest = 'done';
       }
@@ -127,6 +126,7 @@ export class ContestComponent implements OnInit {
     this.contestService.getAll().subscribe(res => {
       this.contests = res.payload.data;
       this.array_page_link = res.payload.links;
+      this.changeArrayLinks(this.array_page_link);
       if (this.contests) {
         console.log(this.contests);
         this.statusContest = 'done';
@@ -196,6 +196,13 @@ export class ContestComponent implements OnInit {
         this.statusContest = 'done';
       }
     })
+  }
+
+  changeArrayLinks(links: Array<any>) {
+    for (let index = 0; index < links.length; index++) {
+      links[0].label = '<<';
+      links[links.length - 1].label = '>>';
+    }
   }
 
   // Đóng formSearch

@@ -56,8 +56,9 @@
                     </div>
                 </div>
             </div>
-            <app-round [contestDetail]="contestDetail" [status]="status">
+            <app-round *ngIf="!round_id" [contestDetail]="contestDetail" [status]="status">
             </app-round>
+            <app-round-detail *ngIf="round_id" [roundDetail]="roundDetail"></app-round-detail>
             <!-- <div class="supporters-box">
                 <h5 class="fw-bold fs-5 color-blue">Các nhà tài trợ</h5>
                 <div class="supporters-arrow-left arrow-list-supporter ">
@@ -73,12 +74,14 @@
                 </div>
             </div> -->
             <h5 class="fw-bold fs-5 color-blue">Tin tức cuộc thi</h5>
-            <p class="color-gray p-justify fs-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum,
+            <p class="color-gray p-justify fs-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Dolorum,
                 ad nesciunt. Earum necessitatibus,
                 perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas veritatis. Rem quam
                 beatae alias
                 laboriosam tenetur.</p>
-            <p class="color-gray p-justify fs-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum,
+            <p class="color-gray p-justify fs-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Dolorum,
                 ad nesciunt. Earum necessitatibus,
                 perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas veritatis. Rem quam
                 beatae alias

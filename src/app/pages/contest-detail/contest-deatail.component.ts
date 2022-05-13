@@ -8,6 +8,9 @@ import { ModalAddTeamComponent } from 'src/app/component/modal-add-team/modal-ad
 import { MatDialog } from '@angular/material/dialog';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import { Enterprise } from 'src/app/models/enterprise.model';
+import { param } from 'jquery';
+import { Round } from 'src/app/models/round.model';
+import { RoundService } from 'src/app/services/round.service';
 
 @Component({
   selector: 'app-contest-deatail',
@@ -18,6 +21,8 @@ import { Enterprise } from 'src/app/models/enterprise.model';
 
 export class ContestDeatailComponent implements OnInit {
   forwardComponent: Array<any> = [];
+  round_id: any;
+  roundDetail: Round;
   contestDetail: Contest;
   contestRelated: Array<any>;
   contestCompanySuppor: Enterprise;
@@ -40,18 +45,31 @@ export class ContestDeatailComponent implements OnInit {
 
   sliderSupporter = { "slidesToShow": 3, infinite: true, autoplay: true, arrows: true, prevArrow: '.supporters-arrow-left', nextArrow: '.supporters-arrow-right', slidesToScroll: 1, fadeSpeed: 1000 };
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog, private contestService: ContestService, private getUserLocal: GetValueLocalService, private router: Router) {
-
+  constructor(private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private contestService: ContestService,
+    private getUserLocal: GetValueLocalService,
+    private router: Router,
+    private roundService: RoundService) {
   }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      if (params.get('round_id')) {
+        this.round_id = params.get('round_id');
+        this.roundService.getRoundWhereId(this.round_id).subscribe(res => {
+          this.roundDetail = res.payload;
+        })
+      }
+    })
+
     this.route.paramMap.pipe(
-      map(params => params.get('id')),
+      map(params => params.get('contest_id')),
       switchMap(id => this.contestService.getWhereId(id))
     ).subscribe(res => {
       if (res.status == true) {
         this.contestDetail = res.payload;
-       this.contestDetail.enterprise;
+        this.contestDetail.enterprise;
 
         if (this.contestDetail) {
           this.status = 'done';
@@ -71,6 +89,7 @@ export class ContestDeatailComponent implements OnInit {
       setInterval(() => {
         this.roundEndTime = moment(this.contestDetail.register_deadline).format('lll');
 
+        // console.log(this.roundEndTime);
         let futureDate = new Date(this.roundEndTime).getTime();
 
         let today = new Date().getTime();

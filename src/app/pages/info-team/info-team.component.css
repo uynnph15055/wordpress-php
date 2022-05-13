@@ -4,13 +4,7 @@
   padding-top: 50px;
 }
 
-.nav-bar-info-list .active {
-  color: var(--primary-color)
-}
-
-.nav-bar-info-item {
-  cursor: pointer;
-}
+/* Css tab Info team  */
 
 .info-team-user {
   width: 50px;
@@ -27,4 +21,40 @@
   background-color: #ffff;
   border-radius: 10px;
   box-shadow: 0 0 2px #ccc;
+}
+
+.info-team-tab-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-team-tab-item {
+  margin: 10px 0px;
+  background-color: #ffff;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--color-blue);
+  box-shadow: 0px 0px 3px #ccc;
+  transition: all ease-in 0.3s;
+}
+
+.info-team-tab-item:hover {
+  background-color: var(--warning);
+  color: var(--white);
+  transition: all ease-in-out 0.3s;
+}
+
+.info-team-tab-item i {
+  min-width: 30px;
+  font-size: 16px;
+}
+
+.info-team-tab-item span {
+  flex: 1;
+  font-size: 16px;
+  margin-top: 2px;
 }
