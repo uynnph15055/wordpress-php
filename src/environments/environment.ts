@@ -13,10 +13,13 @@ export const environment = {
   userListUrl: `${jwtApiUrl}/users`,
   sponsorListUrl: `${publicApiUrl}/sponsors`,
   contestListUrl: `${publicApiUrl}/contests`,
+  contestV1Url: `${jwtApiUrl}/contest`,
   majorListUrl: `${publicApiUrl}/majors`,
   roundListUrl: `${publicApiUrl}/rounds`,
+  roundV1Url: `${jwtApiUrl}/round`,
   sliderListUrl: `${publicApiUrl}/sliders`,
   teamListUrl: `${jwtApiUrl}/teams`,
+  takeExamUrl: `${jwtApiUrl}/take-exam`
 };
 
 /*

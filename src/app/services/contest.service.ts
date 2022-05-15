@@ -10,10 +10,15 @@ import { ResponsePayload } from '../models/response-payload';
 export class ContestService {
 
   constructor(private http: HttpClient) { }
+
+
+
   // Gọi tất cả các cuộc thi
   getAll(): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(environment.contestListUrl);
   }
+
+
 
   // Lấy ra cuộc thi theo id
   getWhereId(id: any): Observable<ResponsePayload> {
@@ -25,6 +30,7 @@ export class ContestService {
     return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${status}`);
   }
 
+  // Phân trang theo link
   getContestWherePage(url: string): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(url);
   }

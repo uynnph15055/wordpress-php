@@ -7,11 +7,6 @@
   border-bottom: 1px solid #ccc;
 }
 
-.warper-info-contest {
-  max-height: 600px;
-  overflow-y: auto;
-}
-
 .warper-info-contest::-webkit-scrollbar {
   display: none;
 }
@@ -21,7 +16,6 @@
 }
 
 .btn-get-thread-get-thread-copy-link {
-  margin-top: -20px;
   font-size: 17px;
 }
 
@@ -145,18 +139,18 @@
 .input-link-submit {
   border: none;
   width: 300px;
-  padding: 20px;
+  padding: 15px 20px;
   border-radius: 10px;
-  background: #e8e8e8;
+  background: #f1f1f1;
   box-shadow: 20px 20px 60px #c5c5c5,
-    -20px -20px 60px #ffffff;
+    -20px -20px 30px #ffffff;
   transition: 0.3s;
 }
 
 .input-link-submit:focus {
   outline-color: var(--warning);
   background: #ffff;
-  box-shadow: inset 20px 20px 60px #c5c5c5,
+  box-shadow: inset 20px 20px 60px #f0eeee,
     inset -20px -20px 60px #ffffff;
   transition: 0.3s;
 }
@@ -172,7 +166,7 @@
   --tooltip-color: #fff;
   width: var(--width);
   height: var(--height);
-  background: var(--button-color);
+  background: var(--primary-color);
   position: relative;
   text-align: center;
   border-radius: 0.45em;
@@ -226,7 +220,7 @@
 }
 
 .button:hover {
-  background: var(--warning);
+  background: #27ae60;
 }
 
 .button:hover .text {

@@ -1,9 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterEvent } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { map, switchMap } from 'rxjs';
 import { Contest } from 'src/app/models/contest';
+
+import { Observable } from "rxjs";
 import { ContestService } from 'src/app/services/contest.service';
+import { param } from 'jquery';
+import { TeamService } from 'src/app/services/team.service';
+import { Team } from 'src/app/models/team';
+import { RoundService } from 'src/app/services/round.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { TakeExam } from 'src/app/models/take-exam.model';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-into-exam',
@@ -15,13 +24,55 @@ export class IntoExamComponent implements OnInit {
   hours: number;
   minutes: number;
   seconds: number;
-  members: Array<any>;
+  roundId: any;
   infoContest: Contest;
+  titleModelName: any;
+  teamDetail: Team;
   statusInfo: boolean = false;
-  constructor(private modalService: NgbModal, private route: ActivatedRoute, private contestService: ContestService) { }
+  statusTeamDetail: boolean = false;
+  contestId: number;
+  statusSubmitExam: boolean;
+  infoExam: TakeExam;
+
+  constructor(private modalService: NgbModal,
+    private route: ActivatedRoute,
+    private contestService: ContestService,
+    private router: Router,
+    private teamService: TeamService,
+    private roundService: RoundService,
+    private toast: NgToastService) { }
+
+  slides =
+    {
+      name: 'Mobile Cross-Platform from a Progressive Perspective', url: 'https://nils-mehlhorn.de/slides/mobile_cp_progessive_mehlhorn_pottjs.pdf'
+    }
+
 
   ngOnInit(): void {
+    const round = {
+      round_id: 0
+    }
 
+    this.route.paramMap.subscribe(param => {
+      this.roundId = param.get('round_id');
+      round.round_id = this.roundId;
+    }
+    );
+
+    // thông tin đề thi thoe vòng thi
+    if (this.roundId) {
+      this.getInfoExam(round);
+    }
+
+    // Get roundId vs get teamDetail
+    this.roundService.getInfoTeamFromContestId(this.roundId)
+      .subscribe(res => {
+        res.status ? this.teamDetail = res.payload : null;
+        this.teamDetail ? this.statusTeamDetail = true : false;
+        round.round_id = this.teamDetail.id;
+      })
+
+    // Chi tiết cuộc thi
     this.route.paramMap.pipe(
       map(params => params.get('contest_id')),
       switchMap(id => this.contestService.getWhereId(id))
@@ -29,8 +80,7 @@ export class IntoExamComponent implements OnInit {
       if (res.status == true) {
         this.infoContest = res.payload;
         this.infoContest ? this.statusInfo = true : false;
-        console.log(this.infoContest);
-
+        // this.getInfoTeamFromContestId(this.infoContest.id);
       }
     })
 
@@ -47,85 +97,12 @@ export class IntoExamComponent implements OnInit {
       this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
     }, 1000);
 
-    this.members = [
-      {
-        "id": 5,
-        "name": "Nguyễn Ngọc Uy",
-        "email": "uynnph15055@fpt.edu.vn",
-        "created_at": "2022-03-02T04:30:37.000000Z",
-        "updated_at": "2022-04-22T06:34:39.000000Z",
-        "avatar": "https://lh3.googleusercontent.com/a-/AOh14GgjBzpR0REPGZm6Ij77ojT8FryEgMpdfbFw5XhbKQ=s96-c",
-        "status": 1,
-        "deleted_at": null,
-        "pivot": {
-          "team_id": 402,
-          "user_id": 5,
-          "bot": 1
-        }
-      },
-      {
-        "id": 1,
-        "name": "Trần Hữu Thiện",
-        "email": "thienth@fpt.edu.vn",
-        "created_at": "2022-03-02T04:30:36.000000Z",
-        "updated_at": "2022-03-06T10:23:54.000000Z",
-        "avatar": "https://lh3.googleusercontent.com/a-/AOh14Ghb4FVOe6nNmroH4IA8W4DNWMXSX_X8y4FCh3z1=s96-c",
-        "status": 1,
-        "deleted_at": null,
-        "pivot": {
-          "team_id": 402,
-          "user_id": 1,
-          "bot": null
-        }
-      },
-      {
-        "id": 2,
-        "name": "Nguyễn Đức Bình",
-        "email": "binhndph15107@fpt.edu.vn",
-        "created_at": "2022-03-02T04:30:37.000000Z",
-        "updated_at": "2022-03-04T10:21:40.000000Z",
-        "avatar": null,
-        "status": 1,
-        "deleted_at": null,
-        "pivot": {
-          "team_id": 402,
-          "user_id": 2,
-          "bot": null
-        }
-      },
-      {
-        "id": 3,
-        "name": "Trần Văn Quảng",
-        "email": "quangtvph14034@fpt.edu.vn",
-        "created_at": "2022-03-02T04:30:37.000000Z",
-        "updated_at": "2022-03-08T03:17:04.000000Z",
-        "avatar": "https://lh3.googleusercontent.com/a-/AOh14GgTtmVId4_yz9YcdRGiLP2Cq51g-wTMGJfJTJYJ=s96-c",
-        "status": 1,
-        "deleted_at": null,
-        "pivot": {
-          "team_id": 402,
-          "user_id": 3,
-          "bot": null
-        }
-      },
-      {
-        "id": 4,
-        "name": "Nguyễn Văn Trọng",
-        "email": "trongnvph13949@fpt.edu.vn",
-        "created_at": "2022-03-02T04:30:37.000000Z",
-        "updated_at": "2022-03-07T10:06:31.000000Z",
-        "avatar": "https://lh3.googleusercontent.com/a-/AOh14GjVKU12OxRV_z6iFjm_NfQepgKVRbr9DBomDVcE=s96-c",
-        "status": 1,
-        "deleted_at": null,
-        "pivot": {
-          "team_id": 402,
-          "user_id": 4,
-          "bot": null
-        }
-      }
-    ];
 
+  }
 
+  // dowload đề bài
+  downloadExam() {
+    window.location.href = 'https://drive.google.com/uc?id=1SBfNihiQPHx9Fp8XaoADpKFis2w7MNB6&export=media';
   }
 
   openXl(content: any) {
@@ -138,12 +115,66 @@ export class IntoExamComponent implements OnInit {
 
   // Check xem ai là trưởng nhóm
   checkLeader(bot: number) {
-
     if (bot == 1) {
       return 'Trưởng nhóm';
     }
-
     return '';
+  }
+
+  // get Info Đề bài
+  getInfoExam(round: object) {
+    this.roundService.getInfoExamRound(round).subscribe(res => {
+      if (res.status)
+        this.infoExam = res.payload;
+      // if (this.infoExam.result_url != '')
+      //   this.statusSubmitExam = true
+      console.log(this.infoExam.result_url);
+
+    })
+  }
+
+  // Nộp bài bằng file
+  submitExamByFile(files: any) {
+    this.statusSubmitExam = false;
+    var resultExam = new FormData();
+
+    resultExam.append('file_url', files);
+    // resultExam.append('id', this.infoExam.id);
+    this.submitExam(resultExam);
+  }
+
+  // Nộp bài bằng link
+  submitExamByLink(link: any) {
+    this.statusSubmitExam = false;
+    let resultExam = {
+      result_url: link.target.value,
+      id: this.infoExam.id,
+    }
+    this.submitExam(resultExam);
+  }
+
+  // Hủy bài làm
+  deleteExam() {
+    // this.statusSubmitExam = false;
+    let resultExam = {
+      result_url: '',
+      id: this.infoExam.id,
+    }
+    this.submitExam(resultExam);
+  }
+
+  submitExam(resultExam: Object) {
+    this.roundService.submitExam(resultExam).subscribe(res => {
+      console.log(res);
+
+      if (res.status) {
+        setTimeout(() => {
+          this.statusSubmitExam = true;
+        }, 3000);
+        this.toast.success({ summary: 'Nộp bài thành công !!!', duration: 5000 });
+      }
+
+    })
   }
 
   displayedColumns: string[] = ['index', 'name', 'avatar', 'email', 'bot'];

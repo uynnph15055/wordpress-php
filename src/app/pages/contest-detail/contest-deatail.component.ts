@@ -22,16 +22,18 @@ import { RoundService } from 'src/app/services/round.service';
 export class ContestDeatailComponent implements OnInit {
   forwardComponent: Array<any> = [];
   round_id: any;
+  statusRound_id: boolean = false;
   roundDetail: Round;
+  statusRoundDetail: boolean = false;
   contestDetail: Contest;
   contestRelated: Array<any>;
   contestCompanySuppor: Enterprise;
   statusContestRelated: boolean = false;
   contentItem: Array<Contest> = [];
   closeResult: string;
-  status: any = 'pending';
-  routeStateRegister: any = false;
-  contest_id: any = 0;
+  statusContest: boolean = false;
+  routeStateRegister: boolean = false;
+  contest_id: number = 0;
   nameBtnRegister: string = 'Đăng ký';
 
   roundEndTime: any;
@@ -54,14 +56,22 @@ export class ContestDeatailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Check xem người có bấm nút đăng ký ko 
+    this.routeStateRegister = history.state.registerNow;
+
     this.route.paramMap.subscribe(params => {
       if (params.get('round_id')) {
         this.round_id = params.get('round_id');
+        this.round_id ? this.statusRound_id = true : false;
         this.roundService.getRoundWhereId(this.round_id).subscribe(res => {
           this.roundDetail = res.payload;
+          this.roundDetail ? this.statusRoundDetail = true : false;
+          // this.roundDetail ? t = true : false;
         })
       }
     })
+
+    // console.log(this.round_id);
 
     this.route.paramMap.pipe(
       map(params => params.get('contest_id')),
@@ -69,13 +79,11 @@ export class ContestDeatailComponent implements OnInit {
     ).subscribe(res => {
       if (res.status == true) {
         this.contestDetail = res.payload;
+        this.contestDetail ? this.statusContest = true : false;
         this.contestDetail.enterprise;
-
-        if (this.contestDetail) {
-          this.status = 'done';
-        }
       }
 
+      // Các cuộc thi liên quan
       this.contestService.getWhereMajor(this.contestDetail.major_id).subscribe(res => {
         this.contestRelated = res.payload.data.filter((item: any, index: any) => {
           return item.id != this.contestDetail.id && index < 5;
@@ -86,6 +94,7 @@ export class ContestDeatailComponent implements OnInit {
       })
 
 
+      // Chạy thời gian hết hạn cuộc thi 
       setInterval(() => {
         this.roundEndTime = moment(this.contestDetail.register_deadline).format('lll');
 
@@ -111,6 +120,7 @@ export class ContestDeatailComponent implements OnInit {
       }, 1000);
 
 
+      //  Check user đã đăng nhập hay chưa
       if (this.routeStateRegister == true && this.getUserLocal.getValueLocalUser('user') && this.statusCheckDate == true) {
         this.openDialog();
       } else if (!this.getUserLocal.getValueLocalUser('user')) {
@@ -119,8 +129,9 @@ export class ContestDeatailComponent implements OnInit {
 
     });
 
-    this.routeStateRegister = history.state.registerNow;
+
   }
+
 
   openFormRegister() {
     if (this.statusCheckDate == true) {

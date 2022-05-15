@@ -1,4 +1,5 @@
 import { Enterprise } from "./enterprise.model";
+import { Judges } from "./judges.model";
 import { Round } from "./round.model";
 import { Team } from "./team";
 
@@ -14,4 +15,5 @@ export class Contest {
     teams: Array<Team>
     rounds: Array<Round>
     enterprise: Array<Enterprise>;
+    judges: Array<Judges>
 }

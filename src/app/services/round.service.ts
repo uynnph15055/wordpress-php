@@ -14,4 +14,19 @@ export class RoundService {
   getRoundWhereId(id: any): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(environment.roundListUrl + '/' + id);
   }
+
+  // Get Thông tin đội thông qua id vòng thi
+  getInfoTeamFromContestId(round_id: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.roundV1Url}/${round_id}/team-me`);
+  }
+
+  // Get Info exam
+  getInfoExamRound(round: Object): Observable<ResponsePayload> {
+    return this.http.post<ResponsePayload>(`${environment.takeExamUrl}/student`, round);
+  }
+
+  // Sinh viên nộp bài 
+  submitExam(resultExam: Object): Observable<ResponsePayload> {
+    return this.http.post<ResponsePayload>(`${environment.takeExamUrl}/student-submit`, resultExam);
+  }
 }

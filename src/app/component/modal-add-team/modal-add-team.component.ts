@@ -53,7 +53,7 @@ export class ModalAddTeamComponent implements OnInit {
   // --------
   ngOnInit(): void {
     this.user = this.getUserLocal.getValueLocalUser("user");
-    console.log(this.teamDetail);
+
 
     if (this.teamDetail.name) {
       this.titleModel = 'Sửa đội thi';
@@ -96,7 +96,7 @@ export class ModalAddTeamComponent implements OnInit {
 
   // Add team
   addTeam() {
-    this.toast.warning({ summary: 'Đăng thêm đội , xin đợi giây lát ...', duration: 5000 });
+    this.toast.warning({ summary: 'Đang thêm đội , xin đợi giây lát ...', duration: 5000 });
     let dataTeam = { ...this.formRegister.value }
     var formDataTeam = new FormData();
 

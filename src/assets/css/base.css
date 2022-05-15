@@ -92,6 +92,17 @@ ul {
   border: 1px solid var(--warning);
 }
 
+.btn-base-type-bg {
+  color: var(--white);
+  background-color: var(--warning);
+  
+}
+
+.btn-base-type-bg:hover {
+  opacity: 0.8;
+  color: var(--white);
+}
+
 .btn-register-disable {
   background-color: #7f8c8d;
   color: white;
