@@ -8,7 +8,6 @@
   padding-top: 60px;
 }
 
-/* ------ */
 
 
 .contest-detail-header {
@@ -222,6 +221,14 @@
 
 .related-contest-info .related-contest-detail {
   padding: 3px 10px;
+}
+
+.contest-detail-right-name {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 

@@ -1,6 +1,7 @@
 import { Team } from "./team";
 
 export class Round {
+    id: number;
     name: string;
     image: string;
     description: string;

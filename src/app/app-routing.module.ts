@@ -30,7 +30,7 @@ const routes: Routes = [
         component: ContestComponent,
       },
       {
-        path: 'vao-thi/:contest_id',
+        path: 'vao-thi/:contest_id/vong/:round_id',
         component: IntoExamComponent,
       },
       {
@@ -54,7 +54,6 @@ const routes: Routes = [
             path: 'chi-tiet-doi/:team_id',
             component: TeamUserJoinDetailComponent,
           },
-
         ]
       },
       {

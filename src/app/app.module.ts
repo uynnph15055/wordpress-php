@@ -49,7 +49,6 @@ import { ModalListMemberComponent } from './component/modal-list-member/modal-li
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { ModalSubmitAssComponent } from './modal/modal-submit-ass/modal-submit-ass.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +103,6 @@ import { ModalSubmitAssComponent } from './modal/modal-submit-ass/modal-submit-a
       useValue: {
         autoLogin: false,
         providers: [
-          // { provide: Window, useValue: window },
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(environment.GG_CLIENT_ID),

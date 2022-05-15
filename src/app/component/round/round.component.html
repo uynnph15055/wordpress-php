@@ -1,14 +1,26 @@
 <div class="list-round-box mt-4">
     <p class="fw-bold fs-5 color-blue">Danh sách vòng thi</p>
-    <mat-accordion *ngIf="status == 'done'">
-        <mat-expansion-panel class="round-header mb-3" *ngFor="let item of contestDetail.rounds">
+    <mat-accordion *ngIf="statusContest == true">
+        <p hidden *ngFor="let item of contestDetail.rounds">
+            {{checkStatusRound(item.start_time , item.end_time , item.id)}}
+        </p>
+
+        <mat-expansion-panel *ngFor="let item of contestDetail.rounds" [expanded]="step === item.id"
+            class="round-header mb-3">
             <mat-expansion-panel-header class="test">
-                <mat-panel-title class="round-item">
-                    <div class="img-avatar-round my-2">
-                        <img [src]="item.image" class="w-100 h-100">
+                <mat-panel-title class=" d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <div class=" img-avatar-round my-2">
+                            <img [src]="item.image" class="w-100 h-100">
+                        </div>
+                        &nbsp;
+                        {{item.name}}
                     </div>
-                    &nbsp;
-                    {{item.name}}
+                    <p hidden> {{checkStatusRound(item.start_time , item.end_time , item.id)}}</p>
+                    <div class="">
+                        <h3 [ngStyle]="{'color': statusRound == 1 ? '#c0392b' : '#27ae60' }" class="mt-4 mr-2">
+                            {{checkStatusRound(item.start_time , item.end_time , item.id)}}</h3>
+                    </div>
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <ul class="mt-2 round-content">
@@ -43,11 +55,11 @@
             </ul>
         </mat-expansion-panel>
     </mat-accordion>
-    <div *ngIf="status == 'pending'">
+    <div *ngIf="statusContest == false">
         <ngx-skeleton-loader count="6" [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}" appearance="line">
         </ngx-skeleton-loader>
     </div>
-    <div class="text-center" *ngIf="status == 'done' && contestDetail.rounds.length == 0">
+    <div class="text-center" *ngIf="statusContest == true && contestDetail.rounds.length == 0">
         <div class=""><img
                 src="
         https://img.freepik.com/free-vector/tiny-people-examining-operating-system-error-warning-web-page-isolated-flat-illustration_74855-11104.jpg?t=st=1650442354~exp=1650442954~hmac=8f7b8e030616e950ec8b0bb7b1a388560f06cee34fa16654fc95a2f9faad5635&w=740"
