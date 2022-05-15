@@ -31,6 +31,7 @@
     </div>
     <p class="contest-count-team mt-2 fs-text-contest">Số đội tham gia : <span
             class="count-team text-white">{{getMembers(item.teams)}}</span></p>
-    <a [routerLink]="[ major_slug == null ? './chi-tiet' : './../../chi-tiet' , item.id]" [state]="{registerNow : true}"
+    <a [routerLink]="[ major_slug == null ? './cuoc-thi/chi-tiet' : './../../chi-tiet' , item.id]"
+        [state]="{registerNow : true}"
         [ngClass]="checkStatusDate == true ? 'btn-register contest-btn-register text-center d-block w-100' : 'contest-btn-disable text-center d-block w-100 text-white'">{{nameButton}}</a>
 </div>

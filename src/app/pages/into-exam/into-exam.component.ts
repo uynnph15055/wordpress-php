@@ -135,11 +135,13 @@ export class IntoExamComponent implements OnInit {
 
   // Nộp bài bằng file
   submitExamByFile(files: any) {
+    // console.log(files);
+
     this.statusSubmitExam = false;
     var resultExam = new FormData();
 
-    resultExam.append('file_url', files);
-    // resultExam.append('id', this.infoExam.id);
+    resultExam.append('file_url', files[0]);
+    resultExam.append('id', this.infoExam.id)
     this.submitExam(resultExam);
   }
 
@@ -173,7 +175,6 @@ export class IntoExamComponent implements OnInit {
         }, 3000);
         this.toast.success({ summary: 'Nộp bài thành công !!!', duration: 5000 });
       }
-
     })
   }
 
