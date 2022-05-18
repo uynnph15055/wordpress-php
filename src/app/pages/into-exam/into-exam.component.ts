@@ -42,12 +42,6 @@ export class IntoExamComponent implements OnInit {
     private roundService: RoundService,
     private toast: NgToastService) { }
 
-  slides =
-    {
-      name: 'Mobile Cross-Platform from a Progressive Perspective', url: 'https://nils-mehlhorn.de/slides/mobile_cp_progessive_mehlhorn_pottjs.pdf'
-    }
-
-
   ngOnInit(): void {
     const round = {
       round_id: 0
@@ -96,8 +90,6 @@ export class IntoExamComponent implements OnInit {
       this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
     }, 1000);
-
-
   }
 
   // dowload đề bài

@@ -41,7 +41,8 @@
     <p *ngIf="statusRoundDetail == true" class="fw-bold fs-text">Nội dung : <span
             class="fw-normal">{{roundDetail.description}}</span>
     </p>
-    <a *ngIf="statusRoundDetail == true" class="btn btn-register" (click)="takeTheExam(roundDetail.id)">Vào
+    <a *ngIf="statusRoundDetail == true" class="btn btn-register"
+        (click)="takeTheExam(roundDetail.id , roundDetail.end_time)">Vào
         Thi</a>
 </div>
 <div class="list-team-box mt-4">

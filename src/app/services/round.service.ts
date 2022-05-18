@@ -32,4 +32,9 @@ export class RoundService {
       headers: headers
     });
   }
+
+  // Trả kết quả của vòng thi
+  getResultRound(round_id: number) {
+    return this.http.get<ResponsePayload>(`${environment.publicApiUrl}/contest/round/${round_id}/result`)
+  }
 }

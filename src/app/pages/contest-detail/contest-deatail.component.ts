@@ -11,6 +11,9 @@ import { Enterprise } from 'src/app/models/enterprise.model';
 import { param } from 'jquery';
 import { Round } from 'src/app/models/round.model';
 import { RoundService } from 'src/app/services/round.service';
+import { NgToastService } from 'ng-angular-popup';
+import { FormControl } from '@angular/forms';
+import { ResultRound } from 'src/app/models/result-round.model';
 
 @Component({
   selector: 'app-contest-deatail',
@@ -35,6 +38,8 @@ export class ContestDeatailComponent implements OnInit {
   routeStateRegister: boolean = false;
   contest_id: number = 0;
   nameBtnRegister: string = 'Đăng ký';
+  dataResultRound: Array<ResultRound>
+  statusResultRound: boolean = false;
 
   roundEndTime: any;
   contestRelateTo: Array<Contest>;
@@ -52,7 +57,8 @@ export class ContestDeatailComponent implements OnInit {
     private contestService: ContestService,
     private getUserLocal: GetValueLocalService,
     private router: Router,
-    private roundService: RoundService) {
+    private roundService: RoundService,
+    private toast: NgToastService) {
   }
 
   ngOnInit(): void {
@@ -63,6 +69,7 @@ export class ContestDeatailComponent implements OnInit {
       if (params.get('round_id')) {
         this.round_id = params.get('round_id');
         this.round_id ? this.statusRound_id = true : false;
+
         this.roundService.getRoundWhereId(this.round_id).subscribe(res => {
           this.roundDetail = res.payload;
           this.roundDetail ? this.statusRoundDetail = true : false;
@@ -70,8 +77,6 @@ export class ContestDeatailComponent implements OnInit {
         })
       }
     })
-
-    // console.log(this.round_id);
 
     this.route.paramMap.pipe(
       map(params => params.get('contest_id')),
@@ -86,7 +91,7 @@ export class ContestDeatailComponent implements OnInit {
       // Các cuộc thi liên quan
       this.contestService.getWhereMajor(this.contestDetail.major_id).subscribe(res => {
         this.contestRelated = res.payload.data.filter((item: any, index: any) => {
-          return item.id != this.contestDetail.id && index < 5;
+          return item.id != this.contestDetail.id && index < 4;
         })
         if (this.contestRelated) {
           this.statusContestRelated = true;
@@ -120,22 +125,20 @@ export class ContestDeatailComponent implements OnInit {
       }, 1000);
 
 
-      //  Check user đã đăng nhập hay chưa
+      //  Check user có bẫm vào nút đăng ký ko 
       if (this.routeStateRegister == true && this.getUserLocal.getValueLocalUser('user') && this.statusCheckDate == true) {
         this.openDialog();
-      } else if (!this.getUserLocal.getValueLocalUser('user')) {
-        this.router.navigate(['/login']);
       }
-
     });
 
 
   }
-
-
+  // Mở model thêm đội thi
   openFormRegister() {
-    if (this.statusCheckDate == true) {
+    if (this.statusCheckDate == true && this.getUserLocal.getValueLocalUser('user')) {
       this.openDialog();
+    } else {
+      this.router.navigate(['./login']);
     }
   }
 
@@ -150,6 +153,19 @@ export class ContestDeatailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  // Kết quả vòng this
+  getResultRound(round_id: number) {
+    this.roundService.getResultRound(round_id).subscribe(res => {
+      if (res.payload) {
+        this.dataResultRound = res.payload;
+        this.dataResultRound = this.dataResultRound.filter((item: any, index: any) => {
+          return index < 11;
+        })
+        this.dataResultRound ? this.statusResultRound = true : this.statusResultRound;
+      }
+    })
   }
 
 

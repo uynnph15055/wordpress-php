@@ -17,6 +17,7 @@ export class ListAvatarUserComponent implements OnInit {
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
+
     this.lengthTeam = this.listTeam.length;
 
     if (this.lengthTeam > 4) {
@@ -28,6 +29,6 @@ export class ListAvatarUserComponent implements OnInit {
 
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { scrollable: true });
-}
+  }
 
 }
