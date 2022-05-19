@@ -8,14 +8,19 @@ export const environment = {
   GG_CLIENT_ID: "437095088104-c58gonumb2mu71c1d21ofn6ita2uvqr5.apps.googleusercontent.com",
   GG_CLIENT_SECRET: "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",
   loginUrl: authApi + "/login-token",
-  userListUrl: `${jwtApiUrl}/users`,
+  publicApiUrl: `${baseApiUrl}/public`,
   sponsorListUrl: `${publicApiUrl}/sponsors`,
   contestListUrl: `${publicApiUrl}/contests`,
-  contestV1Url: `${jwtApiUrl}/contest`,
   majorListUrl: `${publicApiUrl}/majors`,
   roundListUrl: `${publicApiUrl}/rounds`,
-  roundV1Url: `${jwtApiUrl}/round`,
   sliderListUrl: `${publicApiUrl}/sliders`,
+
+
+  // Router API V1
+  userListUrl: `${jwtApiUrl}/users`,
+  roundV1Url: `${jwtApiUrl}/round`,
+  contestV1Url: `${jwtApiUrl}/contest`,
   teamListUrl: `${jwtApiUrl}/teams`,
-  takeExamUrl: `${jwtApiUrl}/take-exam`
+  takeExamUrl: `${jwtApiUrl}/take-exam`,
+  userV1Url: `${jwtApiUrl}/user`
 };
