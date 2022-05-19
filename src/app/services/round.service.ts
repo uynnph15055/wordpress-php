@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -27,6 +27,14 @@ export class RoundService {
 
   // Sinh viên nộp bài 
   submitExam(resultExam: Object): Observable<ResponsePayload> {
-    return this.http.post<ResponsePayload>(`${environment.takeExamUrl}/student-submit`, resultExam);
+    const headers = new HttpHeaders();
+    return this.http.post<ResponsePayload>(`${environment.takeExamUrl}/student-submit`, resultExam, {
+      headers: headers
+    });
+  }
+
+  // Trả kết quả của vòng thi
+  getResultRound(round_id: number) {
+    return this.http.get<ResponsePayload>(`${environment.publicApiUrl}/contest/round/${round_id}/result`)
   }
 }

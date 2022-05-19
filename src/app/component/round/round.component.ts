@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Team } from 'src/app/models/team';
 
 @Component({
@@ -15,7 +15,6 @@ export class RoundComponent implements OnInit {
   @Input() contestDetail: any;
   @Input() statusContest: boolean;
 
-
   constructor() { }
 
   ngOnInit(): void {
@@ -30,10 +29,12 @@ export class RoundComponent implements OnInit {
   getImageJudges(judges: any): Array<any> {
     let arrayImage: any = [];
     let imageItem = {
-      image: ''
+      image: '',
+      name: ''
     }
     judges.forEach((res: any) => {
       imageItem.image = res.user.avatar;
+      imageItem.name = res.user.name;
       arrayImage.push(imageItem);
     })
     return arrayImage;
@@ -62,6 +63,7 @@ export class RoundComponent implements OnInit {
     let endTime = new Date(end_time).getTime();
     let todayTime = new Date().getTime();
 
+
     if (todayTime > endTime) {
       this.statusRound = 1;
       result = 'Đã hết bạn';
@@ -76,4 +78,5 @@ export class RoundComponent implements OnInit {
 
     return result;
   }
+
 }

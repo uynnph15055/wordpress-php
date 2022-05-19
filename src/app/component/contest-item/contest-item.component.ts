@@ -11,9 +11,11 @@ import * as moment from 'moment/moment';
 export class ContestItemComponent implements OnInit {
   @Input() item: Contest;
   @Input() major_slug: any;
+  @Input() pageContestByUser: boolean;
 
   checkStatusDate: boolean = true;
   nameButton: string = 'Đăng ký';
+  statusContest: number;
   date_end: string;
   days: number = 5;
   hours: number = 16;
@@ -58,5 +60,27 @@ export class ContestItemComponent implements OnInit {
     });
     return totalMember;
   }
+
+  checkStatusContest(start_time: Date, end_time: Date, id_round: number): any {
+    let result;
+    let startTime = new Date(start_time).getTime();
+    let endTime = new Date(end_time).getTime();
+    let todayTime = new Date().getTime();
+
+
+    if (todayTime > endTime) {
+      this.statusContest = 1;
+      result = 'Đã hết bạn';
+    } else if (startTime < todayTime && todayTime < endTime) {
+      this.statusContest = 2;
+      result = 'Đang mở';
+    } else if (todayTime < endTime) {
+      this.statusContest = 3;
+      result = 'Sắp mở';
+    }
+
+    return result;
+  }
+
 
 }

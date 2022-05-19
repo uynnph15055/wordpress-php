@@ -8,7 +8,9 @@ import { ContestMember } from 'src/app/models/contest-member';
 import { Round } from 'src/app/models/round.model';
 import { Team } from 'src/app/models/team';
 import { RoundService } from 'src/app/services/round.service';
+import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-round-detail',
   templateUrl: './round-detail.component.html',
@@ -26,7 +28,8 @@ export class RoundDetailComponent implements OnInit {
     private modalService: NgbModal,
     private roundService: RoundService,
     private toast: NgToastService,
-    private router: Router) { }
+    private router: Router,
+    private user: UserService) { }
 
   ngOnInit(): void {
 
@@ -38,7 +41,16 @@ export class RoundDetailComponent implements OnInit {
     this.team = item;
   }
 
-  takeTheExam(round_id: number) {
+  takeTheExam(round_id: number, end_time: Date) {
+    if (!this.user.getUserValue()) {
+      this.toast.warning({ summary: 'Bạn chưa đăng nhập !!!', duration: 3000 });
+      this.router.navigate(['./login']);
+    }
+
+    let dateTime = new Date(end_time).getTime();
+    let todayTime = new Date().getTime();
+    if (todayTime > dateTime)
+      this.toast.warning({ summary: 'Đã hết thời gian thi !!!', duration: 3000 });
     this.roundService.getInfoTeamFromContestId(round_id)
       .subscribe(res => {
         if (res.payload.length == 0) {

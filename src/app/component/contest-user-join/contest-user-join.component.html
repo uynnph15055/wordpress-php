@@ -1,62 +1,56 @@
 <div class="p-2">
     <div class="border-bottom">
-        <h3 class=" fs-5 primary-color">Các cuộc thi đã tham gia</h3>
+        <h3 class="fs-5 primary-color">Các cuộc thi đã tham gia</h3>
         <p style="margin-top: -12px;" class="color-gray">Tổng hợp cuộc thi của bạn</p>
     </div>
+    <div style="box-shadow: 0 5px 6px -1px rgb(230, 229, 229);"
+        class="d-flex justify-content-between align-items-center p-3">
+        <div class="col-5 mx-1 d-flex justify-content-between align-items-center">
+            <div class="">
+                <input type="password" placeholder="Tìm kiếm cuộc thi" class="form-control">
+            </div>
+            <div class=""> <a class="btn btn-register">Tìm kiếm</a></div>
+        </div>
+        <div class=" col-4">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Trạng thái cuộc thi</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+    </div>
     <div class="contest-user-body">
-        <div class="row">
-            <div class="col-4 mt-3 contest-user-join-item">
-                <img src="https://cdn.dribbble.com/users/4889763/screenshots/18119792/media/695bdf087bf5fe8069e35616ac577bdb.png?compress=1&resize=1200x900&vertical=top"
-                    alt="" class="w-100">
-                <div class="product_infor">
-                    <div class="product_infor-price">200 $</div>
-                    <h3 class="product_infor-title">Đăng Ký Ngay</h3>
-                </div>
+        <div class="row pb-3" *ngIf="statusListContests ==  true">
+            <app-contest-item class="col-4 mt-3" *ngFor="let item of listContestByUser" [pageContestByUser]="true"
+                [item]="item">
+            </app-contest-item>
+        </div>
+        <div class="row" *ngIf="statusListContests == false">
+            <div class="col-4 mt-3">
+                <app-contest-load-item>
+                </app-contest-load-item>
             </div>
-            <div class="col-4  mt-3 contest-user-join-item">
-                <img src="https://cdn.dribbble.com/users/1376306/screenshots/18122167/media/2410511187e6de918404e99bcc04065b.jpg?compress=1&resize=1200x900&vertical=top"
-                    alt="" class="w-100">
-                <div class="product_infor">
-                    <div class="product_infor-price">200 $</div>
-                    <h3 class="product_infor-title">Đăng Ký Ngay</h3>
-                </div>
+            <div class="col-4 mt-3">
+                <app-contest-load-item>
+                </app-contest-load-item>
             </div>
-            <div class="col-4  mt-3 contest-user-join-item">
-                <img src="https://cdn.dribbble.com/users/4100772/screenshots/18123825/media/467167e9883666a076c4bd7edad1173a.png?compress=1&resize=1200x900&vertical=top"
-                    alt="" class="w-100">
+            <div class="col-4 mt-3">
+                <app-contest-load-item>
+                </app-contest-load-item>
             </div>
-            <div class="col-4  mt-3 contest-user-join-item">
-                <img src="https://cdn.dribbble.com/users/4100772/screenshots/18123825/media/467167e9883666a076c4bd7edad1173a.png?compress=1&resize=1200x900&vertical=top"
-                    alt="" class="w-100">
+            <div class="col-4 mt-3">
+                <app-contest-load-item>
+                </app-contest-load-item>
             </div>
-            <div class="col-4 mt-3 contest-user-join-item">
-                <img src="https://cdn.dribbble.com/users/4100772/screenshots/18123825/media/467167e9883666a076c4bd7edad1173a.png?compress=1&resize=1200x900&vertical=top"
-                    alt="" class="w-100">
+            <div class="col-4 mt-3">
+                <app-contest-load-item>
+                </app-contest-load-item>
             </div>
-            <div class="col-4  mt-3 contest-user-join-item">
-                <img src="https://cdn.dribbble.com/users/4100772/screenshots/18123825/media/467167e9883666a076c4bd7edad1173a.png?compress=1&resize=1200x900&vertical=top"
-                    alt="" class="w-100">
-            </div>
-            <div class="col-4  mt-3 contest-user-join-item">
-                <img src="https://cdn.dribbble.com/users/4100772/screenshots/18123825/media/467167e9883666a076c4bd7edad1173a.png?compress=1&resize=1200x900&vertical=top"
-                    alt="" class="w-100">
-            </div>
-            <div class="col-4 mt-3 contest-user-join-item">
-                <img src="https://cdn.dribbble.com/users/4100772/screenshots/18123825/media/467167e9883666a076c4bd7edad1173a.png?compress=1&resize=1200x900&vertical=top"
-                    alt="" class="w-100">
-            </div>
-            <div class="col-4  mt-3 contest-user-join-item">
-                <img src="https://cdn.dribbble.com/users/4100772/screenshots/18123825/media/467167e9883666a076c4bd7edad1173a.png?compress=1&resize=1200x900&vertical=top"
-                    alt="" class="w-100">
-            </div>
-            <div class="col-4  mt-3 contest-user-join-item">
-                <img src="https://cdn.dribbble.com/users/4100772/screenshots/18123825/media/467167e9883666a076c4bd7edad1173a.png?compress=1&resize=1200x900&vertical=top"
-                    alt="" class="w-100">
-            </div>
-            <div class="col-4 mt-3 contest-user-join-item">
-                <img src="https://cdn.dribbble.com/users/4100772/screenshots/18123825/media/467167e9883666a076c4bd7edad1173a.png?compress=1&resize=1200x900&vertical=top"
-                    alt="" class="w-100">
+            <div class="col-4 mt-3">
+                <app-contest-load-item>
+                </app-contest-load-item>
             </div>
         </div>
-
     </div>
+</div>

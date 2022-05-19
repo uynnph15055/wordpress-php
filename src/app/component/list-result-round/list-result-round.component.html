@@ -1,0 +1,38 @@
+<div *ngIf="dataResultRound.length > 0">
+    <h5 class="fw-bold fs-5 color-blue" *ngIf="statusResultRound == true">Kết quả vòng thi</h5>
+    <table *ngIf="statusResultRound == true" class="w-100 table-result-round" mat-table [dataSource]="dataResultRound ">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="rank">
+            <th mat-header-cell *matHeaderCellDef> Thứ hạng</th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="avatar">
+            <th mat-header-cell *matHeaderCellDef> Ảnh nhóm </th>
+            <td mat-cell *matCellDef="let element">
+                <img [ngStyle]="{'width' : '30px' , 'height' : '30px' , 'object-fit' : 'cover' , 'border-radius' : '50px'}"
+                    [src]="element.team.image" alt="">
+            </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Tên nhóm </th>
+            <td mat-cell *matCellDef="let element"> {{element.team.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total-point">
+            <th mat-header-cell *matHeaderCellDef> Điểm </th>
+            <td mat-cell *matCellDef="let element"> {{element.point}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div class="" *ngIf="statusResultRound == false">
+        <ngx-skeleton-loader count="10" [theme]="{ 'height.px' : 35, 'margin-bottom' : '7px'}" appearance="line">
+        </ngx-skeleton-loader>
+    </div>
+</div>

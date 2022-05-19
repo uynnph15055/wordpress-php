@@ -49,6 +49,8 @@ import { ModalListMemberComponent } from './component/modal-list-member/modal-li
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { ModalSubmitAssComponent } from './modal/modal-submit-ass/modal-submit-ass.component';
+import { ListResultRoundComponent } from './component/list-result-round/list-result-round.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +81,8 @@ import { ModalSubmitAssComponent } from './modal/modal-submit-ass/modal-submit-a
     ModalListMemberComponent,
     RoundDetailComponent,
     IntoExamComponent,
-    ModalSubmitAssComponent
+    ModalSubmitAssComponent,
+    ListResultRoundComponent,
   ],
   imports: [
     BrowserModule,

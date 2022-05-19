@@ -189,7 +189,7 @@
                             <mat-tab-group animationDuration="0ms">
                                 <mat-tab color="warn" label="Upload">
                                     <div class="submit-assignment-box">
-                                        <input #file type="file" (change)="submitExamByFile($event)" hidden
+                                        <input #file type="file" (change)="submitExamByFile(file.files)" hidden
                                             id="submit-assignment">
                                         <label class="btn-upload-assignment" for="submit-assignment"><i
                                                 class="fas fa-cloud-upload"></i></label>
