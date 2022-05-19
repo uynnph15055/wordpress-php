@@ -9,6 +9,8 @@ import { Team } from 'src/app/models/team';
 import { ContestMember } from 'src/app/models/contest-member';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalListMemberComponent } from '../modal-list-member/modal-list-member.component';
+import { param } from 'jquery';
+import { ContestService } from 'src/app/services/contest.service';
 
 @Component({
   selector: 'app-team-user-join-detail',
@@ -17,6 +19,7 @@ import { ModalListMemberComponent } from '../modal-list-member/modal-list-member
 })
 export class TeamUserJoinDetailComponent implements OnInit {
   team_id: any;
+  contest_id: any;
   teamDetail: Team;
   statusTeamDetail: boolean = false;
   arrayMembers: Array<ContestMember>;
@@ -24,7 +27,8 @@ export class TeamUserJoinDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public dialog: MatDialog,
-    private teamService: TeamService) {
+    private teamService: TeamService,
+    private contestService: ContestService) {
   }
 
   formSearchMembers = new FormGroup({
@@ -46,15 +50,16 @@ export class TeamUserJoinDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalAddTeamComponent, {
       width: "490px",
       data: {
+  
         contest_id: 40,
-        team_id: this.teamDetail
+        team_id: this.teamDetail,
+        countMembers: this.arrayMembers.length,
       },
 
     });
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-
 
   // Mở danh sách các member theo keyword
   openListMemberJoinTeam(keyWord: any) {
@@ -64,6 +69,7 @@ export class TeamUserJoinDetailComponent implements OnInit {
         keyWord: keyWord,
         contest_id: this.teamDetail.contest_id,
         team_id: this.team_id,
+        array_members: this.arrayMembers.length
       },
     });
 
@@ -77,7 +83,7 @@ export class TeamUserJoinDetailComponent implements OnInit {
     this.arrayMembers.forEach(element => element.checked = event.checked)
   }
 
-  // 
+  // Check all tài khoản
   isCheckAll() {
     return this.arrayMembers.every(res => res.checked)
   }
@@ -85,14 +91,16 @@ export class TeamUserJoinDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.team_id = params.get('team_id');
+      this.contest_id = params.get('contest_id');
     });
 
+
+    // Trả ra chi tiết đội
     this.teamService.getTeamDetail(this.team_id).subscribe(res => {
       this.teamDetail = res.payload;
       if (this.teamDetail) {
         this.statusTeamDetail = true;
         this.arrayMembers = this.teamDetail.members;
-
         this.arrayMembers.map(res => {
           res.checked = false;
         })

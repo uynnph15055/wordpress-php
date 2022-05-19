@@ -51,7 +51,7 @@ const routes: Routes = [
           }
           ,
           {
-            path: 'chi-tiet-doi/:team_id',
+            path: 'cuoc-thi/:contest_id/chi-tiet-doi/:team_id',
             component: TeamUserJoinDetailComponent,
           },
         ]

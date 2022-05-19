@@ -84,10 +84,10 @@ export class ModalAddTeamComponent implements OnInit {
     }
   }
 
-  openDialog(idTeamNew: any) {
+  openDialog(idTeamNew: any, contestId: number) {
     const dialogRef = this.dialog.open(ModalDirectionTeamComponent, {
       width: "400px",
-      data: { idTeamNew: idTeamNew },
+      data: { idTeamNew: idTeamNew, contestId: contestId },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -111,7 +111,7 @@ export class ModalAddTeamComponent implements OnInit {
       if (res.status == false) {
         this.toast.error({ summary: res.payload, duration: 5000 });
       } else {
-        this.openDialog(res.id_team);
+        this.openDialog(res.id_team, this.contest_id);
       }
     })
   }
