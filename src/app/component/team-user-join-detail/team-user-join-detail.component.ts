@@ -98,6 +98,10 @@ export class TeamUserJoinDetailComponent implements OnInit {
     })
   }
 
+  checkUserTeamLeader() { 
+    
+  }
+
 
   displayedColumns: string[] = ['position', 'name', 'image', 'weight', 'bot', 'symbol'];
 }
