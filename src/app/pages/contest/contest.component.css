@@ -1,91 +1,3 @@
-/* 
-SEARCH
- */
-.header-form-search,
-.reset-contest-start {
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  box-shadow: 0 0 3px #ccc;
-  position: relative;
-  cursor: pointer;
-  margin: 0px 10px;
-}
-
-.header-form-search {
-  transition: 0.5s linear;
-  overflow: hidden;
-}
-
-.max-with {
-  width: 280px;
-}
-
-.header-form-icon-search,
-.icon-reset-contests {
-  position: absolute;
-  left: 21px;
-  top: 52%;
-  transform: translate(-50%, -50%);
-}
-
-.icon-reset-contests {
-  top: 47%;
-}
-
-
-.header-form-icon-search i,
-.icon-reset-contests {
-  font-size: 17px;
-}
-
-.header-form-search .header-form-input {
-  position: relative;
-  width: 220px;
-  height: 40px;
-  left: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-form-search .header-form-input input {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  font-size: 15px;
-  outline: none;
-}
-
-.header-form-search .clear {
-  position: absolute;
-  right: 0%;
-  font-size: 18px;
-  color: #888;
-}
-
-
-.bg-number-join-contest {
-  background-color: var(--primary-color);
-}
-
-
-/* 
-  PAGINATION
-   */
-.page-link {
-  color: var(--black);
-}
-
-.page-link:hover,
-.page-item .active {
-  background-color: var(--warning);
-  color: var(--white);
-}
-
-
 /* IMAGE CONTEST
    */
 
@@ -110,30 +22,40 @@ SEARCH
 
 .list-major-contest {
   margin-left: -30px;
-  max-height: 600px;
+  max-height: 620px;
   overflow-y: auto;
+  padding-right: 3px;
+}
+
+.list-major-contest::-webkit-scrollbar {
+  width: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #2c3e50;
+  background-color: #777575;
 }
 
 .major-contest-link {
   padding: 10px 15px;
-  box-shadow: 0px 0px 10px var(--gray);
+  box-shadow: 0px 0px 3px #ccc;
   color: #2c3e50;
-
+  transition: all ease-in 0.5s;
 }
 
+.major-contest-link:first-child {
+  margin-top: 5px;
+}
 
 .major-contest-item .major-contest-link:hover,
 .active {
   background-color: var(--warning);
   color: var(--white);
   cursor: pointer;
+  transition: all ease-in 0.5s;
 }
 
 /* Phan trang cuoc thi */
 .paying-contest .page-link {
   cursor: pointer;
+  color: #000;
 }

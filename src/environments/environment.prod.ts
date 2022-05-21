@@ -1,4 +1,4 @@
-const baseApiUrl = "https://api.svpoly.xyz/api";
+const baseApiUrl = "https://admin.svpoly.xyz/api";
 const authApi = `${baseApiUrl}/auth`;
 
 export const jwtApiUrl = `${baseApiUrl}/v1`;

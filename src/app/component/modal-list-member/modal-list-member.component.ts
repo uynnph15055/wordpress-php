@@ -15,6 +15,7 @@ export class ModalListMemberComponent implements OnInit {
   contestId: number;
   teamId: number;
   countMemberJoinTeam: number;
+  statusResultMembers: boolean = false;
   max_user: number;
   arrayMembers: Array<ContestMember>;
   statusArrayMember: boolean = false;
@@ -47,6 +48,9 @@ export class ModalListMemberComponent implements OnInit {
         this.arrayMembers = res.payload;
         if (this.arrayMembers) {
           this.statusArrayMember = true;
+          if (this.arrayMembers.length == 0) {
+            this.statusResultMembers = true;
+          }
         }
       }
 
@@ -61,8 +65,6 @@ export class ModalListMemberComponent implements OnInit {
   // thêm thành viên vào mảng
   addUserTeam() {
     let countMemberPresent = this.countMemberJoinTeam + this.listUserJoinTeam.length;
-    // console.log(this.countMemberJoinTeam);
-
     if (this.max_user < countMemberPresent) {
       this.toast.warning({ summary: 'Đã quá giới hạn thành viên cho phép !!!', duration: 5000 });
     }
@@ -71,7 +73,6 @@ export class ModalListMemberComponent implements OnInit {
         user_id: this.listUserJoinTeam
       }
       this.teamService.addMemberJoinTeam(this.contestId, this.teamId, data).subscribe(res => {
-        console.log(res);
 
         if (res.status) {
           this.toast.success({ summary: res.payload, duration: 5000 });
@@ -80,6 +81,16 @@ export class ModalListMemberComponent implements OnInit {
         }
       })
     }
+  }
+
+  // Check all các thành viên
+  doCheck(event: any) {
+    this.arrayMembers.forEach(element => element.checked = event.checked)
+  }
+
+  // Check all tài khoản
+  isCheckAll() {
+    return this.arrayMembers.every(res => res.checked)
   }
 
   displayedColumns: string[] = ['index', 'name', 'img', 'email', 'check-box'];

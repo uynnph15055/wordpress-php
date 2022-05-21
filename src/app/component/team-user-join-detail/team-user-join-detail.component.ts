@@ -50,13 +50,13 @@ export class TeamUserJoinDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalAddTeamComponent, {
       width: "490px",
       data: {
-  
+
         contest_id: 40,
         team_id: this.teamDetail,
         countMembers: this.arrayMembers.length,
       },
-
     });
+
     dialogRef.afterClosed().subscribe(result => {
     });
   }
@@ -78,16 +78,6 @@ export class TeamUserJoinDetailComponent implements OnInit {
     });
   }
 
-  // Check all các thành viên
-  doCheck(event: any) {
-    this.arrayMembers.forEach(element => element.checked = event.checked)
-  }
-
-  // Check all tài khoản
-  isCheckAll() {
-    return this.arrayMembers.every(res => res.checked)
-  }
-
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.team_id = params.get('team_id');
@@ -106,10 +96,8 @@ export class TeamUserJoinDetailComponent implements OnInit {
         })
       }
     })
-
-
   }
 
 
-  displayedColumns: string[] = ['position', 'name', 'image', 'weight', 'symbol', 'check-box'];
+  displayedColumns: string[] = ['position', 'name', 'image', 'weight', 'bot', 'symbol'];
 }

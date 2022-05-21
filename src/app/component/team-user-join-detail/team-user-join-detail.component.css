@@ -1,6 +1,6 @@
 .header-team-user-img {
   width: 100px;
-  min-height: 100px;
+  height: 100px;
   object-fit: cover;
   border-radius: 50px;
   border: 7px solid #fff;

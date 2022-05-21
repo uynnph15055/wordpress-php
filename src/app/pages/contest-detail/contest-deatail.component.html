@@ -240,29 +240,31 @@
             </div>
         </div>
     </div>
-    <h3 class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</h3>
-    <div class="related-contest-list row" *ngIf="statusContestRelated == true">
-        <div *ngFor="let item of contestRelated" class="col-3">
-            <app-contest-item [item]="item">
-            </app-contest-item>
+    <div>
+        <h3 class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</h3>
+        <div class="related-contest-list row" *ngIf="statusContestRelated == true">
+            <div *ngFor="let item of contestRelated" class="col-3">
+                <app-contest-item [item]="item">
+                </app-contest-item>
+            </div>
         </div>
-    </div>
-    <div class="related-contest-list row" *ngIf="statusContestRelated == false">
-        <div class="col-3">
-            <app-contest-load-item>
-            </app-contest-load-item>
-        </div>
-        <div class="col-3">
-            <app-contest-load-item>
-            </app-contest-load-item>
-        </div>
-        <div class="col-3">
-            <app-contest-load-item>
-            </app-contest-load-item>
-        </div>
-        <div class="col-3">
-            <app-contest-load-item>
-            </app-contest-load-item>
+        <div class="related-contest-list row" *ngIf="statusContestRelated == false">
+            <div class="col-3">
+                <app-contest-load-item>
+                </app-contest-load-item>
+            </div>
+            <div class="col-3">
+                <app-contest-load-item>
+                </app-contest-load-item>
+            </div>
+            <div class="col-3">
+                <app-contest-load-item>
+                </app-contest-load-item>
+            </div>
+            <div class="col-3">
+                <app-contest-load-item>
+                </app-contest-load-item>
+            </div>
         </div>
     </div>
 </div>

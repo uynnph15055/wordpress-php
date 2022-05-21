@@ -5,18 +5,22 @@
     </div>
     <div style="box-shadow: 0 5px 6px -1px rgb(230, 229, 229);"
         class="d-flex justify-content-between align-items-center p-3">
-        <div class="col-5 mx-1 d-flex justify-content-between align-items-center">
+        <form class="col-5 mx-1 d-flex justify-content-between align-items-center" (submit)="filterContestSearch()">
             <div class="">
-                <input type="password" placeholder="Tìm kiếm cuộc thi" class="form-control">
+                <input type="text" (keyup)="setValueSearch($event)" placeholder="Tìm kiếm cuộc thi"
+                    class="form-control">
             </div>
-            <div class=""> <a class="btn btn-register">Tìm kiếm</a></div>
-        </div>
+            <div class="">
+                <button type="button" (click)="filterContestSearch()" class="btn btn-register">Tìm
+                    kiếm</button>
+            </div>
+        </form>
         <div class=" col-4">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Trạng thái cuộc thi</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="form-select" (change)="filterWhereStatus($event)" aria-label="Default select example">
+                <option value="0">Tất cả</option>
+                <option value="3">Đã kết thúc</option>
+                <option value="2">Đang mở</option>
+                <option value="1">Sắp diễn ra</option>
             </select>
         </div>
     </div>
@@ -25,6 +29,12 @@
             <app-contest-item class="col-4 mt-3" *ngFor="let item of listContestByUser" [pageContestByUser]="true"
                 [item]="item">
             </app-contest-item>
+            <div class="d-flex justify-content-center" *ngIf=" listContestByUser.length==0">
+                <div class="image-not-data">
+                    <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_203587-28.jpg?w=2000"
+                        alt="" class="w-100">
+                </div>
+            </div>
         </div>
         <div class="row" *ngIf="statusListContests == false">
             <div class="col-4 mt-3">

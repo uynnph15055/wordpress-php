@@ -62,6 +62,10 @@ ul {
   color: var(--primary-color);
 }
 
+.bg-warn {
+  background-color: var(--warning);
+}
+
 .color-red {
   color: var(--red);
 }
@@ -95,7 +99,7 @@ ul {
 .btn-base-type-bg {
   color: var(--white);
   background-color: var(--warning);
-  
+
 }
 
 .btn-base-type-bg:hover {
