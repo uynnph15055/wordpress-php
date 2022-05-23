@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalAddTeamComponent } from '../modal-add-team/modal-add-team.component';
 
@@ -11,6 +11,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalListMemberComponent } from '../modal-list-member/modal-list-member.component';
 import { param } from 'jquery';
 import { ContestService } from 'src/app/services/contest.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-team-user-join-detail',
@@ -20,15 +22,20 @@ import { ContestService } from 'src/app/services/contest.service';
 export class TeamUserJoinDetailComponent implements OnInit {
   team_id: any;
   contest_id: any;
+  statusLeader: boolean = false;
   teamDetail: Team;
   statusTeamDetail: boolean = false;
   arrayMembers: Array<ContestMember>;
-
+  user: User;
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     public dialog: MatDialog,
     private teamService: TeamService,
-    private contestService: ContestService) {
+    private contestService: ContestService
+    ,
+    private userService: UserService) {
+
   }
 
   formSearchMembers = new FormGroup({
@@ -74,11 +81,17 @@ export class TeamUserJoinDetailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.arrayMembers.concat(result);
+      this.ngOnInit();
     });
   }
 
   ngOnInit(): void {
+    this.user = this.userService.getUserValue();
+    if (!this.user) {
+      this.router.navigate(['/login']);
+    }
+
     this.route.paramMap.subscribe(params => {
       this.team_id = params.get('team_id');
       this.contest_id = params.get('contest_id');
@@ -91,17 +104,30 @@ export class TeamUserJoinDetailComponent implements OnInit {
       if (this.teamDetail) {
         this.statusTeamDetail = true;
         this.arrayMembers = this.teamDetail.members;
+        this.checkUserTeamLeader();
         this.arrayMembers.map(res => {
           res.checked = false;
         })
       }
     })
+
+
+
   }
 
-  checkUserTeamLeader() { 
-    
+  checkUserTeamLeader() {
+    let leader = this.arrayMembers.filter(item => {
+      return item.pivot.bot == 1 && item.id == this.user.id;
+    });
+    if (leader.length > 0)
+      this.statusLeader = true;
+    if (this.statusLeader == false)
+      this.displayedColumns = this.displayedColumns.filter(item => {
+        return item !== 'symbol';
+      })
   }
 
 
   displayedColumns: string[] = ['position', 'name', 'image', 'weight', 'bot', 'symbol'];
+
 }

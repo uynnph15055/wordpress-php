@@ -35,7 +35,6 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ContestLoadItemComponent } from './loading/contest-load-item/contest-load-item.component';
 import { MaterialModule } from './material/material.module';
 import { ModalAddTeamComponent } from './component/modal-add-team/modal-add-team.component';
-import { ToastComponent } from './component/toast/toast.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { ModalDirectionTeamComponent } from './component/modal-direction-team/modal-direction-team.component';
 import { InfoTeamComponent } from './pages/info-team/info-team.component';
@@ -69,7 +68,6 @@ import { ListResultRoundComponent } from './component/list-result-round/list-res
     ListAvatarUserComponent,
     ContestLoadItemComponent,
     ModalAddTeamComponent,
-    ToastComponent,
     ModalDirectionTeamComponent,
     InfoTeamComponent,
     ProfileUserComponent,

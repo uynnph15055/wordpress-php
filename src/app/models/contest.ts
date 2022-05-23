@@ -1,3 +1,4 @@
+import { ContestMember } from "./contest-member";
 import { Enterprise } from "./enterprise.model";
 import { Judges } from "./judges.model";
 import { Round } from "./round.model";

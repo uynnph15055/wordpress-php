@@ -14,6 +14,7 @@ import { RoundService } from 'src/app/services/round.service';
 import { NgToastService } from 'ng-angular-popup';
 import { FormControl } from '@angular/forms';
 import { ResultRound } from 'src/app/models/result-round.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-contest-deatail',
@@ -45,6 +46,11 @@ export class ContestDeatailComponent implements OnInit {
   contestRelateTo: Array<Contest>;
   statusCheckDate: boolean = true;
 
+  // --------------------------
+  statusUserHasJoinContest: boolean = false;
+  teamIdMemberHasJoinTeam: number = 0;
+  // ---------------------------
+
   days: number;
   hours: number;
   minutes: number;
@@ -58,7 +64,8 @@ export class ContestDeatailComponent implements OnInit {
     private getUserLocal: GetValueLocalService,
     private router: Router,
     private roundService: RoundService,
-    private toast: NgToastService) {
+    private toast: NgToastService,
+    private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -73,7 +80,6 @@ export class ContestDeatailComponent implements OnInit {
         this.roundService.getRoundWhereId(this.round_id).subscribe(res => {
           this.roundDetail = res.payload;
           this.roundDetail ? this.statusRoundDetail = true : false;
-          // this.roundDetail ? t = true : false;
         })
       }
     })
@@ -96,7 +102,9 @@ export class ContestDeatailComponent implements OnInit {
         if (this.contestRelated) {
           this.statusContestRelated = true;
         }
-      })
+      });
+
+      this.checkUserHasJoinContest();
 
 
       // Chạy thời gian hết hạn cuộc thi 
@@ -133,8 +141,27 @@ export class ContestDeatailComponent implements OnInit {
 
 
   }
+
+  // Check xem user đã join cuộc thi chưa
+  checkUserHasJoinContest() {
+    let user = this.userService.getUserValue();
+
+    let index = this.contestDetail.teams.map(item => {
+      let arrMembers = item.members.map(item => {
+        if (item.id == user.id) {
+          this.teamIdMemberHasJoinTeam = item.pivot.team_id;
+        }
+        return item.id;
+      });
+      return arrMembers.concat(arrMembers);
+    })[0].indexOf(user.id);
+
+    index > 0 || index == 0 ? this.statusUserHasJoinContest = true : this.statusUserHasJoinContest;
+    // console.log(this.statusUserHasJoinContest);
+  }
+
   // Mở model thêm đội thi
-  openFormRegister() {
+  openFormRegister(): void {
     if (this.statusCheckDate == true && this.getUserLocal.getValueLocalUser('user')) {
       this.openDialog();
     } else {

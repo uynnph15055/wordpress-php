@@ -1,4 +1,5 @@
 <div *ngIf="statusResultMembers == false">
+    <mat-progress-bar *ngIf="statusAddMember == false" color="warn" mode="indeterminate"></mat-progress-bar>
     <div mat-dialog-content>
         <table *ngIf="statusArrayMember == true" mat-table class="w-100 example-container" [dataSource]="arrayMembers">
 
@@ -51,7 +52,7 @@
     </div>
     <div *ngIf="statusArrayMember == true" mat-dialog-actions class="float-end">
         <button mat-raised-button mat-dialog-close>Đóng</button>
-        <button mat-button class="btn-register btn-add-member" mat-dialog-close (click)="addUserTeam()">Thêm thành
+        <button mat-button class="btn-register btn-add-member" (click)="addUserTeam()">Thêm thành
             viên</button>
     </div>
 </div>

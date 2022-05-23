@@ -32,9 +32,10 @@
     <p class="contest-count-team mt-2 fs-text-contest">Số đội tham gia : <span
             class="count-team text-white">{{getMembers(item.teams)}}</span></p>
     <a *ngIf="!pageContestByUser" [routerLink]="['/cuoc-thi' , item.id]" [state]="{registerNow : true}"
-        [ngClass]="checkStatusDate == true ? 'btn-register contest-btn-register text-center d-block w-100' : 'contest-btn-disable text-center d-block w-100 text-white'">{{nameButton}}</a>
+        class="btn-register contest-btn-register text-center d-block w-100">{{checkUserHasJoinContest(item) ==
+        true ? 'Đã tham gia' : 'Đăng ký'}}</a>
     <a [routerLink]="['/cuoc-thi/' , item.id]"
-        [ngStyle]="{'background-color': statusContest == 1 ? '#c0392b' : '#27ae60' }" *ngIf="pageContestByUser" href=""
-        class="text-center contest-btn-register d-block w-100 text-white">{{checkStatusContest(item.date_start ,
-        item.register_deadline , item.id)}}</a>
+        [ngStyle]="{'background-color': item.status == 3 ? '#c0392b' :  item.status == 2 ? '#27ae60' :  '#F26F21' }"
+        *ngIf="pageContestByUser" href=""
+        class="text-center contest-btn-register d-block w-100 text-white">{{checkStatusContest(item.status)}}</a>
 </div>

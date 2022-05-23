@@ -114,8 +114,6 @@
                     <div class="img-detail-box">
                         <img [src]="contestDetail.img" class="w-100" alt="">
                         <p class="fw-bold fs-5 pt-2 contest-detail-right-name text-dark">{{contestDetail.name}}</p>
-                        <h3 class="number-team ">Số đội tham gia : <span>{{contestDetail.teams.length}}</span>
-                        </h3>
                         <ul class="contest-detail-right-countdown">
                             <li class="contest-detail-right-countdown-item"><span
                                     class="contest-detail-right-countdown-number days">{{days}}</span>
@@ -127,8 +125,12 @@
                             <li class="contest-detail-right-countdown-item"><span
                                     class="contest-detail-right-countdown-number seconds">{{seconds}}</span></li>
                         </ul>
-                        <!-- contest-detail-register-btn  btn-register-disable w-100 -->
-                        <button (click)="openFormRegister()" [disabled]="statusCheckDate == false" [ngClass]=" statusCheckDate==true ? 'btn contest-detail-register-btn  btn-register w-100'
+                        <a *ngIf="statusUserHasJoinContest == true"
+                            [routerLink]="['/thong-tin/cuoc-thi' , contestDetail.id , 'chi-tiet-doi' , teamIdMemberHasJoinTeam ]"
+                            style="background-color: #e67e22;" class="btn text-white my-2"><i
+                                class="fas fa-user text-white"></i> Đội của bạn</a>
+                        <button (click)="openFormRegister()"
+                            [disabled]="statusCheckDate == false || statusUserHasJoinContest == true" [ngClass]=" statusCheckDate==true ? 'btn contest-detail-register-btn  btn-register w-100'
                             : 'btn btn-register-disable w-100'">{{nameBtnRegister}}</button>
                     </div>
                 </div>

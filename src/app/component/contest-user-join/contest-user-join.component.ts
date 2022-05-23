@@ -31,6 +31,8 @@ export class ContestUserJoinComponent implements OnInit {
 
   //  Tìm kiếm cuộc thi
   filterContestSearch() {
+    console.log(this.valueStatus);
+
     this.statusListContests = false;
     let keyword = this.keyword;
     this.filterContest(keyword, this.valueStatus);
