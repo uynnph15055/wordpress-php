@@ -80,6 +80,7 @@ export class ContestItemComponent implements OnInit {
         return item.members.map(item => {
           return item.id == user.id;
         })
+        // 
       });
       console.log(index);
 
