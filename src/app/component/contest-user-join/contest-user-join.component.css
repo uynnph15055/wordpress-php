@@ -6,3 +6,11 @@
 .contest-user-body::-webkit-scrollbar {
   display: none;
 }
+
+.image-not-data {
+  width: 50%;
+}
+
+.image-not-data img {
+  height: 330px;
+}

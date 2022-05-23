@@ -42,11 +42,13 @@
   transition: all ease-in 0.3s;
 }
 
-.info-team-tab-item:hover {
+.info-team-tab-item:hover,
+.active {
   background-color: var(--warning);
   color: var(--white);
   transition: all ease-in-out 0.3s;
 }
+
 
 .info-team-tab-item i {
   min-width: 30px;

@@ -30,7 +30,7 @@ export class HomeLayoutComponent implements OnInit {
     let wrapperBox = document.querySelector('#main-wrapper');
 
     window.addEventListener('scroll', () => {
-    
+
     })
   }
 
@@ -46,6 +46,6 @@ export class HomeLayoutComponent implements OnInit {
   logOut() {
     localStorage.clear();
     this.statusLogin = false;
-
+    this.ngOnInit();
   }
 }

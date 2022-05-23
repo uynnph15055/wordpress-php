@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Observer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Contest } from '../models/contest';
@@ -62,7 +62,12 @@ export class UserService {
 
   //  Các cuộc thi mà user đã tham gia
   getContestByUser(): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.userV1Url}/contest-joined`)
+    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined?sort=desc`)
+  }
+
+  // Lộc cuộc thi đã tham gia theo trạng thái
+  getContestByUserStatus(key_word: string, status: number): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined?status=${status}&q=${key_word}`);
   }
 
 }

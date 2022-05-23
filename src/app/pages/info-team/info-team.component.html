@@ -14,17 +14,10 @@
                 </div>
                 <!-- <a routerLink="/ca-nhan">sssssss</a> -->
                 <div class="info-team-tab-list">
-                    <a routerLink="/thong-tin/ca-nhan" class="info-team-tab-item">
-                        <i class="fas fa-user"></i>
-                        <span> Hồ sơ cá nhân </span>
-                    </a>
-                    <a routerLink="/thong-tin/cuoc-thi-tham-gia" class="info-team-tab-item">
+                    <a routerLink="/thong-tin/cuoc-thi-tham-gia" class="info-team-tab-item" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
                         <i class="fas fa-pager"></i>
                         <span> Các cuộc thi tham gia </span>
-                    </a>
-                    <a routerLink="/thong-tin/cac-doi" class="info-team-tab-item">
-                        <i class="fas fa-users"></i>
-                        <span> Các nhóm của bạn </span>
                     </a>
                 </div>
             </div>

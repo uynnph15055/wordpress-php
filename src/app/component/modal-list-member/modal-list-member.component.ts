@@ -15,10 +15,12 @@ export class ModalListMemberComponent implements OnInit {
   contestId: number;
   teamId: number;
   countMemberJoinTeam: number;
+  statusResultMembers: boolean = false;
   max_user: number;
   arrayMembers: Array<ContestMember>;
   statusArrayMember: boolean = false;
   listUserJoinTeam: Array<any> = [];
+  statusAddMember: boolean;
 
   constructor(public dialogRef: MatDialogRef<ModalListMemberComponent>, @Inject(MAT_DIALOG_DATA) public data: {
     keyWord: string, contest_id: number, team_id: number, array_members: number;
@@ -47,6 +49,9 @@ export class ModalListMemberComponent implements OnInit {
         this.arrayMembers = res.payload;
         if (this.arrayMembers) {
           this.statusArrayMember = true;
+          if (this.arrayMembers.length == 0) {
+            this.statusResultMembers = true;
+          }
         }
       }
 
@@ -60,26 +65,42 @@ export class ModalListMemberComponent implements OnInit {
 
   // thêm thành viên vào mảng
   addUserTeam() {
+    this.statusAddMember = false;
     let countMemberPresent = this.countMemberJoinTeam + this.listUserJoinTeam.length;
-    // console.log(this.countMemberJoinTeam);
-
     if (this.max_user < countMemberPresent) {
-      this.toast.warning({ summary: 'Đã quá giới hạn thành viên cho phép !!!', duration: 5000 });
+      this.toast.warning({ summary: 'Đã quá giới hạn thành viên cho phép !!!', duration: 3000 });
     }
     else {
       let data = {
         user_id: this.listUserJoinTeam
       }
-      this.teamService.addMemberJoinTeam(this.contestId, this.teamId, data).subscribe(res => {
-        console.log(res);
 
-        if (res.status) {
-          this.toast.success({ summary: res.payload, duration: 5000 });
-        } else {
-          this.toast.error({ summary: 'Lỗi không thêm được thành viên !', duration: 5000 });
-        }
-      })
+      if (data.user_id.length == 0) {
+        setTimeout(() => {
+          this.toast.warning({ summary: 'Bạn chưa chọn thành viên nào !!!', duration: 5000 });
+          this.dialogRef.close();
+        }, 3000);
+      } else {
+        this.teamService.addMemberJoinTeam(this.contestId, this.teamId, data).subscribe(res => {
+          if (res.status) {
+            this.toast.success({ summary: res.payload, duration: 5000 });
+            this.dialogRef.close(res.user_pass);
+          } else {
+            this.toast.error({ summary: res.payload, duration: 5000 });
+          }
+        })
+      }
     }
+  }
+
+  // Check all các thành viên
+  doCheck(event: any) {
+    this.arrayMembers.forEach(element => element.checked = event.checked)
+  }
+
+  // Check all tài khoản
+  isCheckAll() {
+    return this.arrayMembers.every(res => res.checked)
   }
 
   displayedColumns: string[] = ['index', 'name', 'img', 'email', 'check-box'];

@@ -1,15 +1,9 @@
 <app-banner></app-banner>
 <div class="container my-4">
-    <div class="row">
+    <div class="row ">
         <div class="col-3 slider-bar">
             <h3 class="title-major fw-bold fs-4 color-blue">Chuyên ngành</h3>
-            <select class="form-select" (change)="filterContestWithStatus($event)" aria-label="Default select example">
-                <option selected>Trạng thái</option>
-                <option value="1">Đang diễn ra
-                </option>
-                <option value="2">Sắp diễn ra </option>
-                <option value="3">Đã kết thúc</option>
-            </select>
+
             <ul class="list-major-contest mt-3" *ngIf=" statusMajor=='done'">
                 <li *ngFor="let m of majors" class="list-unstyled major-contest-item mb-3"><a
                         [routerLink]="['/cuoc-thi/chuyen-nganh/' , m.slug]" routerLinkActive="active"
@@ -28,61 +22,60 @@
             <div class="d-flex justify-content-between align-items-center">
                 <h5 class="mt-4 fs-5 fw-bold color-blue">Các cuộc thi</h5>
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="">
-                        <div class="header-form-search col-4" placement="top" ngbTooltip="Tìm kiếm cuộc thi">
-                            <div (click)="formSearchOpen()" class="header-form-icon-search">
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <div class="header-form-input">
-                                <input (input)="searchContest($event)" type="text" placeholder="Cuộc thi"
-                                    id="input-search-contest">
-                                <i (click)="formSearchClose()" class="fas fa-times clear"></i>
-                            </div>
+                    <select class="w-25 form-select" (change)="statusMajorContest($event)"
+                        aria-label="Default select example">
+                        <option value="0">Tất cả</option>
+                        <option value="1">Đang diễn ra
+                        </option>
+                        <option value="2">Sắp diễn ra </option>
+                        <option value="3">Đã kết thúc</option>
+                    </select>
+                    <form class="d-flex justify-content-center  align-items-center" (submit)="searchContest()">
+                        <div style="margin-right: 20px">
+                            <input (keyup)="setValueSearch($event)" type=" text" placeholder="Tìm kiếm cuộc thi"
+                                class="form-control">
                         </div>
-                    </div>
-                    <div class="reset-contest-start" routerLink="/cuoc-thi" placement="top"
-                        ngbTooltip="Tất cả cuộc thi">
-                        <i class="fas fa-sync icon-reset-contests"></i>
-                    </div>
+                        <div class="ml-2">
+                            <button type="button" (click)="searchContest()" class="btn btn-register">Tìm
+                                kiếm</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="row mt-2" *ngIf="statusContest == 'done' &&  contests.length > 0">
                 <app-contest-item *ngFor="let item of contests" class="col-md-6 col-lg-4 col-xl-4 col-sm-12 mb-3"
                     [item]="item" [major_slug]="major_slug">
                 </app-contest-item>
-
-                <div *ngIf="array_page_link.length > 1" class="paying-contest d-flex justify-content-end">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-
-
-                            <li *ngFor="let link of array_page_link" class="page-item"><a
-                                    class="page-link {{link.active ? 'active' : ''}}"
-                                    (click)="getContestWherePage(link.url)">{{link.label}}</a>
-                            </li>
-
-                        </ul>
-                    </nav>
-                </div>
             </div>
-            <div *ngIf="statusContest == 'pending'" class="container">
-                <div class="row">
-                    <app-contest-load-item class="col-4" style=""></app-contest-load-item>
-                    <app-contest-load-item class="col-4"></app-contest-load-item>
-                    <app-contest-load-item class="col-4"></app-contest-load-item>
-                    <app-contest-load-item class="col-4"></app-contest-load-item>
-                    <app-contest-load-item class="col-4"></app-contest-load-item>
-                    <app-contest-load-item class="col-4"></app-contest-load-item>
-                    <app-contest-load-item class="col-4"></app-contest-load-item>
-                    <app-contest-load-item class="col-4"></app-contest-load-item>
-                    <app-contest-load-item class="col-4"></app-contest-load-item>
-                </div>
+
+            <div *ngIf="statusContest == 'pending'" class=" row">
+                <app-contest-load-item class="col-4" style=""></app-contest-load-item>
+                <app-contest-load-item class="col-4"></app-contest-load-item>
+                <app-contest-load-item class="col-4"></app-contest-load-item>
+                <app-contest-load-item class="col-4"></app-contest-load-item>
+                <app-contest-load-item class="col-4"></app-contest-load-item>
+                <app-contest-load-item class="col-4"></app-contest-load-item>
+                <app-contest-load-item class="col-4"></app-contest-load-item>
+                <app-contest-load-item class="col-4"></app-contest-load-item>
+                <app-contest-load-item class="col-4"></app-contest-load-item>
             </div>
+
             <div *ngIf="contests.length == 0 && statusContest == 'done'">
                 <img src="
                 https://cdn.dribbble.com/assets/art-banners/record-d05a64c16f564e98f34e41aec5ec07d5b12eb7ea8fb3a1bb0b12250b558de93b.png"
                     alt="" class="d-block">
                 <h2 class="text-center">Không tìm thấy kết quả !!!</h2>
+            </div>
+            <div *ngIf="contests.length > 8" class="paying-contest d-flex justify-content-end">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li *ngFor="let link of array_page_link" class="page-item"><a *ngIf="link.label !== ''"
+                                class="page-link  {{link.active ? 'active' : ''}}"
+                                (click)="getContestWherePage(link.url)">{{link.label}}</a>
+                        </li>
+
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

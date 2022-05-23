@@ -10,7 +10,7 @@ import { ContestLoadItemComponent } from './loading/contest-load-item/contest-lo
 import { InfoTeamComponent } from './pages/info-team/info-team.component';
 import { ProfileUserComponent } from './component/profile-user/profile-user.component';
 import { ContestUserJoinComponent } from './component/contest-user-join/contest-user-join.component';
-import { TeamUserJoinComponent } from './component/team-user-join/team-user-join.component';
+
 import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/team-user-join-detail.component';
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
 import { RoundComponent } from './component/round/round.component';
@@ -46,11 +46,6 @@ const routes: Routes = [
             component: ContestUserJoinComponent,
           },
           {
-            path: 'cac-doi',
-            component: TeamUserJoinComponent,
-          }
-          ,
-          {
             path: 'cuoc-thi/:contest_id/chi-tiet-doi/:team_id',
             component: TeamUserJoinDetailComponent,
           },
@@ -65,11 +60,11 @@ const routes: Routes = [
         component: ContestComponent,
       },
       {
-        path: "cuoc-thi/chi-tiet/:contest_id",
+        path: "cuoc-thi/:contest_id",
         component: ContestDeatailComponent,
       },
       {
-        path: "cuoc-thi/chi-tiet/:contest_id/vong/:round_id",
+        path: "cuoc-thi/:contest_id/vong/:round_id",
         component: ContestDeatailComponent,
       }
     ]

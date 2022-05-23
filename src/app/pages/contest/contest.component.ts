@@ -23,12 +23,13 @@ export class ContestComponent implements OnInit {
   minutes: number = 20;
   array_page_link: Array<any> = [];
   seconds: number = 25;
+  statusContestFilter: number;
   major_slug: any = '';
   major_id: any;
   contests: Array<Contest> = [];
   majorItem: Array<Contest> = [];
   majors: Array<Major> = [];
-  item: Contest;
+  valueSearch: string;
 
   formSearch = new FormGroup({
     keyword: new FormControl()
@@ -37,8 +38,7 @@ export class ContestComponent implements OnInit {
   constructor(private contestService: ContestService,
     private route: ActivatedRoute,
     private majorService: MajorService,
-    private toast: NgToastService,
-    private configFuctionDate: ConfigFunctionService) {
+    private toast: NgToastService) {
   }
 
 
@@ -53,17 +53,16 @@ export class ContestComponent implements OnInit {
           this.getAllContest();
         } else {
           this.contests = [];
-          this.toast.warning({ summary: 'Đang tải dữ liệu ...', duration: 5000 });
           this.statusContest = 'pending';
           this.major_id = res.payload.id;
-          this.getWhereMajor(this.major_id);
+          this.filterContest('', this.major_id, 0)
         }
       })
     });
 
     // Gọi tất cả chuyên ngành
     this.majorService.getAll().subscribe(res => {
-      if (res.status == true) {
+      if (res.status) {
         this.majors = res.payload;
         if (this.majors) {
           this.statusMajor = 'done';
@@ -73,44 +72,9 @@ export class ContestComponent implements OnInit {
     })
   }
 
-  // Lọc theo trạng thái
-  filterContestWithStatus(e: any) {
-    this.contests = [];
-
-    this.statusContest = 'pending';
-    this.toast.warning({ summary: 'Đang tải dữ liệu , xin đợi giây lát ...', duration: 5000 });
-    let status = e.target.value;
-    if (status == 0) {
-      this.getWhereMajor(this.major_id);
-    }
-    if (this.major_id == undefined) {
-      this.contestService.getWhereStatus(status).subscribe(res => {
-        this.contests = res.payload.data;
-        if (this.contests.length > 0) {
-          this.statusContest = 'done';
-        } else {
-          this.toast.warning({ summary: 'Trạng thái này không có cuộc thi nào ', duration: 5000 });
-          this.statusContest = 'done';
-        }
-      })
-
-    } else {
-      this.contestService.getWhereStatusAndMajor(status, this.major_id).subscribe(res => {
-        this.contests = res.payload.data;
-        if (this.contests.length > 0) {
-          this.statusContest = 'done';
-        } else {
-          this.toast.warning({ summary: 'Trạng thái này không có cuộc thi nào ', duration: 5000 });
-          this.statusContest = 'done';
-        }
-      })
-    }
-  }
-
   // Phân trang
   getContestWherePage(url: string) {
     this.contests = [];
-    this.toast.warning({ summary: 'Đang tải dữ liệu , xin đợi giây lát ...', duration: 5000 });
     this.statusContest = 'pending';
     this.contestService.getContestWherePage(url).subscribe(res => {
       this.contests = res.payload.data;
@@ -128,27 +92,20 @@ export class ContestComponent implements OnInit {
       this.array_page_link = res.payload.links;
       this.changeArrayLinks(this.array_page_link);
       if (this.contests) {
-        console.log(this.contests);
         this.statusContest = 'done';
       }
     })
   }
 
+  setValueSearch(event: any) {
+    this.valueSearch = event.target.value;
+  }
+
   // Tìm kiếm cuộc thi
-  searchContest(e: any) {
+  searchContest() {
     this.contests = [];
-    this.toast.warning({ summary: 'Đang tải dữ liệu , xin đợi giây lát ...', duration: 5000 });
     this.statusContest = 'pending';
-    let keyword = e.target.value;
-
-
-    this.contestService.searchContest(keyword).subscribe(res => {
-      this.contests = res.payload.data;
-
-      if (this.contests) {
-        this.statusContest = 'done';
-      }
-    });
+    this.filterContest(this.valueSearch, this.major_id, 0);
   }
 
   // Điểm số người tham gia
@@ -164,53 +121,42 @@ export class ContestComponent implements OnInit {
 
   // Lọc theo trạng thái
   statusMajorContest(e: any) {
+    this.statusContest = 'pending';
     let statusMajor = e.target.value;
     if (statusMajor == 0) {
-      this.getAllContest();
-    }
-    this.contestService.getWhereStatus(statusMajor).subscribe(res => {
-      this.contests = res.payload;
-      if (this.contests) {
-        this.statusContest = 'done';
-      }
-    })
-  }
-
-  // Mở form search
-  formSearchOpen() {
-    // alert('Uy nguyễn ')
-    let formBox = document.querySelector('.header-form-search');
-
-    console.log(formBox);
-
-    formBox?.classList.toggle('max-with');
-  }
-
-  getWhereMajor(major_id: number) {
-    this.contestService.getWhereMajor(this.major_id).subscribe(res => {
-      this.contests = res.payload.data;
-      if (this.contests.length > 0) {
-        this.statusContest = 'done';
+      if (this.major_id) {
+        this.filterContest('', this.major_id, statusMajor);
       } else {
-        this.toast.warning({ summary: 'Chuyên ngành này chưa có cuộc thi nào', duration: 5000 });
-        this.statusContest = 'done';
+        this.filterContest('', 0, statusMajor);
       }
-    })
+    }
+    else {
+      if (this.major_id) {
+        this.filterContest('', this.major_id, statusMajor)
+      } else {
+        this.filterContest('', 0, statusMajor)
+      }
+    }
+  }
+
+
+  getWhereMajor() {
+    this.filterContest('', this.major_id, 0);
   }
 
   changeArrayLinks(links: Array<any>) {
     for (let index = 0; index < links.length; index++) {
-      links[0].label = '<<';
-      links[links.length - 1].label = '>>';
+      links[0].label = '';
+      links[links.length - 1].label = '';
     }
   }
 
-  // Đóng formSearch
-  formSearchClose() {
-    // alert('Uy nguyễn ')
-    let formBox = document.querySelector('.header-form-search');
-
-
-    formBox?.classList.remove('max-with');
+  filterContest(keyword: string, major_id: number, status: number) {
+    this.statusContest = 'pending';
+    this.contestService.filterContest(keyword, major_id, status).subscribe(res => {
+      if (res.status)
+        this.contests = res.payload.data;
+      this.contests ? this.statusContest = 'done' : this.statusContest;
+    })
   }
 }

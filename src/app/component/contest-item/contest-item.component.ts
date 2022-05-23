@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Contest } from 'src/app/models/contest';
 import { Team } from 'src/app/models/team';
 import * as moment from 'moment/moment';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-contest-item',
@@ -13,8 +14,6 @@ export class ContestItemComponent implements OnInit {
   @Input() major_slug: any;
   @Input() pageContestByUser: boolean;
 
-  checkStatusDate: boolean = true;
-  nameButton: string = 'Đăng ký';
   statusContest: number;
   date_end: string;
   days: number = 5;
@@ -23,7 +22,8 @@ export class ContestItemComponent implements OnInit {
   seconds: number = 25;
 
 
-  constructor() { }
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
 
@@ -35,8 +35,6 @@ export class ContestItemComponent implements OnInit {
 
       let distance = futureDate - today;
       if (distance < 0) {
-        this.checkStatusDate = false;
-        this.nameButton = 'Đã hết hạn'
         this.days = 0;
         this.hours = 0;
         this.minutes = 0;
@@ -61,26 +59,34 @@ export class ContestItemComponent implements OnInit {
     return totalMember;
   }
 
-  checkStatusContest(start_time: Date, end_time: Date, id_round: number): any {
+  checkStatusContest(status: number): any {
     let result;
-    let startTime = new Date(start_time).getTime();
-    let endTime = new Date(end_time).getTime();
-    let todayTime = new Date().getTime();
+    if (status == 1) {
 
-
-    if (todayTime > endTime) {
-      this.statusContest = 1;
-      result = 'Đã hết bạn';
-    } else if (startTime < todayTime && todayTime < endTime) {
-      this.statusContest = 2;
-      result = 'Đang mở';
-    } else if (todayTime < endTime) {
-      this.statusContest = 3;
-      result = 'Sắp mở';
+      result = 'Sắp diễn ra';
+    } else if (status == 2) {
+      result = 'Đang diễn ra';
+    } else if (status == 3) {
+      result = 'Đã kết thúc';
     }
-
     return result;
   }
 
+  checkUserHasJoinContest(contestItem: Contest) {
+    let user = this.userService.getUserValue();
+    let status: boolean = false;
+    if (Object.entries(user).length !== 0) {
+      let index = contestItem.teams.map(item => {
+        return item.members.map(item => {
+          return item.id == user.id;
+        })
+        // 
+      });
+      console.log(index);
+
+      index.length > 0 ? status = true : status;
+    }
+    return status;
+  }
 
 }
