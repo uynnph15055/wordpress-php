@@ -4,6 +4,7 @@ import { ContestMember } from 'src/app/models/contest-member';
 import { TeamService } from 'src/app/services/team.service';
 import { NgToastService } from 'ng-angular-popup';
 import { ContestService } from 'src/app/services/contest.service';
+import { ConfigFunctionService } from 'src/app/services/config-function.service';
 
 @Component({
   selector: 'app-modal-list-member',
@@ -22,7 +23,8 @@ export class ModalListMemberComponent implements OnInit {
   listUserJoinTeam: Array<any> = [];
   statusAddMember: boolean;
 
-  constructor(public dialogRef: MatDialogRef<ModalListMemberComponent>, @Inject(MAT_DIALOG_DATA) public data: {
+  constructor(public configFunctionService: ConfigFunctionService,
+    public dialogRef: MatDialogRef<ModalListMemberComponent>, @Inject(MAT_DIALOG_DATA) public data: {
     keyWord: string, contest_id: number, team_id: number, array_members: number;
   },
     private teamService: TeamService,
@@ -68,7 +70,10 @@ export class ModalListMemberComponent implements OnInit {
     this.statusAddMember = false;
     let countMemberPresent = this.countMemberJoinTeam + this.listUserJoinTeam.length;
     if (this.max_user < countMemberPresent) {
-      this.toast.warning({ summary: 'Đã quá giới hạn thành viên cho phép !!!', duration: 3000 });
+      setTimeout(() => {
+        this.toast.warning({ summary: 'Đã quá giới hạn thành viên cho phép !!!', duration: 3000 });
+        this.dialogRef.close();
+      }, 3000);
     }
     else {
       let data = {

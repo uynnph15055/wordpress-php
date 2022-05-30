@@ -96,6 +96,10 @@ ul {
   border: 1px solid var(--warning);
 }
 
+.btn-register:focus {
+  box-shadow: unset;
+}
+
 .btn-base-type-bg {
   color: var(--white);
   background-color: var(--warning);

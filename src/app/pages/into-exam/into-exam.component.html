@@ -153,9 +153,9 @@
 
         <div class="col-3 ">
             <div class="warper-submit-assignment">
+                <mat-progress-bar *ngIf="statusSubmitExam ==  false" color="warn" mode="indeterminate">
+                </mat-progress-bar>
                 <div class="p-3">
-                    <mat-progress-bar *ngIf="statusSubmitExam ==  false" color="warn" mode="indeterminate">
-                    </mat-progress-bar>
                     <h3 class="fw-bold fs-5">Nộp bài</h3>
                     <p [ngClass]="statusSubmitExam == true ? 'py-2 mt-3 w-100 text-success border border-success rounded color-gray text-center' : 'py-2 mt-3 w-100 color-text border rounded color-gray text-center'"
                         class="">{{statusSubmitExam == true ? 'Đã nộp' : 'Chưa nộp'}}</p>

@@ -16,6 +16,7 @@ import { Team } from 'src/app/models/team';
 })
 export class ModalAddTeamComponent implements OnInit {
   selectedImage: any;
+  statusRegister: boolean;
   titleModel: string = 'Thêm đội tham gia thi'
   public imagePath: string;
   contest_id: any;
@@ -98,7 +99,7 @@ export class ModalAddTeamComponent implements OnInit {
 
   // Add team
   addTeam() {
-    this.toast.warning({ summary: 'Đang thêm đội , xin đợi giây lát ...', duration: 5000 });
+    this.statusRegister = false;
     let dataTeam = { ...this.formRegister.value }
     var formDataTeam = new FormData();
 
@@ -108,11 +109,16 @@ export class ModalAddTeamComponent implements OnInit {
     formDataTeam.append('user_id', this.user_id);
 
     this.teamService.addTeam(formDataTeam).subscribe(res => {
-      if (res.status == false) {
-        this.toast.error({ summary: res.payload, duration: 5000 });
-      } else {
-        this.openDialog(res.id_team, this.contest_id);
-      }
+      setTimeout(() => {
+        if (res.status == false) {
+          this.toast.warning({ summary: res.payload, duration: 2000 });
+          this.dialogRef.close();
+        } else {
+          this.statusRegister = true;
+          this.dialogRef.close();
+          this.openDialog(res.id_team, this.contest_id);
+        }
+      }, 3000);
     })
   }
 

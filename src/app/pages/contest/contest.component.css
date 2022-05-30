@@ -6,8 +6,7 @@
   height: 170px;
 }
 
-/* CONTEST-ITEM
-   */
+/* CONTEST-ITEM */
 
 .fs-name-time {
   font-size: 12px;
@@ -44,6 +43,7 @@
 
 .major-contest-link:first-child {
   margin-top: 5px;
+
 }
 
 .major-contest-item .major-contest-link:hover,
@@ -56,6 +56,12 @@
 
 /* Phan trang cuoc thi */
 .paying-contest .page-link {
+  color: #ffff;
+}
+
+.paying-contest .page-link {
   cursor: pointer;
-  color: #000;
+  margin-right: 10px;
+  border-radius: 4px;
+
 }

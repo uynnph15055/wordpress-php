@@ -1,68 +1,112 @@
-<div class="margin-header contest-detail-box container my-5">
-    <div class="contest-detail-header">
-        <div class=" contest-detail-left ">
-            <div class="contest-detail-left-header">
-                <div class="p-3" *ngIf="statusContest == true">
-                    <p class="fw-bold fs-5 color-blue">Cuộc thi : {{contestDetail.name}}</p>
-                    <p class="color-gray fs-text fw-bold">Bắt đầu : <span class="fw-normal">{{contestDetail.date_start |
-                            formatDate}}</span></p>
-                    <p class="color-gray fs-text fw-bold">Kết thúc : <span
-                            class="fw-normal">{{contestDetail.register_deadline |
-                            formatDate}}</span></p>
-                    <p class="fw-bold color-gray p-justify fs-text">Nội dung : <span
-                            class="fw-normal">{{contestDetail.description}}</span></p>
-                    <div class="d-flex justify-content-start align-items-center">
-                        <p class="fw-bold fs-text color-gray">Tổng số đội :
-                        </p>
-                        &nbsp;
-                        &nbsp;
-                        <p class="" *ngIf="contestDetail.teams.length == 0">Chưa có team nào !</p>
-                        <div class="" *ngIf="contestDetail.teams.length > 0">
-                            <app-list-avatar-user [listTeam]="contestDetail.teams"
-                                [titleModelName]="'Danh sách các đội'">
-                            </app-list-avatar-user>
-                        </div>
+<div class="contest-detail-box ">
+    <div class="container my-4">
+        <div class="contest-detail-header">
+            <div class=" contest-detail-left">
+                <div class="contest-detail-left-header row">
+                    <div class="col-5 contest-detail-left-img-box">
+                        <img *ngIf="statusContest==true" [src]="contestDetail.img" alt=""
+                            class="w-100 h-100 contest-detail-left-img">
+                        <ngx-skeleton-loader *ngIf="statusContest==false"
+                            [theme]="{ 'height' : '100%' , 'width' : '100%' }" appearance="line">
+                        </ngx-skeleton-loader>
                     </div>
-                </div>
-                <div *ngIf="statusContest == false" class="p-3">
-                    <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'margin-bottom' : '10px' , 'width' : '50%' }"
-                        appearance="line">
-                    </ngx-skeleton-loader>
-                    <ngx-skeleton-loader [theme]="{ 'height.px' : 10, 'margin-bottom' : '10px'}" appearance="line">
-                    </ngx-skeleton-loader>
-                    <ngx-skeleton-loader [theme]="{ 'height.px' : 10, 'margin-bottom' : '10px'  }" appearance="line">
-                    </ngx-skeleton-loader>
-                    <ngx-skeleton-loader [theme]="{ 'height.px' : 30, 'margin-bottom' : '10px'  }" appearance="line">
-                    </ngx-skeleton-loader>
-                    <div class="d-flex align-items-center">
-                        <div class="col-3">
-                            <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'margin-bottom' : '10px' }"
+                    <div class="col-7" style="margin-left:-15px ;">
+
+                        <div class="py-3" *ngIf="statusContest == true">
+                            <p class="fw-bold fs-5 color-blue">Cuộc thi : {{contestDetail.name}}</p>
+                            <p class="color-gray color-blue  fs-text fw-bold"><i
+                                    class="fas -3 fa-clock contest-date-open-end"></i>
+                                <span class=" fw-normal">{{contestDetail.date_start |
+                                    formatDate}} - {{contestDetail.register_deadline |
+                                    formatDate}}</span>
+                            </p>
+                            <p class="fw-bold color-gray p-justify fs-text">Nội dung : <span
+                                    class="fw-normal">{{contestDetail.description}}</span></p>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <p class="fw-bold fs-text color-gray">Tổng số đội :
+                                </p>
+                                &nbsp;
+                                &nbsp;
+                                <p class="" *ngIf="contestDetail.teams.length == 0">Chưa có team nào !</p>
+                                <div class="" *ngIf="contestDetail.teams.length > 0">
+                                    <app-list-avatar-user [listTeam]="contestDetail.teams"
+                                        [titleModelName]="'Danh sách các đội'">
+                                    </app-list-avatar-user>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <p class="fw-bold fs-text color-gray">Ban giám khảo :
+                                </p>
+                                &nbsp;
+                                &nbsp;
+                                <p class="" *ngIf="contestDetail.judges.length == 0">Chưa có team nào !</p>
+                                <div class="" *ngIf="contestDetail.judges.length > 0">
+                                    <app-list-avatar-user [listTeam]="contestDetail.judges"
+                                        [titleModelName]="'Danh sách ban giám khảo'">
+                                    </app-list-avatar-user>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="statusContest == false" class="p-3">
+                            <ngx-skeleton-loader
+                                [theme]="{ 'height.px' : 20, 'margin-bottom' : '10px' , 'width' : '50%' }"
                                 appearance="line">
                             </ngx-skeleton-loader>
-                        </div>
-                        <div class="col-7">
-                            <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
-                                appearance="circle">
+                            <ngx-skeleton-loader [theme]="{ 'height.px' : 10, 'margin-bottom' : '10px'}"
+                                appearance="line">
                             </ngx-skeleton-loader>
-                            <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
-                                appearance="circle">
+                            <ngx-skeleton-loader [theme]="{ 'height.px' : 10, 'margin-bottom' : '10px'  }"
+                                appearance="line">
                             </ngx-skeleton-loader>
-                            <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
-                                appearance="circle">
+                            <ngx-skeleton-loader [theme]="{ 'height.px' : 30, 'margin-bottom' : '10px'  }"
+                                appearance="line">
                             </ngx-skeleton-loader>
-                            <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
-                                appearance="circle">
-                            </ngx-skeleton-loader>
+                            <div class="d-flex align-items-center">
+                                <div class="col-3">
+                                    <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'margin-bottom' : '10px' }"
+                                        appearance="line">
+                                    </ngx-skeleton-loader>
+                                </div>
+                                <div class="col-7">
+                                    <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
+                                        appearance="circle">
+                                    </ngx-skeleton-loader>
+                                    <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
+                                        appearance="circle">
+                                    </ngx-skeleton-loader>
+                                    <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
+                                        appearance="circle">
+                                    </ngx-skeleton-loader>
+                                    <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
+                                        appearance="circle">
+                                    </ngx-skeleton-loader>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <app-round *ngIf="statusRound_id == false" [contestDetail]="contestDetail" [statusContest]="statusContest">
-            </app-round>
-            <app-round-detail *ngIf="statusRound_id == true" [roundDetail]="roundDetail"
-                [statusRoundDetail]="statusRoundDetail">
-            </app-round-detail>
-            <!-- <div class="supporters-box">
+
+                <div class="mt-4 contest-detail-section">
+                    <div class="example-button-row p-2">
+                        <button (click)="scrollWin(400)" mat-button class="example-button-item">Xếp hạng</button>
+                        <button (click)="scrollWin(1420)" mat-button class="example-button-item">Vòng thi</button>
+                        <button (click)="scrollWin(1820)" mat-button class="example-button-item">Tin tức</button>
+                        <button (click)="scrollWin(2600)" mat-button class="example-button-item">Cuộc thi liên
+                            quan</button>
+                    </div>
+                </div>
+
+
+                <app-list-result-round  [round_id]="round_id" class="mt-3">
+                </app-list-result-round>
+    
+                <app-round id="round" *ngIf="statusRound_id == false" [contestDetail]="contestDetail"
+                    [statusContest]="statusContest">
+                </app-round>
+                <app-round-detail *ngIf="statusRound_id == true" [roundDetail]="roundDetail"
+                    [statusRoundDetail]="statusRoundDetail">
+                </app-round-detail>
+                <!-- <div class="supporters-box">
                 <h5 class="fw-bold fs-5 color-blue">Các nhà tài trợ</h5>
                 <div class="supporters-arrow-left arrow-list-supporter ">
                     <i class="fas fa-long-arrow-left"></i>
@@ -77,195 +121,192 @@
                 </div>
             </div> -->
 
-            <app-list-result-round class="mt-3" *ngIf="statusRound_id == true" [round_id]="round_id">
-            </app-list-result-round>
-            <div *ngIf="statusRound_id == false">
-                <h5 class="fw-bold fs-5 mt-3 color-blue">Tin tức cuộc thi</h5>
-                <p class="color-gray p-justify fs-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Dolorum,
-                    ad nesciunt. Earum necessitatibus,
-                    perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas veritatis. Rem
-                    quam
-                    beatae alias
-                    laboriosam tenetur.</p>
-                <p class="color-gray p-justify fs-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Dolorum,
-                    ad nesciunt. Earum necessitatibus,
-                    perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas veritatis. Rem
-                    quam
-                    beatae alias
-                    laboriosam tenetur.</p>
-                <img src="https://caodang.fpt.edu.vn/wp-content/uploads/IMG_5572-ok.jpg" alt="" class="w-100">
-                <p class="color-gray p-justify fs-text mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing
-                    elit.
-                    Dolorum,
-                    ad nesciunt. Earum necessitatibus,
-                    perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas veritatis. Rem
-                    quam
-                    beatae alias
-                    laboriosam tenetur.</p>
+                <div id="new-page" *ngIf="statusRound_id == false">
+                    <h5 class="fw-bold fs-5 color-blue">Tin tức cuộc thi</h5>
+                    <p class="color-gray p-justify fs-text"></p>
+                    <p class="color-gray p-justify fs-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                        Dolorum,
+                        ad nesciunt. Earum necessitatibus,
+                        perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas veritatis. Rem
+                        quam
+                        beatae alias
+                        laboriosam tenetur.</p>
+                    <img src="https://caodang.fpt.edu.vn/wp-content/uploads/IMG_5572-ok.jpg" alt="" class="w-100">
+                    <p class="color-gray p-justify fs-text mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit.
+                        Dolorum,
+                        ad nesciunt. Earum necessitatibus,
+                        perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas veritatis. Rem
+                        quam
+                        beatae alias
+                        laboriosam tenetur.</p>
+                </div>
+
             </div>
 
-        </div>
-
-        <div class="contest-detail-right">
-            <div class="contest-detail-right-in rounded border">
-                <div class="p-2 text-center" *ngIf="statusContest == true">
-                    <div class="img-detail-box">
-                        <img [src]="contestDetail.img" class="w-100" alt="">
-                        <p class="fw-bold fs-5 pt-2 contest-detail-right-name text-dark">{{contestDetail.name}}</p>
-                        <ul class="contest-detail-right-countdown">
-                            <li class="contest-detail-right-countdown-item"><span
-                                    class="contest-detail-right-countdown-number days">{{days}}</span>
-                            </li>
-                            <li class="contest-detail-right-countdown-item"><span
-                                    class="contest-detail-right-countdown-number hours">{{hours}}</span></li>
-                            <li class="contest-detail-right-countdown-item"><span
-                                    class="contest-detail-right-countdown-number minutes">{{minutes}}</span></li>
-                            <li class="contest-detail-right-countdown-item"><span
-                                    class="contest-detail-right-countdown-number seconds">{{seconds}}</span></li>
-                        </ul>
-                        <a *ngIf="statusUserHasJoinContest == true"
-                            [routerLink]="['/thong-tin/cuoc-thi' , contestDetail.id , 'chi-tiet-doi' , teamIdMemberHasJoinTeam ]"
-                            style="background-color: #e67e22;" class="btn text-white my-2"><i
-                                class="fas fa-user text-white"></i> Đội của bạn</a>
-                        <button (click)="openFormRegister()"
-                            [disabled]="statusCheckDate == false || statusUserHasJoinContest == true" [ngClass]=" statusCheckDate==true ? 'btn contest-detail-register-btn  btn-register w-100'
-                            : 'btn btn-register-disable w-100'">{{nameBtnRegister}}</button>
+            <div class="contest-detail-right">
+                <div class="contest-detail-right-in rounded border">
+                    <div class="p-2 text-center" *ngIf="statusContest == true">
+                        <div class="img-detail-box">
+                            <img [src]="contestDetail.img" class="w-100" alt="">
+                            <p style="margin: 10px 0px 20px 0px;"
+                                class="fw-bold fs-5 pt-2 contest-detail-right-name text-dark">{{contestDetail.name}}</p>
+                            <ul class="contest-detail-right-countdown">
+                                <li class="contest-detail-right-countdown-item"><span
+                                        class="contest-detail-right-countdown-number days">{{days}}</span>
+                                </li>
+                                <li class="contest-detail-right-countdown-item"><span
+                                        class="contest-detail-right-countdown-number hours">{{hours}}</span></li>
+                                <li class="contest-detail-right-countdown-item"><span
+                                        class="contest-detail-right-countdown-number minutes">{{minutes}}</span></li>
+                                <li class="contest-detail-right-countdown-item"><span
+                                        class="contest-detail-right-countdown-number seconds">{{seconds}}</span></li>
+                            </ul>
+                            <a *ngIf="statusUserHasJoinContest == true"
+                                [routerLink]="['/thong-tin/cuoc-thi' , contestDetail.id , 'chi-tiet-doi' , teamIdMemberHasJoinTeam ]"
+                                style="background-color: #e67e22;margin: 10px 0px 20px 0px;" class="btn text-white"><i
+                                    class="fas fa-user text-white"></i> Đội của bạn</a>
+                            <button (click)="openFormRegister()"
+                                [disabled]="statusCheckDate == false || statusUserHasJoinContest == true"
+                                [ngClass]=" statusCheckDate==false ? 'btn btn-register-disable w-100'
+                            : statusUserHasJoinContest == true ? 'btn btn-success w-100' : ' btn contest-detail-register-btn  btn-register w-100' ">{{statusCheckDate
+                                == false ? 'Hết hạn đăng ký' :
+                                statusUserHasJoinContest == true ? 'Đã tham gia' : 'Đăng ký'}}</button>
+                        </div>
+                    </div>
+                    <div class=" p-2" *ngIf="statusContest == false">
+                        <ngx-skeleton-loader
+                            [theme]="{ 'height.px' : 150, 'margin-bottom' : '7px' , 'border-radius': '3px' }"
+                            appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 20 }" appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 30 ,'width.px' : '80%' , 'margin-top' : '10px' } "
+                            appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 40 }" appearance="line">
+                        </ngx-skeleton-loader>
                     </div>
                 </div>
-                <div class=" p-2" *ngIf="statusContest == false">
-                    <ngx-skeleton-loader
-                        [theme]="{ 'height.px' : 150, 'margin-bottom' : '7px' , 'border-radius': '3px' }"
-                        appearance="line">
-                    </ngx-skeleton-loader>
-                    <ngx-skeleton-loader [theme]="{ 'height.px' : 20 }" appearance="line">
-                    </ngx-skeleton-loader>
-                    <ngx-skeleton-loader [theme]="{ 'height.px' : 30 ,'width.px' : '80%' , 'margin-top' : '10px' } "
-                        appearance="line">
-                    </ngx-skeleton-loader>
-                    <ngx-skeleton-loader [theme]="{ 'height.px' : 40 }" appearance="line">
-                    </ngx-skeleton-loader>
+                <div class="mt-3">
+                    <img src="https://caodang.fpt.edu.vn/wp-content/uploads/%C4%91%E1%BB%8Bnh-h%C6%B0%E1%BB%9Bng.png"
+                        alt="" class="w-100">
                 </div>
-            </div>
-            <div class="mt-3">
-                <img src="https://caodang.fpt.edu.vn/wp-content/uploads/%C4%91%E1%BB%8Bnh-h%C6%B0%E1%BB%9Bng.png" alt=""
-                    class="w-100">
-            </div>
-            <h3 class="fw-bold fs-5 color-blue my-4">Top sinh viên</h3>
-            <div class="list-student-rank-box border text-center">
-                <header>
-                    <h3 class="list-student-rank-title fw-bold pt-3 primary-color">Thiết kế website</h3>
-                    <div class=" form-input">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="filter" placeholder="Tên nhóm ..." />
-                    </div>
-                </header>
-                <div class="student-rank-list">
-                    <div class="student-rank-item d-flex justify-content-between align-items-center">
-                        <img src="
+                <h3 class="fw-bold fs-5 color-blue my-4">Top sinh viên</h3>
+                <div class="list-student-rank-box border text-center">
+                    <header>
+                        <h3 class="list-student-rank-title fw-bold pt-3 primary-color">Thiết kế website</h3>
+                        <div class=" form-input">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="filter" placeholder="Tên nhóm ..." />
+                        </div>
+                    </header>
+                    <div class="student-rank-list">
+                        <div class="student-rank-item d-flex justify-content-between align-items-center">
+                            <img src="
                         https://avatarfiles.alphacoders.com/645/thumb-64509.png" alt=""
-                            class="student-rank-avatar d-block">
-                        <p class="student-rank-name mt-2">Team ngọc toàn</p>
-                        <span class="student-rank-cup color-top-one">
-                            <i class="fas fa-trophy"></i>
-                        </span>
-                    </div>
-                    <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
-                        <img src="
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name mt-2">Team ngọc toàn</p>
+                            <span class="student-rank-cup color-top-one">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/Vladimir_2.jpg" alt=""
-                            class="student-rank-avatar d-block">
-                        <p class="student-rank-name  mt-2">Team ngọc uy</p>
-                        <span class="student-rank-cup color-top-two">
-                            <i class="fas fa-trophy"></i>
-                        </span>
-                    </div>
-                    <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
-                        <img src="
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name  mt-2">Team ngọc uy</p>
+                            <span class="student-rank-cup color-top-two">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
-                            class="student-rank-avatar d-block">
-                        <p class="student-rank-name  mt-2">Team Văn trọng</p>
-                        <span class="student-rank-cup color-top-three">
-                            <i class="fas fa-trophy"></i>
-                        </span>
-                    </div>
-                    <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
-                        <img src="
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name  mt-2">Team Văn trọng</p>
+                            <span class="student-rank-cup color-top-three">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
-                            class="student-rank-avatar d-block">
-                        <p class="student-rank-name mt-2">Team Đức Bình</p>
-                        <span class="student-rank-cup color-top-all">
-                            <i class="fas fa-trophy"></i>
-                        </span>
-                    </div>
-                    <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
-                        <img src="
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name mt-2">Team Đức Bình</p>
+                            <span class="student-rank-cup color-top-all">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
-                            class="student-rank-avatar d-block">
-                        <p class="student-rank-name  mt-2">Team Đức Bình</p>
-                        <span class="student-rank-cup color-top-all">
-                            <i class="fas fa-trophy"></i>
-                        </span>
-                    </div>
-                    <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
-                        <img src="
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name  mt-2">Team Đức Bình</p>
+                            <span class="student-rank-cup color-top-all">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
-                            class="student-rank-avatar d-block">
-                        <p class="student-rank-name  mt-2">Team Đức Bình</p>
-                        <span class="student-rank-cup color-top-all">
-                            <i class="fas fa-trophy"></i>
-                        </span>
-                    </div>
-                    <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
-                        <img src="
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name  mt-2">Team Đức Bình</p>
+                            <span class="student-rank-cup color-top-all">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
-                            class="student-rank-avatar d-block">
-                        <p class="student-rank-name  mt-2">Team Đức Bình</p>
-                        <span class="student-rank-cup color-top-all">
-                            <i class="fas fa-trophy"></i>
-                        </span>
-                    </div>
-                    <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
-                        <img src="
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name  mt-2">Team Đức Bình</p>
+                            <span class="student-rank-cup color-top-all">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
                         https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
-                            class="student-rank-avatar d-block">
-                        <p class="student-rank-name mt-2">Team Đức Bình</p>
-                        <span class="student-rank-cup color-top-all">
-                            <i class="fas fa-trophy"></i>
-                        </span>
-                    </div>
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name mt-2">Team Đức Bình</p>
+                            <span class="student-rank-cup color-top-all">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
 
+                    </div>
+                    <footer class="student-rank-footer">
+                        <a href="" class="student-rank-more">Xem thêm</a>
+                    </footer>
                 </div>
-                <footer class="student-rank-footer">
-                    <a href="" class="student-rank-more">Xem thêm</a>
-                </footer>
             </div>
         </div>
-    </div>
-    <div>
-        <h3 class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</h3>
-        <div class="related-contest-list row" *ngIf="statusContestRelated == true">
-            <div *ngFor="let item of contestRelated" class="col-3">
-                <app-contest-item [item]="item">
-                </app-contest-item>
+        <div>
+            <h3 class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</h3>
+            <div class="related-contest-list row" *ngIf="statusContestRelated == true">
+                <div *ngFor="let item of contestRelated" class="col-3">
+                    <app-contest-item [item]="item">
+                    </app-contest-item>
+                </div>
             </div>
-        </div>
-        <div class="related-contest-list row" *ngIf="statusContestRelated == false">
-            <div class="col-3">
-                <app-contest-load-item>
-                </app-contest-load-item>
-            </div>
-            <div class="col-3">
-                <app-contest-load-item>
-                </app-contest-load-item>
-            </div>
-            <div class="col-3">
-                <app-contest-load-item>
-                </app-contest-load-item>
-            </div>
-            <div class="col-3">
-                <app-contest-load-item>
-                </app-contest-load-item>
+            <div class="related-contest-list row" *ngIf="statusContestRelated == false">
+                <div class="col-3">
+                    <app-contest-load-item>
+                    </app-contest-load-item>
+                </div>
+                <div class="col-3">
+                    <app-contest-load-item>
+                    </app-contest-load-item>
+                </div>
+                <div class="col-3">
+                    <app-contest-load-item>
+                    </app-contest-load-item>
+                </div>
+                <div class="col-3">
+                    <app-contest-load-item>
+                    </app-contest-load-item>
+                </div>
             </div>
         </div>
     </div>

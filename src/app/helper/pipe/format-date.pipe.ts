@@ -6,9 +6,11 @@ import * as moment from 'moment/moment';
 export class FormatDatePipe implements PipeTransform {
 
   date: string;
+  dateFormat: string;
   transform(value: any): string {
-    this.date = moment(value).format(' h:mm MM-DD-YYYY')
-    return this.date;
+    this.date = moment(value).format('h:mm DD/MM/YYYY')
+    let arrDate = this.date.split(' ');
+    return arrDate[0] + ' Ngày : ' + arrDate[1];
   }
 
 }

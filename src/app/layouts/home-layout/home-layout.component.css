@@ -1,26 +1,46 @@
-
-
 /* HEADER */
 .header {
-  position: fixed;
   z-index: 99;
-  box-shadow: 0 5px 10px -1px #ccc;
-  top: 0;
-  left: 0;
-  right: 0;
+  box-shadow: 0px 0px 7px #ccc;
   background: transparent;
+
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0)
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-100%)
+  }
+}
+
+.headerUp {
+  animation: slideUp 0.6s ease-in-out;
   transition: all 0.4s ease-out;
 }
 
-.header .fixed {
-  position: fixed !important;
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background: #fff;
   margin: 0 !important;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  box-shadow: 0 13px 35px -12px rgb(35 35 35 / 10%);
+  animation: slideDown 0.6s ease-in-out;
+  box-shadow: 0 0px 6px gray;
 }
-
 
 .header-icon-message {
   font-size: 20px;

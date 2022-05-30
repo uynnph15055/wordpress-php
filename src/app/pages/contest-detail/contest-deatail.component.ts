@@ -15,6 +15,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { FormControl } from '@angular/forms';
 import { ResultRound } from 'src/app/models/result-round.model';
 import { UserService } from 'src/app/services/user.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-contest-deatail',
@@ -69,7 +70,8 @@ export class ContestDeatailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Check xem người có bấm nút đăng ký ko 
+
+    this.runTop();
     this.routeStateRegister = history.state.registerNow;
 
     this.route.paramMap.subscribe(params => {
@@ -92,6 +94,10 @@ export class ContestDeatailComponent implements OnInit {
         this.contestDetail = res.payload;
         this.contestDetail ? this.statusContest = true : false;
         this.contestDetail.enterprise;
+        if (this.round_id == undefined) {
+          this.round_id = this.getRoundEndContest(this.contestDetail.rounds);
+        }
+        this.runTop();
       }
 
       // Các cuộc thi liên quan
@@ -105,15 +111,12 @@ export class ContestDeatailComponent implements OnInit {
       });
 
       this.checkUserHasJoinContest();
-
-
+      
       // Chạy thời gian hết hạn cuộc thi 
       setInterval(() => {
         this.roundEndTime = moment(this.contestDetail.register_deadline).format('lll');
 
-        // console.log(this.roundEndTime);
         let futureDate = new Date(this.roundEndTime).getTime();
-
         let today = new Date().getTime();
         let distance = futureDate - today;
         if (distance < 0) {
@@ -134,9 +137,11 @@ export class ContestDeatailComponent implements OnInit {
 
 
       //  Check user có bẫm vào nút đăng ký ko 
-      if (this.routeStateRegister == true && this.getUserLocal.getValueLocalUser('user') && this.statusCheckDate == true) {
-        this.openDialog();
-      }
+      setTimeout(() => {
+        if (this.routeStateRegister == true && this.getUserLocal.getValueLocalUser('user') && this.statusCheckDate == true) {
+          this.openDialog();
+        }
+      }, 3000);
     });
 
 
@@ -146,18 +151,14 @@ export class ContestDeatailComponent implements OnInit {
   checkUserHasJoinContest() {
     let user = this.userService.getUserValue();
 
-    let index = this.contestDetail.teams.map(item => {
-      let arrMembers = item.members.map(item => {
+    this.contestDetail.teams.forEach(item => {
+      item.members.forEach(item => {
         if (item.id == user.id) {
           this.teamIdMemberHasJoinTeam = item.pivot.team_id;
+          this.statusUserHasJoinContest = true
         }
-        return item.id;
       });
-      return arrMembers.concat(arrMembers);
-    })[0].indexOf(user.id);
-
-    index > 0 || index == 0 ? this.statusUserHasJoinContest = true : this.statusUserHasJoinContest;
-    // console.log(this.statusUserHasJoinContest);
+    })
   }
 
   // Mở model thêm đội thi
@@ -196,4 +197,19 @@ export class ContestDeatailComponent implements OnInit {
   }
 
 
+  // Lấy ra id vòng thi cuối cùng của cuộc thi.
+  getRoundEndContest(arr: Array<Round>) {
+    return arr[arr.length - 1].id
+  }
+
+  scrollWin(section: number) {
+    window.scrollTo(0, section);
+  }
+
+  runTop() {
+    $('html , body').animate({
+      scrollTop: 0
+    }, 1000);
+
+  }
 }

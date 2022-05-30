@@ -1,14 +1,15 @@
 /* COMMOM */
-/* ---- */
+
 .p-justify {
   text-align: justify;
 }
 
-.contest-detail-box {
-  padding-top: 60px;
+
+.example-button-item:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+  transition: all 0.3s ease-in;
 }
-
-
 
 .contest-detail-header {
   display: grid;
@@ -25,23 +26,35 @@
   color: white;
 }
 
+.contest-detail-left-header {
+  margin: 0 0 !important;
+}
+
 
 .contest-detail-left-header,
 .list-team-in,
-.contest-detail-right-in {
-  border-radius: 5px;
+.contest-detail-right-in,
+.contest-detail-section {
+  border-radius: 8px;
   box-shadow: 0px 0px 7px var(--gray);
+  background-color: #ffff;
 }
 
 
 /*  */
 
-.img-detail-box img {
+.contest-detail-left-img {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 10px;
+  margin: 0px -12px !important;
   object-fit: cover;
- height: 170px;
-  width: 170px;
-  border-radius: 5px;
 }
+
+.contest-date-open-end {
+  font-size: 20px;
+  padding-right: 10px;
+}
+
 
 /* Danh sánh các nhà tài trợ */
 .arrow-list-supporter {
@@ -171,10 +184,6 @@
   opacity: 0.7;
 }
 
-/* Student very good */
-.stdent-very-good {
-  width: 100%;
-}
 
 /* List  */
 .related-contest-item {
@@ -223,6 +232,10 @@
   padding: 3px 10px;
 }
 
+
+
+/* COUNT DOWN */
+
 .contest-detail-right-name {
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -231,8 +244,13 @@
   text-overflow: ellipsis;
 }
 
+.img-detail-box img {
+  object-fit: cover;
+  height: 170px;
+  width: 170px;
+  border-radius: 5px;
+}
 
-/* COUNT DOWN */
 .contest-detail-right-countdown {
   display: flex;
   justify-content: center;

@@ -12,6 +12,10 @@ export class InfoTeamComponent implements OnInit {
   constructor(private userLocal: UserService) { }
 
   ngOnInit(): void {
+    $('html , body').animate({
+      scrollTop: 0
+    }, 1000);
+
     this.user = this.userLocal.getUserValue();
   }
 

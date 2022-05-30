@@ -33,4 +33,9 @@ export class TeamService {
   addMemberJoinTeam(contest_id: number, team_id: number, data: any): Observable<ResponsePayload> {
     return this.http.post<ResponsePayload>(`${environment.teamListUrl}/add-user-team-contest/${contest_id}/${team_id}`, data);
   }
+
+  // Xóa thành viên
+  removeMembers(data: Object): Observable<ResponsePayload> {
+    return this.http.post<ResponsePayload>(`${environment.teamListUrl}/delete-user-team-contest`, data);
+  }
 }
