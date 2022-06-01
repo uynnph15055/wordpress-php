@@ -11,7 +11,7 @@ export class SliderService {
 
   constructor(private http: HttpClient) { }
 
-  getListSlider(): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(environment.sliderListUrl);
+  getListSlider(namePage: string, nameId: string, pageId: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.sliderListUrl}?${namePage}=1&${nameId}=${pageId}`);
   }
 }

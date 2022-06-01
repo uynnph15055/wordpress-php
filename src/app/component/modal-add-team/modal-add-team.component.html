@@ -31,6 +31,8 @@
         )">
             <p class="text-danger" *ngIf="formRegister.controls['name'].hasError('required')">
                 Bạn chưa nhập tên nhóm</p>
+            <p class="text-danger" *ngIf="formRegister.controls['name'].hasError('email')">
+                Bạn </p>
         </div>
         <div class="info-team-list mt-3">
             <div class="px-2 d-flex justify-content-between align-items-center">

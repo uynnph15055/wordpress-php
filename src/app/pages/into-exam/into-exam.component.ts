@@ -13,6 +13,7 @@ import { RoundService } from 'src/app/services/round.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TakeExam } from 'src/app/models/take-exam.model';
 import { NgToastService } from 'ng-angular-popup';
+import { Round } from 'src/app/models/round.model';
 
 @Component({
   selector: 'app-into-exam',
@@ -26,6 +27,7 @@ export class IntoExamComponent implements OnInit {
   seconds: number;
   roundId: any;
   infoContest: Contest;
+  roundDetail: any;
   titleModelName: any;
   teamDetail: Team;
   statusInfo: boolean = false;
@@ -33,6 +35,7 @@ export class IntoExamComponent implements OnInit {
   contestId: number;
   statusSubmitExam: boolean;
   infoExam: TakeExam;
+  statusPage: boolean = false;
 
   constructor(private modalService: NgbModal,
     private route: ActivatedRoute,
@@ -50,6 +53,11 @@ export class IntoExamComponent implements OnInit {
     this.route.paramMap.subscribe(param => {
       this.roundId = param.get('round_id');
       round.round_id = this.roundId;
+      this.roundService.getRoundWhereId(this.roundId).subscribe(res => {
+        if (res.payload)
+          this.roundDetail = res.payload;
+        this.roundDetail ? this.statusInfo = true : false;
+      })
     }
     );
 
@@ -73,14 +81,12 @@ export class IntoExamComponent implements OnInit {
     ).subscribe(res => {
       if (res.status == true) {
         this.infoContest = res.payload;
-        this.infoContest ? this.statusInfo = true : false;
-        // this.getInfoTeamFromContestId(this.infoContest.id);
       }
     })
 
     setInterval(() => {
 
-      let futureDate = new Date("May 20, 2022 10:59 PM").getTime();
+      let futureDate = new Date(this.roundDetail.end_time).getTime();
 
       let today = new Date().getTime();
       let distance = futureDate - today;
@@ -94,7 +100,11 @@ export class IntoExamComponent implements OnInit {
 
   // dowload đề bài
   downloadExam() {
+    this.statusPage = true;
     window.location.href = 'https://drive.google.com/uc?id=1SBfNihiQPHx9Fp8XaoADpKFis2w7MNB6&export=media';
+    setTimeout(() => {
+      this.statusPage = false;
+    }, 2000);
   }
 
   openXl(content: any) {
@@ -168,6 +178,11 @@ export class IntoExamComponent implements OnInit {
         this.toast.success({ summary: 'Nộp bài thành công !!!', duration: 5000 });
       }
     })
+  }
+
+  copyLinkUrl() {
+    navigator.clipboard.writeText(window.location.href);
+    this.toast.info({ summary: 'Đã copy !!!', duration: 5000 });
   }
 
   displayedColumns: string[] = ['index', 'name', 'avatar', 'email', 'bot'];

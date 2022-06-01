@@ -4,6 +4,14 @@ th {
   font-weight: 600;
 }
 
+.page-link {
+  margin-left: 10px;
+}
+
+.active {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
 
 .table-result-round {
   border-radius: 10px;

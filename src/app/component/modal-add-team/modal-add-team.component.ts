@@ -29,6 +29,7 @@ export class ModalAddTeamComponent implements OnInit {
   // set up form control
   formRegister = new FormGroup({
     name: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.email),
     image: new FormControl(),
     id: new FormControl(),
     user_id: new FormControl(),

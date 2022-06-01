@@ -1,4 +1,4 @@
-<app-loading-page [status]="statusPage">
+<app-loading-page [status]="statusIntoExam">
 </app-loading-page>
 <div class="contest-detail-box ">
     <div class="container my-4">
@@ -6,33 +6,32 @@
             <div class=" contest-detail-left">
                 <div class="contest-detail-left-header row">
                     <div class="col-5 contest-detail-left-img-box">
-                        <img *ngIf="statusContest==true" [src]="contestDetail.img" alt=""
+                        <img *ngIf="statusContest==true" [src]="roundDetail.image" alt=""
                             class="w-100 contest-detail-left-img">
                         <ngx-skeleton-loader *ngIf="statusContest==false"
-                            [theme]="{ 'height' : '250px' ,'margin-left' : '-15px' , 'width' : '100%' , 'margin-bottom' : '-5px' }"
-                            appearance="line">
+                            [theme]="{ 'height' : '100%' , 'width' : '100%' }" appearance="line">
                         </ngx-skeleton-loader>
                     </div>
                     <div class="col-7" style="margin-left:-15px ;">
 
                         <div class="py-3" *ngIf="statusContest == true">
-                            <p class="fw-bold fs-5 color-blue">Cuộc thi : {{contestDetail.name}}</p>
+                            <p class="fw-bold fs-5 color-blue">Vòng thi: {{roundDetail.name}}</p>
                             <p class="color-gray color-blue  fs-text fw-bold"><i
                                     class="fas -3 fa-clock contest-date-open-end"></i>
-                                <span class=" fw-normal">{{contestDetail.date_start |
-                                    formatDate}} - {{contestDetail.register_deadline |
+                                <span class=" fw-normal">{{roundDetail.start_time |
+                                    formatDate}} - {{roundDetail.end_time |
                                     formatDate}}</span>
                             </p>
                             <p class="fw-bold color-gray p-justify fs-text">Nội dung : <span
-                                    class="fw-normal">{{contestDetail.description}}</span></p>
+                                    class="fw-normal">{{roundDetail.description}}</span></p>
                             <div class="d-flex justify-content-start align-items-center">
                                 <p class="fw-bold fs-text color-gray">Tổng số đội :
                                 </p>
                                 &nbsp;
                                 &nbsp;
-                                <p class="" *ngIf="contestDetail.teams.length == 0">Chưa có team nào !</p>
-                                <div class="" *ngIf="contestDetail.teams.length > 0">
-                                    <app-list-avatar-user [listTeam]="contestDetail.teams"
+                                <p class="" *ngIf="roundDetail.teams.length == 0">Chưa có team nào !</p>
+                                <div class="" *ngIf="roundDetail.teams.length > 0">
+                                    <app-list-avatar-user [listTeam]="roundDetail.teams"
                                         [titleModelName]="'Danh sách các đội'">
                                     </app-list-avatar-user>
                                 </div>
@@ -42,13 +41,15 @@
                                 </p>
                                 &nbsp;
                                 &nbsp;
-                                <p class="" *ngIf="contestDetail.judges.length == 0">Chưa có ban giám khảo !</p>
-                                <div *ngIf="contestDetail.judges.length > 0">
-                                    <app-list-avatar-user [listTeam]="contestDetail.judges"
+                                <!-- <p class="" *ngIf="roundDetail.judges.length == 0">Chưa có team nào !</p>
+                                <div class="" *ngIf="roundDetail.judges.length > 0">
+                                    <app-list-avatar-user [listTeam]="roundDetail.judges"
                                         [titleModelName]="'Danh sách ban giám khảo'">
                                     </app-list-avatar-user>
-                                </div>
+                                </div> -->
                             </div>
+                            <a class="btn btn-register" (click)="takeTheExam(roundDetail.id , roundDetail.end_time)">Vào
+                                Thi</a>
                         </div>
                         <div *ngIf="statusContest == false" class="p-3">
                             <ngx-skeleton-loader
@@ -91,9 +92,12 @@
 
                 <div class="mt-4 contest-detail-section">
                     <div class="example-button-row p-2">
-                        <button (click)="scrollWin(400)" mat-button class="example-button-item">Xếp hạng</button>
-                        <button (click)="scrollWin(1420)" mat-button class="example-button-item">Vòng thi</button>
-                        <button (click)="scrollWin(1820)" mat-button class="example-button-item">Tin tức</button>
+                        <button (click)="scrollWin(400)" mat-button class="example-button-item">Xếp
+                            hạng</button>
+                        <button (click)="scrollWin(1420)" mat-button class="example-button-item">Vòng
+                            thi</button>
+                        <button (click)="scrollWin(1820)" mat-button class="example-button-item">Tin
+                            tức</button>
                         <button (click)="scrollWin(2600)" mat-button class="example-button-item">Cuộc thi liên
                             quan</button>
                     </div>
@@ -103,9 +107,9 @@
                 <app-list-result-round [round_id]="round_id" class="mt-3">
                 </app-list-result-round>
 
-                <app-round id="round" *ngIf="statusRound_id == false" [contestDetail]="contestDetail"
-                    [statusContest]="statusContest">
-                </app-round>
+
+                <app-round-detail [roundDetail]="roundDetail" [statusRoundDetail]="statusRoundDetail">
+                </app-round-detail>
                 <!-- <div class="supporters-box">
                 <h5 class="fw-bold fs-5 color-blue">Các nhà tài trợ</h5>
                 <div class="supporters-arrow-left arrow-list-supporter ">
@@ -120,22 +124,27 @@
                     <i class="fas fa-long-arrow-right"></i>
                 </div>
             </div> -->
+
                 <div id="new-page" *ngIf="statusRound_id == false">
                     <h5 class="fw-bold fs-5 color-blue">Tin tức cuộc thi</h5>
                     <p class="color-gray p-justify fs-text"></p>
-                    <p class="color-gray p-justify fs-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    <p class="color-gray p-justify fs-text">Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit.
                         Dolorum,
                         ad nesciunt. Earum necessitatibus,
-                        perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas veritatis. Rem
+                        perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas
+                        veritatis. Rem
                         quam
                         beatae alias
                         laboriosam tenetur.</p>
                     <img src="https://caodang.fpt.edu.vn/wp-content/uploads/IMG_5572-ok.jpg" alt="" class="w-100">
-                    <p class="color-gray p-justify fs-text mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing
+                    <p class="color-gray p-justify fs-text mt-3">Lorem ipsum dolor, sit amet consectetur
+                        adipisicing
                         elit.
                         Dolorum,
                         ad nesciunt. Earum necessitatibus,
-                        perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas veritatis. Rem
+                        perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas
+                        veritatis. Rem
                         quam
                         beatae alias
                         laboriosam tenetur.</p>
@@ -149,17 +158,21 @@
                         <div class="img-detail-box">
                             <img [src]="contestDetail.img" class="w-100" alt="">
                             <p style="margin: 10px 0px 20px 0px;"
-                                class="fw-bold fs-5 pt-2 contest-detail-right-name text-dark">{{contestDetail.name}}</p>
+                                class="fw-bold fs-5 pt-2 contest-detail-right-name text-dark">
+                                {{contestDetail.name}}</p>
                             <ul class="contest-detail-right-countdown">
                                 <li class="contest-detail-right-countdown-item"><span
                                         class="contest-detail-right-countdown-number days">{{days}}</span>
                                 </li>
                                 <li class="contest-detail-right-countdown-item"><span
-                                        class="contest-detail-right-countdown-number hours">{{hours}}</span></li>
+                                        class="contest-detail-right-countdown-number hours">{{hours}}</span>
+                                </li>
                                 <li class="contest-detail-right-countdown-item"><span
-                                        class="contest-detail-right-countdown-number minutes">{{minutes}}</span></li>
+                                        class="contest-detail-right-countdown-number minutes">{{minutes}}</span>
+                                </li>
                                 <li class="contest-detail-right-countdown-item"><span
-                                        class="contest-detail-right-countdown-number seconds">{{seconds}}</span></li>
+                                        class="contest-detail-right-countdown-number seconds">{{seconds}}</span>
+                                </li>
                             </ul>
                             <a *ngIf="statusUserHasJoinContest == true"
                                 [routerLink]="['/thong-tin/cuoc-thi' , contestDetail.id , 'chi-tiet-doi' , teamIdMemberHasJoinTeam ]"
@@ -187,11 +200,12 @@
                         </ngx-skeleton-loader>
                     </div>
                 </div>
-                <div *ngFor="let itemImage of sliderContest" class="mt-3">
-                    <img [src]="itemImage.image_url" alt="" class="w-100">
+                <div class="mt-3">
+                    <img src="https://caodang.fpt.edu.vn/wp-content/uploads/%C4%91%E1%BB%8Bnh-h%C6%B0%E1%BB%9Bng.png"
+                        alt="" class="w-100">
                 </div>
-                <h3 class="fw-bold fs-5 color-blue my-4">Vòng thi trước</h3>
-                <div class="list-student-rank-box border text-center" *ngIf="statusResultRoundBefore == true">
+                <h3 class="fw-bold fs-5 color-blue my-4">Top sinh viên</h3>
+                <div class="list-student-rank-box border text-center">
                     <header>
                         <h3 class="list-student-rank-title fw-bold pt-3 primary-color">Thiết kế website</h3>
                         <div class=" form-input">
@@ -200,30 +214,89 @@
                         </div>
                     </header>
                     <div class="student-rank-list">
-                        <div *ngFor="let teamItem of resultRoundBefore"
-                            class="student-rank-item d-flex justify-content-between align-items-center">
-                            <img [src]="
-                            teamItem.team.image" alt="" class="student-rank-avatar d-block">
-                            <p class="student-rank-name mt-2">{{ teamItem.team.name}}</p>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center">
+                            <img src="
+                        https://avatarfiles.alphacoders.com/645/thumb-64509.png" alt=""
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name mt-2">Team ngọc toàn</p>
                             <span class="student-rank-cup color-top-one">
                                 <i class="fas fa-trophy"></i>
                             </span>
                         </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
+                        https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/Vladimir_2.jpg" alt=""
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name  mt-2">Team ngọc uy</p>
+                            <span class="student-rank-cup color-top-two">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
+                        https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name  mt-2">Team Văn trọng</p>
+                            <span class="student-rank-cup color-top-three">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
+                        https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name mt-2">Team Đức Bình</p>
+                            <span class="student-rank-cup color-top-all">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
+                        https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name  mt-2">Team Đức Bình</p>
+                            <span class="student-rank-cup color-top-all">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
+                        https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name  mt-2">Team Đức Bình</p>
+                            <span class="student-rank-cup color-top-all">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
+                        https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name  mt-2">Team Đức Bình</p>
+                            <span class="student-rank-cup color-top-all">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+                        <div class="student-rank-item d-flex justify-content-between align-items-center mt-2">
+                            <img src="
+                        https://en.ephoto360.com/uploads/worigin/media/avatar-lol-name/thumb/XinZhao_4.jpg" alt=""
+                                class="student-rank-avatar d-block">
+                            <p class="student-rank-name mt-2">Team Đức Bình</p>
+                            <span class="student-rank-cup color-top-all">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                        </div>
+
                     </div>
                     <footer class="student-rank-footer">
                         <a href="" class="student-rank-more">Xem thêm</a>
                     </footer>
                 </div>
-                <div *ngIf="statusResultRoundBefore == false">
-                    <ngx-skeleton-loader count="10" [theme]="{ 'height.px' : 35, 'margin-bottom' : '7px'}"
-                        appearance="line">
-                    </ngx-skeleton-loader>
-                </div>
             </div>
         </div>
-        <div class="related-contest">
+        <div>
             <h3 class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</h3>
-            <div class="related-contest-list row" *ngIf="statusContestRelated == true && countContestRelated == true">
+            <div class="related-contest-list row" *ngIf="statusContestRelated == true">
                 <div *ngFor="let item of contestRelated" class="col-3">
                     <app-contest-item [item]="item">
                     </app-contest-item>
