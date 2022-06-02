@@ -21,4 +21,9 @@ export class MajorService {
   getMajorWhereSlug(slug: string): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.majorListUrl}/${slug}`);
   }
+
+  // Danh sách kết quả cuộc thi.
+  getResultWhereMajor(slug: string): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.publicApiUrl}/rating-major/${slug}`);
+  }
 }

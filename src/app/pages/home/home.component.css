@@ -122,6 +122,11 @@
 /* LIST STUDENT POINT HIGHT */
 .list-student-point-box {
   background: linear-gradient(to bottom, #081327, #122035);
+  min-height: 500px;
+}
+
+.list-student-top-rank-box {
+  max-height: 400px;
 }
 
 /*  */
@@ -135,6 +140,7 @@
   display: block;
   opacity: 1;
   transition: all ease-in-out 0.3s;
+
 }
 
 
@@ -158,7 +164,6 @@
 }
 
 .student-point-dropdown {
-  border-radius: 10px;
   position: absolute;
   width: 100%;
   top: 100%;
@@ -168,6 +173,13 @@
   opacity: 0;
   display: none;
   transition: all ease-in-out 0.3s;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.student-point-dropdown::-webkit-scrollbar {
+  width: 2px;
+  color: #ffff;
 }
 
 
@@ -188,6 +200,9 @@
 }
 
 /*  */
+.list-student-point-hight {
+  min-height: 350px;
+}
 
 .student-point-avatar {
   max-width: 120px;
@@ -247,44 +262,6 @@
   color: var(--title-blue);
 }
 
-.student-social-item {
-  margin: 0px 10px;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-}
-
-.student-social-item a {
-  display: inline-block;
-  line-height: 45px;
-  color: #fff;
-  font-size: 21px;
-  text-align: center;
-}
-
-.facebook {
-  background-color: #1877F2;
-}
-
-.twitter {
-  background-color: #1DA1F2;
-}
-
-.instagram {
-  background-color: #E4405F;
-}
-
-.student-social-item {
-  transition: all ease-in-out 0.3s;
-  position: relative;
-}
-
-.student-social-item:hover {
-  transform: translateY(-5px);
-  transition: transform ease-in-out 0.3s;
-  box-shadow: 0px 0px 10px var(--gray);
-}
-
 .slick-slide-student .slick-slide {
   transform: scale(0.8);
   transition: all linear 0.3s;
@@ -299,12 +276,12 @@
 
 
 .prev-student-arrow {
-  transform: translateY(270px);
+  transform: translateY(290px);
   left: 5%;
 }
 
 .next-student-arrow {
-  transform: translateY(-190px);
+  transform: translateY(-300px);
   right: 5%;
 }
 
@@ -426,6 +403,52 @@
 .assess-compacity-name {
   font-family: 'Gelasio', serif;
   font-weight: bold;
+
+}
+
+
+/* Loadinggae */
+
+.loading-student-rank-box {
+  height: 400px;
+}
+
+.loading-student-rank {
+  display: flex;
+  width: 3.5em;
+  height: 3.5em;
+  border: 3px solid transparent;
+  border-top-color: var(--primary-color-sub);
+  border-bottom-color: var(--primary-color-sub);
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}
+
+.loading-student-rank:before {
+  content: '';
+  display: block;
+  margin: auto;
+  width: 0.75em;
+  height: 0.75em;
+  border: 3px solid var(--primary-color-sub);
+  border-radius: 50%;
+  animation: pulse 1s alternate ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.5);
+  }
+
+  to {
+    transform: scale(1);
+  }
 }
 
 /*  RESPONSIVE */
