@@ -9,10 +9,11 @@ import { Team } from 'src/app/models/team';
 import { ContestMember } from 'src/app/models/contest-member';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalListMemberComponent } from '../modal-list-member/modal-list-member.component';
-import { param } from 'jquery';
+import { NgToastService } from 'ng-angular-popup';
 import { ContestService } from 'src/app/services/contest.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { ConfigFunctionService } from 'src/app/services/config-function.service';
 
 @Component({
   selector: 'app-team-user-join-detail',
@@ -32,9 +33,10 @@ export class TeamUserJoinDetailComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private teamService: TeamService,
-    private contestService: ContestService
-    ,
-    private userService: UserService) {
+    private contestService: ContestService,
+    private toast: NgToastService,
+    private userService: UserService,
+    public configFunctionService: ConfigFunctionService) {
 
   }
 
@@ -110,9 +112,6 @@ export class TeamUserJoinDetailComponent implements OnInit {
         })
       }
     })
-
-
-
   }
 
   checkUserTeamLeader() {
@@ -127,6 +126,24 @@ export class TeamUserJoinDetailComponent implements OnInit {
       })
   }
 
+  removeMembers(member: number) {
+    let check = confirm('Bạn có muốn xóa thành viên này ?');
+    if (check == true) {
+      let data = {
+        team_id: this.team_id,
+        user_id: [
+          member
+        ]
+      }
+
+      this.teamService.removeMembers(data).subscribe(res => {
+        if (res.status == true) {
+          this.ngOnInit();
+          this.toast.success({ summary: res.payload, duration: 3000 });
+        }
+      })
+    }
+  }
 
   displayedColumns: string[] = ['position', 'name', 'image', 'weight', 'bot', 'symbol'];
 

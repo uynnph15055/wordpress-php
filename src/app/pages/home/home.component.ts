@@ -9,6 +9,10 @@ import { Contest } from 'src/app/models/contest';
 import { Team } from 'src/app/models/team';
 import { ContestService } from 'src/app/services/contest.service';
 import { ConfigViewService } from 'src/app/services/config-view.service';
+import { Major } from 'src/app/models/major';
+import { MajorService } from 'src/app/services/major.service';
+import { ResultRound } from 'src/app/models/result-round.model';
+import { ResultMajor } from 'src/app/models/result-major.model';
 
 
 @Component({
@@ -17,12 +21,16 @@ import { ConfigViewService } from 'src/app/services/config-view.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  statusResultMajor: boolean = false;
   users: Array<User>;
   statusContest: string = 'pending';
   loggedInUser: User;
   sponsors: Array<Sponsor>;
   contests: Array<Contest> = [];
   item: Contest;
+  majors: Array<Major>;
+  resultMajor: Array<ResultMajor>;
+  nameSelectMajor: any = 'Cơ khí';
 
   sliderContest = { "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000 };
 
@@ -30,7 +38,9 @@ export class HomeComponent implements OnInit {
 
   sliderAssessCompacity = { "slidesToShow": 1, prevArrow: '.prev-compacity-arrow', nextArrow: '.next-compacity-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true, };
 
-  constructor(private contestService: ContestService, private configView: ConfigViewService) { }
+  constructor(private contestService: ContestService,
+    private configView: ConfigViewService,
+    private majorService: MajorService) { }
 
   ngOnInit(): void {
     let elToShow = document.querySelectorAll('.show-on-scroll')
@@ -38,7 +48,6 @@ export class HomeComponent implements OnInit {
       if (res.status == true) {
         this.contests = res.payload.data;
         if (this.contests) {
-          // console.log(this.contests);
           this.statusContest = 'done'
         }
       }
@@ -53,6 +62,9 @@ export class HomeComponent implements OnInit {
     this.configView.runStatisticHome(studentStatistic, 10);
     this.configView.runStatisticHome(yearStatistic, 4000);
     this.configView.runStatisticHome(passStatistic, 2000);
+
+    // getAllMajor
+    this.getAllMajor();
   }
 
   // Kiểm tra người dùng đã login chưa 
@@ -60,5 +72,30 @@ export class HomeComponent implements OnInit {
     return this.loggedInUser.id !== undefined
   }
 
+  //Lấy ra tất cả các chuyên ngành
+  getAllMajor() {
+    this.majorService.getAll().subscribe(res => {
+      if (res.status) {
+        this.majors = res.payload;
+        let majorRandom = Math.floor(Math.random() * this.majors.length);
+        this.nameSelectMajor = this.majors[majorRandom].name;
+        this.getResultWhereMajor(this.majors[majorRandom].slug);
+      }
+    })
+  }
 
+  // Gọi kết quả theo chuyên ngành.
+  getResultWhereMajor(majorSlug: any) {
+    this.majorService.getResultWhereMajor('co-khi').subscribe(res => {
+      if (res.status) {
+        this.resultMajor = res.payload;
+        this.nameSelectMajor = this.majors.map((item: any) => {
+          if (item.slug == majorSlug) {
+            return item.name;
+          }
+        })
+        this.resultMajor ? this.statusResultMajor = true : this.statusResultMajor;
+      }
+    })
+  }
 }

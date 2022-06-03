@@ -15,6 +15,7 @@ import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/t
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
 import { RoundComponent } from './component/round/round.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
+import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 
 const routes: Routes = [
   {
@@ -65,7 +66,7 @@ const routes: Routes = [
       },
       {
         path: "cuoc-thi/:contest_id/vong/:round_id",
-        component: ContestDeatailComponent,
+        component: RoundContestDetailComponent,
       }
     ]
   },

@@ -1,8 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { Contest } from 'src/app/models/contest';
-import { Slider } from 'src/app/models/slider.model';
 import { ContestService } from 'src/app/services/contest.service';
 import * as moment from 'moment/moment';
 import { ModalAddTeamComponent } from 'src/app/component/modal-add-team/modal-add-team.component';
@@ -17,46 +17,42 @@ import { FormControl } from '@angular/forms';
 import { ResultRound } from 'src/app/models/result-round.model';
 import { UserService } from 'src/app/services/user.service';
 import * as $ from 'jquery';
-import { SliderService } from 'src/app/services/slider.service';
-
-
 
 @Component({
-  selector: 'app-contest-deatail',
-  templateUrl: './contest-deatail.component.html',
-  styleUrls: ['./contest-deatail.component.css'],
+  selector: 'app-round-contest-detail',
+  templateUrl: './round-contest-detail.component.html',
+  styleUrls: ['./round-contest-detail.component.css']
 })
 
 
-export class ContestDeatailComponent implements OnInit {
-  round_id: any;
-  closeResult: string;
-  contest_id: number = 0;
-  teamIdMemberHasJoinTeam: number = 0;
-  nameBtnRegister: string = 'Đăng ký';
-  roundEndTime: any;
-  contestRelateTo: Array<Contest>;
-  resultRoundBefore: Array<ResultRound>;
-  sliderContest: Array<Slider>;
-  contestCompanySuppor: Enterprise;
-  contentItem: Array<Contest> = [];
+export class RoundContestDetailComponent implements OnInit {
   forwardComponent: Array<any> = [];
-  // ---------------------------
-
+  round_id: any;
+  statusRound_id: boolean = false;
+  roundDetail: Round;
+  statusRoundDetail: boolean = false;
+  statusIntoExam: boolean = false;
   contestDetail: Contest;
   contestRelated: Array<any>;
-  countContestRelated: boolean = false;
-  statusRound_id: boolean = false;
-  statusRoundDetail: boolean = false;
+  contestCompanySuppor: Enterprise;
   statusContestRelated: boolean = false;
+  contentItem: Array<Contest> = [];
+  closeResult: string;
   statusContest: boolean = false;
   routeStateRegister: boolean = false;
+  contest_id: number = 0;
+  nameBtnRegister: string = 'Đăng ký';
+  dataResultRound: Array<ResultRound>
   statusResultRound: boolean = false;
-  statusCheckDate: boolean = true;
-  statusPage: boolean = false;
-  statusResultRoundBefore: boolean = false;
-  statusUserHasJoinContest: boolean = false;
 
+  roundEndTime: any;
+  contestRelateTo: Array<Contest>;
+  statusCheckDate: boolean = true;
+
+  // --------------------------
+  statusUserHasJoinContest: boolean = false;
+  teamIdMemberHasJoinTeam: number = 0;
+  // ---------------------------
 
   days: number;
   hours: number;
@@ -72,46 +68,44 @@ export class ContestDeatailComponent implements OnInit {
     private router: Router,
     private roundService: RoundService,
     private toast: NgToastService,
-    private slider: SliderService,
-    private userService: UserService) {
+    private userService: UserService
+  ) {
   }
 
   ngOnInit(): void {
-    this.statusPage = true;
+
     this.runTop();
     this.routeStateRegister = history.state.registerNow;
+
+    this.route.paramMap.subscribe(params => {
+      if (params.get('round_id')) {
+        this.round_id = params.get('round_id');
+
+        this.roundService.getRoundWhereId(this.round_id).subscribe(res => {
+          this.roundDetail = res.payload;
+          this.roundDetail ? this.statusRoundDetail = true : false;
+        })
+      }
+    })
 
     this.route.paramMap.pipe(
       map(params => params.get('contest_id')),
       switchMap(id => this.contestService.getWhereId(id))
     ).subscribe(res => {
-      if (res.status) {
+      if (res.status == true) {
         this.contestDetail = res.payload;
-        this.contestDetail ? this.statusContest = true : this.statusContest;
-        this.statusPage = false;
+        this.contestDetail ? this.statusContest = true : false;
         this.contestDetail.enterprise;
-        this.slider.getListSlider('major', 'major_id', this.contestDetail.major_id).subscribe(res => {
-          if (res.status) {
-            this.sliderContest = res.payload;
-          }
-        })
         this.runTop();
-        if (this.contestDetail.rounds.length > 0) {
-          this.round_id = this.getRoundId(this.contestDetail.rounds, 1);
-          this.getResultRoundBefore(this.contestDetail.rounds);
-        }
       }
 
       // Các cuộc thi liên quan
       this.contestService.getWhereMajor(this.contestDetail.major_id).subscribe(res => {
-        if (res.payload.data.length > 0) {
-          this.contestRelated = res.payload.data.filter((item: any, index: any) => {
-            return item.id != this.contestDetail.id && index < 4;
-          })
-          if (this.contestRelated) {
-            this.statusContestRelated = true;
-            this.contestRelated.length > 0 ? this.countContestRelated = true : this.countContestRelated;
-          }
+        this.contestRelated = res.payload.data.filter((item: any, index: any) => {
+          return item.id != this.contestDetail.id && index < 4;
+        })
+        if (this.contestRelated) {
+          this.statusContestRelated = true;
         }
       });
 
@@ -148,8 +142,6 @@ export class ContestDeatailComponent implements OnInit {
         }
       }, 3000);
     });
-
-
   }
 
   // Check xem user đã join cuộc thi chưa
@@ -160,13 +152,13 @@ export class ContestDeatailComponent implements OnInit {
       item.members.forEach(item => {
         if (item.id == user.id) {
           this.teamIdMemberHasJoinTeam = item.pivot.team_id;
-          this.statusUserHasJoinContest = true;
+          this.statusUserHasJoinContest = true
         }
       });
     })
   }
 
-  // Mở model thêm đội thi
+  // Mơ lắm
   openFormRegister(): void {
     if (this.statusCheckDate == true && this.getUserLocal.getValueLocalUser('user')) {
       this.openDialog();
@@ -187,24 +179,7 @@ export class ContestDeatailComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-
-
-  // Kết quả vòng thi trước đó
-  getResultRoundBefore(arrRound: Array<Round>) {
-    this.roundService.getResultRound(this.getRoundId(arrRound, 2)).subscribe(res => {
-      if (res.status) {
-        this.resultRoundBefore = res.payload.data;
-        this.resultRoundBefore ? this.statusResultRoundBefore = true : this.statusResultRoundBefore;
-      }
-    })
-  }
-
-
-  // Lấy ra id vòng thi cuối cùng của cuộc thi.
-  getRoundId(arr: Array<Round>, element: number) {
-    return arr[arr.length - element].id
-  }
-
+  
   scrollWin(section: number) {
     window.scrollTo(0, section);
   }
@@ -214,4 +189,32 @@ export class ContestDeatailComponent implements OnInit {
       scrollTop: 0
     }, 1000);
   }
+
+  takeTheExam(round_id: number, end_time: Date) {
+    this.statusIntoExam = true;
+    setTimeout(() => {
+      if (!this.userService.getUserValue()) {
+        this.toast.warning({ summary: 'Bạn chưa đăng nhập !!!', duration: 3000 });
+        this.router.navigate(['./login']);
+      }
+
+      let dateTime = new Date(end_time).getTime();
+      let todayTime = new Date().getTime();
+      if (todayTime > dateTime) {
+        this.toast.warning({ summary: 'Đã hết thời gian thi !!!', duration: 3000 });
+        this.statusIntoExam = false;
+      } else {
+        this.roundService.getInfoTeamFromContestId(round_id)
+          .subscribe(res => {
+            if (res.payload.length == 0) {
+              this.toast.warning({ summary: 'Bạn chưa tham gia cuộc thi này !', duration: 5000 });
+              this.statusIntoExam = false;
+            } else {
+              this.router.navigate(['/vao-thi', this.roundDetail.contest_id, 'vong', this.roundDetail.id]);
+            }
+          })
+      }
+    }, 3000);
+  }
 }
+

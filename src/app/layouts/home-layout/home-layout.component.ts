@@ -6,46 +6,68 @@ import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import * as $ from 'jquery';
 
 @Component({
-  selector: 'app-home-layout',
-  templateUrl: './home-layout.component.html',
-  styleUrls: ['./home-layout.component.css']
+    selector: 'app-home-layout',
+    templateUrl: './home-layout.component.html',
+    styleUrls: ['./home-layout.component.css']
 })
 
 
 export class HomeLayoutComponent implements OnInit {
-  user: User;
+    user: User;
+    statusWindow: boolean = false;
+    statusLogin: boolean = false;
+    constructor(private userInfo: GetValueLocalService, private configView: ConfigViewService) {
 
-  statusLogin: boolean = false;
-  constructor(private userInfo: GetValueLocalService, private configView: ConfigViewService) {
-
-  }
-
-
-  ngOnInit(): void {
-    this.user = this.userInfo.getValueLocalUser('user');
-    if (this.user) {
-      this.statusLogin = true;
     }
 
-    let wrapperBox = document.querySelector('#main-wrapper');
 
-    window.addEventListener('scroll', () => {
+    ngOnInit(): void {
+        this.backTop();
 
-    })
-  }
+        this.user = this.userInfo.getValueLocalUser('user');
+        if (this.user) {
+            this.statusLogin = true;
+        }
+
+        this.winBackTop();
+        window.addEventListener('scroll', () => {
+            this.winBackTop();
+            this.headerBlockScroll();
+        })
+    }
+
+    winBackTop() {
+        let windowScroll = window.scrollY;
+        if (windowScroll > 0) {
+            this.statusWindow = true;
+        } else {
+            this.statusWindow = false;
+        }
+    }
+
+    headerBlockScroll() {
+        let header = document.querySelector('.header');
+
+        if (window.scrollY > 500) {
+            header?.classList.add('fixed');
+        } else {
+            header?.classList.remove('fixed');
+            // header?.classList.add('headerUp');
+        }
+    }
 
 
-  // Chuyển trạng thái web về đầu trang
-  backTop() {
-    $('html , body').animate({
-      scrollTop: 0
-    }, 1000);
-  }
+    // Chuyển trạng thái web về đầu trang
+    backTop() {
+        $('html , body').animate({
+            scrollTop: 0
+        }, 1000);
+    }
 
-  // LogOut
-  logOut() {
-    localStorage.clear();
-    this.statusLogin = false;
-    this.ngOnInit();
-  }
+    // LogOut
+    logOut() {
+        localStorage.clear();
+        this.statusLogin = false;
+        this.ngOnInit();
+    }
 }

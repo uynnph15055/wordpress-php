@@ -12,21 +12,22 @@ export class ListAvatarUserComponent implements OnInit {
   avatarTeam: Array<any>;
   round_id: number;
   @Input() listTeam: any;
-  @Input() titleModelName: String = "jsbcscs";
+  @Input() titleModelName: String = "";
 
   constructor(private modalService: NgbModal) { }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     this.lengthTeam = this.listTeam.length;
 
-    if (this.lengthTeam > 4) {
-      this.viewMore = this.lengthTeam - 4;
+    if (this.lengthTeam > 5) {
+      this.viewMore = this.lengthTeam - 5;
     }
 
-    this.avatarTeam = this.listTeam.slice(0, 3);
+    this.avatarTeam = this.listTeam.slice(0, 4);
   }
 
+  // Mở modal danh sách các user 
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { scrollable: true });
   }

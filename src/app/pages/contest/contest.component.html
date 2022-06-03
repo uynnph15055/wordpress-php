@@ -60,17 +60,20 @@
                 <app-contest-load-item class="col-4"></app-contest-load-item>
             </div>
 
-            <div *ngIf="contests.length == 0 && statusContest == 'done'">
-                <img src="
-                https://cdn.dribbble.com/assets/art-banners/record-d05a64c16f564e98f34e41aec5ec07d5b12eb7ea8fb3a1bb0b12250b558de93b.png"
-                    alt="" class="d-block">
-                <h2 class="text-center">Không tìm thấy kết quả !!!</h2>
+            <div class="w-100 d-flex justify-content-center mt-4"
+                *ngIf="contests.length == 0 && statusContest == 'done'">
+                <div class="w-50">
+                    <img src="
+                    https://img.freepik.com/free-vector/no-data-concept-illustration_203587-28.jpg?w=2000" alt=""
+                        class="d-block w-100">
+                    <h2 class="text-center">Không tìm thấy kết quả !!!</h2>
+                </div>
             </div>
             <div *ngIf="contests.length > 8" class="paying-contest d-flex justify-content-end">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li *ngFor="let link of array_page_link" class="page-item"><a *ngIf="link.label !== ''"
-                                class="page-link  {{link.active ? 'active' : ''}}"
+                        <li *ngFor="let link of array_page_link" class="page-item "><a *ngIf="link.label !== ''"
+                                class="page-link {{link.active ? 'active' : 'text-dark'}}"
                                 (click)="getContestWherePage(link.url)">{{link.label}}</a>
                         </li>
 

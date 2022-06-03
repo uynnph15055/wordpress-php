@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ResultRound } from 'src/app/models/result-round.model';
+import { ConfigFunctionService } from 'src/app/services/config-function.service';
+import { ContestService } from 'src/app/services/contest.service';
 import { RoundService } from 'src/app/services/round.service';
 
 @Component({
@@ -10,22 +12,59 @@ import { RoundService } from 'src/app/services/round.service';
 
 export class ListResultRoundComponent implements OnInit {
   @Input() round_id: number;
-  dataResultRound: Array<ResultRound>
+  @Input() contest_id: number;
+  dataResultRound: Array<any>;
   statusResultRound: boolean = false;
-  constructor(private roundService: RoundService) { }
+  payingLinks: Array<any>;
+  pages: number = 1;
+  resPayLoad: any;
+  titleResult: string = "Kết quả chung cuộc";
+  constructor(private roundService: RoundService,
+    private configFunctionService: ConfigFunctionService,
+    private contestService: ContestService) { }
 
   ngOnInit(): void {
+    this.round_id ?
+      this.titleResult = "Kết quả vòng thi" : this.titleResult;
+
     this.roundService.getResultRound(this.round_id).subscribe(res => {
-      if (res.payload) {
-        this.dataResultRound = res.payload;
-        this.dataResultRound = this.dataResultRound.filter((item: any, index: any) => {
-          return index < 11;
-        })
+      this.resPayLoad = res.payload;
+      if (res.payload.data.length > 0) {
+        this.dataResultRound = res.payload.data;
+        this.payingLinks = this.editLink(res.payload.links);
         this.dataResultRound ? this.statusResultRound = true : this.statusResultRound;
-      }
+      } else {
+        this.statusResultRound = true;
+      };
     })
   }
 
+  sortRankTeam(result_id: number): number {
+    return this.configFunctionService.indexTable(result_id, this.dataResultRound, this.pages, 10);
+  }
+
   displayedColumns: string[] = ['rank', 'avatar', 'name', 'total-point'];
+
+  // Phân trang theo link
+  payingPage(link: any, pages: any) {
+    this.statusResultRound = false;
+    this.pages = pages;
+    console.log(this.pages);
+
+    this.contestService.getContestWherePage(link).subscribe(res => {
+      if (res.status) {
+        this.dataResultRound = res.payload.data;
+        this.payingLinks = this.editLink(res.payload.links);
+        this.dataResultRound ? this.statusResultRound = true : this.statusResultRound;
+      }
+    });
+  }
+
+  //Sửa mảng link payingLink
+  editLink(arr: any) {
+    return arr.filter((item: any, index: any) => {
+      return index != 0 && index != arr.length - 1;
+    });
+  }
 
 }

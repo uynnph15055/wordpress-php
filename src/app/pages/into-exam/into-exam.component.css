@@ -1,18 +1,27 @@
 /* Phần trang thông tin cuộc thi */
 .warper-into-exam {
-  padding-top: 100px;
+  padding-top: 35px;
+  background-color: #f5f5f5;
 }
 
+
 .info-contest-header {
-  border-bottom: 1px solid #ccc;
+  background-color: #ffff;
+  border-radius: 6px;
+  box-shadow: 0px 0px 6px #ccc;
 }
 
 .warper-info-contest::-webkit-scrollbar {
   display: none;
 }
 
+
 .info-contest-img {
-  border-radius: 10px;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  object-fit: cover;
+  margin: 10px auto;
 }
 
 .btn-get-thread-get-thread-copy-link {

@@ -1,4 +1,7 @@
+<mat-progress-bar *ngIf="statusRegister ==  false" color="warn" mode="indeterminate">
+</mat-progress-bar>
 <form action="" class="form-resgister-bg" [formGroup]="formRegister" (submit)="addTeam()">
+
     <div class="modal-header d-flex  justify-content-between align-items-center">
         <i class="fas icon-add-team fa-user-plus d-block"></i>
         <h5 class="mt-2 fs-5 fw-bold mx-2 color-blue">{{titleModel}}</h5>
@@ -28,6 +31,8 @@
         )">
             <p class="text-danger" *ngIf="formRegister.controls['name'].hasError('required')">
                 Bạn chưa nhập tên nhóm</p>
+            <p class="text-danger" *ngIf="formRegister.controls['name'].hasError('email')">
+                Bạn </p>
         </div>
         <div class="info-team-list mt-3">
             <div class="px-2 d-flex justify-content-between align-items-center">
@@ -43,7 +48,6 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button [disabled]="formRegister.invalid" type="submit" mat-dialog-close
-            class="btn btn-register-save">{{buttonName}}</button>
+        <button [disabled]="formRegister.invalid" type="submit" class="btn btn-register-save">{{buttonName}}</button>
     </div>
 </form>

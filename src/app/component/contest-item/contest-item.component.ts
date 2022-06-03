@@ -50,12 +50,7 @@ export class ContestItemComponent implements OnInit {
 
   // Điếm số thành viên và đội tham gia 
   getMembers(teams: Array<Team> = []): number {
-    let totalMember = 0;
-    teams.forEach(t => {
-      if (t.members != undefined) {
-        totalMember += t.members.length;
-      }
-    });
+    let totalMember = teams.length;
     return totalMember;
   }
 
@@ -74,17 +69,14 @@ export class ContestItemComponent implements OnInit {
 
   checkUserHasJoinContest(contestItem: Contest) {
     let user = this.userService.getUserValue();
-    let status: boolean = false;
+    let status: boolean = true;
     if (Object.entries(user).length !== 0) {
-      let index = contestItem.teams.map(item => {
-        return item.members.map(item => {
-          return item.id == user.id;
+      contestItem.teams.forEach(item => {
+        item.members.forEach(item => {
+          item.id == user.id ? status = false : status;
         })
-        // 
-      });
-      console.log(index);
 
-      index.length > 0 ? status = true : status;
+      });
     }
     return status;
   }

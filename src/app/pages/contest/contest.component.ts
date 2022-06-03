@@ -43,6 +43,9 @@ export class ContestComponent implements OnInit {
 
 
   ngOnInit(): void {
+    $('html , body').animate({
+      scrollTop: 0
+    }, 1000);
     // Get id
     this.route.paramMap.subscribe(params => {
       this.major_slug = params.get('slug');
@@ -155,8 +158,10 @@ export class ContestComponent implements OnInit {
     this.statusContest = 'pending';
     this.contestService.filterContest(keyword, major_id, status).subscribe(res => {
       if (res.status)
-        this.contests = res.payload.data;
-      this.contests ? this.statusContest = 'done' : this.statusContest;
+        setTimeout(() => {
+          this.contests = res.payload.data;
+          this.contests ? this.statusContest = 'done' : this.statusContest;
+        }, 2000);
     })
   }
 }

@@ -6,7 +6,8 @@
             <div class="example-table-container">
                 <ng-container matColumnDef="index">
                     <th mat-header-cell *matHeaderCellDef class=" table-member-th"> STT </th>
-                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    <td mat-cell *matCellDef="let element"> {{configFunctionService.indexTable(element.id ,
+                        arrayMembers , 0 , 0)}} </td>
                 </ng-container>
                 <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef class=" table-member-th">Tên </th>
@@ -37,10 +38,6 @@
                     </td>
                 </ng-container>
             </div>
-
-
-            <!-- Name Column -->
-
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

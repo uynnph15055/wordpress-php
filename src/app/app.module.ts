@@ -49,6 +49,8 @@ import { RoundDetailComponent } from './component/round-detail/round-detail.comp
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { ModalSubmitAssComponent } from './modal/modal-submit-ass/modal-submit-ass.component';
 import { ListResultRoundComponent } from './component/list-result-round/list-result-round.component';
+import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
+import { LoadingPageComponent } from './loading/loading-page/loading-page.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { ListResultRoundComponent } from './component/list-result-round/list-res
     IntoExamComponent,
     ModalSubmitAssComponent,
     ListResultRoundComponent,
+    RoundContestDetailComponent,
+    LoadingPageComponent,
   ],
   imports: [
     BrowserModule,
