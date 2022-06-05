@@ -39,11 +39,17 @@
   box-shadow: 0px 0px 3px #ccc;
   color: #2c3e50;
   transition: all ease-in 0.5s;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .major-contest-link:first-child {
   margin-top: 5px;
-
 }
 
 .major-contest-item .major-contest-link:hover,

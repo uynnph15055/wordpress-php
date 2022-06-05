@@ -16,5 +16,7 @@ export class Contest {
     teams: Array<Team>
     rounds: Array<Round>
     enterprise: Array<Enterprise>;
-    judges: Array<Judges>
+    judges: Array<Judges>;
+    status_user_has_join_contest: boolean;
+    end_register_time: Date;
 }

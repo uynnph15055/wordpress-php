@@ -1,6 +1,6 @@
 <app-loading-page [status]="statusPage">
 </app-loading-page>
-<div class="contest-detail-box ">
+<div class="contest-detail-box mt-4">
     <div class="container my-4">
         <div class="contest-detail-header">
             <div class=" contest-detail-left">
@@ -8,6 +8,7 @@
                     <div class="col-5 contest-detail-left-img-box">
                         <img *ngIf="statusContest==true" [src]="contestDetail.img" alt=""
                             class="w-100 contest-detail-left-img">
+
                         <ngx-skeleton-loader *ngIf="statusContest==false"
                             [theme]="{ 'height' : '250px' ,'margin-left' : '-15px' , 'width' : '100%' , 'margin-bottom' : '-5px' }"
                             appearance="line">
@@ -100,7 +101,7 @@
                 </div>
 
 
-                <app-list-result-round [round_id]="round_id" class="mt-3">
+                <app-list-result-round *ngIf="round_id != undefined" [round_id]="round_id" class="mt-3">
                 </app-list-result-round>
 
                 <app-round id="round" *ngIf="statusRound_id == false" [contestDetail]="contestDetail"
@@ -190,8 +191,10 @@
                 <div *ngFor="let itemImage of sliderContest" class="mt-3">
                     <img [src]="itemImage.image_url" alt="" class="w-100">
                 </div>
-                <h3 class="fw-bold fs-5 color-blue my-4">Vòng thi trước</h3>
-                <div class="list-student-rank-box border text-center" *ngIf="statusResultRoundBefore == true">
+                <h3 class="fw-bold fs-5 color-blue my-4" *ngIf="resultRoundBefore !== undefined">Vòng thi trước
+                </h3>
+                <div class=" list-student-rank-box border text-center"
+                    *ngIf="statusResultRoundBefore == true && resultRoundBefore !== undefined">
                     <header>
                         <h3 class="list-student-rank-title fw-bold pt-3 primary-color">Thiết kế website</h3>
                         <div class=" form-input">
@@ -202,9 +205,8 @@
                     <div class="student-rank-list">
                         <div *ngFor="let teamItem of resultRoundBefore"
                             class="student-rank-item d-flex justify-content-between align-items-center">
-                            <img [src]="
-                            teamItem.team.image" alt="" class="student-rank-avatar d-block">
-                            <p class="student-rank-name mt-2">{{ teamItem.team.name}}</p>
+                            <img [src]="teamItem.image" alt="" class="student-rank-avatar d-block">
+                            <p class="student-rank-name mt-2">{{teamItem.name}}</p>
                             <span class="student-rank-cup color-top-one">
                                 <i class="fas fa-trophy"></i>
                             </span>
@@ -213,11 +215,6 @@
                     <footer class="student-rank-footer">
                         <a href="" class="student-rank-more">Xem thêm</a>
                     </footer>
-                </div>
-                <div *ngIf="statusResultRoundBefore == false">
-                    <ngx-skeleton-loader count="10" [theme]="{ 'height.px' : 35, 'margin-bottom' : '7px'}"
-                        appearance="line">
-                    </ngx-skeleton-loader>
                 </div>
             </div>
         </div>

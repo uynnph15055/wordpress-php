@@ -47,12 +47,10 @@ export class HomeLayoutComponent implements OnInit {
 
     headerBlockScroll() {
         let header = document.querySelector('.header');
-
-        if (window.scrollY > 500) {
+        if (window.scrollY > 400) {
             header?.classList.add('fixed');
         } else {
             header?.classList.remove('fixed');
-            // header?.classList.add('headerUp');
         }
     }
 

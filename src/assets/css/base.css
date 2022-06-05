@@ -121,3 +121,11 @@ ul {
   background-color: var(--warning);
   color: var(--white);
 }
+
+
+/* set up css bootstrap */
+.form-control:focus,
+.form-select:focus {
+  border: var(--warning);
+  box-shadow: 0 0 0 0.1rem var(--warning);
+}

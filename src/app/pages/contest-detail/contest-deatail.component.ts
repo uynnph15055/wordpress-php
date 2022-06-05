@@ -96,57 +96,61 @@ export class ContestDeatailComponent implements OnInit {
           }
         })
         this.runTop();
-        if (this.contestDetail.rounds.length > 0) {
+        if (this.contestDetail.rounds.length > 2) {
           this.round_id = this.getRoundId(this.contestDetail.rounds, 1);
           this.getResultRoundBefore(this.contestDetail.rounds);
         }
-      }
 
-      // Các cuộc thi liên quan
-      this.contestService.getWhereMajor(this.contestDetail.major_id).subscribe(res => {
-        if (res.payload.data.length > 0) {
-          this.contestRelated = res.payload.data.filter((item: any, index: any) => {
-            return item.id != this.contestDetail.id && index < 4;
-          })
-          if (this.contestRelated) {
-            this.statusContestRelated = true;
-            this.contestRelated.length > 0 ? this.countContestRelated = true : this.countContestRelated;
+        // ---
+
+        // Các cuộc thi liên quan
+        this.contestService.getWhereMajor(this.contestDetail.major_id).subscribe(res => {
+          if (res.payload.data.length > 0) {
+            this.contestRelated = res.payload.data.filter((item: any, index: any) => {
+              return item.id != this.contestDetail.id && index < 4;
+            })
+            if (this.contestRelated) {
+              this.statusContestRelated = true;
+              this.contestRelated.length > 0 ? this.countContestRelated = true : this.countContestRelated;
+            }
           }
-        }
-      });
+        });
 
-      this.checkUserHasJoinContest();
+        this.checkUserHasJoinContest();
 
-      // Chạy thời gian hết hạn cuộc thi 
-      setInterval(() => {
-        this.roundEndTime = moment(this.contestDetail.register_deadline).format('lll');
+        // Chạy thời gian hết hạn cuộc thi 
+        setInterval(() => {
+          this.roundEndTime = moment(this.contestDetail.end_register_time).format('lll');
 
-        let futureDate = new Date(this.roundEndTime).getTime();
-        let today = new Date().getTime();
-        let distance = futureDate - today;
-        if (distance < 0) {
-          this.statusCheckDate = false;
-          this.days = 0;
-          this.hours = 0;
-          this.minutes = 0;
-          this.seconds = 0;
-          this.nameBtnRegister = 'Đã hết hạn';
-        } else {
-          this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        }
-
-      }, 1000);
+          let futureDate = new Date(this.roundEndTime).getTime();
 
 
-      //  Check user có bẫm vào nút đăng ký ko 
-      setTimeout(() => {
-        if (this.routeStateRegister == true && this.getUserLocal.getValueLocalUser('user') && this.statusCheckDate == true) {
-          this.openDialog();
-        }
-      }, 3000);
+          let today = new Date().getTime();
+          let distance = futureDate - today;
+          if (distance < 0) {
+            this.statusCheckDate = false;
+            this.days = 0;
+            this.hours = 0;
+            this.minutes = 0;
+            this.seconds = 0;
+            this.nameBtnRegister = 'Đã hết hạn';
+
+          } else {
+            this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          }
+
+        }, 1000);
+
+        //  Check user có bẫm vào nút đăng ký ko 
+        setTimeout(() => {
+          if (this.routeStateRegister == false && this.getUserLocal.getValueLocalUser('user') && this.statusCheckDate == true) {
+            this.openDialog();
+          }
+        }, 3000);
+      }
     });
 
 
@@ -191,7 +195,9 @@ export class ContestDeatailComponent implements OnInit {
 
   // Kết quả vòng thi trước đó
   getResultRoundBefore(arrRound: Array<Round>) {
-    this.roundService.getResultRound(this.getRoundId(arrRound, 2)).subscribe(res => {
+    console.log(this.getRoundId(arrRound, 2));
+
+    this.roundService.getResultRound(this.getRoundId(arrRound, 1)).subscribe(res => {
       if (res.status) {
         this.resultRoundBefore = res.payload.data;
         this.resultRoundBefore ? this.statusResultRoundBefore = true : this.statusResultRoundBefore;

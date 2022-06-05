@@ -17,7 +17,6 @@ export class ContestUserJoinComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllContestByUser();
-
   }
 
   // Locj theo trạng thái cuộc thi
@@ -43,7 +42,7 @@ export class ContestUserJoinComponent implements OnInit {
   }
 
   // Dungf chung chung cho chức năng lọc
-  filterContest(keyWord: string, valueStatus: number) {
+  filterContest(keyWord: string, valueStatus: any) {
     this.usersService.getContestByUserStatus(keyWord, valueStatus).subscribe(res => {
       if (res.status)
         this.listContestByUser = res.payload;
@@ -54,11 +53,6 @@ export class ContestUserJoinComponent implements OnInit {
 
   // Gọi tất cả các cuộc thi theo user
   getAllContestByUser() {
-    this.usersService.getContestByUser().subscribe(res => {
-      if (res.status)
-        this.listContestByUser = res.payload;
-      this.listContestByUser ? this.statusListContests = true : this.statusListContests
-    });
+    this.filterContest('', '');
   }
-
 }

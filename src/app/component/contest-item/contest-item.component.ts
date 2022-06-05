@@ -66,19 +66,4 @@ export class ContestItemComponent implements OnInit {
     }
     return result;
   }
-
-  checkUserHasJoinContest(contestItem: Contest) {
-    let user = this.userService.getUserValue();
-    let status: boolean = true;
-    if (Object.entries(user).length !== 0) {
-      contestItem.teams.forEach(item => {
-        item.members.forEach(item => {
-          item.id == user.id ? status = false : status;
-        })
-
-      });
-    }
-    return status;
-  }
-
 }
