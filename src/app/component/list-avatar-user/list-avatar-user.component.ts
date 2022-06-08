@@ -18,6 +18,8 @@ export class ListAvatarUserComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.listTeam);
+
     this.lengthTeam = this.listTeam.length;
 
     if (this.lengthTeam > 5) {

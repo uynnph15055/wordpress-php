@@ -11,6 +11,17 @@
   transition: all 0.3s ease-in;
 }
 
+
+.content-contest {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+
 .contest-detail-header {
   display: grid;
   grid-template-columns: 70% 25%;
@@ -48,7 +59,7 @@
   border-bottom-left-radius: 10px;
   margin: 0px -12px !important;
   object-fit: cover;
-  height: 250px;
+  height: 280px;
 }
 
 .contest-date-open-end {
@@ -256,19 +267,31 @@
   display: flex;
   justify-content: center;
   /* margin: 20px 10px; */
+  margin-bottom: -0.7rem !important;
 }
 
-.contest-detail-right-countdown-item {
+.contest-detail-right-countdown-box {
+  width: 20%;
+  margin-right: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+
+.contest-detail-right-countdown-item {
+  text-align: center;
   padding: 10px 5px;
-  width: 20%;
   background-color: var(--primary-color);
+  width: 100%;
   margin: 0px 5px;
   border-radius: 6px;
   font-size: 17px;
   font-weight: 500;
   color: white;
+}
+
+.contest-detail-right-countdown-box p {
+  color: rgba(20, 20, 20, 0.333);
+  margin-left: 10px;
 }

@@ -10,6 +10,8 @@ export class Contest {
     img: string;
     date_start: Date;
     register_deadline: Date;
+    end_register_time: Date;
+    start_register_time: Date;
     description: string;
     major_id: number;
     status: number;
@@ -18,5 +20,4 @@ export class Contest {
     enterprise: Array<Enterprise>;
     judges: Array<Judges>;
     status_user_has_join_contest: boolean;
-    end_register_time: Date;
 }

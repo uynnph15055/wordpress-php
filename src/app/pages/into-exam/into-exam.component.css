@@ -4,8 +4,17 @@
   background-color: #f5f5f5;
 }
 
+.description img {
+  width: 150px;
+}
 
 .info-contest-header {
+  margin: 0 !important;
+}
+
+
+.info-contest-header,
+.team-detail-box {
   background-color: #ffff;
   border-radius: 6px;
   box-shadow: 0px 0px 6px #ccc;
@@ -95,9 +104,9 @@
   width: 200px;
   margin: 0 auto;
   border-radius: 10px;
-  box-shadow: 0 0 6px #ccc;
   z-index: 10;
   cursor: pointer;
+
 }
 
 

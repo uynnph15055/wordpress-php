@@ -29,13 +29,13 @@
                     <span class=" fw-normal">{{item.start_time |
                         formatDate}} - {{item.end_time |
                         formatDate}}</span>
-                <p class="fw-bold color-gray p-justify fs-text">Nội dung : <span
-                        class="fw-normal">{{item.description}}</span></p>
+                <p class="fw-bold color-gray p-justify fs-text">Nội dung : <span class="fw-normal"
+                        [innerHTML]="contestDetail.description"></span></p>
                 <div class="d-flex justify-content-start align-items-center">
                     <p class="fw-bold fs-text mt-3 color-gray">Số đội :
                     </p>
                     &nbsp;
-                    <p class="mt-3" *ngIf="item.teams == ''">Chưa có team nào !</p>
+                    <p class="mt-3" *ngIf="item.teams.length == 0">Chưa có team nào !</p>
                     <div class="m-3" *ngIf="item.teams.length > 0">
                         <app-list-avatar-user [titleModelName]="'Danh sách các đội'" [listTeam]="item.teams">
                         </app-list-avatar-user>
@@ -45,8 +45,9 @@
                     <p class="fw-bold fs-text color-gray mt-3">Ban giám khảo :
                     </p>
                     &nbsp;
-                    <p class="mt-3" *ngIf="item.teams == ''">Chưa có ban giám khảo nào !</p>
-                    <div class="m-3" *ngIf="item.teams.length > 0">
+                    <!-- {{item.teams.length}} -->
+                    <p class="mt-3" *ngIf="item.judges.length == 0">Chưa có ban giám khảo nào !</p>
+                    <div class="m-3" *ngIf="item.judges.length > 0">
                         <app-list-avatar-user [titleModelName]="'Danh sách ban giám khảo'"
                             [listTeam]="getImageJudges(item.judges)">
                         </app-list-avatar-user>

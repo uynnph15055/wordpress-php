@@ -18,6 +18,7 @@ import { ResultRound } from 'src/app/models/result-round.model';
 import { UserService } from 'src/app/services/user.service';
 import * as $ from 'jquery';
 import { SliderService } from 'src/app/services/slider.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -73,7 +74,8 @@ export class ContestDeatailComponent implements OnInit {
     private roundService: RoundService,
     private toast: NgToastService,
     private slider: SliderService,
-    private userService: UserService) {
+    private userService: UserService,
+    private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -98,7 +100,7 @@ export class ContestDeatailComponent implements OnInit {
         this.runTop();
         if (this.contestDetail.rounds.length > 2) {
           this.round_id = this.getRoundId(this.contestDetail.rounds, 1);
-          this.getResultRoundBefore(this.contestDetail.rounds);
+          this.getResultRoundBefore(this.contestDetail.rounds, 2);
         }
 
         // ---
@@ -152,8 +154,6 @@ export class ContestDeatailComponent implements OnInit {
         }, 3000);
       }
     });
-
-
   }
 
   // Check xem user đã join cuộc thi chưa
@@ -194,13 +194,14 @@ export class ContestDeatailComponent implements OnInit {
 
 
   // Kết quả vòng thi trước đó
-  getResultRoundBefore(arrRound: Array<Round>) {
-    console.log(this.getRoundId(arrRound, 2));
+  getResultRoundBefore(arrRound: Array<Round>, index: number) {
 
-    this.roundService.getResultRound(this.getRoundId(arrRound, 1)).subscribe(res => {
+    console.log(this.getRoundId(arrRound, index));
+
+    this.roundService.getResultRound(this.getRoundId(arrRound, index)).subscribe(res => {
       if (res.status) {
         this.resultRoundBefore = res.payload.data;
-        this.resultRoundBefore ? this.statusResultRoundBefore = true : this.statusResultRoundBefore;
+        this.resultRoundBefore.length > 0 ? this.statusResultRoundBefore = true : this.statusResultRoundBefore;
       }
     })
   }
@@ -220,4 +221,26 @@ export class ContestDeatailComponent implements OnInit {
       scrollTop: 0
     }, 1000);
   }
+
+  //Tìm kiếm sinh viên kết quả
+  searchTeamRank(event: any) {
+    let searchTeamRank = event.target.value;
+    console.log(searchTeamRank);
+    if (searchTeamRank != '') {
+
+      this.resultRoundBefore = this.resultRoundBefore.filter(res => {
+        return res.name.includes(searchTeamRank);
+      });
+    } else {
+      this.getResultRoundBefore(this.contestDetail.rounds, 2);
+    }
+
+  }
+
+
+  // Mở nộ dung vòng thi
+  open(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+
 }

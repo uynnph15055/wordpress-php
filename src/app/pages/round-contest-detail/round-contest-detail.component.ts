@@ -17,6 +17,10 @@ import { FormControl } from '@angular/forms';
 import { ResultRound } from 'src/app/models/result-round.model';
 import { UserService } from 'src/app/services/user.service';
 import * as $ from 'jquery';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SliderService } from 'src/app/services/slider.service';
+import { Slider } from 'src/app/models/slider.model';
+import { Judges } from 'src/app/models/judges.model';
 
 @Component({
   selector: 'app-round-contest-detail',
@@ -27,7 +31,11 @@ import * as $ from 'jquery';
 
 export class RoundContestDetailComponent implements OnInit {
   forwardComponent: Array<any> = [];
+  statusPage: boolean = false;
+  statusResultRoundBefore: boolean = false;
+  resultRoundBefore: Array<ResultRound>;
   round_id: any;
+  statusRound: number;
   statusRound_id: boolean = false;
   roundDetail: Round;
   statusRoundDetail: boolean = false;
@@ -43,11 +51,14 @@ export class RoundContestDetailComponent implements OnInit {
   contest_id: number = 0;
   nameBtnRegister: string = 'Đăng ký';
   dataResultRound: Array<ResultRound>
+  sliderContest: Array<Slider>;
+
   statusResultRound: boolean = false;
 
   roundEndTime: any;
   contestRelateTo: Array<Contest>;
   statusCheckDate: boolean = true;
+  statusJudges: boolean = false;
 
   // --------------------------
   statusUserHasJoinContest: boolean = false;
@@ -68,7 +79,9 @@ export class RoundContestDetailComponent implements OnInit {
     private router: Router,
     private roundService: RoundService,
     private toast: NgToastService,
-    private userService: UserService
+    private userService: UserService,
+    config: NgbModalConfig, private modalService: NgbModal,
+    private slider: SliderService,
   ) {
   }
 
@@ -80,6 +93,12 @@ export class RoundContestDetailComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       if (params.get('round_id')) {
         this.round_id = params.get('round_id');
+
+        this.slider.getListSlider('round', 'round_id', this.round_id).subscribe(res => {
+          if (res.status) {
+            this.sliderContest = res.payload;
+          }
+        })
 
         this.roundService.getRoundWhereId(this.round_id).subscribe(res => {
           this.roundDetail = res.payload;
@@ -96,6 +115,9 @@ export class RoundContestDetailComponent implements OnInit {
         this.contestDetail = res.payload;
         this.contestDetail ? this.statusContest = true : false;
         this.contestDetail.enterprise;
+        this.contestDetail.judges !== undefined ? this.statusJudges = true : false;
+        if (this.contestDetail.rounds.length > 1)
+          this.getResultRoundBefore(this.contestDetail.rounds, this.round_id);
         this.runTop();
       }
 
@@ -113,7 +135,7 @@ export class RoundContestDetailComponent implements OnInit {
 
       // Chạy thời gian hết hạn cuộc thi 
       setInterval(() => {
-        this.roundEndTime = moment(this.contestDetail.register_deadline).format('lll');
+        this.roundEndTime = moment(this.contestDetail.end_register_time).format('lll');
 
         let futureDate = new Date(this.roundEndTime).getTime();
         let today = new Date().getTime();
@@ -144,10 +166,33 @@ export class RoundContestDetailComponent implements OnInit {
     });
   }
 
+  // Check trạng thái vòng thi
+  checkStatusRound(start_time: Date, end_time: Date): any {
+    let result;
+    let startTime = new Date(start_time).getTime();
+    let endTime = new Date(end_time).getTime();
+    let todayTime = new Date().getTime();
+
+
+    if (todayTime > endTime) {
+      this.statusRound = 1;
+      result = 'Đã hết bạn';
+    } else if (startTime < todayTime && todayTime < endTime) {
+      this.statusRound = 2;
+      result = 'Đang mở';
+
+    } else if (todayTime < endTime) {
+      this.statusRound = 3;
+      result = 'Sắp mở';
+    }
+
+    return result;
+  }
+
+
   // Check xem user đã join cuộc thi chưa
   checkUserHasJoinContest() {
     let user = this.userService.getUserValue();
-
     this.contestDetail.teams.forEach(item => {
       item.members.forEach(item => {
         if (item.id == user.id) {
@@ -179,7 +224,7 @@ export class RoundContestDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-  
+
   scrollWin(section: number) {
     window.scrollTo(0, section);
   }
@@ -190,7 +235,7 @@ export class RoundContestDetailComponent implements OnInit {
     }, 1000);
   }
 
-  takeTheExam(round_id: number, end_time: Date) {
+  takeTheExam(round_id: number, end_time: Date, start_time: Date) {
     this.statusIntoExam = true;
     setTimeout(() => {
       if (!this.userService.getUserValue()) {
@@ -198,16 +243,24 @@ export class RoundContestDetailComponent implements OnInit {
         this.router.navigate(['./login']);
       }
 
+      let startTime = new Date(start_time).getTime();
+
+
       let dateTime = new Date(end_time).getTime();
       let todayTime = new Date().getTime();
+
       if (todayTime > dateTime) {
         this.toast.warning({ summary: 'Đã hết thời gian thi !!!', duration: 3000 });
         this.statusIntoExam = false;
-      } else {
+      } else if (todayTime < startTime) {
+        this.toast.warning({ summary: 'Cuộc thi chưa được mở !!!', duration: 3000 });
+        this.statusIntoExam = false;
+      }
+      else {
         this.roundService.getInfoTeamFromContestId(round_id)
           .subscribe(res => {
             if (res.payload.length == 0) {
-              this.toast.warning({ summary: 'Bạn chưa tham gia cuộc thi này !', duration: 5000 });
+              this.toast.warning({ summary: 'Đội của bạn chưa tham gia vòng này !', duration: 5000 });
               this.statusIntoExam = false;
             } else {
               this.router.navigate(['/vao-thi', this.roundDetail.contest_id, 'vong', this.roundDetail.id]);
@@ -216,5 +269,43 @@ export class RoundContestDetailComponent implements OnInit {
       }
     }, 3000);
   }
+
+  open(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+
+
+  // Kết quả vòng thi trước đó
+  getResultRoundBefore(arrRound: Array<Round>, round_id: number) {
+    let roundId = 0;
+    arrRound.forEach(res => {
+      if (res.id == round_id)
+        roundId = arrRound.indexOf(res);
+    })
+
+
+    this.roundService.getResultRound(arrRound[roundId - 1].id).subscribe(res => {
+      if (res.status) {
+        this.resultRoundBefore = res.payload.data;
+        this.resultRoundBefore.length > 0 ? this.statusResultRoundBefore = true : this.statusResultRoundBefore;
+      }
+    })
+  }
+  //Tìm kiếm sinh viên kết quả
+  searchTeamRank(event: any) {
+    let searchTeamRank = event.target.value;
+
+    if (searchTeamRank != '') {
+
+      this.resultRoundBefore = this.resultRoundBefore.filter(res => {
+        return res.name.includes(searchTeamRank);
+      });
+    } else {
+      // this.getResultRoundBefore(this.contestDetail.rounds, 2);
+    }
+
+  }
+
 }
+
 

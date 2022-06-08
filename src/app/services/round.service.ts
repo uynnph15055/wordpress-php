@@ -20,7 +20,7 @@ export class RoundService {
     return this.http.get<ResponsePayload>(`${environment.roundV1Url}/${round_id}/team-me`);
   }
 
-  // Get Info exam
+  // Kiểm tra trạng thái user và thêm cột cho cuộc thi
   getInfoExamRound(round: Object): Observable<ResponsePayload> {
     return this.http.post<ResponsePayload>(`${environment.takeExamUrl}/student`, round);
   }
