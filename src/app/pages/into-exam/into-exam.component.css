@@ -53,21 +53,34 @@
 .contest-detail-right-countdown {
   display: flex;
   justify-content: center;
+  /* margin: 20px 10px; */
+  margin-bottom: -0.3rem !important;
 }
 
-.contest-detail-right-countdown-item {
+.contest-detail-right-countdown-box {
+  width: 20%;
+  margin-right: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+
+.contest-detail-right-countdown-item {
+  text-align: center;
   padding: 10px 5px;
-  width: 20%;
   background-color: var(--primary-color);
+  width: 100%;
   margin: 0px 5px;
   border-radius: 6px;
   font-size: 17px;
   font-weight: 500;
   color: white;
+}
+
+.contest-detail-right-countdown-box p {
+  color: rgba(20, 20, 20, 0.333);
+  margin-left: 10px;
 }
 
 .node-submit-assignment {
@@ -257,4 +270,24 @@
 
 .button:hover:before {
   bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}
+
+.number-files-upload {
+  padding: 7px 15px;
+  border-radius: 5px;
+}
+
+.btn-remove-ass {
+  font-size: 13px;
+  padding: 2px 8px;
+  background-color: rgb(165, 161, 161);
+  border-radius: 50px;
+  margin-top: 11px;
+  color: #fff;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.btn-remove-ass:hover {
+  opacity: 0.7;
 }

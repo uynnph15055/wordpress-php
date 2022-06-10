@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Observer } from 'rxjs';
@@ -47,6 +47,11 @@ export class UserService {
       }));
   }
 
+  // Update localStorageHasEdit
+  setLocalStorageHasEdit(user: User) {
+    localStorage.setItem("user", JSON.stringify(user));
+  }
+
   logout() {
     localStorage.removeItem("user");
     localStorage.removeItem('auth_token')
@@ -70,4 +75,10 @@ export class UserService {
     return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined-1?status=${status}&q=${key_word}`);
   }
 
+  // Chỉnh sửa thông tin user
+  editInfoUser(data: any): Observable<ResponsePayload> {
+    const headers = new HttpHeaders();
+    return this.http.post<ResponsePayload>(`${environment.userListUrl}/edit`, data);
+  }
+  
 }

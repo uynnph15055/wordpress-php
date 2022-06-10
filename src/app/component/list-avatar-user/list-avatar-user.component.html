@@ -19,9 +19,8 @@
             <div *ngFor="let item of listTeam" class="member-item d-flex justify-content-start  align-items-center">
                 <div class="img-avatar-round my-2">
                     <img *ngIf="item.image" [src]="item.image" alt="" class="w-100 h-100">
-                    <img *ngIf="item.avatar" [src]="item.avatar" alt="" class="w-100 h-100">
+                    <img *ngIf="item.user.avatar" [src]="item.user.avatar" alt="" class="w-100 h-100">
                 </div>
-                &nbsp;
                 &nbsp;
                 <p class="mt-2">{{item.name}}</p>
             </div>

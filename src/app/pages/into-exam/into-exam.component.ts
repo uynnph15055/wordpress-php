@@ -21,6 +21,7 @@ import { Round } from 'src/app/models/round.model';
   styleUrls: ['./into-exam.component.css']
 })
 export class IntoExamComponent implements OnInit {
+
   days: number;
   hours: number;
   minutes: number;
@@ -30,14 +31,19 @@ export class IntoExamComponent implements OnInit {
   roundDetail: Round;
   titleModelName: any;
   teamDetail: Team;
-  statusInfo: boolean = false;
+  statusInfo: boolean = true;
   statusContest: boolean = false;
   statusTeamDetail: boolean = false;
   contestId: number;
   statusSubmitExam: boolean;
+  statusSaveExam: boolean;
   infoExam: TakeExam;
   statusPage: boolean = false;
   assignment: Object;
+
+  statusClickSubmit: boolean = false;
+  assignmentFiles: boolean = false;
+  assignmentLinks: boolean = false;
 
 
   constructor(private modalService: NgbModal,
@@ -55,11 +61,11 @@ export class IntoExamComponent implements OnInit {
       switchMap(id => this.contestService.getWhereId(id))
     ).subscribe(res => {
       if (res.status) {
-
         this.infoContest = res.payload;
         this.infoContest ? this.statusContest = true : this.statusContest;
       }
     })
+
     const round = {
       round_id: 0
     }
@@ -71,7 +77,7 @@ export class IntoExamComponent implements OnInit {
         if (res.payload)
           this.roundDetail = res.payload;
         round.round_id = this.roundId;
-        this.roundDetail ? this.statusInfo = true : false;
+        this.roundDetail ? this.statusInfo = false : this.statusInfo;
         setInterval(() => {
           let futureDate = new Date(this.roundDetail.end_time).getTime();
           let today = new Date().getTime();
@@ -141,19 +147,21 @@ export class IntoExamComponent implements OnInit {
 
   // Nộp bài
   submit() {
-
-
   }
 
   // Nộp bài bằng file
   submitExamByFile(files: any) {
     this.statusSubmitExam = false;
     var resultExam = new FormData();
-
     resultExam.append('file_url', files[0]);
     resultExam.append('id', this.infoExam.id);
-    console.log(resultExam);
-    
+    setTimeout(() => {
+      if (files[0]) {
+        this.statusSubmitExam = true;
+        this.assignmentFiles = true;
+      }
+    }, 3000);
+    this.assignment = resultExam;
   }
 
   // Nộp bài bằng link
@@ -163,7 +171,33 @@ export class IntoExamComponent implements OnInit {
       result_url: link.target.value,
       id: this.infoExam.id,
     }
+    setTimeout(() => {
+      if (resultExam.result_url != '') {
+        this.statusSubmitExam = true;
+        this.assignmentLinks = true;
+      }
+    }, 3000);
     this.assignment = resultExam;
+  }
+
+
+  removeAssFile() {
+    this.statusSubmitExam = false;
+    setTimeout(() => {
+      this.assignment = {};
+      this.assignmentFiles = false;
+      this.statusSubmitExam = true;
+    }, 3000);
+  }
+
+
+  removeAssLink() {
+    this.statusSubmitExam = false;
+    setTimeout(() => {
+      this.assignment = {};
+      this.assignmentLinks = false;
+      this.statusSubmitExam = true;
+    }, 3000);
   }
 
   // Hủy bài làm
@@ -177,18 +211,16 @@ export class IntoExamComponent implements OnInit {
   // }
 
   submitExam() {
-    console.log(this.assignment);
-
-    // this.roundService.submitExam(this.assignment).subscribe(res => {
-    //   console.log(res);
-
-    //   if (res.status) {
-    //     setTimeout(() => {
-    //       this.statusSubmitExam = true;
-    //     }, 3000);
-    //     this.toast.success({ summary: 'Nộp bài thành công !!!', duration: 5000 });
-    //   }
-    // })
+    this.statusClickSubmit = true;
+    this.roundService.submitExam(this.assignment).subscribe(res => {
+      console.log(res);
+      if (res.status) {
+        setTimeout(() => {
+          this.statusClickSubmit = false;
+          this.toast.success({ summary: 'Nộp bài thành công !!!', duration: 5000 });
+        }, 3000);
+      }
+    })
   }
 
   copyLinkUrl() {
