@@ -1,10 +1,10 @@
-<app-loading-page [status]="statusPage">
+<app-loading-page [status]="statusInfo">
 </app-loading-page>
 <div class="warper-into-exam">
     <div class="container">
         <div class="row warper-into-exam-row">
             <div class="col-9  warper-info-contest">
-                <div class="info-contest-header pb-2 row" *ngIf="statusInfo == true">
+                <div class="info-contest-header pb-2 row" *ngIf="statusInfo == false">
                     <div class="col-4 text-center ">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTudQwuYh8aQKOOByIe4hFX9ZWYCcF20aSfA&usqp=CAU"
                             alt="" class="info-contest-img">
@@ -33,10 +33,10 @@
                             </mat-menu>
                         </div>
 
-                        <p *ngIf="statusContest == true" class="info-contest-item fw-bold">Cuộc Thi : <span
+                        <p *ngIf="statusContest == true" class="info-contest-item fw-bold">Cuộc Thi: <span
                                 class="color-primary fw-normal">{{infoContest.name}}</span>
                         </p>
-                        <p class="info-contest-item fw-bold">Trạng thái : <span class="color-primary fw-normal">Vào
+                        <p class="info-contest-item fw-bold">Trạng thái: <span class="color-primary fw-normal">Vào
                                 thi</span>
                         </p>
 
@@ -88,7 +88,7 @@
                         </ng-template>
                     </div>
                 </div>
-                <div class="row py-3 info-contest-header" *ngIf="statusInfo == false">
+                <div class="row py-3 info-contest-header" *ngIf="statusInfo == true">
                     <div class="col-4">
                         <ngx-skeleton-loader
                             [theme]="{ 'height.px' : 230, 'margin-bottom' : '10px' , 'width' : '100%' }"
@@ -175,31 +175,46 @@
             <div class="col-3">
                 <div class="warper-submit-assignment">
                     <div class="p-3">
-                        <mat-progress-bar *ngIf="statusSubmitExam ==  false" color="warn" mode="indeterminate">
+                        <mat-progress-bar *ngIf="statusClickSubmit == true" color="warn" mode="indeterminate">
                         </mat-progress-bar>
                         <h3 class="fw-bold fs-5">Nộp bài</h3>
-                        <p [ngClass]="statusSubmitExam == true ? 'py-2 mt-3 w-100 text-success border border-success rounded color-gray text-center' : 'py-2 mt-3 w-100 color-text border rounded color-gray text-center'"
-                            class="">{{statusSubmitExam == true ? 'Đã nộp' : 'Chưa nộp'}}</p>
+                        <p [ngClass]="statusClickSubmit == true ? 'py-2 mt-3 w-100 text-success border border-success rounded color-gray text-center' : 'py-2 mt-3 w-100 color-text border rounded color-gray text-center'"
+                            class="">{{statusClickSubmit == true ? 'Đã nộp' : 'Chưa nộp'}}</p>
                         <h4 class="my-2 text-center fw-bold">Hạn nộp</h4>
                         <ul class="contest-detail-right-countdown">
-                            <li class="contest-detail-right-countdown-item"><span
-                                    class="contest-detail-right-countdown-number days">{{days}}</span>
-                            </li>
-                            <li class="contest-detail-right-countdown-item"><span
-                                    class="contest-detail-right-countdown-number hours">{{hours}}</span></li>
-                            <li class="contest-detail-right-countdown-item"><span
-                                    class="contest-detail-right-countdown-number minutes">{{minutes}}</span></li>
-                            <li class="contest-detail-right-countdown-item"><span
-                                    class="contest-detail-right-countdown-number seconds">{{seconds}}</span></li>
+                            <div class="contest-detail-right-countdown-box">
+                                <li class="contest-detail-right-countdown-item"><span
+                                        class="contest-detail-right-countdown-number days">{{days}}</span>
+                                </li>
+                                <p class="text-center">Ngày</p>
+                            </div>
+                            <div class="contest-detail-right-countdown-box">
+                                <li class="contest-detail-right-countdown-item"><span
+                                        class="contest-detail-right-countdown-number days">{{hours}}</span>
+                                </li>
+                                <p class="text-center">Giờ</p>
+                            </div>
+                            <div class="contest-detail-right-countdown-box">
+                                <li class="contest-detail-right-countdown-item"><span
+                                        class="contest-detail-right-countdown-number days">{{minutes}}</span>
+                                </li>
+                                <p class="text-center">Phút</p>
+                            </div>
+                            <div class="contest-detail-right-countdown-box">
+                                <li class="contest-detail-right-countdown-item"><span
+                                        class="contest-detail-right-countdown-number">{{seconds}}</span>
+                                </li>
+                                <p class="text-center">Giây</p>
+                            </div>
                         </ul>
                         <a [ngStyle]="{'display':  statusSubmitExam ==  true ? 'none' : 'block' }"
-                            class="btn mt-3 contest-detail-register-btn btn-base-type-bg w-100'"
+                            class="btn mt-2 contest-detail-register-btn d-block btn-base-type-bg w-100'"
                             (click)="openVerticallyCentered(submit)">Nộp bài</a>
-                        <a style="width:100%" *ngIf="statusSubmitExam == true" class="btn mt-3 btn-register w-100'">Gỡ
-                            bài làm</a>
+                        <!-- <a style="width:100%" class="btn mt-3 btn-register w-100'">Gỡ
+                            bài làm</a> -->
                         <ng-template #submit let-modal>
                             <div class="modal-header">
-                                <h3 class="modal-title  fw-bold">Sinh viên nộp bài tại đây
+                                <h3 class="modal-title fw-bold">Sinh viên nộp bài tại đây
                                 </h3>
                                 <p (click)="modal.dismiss('Cross click')"><i style="cursor:pointer ;"
                                         class="fs-4 fas fa-times"></i></p>
@@ -208,7 +223,7 @@
                             </mat-progress-bar>
                             <div class="modal-body">
                                 <mat-tab-group animationDuration="0ms">
-                                    <mat-tab color="warn" label="Upload">
+                                    <mat-tab color="warn" [disabled]="assignmentLinks" label="Tải file">
                                         <div class="submit-assignment-box">
                                             <input #file type="file" (change)="submitExamByFile(file.files)" hidden
                                                 id="submit-assignment">
@@ -216,22 +231,36 @@
                                                     class="fas fa-cloud-upload"></i></label>
                                         </div>
                                     </mat-tab>
-                                    <mat-tab label="Link" color="warn">
+                                    <mat-tab label="Link" [disabled]="assignmentFiles" color="warn">
                                         <div class="submit-assignment-box">
                                             <input (change)="submitExamByLink($event)" type="text" name="text"
                                                 class="input" class="input-link-submit" placeholder="Link bài làm ..">
                                         </div>
                                     </mat-tab>
                                 </mat-tab-group>
+                                <div *ngIf="assignmentFiles" class="d-flex justify-content-start align-items-center">
+                                    <div class=" btn-base-type-bg w-25 text-center number-files-upload">
+                                        1 file </div>
+                                    <p class="btn-remove-ass" (click)="removeAssFile()"><i class="fas fa-times"></i></p>
+                                </div>
+                                &nbsp;&nbsp;
+                                <div *ngIf="assignmentLinks" class="d-flex justify-content-start align-items-center">
+                                    <div *ngIf="assignmentLinks"
+                                        class=" btn-base-type-bg w-25 text-center number-files-upload">
+                                        1 link </div>
+                                    <p (click)="removeAssLink()" class="btn-remove-ass"><i class="fas fa-times"></i></p>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" mat-raised-button
                                     (click)="modal.close('Close click')">Đóng</button>
                                 &nbsp;&nbsp;
                                 <button type="button" mat-raised-button class="btn-base-type-bg"
-                                    (submit)="submitExam()">Nộp bài</button>
+                                    (click)="submitExam()">Nộp
+                                    bài</button>
+                                {{ statusClickSubmit
+                                == true ? modal.close() : null }}
                             </div>
-                            {{ statusSubmitExam == true ? modal.close() : null }}
                         </ng-template>
                     </div>
                 </div>

@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   majors: Array<Major>;
   resultMajor: Array<ResultMajor>;
   nameSelectMajor: any = 'Cơ khí';
+  countMajor: boolean = false;
 
   sliderContest = { "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000 };
 
@@ -90,15 +91,21 @@ export class HomeComponent implements OnInit {
   // Gọi kết quả theo chuyên ngành.
   getResultWhereMajor(majorSlug: any) {
     this.statusResultMajor = false;
+    this.countMajor = false;
+    this.nameSelectMajor = this.majors.map((item: any) => {
+      if (item.slug == majorSlug) {
+        return item.name;
+      }
+    }).join(' ');
+
     this.majorService.getResultWhereMajor('co-khi').subscribe(res => {
       if (res.status) {
         this.resultMajor = res.payload;
-        this.nameSelectMajor = this.majors.map((item: any) => {
-          if (item.slug == majorSlug) {
-            return item.name;
-          }
-        }).join(' ');
         this.resultMajor ? this.statusResultMajor = true : this.statusResultMajor;
+      } else {
+        setTimeout(() => {
+          this.countMajor = true;
+        }, 3000);
       }
     })
   }

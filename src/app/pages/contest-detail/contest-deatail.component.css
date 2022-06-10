@@ -161,6 +161,7 @@
 
 .student-rank-list .student-rank-avatar {
   width: 40px;
+  height: 40px;
   max-height: 40px;
   object-fit: cover;
   border-radius: 50px;

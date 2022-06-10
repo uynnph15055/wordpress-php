@@ -155,7 +155,10 @@
         <div class="list-student-point-hight  mt-3">
             <div *ngIf="statusResultMajor == false"
                 class="d-flex justify-content-center loading-student-rank-box align-items-center">
-                <div class="loading-student-rank"></div>
+                <div *ngIf="countMajor == false" class="loading-student-rank"></div>
+                <div *ngIf="countMajor == true" class="">
+                    <p class="text-white">Kết quả chưa được cập nhật!!!</p>
+                </div>
             </div>
             <ngx-slick-carousel *ngIf="statusResultMajor == true" class="carousel row slick-slide-student"
                 [config]="sliderStudentPointHight">
