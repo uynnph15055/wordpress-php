@@ -40,19 +40,27 @@ export class HomeComponent implements OnInit {
 
   constructor(private contestService: ContestService,
     private configView: ConfigViewService,
-    private majorService: MajorService) { }
+    private majorService: MajorService,
+    private UserService: UserService) { }
 
   ngOnInit(): void {
     let elToShow = document.querySelectorAll('.show-on-scroll')
-    this.contestService.getWhereStatus(1).subscribe(res => {
-      if (res.status == true) {
-        this.contests = res.payload.data;
-        if (this.contests) {
-          this.statusContest = 'done'
+
+    if (this.UserService.getUserValue().id !== undefined) {
+      this.getListHasAfterLogin();
+    } else {
+      this.contestService.getWhereStatus(1).subscribe(res => {
+        if (res.status == true) {
+          this.contests = res.payload.data;
+          if (this.contests) {
+            this.statusContest = 'done'
+          }
         }
-      }
-    })
-    // console.log(this.status);
+      })
+    }
+
+
+    // Config giao dien
     let studentStatistic = document.querySelector('.section_plan-student');
     let yearStatistic = document.querySelector('.section_plan-year');
     let passStatistic = document.querySelector('.section_plan-pass');
@@ -65,11 +73,6 @@ export class HomeComponent implements OnInit {
 
     // getAllMajor
     this.getAllMajor();
-  }
-
-  // Kiểm tra người dùng đã login chưa 
-  checkLogin(): boolean {
-    return this.loggedInUser.id !== undefined
   }
 
   //Lấy ra tất cả các chuyên ngành
@@ -86,6 +89,7 @@ export class HomeComponent implements OnInit {
 
   // Gọi kết quả theo chuyên ngành.
   getResultWhereMajor(majorSlug: any) {
+    this.statusResultMajor = false;
     this.majorService.getResultWhereMajor('co-khi').subscribe(res => {
       if (res.status) {
         this.resultMajor = res.payload;
@@ -93,9 +97,17 @@ export class HomeComponent implements OnInit {
           if (item.slug == majorSlug) {
             return item.name;
           }
-        })
+        }).join(' ');
         this.resultMajor ? this.statusResultMajor = true : this.statusResultMajor;
       }
+    })
+  }
+
+  // get list contest after login
+  getListHasAfterLogin() {
+    this.contestService.getListContestHasJoin().subscribe(res => {
+      res.status ? this.contests = res.payload.data : this.contests;
+      this.contests ? this.statusContest = 'done' : this.statusContest = 'pending';
     })
   }
 }

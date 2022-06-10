@@ -12,8 +12,9 @@ import { RoundService } from 'src/app/services/round.service';
 
 export class ListResultRoundComponent implements OnInit {
   @Input() round_id: number;
+  @Input() statusPage: boolean;
   @Input() contest_id: number;
-  dataResultRound: Array<any>;
+  dataResultRound: Array<ResultRound>;
   statusResultRound: boolean = false;
   payingLinks: Array<any>;
   pages: number = 1;
@@ -24,8 +25,10 @@ export class ListResultRoundComponent implements OnInit {
     private contestService: ContestService) { }
 
   ngOnInit(): void {
-    this.round_id ?
+    this.round_id && this.statusPage == true ?
       this.titleResult = "Kết quả vòng thi" : this.titleResult;
+  
+
 
     this.roundService.getResultRound(this.round_id).subscribe(res => {
       this.resPayLoad = res.payload;
@@ -33,6 +36,8 @@ export class ListResultRoundComponent implements OnInit {
         this.dataResultRound = res.payload.data;
         this.payingLinks = this.editLink(res.payload.links);
         this.dataResultRound ? this.statusResultRound = true : this.statusResultRound;
+        console.log(this.dataResultRound);
+
       } else {
         this.statusResultRound = true;
       };

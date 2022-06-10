@@ -66,8 +66,8 @@ export class UserService {
   }
 
   // Lộc cuộc thi đã tham gia theo trạng thái
-  getContestByUserStatus(key_word: string, status: number): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined?status=${status}&q=${key_word}`);
+  getContestByUserStatus(key_word: string, status: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined-1?status=${status}&q=${key_word}`);
   }
 
 }

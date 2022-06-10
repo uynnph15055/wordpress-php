@@ -42,7 +42,7 @@ import { ProfileUserComponent } from './component/profile-user/profile-user.comp
 import { ContestUserJoinComponent } from './component/contest-user-join/contest-user-join.component';
 
 import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/team-user-join-detail.component';
-import { ModalAddMemberComponent } from './component/modal-add-member/modal-add-member.component';
+
 import { ContestItemComponent } from './component/contest-item/contest-item.component';
 import { ModalListMemberComponent } from './component/modal-list-member/modal-list-member.component';
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
@@ -75,7 +75,6 @@ import { LoadingPageComponent } from './loading/loading-page/loading-page.compon
     ProfileUserComponent,
     ContestUserJoinComponent,
     TeamUserJoinDetailComponent,
-    ModalAddMemberComponent,
     ContestItemComponent,
     ModalListMemberComponent,
     RoundDetailComponent,
@@ -127,6 +126,6 @@ import { LoadingPageComponent } from './loading/loading-page/loading-page.compon
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
 
+export class AppModule {
 }

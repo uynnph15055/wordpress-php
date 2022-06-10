@@ -66,10 +66,9 @@
 }
 
 .next-arrow {
-  transform: translateY(-190px);
+  transform: translateY(-195px);
   right: 4%;
 }
-
 
 /* Rating */
 .subject-item {
@@ -244,7 +243,6 @@
   ;
   border-radius: 50px;
   color: var(--white);
-  font-size: 16px;
   margin: 0 auto;
   line-height: 40px;
   /* margin: 10px 0px; */
@@ -253,12 +251,10 @@
 
 .student-ponit-number i {
   color: var(--color-yellow);
-  margin-right: 10px;
 }
 
 .student-ponit-number span {
   font-weight: bold;
-  font-size: 15px;
   color: var(--title-blue);
 }
 
@@ -415,8 +411,8 @@
 
 .loading-student-rank {
   display: flex;
-  width: 3.5em;
-  height: 3.5em;
+  width: 4em;
+  height: 4em;
   border: 3px solid transparent;
   border-top-color: var(--primary-color-sub);
   border-bottom-color: var(--primary-color-sub);

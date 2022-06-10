@@ -1,6 +1,6 @@
 <app-loading-page [status]="statusPage">
 </app-loading-page>
-<div class="contest-detail-box ">
+<div class="contest-detail-box mt-4">
     <div class="container my-4">
         <div class="contest-detail-header">
             <div class=" contest-detail-left">
@@ -8,24 +8,39 @@
                     <div class="col-5 contest-detail-left-img-box">
                         <img *ngIf="statusContest==true" [src]="contestDetail.img" alt=""
                             class="w-100 contest-detail-left-img">
+
                         <ngx-skeleton-loader *ngIf="statusContest==false"
                             [theme]="{ 'height' : '250px' ,'margin-left' : '-15px' , 'width' : '100%' , 'margin-bottom' : '-5px' }"
                             appearance="line">
                         </ngx-skeleton-loader>
                     </div>
-                    <div class="col-7" style="margin-left:-15px ;">
+                    <div class="col-7" style="margin-left:-10px ;">
 
                         <div class="py-3" *ngIf="statusContest == true">
                             <p class="fw-bold fs-5 color-blue">Cuộc thi : {{contestDetail.name}}</p>
-                            <p class="color-gray color-blue  fs-text fw-bold"><i
+                            <p class="color-gray color-blue  fs-text fw-bold "><i
                                     class="fas -3 fa-clock contest-date-open-end"></i>
                                 <span class=" fw-normal">{{contestDetail.date_start |
                                     formatDate}} - {{contestDetail.register_deadline |
                                     formatDate}}</span>
                             </p>
-                            <p class="fw-bold color-gray p-justify fs-text">Nội dung : <span
-                                    class="fw-normal">{{contestDetail.description}}</span></p>
-                            <div class="d-flex justify-content-start align-items-center">
+                            <p class="fw-bold color-gray fs-text">Nội dung :<span (click)="open(content)"
+                                    class="btn-base-type-bg  fw-normal rounded p-1 px-2" style="cursor:pointer">Chi
+                                    tiết</span>
+                            </p>
+                            <ng-template #content let-modal>
+                                <div class="modal-header">
+                                    <h3 class="modal-title fw-bold" id="modal-basic-title">Nội dung cuộc thi</h3>
+                                    <i (click)="modal.close('Close click')" style="cursor:pointer;"
+                                        class="fas fa-times fs-4"></i>
+                                </div>
+                                <div class="modal-body description" [innerHTML]="contestDetail.description">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" mat-button (click)="modal.close('Close click')">Đóng</button>
+                                </div>
+                            </ng-template>
+                            <div class="d-flex justify-content-start mt-2 align-items-center">
                                 <p class="fw-bold fs-text color-gray">Tổng số đội :
                                 </p>
                                 &nbsp;
@@ -50,12 +65,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="statusContest == false" class="p-3">
+                        <div *ngIf="statusContest == false" class="p-2">
                             <ngx-skeleton-loader
                                 [theme]="{ 'height.px' : 20, 'margin-bottom' : '10px' , 'width' : '50%' }"
-                                appearance="line">
-                            </ngx-skeleton-loader>
-                            <ngx-skeleton-loader [theme]="{ 'height.px' : 10, 'margin-bottom' : '10px'}"
                                 appearance="line">
                             </ngx-skeleton-loader>
                             <ngx-skeleton-loader [theme]="{ 'height.px' : 10, 'margin-bottom' : '10px'  }"
@@ -64,6 +76,27 @@
                             <ngx-skeleton-loader [theme]="{ 'height.px' : 30, 'margin-bottom' : '10px'  }"
                                 appearance="line">
                             </ngx-skeleton-loader>
+                            <div class="d-flex align-items-center">
+                                <div class="col-3">
+                                    <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'margin-bottom' : '10px' }"
+                                        appearance="line">
+                                    </ngx-skeleton-loader>
+                                </div>
+                                <div class="col-7">
+                                    <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
+                                        appearance="circle">
+                                    </ngx-skeleton-loader>
+                                    <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
+                                        appearance="circle">
+                                    </ngx-skeleton-loader>
+                                    <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
+                                        appearance="circle">
+                                    </ngx-skeleton-loader>
+                                    <ngx-skeleton-loader [theme]="{ 'height.px' : 40, 'margin-bottom' : '10px' }"
+                                        appearance="circle">
+                                    </ngx-skeleton-loader>
+                                </div>
+                            </div>
                             <div class="d-flex align-items-center">
                                 <div class="col-3">
                                     <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'margin-bottom' : '10px' }"
@@ -100,7 +133,8 @@
                 </div>
 
 
-                <app-list-result-round [round_id]="round_id" class="mt-3">
+                <app-list-result-round *ngIf="round_id != undefined" [statusPage]="false" [round_id]="round_id"
+                    class="mt-3">
                 </app-list-result-round>
 
                 <app-round id="round" *ngIf="statusRound_id == false" [contestDetail]="contestDetail"
@@ -151,15 +185,30 @@
                             <p style="margin: 10px 0px 20px 0px;"
                                 class="fw-bold fs-5 pt-2 contest-detail-right-name text-dark">{{contestDetail.name}}</p>
                             <ul class="contest-detail-right-countdown">
-                                <li class="contest-detail-right-countdown-item"><span
-                                        class="contest-detail-right-countdown-number days">{{days}}</span>
-                                </li>
-                                <li class="contest-detail-right-countdown-item"><span
-                                        class="contest-detail-right-countdown-number hours">{{hours}}</span></li>
-                                <li class="contest-detail-right-countdown-item"><span
-                                        class="contest-detail-right-countdown-number minutes">{{minutes}}</span></li>
-                                <li class="contest-detail-right-countdown-item"><span
-                                        class="contest-detail-right-countdown-number seconds">{{seconds}}</span></li>
+                                <div class="contest-detail-right-countdown-box">
+                                    <li class="contest-detail-right-countdown-item"><span
+                                            class="contest-detail-right-countdown-number days">{{days}}</span>
+                                    </li>
+                                    <p class="text-center">Ngày</p>
+                                </div>
+                                <div class="contest-detail-right-countdown-box">
+                                    <li class="contest-detail-right-countdown-item"><span
+                                            class="contest-detail-right-countdown-number days">{{hours}}</span>
+                                    </li>
+                                    <p class="text-center">Giờ</p>
+                                </div>
+                                <div class="contest-detail-right-countdown-box">
+                                    <li class="contest-detail-right-countdown-item"><span
+                                            class="contest-detail-right-countdown-number days">{{minutes}}</span>
+                                    </li>
+                                    <p class="text-center">Phút</p>
+                                </div>
+                                <div class="contest-detail-right-countdown-box">
+                                    <li class="contest-detail-right-countdown-item"><span
+                                            class="contest-detail-right-countdown-number">{{seconds}}</span>
+                                    </li>
+                                    <p class="text-center">Giây</p>
+                                </div>
                             </ul>
                             <a *ngIf="statusUserHasJoinContest == true"
                                 [routerLink]="['/thong-tin/cuoc-thi' , contestDetail.id , 'chi-tiet-doi' , teamIdMemberHasJoinTeam ]"
@@ -190,21 +239,24 @@
                 <div *ngFor="let itemImage of sliderContest" class="mt-3">
                     <img [src]="itemImage.image_url" alt="" class="w-100">
                 </div>
-                <h3 class="fw-bold fs-5 color-blue my-4">Vòng thi trước</h3>
-                <div class="list-student-rank-box border text-center" *ngIf="statusResultRoundBefore == true">
+                <h3 class="fw-bold fs-5 color-blue my-4" *ngIf="statusResultRoundBefore == true">Vòng thi trước
+                </h3>
+                <div class=" list-student-rank-box border text-center" *ngIf="statusResultRoundBefore == true">
                     <header>
                         <h3 class="list-student-rank-title fw-bold pt-3 primary-color">Thiết kế website</h3>
                         <div class=" form-input">
                             <i class="fas fa-search"></i>
-                            <input type="text" id="filter" placeholder="Tên nhóm ..." />
+                            <input type="text" (keyup)="searchTeamRank($event)" id="filter"
+                                placeholder="Tên nhóm ..." />
                         </div>
                     </header>
                     <div class="student-rank-list">
                         <div *ngFor="let teamItem of resultRoundBefore"
                             class="student-rank-item d-flex justify-content-between align-items-center">
-                            <img [src]="
-                            teamItem.team.image" alt="" class="student-rank-avatar d-block">
-                            <p class="student-rank-name mt-2">{{ teamItem.team.name}}</p>
+                            <img [src]="teamItem.image" alt="" class="student-rank-avatar ">
+                            <div class="" style="width: 100%">
+                                <p class="student-rank-name mt-2">{{teamItem.name}}</p>
+                            </div>
                             <span class="student-rank-cup color-top-one">
                                 <i class="fas fa-trophy"></i>
                             </span>
@@ -213,11 +265,6 @@
                     <footer class="student-rank-footer">
                         <a href="" class="student-rank-more">Xem thêm</a>
                     </footer>
-                </div>
-                <div *ngIf="statusResultRoundBefore == false">
-                    <ngx-skeleton-loader count="10" [theme]="{ 'height.px' : 35, 'margin-bottom' : '7px'}"
-                        appearance="line">
-                    </ngx-skeleton-loader>
                 </div>
             </div>
         </div>

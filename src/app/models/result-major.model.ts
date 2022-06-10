@@ -9,4 +9,5 @@ export class ResultMajor {
     name: string;
     user: User;
     contest: Contest;
+
 }

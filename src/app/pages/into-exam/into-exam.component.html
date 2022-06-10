@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row warper-into-exam-row">
             <div class="col-9  warper-info-contest">
-                <div class="info-contest-header py-3 row" *ngIf="statusInfo == true">
+                <div class="info-contest-header pb-2 row" *ngIf="statusInfo == true">
                     <div class="col-4 text-center ">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTudQwuYh8aQKOOByIe4hFX9ZWYCcF20aSfA&usqp=CAU"
                             alt="" class="info-contest-img">
@@ -32,9 +32,8 @@
                                 <button mat-menu-item (click)="copyLinkUrl()">Copy-link</button>
                             </mat-menu>
                         </div>
-                        <h3 class="primary-color fw-bold">Vòng: {{roundDetail.name}}</h3>
 
-                        <p class="info-contest-item fw-bold">Cuộc Thi : <span
+                        <p *ngIf="statusContest == true" class="info-contest-item fw-bold">Cuộc Thi : <span
                                 class="color-primary fw-normal">{{infoContest.name}}</span>
                         </p>
                         <p class="info-contest-item fw-bold">Trạng thái : <span class="color-primary fw-normal">Vào
@@ -46,11 +45,12 @@
                             </p>
                             &nbsp;
                             &nbsp;
-                            <div>
+                            <!-- <p class="" *ngIf="roundDetail.judges.length == 0">Chưa có ban giám khảo !</p>
+                            <div *ngIf="roundDetail.judges.length > 0">
                                 <app-list-avatar-user [listTeam]="roundDetail.judges"
-                                    [titleModelName]="'Danh sách các đội'">
+                                    [titleModelName]="'Danh sách ban giám khảo'">
                                 </app-list-avatar-user>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="button" (click)="downloadExam()">
                             <div class="button-wrapper">
@@ -89,12 +89,12 @@
                     </div>
                 </div>
                 <div class="row py-3 info-contest-header" *ngIf="statusInfo == false">
-                    <div class="col-5">
+                    <div class="col-4">
                         <ngx-skeleton-loader
-                            [theme]="{ 'height.px' : 215, 'margin-bottom' : '10px' , 'width' : '100%' }"
+                            [theme]="{ 'height.px' : 230, 'margin-bottom' : '10px' , 'width' : '100%' }"
                             appearance="line"></ngx-skeleton-loader>
                     </div>
-                    <div class="col-7">
+                    <div class="col-8">
                         <ngx-skeleton-loader [theme]="{ 'height.px' : 25}" appearance="line"></ngx-skeleton-loader>
                         <ngx-skeleton-loader [theme]="{ 'height.px' : 20}" appearance="line"></ngx-skeleton-loader>
                         <ngx-skeleton-loader [theme]="{ 'height.px' : 20}" appearance="line"></ngx-skeleton-loader>
@@ -103,15 +103,11 @@
                         </ngx-skeleton-loader>
                     </div>
                 </div>
-                <div class="my-3">
-                    <h5 class="fw-bold fs-5 color-blue">Đội của bạn</h5>
-
-
+                <h5 class="fw-bold fs-5 color-blue pt-3">Đội của bạn</h5>
+                <div class="my-3 bg-white team-detail-box pb-3">
                     <div *ngIf="statusTeamDetail == true" style="border-radius: 10px;">
 
-                        <div class="info-your-team text-center"
-                            [routerLink]="['/thong-tin/cuoc-thi' , infoContest.id , 'chi-tiet-doi' , teamDetail.id]"
-                            ngbTooltip="Xem chi tiết">
+                        <div class="info-your-team text-center" ngbTooltip="Xem chi tiết">
                             <div class="p-3 bg-white">
                                 <img class="info-your-team-avatar" [src]="teamDetail.image" alt="">
                                 <h3 class="fw-bold mt-3 color-blue">{{teamDetail.name}}</h3>
@@ -119,7 +115,7 @@
                             </div>
                         </div>
 
-                        <table mat-table class="w-100 mt-3" [dataSource]="teamDetail.members">
+                        <table mat-table class="w-100" [dataSource]="teamDetail.members">
 
                             <div class=" example-table-container">
                                 <ng-container matColumnDef="index">
@@ -164,7 +160,7 @@
                     </div>
 
                     <div *ngIf="statusTeamDetail == false">
-                        <div class="d-flex  justify-content-center">
+                        <div class="d-flex pt-4 justify-content-center">
                             <ngx-skeleton-loader
                                 [theme]="{ 'height.px' : 170, 'margin-bottom' : '10px' , 'width' : '150px' }"
                                 appearance="line"></ngx-skeleton-loader>
@@ -176,12 +172,11 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-3">
                 <div class="warper-submit-assignment">
-                    <mat-progress-bar *ngIf="statusSubmitExam ==  false" color="warn" mode="indeterminate">
-                    </mat-progress-bar>
                     <div class="p-3">
+                        <mat-progress-bar *ngIf="statusSubmitExam ==  false" color="warn" mode="indeterminate">
+                        </mat-progress-bar>
                         <h3 class="fw-bold fs-5">Nộp bài</h3>
                         <p [ngClass]="statusSubmitExam == true ? 'py-2 mt-3 w-100 text-success border border-success rounded color-gray text-center' : 'py-2 mt-3 w-100 color-text border rounded color-gray text-center'"
                             class="">{{statusSubmitExam == true ? 'Đã nộp' : 'Chưa nộp'}}</p>
@@ -200,11 +195,11 @@
                         <a [ngStyle]="{'display':  statusSubmitExam ==  true ? 'none' : 'block' }"
                             class="btn mt-3 contest-detail-register-btn btn-base-type-bg w-100'"
                             (click)="openVerticallyCentered(submit)">Nộp bài</a>
-                        <a style="width:100%" (click)="deleteExam()" *ngIf="statusSubmitExam == true"
-                            class="btn mt-3 btn-register w-100'">Gỡ bài làm</a>
+                        <a style="width:100%" *ngIf="statusSubmitExam == true" class="btn mt-3 btn-register w-100'">Gỡ
+                            bài làm</a>
                         <ng-template #submit let-modal>
                             <div class="modal-header">
-                                <h3 class="modal-title color-title fw-bold">Sinh viên nộp bài tại đây
+                                <h3 class="modal-title  fw-bold">Sinh viên nộp bài tại đây
                                 </h3>
                                 <p (click)="modal.dismiss('Cross click')"><i style="cursor:pointer ;"
                                         class="fs-4 fas fa-times"></i></p>
@@ -232,12 +227,15 @@
                             <div class="modal-footer">
                                 <button type="button" mat-raised-button
                                     (click)="modal.close('Close click')">Đóng</button>
+                                &nbsp;&nbsp;
+                                <button type="button" mat-raised-button class="btn-base-type-bg"
+                                    (submit)="submitExam()">Nộp bài</button>
                             </div>
                             {{ statusSubmitExam == true ? modal.close() : null }}
                         </ng-template>
                     </div>
                 </div>
-                <div class=" node-submit-assignment mt-4">
+                <div class=" node-submit-assignment mt-4 bg-white">
                     <p class="p-3 color-gray">Lưu ý : Sinh viên hoàn thành bài và nộp đúng thời hạn ,
                         các bài làm nộp muộn
                         sẽ không

@@ -19,7 +19,7 @@
         <td mat-footer-cell *matCellDef="let element">
             <div class="d-flex justify-content-start align-items-center">
                 <img [ngStyle]="{'width' : '30px' , 'height' : '30px' , 'object-fit' : 'cover' , 'border-radius' : '50px'}"
-                    [src]="element.team.image" alt=""> &nbsp; <p class="p-2 mt-3">{{element.team.name}}</p>
+                    [src]="element.image" alt=""> &nbsp; <p class="p-2 mt-3">{{element.name}}</p>
             </div>
         </td>
     </ng-container>
@@ -27,19 +27,20 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Thành viên </th>
-        <td mat-cell *matCellDef="let element"> {{element.team.name}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="total-point">
         <th mat-header-cell *matHeaderCellDef> Điểm </th>
-        <td mat-cell class="primary-color fw-bold fs-6" *matCellDef="let element"> {{element.point}} </td>
+        <td mat-cell class="primary-color fw-bold fs-6" *matCellDef="let element"> {{element.result.point}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-cell *matRowDef="let row; columns: displayedColumns;"
         [style]="{'background-color': sortRankTeam(row.id) % 2 == 0 ?  '#F4F4F4' : '#ffff'}" mat-row></tr>
 </table>
-<div class="d-flex justify-content-center mt-2" *ngIf="statusResultRound == true && dataResultRound != undefined">
+<div class="d-flex justify-content-center mt-2"
+    *ngIf="statusResultRound == true && dataResultRound != undefined && payingLinks.length > 1">
     <nav aria-label="">
         <ul class="pagination">
             <li class="page-item">
@@ -61,7 +62,7 @@
     </nav>
 </div>
 <div *ngIf="dataResultRound == undefined && statusResultRound == true" class=" d-flex justify-content-center mt-2">
-    <p>Vòng thi này chưa cập nhật kết quả !!!</p>
+    <p>Hiện chưa cập nhật kết quả !!!</p>
 </div>
 <div *ngIf="statusResultRound == false">
     <ngx-skeleton-loader count="10" [theme]="{ 'height.px' : 35, 'margin-bottom' : '7px'}" appearance="line">
