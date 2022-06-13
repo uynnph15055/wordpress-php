@@ -24,12 +24,12 @@
                                     formatDate}} - {{contestDetail.register_deadline |
                                     formatDate}}</span>
                             </p>
-                            <p class="fw-bold color-gray fs-text">Nội dung :<span (click)="open(content)"
-                                    class="btn-base-type-bg  fw-normal rounded p-1 px-2" style="cursor:pointer">Chi
+                            <p class="fw-bold color-gray fs-text">Nội dung :&nbsp;<span (click)="open(content)"
+                                    class="btn-base-type-bg  fw-normal rounded p-1 px-2" style="cursor:pointer"> Chi
                                     tiết</span>
                             </p>
                             <p class="fw-bold color-gray fs-text">
-                                Số vòng
+                                Số vòng :
                                 <span class=" fw-normal">{{contestDetail.rounds.length}}</span>
                             </p>
                             <ng-template #content let-modal>
