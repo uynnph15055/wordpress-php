@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, debounceTime, map, switchMap } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
 import { ConfigViewService } from 'src/app/services/config-view.service';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
@@ -16,16 +18,29 @@ export class HomeLayoutComponent implements OnInit {
     user: User;
     statusWindow: boolean = false;
     statusLogin: boolean = false;
-    constructor(private userInfo: GetValueLocalService, private configView: ConfigViewService) {
+    randomUserUrl = 'https://api.randomuser.me/?results=5';
+    searchChange$ = new BehaviorSubject('');
+    optionList: string[] = [];
+    selectedUser?: string;
+    isLoading = false;
+
+    constructor(private userInfo: GetValueLocalService, private configView: ConfigViewService,
+        private http: HttpClient) {
 
     }
 
+    onSearch(value: any): void {
+        this.isLoading = true;
+        this.searchChange$.next(value);
+    }
 
     ngOnInit(): void {
         this.backTop();
 
         this.user = this.userInfo.getValueLocalUser('user');
         if (this.user) {
+            console.log(this.user);
+
             this.statusLogin = true;
         }
 
@@ -34,6 +49,7 @@ export class HomeLayoutComponent implements OnInit {
             this.winBackTop();
             this.headerBlockScroll();
         })
+
     }
 
     winBackTop() {

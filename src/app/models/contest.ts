@@ -20,4 +20,5 @@ export class Contest {
     enterprise: Array<Enterprise>;
     judges: Array<Judges>;
     status_user_has_join_contest: boolean;
+    post_new: string;
 }

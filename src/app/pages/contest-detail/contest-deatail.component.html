@@ -29,7 +29,7 @@
                                     tiết</span>
                             </p>
                             <p class="fw-bold color-gray fs-text">
-                                Số vòng
+                                Số vòng :
                                 <span class=" fw-normal">{{contestDetail.rounds.length}}</span>
                             </p>
                             <ng-template #content let-modal>
@@ -158,25 +158,9 @@
                     <i class="fas fa-long-arrow-right"></i>
                 </div>
             </div> -->
-                <div id="new-page" *ngIf="statusRound_id == false">
+                <div id="new-page" *ngIf="contestDetail.post_new != null && statusContest == true">
                     <h5 class="fw-bold fs-5 color-blue">Tin tức cuộc thi</h5>
-                    <p class="color-gray p-justify fs-text"></p>
-                    <p class="color-gray p-justify fs-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Dolorum,
-                        ad nesciunt. Earum necessitatibus,
-                        perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas veritatis. Rem
-                        quam
-                        beatae alias
-                        laboriosam tenetur.</p>
-                    <img src="https://caodang.fpt.edu.vn/wp-content/uploads/IMG_5572-ok.jpg" alt="" class="w-100">
-                    <p class="color-gray p-justify fs-text mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                        Dolorum,
-                        ad nesciunt. Earum necessitatibus,
-                        perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas veritatis. Rem
-                        quam
-                        beatae alias
-                        laboriosam tenetur.</p>
+                    <div class="new-page-img" [innerHTML]="contestDetail.post_new"></div>
                 </div>
 
             </div>

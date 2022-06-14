@@ -139,17 +139,16 @@
     </div>
     <div class="container  py-4">
         <h4 class="text-center mb-3 title-student-point text-white">SINH VIÊN CÓ THÀNH TÍCH XUẤT SẮC</h4>
-        <div class="student-point-select-major">
-            <div class="student-point-select-in">
-                <span>{{nameSelectMajor}}</span>
-                <i class="fas fa-caret-down"></i>
-            </div>
-            <div class="student-point-dropdown">
-                <div *ngFor="let item of majors" class="student-point-dropdown-item"
-                    (click)="getResultWhereMajor(item.slug)">
-                    {{item.name}}
-                </div>
-            </div>
+        <div class="d-flex justify-content-center">
+            <nz-select [(ngModel)]="selectedMajor" (nzScrollToBottom)="loadMore()" [nzPlaceHolder]="nameSelectMajor"
+                nzAllowClear [nzDropdownRender]="renderTemplate" (ngModelChange)="getResultWhereMajor($event)">
+                <nz-option *ngFor="let o of majors" [nzValue]="o.slug" [nzLabel]="o.name">
+                    {{o}}
+                </nz-option>
+            </nz-select>
+            <ng-template #renderTemplate>
+                <nz-spin *ngIf="isLoading"></nz-spin>
+            </ng-template>
         </div>
 
         <div class="list-student-point-hight  mt-3">

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -18,7 +18,7 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { ContestComponent } from './pages/contest/contest.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { ContestDeatailComponent } from './pages/contest-detail/contest-deatail.component';
-
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { BannerComponent } from './component/banner/banner.component';
 import { BackTimeComponent } from './component/back-time/back-time.component';
 
@@ -43,6 +43,7 @@ import { ContestUserJoinComponent } from './component/contest-user-join/contest-
 
 import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/team-user-join-detail.component';
 
+
 import { ContestItemComponent } from './component/contest-item/contest-item.component';
 import { ModalListMemberComponent } from './component/modal-list-member/modal-list-member.component';
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
@@ -51,6 +52,12 @@ import { ModalSubmitAssComponent } from './modal/modal-submit-ass/modal-submit-a
 import { ListResultRoundComponent } from './component/list-result-round/list-result-round.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { LoadingPageComponent } from './loading/loading-page/loading-page.component';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -98,7 +105,9 @@ import { LoadingPageComponent } from './loading/loading-page/loading-page.compon
     SlickCarouselModule,
     NgxSkeletonLoaderModule,
     MaterialModule,
-    NgToastModule
+    NgToastModule,
+    NzSelectModule,
+    NzSpinModule
   ],
   providers: [
     {
@@ -122,7 +131,8 @@ import { LoadingPageComponent } from './loading/loading-page/loading-page.compon
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
-    }
+    },
+    { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent]
 })
