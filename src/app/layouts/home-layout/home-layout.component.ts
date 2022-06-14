@@ -18,28 +18,14 @@ export class HomeLayoutComponent implements OnInit {
     user: User;
     statusWindow: boolean = false;
     statusLogin: boolean = false;
-    randomUserUrl = 'https://api.randomuser.me/?results=5';
-    searchChange$ = new BehaviorSubject('');
-    optionList: string[] = [];
-    selectedUser?: string;
-    isLoading = false;
-
-    constructor(private userInfo: GetValueLocalService, private configView: ConfigViewService,
-        private http: HttpClient) {
-
-    }
-
-    onSearch(value: any): void {
-        this.isLoading = true;
-        this.searchChange$.next(value);
+    constructor(private userInfo: GetValueLocalService, private configView: ConfigViewService) {
     }
 
     ngOnInit(): void {
         this.backTop();
-
         this.user = this.userInfo.getValueLocalUser('user');
         if (this.user) {
-            console.log(this.user);
+            // console.log(this.user);
 
             this.statusLogin = true;
         }
@@ -61,6 +47,7 @@ export class HomeLayoutComponent implements OnInit {
         }
     }
 
+
     headerBlockScroll() {
         let header = document.querySelector('.header');
         if (window.scrollY > 400) {
@@ -69,7 +56,6 @@ export class HomeLayoutComponent implements OnInit {
             header?.classList.remove('fixed');
         }
     }
-
 
     // Chuyển trạng thái web về đầu trang
     backTop() {

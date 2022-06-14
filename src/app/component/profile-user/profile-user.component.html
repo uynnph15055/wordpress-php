@@ -3,6 +3,8 @@
         <h3 class=" fs-5 primary-color">Hồ sơ của tôi</h3>
         <p style="margin-top: -12px;" class="color-gray">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
     </div>
+    <mat-progress-bar color="warn" *ngIf="statusEditUser == true" class="loading-page" mode="indeterminate">
+    </mat-progress-bar>
     <form class="profile-user-body my-4 text-center">
         <div class="avatar-upload d-flex justify-content-center">
             <div class="avatar-edit">
@@ -23,7 +25,7 @@
                 <label for="" class="register-label">Tên của bạn</label>
             </div>
         </div>
-        <button class="mt-5 btn btn-base-type-bg" (click)="EditInFoUser()">Sửa thông
+        <button class="mt-4 btn btn-base-type-bg" (click)="EditInFoUser()">Sửa thông
             tin</button>
     </form>
 </div>

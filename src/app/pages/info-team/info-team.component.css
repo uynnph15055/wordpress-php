@@ -8,13 +8,21 @@
 
 .info-team-user {
   width: 50px;
-  max-height: 50px;
+  height: 50px;
   object-fit: cover;
   border-radius: 50px;
 }
 
 .info-name-user {
   margin-bottom: -2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  font-size: 17px;
 }
 
 .box-component-right {

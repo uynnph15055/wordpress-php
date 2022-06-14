@@ -68,8 +68,8 @@
                     </li>
                     <li *ngIf="statusLogin == true">
 
-                        <img mat-icon-button [matMenuTriggerFor]="menu" class="header-avatar-user" [src]="user.avatar"
-                            alt="">
+                        <img *ngIf="user.avatar" mat-icon-button [matMenuTriggerFor]="menu" class="header-avatar-user"
+                            [src]="user.avatar" alt="">
                         <mat-menu class="mt-2" #menu="matMenu">
                             <button mat-menu-item>
 
