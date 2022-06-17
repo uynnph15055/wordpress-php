@@ -1,0 +1,34 @@
+/* 
+  *Footer
+   */
+
+#footer {
+  background-image: linear-gradient(to bottom, #081327, #122035);
+  color: #fff;
+  border-top: 10px solid var(--title-footer);
+  /* margin-top: 10px; */
+  font-size: 13px;
+}
+
+.list-social-item {
+  margin-right: 15px;
+}
+
+.footer-title-color {
+  color: var(--title-footer);
+}
+
+#footer h6 {
+  text-decoration: underline;
+  font-size: 1rem;
+  color: var(--title-footer);
+}
+
+.footer-size-p {
+  font-size: 15px;
+}
+
+#footer .fa-icon-phone {
+  font-size: 16px;
+  color: var(--title-footer)
+}

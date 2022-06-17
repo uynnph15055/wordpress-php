@@ -56,6 +56,9 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { HeaderComponent } from './layouts/header/header.component';
+import { FooterComponent } from './layouts/footer/footer.component';
+import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
 
 registerLocaleData(en);
 
@@ -90,6 +93,9 @@ registerLocaleData(en);
     ListResultRoundComponent,
     RoundContestDetailComponent,
     LoadingPageComponent,
+    HeaderComponent,
+    FooterComponent,
+    RecruitmentComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,20 +22,12 @@ export class HomeLayoutComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.backTop();
-        this.user = this.userInfo.getValueLocalUser('user');
-        if (this.user) {
-            // console.log(this.user);
-
-            this.statusLogin = true;
-        }
-
+        this.backTop(); 
         this.winBackTop();
         window.addEventListener('scroll', () => {
             this.winBackTop();
             this.headerBlockScroll();
         })
-
     }
 
     winBackTop() {
@@ -57,6 +49,8 @@ export class HomeLayoutComponent implements OnInit {
         }
     }
 
+
+
     // Chuyển trạng thái web về đầu trang
     backTop() {
         $('html , body').animate({
@@ -64,10 +58,5 @@ export class HomeLayoutComponent implements OnInit {
         }, 1000);
     }
 
-    // LogOut
-    logOut() {
-        localStorage.clear();
-        this.statusLogin = false;
-        this.ngOnInit();
-    }
+
 }
