@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { RecruitmentComponent as RecruitmentModal } from 'src/app/modal/recruitment/recruitment.component';
 @Component({
   selector: 'app-recruitment',
   templateUrl: './recruitment.component.html',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecruitmentComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   sliderRecruitment = {
     slidesToShow: 1,
@@ -25,11 +26,23 @@ export class RecruitmentComponent implements OnInit {
     infinite: true,
     autoplay: true,
     prevArrow: '.slick-company-next', nextArrow: '.slick-company-prev',
-    dots: true
+  };
+
+  sliderWordKey = {
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    infinite: true,
+    autoplay: true,
   };
 
 
   ngOnInit(): void {
+    this.openRecruitmentDetail();
   }
 
+
+  openRecruitmentDetail(): void {
+    const dialogRef = this.dialog.open(RecruitmentModal, {
+    })
+  }
 }

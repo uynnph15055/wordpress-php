@@ -2,7 +2,7 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 // http://127.0.0.1:8000/api
-// https://admin.svpoly.xyz/api
+// https://admin.svpoly.xyz/apihttps://admin.svpoly.xyz/api
 const baseApiUrl = "https://admin.svpoly.xyz/api";
 const authApi = `${baseApiUrl}/auth`;
 export const jwtApiUrl = `${baseApiUrl}/v1`;

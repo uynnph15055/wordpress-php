@@ -18,6 +18,7 @@ export class ListResultRoundComponent implements OnInit {
   statusResultRound: boolean = false;
   payingLinks: Array<any>;
   pages: number = 1;
+  checkTeamPoint: boolean = false;
   resPayLoad: any;
   titleResult: string = "Kết quả chung cuộc";
   constructor(private roundService: RoundService,
@@ -27,7 +28,6 @@ export class ListResultRoundComponent implements OnInit {
   ngOnInit(): void {
     this.round_id && this.statusPage == true ?
       this.titleResult = "Kết quả vòng thi" : this.titleResult;
-  
 
 
     this.roundService.getResultRound(this.round_id).subscribe(res => {
@@ -36,8 +36,7 @@ export class ListResultRoundComponent implements OnInit {
         this.dataResultRound = res.payload.data;
         this.payingLinks = this.editLink(res.payload.links);
         this.dataResultRound ? this.statusResultRound = true : this.statusResultRound;
-        console.log(this.dataResultRound);
-
+        this.checkPointTeamNotNull(this.dataResultRound);
       } else {
         this.statusResultRound = true;
       };
@@ -54,7 +53,6 @@ export class ListResultRoundComponent implements OnInit {
   payingPage(link: any, pages: any) {
     this.statusResultRound = false;
     this.pages = pages;
-    console.log(this.pages);
 
     this.contestService.getContestWherePage(link).subscribe(res => {
       if (res.status) {
@@ -72,4 +70,10 @@ export class ListResultRoundComponent implements OnInit {
     });
   }
 
+  // Kiểm tra xem đã có kế quả cho tường đọi chưa
+  checkPointTeamNotNull(data: Array<ResultRound>) {
+    data.forEach(item => {
+      item.result.point != null ? this.checkTeamPoint = true : this.checkTeamPoint;
+    })
+  }
 }

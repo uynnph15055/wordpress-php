@@ -228,10 +228,9 @@ export class ContestDeatailComponent implements OnInit {
 
   //Tìm kiếm sinh viên kết quả
   searchTeamRank(event: any) {
+    this.getResultRoundBefore(this.contestDetail.rounds, 2);
     let searchTeamRank = event.target.value;
-    console.log(searchTeamRank);
-    if (searchTeamRank != '') {
-
+    if (searchTeamRank != null) {
       this.resultRoundBefore = this.resultRoundBefore.filter(res => {
         return res.name.includes(searchTeamRank);
       });

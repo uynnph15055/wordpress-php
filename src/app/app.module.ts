@@ -25,6 +25,8 @@ import { BackTimeComponent } from './component/back-time/back-time.component';
 import { RoundComponent } from './component/round/round.component';
 import { BackTopComponent } from './component/back-top/back-top.component';
 
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 import { LoadingItemComponent } from './component/loading-item/loading-item.component';
 import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
@@ -59,6 +61,8 @@ import en from '@angular/common/locales/en';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
+import { RecruitmentComponent as RecruitmentComponentModal } from './modal/recruitment/recruitment.component';
+import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
 registerLocaleData(en);
 
@@ -96,6 +100,7 @@ registerLocaleData(en);
     HeaderComponent,
     FooterComponent,
     RecruitmentComponent,
+    RecruitmentComponentModal
   ],
   imports: [
     BrowserModule,
@@ -113,7 +118,9 @@ registerLocaleData(en);
     MaterialModule,
     NgToastModule,
     NzSelectModule,
-    NzSpinModule
+    NzSpinModule,
+    AndesginModule,
+
   ],
   providers: [
     {
