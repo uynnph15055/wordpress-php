@@ -8,9 +8,7 @@
 }
 
 /* Chuyện chuyên ngành  */
-nz-select {
-  width: 250px;
-}
+
 
 .color-yellow {
   color: var(--color-yellow)
@@ -452,10 +450,25 @@ nz-select {
 }
 
 /*  RESPONSIVE */
+/* ---END HEADER---- */
 @media (max-width:568px) {
-  .assess-enterprise-wrapper {
-    height: 700px;
+
+  /*Phần lịch sử cuộc thi */
+  .section_plan-box {
+    display: flex;
+    flex-direction: column;
   }
+
+  .section_plan-item {
+    width: 200px;
+    margin: 0px auto;
+  }
+
+  .section_plan {
+    height: 600px;
+  }
+
+
 }
 
 

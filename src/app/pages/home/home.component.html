@@ -77,19 +77,19 @@
     <h4 class="text-center pt-4 title-student-point text-white">THÀNH TÍCH ĐẠT ĐƯỢC</h4>
     <div class="container section_plan-box-in">
         <div class="d-flex justify-content-center section_plan-box pt-4">
-            <div class="col-3 section_plan-item show-on-scroll zoom">
+            <div class="col-3 section_plan-item mb-4 show-on-scroll zoom">
                 <h3 class="section_plan-bag-number text-white section_plan-student">0</h3>
                 <span class="text-white section_plan-bag-text fw-bold ">
                     Năm hoạt động
                 </span>
             </div>
-            <div class="col-3 section_plan-item show-on-scroll zoom">
+            <div class="col-3 section_plan-item mb-4 show-on-scroll zoom">
                 <h3 class="section_plan-bag-number  text-white section_plan-year">0</h3>
                 <span class="text-white section_plan-bag-text fw-bold">
                     Sinh viên
                 </span>
             </div>
-            <div class="col-3 section_plan-item show-on-scroll zoom">
+            <div class="col-3 mb-4 section_plan-item show-on-scroll zoom">
                 <h3 class="section_plan-bag-number  text-white section_plan-pass">0</h3>
                 <span class="text-white section_plan-bag-text fw-bold">
                     Được nhận
@@ -310,3 +310,8 @@
         </ngx-slick-carousel>
     </div> -->
 </div>
+<nz-select nzPlaceHolder="Choose">
+    <nz-option *ngFor="let o of majors" [nzValue]="o.slug" [nzLabel]="o.name">
+        {{o}}
+    </nz-option>
+</nz-select>

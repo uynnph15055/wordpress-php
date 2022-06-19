@@ -283,22 +283,14 @@
 
 
 
-@media (max-width:987px) {
-  .menu_login-box {
-    visibility: hidden;
-  }
-
-  .img-header-box {
-    padding-left: 15%;
-  }
-
-  .btn-outline-login {
-    padding: 6px 17px;
-    font-size: 14px;
-  }
-
-  .nav-response,
-  .fa-icon-menu {
-    display: block;
-  }
+/* ---END HEADER---- */
+@media (max-width:568px) {
+  
 }
+
+
+@media (max-width:987px) {
+  
+}
+
+

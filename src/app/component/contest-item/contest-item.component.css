@@ -32,6 +32,8 @@
   font-style: 500;
 }
 
+
+
 .contest-count-team .count-team {
   font-size: 13px;
   padding: 3px;
@@ -58,4 +60,35 @@
   background-color: var(--primary-color);
   border: none;
   opacity: 0.7;
+}
+
+@media (max-width:568px) {
+  .contest-item-img {
+    height: 250px;
+  }
+
+  .time-contest-register {
+    font-size: 16px;
+    margin-top: 15px;
+  }
+
+  .contest-count-team {
+    margin-top: 20px;
+  }
+}
+
+
+@media (max-width:987px) {
+  .menu_login-box .nav-item {
+    display: none;
+  }
+
+  .img-header-box {
+    height: 70px;
+    margin-left: 30px;
+  }
+
+  .nav-response {
+    display: block;
+  }
 }

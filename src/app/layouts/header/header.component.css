@@ -5,7 +5,6 @@
   background: transparent;
 }
 
-
 @keyframes slideDown {
   from {
     transform: translateY(-100%);
@@ -42,6 +41,11 @@
   box-shadow: 0 0px 6px gray;
 }
 
+.icon-open-nav-mobile i {
+  font-size: 23px;
+  cursor: pointer;
+}
+
 .header-icon-message {
   font-size: 20px;
   margin: 3px 30px 0px 10px;
@@ -59,6 +63,7 @@
 
 .nav-response {
   display: none;
+  z-index: 10;
 }
 
 .nav-item {
@@ -222,3 +227,37 @@
 }
 
 /* ---END HEADER---- */
+@media (max-width:568px) {
+  .menu_login-box .nav-item {
+    display: none;
+  }
+
+  .img-header-box {
+    height: 70px;
+    margin-left: 30px;
+  }
+
+  .nav-response {
+    display: block;
+  }
+
+  .input_check i {
+    font-size: 20px;
+  }
+}
+
+
+@media (max-width:987px) {
+  .menu_login-box .nav-item {
+    display: none;
+  }
+
+  .img-header-box {
+    height: 70px;
+    margin-left: 30px;
+  }
+
+  .nav-response {
+    display: block;
+  }
+}
