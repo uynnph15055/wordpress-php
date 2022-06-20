@@ -51,6 +51,7 @@ import { ModalSubmitAssComponent } from './modal/modal-submit-ass/modal-submit-a
 import { ListResultRoundComponent } from './component/list-result-round/list-result-round.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { LoadingPageComponent } from './loading/loading-page/loading-page.component';
+import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { LoadingPageComponent } from './loading/loading-page/loading-page.compon
     ListResultRoundComponent,
     RoundContestDetailComponent,
     LoadingPageComponent,
+    CapacityDetailComponent,
   ],
   imports: [
     BrowserModule,
