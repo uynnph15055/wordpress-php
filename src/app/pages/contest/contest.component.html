@@ -18,46 +18,61 @@
                   }" count="8" animation="pulse"></ngx-skeleton-loader>
             </div>
         </div>
-        <div class="col-9 list-contest">
-            <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mt-4 fs-5 fw-bold color-blue">Các cuộc thi</h5>
-                <div class="d-flex justify-content-between align-items-center">
-                    <select class="w-25 form-select" (change)="statusMajorContest($event)"
+        <div class="col-lg-9 col-xl-9 col-md-12 list-contest">
+            <div class="row">
+                <div class="col-lg-5 col-xl-5 col-md-3">
+                    <h5 class=" title-sub-list-contest fs-5 fw-bold color-blue mt-3">Các cuộc thi</h5>
+                    <select class="w-100 form-select select-major-responsive" (change)="getContestWWhereIdMajor($event)"
                         aria-label="Default select example">
-                        <option value="0">Tất cả</option>
-                        <option value="1">Đang diễn ra
+                        <option selected value="0">Chọn chuyên ngành
                         </option>
-                        <option value="2">Sắp diễn ra </option>
-                        <option value="3">Đã kết thúc</option>
+                        <option *ngFor="let m of majors" [value]="m.id">{{m.name}}</option>
                     </select>
-                    <form class="d-flex justify-content-center  align-items-center" (submit)="searchContest()">
-                        <div style="margin-right: 20px">
-                            <input (keyup)="setValueSearch($event)" type=" text" placeholder="Tìm kiếm cuộc thi"
-                                class="form-control">
+                </div>
+                <div class="col-lg-7 col-xl-7 col-md-9">
+                    <div class="row">
+                        <div class="col-3">
+                            <select class="w-100 form-select" (change)="statusMajorContest($event)"
+                                aria-label="Default select example">
+                                <option value="0">Trạng thái</option>
+                                <option value="1">Đang diễn ra
+                                </option>
+                                <option value="2">Sắp diễn ra </option>
+                                <option value="3">Đã kết thúc</option>
+                            </select>
                         </div>
-                        <div class="ml-2">
-                            <button type="button" (click)="searchContest()" class="btn btn-register">Tìm
-                                kiếm</button>
+                        <div class="col-9">
+                            <form class="d-flex justify-content-end  align-items-center" (submit)="searchContest()">
+                                <div style="margin-right: 20px;">
+                                    <input (keyup)="setValueSearch($event)" type=" text" placeholder="Tìm kiếm cuộc thi"
+                                        class="form-control">
+                                </div>
+                                <div class="ml-1">
+                                    <button type="button" (click)="searchContest()" class="btn btn-register">Tìm
+                                        kiếm</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-            <div class="row mt-2" *ngIf="statusContest == 'done' &&  contests.length > 0">
+            <div class="row mt-4" *ngIf="statusContest == 'done' &&  contests.length > 0">
                 <app-contest-item *ngFor="let item of contests" class="col-md-6 col-lg-4 col-xl-4 col-sm-12 mb-3"
                     [item]="item" [major_slug]="major_slug">
                 </app-contest-item>
             </div>
 
-            <div *ngIf="statusContest == 'pending'" class=" row">
-                <app-contest-load-item class="col-4" style=""></app-contest-load-item>
-                <app-contest-load-item class="col-4"></app-contest-load-item>
-                <app-contest-load-item class="col-4"></app-contest-load-item>
-                <app-contest-load-item class="col-4"></app-contest-load-item>
-                <app-contest-load-item class="col-4"></app-contest-load-item>
-                <app-contest-load-item class="col-4"></app-contest-load-item>
-                <app-contest-load-item class="col-4"></app-contest-load-item>
-                <app-contest-load-item class="col-4"></app-contest-load-item>
-                <app-contest-load-item class="col-4"></app-contest-load-item>
+
+            <div *ngIf="statusContest == 'pending'" class="mt-2 row">
+                <app-contest-load-item class="col-lg-4 col-mx-4 col-md-6"></app-contest-load-item>
+                <app-contest-load-item class="col-lg-4 col-mx-4 col-md-6"></app-contest-load-item>
+                <app-contest-load-item class="col-lg-4 col-mx-4 col-md-6"></app-contest-load-item>
+                <app-contest-load-item class="col-lg-4 col-mx-4 col-md-6"></app-contest-load-item>
+                <app-contest-load-item class="col-lg-4 col-mx-4 col-md-6"></app-contest-load-item>
+                <app-contest-load-item class="col-lg-4 col-mx-4 col-md-6"></app-contest-load-item>
+                <app-contest-load-item class="col-lg-4 col-mx-4 col-md-6"></app-contest-load-item>
+                <app-contest-load-item class="col-lg-4 col-mx-4 col-md-6"></app-contest-load-item>
+                <app-contest-load-item class="col-lg-4 col-mx-4 col-md-6"></app-contest-load-item>
             </div>
 
             <div class="w-100 d-flex justify-content-center mt-4"

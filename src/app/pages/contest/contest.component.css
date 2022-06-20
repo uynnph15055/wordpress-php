@@ -48,6 +48,10 @@
   max-width: 100%;
 }
 
+.select-major-responsive {
+  display: none;
+}
+
 .major-contest-link:first-child {
   margin-top: 5px;
 }
@@ -69,5 +73,25 @@
   cursor: pointer;
   margin-right: 10px;
   border-radius: 4px;
+}
 
+@media (max-width:568px) {
+  .select-major-responsive {
+    margin-bottom: 20px;
+  }
+}
+
+
+@media (max-width:987px) {
+  .select-major-responsive {
+    display: block;
+  }
+
+  .slider-bar {
+    display: none;
+  }
+
+  .title-sub-list-contest {
+    display: none;
+  }
 }
