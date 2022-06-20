@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Gelasio&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gelasio:ital@1&family=Open+Sans:ital,wght@1,300;1,400&display=swap');
 
+
 .font-size-sml {
   font-size: 15px;
   color: var(--text-color);
@@ -19,6 +20,13 @@
   color: var(--text-color);
 }
 
+.contest-loading-tablet {
+  display: none;
+}
+
+.contest-loading-mobile {
+  display: none;
+}
 
 .title {
   font-size: 1.3rem;
@@ -46,8 +54,6 @@
 }
 
 .contest-list .arrow-list-contest {
-  position: absolute;
-  font-size: 20px;
   cursor: pointer;
   padding: 8px 12px;
   color: var(--primary-color);
@@ -63,13 +69,11 @@
 }
 
 .prev-arrow {
-  transform: translateY(130px);
-  left: 4%;
+  left: -50px;
 }
 
 .next-arrow {
-  transform: translateY(-195px);
-  right: 4%;
+  right: -30px;
 }
 
 /* Rating */
@@ -328,14 +332,13 @@
 
 .assess-content-box {
   width: 100%;
-  min-height: 500px;
+  min-height: 400px;
   box-shadow: 0px 0px 10px var(--gray);
   border-radius: 20px;
   z-index: -1;
 }
 
 .arrow-list-compacity {
-  position: absolute;
   font-size: 27px;
   cursor: pointer;
   color: #1e272e;
@@ -344,17 +347,15 @@
   background-color: var(--white);
   padding: 10px 15px;
   box-shadow: 0px 0px 10px var(--gray);
-}
-
-.prev-compacity-arrow {
-  transform: translateY(232px);
-  left: 0%;
   z-index: 10;
 }
 
+.prev-compacity-arrow {
+  left: -100px;
+}
+
 .next-compacity-arrow {
-  transform: translateY(-270px);
-  right: 0%;
+  right: -100px;
 }
 
 .assess-compacity-logo {
@@ -401,9 +402,11 @@
 .assess-compacity-name {
   font-family: 'Gelasio', serif;
   font-weight: bold;
-
 }
 
+.assess-compacity-logo-res {
+  width: 100px;
+}
 
 /* Loadinggae */
 
@@ -452,6 +455,28 @@
 /*  RESPONSIVE */
 /* ---END HEADER---- */
 @media (max-width:568px) {
+  .assess-compacity-wraper {
+    display: none;
+  }
+
+  .contest-loading-mobile {
+    display: block;
+  }
+
+  .contest-loading-desktop,
+  .contest-loading-tablet {
+    display: none;
+  }
+
+
+  /* NEXT | PREV */
+  .prev-arrow {
+    left: -50px;
+  }
+
+  .next-arrow {
+    right: -35px;
+  }
 
   /*Phần lịch sử cuộc thi */
   .section_plan-box {
@@ -468,8 +493,37 @@
     height: 600px;
   }
 
+  /* Sinh viên đạt điểm cao nhất */
+  .btn-review-more {
+    width: 30%;
+  }
 
+  /* Đánh giá của doanh nghiệp */
+  .company-represent img {
+    width: 200px;
+  }
 }
 
 
-@media (max-width:987px) {}
+@media (max-width:987px) {
+
+  .contest-loading-desktop,
+  .contest-loading-mobile {
+    display: none;
+  }
+
+  .contest-loading-tablet {
+    display: block;
+  }
+
+  /* Phần lịch sử website */
+  .section_plan-item .section_plan-bag-number,
+  .section_plan-item .section_plan-bag-text {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .assess-compacity-wraper {
+    display: none;
+  }
+}

@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 2,
                     slidesToScroll: 2,
                     infinite: true,
                     dots: true
@@ -70,7 +70,10 @@ export class HomeComponent implements OnInit {
 
     sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', autoplay: true, nextArrow: '.next-student-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true };
 
-    sliderAssessCompacity = { "slidesToShow": 1, prevArrow: '.prev-compacity-arrow', nextArrow: '.next-compacity-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true, };
+    sliderAssessCompacity = {
+        "slidesToShow": 1, prevArrow: '.prev-compacity-arrow', nextArrow: '.next-compacity-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true, fade: true,
+        cssEase: 'linear'
+    };
 
     constructor(private contestService: ContestService,
         private configView: ConfigViewService,
