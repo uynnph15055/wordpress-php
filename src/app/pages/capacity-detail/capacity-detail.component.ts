@@ -23,6 +23,9 @@ export class CapacityDetailComponent implements OnInit {
     this.tabActive = activeItem;
 
     let offsetTop = el.offsetTop;
+    if (activeItem === 'testRelated') {
+      offsetTop -= 150;
+    }
 
     window.scrollTo({
       top: offsetTop,
