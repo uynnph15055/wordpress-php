@@ -131,6 +131,10 @@
   background-position: center;
 }
 
+.title-form-info-team {
+  font-size: 1.1rem;
+}
+
 .btn-register-save {
   background-color: var(--primary-color);
   color: var(--white);
