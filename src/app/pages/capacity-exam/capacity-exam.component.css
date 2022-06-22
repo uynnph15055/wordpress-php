@@ -151,12 +151,14 @@
   transition: all 0.25s linear;
 }
 
-.answer:hover .answer__num {
+.answer:hover .answer__num,
+.answers__input:checked ~ .answer .answer__num {
   background-color: var(--warning);
   color: #fff;
 }
 
-.answer:hover {
+.answer:hover,
+.answers__input:checked ~ .answer {
   border-color: var(--primary-color);
 }
 

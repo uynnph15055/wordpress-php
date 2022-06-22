@@ -1,4 +1,4 @@
-<div class="container my-4">
+<form class="container my-4" (ngSubmit)="handleSubmitExam()" [formGroup]="formAnswers">
   <div class="capacity__exam-heading">
     <div class="capacity__exam-heading-inner d-flex align-items-center justify-content-center">
       <span class="capacity__exam-heading-line"></span>
@@ -12,7 +12,7 @@
   </div>
 
   <div class="row">
-    <div class="col col-3">
+    <div class="col col-12 col-md-3">
       <div class="sidebar">
         <h2 class="sidebar__title">Đề thi kiểm tra số 1</h2>
 
@@ -68,44 +68,9 @@
           <span class="question__title">Câu hỏi</span>
 
           <div class="question__list">
-            <div class="question__list-item active">
-              <div class="question__list-item-inner">1</div>
-            </div>
-          
-            <div class="question__list-item">
-              <div class="question__list-item-inner">2</div>
-            </div>
-
-            <div class="question__list-item">
-              <div class="question__list-item-inner">3</div>
-            </div>
-
-            <div class="question__list-item">
-              <div class="question__list-item-inner">4</div>
-            </div>
-
-            <div class="question__list-item">
-              <div class="question__list-item-inner">5</div>
-            </div>
-
-            <div class="question__list-item">
-              <div class="question__list-item-inner">6</div>
-            </div>
-
-            <div class="question__list-item">
-              <div class="question__list-item-inner">7</div>
-            </div>
-
-            <div class="question__list-item">
-              <div class="question__list-item-inner">8</div>
-            </div>
-
-            <div class="question__list-item">
-              <div class="question__list-item-inner">9</div>
-            </div>
-
-            <div class="question__list-item">
-              <div class="question__list-item-inner">10</div>
+            <!-- active câu hỏi đã làm -->
+            <div class="question__list-item" (click)="scrollToQuestion(i)" [ngClass]="{active: checkQuesAnswered(ques.id)}" *ngFor="let ques of fakeQuestionData; let i = index">
+              <div class="question__list-item-inner">{{ i + 1 }}</div>
             </div>
           </div>
         </section>
@@ -121,64 +86,24 @@
       </div>
     </div>
 
-    <div class="col col-9 question__content">
+    <div class="col col-12 col-md-9 question__content">
       <ul class="question__content-list">
-        <li class="question__content-item">
-          <span class="question__content-item-num d-block">Câu 1</span>
+        <li class="question__content-item" *ngFor="let question of fakeQuestionData; let i = index" #questions>
+          <span class="question__content-item-num d-block">Câu {{ i + 1 }}:</span>
 
-          <p class="question__content-item-content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis deleniti commodi ducimus corporis cum, magni at, voluptates ratione eius unde necessitatibus placeat omnis dolorum inventore debitis velit consequatur iusto quo!</p>
-
-          <ul class="answers">
-            <li class="answer d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">A</span>
-              <p class="answer__content m-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est deleniti alias maxime nemo eius autem praesentium in totam natus? Consectetur nihil, provident fuga in molestias architecto rem tempora alias facilis.</p>
-            </li>
-
-            <li class="answer d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">B</span>
-              <p class="answer__content m-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est deleniti alias maxime nemo eius autem praesentium in totam natus? Consectetur nihil, provident fuga in molestias architecto rem tempora alias facilis.</p>
-            </li>
-
-            <li class="answer d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">C</span>
-              <p class="answer__content m-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est deleniti alias maxime nemo eius autem praesentium in totam natus? Consectetur nihil, provident fuga in molestias architecto rem tempora alias facilis.</p>
-            </li>
-
-            <li class="answer d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">D</span>
-              <p class="answer__content m-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est deleniti alias maxime nemo eius autem praesentium in totam natus? Consectetur nihil, provident fuga in molestias architecto rem tempora alias facilis.</p>
-            </li>
-          </ul>
-        </li>
-
-        <li class="question__content-item">
-          <span class="question__content-item-num d-block">Câu 2</span>
-
-          <p class="question__content-item-content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis deleniti commodi ducimus corporis cum, magni at, voluptates ratione eius unde necessitatibus placeat omnis dolorum inventore debitis velit consequatur iusto quo!</p>
+          <p class="question__content-item-content" [innerHTML]="question.content"></p>
 
           <ul class="answers">
-            <li class="answer d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">A</span>
-              <p class="answer__content m-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est deleniti alias maxime nemo eius autem praesentium in totam natus? Consectetur nihil, provident fuga in molestias architecto rem tempora alias facilis.</p>
-            </li>
-
-            <li class="answer d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">B</span>
-              <p class="answer__content m-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est deleniti alias maxime nemo eius autem praesentium in totam natus? Consectetur nihil, provident fuga in molestias architecto rem tempora alias facilis.</p>
-            </li>
-
-            <li class="answer d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">C</span>
-              <p class="answer__content m-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est deleniti alias maxime nemo eius autem praesentium in totam natus? Consectetur nihil, provident fuga in molestias architecto rem tempora alias facilis.</p>
-            </li>
-
-            <li class="answer d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">D</span>
-              <p class="answer__content m-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est deleniti alias maxime nemo eius autem praesentium in totam natus? Consectetur nihil, provident fuga in molestias architecto rem tempora alias facilis.</p>
+            <li class="answers__item" *ngFor="let answer of question.answers; let j = index" (click)="handleChooseAnswer(question.id)">
+              <input class="answers__input" type="radio" hidden [id]="'answer-' + answer.id" [formControlName]="'question-' + (i + 1) + '-' + question.id" [value]="answer.id">
+              <label [for]="'answer-' + answer.id" class="answer d-flex align-items-center">
+                <span class="answer__num d-flex justify-content-center align-items-center">{{ (j + 10).toString(36).toUpperCase() }}</span>
+                <p class="answer__content m-0">{{ answer.content }}</p>
+              </label>
             </li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
-</div>
+</form>
