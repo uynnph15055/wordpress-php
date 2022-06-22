@@ -260,6 +260,13 @@
   border-radius: 8px;
 }
 
+.capacity__related-content-time {
+  color: #898989;
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
 .capacity__related-content-title-link {
   color: #444;
 }
@@ -273,7 +280,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  margin: 10px 0;
+  margin: 2px 0 8px;
   transition: all 0.25s linear;
 }
 
@@ -297,7 +304,8 @@
 
 .capacity__related-content-list-item {
   display: flex;
-  padding-bottom: 6px;
+  padding-bottom: 2px;
+  font-size: 14px;
 }
 
 .capacity__related-content-list-item-icon {
