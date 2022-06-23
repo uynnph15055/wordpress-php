@@ -27,7 +27,7 @@ export class ContestItemComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.date_end = moment(this.item.register_deadline).format('lll');
+    this.date_end = moment(this.item.end_register_time).format('lll');
     setInterval(() => {
 
       let futureDate = new Date(this.date_end).getTime();

@@ -59,7 +59,6 @@ export class ContestComponent implements OnInit {
       this.majorService.getMajorWhereSlug(this.major_slug).subscribe(res => {
 
         if (this.major_slug == null) {
-
           this.checkUserHasLogin == true ? this.getContestHasAfterLogin() : this.getAllContest();
         } else {
           this.contests = [];
@@ -110,6 +109,7 @@ export class ContestComponent implements OnInit {
   //   Set value need search
   setValueSearch(event: any) {
     this.valueSearch = event.target.value;
+
   }
 
   // Tìm kiếm cuộc thi
@@ -149,9 +149,6 @@ export class ContestComponent implements OnInit {
       }
     }
   }
-  
-
-
   // Filter where major
   getWhereMajor() {
     this.filterContest('', this.major_id, 0, this.checkUserHasLogin);
@@ -174,7 +171,8 @@ export class ContestComponent implements OnInit {
     })
   }
 
-  // Function comom filter contest
+
+  // Function dùng chung để lọc sản phẩm
   filterContest(keyword: string, major_id: number, status: number, statusUser: boolean) {
     this.statusContest = 'pending';
     if (statusUser == false) {

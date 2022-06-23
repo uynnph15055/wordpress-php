@@ -123,6 +123,7 @@ export class ContestDeatailComponent implements OnInit {
         // Chạy thời gian hết hạn cuộc thi 
         setInterval(() => {
           this.roundEndTime = moment(this.contestDetail.end_register_time).format('lll');
+          console.log(this.roundEndTime);
 
           let futureDate = new Date(this.roundEndTime).getTime();
 
@@ -145,6 +146,9 @@ export class ContestDeatailComponent implements OnInit {
           }
 
         }, 1000);
+
+
+
 
         //  Check user có bẫm vào nút đăng ký ko 
         setTimeout(() => {

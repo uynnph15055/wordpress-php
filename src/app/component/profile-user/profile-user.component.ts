@@ -19,7 +19,6 @@ export class ProfileUserComponent implements OnInit {
   constructor(private userService: UserService,
     private toast: NgToastService) { }
 
-
   ngOnInit(): void {
     this.userInfo = this.userService.getUserValue();
     this.imgURL = this.userInfo.avatar;
@@ -31,7 +30,6 @@ export class ProfileUserComponent implements OnInit {
 
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
-
       return;
     }
 
@@ -48,32 +46,28 @@ export class ProfileUserComponent implements OnInit {
     this.statusEditUser = true;
 
     let formDataUser = new FormData();
-
-
     if (this.imagePath == undefined) {
       this.imagePath = this.userInfo.avatar;
     }
+
     if (this.nameUser == undefined) {
       this.nameUser = this.userInfo.name;
     }
-
-
 
     formDataUser.append('name', this.nameUser);
     formDataUser.append('avatar', this.imagePath);
     this.userService.editInfoUser(formDataUser).subscribe(res => {
       if (res.status) {
-        console.log(res.status);
         this.statusEditUser = false;
         this.toast.success({ summary: 'Sửa thành công !!!', duration: 2000 });
-        window.addEventListener('load', () => {
-          this.userService.setLocalStorageHasEdit(res.payload);
-        });
+        this.userService.setLocalStorageHasEdit(res.payload);
       } else {
         if (res.payload.name) {
           this.toast.warning({ summary: res.payload.name, duration: 2000 });
+          this.statusEditUser = false;
         } else if (res.payload.avatar) {
           this.toast.warning({ summary: res.payload.avatar, duration: 2000 });
+          this.statusEditUser = false;
         }
       }
     })
