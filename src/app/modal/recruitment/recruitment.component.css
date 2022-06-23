@@ -1,0 +1,65 @@
+.recruitment-box {
+  width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  min-height: 500px;
+}
+
+.ability-test-item {
+  margin-right: 5px;
+}
+
+.ability-test-all-box {
+  height: 490px;
+  overflow-y: auto;
+}
+
+.recruitment-content {
+  height: 350px;
+  overflow-y: auto;
+}
+
+.ability-test-all-box::-webkit-scrollbar,
+.recruitment-content::-webkit-scrollbar {
+  width: 3px;
+}
+
+.ability-test-all-box::-webkit-scrollbar-thumb,
+.recruitment-content::-webkit-scrollbar-thumb {
+  background-color: rgb(160, 158, 158);
+}
+
+.mat-tab-label-content {
+  font-size: 18px !important;
+}
+
+.ability-test-img {
+  height: 120px;
+  object-fit: cover;
+}
+
+.sidebar__content-list-item {
+  display: flex;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.ability-test-title {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.sidebar__content-list-item-icon i {
+  width: 30px;
+  color: var(--primary-color);
+  color: var(--title-blue);
+}
+
+
+.title-line {
+  width: 100px;
+  height: 3px;
+  background-color: var(--primary-color);
+  margin-bottom: 15px;
+}

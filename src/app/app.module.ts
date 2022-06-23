@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NzSelectModule } from 'ng-zorro-antd/select';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -18,12 +18,13 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { ContestComponent } from './pages/contest/contest.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { ContestDeatailComponent } from './pages/contest-detail/contest-deatail.component';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { BannerComponent } from './component/banner/banner.component';
 import { BackTimeComponent } from './component/back-time/back-time.component';
 
 import { RoundComponent } from './component/round/round.component';
 import { BackTopComponent } from './component/back-top/back-top.component';
+
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 import { LoadingItemComponent } from './component/loading-item/loading-item.component';
@@ -59,6 +60,10 @@ import en from '@angular/common/locales/en';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { RecruitmentComponent as RecruitmentComponentModal } from './modal/recruitment/recruitment.component';
+// import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
 registerLocaleData(en);
 
@@ -96,6 +101,7 @@ registerLocaleData(en);
     HeaderComponent,
     FooterComponent,
     RecruitmentComponent,
+    RecruitmentComponentModal
   ],
   imports: [
     BrowserModule,
@@ -113,7 +119,10 @@ registerLocaleData(en);
     MaterialModule,
     NgToastModule,
     NzSelectModule,
-    NzSpinModule
+    NzSpinModule,
+
+    // AndesginModule,
+
   ],
   providers: [
     {
