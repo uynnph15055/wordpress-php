@@ -63,6 +63,7 @@ import { RecruitmentComponent } from './pages/recruitment/recruitment.component'
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { RecruitmentComponent as RecruitmentComponentModal } from './modal/recruitment/recruitment.component';
+import { ModalInfoTeamComponent } from './modal/modal-info-team/modal-info-team.component';
 // import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
 registerLocaleData(en);
@@ -101,7 +102,8 @@ registerLocaleData(en);
     HeaderComponent,
     FooterComponent,
     RecruitmentComponent,
-    RecruitmentComponentModal
+    RecruitmentComponentModal,
+    ModalInfoTeamComponent
   ],
   imports: [
     BrowserModule,

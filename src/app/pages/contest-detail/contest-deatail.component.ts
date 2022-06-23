@@ -19,6 +19,7 @@ import { UserService } from 'src/app/services/user.service';
 import * as $ from 'jquery';
 import { SliderService } from 'src/app/services/slider.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
 
 
 
@@ -123,7 +124,6 @@ export class ContestDeatailComponent implements OnInit {
         // Chạy thời gian hết hạn cuộc thi 
         setInterval(() => {
           this.roundEndTime = moment(this.contestDetail.end_register_time).format('lll');
-          console.log(this.roundEndTime);
 
           let futureDate = new Date(this.roundEndTime).getTime();
 
@@ -158,6 +158,10 @@ export class ContestDeatailComponent implements OnInit {
         }, 3000);
       }
     });
+  }
+
+  openInfoTeam() {
+    this.dialog.open(ModalInfoTeamComponent);
   }
 
   // Check xem user đã join cuộc thi chưa
@@ -196,7 +200,6 @@ export class ContestDeatailComponent implements OnInit {
     });
   }
 
-
   // Kết quả vòng thi trước đó
   getResultRoundBefore(arrRound: Array<Round>, index: number) {
 
@@ -216,8 +219,10 @@ export class ContestDeatailComponent implements OnInit {
     return arr[arr.length - element].id
   }
 
-  scrollWin(section: number) {
-    window.scrollTo(0, section);
+  scrollWin(elementString: any, distanceApart: number) {
+    let element = document.querySelector(elementString);
+    let numberScroll = element.offsetTop;
+    window.scrollTo({ top: numberScroll - distanceApart, behavior: 'smooth' });
   }
 
   runTop() {

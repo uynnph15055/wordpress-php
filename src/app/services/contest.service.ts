@@ -10,9 +10,6 @@ import { ResponsePayload } from '../models/response-payload';
 export class ContestService {
 
   constructor(private http: HttpClient) { }
-
-
-
   // Gọi tất cả các cuộc thi
   getAll(): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(environment.contestListUrl);

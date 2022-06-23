@@ -136,16 +136,16 @@ export class ContestComponent implements OnInit {
     let statusMajor = e.target.value;
     if (statusMajor == 0) {
       if (this.major_id) {
-        this.filterContest('', this.major_id, statusMajor, this.checkUserHasLogin);
+        this.filterContest(this.valueSearch, this.major_id, statusMajor, this.checkUserHasLogin);
       } else {
-        this.filterContest('', 0, statusMajor, this.checkUserHasLogin);
+        this.filterContest(this.valueSearch, 0, statusMajor, this.checkUserHasLogin);
       }
     }
     else {
       if (this.major_id) {
-        this.filterContest('', this.major_id, statusMajor, this.checkUserHasLogin)
+        this.filterContest(this.valueSearch, this.major_id, statusMajor, this.checkUserHasLogin)
       } else {
-        this.filterContest('', 0, statusMajor, this.checkUserHasLogin)
+        this.filterContest(this.valueSearch, 0, statusMajor, this.checkUserHasLogin)
       }
     }
   }
@@ -192,5 +192,16 @@ export class ContestComponent implements OnInit {
   }
 
 
-  // Filter Contest Has Login
+  // Gọi các cuộc thi theo id chuyên ngành khi responsive
+  getContestWWhereIdMajor(event: any) {
+    this.statusContest = 'pending';
+    let major_id = event.target.value;
+   
+
+    if (major_id == 0) {
+      this.ngOnInit();
+    } else {
+      this.filterContest('', major_id, 0, this.checkUserHasLogin);
+    }
+  }
 }

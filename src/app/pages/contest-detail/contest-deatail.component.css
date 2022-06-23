@@ -253,6 +253,10 @@
 
 
 /* COUNT DOWN */
+.contest-detail-right {
+  position: sticky;
+  top: 100px;
+}
 
 .contest-detail-right-name {
   display: -webkit-box;
@@ -260,6 +264,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 1.1rem;
 }
 
 .img-detail-box img {

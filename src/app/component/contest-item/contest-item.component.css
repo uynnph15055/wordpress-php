@@ -32,8 +32,6 @@
   font-style: 500;
 }
 
-
-
 .contest-count-team .count-team {
   font-size: 13px;
   padding: 3px;
@@ -64,7 +62,7 @@
 
 @media (max-width:568px) {
   .contest-item-img {
-    height: 250px;
+    height: 300px;
   }
 
   .time-contest-register {
@@ -79,6 +77,10 @@
 
 
 @media (max-width:987px) {
+  .contest-item-img {
+    height: 220px;
+  }
+
   .menu_login-box .nav-item {
     display: none;
   }
