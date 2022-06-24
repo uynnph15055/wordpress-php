@@ -18,6 +18,7 @@ export const environment = {
   majorListUrl: `${publicApiUrl}/majors`,
   roundListUrl: `${publicApiUrl}/rounds`,
   sliderListUrl: `${publicApiUrl}/sliders`,
+  capacityListUrl: `${publicApiUrl}/capacity`,
 
   // Router API V1;
   userListUrl: `${jwtApiUrl}/users`,
