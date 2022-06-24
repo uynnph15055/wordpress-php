@@ -20,6 +20,11 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  closeMenuRes(element: HTMLElement) {
+    console.log(element);
+    element.removeAttribute("checked");
+  }
+
 
   // LogOut
   logOut() {

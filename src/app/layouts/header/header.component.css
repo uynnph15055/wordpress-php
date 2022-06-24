@@ -133,6 +133,7 @@
   animation: fadeIn linear 0.3s;
 }
 
+
 .menu-response {
   position: fixed;
   width: 300px;
@@ -141,6 +142,12 @@
   bottom: 0;
   background-color: #ffff;
   /* display: none; */
+  transform: translateX(-100%);
+  transition: all linear 0.4s;
+  opacity: 0;
+}
+
+.menu-res-item:active~.menu-response {
   transform: translateX(-100%);
   transition: all linear 0.4s;
   opacity: 0;
@@ -249,7 +256,7 @@
 
   .img-header-box {
     height: 70px;
-    margin-left: 30px;
+    margin-left: 70px;
   }
 
   .nav-response {
@@ -258,6 +265,18 @@
 
   .input_check i {
     font-size: 20px;
+  }
+
+  .btn-login {
+    display: none;
+  }
+
+  .fa-icon-login {
+    display: block;
+  }
+
+  .loading-banner {
+    height: 200px;
   }
 }
 
@@ -269,7 +288,7 @@
 
   .img-header-box {
     height: 70px;
-    margin-left: 30px;
+    margin-left: 50px;
   }
 
   .nav-response {

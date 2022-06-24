@@ -66,8 +66,6 @@ export class ModalAddTeamComponent implements OnInit {
 
   // Render image after add
   preview(files: any) {
-    console.log(files);
-
     if (files.length === 0)
       return;
 

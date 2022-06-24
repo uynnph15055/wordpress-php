@@ -147,9 +147,6 @@ export class ContestDeatailComponent implements OnInit {
 
         }, 1000);
 
-
-
-
         //  Check user có bẫm vào nút đăng ký ko 
         setTimeout(() => {
           if (this.routeStateRegister == false && this.getUserLocal.getValueLocalUser('user') && this.statusCheckDate == true) {
@@ -160,8 +157,16 @@ export class ContestDeatailComponent implements OnInit {
     });
   }
 
+  // Thông tin đội
   openInfoTeam() {
-    this.dialog.open(ModalInfoTeamComponent);
+    this.dialog.open(ModalInfoTeamComponent, {
+      height: '550px',
+      width: '800px',
+      data: {
+        contest_id: this.contestDetail.id,
+        team_id: this.teamIdMemberHasJoinTeam,
+      }
+    });
   }
 
   // Check xem user đã join cuộc thi chưa
@@ -172,6 +177,8 @@ export class ContestDeatailComponent implements OnInit {
       item.members.forEach(item => {
         if (item.id == user.id) {
           this.teamIdMemberHasJoinTeam = item.pivot.team_id;
+
+
           this.statusUserHasJoinContest = true;
         }
       });
@@ -250,5 +257,11 @@ export class ContestDeatailComponent implements OnInit {
   open(content: any) {
     this.modalService.open(content, { centered: true });
   }
+
+  // 
+  statusCountResultFn(event: any) {
+    console.log(event);
+  }
+
 
 }
