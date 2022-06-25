@@ -25,61 +25,77 @@
     <h3 class="fw-bold title text-uppercase color-blue">Doanh nghiệp</h3>
     <div class="title-line">
     </div>
-    <div class="list-company-box mb-3" style="position:relative;margin-top: -20px;">
+    <div *ngIf="statusCompany == true" class="list-company-box mb-3" style="position:relative;margin-top: -20px;">
         <button type='button' class='slick-company-next slick-company slick-arrow'><i
                 class="fa-solid fa-right-long"></i></button>`
         <ngx-slick-carousel [config]="sliderCompany">
-            <div ngxSlickItem class="company-item">
-                <img class="company-item-img"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF4UsILDXgqkKydAehgnJzcSVVUhHM_sxWTA&usqp=CAU"
-                    alt="">
+            <div ngxSlickItem style="margin-left: 20px" *ngFor="let logo of companys" class="company-item">
+                <img class="company-item-img" [src]="logo.logo" alt="">
             </div>
-            <div ngxSlickItem class="company-item">
-                <img class="company-item-img"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR63ViXCc76QCLX0jNF2qg0z2KLnp3IWxWPsw&usqp=CAU"
-                    alt="">
-            </div>
-            <div ngxSlickItem class="company-item">
-                <img class="company-item-img"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwIqxoqGp7FDrtZWTD40ZppjhrE1SlRR_g8w&usqp=CAU"
-                    alt="">
-            </div>
-            <div ngxSlickItem class="company-item">
-                <img class="company-item-img"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR63ViXCc76QCLX0jNF2qg0z2KLnp3IWxWPsw&usqp=CAU"
-                    alt="">
-            </div>
-            <div ngxSlickItem class="company-item">
-                <img class="company-item-img"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR63ViXCc76QCLX0jNF2qg0z2KLnp3IWxWPsw&usqp=CAU"
-                    alt="">
-            </div>
-            <div ngxSlickItem class="company-item">
-                <img class="company-item-img"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR63ViXCc76QCLX0jNF2qg0z2KLnp3IWxWPsw&usqp=CAU"
-                    alt="">
-            </div>
-            <div ngxSlickItem class="company-item">
-                <img class="company-item-img"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR63ViXCc76QCLX0jNF2qg0z2KLnp3IWxWPsw&usqp=CAU"
-                    alt="">
-            </div>
-            <div ngxSlickItem class="company-item">
-                <img class="company-item-img"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR63ViXCc76QCLX0jNF2qg0z2KLnp3IWxWPsw&usqp=CAU"
-                    alt="">
-            </div>
-
             <!-- ngxSlickItem  -->
         </ngx-slick-carousel>
         <button type='button' class='slick-company-prev slick-company slick-arrow'><i
                 class="fa-solid fa-left-long"></i></button>
     </div>
+    <div *ngIf="statusCompany == false" class="loading-company-box">
+        <div class="row">
+            <div class="col-2">
+
+                <ngx-skeleton-loader [theme]="{ 
+                'border-radius': '5px',
+                height: '200px',
+                border: '1px solid white'
+              }"></ngx-skeleton-loader>
+            </div>
+            <div class="col-2">
+
+                <ngx-skeleton-loader [theme]="{ 
+                'border-radius': '5px',
+                height: '200px',
+                border: '1px solid white'
+              }"></ngx-skeleton-loader>
+            </div>
+            <div class="col-2">
+
+                <ngx-skeleton-loader [theme]="{ 
+                'border-radius': '5px',
+                height: '200px',
+                border: '1px solid white'
+              }"></ngx-skeleton-loader>
+            </div>
+            <div class="col-2">
+
+                <ngx-skeleton-loader [theme]="{ 
+                'border-radius': '5px',
+                height: '200px',
+                border: '1px solid white'
+              }"></ngx-skeleton-loader>
+            </div>
+            <div class="col-2">
+
+                <ngx-skeleton-loader [theme]="{ 
+                'border-radius': '5px',
+                height: '200px',
+                border: '1px solid white'
+              }"></ngx-skeleton-loader>
+            </div>
+            <div class="col-2">
+
+                <ngx-skeleton-loader [theme]="{ 
+                'border-radius': '5px',
+                height: '200px',
+                border: '1px solid white'
+              }"></ngx-skeleton-loader>
+            </div>
+
+        </div>
+    </div>
     <h3 class="fw-bold mt-3 title text-uppercase color-blue">Đợt tuyển mới nhất</h3>
     <div class="title-line">
     </div>
-    <div class="list-word-new mt-3">
-        <div (click)="openListCompanyRecruitment()" class=" list-word-item">
+    <div *ngIf="statusRecruitments == true" class="list-word-new mt-3">
+        <div *ngFor="let rescruitIten of recruitments" (click)="openListCompanyRecruitment(rescruitIten.id)"
+            class=" list-word-item">
             <div class="row">
                 <div class="company-word-new-img col-4">
                     <img class="w-100"
@@ -87,158 +103,87 @@
                         alt="">
                 </div>
                 <div class="company-word-new-info col-8">
-                    <h3 class="fw-bold company-word-new-info-title" style="margin-bottom: 0px ">Chuyên Viên Quản
-                        Lý
-                        Chất Lượng Dịch Vụ Bán Lẻ
+                    <h3 class="fw-bold company-word-new-info-title" style="margin-bottom: 0px ">{{rescruitIten.name}}
                     </h3>
-                    <p class="company-word-new-info-name">NGÂN HÀNG TMCP NGOẠI THƯƠNG
-                        VIỆT NAM - VIETCOMBANK</p>
-                    <span class="bg-danger text-white p-1 fs-6">HOT</span>
+                    <p class="company-word-new-info-name mb-0" [innerHTML]="rescruitIten.description"></p>
+                    <p> <span class="bg-success round text-white p-1 fs-6">NEW</span></p>
                 </div>
             </div>
         </div>
-        <div class=" list-word-item">
-            <div class="row">
-                <div class="company-word-new-img col-4">
-                    <img class="w-100"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiWIesbBRObx_RmpiCsZkvNNceT7UioCn9oA&usqp=CAU"
-                        alt="">
-                </div>
-                <div class="company-word-new-info col-8">
-                    <h3 class="fw-bold company-word-new-info-title" style="margin-bottom: 0px ">Chuyên Viên Quản
-                        Lý
-                        Chất Lượng Dịch Vụ Bán Lẻ
-                    </h3>
-                    <p class="company-word-new-info-name">NGÂN HÀNG TMCP NGOẠI THƯƠNG
-                        VIỆT NAM - VIETCOMBANK</p>
-                    <span class="bg-danger text-white p-1 fs-6">HOT</span>
-                </div>
+    </div>
+    <div *ngIf="statusRecruitments == false" class="list-loading-new">
+        <div class="row">
+            <div class="col-4">
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '120px',
+                    width: '100%',
+                    border: '1px solid white'
+                  }"></ngx-skeleton-loader>
             </div>
-        </div>
-        <div class=" list-word-item">
-            <div class="row">
-                <div class="company-word-new-img col-4">
-                    <img class="w-100"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiWIesbBRObx_RmpiCsZkvNNceT7UioCn9oA&usqp=CAU"
-                        alt="">
-                </div>
-                <div class="company-word-new-info col-8">
-                    <h3 class="fw-bold company-word-new-info-title" style="margin-bottom: 0px ">Chuyên Viên Quản
-                        Lý
-                        Chất Lượng Dịch Vụ Bán Lẻ
-                    </h3>
-                    <p class="company-word-new-info-name">NGÂN HÀNG TMCP NGOẠI THƯƠNG
-                        VIỆT NAM - VIETCOMBANK</p>
-                    <span class="bg-danger text-white p-1 fs-6">HOT</span>
-                </div>
+            <div class="col-4">
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '120px',
+                    width: '100%',
+                    border: '1px solid white'
+                  }"></ngx-skeleton-loader>
             </div>
-        </div>
-        <div class=" list-word-item">
-            <div class="row">
-                <div class="company-word-new-img col-4">
-                    <img class="w-100"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiWIesbBRObx_RmpiCsZkvNNceT7UioCn9oA&usqp=CAU"
-                        alt="">
-                </div>
-                <div class="company-word-new-info col-8">
-                    <h3 class="fw-bold company-word-new-info-title" style="margin-bottom: 0px ">Chuyên Viên Quản
-                        Lý
-                        Chất Lượng Dịch Vụ Bán Lẻ
-                    </h3>
-                    <p class="company-word-new-info-name">NGÂN HÀNG TMCP NGOẠI THƯƠNG
-                        VIỆT NAM - VIETCOMBANK</p>
-                    <span class="bg-danger text-white p-1 fs-6">HOT</span>
-                </div>
+            <div class="col-4">
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '120px',
+                    width: '100%',
+                    border: '1px solid white'
+                  }"></ngx-skeleton-loader>
             </div>
-        </div>
-        <div class=" list-word-item">
-            <div class="row">
-                <div class="company-word-new-img col-4">
-                    <img class="w-100"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNgc2E-CveaGqKZ-xgFpbFI4hU226lNsaUCg&usqp=CAU"
-                        alt="">
-                </div>
-                <div class="company-word-new-info col-8">
-                    <h3 class="fw-bold company-word-new-info-title" style="margin-bottom: 0px ">Chuyên Viên Quản
-                        Lý
-                        Chất Lượng Dịch Vụ Bán Lẻ
-                    </h3>
-                    <p class="company-word-new-info-name">NGÂN HÀNG TMCP NGOẠI THƯƠNG
-                        VIỆT NAM - VIETCOMBANK</p>
-                    <span class="bg-danger text-white p-1 fs-6">HOT</span>
-                </div>
+            <div class="col-4">
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '120px',
+                    width: '100%',
+                    border: '1px solid white'
+                  }"></ngx-skeleton-loader>
             </div>
-        </div>
-        <div class=" list-word-item">
-            <div class="row">
-                <div class="company-word-new-img col-4">
-                    <img class="w-100"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCgZpNry_TU4yFsvbgRvZlW_GTyjBKRZmjAQ&usqp=CAU"
-                        alt="">
-                </div>
-                <div class="company-word-new-info col-8">
-                    <h3 class="fw-bold company-word-new-info-title" style="margin-bottom: 0px ">Chuyên Viên Quản
-                        Lý
-                        Chất Lượng Dịch Vụ Bán Lẻ
-                    </h3>
-                    <p class="company-word-new-info-name">NGÂN HÀNG TMCP NGOẠI THƯƠNG
-                        VIỆT NAM - VIETCOMBANK</p>
-                    <span class="bg-danger text-white p-1 fs-6">HOT</span>
-                </div>
+            <div class="col-4">
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '120px',
+                    width: '100%',
+                    border: '1px solid white'
+                  }"></ngx-skeleton-loader>
             </div>
-        </div>
-        <div class=" list-word-item">
-            <div class="row">
-                <div class="company-word-new-img col-4">
-                    <img class="w-100"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiWIesbBRObx_RmpiCsZkvNNceT7UioCn9oA&usqp=CAU"
-                        alt="">
-                </div>
-                <div class="company-word-new-info col-8">
-                    <h3 class="fw-bold company-word-new-info-title" style="margin-bottom: 0px ">Chuyên Viên Quản
-                        Lý
-                        Chất Lượng Dịch Vụ Bán Lẻ
-                    </h3>
-                    <p class="company-word-new-info-name">NGÂN HÀNG TMCP NGOẠI THƯƠNG
-                        VIỆT NAM - VIETCOMBANK</p>
-                    <span class="bg-danger text-white p-1 fs-6">HOT</span>
-                </div>
+            <div class="col-4">
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '120px',
+                    width: '100%',
+                    border: '1px solid white'
+                  }"></ngx-skeleton-loader>
             </div>
-        </div>
-        <div class=" list-word-item">
-            <div class="row">
-                <div class="company-word-new-img col-4">
-                    <img class="w-100"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiWIesbBRObx_RmpiCsZkvNNceT7UioCn9oA&usqp=CAU"
-                        alt="">
-                </div>
-                <div class="company-word-new-info col-8">
-                    <h3 class="fw-bold company-word-new-info-title" style="margin-bottom: 0px ">Chuyên Viên Quản
-                        Lý
-                        Chất Lượng Dịch Vụ Bán Lẻ
-                    </h3>
-                    <p class="company-word-new-info-name">NGÂN HÀNG TMCP NGOẠI THƯƠNG
-                        VIỆT NAM - VIETCOMBANK</p>
-                    <span class="bg-danger text-white p-1 fs-6">HOT</span>
-                </div>
+            <div class="col-4">
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '120px',
+                    width: '100%',
+                    border: '1px solid white'
+                  }"></ngx-skeleton-loader>
             </div>
-        </div>
-        <div class=" list-word-item">
-            <div class="row">
-                <div class="company-word-new-img col-4">
-                    <img class="w-100"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR63ViXCc76QCLX0jNF2qg0z2KLnp3IWxWPsw&usqp=CAU"
-                        alt="">
-                </div>
-                <div class="company-word-new-info col-8">
-                    <h3 class="fw-bold company-word-new-info-title" style="margin-bottom: 0px ">Chuyên Viên Quản
-                        Lý
-                        Chất Lượng Dịch Vụ Bán Lẻ
-                    </h3>
-                    <p class="company-word-new-info-name">NGÂN HÀNG TMCP NGOẠI THƯƠNG
-                        VIỆT NAM - VIETCOMBANK</p>
-                    <span class="bg-danger text-white p-1 fs-6">HOT</span>
-                </div>
+            <div class="col-4">
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '120px',
+                    width: '100%',
+                    border: '1px solid white'
+                  }"></ngx-skeleton-loader>
+            </div>
+            <div class="col-4">
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '120px',
+                    width: '100%',
+                    border: '1px solid white'
+                  }"></ngx-skeleton-loader>
             </div>
         </div>
     </div>
