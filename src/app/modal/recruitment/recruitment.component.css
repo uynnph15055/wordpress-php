@@ -7,7 +7,7 @@
 }
 
 .ability-test-item {
-  margin-right: 5px;
+  margin: 0px 5px;
 }
 
 .ability-test-all-box {
@@ -27,7 +27,7 @@
 
 .ability-test-all-box::-webkit-scrollbar-thumb,
 .recruitment-content::-webkit-scrollbar-thumb {
-  background-color: rgb(160, 158, 158);
+  background-color: var(--warning);
 }
 
 .mat-tab-label-content {
@@ -54,12 +54,4 @@
   width: 30px;
   color: var(--primary-color);
   color: var(--title-blue);
-}
-
-
-.title-line {
-  width: 100px;
-  height: 3px;
-  background-color: var(--primary-color);
-  margin-bottom: 15px;
 }

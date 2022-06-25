@@ -6,6 +6,27 @@
   font-size: 13px;
 }
 
+.header-team-user-edit-box {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.header-team-user-edit {
+  width: 250px;
+}
+
+.body-team-user-box {
+  margin-top: 20px;
+}
+
+.header-team-user-img {
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 3px;
+}
+
 .item-member-img {
   height: 30px;
   object-fit: cover;
@@ -36,4 +57,9 @@ th {
 
 .btn-add-member {
   border: 1px solid var(--primary-color);
+}
+
+.table-team-info {
+  max-height: 200px;
+  overflow-y: auto;
 }

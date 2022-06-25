@@ -49,7 +49,6 @@ import { ContestItemComponent } from './component/contest-item/contest-item.comp
 import { ModalListMemberComponent } from './component/modal-list-member/modal-list-member.component';
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
-import { ModalSubmitAssComponent } from './modal/modal-submit-ass/modal-submit-ass.component';
 import { ListResultRoundComponent } from './component/list-result-round/list-result-round.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { LoadingPageComponent } from './loading/loading-page/loading-page.component';
@@ -64,6 +63,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { RecruitmentComponent as RecruitmentComponentModal } from './modal/recruitment/recruitment.component';
 import { ModalInfoTeamComponent } from './modal/modal-info-team/modal-info-team.component';
+import { RecruitmentListCompanyComponent } from './modal/recruitment-list-company/recruitment-list-company.component';
 // import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
 registerLocaleData(en);
@@ -95,7 +95,6 @@ registerLocaleData(en);
     ModalListMemberComponent,
     RoundDetailComponent,
     IntoExamComponent,
-    ModalSubmitAssComponent,
     ListResultRoundComponent,
     RoundContestDetailComponent,
     LoadingPageComponent,
@@ -103,7 +102,8 @@ registerLocaleData(en);
     FooterComponent,
     RecruitmentComponent,
     RecruitmentComponentModal,
-    ModalInfoTeamComponent
+    ModalInfoTeamComponent,
+    RecruitmentListCompanyComponent
   ],
   imports: [
     BrowserModule,

@@ -133,6 +133,22 @@ ul {
   box-shadow: 0 0 0 0.1rem var(--warning);
 }
 
+.title-line {
+  width: 100px;
+  height: 3px;
+  background-color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.text-collapse {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
 
 /* SLICK SLIDER */
 .slick-arrow {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RecruitmentComponent as RecruitmentModal } from 'src/app/modal/recruitment/recruitment.component';
+import { RecruitmentListCompanyComponent as ModalListCompany } from 'src/app/modal/recruitment-list-company/recruitment-list-company.component';
 @Component({
   selector: 'app-recruitment',
   templateUrl: './recruitment.component.html',
@@ -37,12 +38,16 @@ export class RecruitmentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.openRecruitmentDetail();
+    // this.openRecruitmentDetail();
+    this.openListCompanyRecruitment();
   }
 
-
-  openRecruitmentDetail(): void {
-    const dialogRef = this.dialog.open(RecruitmentModal, {
+  openListCompanyRecruitment(): void {
+    this.dialog.open(ModalListCompany, {
+      width: '500px',
     })
   }
+
+
+ 
 }

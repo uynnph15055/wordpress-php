@@ -502,6 +502,14 @@
   .company-represent img {
     width: 200px;
   }
+
+  .prev-arrow {
+    left: -30px;
+  }
+
+  .next-arrow {
+    right: -15px;
+  }
 }
 
 

@@ -11,8 +11,6 @@
   background-color: var(--primary-color-sub);
 }
 
-
-
 /* DÙNG CHUNG */
 .list-banner-ability-test {
   margin-top: -20px;
@@ -73,6 +71,11 @@
   color: var(--primary-color);
 }
 
+.company-word-new-img img {
+  height: 90px;
+  object-fit: cover;
+}
+
 
 .company-item-img {
   height: 200px;
@@ -110,7 +113,10 @@
 .list-word-item:hover {
   cursor: pointer;
   border: 1px solid var(--primary-color);
-  color: var(--primary-color);
+}
+
+.list-word-item:hover .company-word-new-info-title {
+  color: var(--primary-color)
 }
 
 /*  Danh sách công việc theo chuyên ngành */
@@ -157,6 +163,10 @@
 .list-post-new-item:hover {
   border: 1px solid var(--primary-color);
   cursor: pointer;
+}
+
+.list-post-new-item:hover h4 {
+  color: var(--primary-color);
 }
 
 .list-post-new-item img {

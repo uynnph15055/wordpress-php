@@ -160,8 +160,7 @@ export class ContestDeatailComponent implements OnInit {
   // Thông tin đội
   openInfoTeam() {
     this.dialog.open(ModalInfoTeamComponent, {
-      height: '550px',
-      width: '800px',
+      width: '900px',
       data: {
         contest_id: this.contestDetail.id,
         team_id: this.teamIdMemberHasJoinTeam,

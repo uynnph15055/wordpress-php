@@ -54,10 +54,10 @@ export class ModalInfoTeamComponent implements OnInit {
 
 
   // Timf kiếm thành viên
-  searchMembers() {
-    let key_word = { ...this.formSearchMembers.value }
-    this.openListMemberJoinTeam(key_word.keyWord);
-  }
+  // searchMembers() {
+  //   let key_word = { ...this.formSearchMembers.value }
+  //   this.openListMemberJoinTeam(key_word.keyWord);
+  // }
 
   openDialog(): void {
     // Lấy dữ liệu từ modal điều hướng sang chi tiết đội thi
@@ -76,7 +76,7 @@ export class ModalInfoTeamComponent implements OnInit {
   }
 
   // Mở danh sách các member theo keyword
-  openListMemberJoinTeam(keyWord: any) {
+  openListMemberJoinTeam(keyWord: any = '') {
     const dialogRef = this.dialog.open(ModalListMemberComponent, {
       width: "800px",
       data: {
