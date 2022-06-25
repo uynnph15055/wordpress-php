@@ -1,0 +1,353 @@
+<div class="capacity py-4" *ngIf="capacity">
+  <div class="container">
+    <div class="row">
+      <div class="col col-lg-9 col-md-12 col-sm-12 col-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a routerLink="/test-nang-luc">Test năng lực</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ capacity.name }}</li>
+          </ol>
+        </nav>
+  
+        <div class="capacity__info">
+          <div class="capacity__info-time-start">
+            <div class="capacity__info-time-start-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            
+            <div>
+              {{ capacity.date_start | formatDate }} - {{ capacity.register_deadline | formatDate }}
+            </div>
+          </div>
+
+          <h1 class="capacity__info-name">
+            <span>Bài test năng lực: </span>
+            {{ capacity.name }}
+          </h1>
+
+          <div class="capacity__info-desc">
+            <strong>Nội dung: </strong>
+
+            <button class="capacity__info-desc-btn btn-base-type-bg fw-normal rounded p-1 px-2" (click)="openModalDesc(description)">Chi tiết</button>
+          </div>
+
+          <div class="capacity__info-footer">
+            <div class="capacity__info-enterprise">
+              <div class="capacity__info-enterprise-icon">
+                <i class="fa-solid fa-building"></i>
+              </div>
+              
+              <div>
+                <strong>Doanh nghiệp: </strong>
+                <span class="capacity__info-enterprise-name">FPT Software</span>
+              </div>
+            </div>
+
+            <button class="btn capacity__info-footer-btn btn-register btn-base-type-bg">{{ statusExam.statustext }}</button>
+          </div>
+        </div>
+
+        <ul class="capacity__tab">
+          <li class="capacity__tab-item" [ngClass]="{active: tabActive === 'rank'}">Xếp hạng</li>
+          <li class="capacity__tab-item" [ngClass]="{active: tabActive === 'testList'}" (click)="scrollToElement(testList, 'testList')">Danh sách bài thi</li>
+          <li class="capacity__tab-item" [ngClass]="{active: tabActive === 'testRelated'}" (click)="scrollToElement(testRelated, 'testRelated')">Bài test liên quan</li>
+        </ul>
+
+        <div class="capacity__test" #testList>
+          <div class="capacity__test-heading d-flex justify-content-between align-items-center">
+            <h2 class="capacity__test-title fw-bold fs-5 color-blue">Danh sách bài thi</h2>
+            <span class="capacity__test-heading-action" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false">Mở rộng tất cả</span>
+          </div>
+
+          <ul class="capacity__test-list">
+            <li *ngFor="let round of rounds; let i = index" class="capacity__test-list-item" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse-' + i" aria-expanded="false" [attr.aria-controls]="'collapse-' + i">
+              <div class="capacity__test-list-item-inner">
+                <div class="capacity__test-list-item-icon">
+                  <div class="capacity__test-list-item-icon--plus">
+                    <i class="fa-solid fa-plus"></i>
+                  </div>
+  
+                  <div class="capacity__test-list-item-icon--minus">
+                    <i class="fa-solid fa-minus"></i>
+                  </div>
+                </div>
+  
+                <h2 class="capacity__test-name">{{ i + 1 }}. {{ round.name }}</h2>
+              </div>
+
+              <div class="collapse multi-collapse capacity__test-detail" [id]="'collapse-' + i">
+                <div class="d-flex capacity__test-detail-time">
+                  <div class="capacity__test-detail-time-icon mb-2">
+                    <i class="fa-solid fa-clock"></i>
+                  </div>
+
+                  {{ round.start_time | formatDate }} - {{ round.end_time | formatDate }}
+                </div>
+
+                <div class="capacity__test-detail-content">
+                  <strong>Nội dung:</strong>
+
+                  <div [innerHTML]="round.description"></div>
+                </div>
+
+                <a [routerLink]="['/test-nang-luc/vao-thi', capacity.id, 'bai-thi', round.id]" class="btn btn-register capacity__test-detail-btn">Vào thi</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- bài test liên quan -->
+        <div class="capacity__related" #testRelated>
+          <h2 class="capacity__test-title capacity__related-title fw-bold fs-5 color-blue">Bài test liên quan</h2>
+
+          <ul class="capacity__related-list row">
+            <div class="col col-lg-4 col-md-6 col-sm-12 col-12">
+              <div class="capacity__related-item">
+                <div class="capacity__related-item-image" [ngStyle]="{'background-image': 'url(https://files.fullstack.edu.vn/f8-prod/courses/6.png)'}"></div>
+
+                <div class="capacity__related-content">
+                  <p class="capacity__related-content-time">10/10/2022 - 12/10/2022</p>
+                  <a routerLink="/test-nang-luc/124" class="capacity__related-content-title-link">
+                    <h2 class="capacity__related-content-title">Test năng lực NodeJS</h2>
+                  </a>
+        
+                  <ul class="capacity__related-content-list">
+                    <li class="capacity__related-content-list-item">
+                      <div class="capacity__related-content-list-item-icon">
+                        <i class="fa-solid fa-file-pen"></i>
+                      </div>
+        
+                      3 bài thi
+                    </li>
+                    <li class="capacity__related-content-list-item">
+                      <div class="capacity__related-content-list-item-icon">
+                        <i class="fa-solid fa-user-group"></i>
+                      </div>
+        
+                      891 lượt làm bài
+                    </li>
+
+                    <li class="capacity__related-content-list-item">
+                      <div class="capacity__related-content-list-item-icon">
+                        <i class="fa-solid fa-gear"></i>
+                      </div>
+        
+                      <div class="capacity__related-content-list-item-skill">
+                        <span>Skill:</span>
+                        <strong class="capacity__related-content-list-item-skill-name">php, Java, NodeJs php, Java, NodeJs php, Java, NodeJs</strong>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <ul class="capacity__related-countdown">
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">0</div>
+                      <span class="capacity__related-countdown-item-text">Ngày</span>
+                    </li>
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">10</div>
+                      <span class="capacity__related-countdown-item-text">Giờ</span>
+                    </li>
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">15</div>
+                      <span class="capacity__related-countdown-item-text">Phút</span>
+                    </li>
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">05</div>
+                      <span class="capacity__related-countdown-item-text">Giây</span>
+                    </li>
+                  </ul>
+        
+                  <a routerLink="/test-nang-luc/chi-tiet/123" class="btn btn-register capacity__related-content-btn">Tham gia ngay</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-lg-4 col-md-6 col-sm-12 col-12">
+              <div class="capacity__related-item">
+                <div class="capacity__related-item-image" [ngStyle]="{'background-image': 'url(https://files.fullstack.edu.vn/f8-prod/courses/2.png)'}"></div>
+
+                <div class="capacity__related-content">
+                  <p class="capacity__related-content-time">10/10/2022 - 12/10/2022</p>
+                  <a routerLink="/test-nang-luc/124" class="capacity__related-content-title-link">
+                    <h2 class="capacity__related-content-title">Test năng lực HTML, CSS</h2>
+                  </a>
+        
+                  <ul class="capacity__related-content-list">
+                    <li class="capacity__related-content-list-item">
+                      <div class="capacity__related-content-list-item-icon">
+                        <i class="fa-solid fa-file-pen"></i>
+                      </div>
+        
+                      3 bài thi
+                    </li>
+                    <li class="capacity__related-content-list-item">
+                      <div class="capacity__related-content-list-item-icon">
+                        <i class="fa-solid fa-user-group"></i>
+                      </div>
+        
+                      891 lượt làm bài
+                    </li>
+
+                    <li class="capacity__related-content-list-item">
+                      <div class="capacity__related-content-list-item-icon">
+                        <i class="fa-solid fa-gear"></i>
+                      </div>
+        
+                      <div class="capacity__related-content-list-item-skill">
+                        <span>Skill:</span>
+                        <strong class="capacity__related-content-list-item-skill-name">php, Java, NodeJs php, Java, NodeJs php, Java, NodeJs</strong>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <ul class="capacity__related-countdown">
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">0</div>
+                      <span class="capacity__related-countdown-item-text">Ngày</span>
+                    </li>
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">10</div>
+                      <span class="capacity__related-countdown-item-text">Giờ</span>
+                    </li>
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">15</div>
+                      <span class="capacity__related-countdown-item-text">Phút</span>
+                    </li>
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">05</div>
+                      <span class="capacity__related-countdown-item-text">Giây</span>
+                    </li>
+                  </ul>
+        
+                  <a routerLink="/test-nang-luc/chi-tiet/123" class="btn btn-register capacity__related-content-btn">Tham gia ngay</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-lg-4 col-md-6 col-sm-12 col-12">
+              <div class="capacity__related-item">
+                <div class="capacity__related-item-image" [ngStyle]="{'background-image': 'url(https://files.fullstack.edu.vn/f8-prod/courses/1.png)'}"></div>
+
+                <div class="capacity__related-content">
+                  <p class="capacity__related-content-time">10/10/2022 - 12/10/2022</p>
+                  <a routerLink="/test-nang-luc/124" class="capacity__related-content-title-link">
+                    <h2 class="capacity__related-content-title">Test năng lực JavaScript cơ bản</h2>
+                  </a>
+        
+                  <ul class="capacity__related-content-list">
+                    <li class="capacity__related-content-list-item">
+                      <div class="capacity__related-content-list-item-icon">
+                        <i class="fa-solid fa-file-pen"></i>
+                      </div>
+        
+                      3 bài thi
+                    </li>
+                    <li class="capacity__related-content-list-item">
+                      <div class="capacity__related-content-list-item-icon">
+                        <i class="fa-solid fa-user-group"></i>
+                      </div>
+        
+                      891 lượt làm bài
+                    </li>
+
+                    <li class="capacity__related-content-list-item">
+                      <div class="capacity__related-content-list-item-icon">
+                        <i class="fa-solid fa-gear"></i>
+                      </div>
+        
+                      <div class="capacity__related-content-list-item-skill">
+                        <span>Skill:</span>
+                        <strong class="capacity__related-content-list-item-skill-name">php, Java, NodeJs php, Java, NodeJs php, Java, NodeJs</strong>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <ul class="capacity__related-countdown">
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">0</div>
+                      <span class="capacity__related-countdown-item-text">Ngày</span>
+                    </li>
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">10</div>
+                      <span class="capacity__related-countdown-item-text">Giờ</span>
+                    </li>
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">15</div>
+                      <span class="capacity__related-countdown-item-text">Phút</span>
+                    </li>
+                    <li class="capacity__related-countdown-item text-center">
+                      <div class="capacity__related-countdown-item-box">05</div>
+                      <span class="capacity__related-countdown-item-text">Giây</span>
+                    </li>
+                  </ul>
+        
+                  <a routerLink="/test-nang-luc/chi-tiet/123" class="btn btn-register capacity__related-content-btn">Tham gia ngay</a>
+                </div>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- sidebar -->
+      <div class="col col-lg-3 col-md-12 col-sm-12 col-12">
+        <div class="sidebar">
+          <div class="sidebar__image" [ngStyle]="{'background-image': 'url(https://files.fullstack.edu.vn/f8-prod/courses/13/13.png)'}"></div>
+
+          <ul class="sidebar__countdown" *ngIf="statusExam.status === 0">
+            <li class="sidebar__countdown-item text-center">
+              <div class="sidebar__countdown-item-box">{{ countDown.days }}</div>
+              <span class="sidebar__countdown-item-text">Ngày</span>
+            </li>
+            <li class="sidebar__countdown-item text-center">
+              <div class="sidebar__countdown-item-box">{{ countDown.hours }}</div>
+              <span class="sidebar__countdown-item-text">Giờ</span>
+            </li>
+            <li class="sidebar__countdown-item text-center">
+              <div class="sidebar__countdown-item-box">{{ countDown.minutes }}</div>
+              <span class="sidebar__countdown-item-text">Phút</span>
+            </li>
+            <li class="sidebar__countdown-item text-center">
+              <div class="sidebar__countdown-item-box">{{ countDown.seconds }}</div>
+              <span class="sidebar__countdown-item-text">Giây</span>
+            </li>
+          </ul>
+
+          <h2 class="sidebar__content-title">Chi tiết bài test</h2>
+
+          <ul class="sidebar__content-list">
+            <li class="sidebar__content-list-item">
+              <div class="sidebar__content-list-item-icon">
+                <i class="fa-solid fa-file-pen"></i>
+              </div>
+
+              3 bài thi
+            </li>
+            <li class="sidebar__content-list-item">
+              <div class="sidebar__content-list-item-icon">
+                <i class="fa-solid fa-user-group"></i>
+              </div>
+
+              1000 lượt làm bài
+            </li>
+          </ul>
+
+          <button class="btn btn-register sidebar__content-btn" [disabled]="statusExam.status === 0 || statusExam.status === 2">{{ statusExam.status === 1 ? "Tham gia ngay": statusExam.statustext }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #description let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title m-0 fw-bold">Nội dung bài Test năng lực</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body" [innerHTML]="capacity.description"></div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Đóng</button>
+  </div>
+</ng-template>

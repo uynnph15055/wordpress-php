@@ -67,6 +67,7 @@ import { RecruitmentListCompanyComponent } from './modal/recruitment-list-compan
 // import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
 registerLocaleData(en);
+import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ registerLocaleData(en);
     RecruitmentComponent,
     RecruitmentComponentModal,
     ModalInfoTeamComponent,
-    RecruitmentListCompanyComponent
+    RecruitmentListCompanyComponent,
+    CapacityDetailComponent,
   ],
   imports: [
     BrowserModule,
