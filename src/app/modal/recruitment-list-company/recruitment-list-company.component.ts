@@ -15,6 +15,8 @@ export class RecruitmentListCompanyComponent implements OnInit {
   rescruitmentComanySupport: Array<Enterprise>;
   companyLength: number;
 
+  statusRescruitmentDetail: boolean = false;
+
   constructor(
     public recruitment: RecruitmentsService,
     public dialog: MatDialog,
@@ -46,6 +48,7 @@ export class RecruitmentListCompanyComponent implements OnInit {
         this.rescruitmentComanySupport = this.rescruitmentDetail.enterprise;
         this.companyLength = this.rescruitmentComanySupport.length;
         console.log(this.rescruitmentComanySupport);
+
       }
     })
   }
