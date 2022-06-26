@@ -1,0 +1,15 @@
+<h1 mat-dialog-title *ngIf="!data.isNotShowTitle">{{ data.title || 'Dialog Title' }}</h1>
+
+<div class="text-center mb-3">
+  <div class="spinner-border" role="status" *ngIf="data.isShowLoading">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div mat-dialog-content [ngClass]="{'text-center': data.isShowLoading}">
+  {{ data.description || 'Dialog description' }}
+</div>
+<div mat-dialog-actions *ngIf="!data.isNotShowBtn">
+  <button mat-button mat-dialog-close="false" *ngIf="!data.isNotShowBtnCancel">{{ data.textCancel || 'No' }}</button>
+  <button mat-button mat-dialog-close="true" *ngIf="!data.isNotShowBtnOk" cdkFocusInitial>{{ data.textOk || 'Ok' }}</button>
+</div>

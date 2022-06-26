@@ -18,6 +18,14 @@
   color: #ff0000;
 }
 
+.capacity__exam-description {
+  padding: 120px 0;
+}
+
+.capacity__exam-description-title {
+  font-size: 26px;
+}
+
 /* sidebar */
 .sidebar {
   background-color: #fff;

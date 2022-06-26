@@ -52,6 +52,7 @@ import { ListResultRoundComponent } from './component/list-result-round/list-res
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { LoadingPageComponent } from './loading/loading-page/loading-page.component';
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
+import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.compo
     RoundContestDetailComponent,
     LoadingPageComponent,
     CapacityExamComponent,
+    DialogConfirmComponent,
   ],
   imports: [
     BrowserModule,

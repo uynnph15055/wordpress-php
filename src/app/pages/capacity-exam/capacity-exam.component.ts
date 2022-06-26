@@ -1,5 +1,13 @@
-import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { DialogConfirmComponent } from './../../modal/dialog-confirm/dialog-confirm.component';
+import { NgToastService } from 'ng-angular-popup';
+import { RoundService } from 'src/app/services/round.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, switchMap } from 'rxjs';
+import { Round } from 'src/app/models/round.model';
+import { MatDialog } from '@angular/material/dialog';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-capacity-exam',
@@ -10,194 +18,156 @@ export class CapacityExamComponent implements OnInit {
 
   @ViewChildren("questions") questions: QueryList<ElementRef>;
   formAnswers!: FormGroup;
-  fakeQuestionData: any = [
-    {
-      id: 17,
-      created_at: "1 tuần trước",
-      updated_at: "1 tuần trước",
-      content: "<p>Thông thường tiêu chuẩn Internet cho việc đặt tên trang chủ, hay trang đầu tiên mà người dùng truy&nbsp; cập vào website sẽ là</p>",
-      status: 1,
-      deleted_at: null,
-      type: 0,
-      rank: 0,
-      pivot: {
-        exam_id: 2,
-        question_id: 17
-      },
-      answers: [
-        {
-          id: 93,
-          created_at: "2022-06-15T09:27:43.000000Z",
-          updated_at: "2022-06-15T09:27:43.000000Z",
-          question_id: 17,
-          deleted_at: null,
-          content: "Bất kì tên nào",
-          is_correct: 0
-        },
-        {
-          id: 94,
-          created_at: "2022-06-15T09:27:44.000000Z",
-          updated_at: "2022-06-15T09:27:44.000000Z",
-          question_id: 17,
-          deleted_at: null,
-          content: "index.html",
-          is_correct: 0
-        },
-        {
-          id: 95,
-          created_at: "2022-06-15T09:27:44.000000Z",
-          updated_at: "2022-06-15T09:27:44.000000Z",
-          question_id: 17,
-          deleted_at: null,
-          content: "home.html",
-          is_correct: 1
-        },
-        {
-          id: 96,
-          created_at: "2022-06-15T09:27:44.000000Z",
-          updated_at: "2022-06-15T09:27:44.000000Z",
-          question_id: 17,
-          deleted_at: null,
-          content: "default.html",
-          is_correct: 0
-        }
-      ]
-    },
-    {
-      id: 18,
-      created_at: "1 tuần trước",
-      updated_at: "1 tuần trước",
-      content: "<p>Giao thức nào là giao thức truyền tải siêu văn bản được dùng giữa Web client và Web server</p>",
-      status: 1,
-      deleted_at: null,
-      type: 0,
-      rank: 0,
-      pivot: {
-        exam_id: 2,
-        question_id: 18
-      },
-      answers: [
-        {
-          id: 97,
-          created_at: "2022-06-15T09:28:25.000000Z",
-          updated_at: "2022-06-15T09:28:25.000000Z",
-          question_id: 18,
-          deleted_at: null,
-          content: "WWW",
-          is_correct: 0
-        },
-        {
-          id: 98,
-          created_at: "2022-06-15T09:28:25.000000Z",
-          updated_at: "2022-06-15T09:28:25.000000Z",
-          question_id: 18,
-          deleted_at: null,
-          content: "HTTP",
-          is_correct: 1
-        },
-        {
-          id: 99,
-          created_at: "2022-06-15T09:28:25.000000Z",
-          updated_at: "2022-06-15T09:28:25.000000Z",
-          question_id: 18,
-          deleted_at: null,
-          content: "FTP",
-          is_correct: 0
-        },
-        {
-          id: 100,
-          created_at: "2022-06-15T09:28:25.000000Z",
-          updated_at: "2022-06-15T09:28:25.000000Z",
-          question_id: 18,
-          deleted_at: null,
-          content: "TCP/IP",
-          is_correct: 0
-        }
-      ]
-    },
-    {
-      id: 19,
-      created_at: "1 tuần trước",
-      updated_at: "1 tuần trước",
-      content: "<p>Mã mầu trong các trang HTML gồm 6 kí tự và đứng trước là dấu thăng (#) sử dụng hệ cơ số nào?</p>",
-      status: 1,
-      deleted_at: null,
-      type: 0,
-      rank: 0,
-      pivot: {
-        exam_id: 2,
-        question_id: 19
-      },
-      answers: [
-        {
-          id: 101,
-          created_at: "2022-06-15T09:28:52.000000Z",
-          updated_at: "2022-06-15T09:28:52.000000Z",
-          question_id: 19,
-          deleted_at: null,
-          content: "Hệ nhị phân",
-          is_correct: 0
-        },
-        {
-          id: 102,
-          created_at: "2022-06-15T09:28:52.000000Z",
-          updated_at: "2022-06-15T09:28:52.000000Z",
-          question_id: 19,
-          deleted_at: null,
-          content: "Hệ thập lục phân (Hecxa)",
-          is_correct: 1
-        },
-        {
-          id: 103,
-          created_at: "2022-06-15T09:28:52.000000Z",
-          updated_at: "2022-06-15T09:28:52.000000Z",
-          question_id: 19,
-          deleted_at: null,
-          content: "Hệ thập phân",
-          is_correct: 0
-        },
-        {
-          id: 104,
-          created_at: "2022-06-15T09:28:52.000000Z",
-          updated_at: "2022-06-15T09:28:52.000000Z",
-          question_id: 19,
-          deleted_at: null,
-          content: "Hệ BCD nén",
-          is_correct: 0
-        }
-      ]
-    }
-  ];
+  fakeQuestionData!: any;
   // DS id câu hỏi đã trả lời
   questionListId: { questionId: number }[] = [];
+  isTakingExam = false;
+  roundDetail!: Round;
+  isFetchingRound = false;
+  countDownTimeExam: {minutes: number | string, seconds: number | string} = {
+    minutes: "00",
+    seconds: "00"
+  }
+  // thông báo sắp hết giờ
+  isNotiExamTimeOut = false;
 
-  constructor() { }
+  constructor(
+    private roundService: RoundService,
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private userService: UserService,
+    private toast: NgToastService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.createFormControl();
+    this.isFetchingRound = true;
+    this.route.paramMap.pipe(
+      map(params => params.get('round_id')),
+      switchMap(id => this.roundService.getRoundWhereId(id))
+    ).subscribe(res => {
+      if (res.status) {
+        this.isFetchingRound = false;
+        this.roundDetail = res.payload;
+        this.roundDetail.start_time = new Date("2022-06-25 15:25:54")
+        console.log(res.payload)
+      }
+    })
+  }
+
+  // làm bài
+  handleTakeExam() {
+    const confimExamRef = this.dialog.open(DialogConfirmComponent, {
+      width: '450px',
+      data: {
+        title: "Lưu ý",
+        description: "Bài làm sẽ được nộp tự động sau khi hết thời gian, không thoát toàn màn hình trong quá trình làm bài!",
+        textCancel: "Thoát",
+        textOk: "Đồng ý"
+      }
+    });
+
+    confimExamRef.afterClosed().subscribe(res => {
+      if (res === "true") {
+        // check user logged
+        const userLogged = this.userService.getUserValue();
+        if (!userLogged.id) {
+          this.toast.warning({ summary: "Vui lòng đăng nhập trước khi làm bài", duration: 3000 });
+          this.router.navigate(['/login']);
+          return;
+        }
+
+        // check thời gian thi
+        const todayTime = new Date().getTime();
+        const timeStart = new Date(this.roundDetail.start_time).getTime();
+
+        if (todayTime < timeStart) {
+          this.toast.warning({ summary: "Chưa đến thời gian làm bài"});
+          return;
+        }
+
+        // fake api tạo bản nháp
+        const res = this.roundService.getInfoCapacityExamRound();
+        if (res.status) {
+          const data = res.payload;
+
+          this.isTakingExam = true;
+
+          this.fakeQuestionData = data.questions;
+          this.createFormControl();
+
+          const durationExam = data.time_type === 1 ? (data.time * 60) : data.time;
+          this.handleStartExam(durationExam, data.created_at);
+        }
+      }
+    })
   }
 
   // nộp bài
   handleSubmitExam() {
+    // trường hợp hết giờ làm bài -> bật dialog thông báo -> thí sinh f12 xóa dialog sau đó click nộp bài
+    // if (!this.isTakingExam) return;
+
     // check làm thiếu câu hỏi
     if (this.formAnswers.valid) {
-      const answerFormData = this.formAnswers.value;
-  
-      // danh sách id câu hỏi và câu trả lời
-      const answersData: {questionId: number, answerId: number}[] = [];
-      for (const key in answerFormData) {
-        const questionId = key.split("-")[2];
-        
-        answersData.push({
-          questionId: +questionId,
-          answerId: answerFormData[key]
-        })
-      }
+      const answersData = this.getAnswersData();
+
+      const confirmSubmitExam = this.dialog.open(DialogConfirmComponent, {
+        disableClose: true,
+        width: "350px",
+        data: {
+          title: "Xác nhận nộp bài",
+          description: "Bạn có chắc chắn muốn nộp bài?",
+          textCancel: "Thoát",
+          textOk: "Đồng ý"
+        }
+      });
+
+      confirmSubmitExam.afterClosed().subscribe(result => {
+        // xác nhận nộp bài
+        if (result === "true") {
+          this.openDialogSubmitExam();
+        }
+      })
       console.log(answersData)
     } else {
       const listQuesNum = this.getFormValidationErrors();
-      console.log(`Bạn còn những câu sau chưa làm: ${listQuesNum.join(", ")}`)
+
+      const confirmSubmitExam = this.dialog.open(DialogConfirmComponent, {
+        disableClose: true,
+        width: "350px",
+        data: {
+          title: "Xác nhận nộp bài",
+          description: `Bạn chưa hoàn thành các câu: ${listQuesNum.join(", ")}`,
+          textCancel: "Tiếp tục",
+          textOk: "Nộp bài"
+        }
+      });
+
+      confirmSubmitExam.afterClosed().subscribe(result => {
+        // xác nhận nộp bài
+        if (result === "true") {
+          this.openDialogSubmitExam();
+        }
+      })
     }
+  }
+
+  getAnswersData() {
+    const answerFormData = this.formAnswers.value;
+  
+    // danh sách id câu hỏi và câu trả lời
+    const answersData: {questionId: number, answerId: number}[] = [];
+    for (const key in answerFormData) {
+      const questionId = key.split("-")[2];
+      
+      answersData.push({
+        questionId: +questionId,
+        answerId: answerFormData[key]
+      })
+    }
+
+    return answersData;
   }
 
   createFormControl() {
@@ -249,6 +219,79 @@ export class CapacityExamComponent implements OnInit {
     this.questions.forEach((questionRef, index) => {
       if (indexQuestion === index) {
         questionRef.nativeElement.scrollIntoView();
+      }
+    })
+  }
+
+  // bắt đầu làm bài
+  handleStartExam(duration: number, timeStart: any) {
+    // tính thời gian làm bài ban đầu
+    const minutesExam = Math.floor(((duration % (60 * 60 * 24)) % (60 * 60)) / 60 );
+    const secondsExam = Math.floor(((duration % (60 * 60 * 24)) % (60 * 60)) % 60 );
+    this.countDownTimeExam.minutes = minutesExam;
+    this.countDownTimeExam.seconds = secondsExam;
+
+    let timeStartExam: any = new Date(timeStart).getTime();
+    const timeWillEndExam = new Date(timeStartExam + duration * 1000 + 1000);
+
+    let timerId: any;
+    timerId = setInterval(() => {
+      let futureDate = new Date(timeWillEndExam).getTime();
+      let today = new Date().getTime();
+
+      let distance = futureDate - today;
+
+      if (distance < 0) {
+        this.countDownTimeExam.minutes = "00";
+        this.countDownTimeExam.seconds = "00";
+        clearInterval(timerId);
+
+        // thông báo nộp bài khi hết thời gian
+        this.dialog.closeAll();
+
+        const submitExamRef = this.dialog.open(DialogConfirmComponent, {
+          disableClose: true,
+          width: "450px",
+          data: {
+            title: "Hết giờ làm bài",
+            description: "Thời gian làm bài của bạn đã hết!. Chúng tôi sẽ nộp kết quả đã lưu vào trước đó của bạn. Ấn nút để nộp bài!",
+            isNotShowBtnCancel: true,
+            textOk: "Nộp bài"
+          }
+        });
+
+        submitExamRef.afterClosed().subscribe(result => {
+          if (result === "true") {
+            this.openDialogSubmitExam();
+          }
+        })
+      } else {
+        const minutes: string | number = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        this.countDownTimeExam.minutes = minutes < 10 ? `0${minutes}` : minutes;
+
+        const seconds: number | string = Math.floor((distance % (1000 * 60)) / 1000);
+        this.countDownTimeExam.seconds = seconds < 10 ? `0${seconds}` : seconds;
+
+        // thông báo sắp hết giờ
+        if (minutes <= 1 && !this.isNotiExamTimeOut) {
+          this.toast.warning({ summary: "Sắp hết thời gian làm bài, hãy kiểm tra lại bài làm của bạn", duration: 10000 });
+          this.isNotiExamTimeOut = true;
+        }
+      }
+
+      console.log(this.countDownTimeExam.minutes, this.countDownTimeExam.seconds)
+    }, 1000);
+  }
+
+  openDialogSubmitExam() {
+    this.dialog.open(DialogConfirmComponent, {
+      width: '500px',
+      disableClose: true,
+      data: {
+        description: "Vui lòng không thoát ứng dụng. Hệ thống sẽ tự động chuyển đến trang kết quả sau khi nộp bài thành công.",
+        isNotShowBtn: true,
+        title: "Đang nộp bài...",
+        isShowLoading: true
       }
     })
   }
