@@ -6,6 +6,7 @@ import { CompanyService } from 'src/app/services/company.service';
 import { Enterprise } from 'src/app/models/enterprise.model';
 import { RecruitmentsService } from 'src/app/services/recruitments.service';
 import { Recruitments } from 'src/app/models/recruitments.models';
+import { Slider } from 'src/app/models/slider.model';
 @Component({
   selector: 'app-recruitment',
   templateUrl: './recruitment.component.html',
@@ -20,6 +21,18 @@ export class RecruitmentComponent implements OnInit {
   statusRecruitments: boolean = false;
 
   constructor(public dialog: MatDialog, public companyService: CompanyService, public recruitmentService: RecruitmentsService) { }
+
+  bannerSub: Array<any> = [
+    {
+      image_url: 'https://www.wework.com/ideas/wp-content/uploads/sites/4/2017/06/Web_150DPI-20190927_10th_Floor_Conference_Room_2_v1.jpg'
+    },
+    {
+      image_url: 'https://daily.jstor.org/wp-content/uploads/2018/03/conference_room_talk_1050x700.jpg'
+    },
+    {
+      image_url: 'https://www.sage.com/en-us/blog/wp-content/uploads/sites/2/2018/04/peoplecenteredworklplace.jpg'
+    }
+  ];
 
   sliderRecruitment = {
     slidesToShow: 1,
@@ -37,6 +50,31 @@ export class RecruitmentComponent implements OnInit {
     infinite: true,
     autoplay: true,
     prevArrow: '.slick-company-next', nextArrow: '.slick-company-prev',
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 586,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   sliderWordKey = {

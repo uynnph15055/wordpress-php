@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Contest } from 'src/app/models/contest';
 import { Enterprise } from 'src/app/models/enterprise.model';
 import { Recruitments } from 'src/app/models/recruitments.models';
+import { ConfigFunctionService } from 'src/app/services/config-function.service';
 import { RecruitmentsService } from 'src/app/services/recruitments.service';
 
 @Component({
@@ -17,9 +18,11 @@ export class RecruitmentComponent implements OnInit {
   rescruitmentComanySupport: Array<Enterprise>;
   rescruitmentCapacity: Array<Contest>;
 
+
   companyLength: number;
 
   constructor(
+    public configFunctionService: ConfigFunctionService,
     public recruitment: RecruitmentsService,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RecruitmentComponent>,
@@ -45,6 +48,18 @@ export class RecruitmentComponent implements OnInit {
         this.companyLength = this.rescruitmentComanySupport.length;
         console.log(this.rescruitmentCapacity);
       }
+    })
+  }
+
+
+  // Gender Index
+  getRenderIndex(id: number, array: Array<any>) {
+    let result = 0
+    array.forEach((res: any, index: any) => {
+      if (res.id == id)
+        result = index + 1;
+
+      return result;
     })
   }
 }

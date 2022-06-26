@@ -8,7 +8,9 @@
                 <mat-expansion-panel *ngFor="let capacity of rescruitmentCapacity" class="ability-test-item mb-2">
                     <mat-expansion-panel-header>
                         <mat-panel-title class="ability-test-title">
-                            Bài 1 : &nbsp; <span class="fw-bold" style=" color: #444">{{capacity.name}}</span>
+                            Bài {{configFunctionService.indexTable(capacity.id ,
+                            rescruitmentCapacity , 0 , 0)}} : &nbsp; <span class="fw-bold"
+                                style=" color: #444">{{capacity.name}}</span>
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="row">
@@ -44,10 +46,10 @@
         <h2 class="fw-bold color-blue mb-0">Chi tiết tuyển dụng</h2>
         <div class="title-line">
         </div>
-        <h3 class="fs-5 fw-bold" style="margin-bottom:0px ;">{{rescruitmentDetail.name}}
+        <h3 *ngIf="this.rescruitmentDetail" class="fs-5 fw-bold" style="margin-bottom:0px ;">{{rescruitmentDetail.name}}
         </h3>
-        <p>Thời gian kết thúc : {{rescruitmentDetail.end_time | formatDate}}</p>
-        <mat-tab-group>
+        <p *ngIf="this.rescruitmentDetail">Thời gian kết thúc : {{rescruitmentDetail.end_time | formatDate}}</p>
+        <mat-tab-group *ngIf="this.rescruitmentDetail">
             <mat-tab label=" Nội dung">
                 <div class="recruitment-content" [innerHTML]="rescruitmentDetail.description">
                 </div>

@@ -1,5 +1,6 @@
-<div class="container mb-5">
-    <div class="list-banner-ability-test" style="position:relative;">
+<app-banner [bannerSub]="bannerSub"></app-banner>
+<div class="container my-5">
+    <!-- <div class="list-banner-ability-test" style="position:relative;">
         <button type='button' class='slick-next slick-slider-row  slick-arrow'><i
                 class="fas fa-angle-right"></i></button>`
         <ngx-slick-carousel [config]="sliderRecruitment">
@@ -17,12 +18,21 @@
                     alt="">
             </div>
 
-            <!-- ngxSlickItem  -->
         </ngx-slick-carousel>
         <button type='button' class='slick-prev slick-slider-row  slick-arrow'><i
                 class="fas fa-angle-left"></i></button>`
-    </div>
-    <h3 class="fw-bold title text-uppercase color-blue">Doanh nghiệp</h3>
+    </div> -->
+
+
+    <form class="form-search-capacity d-flex justify-content-center w-100">
+        <div class="d-flex form-search-capacity-input-box col-6">
+            <input type="email" class="form-control" id="exampleFormControlInput1"
+                placeholder="Tìm kiếm tên đợt tuyển dụng , kỹ năng , chuyên ngành ...">
+        </div>
+        <button class="btn btn-register">Tìm kiếm</button>
+    </form>
+
+    <h3 class="fw-bold title text-uppercase color-blue mt-4">Doanh nghiệp</h3>
     <div class="title-line">
     </div>
     <div *ngIf="statusCompany == true" class="list-company-box mb-3" style="position:relative;margin-top: -20px;">
@@ -95,7 +105,7 @@
     </div>
     <div *ngIf="statusRecruitments == true" class="list-word-new mt-3">
         <div *ngFor="let rescruitIten of recruitments" (click)="openRecruitmentDetail(rescruitIten.id)"
-            class=" list-word-item">
+            class="list-word-item">
             <div class="row">
                 <div class="company-word-new-img col-4">
                     <img class="w-100"
