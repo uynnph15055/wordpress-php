@@ -29,7 +29,7 @@
         <button type='button' class='slick-company-next slick-company slick-arrow'><i
                 class="fa-solid fa-right-long"></i></button>`
         <ngx-slick-carousel [config]="sliderCompany">
-            <div ngxSlickItem style="margin-left: 20px" *ngFor="let logo of companys" class="company-item">
+            <div ngxSlickItem *ngFor="let logo of companys" class="company-log-item">
                 <img class="company-item-img" [src]="logo.logo" alt="">
             </div>
             <!-- ngxSlickItem  -->
@@ -94,7 +94,7 @@
     <div class="title-line">
     </div>
     <div *ngIf="statusRecruitments == true" class="list-word-new mt-3">
-        <div *ngFor="let rescruitIten of recruitments" (click)="openListCompanyRecruitment(rescruitIten.id)"
+        <div *ngFor="let rescruitIten of recruitments" (click)="openRecruitmentDetail(rescruitIten.id)"
             class=" list-word-item">
             <div class="row">
                 <div class="company-word-new-img col-4">

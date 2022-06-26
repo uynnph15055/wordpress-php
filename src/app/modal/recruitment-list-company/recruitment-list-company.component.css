@@ -13,30 +13,3 @@
   width: 5px;
 }
 
-.recruitment-company-list {
-  margin-left: -12px;
-}
-
-.mat-list-item {
-  margin-top: 25px;
-}
-
-.mat-list-item:first-child {
-  margin-top: 0px;
-}
-
-.recruitment-company-item-img {
-  height: 60px;
-  width: 90px;
-  border-radius: 5px;
-  object-fit: cover;
-}
-
-.recruitment-company-name {
-  margin-left: 10px;
-}
-
-.btn-from-capacity {
-  padding: 5px 10px;
-  border-radius: 5px;
-}

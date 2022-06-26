@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { RecruitmentsService } from 'src/app/services/recruitments.service';
 import { Recruitments } from 'src/app/models/recruitments.models';
 import { Enterprise } from 'src/app/models/enterprise.model';
+import { Contest } from 'src/app/models/contest';
 @Component({
   selector: 'app-recruitment-list-company',
   templateUrl: './recruitment-list-company.component.html',
@@ -13,6 +14,8 @@ export class RecruitmentListCompanyComponent implements OnInit {
   rescruitment_id: number;
   rescruitmentDetail: Recruitments;
   rescruitmentComanySupport: Array<Enterprise>;
+  rescruitmentCapacity: Array<Contest>;
+
   companyLength: number;
 
   statusRescruitmentDetail: boolean = false;
@@ -46,9 +49,9 @@ export class RecruitmentListCompanyComponent implements OnInit {
       if (res.status) {
         this.rescruitmentDetail = res.payload;
         this.rescruitmentComanySupport = this.rescruitmentDetail.enterprise;
+        this.rescruitmentCapacity = this.rescruitmentDetail.contest;
         this.companyLength = this.rescruitmentComanySupport.length;
         console.log(this.rescruitmentComanySupport);
-
       }
     })
   }

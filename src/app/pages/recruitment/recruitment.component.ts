@@ -49,13 +49,13 @@ export class RecruitmentComponent implements OnInit {
   ngOnInit(): void {
     this.getListCompany();
     this.getListRecruitment();
-    // this.openRecruitmentDetail();
+    this.openRecruitmentDetail(20);
     // this.openListCompanyRecruitment();
   }
 
-  openListCompanyRecruitment(rescruitment_id: number): void {
-    this.dialog.open(ModalListCompany, {
-      width: '500px',
+  openRecruitmentDetail(rescruitment_id: number): void {
+    this.dialog.open(RecruitmentModal, {
+      // width: '500px',
       data: {
         rescruitment_id: rescruitment_id,
       }

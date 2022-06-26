@@ -5,20 +5,15 @@
         </div>
         <div class=" ability-test-all-box">
             <mat-accordion class="mt-3">
-                <mat-expansion-panel class="ability-test-item mb-2">
+                <mat-expansion-panel *ngFor="let capacity of rescruitmentCapacity" class="ability-test-item mb-2">
                     <mat-expansion-panel-header>
                         <mat-panel-title class="ability-test-title">
-                            Bài 1 :
+                            Bài 1 : &nbsp; <span class="fw-bold" style=" color: #444">{{capacity.name}}</span>
                         </mat-panel-title>
-                        <mat-panel-description>
-                            Test lập trình php
-                        </mat-panel-description>
                     </mat-expansion-panel-header>
-                    <div class="row  my-3">
+                    <div class="row">
                         <div class="col-4 ability-test-img">
-                            <img class="w-100"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCXMMl-QUyfqq1UZlkvBAHHtG4Rijd20pxg&usqp=CAU"
-                                alt="">
+                            <img class="w-100" [src]="capacity.img" alt="">
                         </div>
                         <div class="col-8">
                             <ul class="sidebar__content-list">
@@ -27,245 +22,15 @@
                                         <i class="fa-solid fa-clock"></i>
                                     </div>
 
-                                    <span>Bài Test được mở lúc:</span>
-                                    <strong class="sidebar__content-list-item-time">10:30 03/05/2022</strong>
+                                    <span>Dự kiến mở: &nbsp;</span>
+                                    <strong class="sidebar__content-list-item-time">{{capacity.date_start |
+                                        formatDate}}</strong>
                                 </li>
                                 <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-file-pen"></i>
-                                    </div>
-
-                                    3 bài thi
+                                    <span class="sidebar__content-list-item-less">{{capacity.description}}</span>
                                 </li>
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-user-group"></i>
-                                    </div>
-
-                                    Số lượt làm bài: 1000
-                                </li>
+                                <button class="btn btn-register">Test ngay</button>
                             </ul>
-                            <button class="btn btn-register">Test ngay</button>
-                        </div>
-                    </div>
-                </mat-expansion-panel>
-                <mat-expansion-panel class="ability-test-item mb-2">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title class="ability-test-title">
-                            Bài 1 :
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Test lập trình php
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <div class="row  my-3">
-                        <div class="col-4 ability-test-img">
-                            <img class="w-100"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCXMMl-QUyfqq1UZlkvBAHHtG4Rijd20pxg&usqp=CAU"
-                                alt="">
-                        </div>
-                        <div class="col-8">
-                            <ul class="sidebar__content-list">
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-clock"></i>
-                                    </div>
-
-                                    <span>Bài Test được mở lúc:</span>
-                                    <strong class="sidebar__content-list-item-time">10:30 03/05/2022</strong>
-                                </li>
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-file-pen"></i>
-                                    </div>
-
-                                    3 bài thi
-                                </li>
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-user-group"></i>
-                                    </div>
-
-                                    Số lượt làm bài: 1000
-                                </li>
-                            </ul>
-                            <button class="btn btn-register">Test ngay</button>
-                        </div>
-                    </div>
-                </mat-expansion-panel>
-                <mat-expansion-panel class="ability-test-item mb-2">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title class="ability-test-title">
-                            Bài 1 :
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Test lập trình php
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <div class="row  my-3">
-                        <div class="col-4 ability-test-img">
-                            <img class="w-100"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCXMMl-QUyfqq1UZlkvBAHHtG4Rijd20pxg&usqp=CAU"
-                                alt="">
-                        </div>
-                        <div class="col-8">
-                            <ul class="sidebar__content-list">
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-clock"></i>
-                                    </div>
-
-                                    <span>Bài Test được mở lúc:</span>
-                                    <strong class="sidebar__content-list-item-time">10:30 03/05/2022</strong>
-                                </li>
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-file-pen"></i>
-                                    </div>
-
-                                    3 bài thi
-                                </li>
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-user-group"></i>
-                                    </div>
-
-                                    Số lượt làm bài: 1000
-                                </li>
-                            </ul>
-                            <button class="btn btn-register">Test ngay</button>
-                        </div>
-                    </div>
-                </mat-expansion-panel>
-                <mat-expansion-panel class="ability-test-item mb-2">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title class="ability-test-title">
-                            Bài 1 :
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Test lập trình php
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <div class="row  my-3">
-                        <div class="col-4 ability-test-img">
-                            <img class="w-100"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCXMMl-QUyfqq1UZlkvBAHHtG4Rijd20pxg&usqp=CAU"
-                                alt="">
-                        </div>
-                        <div class="col-8">
-                            <ul class="sidebar__content-list">
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-clock"></i>
-                                    </div>
-
-                                    <span>Bài Test được mở lúc:</span>
-                                    <strong class="sidebar__content-list-item-time">10:30 03/05/2022</strong>
-                                </li>
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-file-pen"></i>
-                                    </div>
-
-                                    3 bài thi
-                                </li>
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-user-group"></i>
-                                    </div>
-
-                                    Số lượt làm bài: 1000
-                                </li>
-                            </ul>
-                            <button class="btn btn-register">Test ngay</button>
-                        </div>
-                    </div>
-                </mat-expansion-panel>
-                <mat-expansion-panel class="ability-test-item mb-2">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title class="ability-test-title">
-                            Bài 1 :
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Test lập trình php
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <div class="row  my-3">
-                        <div class="col-4 ability-test-img">
-                            <img class="w-100"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCXMMl-QUyfqq1UZlkvBAHHtG4Rijd20pxg&usqp=CAU"
-                                alt="">
-                        </div>
-                        <div class="col-8">
-                            <ul class="sidebar__content-list">
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-clock"></i>
-                                    </div>
-
-                                    <span>Bài Test được mở lúc:</span>
-                                    <strong class="sidebar__content-list-item-time">10:30 03/05/2022</strong>
-                                </li>
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-file-pen"></i>
-                                    </div>
-
-                                    3 bài thi
-                                </li>
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-user-group"></i>
-                                    </div>
-
-                                    Số lượt làm bài: 1000
-                                </li>
-                            </ul>
-                            <button class="btn btn-register">Test ngay</button>
-                        </div>
-                    </div>
-                </mat-expansion-panel>
-                <mat-expansion-panel class="ability-test-item mb-2">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title class="ability-test-title">
-                            Bài 1 :
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Test lập trình php
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <div class="row  my-3">
-                        <div class="col-4 ability-test-img">
-                            <img class="w-100"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReCXMMl-QUyfqq1UZlkvBAHHtG4Rijd20pxg&usqp=CAU"
-                                alt="">
-                        </div>
-                        <div class="col-8">
-                            <ul class="sidebar__content-list">
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-clock"></i>
-                                    </div>
-
-                                    <span>Bài Test được mở lúc:</span>
-                                    <strong class="sidebar__content-list-item-time">10:30 03/05/2022</strong>
-                                </li>
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-file-pen"></i>
-                                    </div>
-
-                                    3 bài thi
-                                </li>
-                                <li class="sidebar__content-list-item">
-                                    <div class="sidebar__content-list-item-icon">
-                                        <i class="fa-solid fa-user-group"></i>
-                                    </div>
-
-                                    Số lượt làm bài: 1000
-                                </li>
-                            </ul>
-                            <button class="btn btn-register">Test ngay</button>
                         </div>
                     </div>
                 </mat-expansion-panel>
@@ -274,23 +39,38 @@
 
     </div>
     <div class="about-the-business-box">
-        <h2 class="fw-bold color-blue mb-0">Tuyển dụng</h2>
+        <h2 class="fw-bold color-blue mb-0">Chi tiết tuyển dụng</h2>
         <div class="title-line">
         </div>
-        <h3 class="fs-4" style="margin-bottom:0px ;">Fullstack Dev (JavaScript, PHP, Laravel)
+        <h3 class="fs-5 fw-bold" style="margin-bottom:0px ;">{{rescruitmentDetail.name}}
         </h3>
-        <p>IHOUZZ TECH</p>
+        <p>Thời gian kết thúc : {{rescruitmentDetail.end_time | formatDate}}</p>
         <mat-tab-group>
             <mat-tab label=" Nội dung">
-                <div class="recruitment-content">
-                    <img class="w-100" src="./../../../assets/img/Screenshot 2022-06-18 105541.jpg" alt="">
-                    <img class="w-100" src="./../../../assets/img/Screenshot 2022-06-18 105541.jpg" alt="">
+                <div class="recruitment-content" [innerHTML]="rescruitmentDetail.description">
                 </div>
             </mat-tab>
-            <mat-tab label="Về chúng tôi">
+            <mat-tab label="Doanh nghiệp">
                 <div class="recruitment-content">
-                    <img class="w-100" src="./../../../assets/img/Screenshot 2022-06-18 105541.jpg" alt="">
-                    <img class="w-100" src="./../../../assets/img/Screenshot 2022-06-18 105541.jpg" alt="">
+                    <mat-list class="recruitment-company-list">
+                        <mat-list-item class=" w-100" *ngFor="let company of rescruitmentComanySupport">
+                            <div class="recruitment-company-item mt-4 d-flex justify-content-between w-100">
+                                <div class="col-9 d-flex justify-content-start align-items-center">
+                                    <img src="
+                                    https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8ouvZK-bb48l1aHzL4U-wAxWcTqT43DuzEQ&usqp=CAU"
+                                        alt=" " class="recruitment-company-item-img">
+                                    <h3 class="recruitment-company-name fw-bold mt-3 text-collapse">
+                                        {{company.name}}
+                                    </h3>
+                                </div>
+                                <div class="col-2 mt-2">
+                                    <a class="btn btn-register">Chi tiết</a>
+                                </div>
+
+                            </div>
+
+                        </mat-list-item>
+                    </mat-list>
                 </div>
             </mat-tab>
         </mat-tab-group>
