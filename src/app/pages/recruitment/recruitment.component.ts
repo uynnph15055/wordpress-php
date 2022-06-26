@@ -49,7 +49,7 @@ export class RecruitmentComponent implements OnInit {
   ngOnInit(): void {
     this.getListCompany();
     this.getListRecruitment();
-    this.openRecruitmentDetail(20);
+    // this.openRecruitmentDetail(20);
     // this.openListCompanyRecruitment();
   }
 

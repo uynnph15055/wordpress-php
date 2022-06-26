@@ -29,7 +29,9 @@
                                 <li class="sidebar__content-list-item">
                                     <span class="sidebar__content-list-item-less">{{capacity.description}}</span>
                                 </li>
-                                <button class="btn btn-register">Test ngay</button>
+                                <a (click)="closeDialog()" [routerLink]="['/test-nang-luc/' , capacity.id ]"
+                                    class="btn btn-register">Test
+                                    ngay</a>
                             </ul>
                         </div>
                     </div>
