@@ -68,7 +68,7 @@ import { RecruitmentListCompanyComponent } from './modal/recruitment-list-compan
 // import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
 registerLocaleData(en);
-import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+
 
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
@@ -111,7 +111,6 @@ import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.co
     RecruitmentComponentModal,
     ModalInfoTeamComponent,
     RecruitmentListCompanyComponent,
-    CapacityDetailComponent,
     CapacityExamComponent,
     DialogConfirmComponent,
   ],
