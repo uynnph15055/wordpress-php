@@ -105,9 +105,6 @@ export class CapacityExamComponent implements OnInit {
 
   // nộp bài
   handleSubmitExam() {
-    // trường hợp hết giờ làm bài -> bật dialog thông báo -> thí sinh f12 xóa dialog sau đó click nộp bài
-    // if (!this.isTakingExam) return;
-
     // check làm thiếu câu hỏi
     if (this.formAnswers.valid) {
       const answersData = this.getAnswersData();
