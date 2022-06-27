@@ -3,8 +3,8 @@
   z-index: 99;
   box-shadow: 0px 0px 7px #ccc;
   background: transparent;
-
 }
+
 
 @keyframes slideDown {
   from {
@@ -50,7 +50,7 @@
 
 .header-avatar-user {
   width: 30px;
-  min-height: 30px;
+  height: 30px;
   object-fit: cover;
   border-radius: 50px;
   cursor: pointer;
@@ -236,39 +236,7 @@
   margin-top: 50px;
 }
 
-/* 
-  *Footer
-   */
 
-#footer {
-  background-image: linear-gradient(to bottom, #081327, #122035);
-  color: #fff;
-  border-top: 10px solid var(--title-footer);
-  /* margin-top: 10px; */
-  font-size: 13px;
-}
-
-.list-social-item {
-  margin-right: 15px;
-}
-
-.footer-title-color {
-  color: var(--title-footer);
-}
-
-#footer h6 {
-  text-decoration: underline;
-  font-size: 1rem;
-}
-
-.footer-size-p {
-  font-size: 15px;
-}
-
-#footer .fa-icon-phone {
-  font-size: 16px;
-  color: var(--title-footer)
-}
 
 
 @media (max-width:568px) {
@@ -315,22 +283,14 @@
 
 
 
-@media (max-width:987px) {
-  .menu_login-box {
-    visibility: hidden;
-  }
-
-  .img-header-box {
-    padding-left: 15%;
-  }
-
-  .btn-outline-login {
-    padding: 6px 17px;
-    font-size: 14px;
-  }
-
-  .nav-response,
-  .fa-icon-menu {
-    display: block;
-  }
+/* ---END HEADER---- */
+@media (max-width:568px) {
+  
 }
+
+
+@media (max-width:987px) {
+  
+}
+
+

@@ -19,6 +19,7 @@ import { UserService } from 'src/app/services/user.service';
 import * as $ from 'jquery';
 import { SliderService } from 'src/app/services/slider.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
 
 
 
@@ -156,6 +157,17 @@ export class ContestDeatailComponent implements OnInit {
     });
   }
 
+  // Thông tin đội
+  openInfoTeam() {
+    this.dialog.open(ModalInfoTeamComponent, {
+      width: '900px',
+      data: {
+        contest_id: this.contestDetail.id,
+        team_id: this.teamIdMemberHasJoinTeam,
+      }
+    });
+  }
+
   // Check xem user đã join cuộc thi chưa
   checkUserHasJoinContest() {
     let user = this.userService.getUserValue();
@@ -164,6 +176,8 @@ export class ContestDeatailComponent implements OnInit {
       item.members.forEach(item => {
         if (item.id == user.id) {
           this.teamIdMemberHasJoinTeam = item.pivot.team_id;
+
+
           this.statusUserHasJoinContest = true;
         }
       });
@@ -192,7 +206,6 @@ export class ContestDeatailComponent implements OnInit {
     });
   }
 
-
   // Kết quả vòng thi trước đó
   getResultRoundBefore(arrRound: Array<Round>, index: number) {
 
@@ -212,8 +225,10 @@ export class ContestDeatailComponent implements OnInit {
     return arr[arr.length - element].id
   }
 
-  scrollWin(section: number) {
-    window.scrollTo(0, section);
+  scrollWin(elementString: any, distanceApart: number) {
+    let element = document.querySelector(elementString);
+    let numberScroll = element.offsetTop;
+    window.scrollTo({ top: numberScroll - distanceApart, behavior: 'smooth' });
   }
 
   runTop() {
@@ -224,10 +239,9 @@ export class ContestDeatailComponent implements OnInit {
 
   //Tìm kiếm sinh viên kết quả
   searchTeamRank(event: any) {
+    this.getResultRoundBefore(this.contestDetail.rounds, 2);
     let searchTeamRank = event.target.value;
-    console.log(searchTeamRank);
-    if (searchTeamRank != '') {
-
+    if (searchTeamRank != null) {
       this.resultRoundBefore = this.resultRoundBefore.filter(res => {
         return res.name.includes(searchTeamRank);
       });
@@ -242,5 +256,11 @@ export class ContestDeatailComponent implements OnInit {
   open(content: any) {
     this.modalService.open(content, { centered: true });
   }
+
+  // 
+  statusCountResultFn(event: any) {
+    console.log(event);
+  }
+
 
 }

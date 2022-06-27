@@ -1,0 +1,298 @@
+/* HEADER */
+.header {
+  z-index: 99;
+  box-shadow: 0px 0px 7px #ccc;
+  background: transparent;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0)
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-100%)
+  }
+}
+
+.headerUp {
+  animation: slideUp 0.6s ease-in-out;
+  transition: all 0.4s ease-out;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  margin: 0 !important;
+  animation: slideDown 0.6s ease-in-out;
+  box-shadow: 0 0px 6px gray;
+}
+
+.menu-res-item .menu-res-link {
+  font-size: 15px;
+  color: var(--title-blue);
+}
+
+.icon-open-nav-mobile i {
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.header-icon-message {
+  font-size: 20px;
+  margin: 3px 30px 0px 10px;
+  cursor: pointer;
+}
+
+.header-avatar-user {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.nav-response {
+  display: none;
+  z-index: 10;
+}
+
+.nav-item {
+  padding: 10px 15px;
+  margin-top: 8px;
+}
+
+.menu_login-box .nav-link-item {
+  display: block;
+  color: var(--title-blue);
+  position: relative;
+  font-size: 15px;
+}
+
+.menu_login-box .nav-link-item {
+  padding-bottom: 5px;
+}
+
+.menu_login-box .nav-link-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--primary-color-sub);
+  transform-origin: bottom right;
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+.menu_login-box .nav-link-item:hover::before {
+  transform-origin: bottom left;
+  transform: scaleX(1);
+}
+
+.menu-res-item {
+  margin: 20px 0px;
+  font-size: 17px;
+
+}
+
+/* - */
+.input-menu:checked~.over__lay {
+  display: block;
+}
+
+.input-menu:checked~.menu-response {
+  /* display: block; */
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.over__lay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  animation: fadeIn linear 0.3s;
+}
+
+
+.menu-response {
+  position: fixed;
+  width: 300px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #ffff;
+  /* display: none; */
+  transform: translateX(-100%);
+  transition: all linear 0.4s;
+  opacity: 0;
+}
+
+.menu-res-item:active~.menu-response {
+  transform: translateX(-100%);
+  transition: all linear 0.4s;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.close-menu {
+  font-size: 25px;
+  padding: 12px 30px 10px 30px;
+  cursor: pointer;
+  color: var(--title-blue);
+}
+
+.exam-now {
+  margin-top: 5%;
+}
+
+
+@keyframes button {
+  0% {
+    background-color: #158127;
+    left: 0;
+    top: 0;
+  }
+
+  25% {
+    background-color: #0652DD;
+    left: 0;
+    top: 0
+  }
+
+  100% {
+    background-color: #EA2027;
+    left: 0;
+    top: 0;
+  }
+}
+
+.btn-exam-now {
+  animation-name: button;
+  animation-duration: 2s;
+  animation-delay: 10s;
+  animation-iteration-count: infinite;
+  position: relative;
+  background-color: var(--primary-color);
+  margin-top: 30%;
+  padding: 12px 30px;
+  border-radius: 10px;
+}
+
+.menu-res {
+  list-style-type: none;
+}
+
+.menu-res-link {
+  margin-left: 30px;
+}
+
+.logo-nav-bar-res {
+  margin-top: 80%;
+}
+
+/* - */
+
+.fa-icon-menu,
+.fa-icon-login {
+  font-size: 25px;
+  display: none;
+  cursor: pointer;
+  color: #130f40;
+}
+
+.img-header-box img {
+  height: 75px;
+}
+
+.btn-outline-login {
+  font-size: 1rem;
+  border-radius: 10px;
+  padding: 8px 20px;
+  border: 1px solid var(--warning);
+  color: var(--warning);
+}
+
+.btn-outline-login:hover {
+  background-color: var(--warning);
+  color: var(--white);
+  transition: all ease-in-out 0.4s;
+  border: 1px solid var(--warning);
+}
+
+/* ---END HEADER---- */
+@media (max-width:568px) {
+  .menu_login-box .nav-item {
+    display: none;
+  }
+
+  .img-header-box {
+    height: 70px;
+    margin-left: 70px;
+  }
+
+  .nav-response {
+    display: block;
+  }
+
+  .input_check i {
+    font-size: 20px;
+  }
+
+  .btn-login {
+    display: none;
+  }
+
+  .fa-icon-login {
+    display: block;
+  }
+
+  .loading-banner {
+    height: 200px;
+  }
+}
+
+
+@media (max-width:987px) {
+  .menu_login-box .nav-item {
+    display: none;
+  }
+
+  .img-header-box {
+    height: 70px;
+    margin-left: 50px;
+  }
+
+  .nav-response {
+    display: block;
+  }
+
+}

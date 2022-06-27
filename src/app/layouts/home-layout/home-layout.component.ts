@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, debounceTime, map, switchMap } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
 import { ConfigViewService } from 'src/app/services/config-view.service';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
@@ -17,18 +19,10 @@ export class HomeLayoutComponent implements OnInit {
     statusWindow: boolean = false;
     statusLogin: boolean = false;
     constructor(private userInfo: GetValueLocalService, private configView: ConfigViewService) {
-
     }
 
-
     ngOnInit(): void {
-        this.backTop();
-
-        this.user = this.userInfo.getValueLocalUser('user');
-        if (this.user) {
-            this.statusLogin = true;
-        }
-
+        this.backTop(); 
         this.winBackTop();
         window.addEventListener('scroll', () => {
             this.winBackTop();
@@ -45,6 +39,7 @@ export class HomeLayoutComponent implements OnInit {
         }
     }
 
+
     headerBlockScroll() {
         let header = document.querySelector('.header');
         if (window.scrollY > 400) {
@@ -55,6 +50,7 @@ export class HomeLayoutComponent implements OnInit {
     }
 
 
+
     // Chuyển trạng thái web về đầu trang
     backTop() {
         $('html , body').animate({
@@ -62,10 +58,5 @@ export class HomeLayoutComponent implements OnInit {
         }, 1000);
     }
 
-    // LogOut
-    logOut() {
-        localStorage.clear();
-        this.statusLogin = false;
-        this.ngOnInit();
-    }
+
 }

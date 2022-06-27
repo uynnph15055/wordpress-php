@@ -157,12 +157,12 @@
   overflow: hidden;
   width: 100%;
   text-overflow: ellipsis;
+  margin-left: 15px;
 }
 
 .student-rank-list .student-rank-avatar {
-  width: 40px;
-  height: 40px;
-  max-height: 40px;
+  width: 30px;
+  height: 30px;
   object-fit: cover;
   border-radius: 50px;
 }
@@ -209,10 +209,10 @@
 }
 
 .related-contest-item .related-contest-image {
-  height: 90px;
-  width: 100px;
+  height: 30px;
+  width: 30px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 50px;
 }
 
 .related-contest-item .related-contest-name {
@@ -253,6 +253,10 @@
 
 
 /* COUNT DOWN */
+.contest-detail-right {
+  position: sticky;
+  top: 100px;
+}
 
 .contest-detail-right-name {
   display: -webkit-box;
@@ -260,6 +264,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 1.1rem;
 }
 
 .img-detail-box img {

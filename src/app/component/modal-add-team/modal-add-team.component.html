@@ -4,15 +4,15 @@
 
     <div class="modal-header d-flex  justify-content-between align-items-center">
         <i class="fas icon-add-team fa-user-plus d-block"></i>
-        <h5 class="mt-2 fs-5 fw-bold mx-2 color-blue">{{titleModel}}</h5>
+        <h5 class="mt-2 fw-bold title-form-info-team mx-2 color-blue">{{titleModel}}</h5>
         <i aria-label="Close" (click)="onNoClick()" class="fas fa-times icon-close-modal d-block"></i>
     </div>
     <div class="modal-body">
         <input type="text" hidden [value]="teamDetail.id">
         <div class="avatar-upload d-flex justify-content-center">
             <div class="avatar-edit">
-                <input #file type='file' accept='image/*' (change)="preview(file.files)"
-                    id="imageUpload" accept=".png, .jpg, .jpeg" />
+                <input #file type='file' accept='image/*' (change)="preview(file.files)" id="imageUpload"
+                    accept=".png, .jpg, .jpeg" />
                 <label for="imageUpload"></label>
             </div>
             <div class="avatar-preview">
@@ -22,7 +22,7 @@
         <h5 class="text-center fs-6 fw-bold">Ảnh nhóm</h5>
         <div class="register-input-box">
             <input [value]="teamDetail.name" type="text" formControlName="name" class="register-input-text">
-            <label for="" class="register-label">Tên nhóm</label>
+            <label class="register-label">Tên nhóm</label>
         </div>
         <div *ngIf="formRegister.controls['name'].errors 
         && (

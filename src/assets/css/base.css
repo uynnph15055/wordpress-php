@@ -16,6 +16,7 @@
 
 ::-webkit-scrollbar {
   width: 10px;
+  background-color: rgb(235, 232, 232);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -28,10 +29,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 body {
   font-size: 62%;
+  overflow-x: hidden;
 }
 
 .fs-text {
@@ -128,4 +131,35 @@ ul {
 .form-select:focus {
   border: var(--warning);
   box-shadow: 0 0 0 0.1rem var(--warning);
+}
+
+.title-line {
+  width: 100px;
+  height: 3px;
+  background-color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.text-collapse {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+
+/* SLICK SLIDER */
+.slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1;
+  z-index: 1;
+  font-size: 20px;
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
