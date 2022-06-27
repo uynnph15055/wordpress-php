@@ -18,6 +18,7 @@ import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 
 const routes: Routes = [
   {
@@ -77,6 +78,10 @@ const routes: Routes = [
       {
         path: "test-nang-luc/:capacity_id",
         component: CapacityDetailComponent
+      },
+      {
+        path: "test-nang-luc/vao-thi/:capacity_id/bai-thi/:round_id",
+        component: CapacityExamComponent
       }
     ]
   },

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CapacityDetailComponent } from './capacity-detail.component';
+import { CapacityExamComponent } from './capacity-exam.component';
 
-describe('CapacityDetailComponent', () => {
-  let component: CapacityDetailComponent;
-  let fixture: ComponentFixture<CapacityDetailComponent>;
+describe('CapacityExamComponent', () => {
+  let component: CapacityExamComponent;
+  let fixture: ComponentFixture<CapacityExamComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CapacityDetailComponent ]
+      declarations: [ CapacityExamComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CapacityDetailComponent);
+    fixture = TestBed.createComponent(CapacityExamComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

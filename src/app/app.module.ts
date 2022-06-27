@@ -68,6 +68,8 @@ import { RecruitmentListCompanyComponent } from './modal/recruitment-list-compan
 
 registerLocaleData(en);
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
+import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +108,8 @@ import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail
     ModalInfoTeamComponent,
     RecruitmentListCompanyComponent,
     CapacityDetailComponent,
+    CapacityExamComponent,
+    DialogConfirmComponent,
   ],
   imports: [
     BrowserModule,
