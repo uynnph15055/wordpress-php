@@ -1,3 +1,4 @@
+import { Contest } from './contest';
 import { Judges } from "./judges.model";
 import { Team } from "./team";
 
@@ -11,5 +12,6 @@ export class Round {
     type_exam_id: number;
     start_time: Date;
     teams: Array<Team>;
-    judges: Array<Judges>
+    judges: Array<Judges>;
+    contest: Contest
 }
