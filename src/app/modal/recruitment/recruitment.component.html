@@ -4,47 +4,67 @@
             <h2 class="fw-bold color-blue mb-0">Chi tiết tuyển dụng</h2>
             <div class="title-line">
             </div>
-            <h3 *ngIf="this.rescruitmentDetail" class="fs-5 fw-bold" style="margin-bottom:0px ;">
-                {{rescruitmentDetail.name}}
-            </h3>
-            <p *ngIf="this.rescruitmentDetail">Thời gian kết thúc : {{rescruitmentDetail.end_time | formatDate}}</p>
-            <mat-tab-group *ngIf="this.rescruitmentDetail">
-                <mat-tab label=" Nội dung">
-                    <div class="recruitment-content" [innerHTML]="rescruitmentDetail.description">
-                    </div>
-                </mat-tab>
-                <mat-tab label="Doanh nghiệp">
-                    <div class="recruitment-content">
-                        <mat-list class="recruitment-company-list">
-                            <mat-list-item class=" w-100" *ngFor="let company of rescruitmentComanySupport">
-                                <div class="recruitment-company-item mt-4 d-flex justify-content-between w-100">
-                                    <div class="col-8 d-flex justify-content-start align-items-center">
-                                        <img src="
+            <div *ngIf=" statusRescruitDetail== true" class="">
+                <h3 *ngIf="this.rescruitmentDetail" class="fs-5 fw-bold" style="margin-bottom:0px ;">
+                    {{rescruitmentDetail.name}}
+                </h3>
+                <p *ngIf="this.rescruitmentDetail">Thời gian kết thúc : {{rescruitmentDetail.end_time | formatDate}}</p>
+                <mat-tab-group *ngIf="this.rescruitmentDetail">
+                    <mat-tab label=" Nội dung">
+                        <div class="recruitment-content" [innerHTML]="rescruitmentDetail.description">
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Doanh nghiệp">
+                        <div class="recruitment-content">
+                            <mat-list class="recruitment-company-list">
+                                <mat-list-item class=" w-100" *ngFor="let company of rescruitmentComanySupport">
+                                    <div class="recruitment-company-item mt-4 d-flex justify-content-between w-100">
+                                        <div class="col-8 d-flex justify-content-start align-items-center">
+                                            <img src="
                                     https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8ouvZK-bb48l1aHzL4U-wAxWcTqT43DuzEQ&usqp=CAU"
-                                            alt=" " class="recruitment-company-item-img">
-                                        <h3 class="recruitment-company-name fw-bold mt-3 text-collapse">
-                                            {{company.name}}
-                                        </h3>
-                                    </div>
-                                    <div class="col-4 mt-2">
-                                        <a (click)="openVerticallyCentered(content , company.id)"
-                                            class="btn fs-6 btn-register">Chi
-                                            tiết</a>
+                                                alt=" " class="recruitment-company-item-img">
+                                            <h3 class="recruitment-company-name fw-bold mt-3 text-collapse">
+                                                {{company.name}}
+                                            </h3>
+                                        </div>
+                                        <div class="col-4 mt-2">
+                                            <a class="btn fs-6 btn-register">Chi
+                                                tiết</a>
+                                        </div>
+
                                     </div>
 
-                                </div>
+                                </mat-list-item>
+                            </mat-list>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
 
-                            </mat-list-item>
-                        </mat-list>
-                    </div>
-                </mat-tab>
-            </mat-tab-group>
+            <div *ngIf="statusRescruitDetail == false" class="w-100">
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '50px',
+                    width: '100%'
+                  }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '50px',
+                    width: '100%'
+                  }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '300px',
+                    width: '100%'
+                  }"></ngx-skeleton-loader>
+            </div>
         </div>
+
         <div class="ability-test-box col-md-6 col-lg-6 col-xl-6 col-sm-12">
             <h2 class="fw-bold color-blue mb-0">Test năng lực</h2>
             <div class="title-line">
             </div>
-            <div class=" ability-test-all-box">
+            <div class=" ability-test-all-box" *ngIf="statusRescruitDetail == true">
                 <mat-accordion class="mt-3">
                     <mat-expansion-panel *ngFor="let capacity of rescruitmentCapacity" class="ability-test-item mb-2">
                         <mat-expansion-panel-header>
@@ -64,7 +84,6 @@
                                         <div class="sidebar__content-list-item-icon">
                                             <i class="fa-solid fa-clock"></i>
                                         </div>
-
                                         <span class="title-time-capacity">Dự kiến mở: &nbsp;</span>
                                         <strong class="sidebar__content-list-item-time">{{capacity.date_start |
                                             formatDate}}</strong>
@@ -81,7 +100,49 @@
                     </mat-expansion-panel>
                 </mat-accordion>
             </div>
+            <div *ngIf="statusRescruitDetail == false">
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '40px',
+                    width: '100%'
+                  }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '40px',
+                    width: '100%'
+                  }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '40px',
+                    width: '100%'
+                  }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '40px',
+                    width: '100%'
+                  }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '40px',
+                    width: '100%'
+                  }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '40px',
+                    width: '100%'
+                  }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '40px',
+                    width: '100%'
+                  }"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 
+                    'border-radius': '5px',
+                    height: '40px',
+                    width: '100%'
+                  }"></ngx-skeleton-loader>
 
+            </div>
         </div>
     </div>
 
@@ -89,7 +150,7 @@
 <div class="d-flex justify-content-end">
     <button (click)="closeDialog()" mat-raised-button>Đóng</button>
 </div>
-
+<!-- 
 <ng-template #content let-modal>
     <div class="modal-header">
         <div class="">
@@ -105,4 +166,4 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
     </div>
-</ng-template>
+</ng-template> -->

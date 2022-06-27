@@ -18,9 +18,9 @@ export class RecruitmentComponent implements OnInit {
   rescruitmentDetail: Recruitments;
   rescruitmentComanySupport: Array<Enterprise>;
   rescruitmentCapacity: Array<Contest>;
-
-
   companyLength: number;
+
+  statusRescruitDetail: boolean = false;
 
   constructor(
     public configFunctionService: ConfigFunctionService,
@@ -46,6 +46,7 @@ export class RecruitmentComponent implements OnInit {
       if (res.status) {
         this.rescruitmentDetail = res.payload;
         this.rescruitmentComanySupport = this.rescruitmentDetail.enterprise;
+        this.rescruitmentDetail ? this.statusRescruitDetail = true : this.statusRescruitDetail;
         this.rescruitmentCapacity = this.rescruitmentDetail.contest;
         this.companyLength = this.rescruitmentComanySupport.length;
         console.log(this.rescruitmentCapacity);
@@ -65,7 +66,7 @@ export class RecruitmentComponent implements OnInit {
     })
   }
 
-  openVerticallyCentered(content: any, company_id: number) {
-    this.modalService.open(content, { centered: true });
-  }
+  // openVerticallyCentered(content: any, company_id: number) {
+  //   this.modalService.open(content, { centered: true });
+  // }
 }
