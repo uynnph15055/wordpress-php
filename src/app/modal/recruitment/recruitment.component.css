@@ -1,8 +1,5 @@
 .recruitment-box {
-  width: 1000px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px;
+
   min-height: 500px;
 }
 
@@ -91,3 +88,49 @@
   padding: 5px 10px;
   border-radius: 5px;
 }
+
+@media (max-width:568px) {
+  .recruitment-box {
+    height: 500px;
+    overflow-y: auto;
+  }
+
+  .recruitment-box::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  .recruitment-company-item-img {
+    height: 40px;
+    width: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+
+  .recruitment-company-name {
+    margin-left: 10px;
+    color: #333;
+    font-size: 14px;
+  }
+
+  .ability-test-img img {
+    height: 80px;
+  }
+
+  .title-time-capacity {
+    display: none;
+  }
+
+  .ability-test-all-box {
+    min-height: 250px;
+    overflow-y: auto;
+  }
+
+  .recruitment-content {
+    max-height: 250px;
+    overflow-y: auto;
+  }
+
+}
+
+
+@media (min-width:768px) and (max-width:1023px) {}

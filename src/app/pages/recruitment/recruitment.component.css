@@ -38,6 +38,10 @@
   border-radius: 15px;
 }
 
+.list-company-box {
+  margin-top: -30px;
+}
+
 .company-log-item {
   margin-left: 20px;
 }
@@ -67,8 +71,6 @@
 .slick-company-prev {
   left: -20px;
 }
-
-
 
 .slick-next,
 .slick-company-next {
@@ -153,7 +155,6 @@
   padding: 20px;
   text-align: center;
   cursor: pointer;
-
 }
 
 .word-major-item img {
@@ -224,6 +225,11 @@
     grid-gap: 20px;
   }
 
+  .company-log-item img {
+    margin-left: 20px;
+    height: 150px;
+  }
+
   .title {
     font-size: 1rem;
     margin-bottom: 0;
@@ -244,7 +250,31 @@
   .slick-company-next {
     right: -5px;
   }
+
+  .col-md-none,
+  .col-sm-none {
+    display: none;
+  }
 }
 
 
-@media (max-width:987px) {}
+@media (min-width:768px) and (max-width:1023px) {
+  .list-word-new {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .col-md-none,
+  .col-sm-none {
+    display: none;
+  }
+
+  .list-company-box {
+    margin-top: -40px;
+  }
+
+  .list-post-new {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-gap: 20px; */
+  }
+}

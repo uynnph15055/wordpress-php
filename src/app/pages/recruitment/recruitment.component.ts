@@ -82,6 +82,31 @@ export class RecruitmentComponent implements OnInit {
     slidesToScroll: 1,
     infinite: true,
     autoplay: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 586,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   ngOnInit(): void {
@@ -105,9 +130,9 @@ export class RecruitmentComponent implements OnInit {
     this.companyService.getAllCompany().subscribe(res => {
       if (res.status) {
         this.companys = res.dataContest;
-        setTimeout(() => {
-          this.companys ? this.statusCompany = true : this.statusCompany;
-        }, 2000);
+
+        this.companys ? this.statusCompany = true : this.statusCompany;
+
       }
     })
   }
@@ -116,9 +141,9 @@ export class RecruitmentComponent implements OnInit {
     this.recruitmentService.getAllRecruitment().subscribe(res => {
       if (res.status) {
         this.recruitments = res.payload;
-        setTimeout(() => {
-          this.recruitments ? this.statusRecruitments = true : this.statusRecruitments;
-        }, 3000);
+
+        this.recruitments ? this.statusRecruitments = true : this.statusRecruitments;
+
       }
     })
   }

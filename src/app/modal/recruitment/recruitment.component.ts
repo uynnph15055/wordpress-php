@@ -5,6 +5,7 @@ import { Enterprise } from 'src/app/models/enterprise.model';
 import { Recruitments } from 'src/app/models/recruitments.models';
 import { ConfigFunctionService } from 'src/app/services/config-function.service';
 import { RecruitmentsService } from 'src/app/services/recruitments.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-recruitment',
@@ -26,6 +27,7 @@ export class RecruitmentComponent implements OnInit {
     public recruitment: RecruitmentsService,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RecruitmentComponent>,
+    private modalService: NgbModal,
     @Inject(MAT_DIALOG_DATA) public data: { rescruitment_id: number },) {
     this.rescruitment_id = data.rescruitment_id;
   }
@@ -61,5 +63,9 @@ export class RecruitmentComponent implements OnInit {
 
       return result;
     })
+  }
+
+  openVerticallyCentered(content: any, company_id: number) {
+    this.modalService.open(content, { centered: true });
   }
 }

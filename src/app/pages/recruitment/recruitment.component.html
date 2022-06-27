@@ -22,8 +22,6 @@
         <button type='button' class='slick-prev slick-slider-row  slick-arrow'><i
                 class="fas fa-angle-left"></i></button>`
     </div> -->
-
-
     <form class="form-search-capacity d-flex justify-content-center w-100">
         <div class="d-flex form-search-capacity-input-box col-6">
             <input type="email" class="form-control" id="exampleFormControlInput1"
@@ -35,9 +33,9 @@
     <h3 class="fw-bold title text-uppercase color-blue mt-4">Doanh nghiệp</h3>
     <div class="title-line">
     </div>
-    <div *ngIf="statusCompany == true" class="list-company-box mb-3" style="position:relative;margin-top: -20px;">
+    <div *ngIf="statusCompany == true" class="list-company-box mb-3" style="position:relative;">
         <button type='button' class='slick-company-next slick-company slick-arrow'><i
-                class="fa-solid fa-right-long"></i></button>`
+                class=" fa-solid fa-right-long"></i></button>`
         <ngx-slick-carousel [config]="sliderCompany">
             <div ngxSlickItem *ngFor="let logo of companys" class="company-log-item">
                 <img class="company-item-img" [src]="logo.logo" alt="">
@@ -48,8 +46,8 @@
                 class="fa-solid fa-left-long"></i></button>
     </div>
     <div *ngIf="statusCompany == false" class="loading-company-box">
-        <div class="row">
-            <div class="col-2">
+        <div class="row container">
+            <div class="col-xl-2 col-lg-2 col-md-3  col-sm-6">
 
                 <ngx-skeleton-loader [theme]="{ 
                 'border-radius': '5px',
@@ -57,7 +55,7 @@
                 border: '1px solid white'
               }"></ngx-skeleton-loader>
             </div>
-            <div class="col-2">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-sm-none">
 
                 <ngx-skeleton-loader [theme]="{ 
                 'border-radius': '5px',
@@ -65,7 +63,7 @@
                 border: '1px solid white'
               }"></ngx-skeleton-loader>
             </div>
-            <div class="col-2">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-none">
 
                 <ngx-skeleton-loader [theme]="{ 
                 'border-radius': '5px',
@@ -73,7 +71,7 @@
                 border: '1px solid white'
               }"></ngx-skeleton-loader>
             </div>
-            <div class="col-2">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-none">
 
                 <ngx-skeleton-loader [theme]="{ 
                 'border-radius': '5px',
@@ -81,7 +79,7 @@
                 border: '1px solid white'
               }"></ngx-skeleton-loader>
             </div>
-            <div class="col-2">
+            <div class="col-xl-2 col-lg-2 col-md-none">
 
                 <ngx-skeleton-loader [theme]="{ 
                 'border-radius': '5px',
@@ -89,7 +87,7 @@
                 border: '1px solid white'
               }"></ngx-skeleton-loader>
             </div>
-            <div class="col-2">
+            <div class="col-xl-2 col-lg-2 col-md-none">
 
                 <ngx-skeleton-loader [theme]="{ 
                 'border-radius': '5px',
@@ -123,7 +121,7 @@
     </div>
     <div *ngIf="statusRecruitments == false" class="list-loading-new">
         <div class="row">
-            <div class="col-4">
+            <div class="col-lg-4 col-sm-12  col-md-6">
                 <ngx-skeleton-loader [theme]="{ 
                     'border-radius': '5px',
                     height: '120px',
@@ -131,7 +129,7 @@
                     border: '1px solid white'
                   }"></ngx-skeleton-loader>
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-sm-12 col-md-6">
                 <ngx-skeleton-loader [theme]="{ 
                     'border-radius': '5px',
                     height: '120px',
@@ -139,7 +137,7 @@
                     border: '1px solid white'
                   }"></ngx-skeleton-loader>
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-sm-12 col-md-6">
                 <ngx-skeleton-loader [theme]="{ 
                     'border-radius': '5px',
                     height: '120px',
@@ -147,7 +145,7 @@
                     border: '1px solid white'
                   }"></ngx-skeleton-loader>
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-sm-12 col-md-6">
                 <ngx-skeleton-loader [theme]="{ 
                     'border-radius': '5px',
                     height: '120px',
@@ -155,7 +153,7 @@
                     border: '1px solid white'
                   }"></ngx-skeleton-loader>
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-sm-12 col-md-6">
                 <ngx-skeleton-loader [theme]="{ 
                     'border-radius': '5px',
                     height: '120px',
@@ -163,7 +161,7 @@
                     border: '1px solid white'
                   }"></ngx-skeleton-loader>
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-sm-12 col-md-6">
                 <ngx-skeleton-loader [theme]="{ 
                     'border-radius': '5px',
                     height: '120px',
@@ -171,7 +169,7 @@
                     border: '1px solid white'
                   }"></ngx-skeleton-loader>
             </div>
-            <div class="col-4">
+            <div class="col-4 col-md-none">
                 <ngx-skeleton-loader [theme]="{ 
                     'border-radius': '5px',
                     height: '120px',
@@ -179,7 +177,7 @@
                     border: '1px solid white'
                   }"></ngx-skeleton-loader>
             </div>
-            <div class="col-4">
+            <div class="col-4 col-md-none">
                 <ngx-skeleton-loader [theme]="{ 
                     'border-radius': '5px',
                     height: '120px',
@@ -187,7 +185,7 @@
                     border: '1px solid white'
                   }"></ngx-skeleton-loader>
             </div>
-            <div class="col-4">
+            <div class="col-4 col-md-none">
                 <ngx-skeleton-loader [theme]="{ 
                     'border-radius': '5px',
                     height: '120px',
