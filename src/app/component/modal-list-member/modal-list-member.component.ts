@@ -25,8 +25,8 @@ export class ModalListMemberComponent implements OnInit {
 
   constructor(public configFunctionService: ConfigFunctionService,
     public dialogRef: MatDialogRef<ModalListMemberComponent>, @Inject(MAT_DIALOG_DATA) public data: {
-    keyWord: string, contest_id: number, team_id: number, array_members: number;
-  },
+      keyWord: string, contest_id: number, team_id: number, array_members: number;
+    },
     private teamService: TeamService,
     private toast: NgToastService,
     private contestService: ContestService) {
@@ -106,6 +106,10 @@ export class ModalListMemberComponent implements OnInit {
   // Check all tài khoản
   isCheckAll() {
     return this.arrayMembers.every(res => res.checked)
+  }
+
+  searchMember(event: any) {
+    console.log(event.target.value);
   }
 
   displayedColumns: string[] = ['index', 'name', 'img', 'email', 'check-box'];

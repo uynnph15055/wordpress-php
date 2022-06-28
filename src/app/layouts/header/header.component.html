@@ -1,10 +1,11 @@
 <div class="header bg-white">
+    <!-- <input checked type="checkbox"> -->
     <nav class="container d-flex justify-content-between align-items-center">
         <div class="nav-response">
             <label class="icon-open-nav-mobile" for="input_check">
                 <i class="fas fa-bars"></i>
             </label>
-            <input class="input-menu" hidden type="checkbox" id="input_check">
+            <input #inputChecked hidden class="input-menu" type="checkbox" id="input_check">
             <!-- <h1>Nguyễn Ngọc Uy</h1> -->
 
             <label for="input_check" class="over__lay">
@@ -16,9 +17,8 @@
                         <i class="fas fa-times"></i>
                     </label>
                 </div>
-
                 <ul class="menu-res mt-5 border-top">
-                    <li class="menu-res-item "><a routerLink="/cuoc-thi"
+                    <li (click)="closeMenuRes(inputChecked)" class="menu-res-item "><a routerLink="/"
                             class="menu-res-link text-decoration-none text-uppercase fw-bold">
                             Trang chủ
                         </a></li>
@@ -64,7 +64,7 @@
                 <li *ngIf="statusLogin == true"><i matBadge="4" matBadgePosition="after"
                         class="fas fa-bell header-icon-message  color-blue" matBadgeColor="warn"></i>
                 </li>
-                <li *ngIf="statusLogin == false">
+                <li *ngIf="statusLogin == false" class="btn-login">
                     <a routerLink="/login" class="text-decoration-none mb-2 btn-outline-login">Đăng nhập</a>
                 </li>
                 <li *ngIf="statusLogin == true">
@@ -88,7 +88,7 @@
                 </li>
             </ul>
         </div>
-        <a href="" class="fa-icon-login">
+        <a href="/login" *ngIf="statusLogin == false" class="fa-icon-login">
             <fa-icon [icon]="['fas' , 'sign-in-alt']"></fa-icon>
         </a>
     </nav>

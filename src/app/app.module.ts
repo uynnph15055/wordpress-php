@@ -49,10 +49,10 @@ import { ContestItemComponent } from './component/contest-item/contest-item.comp
 import { ModalListMemberComponent } from './component/modal-list-member/modal-list-member.component';
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
-import { ModalSubmitAssComponent } from './modal/modal-submit-ass/modal-submit-ass.component';
 import { ListResultRoundComponent } from './component/list-result-round/list-result-round.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { LoadingPageComponent } from './loading/loading-page/loading-page.component';
+
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -64,9 +64,15 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { RecruitmentComponent as RecruitmentComponentModal } from './modal/recruitment/recruitment.component';
 import { ModalInfoTeamComponent } from './modal/modal-info-team/modal-info-team.component';
+import { RecruitmentListCompanyComponent } from './modal/recruitment-list-company/recruitment-list-company.component';
 // import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
 registerLocaleData(en);
+
+
+import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
+import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
+
 
 @NgModule({
   declarations: [
@@ -95,15 +101,18 @@ registerLocaleData(en);
     ModalListMemberComponent,
     RoundDetailComponent,
     IntoExamComponent,
-    ModalSubmitAssComponent,
     ListResultRoundComponent,
     RoundContestDetailComponent,
     LoadingPageComponent,
+
     HeaderComponent,
     FooterComponent,
     RecruitmentComponent,
     RecruitmentComponentModal,
-    ModalInfoTeamComponent
+    ModalInfoTeamComponent,
+    RecruitmentListCompanyComponent,
+    CapacityExamComponent,
+    DialogConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -122,9 +131,6 @@ registerLocaleData(en);
     NgToastModule,
     NzSelectModule,
     NzSpinModule,
-
-    // AndesginModule,
-
   ],
   providers: [
     {

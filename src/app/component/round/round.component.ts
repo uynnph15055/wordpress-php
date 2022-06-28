@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Round } from 'src/app/models/round.model';
 import { Team } from 'src/app/models/team';
 
 @Component({

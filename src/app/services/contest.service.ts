@@ -42,6 +42,7 @@ export class ContestService {
   // Lọc theo chuyên ngành
   getWhereMajor(major_id: any): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.contestListUrl}?major_id=${major_id}`);
+
   }
 
   filterContest(keyword: string, major_id: number, status: number): Observable<ResponsePayload> {
@@ -57,11 +58,7 @@ export class ContestService {
     return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined`);
   }
 
-  filterContestHasLogin(keyword: string, major_id: number, status: number): Observable<ResponsePayload> {
-    let valueStatus;
-    let valueMajor;
-    status == 0 ? valueStatus = '' : valueStatus = status;
-    major_id == 0 ? valueMajor = '' : valueMajor = major_id;
-    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined?status=${valueStatus}&major_id=${valueMajor}&q=${keyword}`)
+  filterContestHasLogin(keyword: string, major_id: any, status: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined?status=${status}&major_id=${major_id}&q=${keyword}`)
   }
 }

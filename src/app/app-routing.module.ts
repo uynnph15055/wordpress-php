@@ -17,7 +17,6 @@ import { RoundComponent } from './component/round/round.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
-
 const routes: Routes = [
   {
     path: "",
@@ -72,7 +71,8 @@ const routes: Routes = [
       {
         path: "tuyen-dung",
         component: RecruitmentComponent,
-      },
+      }
+     
     ]
   },
   {

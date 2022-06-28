@@ -17,6 +17,9 @@ export class AppComponent {
   constructor(library: FaIconLibrary, private toast: NgToastService) {
     library.addIconPacks(fas);
 
+    
+    
+
     this.toast.success({ detail: "SUCCESS", summary: 'Your Success Message', duration: 1000 });
   }
 

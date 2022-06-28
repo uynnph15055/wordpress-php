@@ -3,6 +3,21 @@
   margin-bottom: 0;
 }
 
+.form-search-capacity-icon {
+  margin-left: -30px;
+}
+
+.form-search-capacity-input-box {
+  margin-right: 20px;
+  border: 1px solid var(--color-blue);
+}
+
+/* .form-search-capacity-input {
+  border: none;
+  outline: none;
+  width: 80%;
+} */
+
 .title-line {
   margin-bottom: 20px;
   width: 100px;
@@ -10,8 +25,6 @@
   height: 3px;
   background-color: var(--primary-color-sub);
 }
-
-
 
 /* DÙNG CHUNG */
 .list-banner-ability-test {
@@ -23,6 +36,18 @@
   height: 300px;
   cursor: pointer;
   border-radius: 15px;
+}
+
+.list-company-box {
+  margin-top: -30px;
+}
+
+.company-log-item {
+  margin-left: 20px;
+}
+
+.company-log-item:first-child {
+  margin-left: 15px;
 }
 
 .slick-slider-row {
@@ -47,13 +72,13 @@
   left: -20px;
 }
 
-.slick-prev::before {
-  display: none;
-}
-
 .slick-next,
 .slick-company-next {
   right: -20px;
+}
+
+.slick-prev::before {
+  display: none;
 }
 
 .slick-next::before {
@@ -71,6 +96,11 @@
 
 .slick-company:hover {
   color: var(--primary-color);
+}
+
+.company-word-new-img img {
+  height: 90px;
+  object-fit: cover;
 }
 
 
@@ -110,7 +140,10 @@
 .list-word-item:hover {
   cursor: pointer;
   border: 1px solid var(--primary-color);
-  color: var(--primary-color);
+}
+
+.list-word-item:hover .company-word-new-info-title {
+  color: var(--primary-color)
 }
 
 /*  Danh sách công việc theo chuyên ngành */
@@ -122,7 +155,6 @@
   padding: 20px;
   text-align: center;
   cursor: pointer;
-
 }
 
 .word-major-item img {
@@ -159,9 +191,15 @@
   cursor: pointer;
 }
 
+.list-post-new-item:hover h4 {
+  color: var(--primary-color);
+}
+
 .list-post-new-item img {
   overflow: hidden;
   width: 100%;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 .list-post-new-item h4 {
@@ -178,4 +216,65 @@
   overflow: hidden;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+}
+
+@media (max-width:568px) {
+  .list-word-new {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+  }
+
+  .company-log-item img {
+    margin-left: 20px;
+    height: 150px;
+  }
+
+  .title {
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+
+  .list-post-new {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    /* grid-gap: 20px; */
+  }
+
+  .slick-prev,
+  .slick-company-prev {
+    left: -5px;
+  }
+
+  .slick-next,
+  .slick-company-next {
+    right: -5px;
+  }
+
+  .col-md-none,
+  .col-sm-none {
+    display: none;
+  }
+}
+
+
+@media (min-width:768px) and (max-width:1023px) {
+  .list-word-new {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .col-md-none,
+  .col-sm-none {
+    display: none;
+  }
+
+  .list-company-box {
+    margin-top: -40px;
+  }
+
+  .list-post-new {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-gap: 20px; */
+  }
 }
