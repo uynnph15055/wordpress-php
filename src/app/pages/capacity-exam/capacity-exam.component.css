@@ -26,6 +26,22 @@
   font-size: 26px;
 }
 
+.capacity__exam-result {
+  padding: 32px 0;
+}
+
+.capacity__exam-result-point {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.capacity__exam-result-list {
+  width: 320px;
+  max-width: 100%;
+  margin: 12px auto 0;
+  padding: 0;
+}
+
 /* sidebar */
 .sidebar {
   background-color: #fff;

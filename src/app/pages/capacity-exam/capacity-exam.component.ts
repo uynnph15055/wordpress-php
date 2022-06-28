@@ -21,7 +21,8 @@ export class CapacityExamComponent implements OnInit {
   fakeQuestionData!: any;
   // DS id câu hỏi đã trả lời
   questionListId: { questionId: number }[] = [];
-  isTakingExam = false;
+  // trạng thái làm bài: 0 -> màn hình chờ làm bài, 1 -> đang làm bài, 2 -> đã nộp
+  statusTakingExam: number = 0;
   roundDetail!: Round;
   isFetchingRound = false;
   countDownTimeExam: {minutes: number | string, seconds: number | string} = {
@@ -30,6 +31,9 @@ export class CapacityExamComponent implements OnInit {
   }
   // thông báo sắp hết giờ
   isNotiExamTimeOut = false;
+  // trạng thái đang call api nộp bài
+  isSubmitingExam = false;
+  timerId!: any;
 
   constructor(
     private roundService: RoundService,
@@ -91,7 +95,8 @@ export class CapacityExamComponent implements OnInit {
         if (res.status) {
           const data = res.payload;
 
-          this.isTakingExam = true;
+          // cập nhật trạng thái đang làm bài
+          this.statusTakingExam = 1;
 
           this.fakeQuestionData = data.questions;
           this.createFormControl();
@@ -124,6 +129,7 @@ export class CapacityExamComponent implements OnInit {
         // xác nhận nộp bài
         if (result === "true") {
           this.openDialogSubmitExam();
+          this.submitExam();
         }
       })
       console.log(answersData)
@@ -145,9 +151,20 @@ export class CapacityExamComponent implements OnInit {
         // xác nhận nộp bài
         if (result === "true") {
           this.openDialogSubmitExam();
+          this.submitExam();
         }
       })
     }
+  }
+  // nộp bài
+  submitExam() {
+    // fake api
+    setTimeout(() => {
+      this.dialog.closeAll();
+
+      this.statusTakingExam = 2;
+      clearInterval(this.timerId);
+    }, 3000);
   }
 
   getAnswersData() {
@@ -225,14 +242,13 @@ export class CapacityExamComponent implements OnInit {
     // tính thời gian làm bài ban đầu
     const minutesExam = Math.floor(((duration % (60 * 60 * 24)) % (60 * 60)) / 60 );
     const secondsExam = Math.floor(((duration % (60 * 60 * 24)) % (60 * 60)) % 60 );
-    this.countDownTimeExam.minutes = minutesExam;
-    this.countDownTimeExam.seconds = secondsExam;
+    this.countDownTimeExam.minutes = minutesExam < 10 ? `0${minutesExam}` : minutesExam;
+    this.countDownTimeExam.seconds = secondsExam < 10 ? `0${secondsExam}` : secondsExam;
 
     let timeStartExam: any = new Date(timeStart).getTime();
     const timeWillEndExam = new Date(timeStartExam + duration * 1000 + 1000);
 
-    let timerId: any;
-    timerId = setInterval(() => {
+    this.timerId = setInterval(() => {
       let futureDate = new Date(timeWillEndExam).getTime();
       let today = new Date().getTime();
 
@@ -241,27 +257,32 @@ export class CapacityExamComponent implements OnInit {
       if (distance < 0) {
         this.countDownTimeExam.minutes = "00";
         this.countDownTimeExam.seconds = "00";
-        clearInterval(timerId);
+        clearInterval(this.timerId);
 
-        // thông báo nộp bài khi hết thời gian
-        this.dialog.closeAll();
+        // nếu đang không nộp bài => tự động nộp bài
+        if (!this.isSubmitingExam) {
+          // thông báo nộp bài khi hết thời gian
+          this.dialog.closeAll();
 
-        const submitExamRef = this.dialog.open(DialogConfirmComponent, {
-          disableClose: true,
-          width: "450px",
-          data: {
-            title: "Hết giờ làm bài",
-            description: "Thời gian làm bài của bạn đã hết!. Chúng tôi sẽ nộp kết quả đã lưu vào trước đó của bạn. Ấn nút để nộp bài!",
-            isNotShowBtnCancel: true,
-            textOk: "Nộp bài"
-          }
-        });
+          const submitExamRef = this.dialog.open(DialogConfirmComponent, {
+            disableClose: true,
+            width: "450px",
+            data: {
+              title: "Hết giờ làm bài",
+              description: "Thời gian làm bài của bạn đã hết!. Chúng tôi sẽ nộp kết quả đã lưu vào trước đó của bạn. Ấn nút để nộp bài!",
+              isNotShowBtnCancel: true,
+              textOk: "Nộp bài"
+            }
+          });
 
-        submitExamRef.afterClosed().subscribe(result => {
-          if (result === "true") {
-            this.openDialogSubmitExam();
-          }
-        })
+          submitExamRef.afterClosed().subscribe(result => {
+            if (result === "true") {
+              this.openDialogSubmitExam();
+
+              this.submitExam();
+            }
+          })
+        }
       } else {
         const minutes: string | number = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         this.countDownTimeExam.minutes = minutes < 10 ? `0${minutes}` : minutes;
@@ -281,6 +302,7 @@ export class CapacityExamComponent implements OnInit {
   }
 
   openDialogSubmitExam() {
+    this.isSubmitingExam = true;
     this.dialog.open(DialogConfirmComponent, {
       width: '500px',
       disableClose: true,
@@ -292,5 +314,32 @@ export class CapacityExamComponent implements OnInit {
       }
     })
   }
+  
+  // get vòng tiếp theo
+  getNextRound(): { status: boolean, round_id?: number } {
+    let nextRound: { status: boolean, round_id?: number };
+    const listRound = this.roundDetail.contest.rounds;
 
+    const currentRoundIndex = listRound.findIndex(item => item.id === this.roundDetail.id);
+    if (currentRoundIndex < listRound.length - 1) {
+      nextRound = {
+        status: true,
+        round_id: listRound[currentRoundIndex + 1].id
+      }
+    } else {
+      nextRound = {
+        status: false
+      }
+    }
+
+    return nextRound;
+  }
+
+  // click vòng thi tiếp theo
+  handleGoToNextRound(round_id?: number) {
+    this.statusTakingExam = 0;
+    this.isSubmitingExam = false;
+    this.isFetchingRound = true;
+    this.router.navigate(['/test-nang-luc/vao-thi', this.roundDetail.id, 'bai-thi', round_id]);
+  }
 }
