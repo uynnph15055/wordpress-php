@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CapacityService } from './../../services/capacity.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +6,7 @@ import { Capacity } from 'src/app/models/capacity';
 import { map, switchMap } from 'rxjs';
 import * as moment from 'moment';
 import { Round } from 'src/app/models/round.model';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-capacity-detail',
@@ -16,6 +17,7 @@ export class CapacityDetailComponent implements OnInit {
 
   tabActive!: string;
   capacity!: Capacity;
+  isFetchingCapacity = true;
   rounds!: Round[];
   countDown: {
     days: number,
@@ -36,7 +38,9 @@ export class CapacityDetailComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private capacityService: CapacityService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private toast: NgToastService
   ) { }
 
   ngOnInit(): void {
@@ -47,10 +51,12 @@ export class CapacityDetailComponent implements OnInit {
       if (res.status) {
         this.capacity = res.payload;
         this.rounds = res.payload.rounds;
-
-        // đếm ngược thời gian
-        this.countDownTimer();
-
+        this.isFetchingCapacity = false;
+        
+        // đếm ngược thời gian khi bài test sắp diễn ra
+        const status = new Date().getTime() < new Date(this.capacity.date_start).getTime();
+        status && this.countDownTimer();
+        
         // get trạng thái bài test
         this.getStatusCapacity();
       }
@@ -128,6 +134,18 @@ export class CapacityDetailComponent implements OnInit {
         this.countDown.seconds = Math.floor((distance % (1000 * 60)) / 1000);
       }
     }, 1000);
+  }
+
+  // vào bài thi đầu tiên
+  handleGoToFirstTest() {
+    if (this.statusExam.status === 1) {
+      if (!this.rounds.length) {
+        this.toast.warning({ summary: "Chưa có bài thi nào", duration: 3000 });
+        return;
+      }
+
+      this.router.navigate(['/test-nang-luc/vao-thi', this.capacity.id, 'bai-thi', this.rounds[0].id]);
+    }
   }
 
 }
