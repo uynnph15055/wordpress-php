@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Capacity } from 'src/app/models/capacity';
+import { TestCapacityService } from 'src/app/services/test-capacity.service';
 
 @Component({
   selector: 'app-test-capacity',
@@ -6,10 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./test-capacity.component.css']
 })
 export class TestCapacityComponent implements OnInit {
+  listCapacity: Capacity[]
+  // fakeTag: any = [
+  //   {id: 1, name: "Javascript"},
+  // ]
 
-  constructor() { }
+  constructor(
+    private testCapacityService: TestCapacityService
+  ) {
+    this.getListTestCapacity()
+   }
 
   ngOnInit(): void {
+  }
+
+  getListTestCapacity(){
+    this.testCapacityService.getAllTestCapacity().subscribe(data=>{
+      console.log(data.payload.data);
+        this.listCapacity = data.payload.data;
+    })
   }
 
 }

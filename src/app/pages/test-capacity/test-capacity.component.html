@@ -15,8 +15,22 @@
                 <h2 class="!tw-font-bold tw-text-lg !tw-my-4">Test năng lực</h2>
             </div>
             <div class="tw-grid tw-grid-cols-4 tw-justify-between tw-items-center tw-mb-5">
-                <div class="tw-col-span-3 tw-space-x-2">
+                <div class="tw-col-span-3 tw-space-x-2 tw-space-y-4">
                     <span>Đã chọn</span>
+                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
+                                class="bi bi-x"></i></button></span>
+                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
+                                class="bi bi-x"></i></button></span>
+                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
+                                class="bi bi-x"></i></button></span>
+                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
+                                class="bi bi-x"></i></button></span>
+                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
+                                class="bi bi-x"></i></button></span>
+                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
+                                class="bi bi-x"></i></button></span>
+                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
+                                class="bi bi-x"></i></button></span>
                     <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
                                 class="bi bi-x"></i></button></span>
                     <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
@@ -45,21 +59,21 @@
                     </form>
                 </div>
             </div>
-            <div class="tw-grid tw-grid-cols-4">
-                <div class="test-capacity__item ">
+            <div class="tw-grid tw-grid-cols-4  tw-gap-7">
+                <div class="test-capacity__item" *ngFor="let capacity of listCapacity">
                     <div class="tw-relative">
                         <a href="">
-                            <img class="tw-w-full tw-h-[160px] tw-object-cover tw-rounded-xl"
-                                src="https://images.unsplash.com/photo-1656422796326-0381cc9a73ea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80"
+                            <img class="tw-w-full tw-h-[160px] tw-object-cover tw-rounded-xl" src={{capacity.img}}
                                 alt="">
                         </a>
                         <button class="btn-save"><i class="bi bi-bookmark-fill icon-save"></i></button>
                     </div>
                     <div class="">
-                        <span class="test-capacity__time">10/10/2022 - 20/11/2022</span>
+                        <span class="test-capacity__time">{{capacity.start_register_time}} -
+                            {{capacity.date_start}}</span>
                         <h3 class="test-capacity__title">
-                            <a routerLink="" class="tw-inline-block tw-w-full tw-truncate tw-font-bold">Lorem ipsum
-                                dolor sit, consectetur adipiscing ea aagliaaaa adipiscing</a>
+                            <a routerLink="/{{capacity.slug_name}}"
+                                class="tw-inline-block tw-w-full tw-truncate tw-font-bold">{{capacity.name}}</a>
                         </h3>
                     </div>
                     <div class="tw-flex tw-space-x-1">
