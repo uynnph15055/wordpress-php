@@ -2,12 +2,13 @@ import { DialogConfirmComponent } from './../../modal/dialog-confirm/dialog-conf
 import { NgToastService } from 'ng-angular-popup';
 import { RoundService } from 'src/app/services/round.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { Round } from 'src/app/models/round.model';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-capacity-exam',
@@ -34,6 +35,10 @@ export class CapacityExamComponent implements OnInit {
   // trạng thái đang call api nộp bài
   isSubmitingExam = false;
   timerId!: any;
+  element!: any;
+
+  // kích thước màn hình
+  windowScreenSize!: { width: number, height: number };
 
   constructor(
     private roundService: RoundService,
@@ -41,10 +46,18 @@ export class CapacityExamComponent implements OnInit {
     public dialog: MatDialog,
     private userService: UserService,
     private toast: NgToastService,
-    private router: Router
+    private router: Router,
+    @Inject(DOCUMENT) private document: any
   ) { }
 
   ngOnInit(): void {
+    // chặn f11
+    window.addEventListener("keydown", (e: any) => {
+      if (e.keyCode === 122) this.disabledEvent(e);
+    })
+
+    this.element = this.document.documentElement;
+
     this.isFetchingRound = true;
     this.route.paramMap.pipe(
       map(params => params.get('round_id')),
@@ -95,14 +108,59 @@ export class CapacityExamComponent implements OnInit {
         if (res.status) {
           const data = res.payload;
 
-          // cập nhật trạng thái đang làm bài
-          this.statusTakingExam = 1;
+          // bật toàn màn hình
+          this.openFullscreen();
 
-          this.fakeQuestionData = data.questions;
-          this.createFormControl();
+          setTimeout(() => {
+            // kích thước khi full màn hình
+            this.windowScreenSize = {
+              width: window.innerWidth,
+              height: window.innerHeight
+            }
 
-          const durationExam = data.time_type === 1 ? (data.time * 60) : data.time;
-          this.handleStartExam(durationExam, data.created_at);
+            // cập nhật trạng thái đang làm bài
+            this.statusTakingExam = 1;
+
+            this.fakeQuestionData = data.questions;
+            this.createFormControl();
+
+            const durationExam = data.time_type === 1 ? (data.time * 60) : data.time;
+            this.handleStartExam(durationExam, data.created_at);
+
+            // bắt sự kiện thay đổi kích thước màn hình (f11)
+            window.onresize = (e: any) => {
+              const currentWindowWidth = e.target.innerWidth;
+              const currentWindowHeight = e.target.innerHeight;
+
+              const { width, height } = this.windowScreenSize;
+
+              if (currentWindowWidth !== width || currentWindowHeight !== height) {
+                this.dialog.closeAll();
+
+                const dialogFullscreen = this.dialog.open(DialogConfirmComponent, {
+                  width: '300px',
+                  disableClose: true,
+                  data: {
+                    isNotShowBtnCancel: true,
+                    title: "Cảnh báo",
+                    description: "Vui lòng bật full màn hình khi làm bài!"
+                  }
+                });
+
+                dialogFullscreen.afterClosed().subscribe(result => {
+                  result === "true" && this.openFullscreen();
+                })
+              } else {
+                this.dialog.closeAll();
+              }
+            }
+
+            // chặn f12
+            window.onkeydown = (e: any) => this.handleDisableKeydown(e);
+
+            // chặn chuột phải
+            window.oncontextmenu = (e: any) => this.disabledEvent(e);
+          }, 100)
         }
       }
     })
@@ -164,6 +222,11 @@ export class CapacityExamComponent implements OnInit {
 
       this.statusTakingExam = 2;
       clearInterval(this.timerId);
+
+      window.onresize = () => {};
+
+      // thoát toàn màn hình
+      this.closeFullscreen();
     }, 3000);
   }
 
@@ -341,5 +404,81 @@ export class CapacityExamComponent implements OnInit {
     this.isSubmitingExam = false;
     this.isFetchingRound = true;
     this.router.navigate(['/test-nang-luc/vao-thi', this.roundDetail.id, 'bai-thi', round_id]);
+  }
+
+  // open full screen
+  openFullscreen() {
+    if (this.element.requestFullscreen) {
+      this.element.requestFullscreen();
+    } else if (this.element.mozRequestFullScreen) {
+      /* Firefox */
+      this.element.mozRequestFullScreen();
+    } else if (this.element.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.element.webkitRequestFullscreen();
+    } else if (this.element.msRequestFullscreen) {
+      /* IE/Edge */
+      this.element.msRequestFullscreen();
+    }
+  }
+
+  /* Close fullscreen */
+  closeFullscreen() {
+    if (this.document.exitFullscreen) {
+      this.document.exitFullscreen();
+    } else if (this.document.mozCancelFullScreen) {
+      /* Firefox */
+      this.document.mozCancelFullScreen();
+    } else if (this.document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.document.webkitExitFullscreen();
+    } else if (this.document.msExitFullscreen) {
+      /* IE/Edge */
+      this.document.msExitFullscreen();
+    }
+  }
+
+  // disable event
+  disabledEvent(e: Event) {
+    if (e.stopPropagation) {
+      e.stopPropagation();
+    } else if (window.event) {
+      window.event.cancelBubble = true;
+    }
+    e.preventDefault();
+    return false;
+  }
+
+  // chặn f12
+  handleDisableKeydown(e: any) {
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+      this.disabledEvent(e);
+    }
+    // "J" key
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+      this.disabledEvent(e);
+    }
+    // "S" key + macOS
+    if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+      this.disabledEvent(e);
+    }
+    // "U" key
+    if (e.ctrlKey && e.keyCode == 85) {
+      this.disabledEvent(e);
+    }
+    // "F12" key
+    if (e.keyCode == 123) {
+      this.disabledEvent(e);
+    }
+    if(e.ctrlKey && (e.key == "p" || e.charCode == 16 || e.charCode == 112 || e.keyCode == 80) ){
+      e.cancelBubble = true;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+
+    if (e.ctrlKey && e.keyCode === 67) {
+      this.disabledEvent(e);
+      navigator.clipboard.writeText("Thí sinh không được gian lận trong quá trình làm bài!");
+    }
   }
 }
