@@ -36,10 +36,8 @@ export class LoginComponent implements OnInit {
       .then(data => {
         this.statusLogin = true;
         this.toast.warning({ summary: 'Đang tiến hành đăng nhập', duration: 10000 });
-        this.configView.createToast('success');
         this.userService.login(data.authToken)
           .subscribe(status => {
-
             if (status == true) {
               this.statusLogin = false;
               setTimeout(() => {

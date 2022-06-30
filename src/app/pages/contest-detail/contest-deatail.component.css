@@ -1,7 +1,14 @@
 /* COMMOM */
-
 .p-justify {
   text-align: justify;
+}
+
+.contest-detail-box {
+  background-color: #F8F8F8;
+}
+
+.new-page-img img {
+  width: 100% !important;
 }
 
 .content-contest {
@@ -13,6 +20,10 @@
   text-overflow: ellipsis;
 }
 
+.content-round-page {
+  border-radius: 6px;
+  padding: 2px 20px;
+}
 
 .example-button-item:hover {
   background-color: var(--primary-color);
@@ -22,8 +33,8 @@
 
 .contest-detail-header {
   display: grid;
-  grid-template-columns: 70% 25%;
-  grid-gap: 50px;
+  grid-template-columns: 74% 23%;
+  grid-gap: 30px;
 }
 
 .related-contest-list {
@@ -43,7 +54,8 @@
 .contest-detail-left-header,
 .list-team-in,
 .contest-detail-right-in,
-.contest-detail-section {
+.contest-detail-section,
+.content-round-page {
   border-radius: 8px;
   box-shadow: 0px 0px 7px var(--gray);
   background-color: #ffff;
@@ -306,3 +318,51 @@
   color: rgba(20, 20, 20, 0.333);
   margin-left: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

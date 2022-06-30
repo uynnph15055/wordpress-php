@@ -20,9 +20,7 @@ import * as $ from 'jquery';
 import { SliderService } from 'src/app/services/slider.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
-
-
-
+import { User } from 'src/app/models/user';
 @Component({
   selector: 'app-contest-deatail',
   templateUrl: './contest-deatail.component.html',
@@ -32,6 +30,7 @@ import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info
 
 export class ContestDeatailComponent implements OnInit {
   round_id: any;
+  infoUser: User;
   closeResult: string;
   contest_id: number = 0;
   teamIdMemberHasJoinTeam: number = 0;
@@ -58,6 +57,7 @@ export class ContestDeatailComponent implements OnInit {
   statusPage: boolean = false;
   statusResultRoundBefore: boolean = false;
   statusUserHasJoinContest: boolean = false;
+  statusUserLogin: boolean = false;
 
 
   days: number;
@@ -69,6 +69,7 @@ export class ContestDeatailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     public dialog: MatDialog,
+
     private contestService: ContestService,
     private getUserLocal: GetValueLocalService,
     private router: Router,
@@ -80,6 +81,11 @@ export class ContestDeatailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Check user đã đăng nhập hay chưa
+    this.infoUser = this.userService.getUserValue();
+    this.infoUser ? this.statusUserLogin = true : this.statusUserLogin;
+    // ----------------------------
+
     this.statusPage = true;
     this.runTop();
     this.routeStateRegister = history.state.registerNow;
@@ -90,6 +96,7 @@ export class ContestDeatailComponent implements OnInit {
     ).subscribe(res => {
       if (res.status) {
         this.contestDetail = res.payload;
+
         this.contestDetail ? this.statusContest = true : this.statusContest;
         this.statusPage = false;
         this.contestDetail.enterprise;
@@ -120,14 +127,10 @@ export class ContestDeatailComponent implements OnInit {
         });
 
         this.checkUserHasJoinContest();
-
         // Chạy thời gian hết hạn cuộc thi 
         setInterval(() => {
           this.roundEndTime = moment(this.contestDetail.end_register_time).format('lll');
-
           let futureDate = new Date(this.roundEndTime).getTime();
-
-
           let today = new Date().getTime();
           let distance = futureDate - today;
           if (distance < 0) {
@@ -170,14 +173,10 @@ export class ContestDeatailComponent implements OnInit {
 
   // Check xem user đã join cuộc thi chưa
   checkUserHasJoinContest() {
-    let user = this.userService.getUserValue();
-
     this.contestDetail.teams.forEach(item => {
-      item.members.forEach(item => {
-        if (item.id == user.id) {
-          this.teamIdMemberHasJoinTeam = item.pivot.team_id;
-
-
+      item.members.forEach(itemMember => {
+        if (itemMember.id == this.infoUser.id) {
+          this.teamIdMemberHasJoinTeam = itemMember.pivot.team_id;
           this.statusUserHasJoinContest = true;
         }
       });
@@ -208,8 +207,6 @@ export class ContestDeatailComponent implements OnInit {
 
   // Kết quả vòng thi trước đó
   getResultRoundBefore(arrRound: Array<Round>, index: number) {
-
-    console.log(this.getRoundId(arrRound, index));
 
     this.roundService.getResultRound(this.getRoundId(arrRound, index)).subscribe(res => {
       if (res.status) {

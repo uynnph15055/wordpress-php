@@ -22,7 +22,7 @@ import { ModalAddTeamComponent } from 'src/app/component/modal-add-team/modal-ad
   styleUrls: ['./modal-info-team.component.css']
 })
 export class ModalInfoTeamComponent implements OnInit {
-
+  statusExam: boolean = false;
   team_id: any;
   contest_id: any;
   statusLeader: boolean = false;
@@ -40,12 +40,10 @@ export class ModalInfoTeamComponent implements OnInit {
     private userService: UserService,
     public configFunctionService: ConfigFunctionService,
     public dialogRef: MatDialogRef<ModalInfoTeamComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { team_id: number, contest_id: number }) {
+    @Inject(MAT_DIALOG_DATA) public data: { team_id: number, contest_id: number, statusExam: boolean }) {
     this.team_id = data.team_id;
-    console.log(this.team_id);
-
+    this.statusExam = data.statusExam
     this.contest_id = data.contest_id;
-    console.log(this.contest_id);
   }
 
   formSearchMembers = new FormGroup({
@@ -64,7 +62,6 @@ export class ModalInfoTeamComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalAddTeamComponent, {
       width: "490px",
       data: {
-
         contest_id: 40,
         team_id: this.teamDetail,
         countMembers: this.arrayMembers.length,
@@ -94,6 +91,8 @@ export class ModalInfoTeamComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
     this.user = this.userService.getUserValue();
     if (!this.user) {
       this.router.navigate(['/login']);

@@ -85,6 +85,7 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
         let elToShow = document.querySelectorAll('.show-on-scroll')
 
+        // Lấy ra tất cả các cuộc thi
         if (this.UserService.getUserValue().id !== undefined) {
             this.getListHasAfterLogin();
         } else {
