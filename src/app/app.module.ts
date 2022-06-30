@@ -64,7 +64,6 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { RecruitmentComponent as RecruitmentComponentModal } from './modal/recruitment/recruitment.component';
 import { ModalInfoTeamComponent } from './modal/modal-info-team/modal-info-team.component';
-import { RecruitmentListCompanyComponent } from './modal/recruitment-list-company/recruitment-list-company.component';
 // import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
 registerLocaleData(en);
@@ -72,6 +71,7 @@ registerLocaleData(en);
 
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
+import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
 
 
 @NgModule({
@@ -110,9 +110,9 @@ import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.co
     RecruitmentComponent,
     RecruitmentComponentModal,
     ModalInfoTeamComponent,
-    RecruitmentListCompanyComponent,
     CapacityExamComponent,
     DialogConfirmComponent,
+    CapacityDetailComponent,
   ],
   imports: [
     BrowserModule,

@@ -138,6 +138,7 @@ ul {
   height: 3px;
   background-color: var(--primary-color);
   margin-bottom: 15px;
+  margin-top: -10px;
 }
 
 .text-collapse {

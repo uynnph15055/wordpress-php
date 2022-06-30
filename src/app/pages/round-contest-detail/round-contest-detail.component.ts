@@ -21,6 +21,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SliderService } from 'src/app/services/slider.service';
 import { Slider } from 'src/app/models/slider.model';
 import { Judges } from 'src/app/models/judges.model';
+import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
 
 @Component({
   selector: 'app-round-contest-detail',
@@ -87,6 +88,7 @@ export class RoundContestDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
+
     this.runTop();
     this.routeStateRegister = history.state.registerNow;
 
@@ -101,11 +103,18 @@ export class RoundContestDetailComponent implements OnInit {
         })
 
         this.roundService.getRoundWhereId(this.round_id).subscribe(res => {
-          this.roundDetail = res.payload;
-          this.roundDetail ? this.statusRoundDetail = true : false;
+          if (res.status) {
+            this.roundDetail = res.payload;
+            this.roundDetail ? this.statusRoundDetail = true : false;
+            console.log(this.roundDetail);
+          }
         })
+
+
       }
     })
+
+
 
     this.route.paramMap.pipe(
       map(params => params.get('contest_id')),
@@ -166,6 +175,16 @@ export class RoundContestDetailComponent implements OnInit {
     });
   }
 
+
+  scrollWin(elementString: any, distanceApart: number) {
+    let element = document.querySelector(elementString);
+    let numberScroll = element.offsetTop;
+    window.scrollTo({ top: numberScroll - distanceApart, behavior: 'smooth' });
+  }
+
+
+
+
   // Check trạng thái vòng thi
   checkStatusRound(start_time: Date, end_time: Date): any {
     let result;
@@ -223,10 +242,6 @@ export class RoundContestDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
-  }
-
-  scrollWin(section: number) {
-    window.scrollTo(0, section);
   }
 
   runTop() {
@@ -291,6 +306,9 @@ export class RoundContestDetailComponent implements OnInit {
       }
     })
   }
+
+
+
   //Tìm kiếm sinh viên kết quả
   searchTeamRank(event: any) {
     let searchTeamRank = event.target.value;
@@ -306,6 +324,16 @@ export class RoundContestDetailComponent implements OnInit {
 
   }
 
+  // Thông tin đội
+  openInfoTeam() {
+    this.dialog.open(ModalInfoTeamComponent, {
+      width: '900px',
+      data: {
+        contest_id: this.contestDetail.id,
+        team_id: this.teamIdMemberHasJoinTeam,
+      }
+    });
+  }
 }
 
 

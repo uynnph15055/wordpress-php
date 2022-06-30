@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as $ from 'jquery';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +19,7 @@ export class ConfigViewService {
   }
   constructor() { }
 
-  // Chạy thống kê trang chủ
+  // Chuyển động phóng to khi scroll chuột
   runStatisticHome(el: any, to: any) {
     let speed = 200
     let from = 0
@@ -38,14 +37,13 @@ export class ConfigViewService {
 
   // Hiệu ứng chuyển động
   activityStrollView(elToShow: any) {
-
     function isElInViewPort(el: any) {
       let rect = el.getBoundingClientRect()
       // some browsers support innerHeight, others support documentElement.clientHeight
       let viewHeight = window.innerHeight || document.documentElement.clientHeight
 
       return (
-        (rect.top <= 0 && rect.bottom >= 0) ||
+
         (rect.bottom >= viewHeight && rect.top <= viewHeight) ||
         (rect.top >= 0 && rect.bottom <= viewHeight)
       )
@@ -60,9 +58,7 @@ export class ConfigViewService {
         }
       })
     }
-
     window.onscroll = loop
-
     loop()
   }
 
@@ -73,29 +69,4 @@ export class ConfigViewService {
     })
     return false;
   }
-
-  createToast(status: string) {
-
-    let toast = document.createElement('div')
-    toast.className = `toast ${status}`
-
-    toast.innerHTML = `
-      ${this.toasts[status].icon}
-      <span class="msg">${this.toasts[status].msg}</span>
-      <span class="countdown"></span>
-      `
-      
-    document.querySelector('#toasts')?.appendChild(toast);
-
-    console.log(document.querySelector('#toasts'));
-
-    setTimeout(() => {
-      toast.style.animation = 'hide_slide 1s ease forwards'
-    }, 5000)
-    setTimeout(() => {
-      toast.remove()
-    }, 6000)
-  }
-
-
 }

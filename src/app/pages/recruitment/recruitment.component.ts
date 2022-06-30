@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RecruitmentComponent as RecruitmentModal } from 'src/app/modal/recruitment/recruitment.component';
-import { RecruitmentListCompanyComponent as ModalListCompany } from 'src/app/modal/recruitment-list-company/recruitment-list-company.component';
 import { CompanyService } from 'src/app/services/company.service';
 import { Enterprise } from 'src/app/models/enterprise.model';
 import { RecruitmentsService } from 'src/app/services/recruitments.service';

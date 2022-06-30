@@ -33,10 +33,11 @@
             class="count-team text-white">{{getMembers(item.teams)}}</span></p>
     <a *ngIf="!pageContestByUser" [routerLink]="['/cuoc-thi' , item.id]"
         [state]="{registerNow : item.status_user_has_join_contest}"
-        class="btn-register contest-btn-register text-center d-block w-100">{{item.status_user_has_join_contest == true
+        class="btn-register btn contest-btn-register text-center d-block w-100">{{item.status_user_has_join_contest ==
+        true
         ? 'Đã tham gia' : 'Đăng ký'}}</a>
     <a [routerLink]="['/cuoc-thi/' , item.id]"
         [ngStyle]="{'background-color': item.status == 3 ? '#c0392b' :  item.status == 2 ? '#27ae60' :  '#F26F21' }"
         *ngIf="pageContestByUser" href=""
-        class="text-center contest-btn-register d-block w-100 text-whitroudne">{{checkStatusContest(item.status)}}</a>
+        class="text-center btn contest-btn-register d-block w-100 text-whitroudne">{{checkStatusContest(item.status)}}</a>
 </div>

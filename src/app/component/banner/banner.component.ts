@@ -10,11 +10,13 @@ export class BannerComponent implements OnInit {
   banner: Array<Slider> = [];
   bannerStatus: string = 'pending';
   @Input() bannerSub: Array<any>;
+
+
   constructor(private sliderService: SliderService) {
   }
 
   ngOnInit(): void {
-    if (this.bannerSub.length > 0) {
+    if (this.bannerSub) {
       this.banner = this.bannerSub;
       this.bannerStatus = 'done';
     } else {
