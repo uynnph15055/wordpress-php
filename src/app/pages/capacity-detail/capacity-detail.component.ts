@@ -17,7 +17,9 @@ export class CapacityDetailComponent implements OnInit {
 
   tabActive!: string;
   capacity!: Capacity;
-  isFetchingCapacity = true;
+  // bài test liên quan
+  capacityRelated!: any[];
+  isFetchingCapacity = false;
   rounds!: Round[];
   countDown: {
     days: number,
@@ -44,22 +46,34 @@ export class CapacityDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.pipe(
-      map(params => params['capacity_id']),
-      switchMap(id => this.capacityService.getWhereId(id))
-    ).subscribe(res => {
-      if (res.status) {
-        this.capacity = res.payload;
-        this.rounds = res.payload.rounds;
-        this.isFetchingCapacity = false;
-        
-        // đếm ngược thời gian khi bài test sắp diễn ra
-        const status = new Date().getTime() < new Date(this.capacity.date_start).getTime();
-        status && this.countDownTimer();
-        
-        // get trạng thái bài test
-        this.getStatusCapacity();
-      }
+    this.route.params.subscribe(params => {
+      this.isFetchingCapacity = true;
+      this.scrollToTop();
+      
+      const { capacity_id } = params;
+
+      this.capacityService.getWhereId(capacity_id).subscribe(res => {
+        if (res.status) {
+          this.capacity = res.payload;
+          this.rounds = res.payload.rounds;
+  
+          // bài test liên quan
+          this.capacityService.getRelated(this.capacity.id).subscribe(response => {
+            this.isFetchingCapacity = false;
+  
+            if (response.status) {
+              this.capacityRelated = response.payload.slice(0, 3);
+            }
+          })
+          
+          // đếm ngược thời gian khi bài test sắp diễn ra
+          const status = new Date().getTime() < new Date(this.capacity.date_start).getTime();
+          status && this.countDownTimer();
+          
+          // get trạng thái bài test
+          this.getStatusCapacity();
+        }
+      })
     })
   }
 
@@ -108,11 +122,9 @@ export class CapacityDetailComponent implements OnInit {
   // đếm ngược thời gian
   countDownTimer() {
     let timerId: any;
-
+    
     timerId = setInterval(() => {
-      const timeStart = moment(this.capacity.date_start).format('lll');
-
-      let futureDate = new Date(timeStart).getTime();
+      let futureDate = new Date(this.capacity.date_start).getTime();
 
       let today = new Date().getTime();
       let distance = futureDate - today;
@@ -148,4 +160,11 @@ export class CapacityDetailComponent implements OnInit {
     }
   }
 
+  // scroll top
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
 }

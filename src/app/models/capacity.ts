@@ -1,3 +1,5 @@
+import { Round } from "./round.model";
+
 export class Capacity {
   id: number;
   name: string;
@@ -8,4 +10,5 @@ export class Capacity {
   major_id: number;
   status: number;
   slug_name: string;
+  rounds: Round[];
 }

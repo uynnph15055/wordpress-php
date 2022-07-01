@@ -147,194 +147,31 @@
         <!-- bài test liên quan -->
         <div class="capacity__related" #testRelated>
           <h2 class="capacity__test-title capacity__related-title fw-bold fs-5 color-blue">Bài test liên quan</h2>
-
-          <ul class="capacity__related-list row">
-            <div class="col col-lg-4 col-md-6 col-sm-12 col-12">
-              <div class="capacity__related-item">
-                <div class="capacity__related-item-image" [ngStyle]="{'background-image': 'url(https://files.fullstack.edu.vn/f8-prod/courses/6.png)'}"></div>
-
-                <div class="capacity__related-content">
-                  <p class="capacity__related-content-time">10/10/2022 - 12/10/2022</p>
-                  <a routerLink="/test-nang-luc/124" class="capacity__related-content-title-link">
-                    <h2 class="capacity__related-content-title">Test năng lực NodeJS</h2>
-                  </a>
-        
-                  <ul class="capacity__related-content-list">
-                    <li class="capacity__related-content-list-item">
-                      <div class="capacity__related-content-list-item-icon">
-                        <i class="fa-solid fa-file-pen"></i>
-                      </div>
-        
-                      3 bài thi
-                    </li>
-                    <li class="capacity__related-content-list-item">
-                      <div class="capacity__related-content-list-item-icon">
-                        <i class="fa-solid fa-user-group"></i>
-                      </div>
-        
-                      891 lượt làm bài
-                    </li>
-
-                    <li class="capacity__related-content-list-item">
-                      <div class="capacity__related-content-list-item-icon">
-                        <i class="fa-solid fa-gear"></i>
-                      </div>
-        
-                      <div class="capacity__related-content-list-item-skill">
-                        <span>Skill:</span>
-                        <strong class="capacity__related-content-list-item-skill-name">php, Java, NodeJs php, Java, NodeJs php, Java, NodeJs</strong>
-                      </div>
-                    </li>
-                  </ul>
-
-                  <ul class="capacity__related-countdown">
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">0</div>
-                      <span class="capacity__related-countdown-item-text">Ngày</span>
-                    </li>
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">10</div>
-                      <span class="capacity__related-countdown-item-text">Giờ</span>
-                    </li>
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">15</div>
-                      <span class="capacity__related-countdown-item-text">Phút</span>
-                    </li>
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">05</div>
-                      <span class="capacity__related-countdown-item-text">Giây</span>
-                    </li>
-                  </ul>
-        
-                  <a routerLink="/test-nang-luc/chi-tiet/123" class="btn btn-register capacity__related-content-btn">Tham gia ngay</a>
-                </div>
-              </div>
+          <ul class="capacity__related-list row" *ngIf="!isFetchingCapacity" [ngClass]="{'m-0': !capacityRelated.length}">
+            <div class="col col-lg-4 col-md-6 col-sm-12 col-12" *ngFor="let capacity of capacityRelated">
+              <app-capacity-related-item [capacityItem]="capacity"></app-capacity-related-item>
             </div>
+          </ul>
 
-            <div class="col col-lg-4 col-md-6 col-sm-12 col-12">
+          <p *ngIf="!isFetchingCapacity && !capacityRelated.length">Không có bài test liên quan nào!</p>
+
+          <!-- skeleton -->
+          <ul class="capacity__related-list row" *ngIf="isFetchingCapacity">
+            <div class="col col-lg-4 col-md-6 col-sm-12 col-12" *ngFor="let _ of [].constructor(3)">
               <div class="capacity__related-item">
-                <div class="capacity__related-item-image" [ngStyle]="{'background-image': 'url(https://files.fullstack.edu.vn/f8-prod/courses/2.png)'}"></div>
+                <ngx-skeleton-loader [theme]="{height: '150px'}"></ngx-skeleton-loader>
+            
+                <ngx-skeleton-loader [theme]="{margin: '0 0 4px'}"></ngx-skeleton-loader>
 
-                <div class="capacity__related-content">
-                  <p class="capacity__related-content-time">10/10/2022 - 12/10/2022</p>
-                  <a routerLink="/test-nang-luc/124" class="capacity__related-content-title-link">
-                    <h2 class="capacity__related-content-title">Test năng lực HTML, CSS</h2>
-                  </a>
-        
-                  <ul class="capacity__related-content-list">
-                    <li class="capacity__related-content-list-item">
-                      <div class="capacity__related-content-list-item-icon">
-                        <i class="fa-solid fa-file-pen"></i>
-                      </div>
-        
-                      3 bài thi
-                    </li>
-                    <li class="capacity__related-content-list-item">
-                      <div class="capacity__related-content-list-item-icon">
-                        <i class="fa-solid fa-user-group"></i>
-                      </div>
-        
-                      891 lượt làm bài
-                    </li>
+                <ngx-skeleton-loader [theme]="{margin: '0 0 4px', width: '30%', display: 'block'}"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{margin: '0 0 4px', width: '50%', display: 'block'}"></ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{margin: '0 0 4px', width: '70%', display: 'block'}"></ngx-skeleton-loader>
 
-                    <li class="capacity__related-content-list-item">
-                      <div class="capacity__related-content-list-item-icon">
-                        <i class="fa-solid fa-gear"></i>
-                      </div>
-        
-                      <div class="capacity__related-content-list-item-skill">
-                        <span>Skill:</span>
-                        <strong class="capacity__related-content-list-item-skill-name">php, Java, NodeJs php, Java, NodeJs php, Java, NodeJs</strong>
-                      </div>
-                    </li>
-                  </ul>
-
-                  <ul class="capacity__related-countdown">
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">0</div>
-                      <span class="capacity__related-countdown-item-text">Ngày</span>
-                    </li>
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">10</div>
-                      <span class="capacity__related-countdown-item-text">Giờ</span>
-                    </li>
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">15</div>
-                      <span class="capacity__related-countdown-item-text">Phút</span>
-                    </li>
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">05</div>
-                      <span class="capacity__related-countdown-item-text">Giây</span>
-                    </li>
-                  </ul>
-        
-                  <a routerLink="/test-nang-luc/chi-tiet/123" class="btn btn-register capacity__related-content-btn">Tham gia ngay</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col col-lg-4 col-md-6 col-sm-12 col-12">
-              <div class="capacity__related-item">
-                <div class="capacity__related-item-image" [ngStyle]="{'background-image': 'url(https://files.fullstack.edu.vn/f8-prod/courses/1.png)'}"></div>
-
-                <div class="capacity__related-content">
-                  <p class="capacity__related-content-time">10/10/2022 - 12/10/2022</p>
-                  <a routerLink="/test-nang-luc/124" class="capacity__related-content-title-link">
-                    <h2 class="capacity__related-content-title">Test năng lực JavaScript cơ bản</h2>
-                  </a>
-        
-                  <ul class="capacity__related-content-list">
-                    <li class="capacity__related-content-list-item">
-                      <div class="capacity__related-content-list-item-icon">
-                        <i class="fa-solid fa-file-pen"></i>
-                      </div>
-        
-                      3 bài thi
-                    </li>
-                    <li class="capacity__related-content-list-item">
-                      <div class="capacity__related-content-list-item-icon">
-                        <i class="fa-solid fa-user-group"></i>
-                      </div>
-        
-                      891 lượt làm bài
-                    </li>
-
-                    <li class="capacity__related-content-list-item">
-                      <div class="capacity__related-content-list-item-icon">
-                        <i class="fa-solid fa-gear"></i>
-                      </div>
-        
-                      <div class="capacity__related-content-list-item-skill">
-                        <span>Skill:</span>
-                        <strong class="capacity__related-content-list-item-skill-name">php, Java, NodeJs php, Java, NodeJs php, Java, NodeJs</strong>
-                      </div>
-                    </li>
-                  </ul>
-
-                  <ul class="capacity__related-countdown">
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">0</div>
-                      <span class="capacity__related-countdown-item-text">Ngày</span>
-                    </li>
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">10</div>
-                      <span class="capacity__related-countdown-item-text">Giờ</span>
-                    </li>
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">15</div>
-                      <span class="capacity__related-countdown-item-text">Phút</span>
-                    </li>
-                    <li class="capacity__related-countdown-item text-center">
-                      <div class="capacity__related-countdown-item-box">05</div>
-                      <span class="capacity__related-countdown-item-text">Giây</span>
-                    </li>
-                  </ul>
-        
-                  <a routerLink="/test-nang-luc/chi-tiet/123" class="btn btn-register capacity__related-content-btn">Tham gia ngay</a>
-                </div>
+                <ngx-skeleton-loader [theme]="{height: '40px', margin: '6px 0 0'}"></ngx-skeleton-loader>
               </div>
             </div>
           </ul>
+          <!-- skeleton -->
         </div>
       </div>
   
