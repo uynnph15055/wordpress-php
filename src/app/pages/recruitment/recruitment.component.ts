@@ -19,19 +19,21 @@ export class RecruitmentComponent implements OnInit {
   statusCompany: boolean = false;
   statusRecruitments: boolean = false;
 
+  sliderStudentPointHight = { "slidesToShow": 2, prevArrow: '.prev-student-arrow', nextArrow: '.next-student-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true };
+
   constructor(public dialog: MatDialog, public companyService: CompanyService, public recruitmentService: RecruitmentsService) { }
 
-  bannerSub: Array<any> = [
-    {
-      image_url: 'https://www.wework.com/ideas/wp-content/uploads/sites/4/2017/06/Web_150DPI-20190927_10th_Floor_Conference_Room_2_v1.jpg'
-    },
-    {
-      image_url: 'https://daily.jstor.org/wp-content/uploads/2018/03/conference_room_talk_1050x700.jpg'
-    },
-    {
-      image_url: 'https://www.sage.com/en-us/blog/wp-content/uploads/sites/2/2018/04/peoplecenteredworklplace.jpg'
-    }
-  ];
+  // bannerSub: Array<any> = [
+  //   {
+  //     image_url: 'https://www.wework.com/ideas/wp-content/uploads/sites/4/2017/06/Web_150DPI-20190927_10th_Floor_Conference_Room_2_v1.jpg'
+  //   },
+  //   {
+  //     image_url: 'https://daily.jstor.org/wp-content/uploads/2018/03/conference_room_talk_1050x700.jpg'
+  //   },
+  //   {
+  //     image_url: 'https://www.sage.com/en-us/blog/wp-content/uploads/sites/2/2018/04/peoplecenteredworklplace.jpg'
+  //   }
+  // ];
 
   sliderRecruitment = {
     slidesToShow: 1,

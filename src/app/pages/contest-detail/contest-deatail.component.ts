@@ -168,7 +168,7 @@ export class ContestDeatailComponent implements OnInit {
         contest_id: this.contestDetail.id,
         team_id: this.teamIdMemberHasJoinTeam,
       }
-    });
+  });
   }
 
   // Check xem user đã join cuộc thi chưa
