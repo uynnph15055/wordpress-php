@@ -77,6 +77,10 @@ ul {
   color: var(--primary-color-sub);
 }
 
+.color-text{
+  color: var(--text-color);
+}
+
 .color-gray {
   color: #383b3f;
 }

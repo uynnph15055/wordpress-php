@@ -74,6 +74,7 @@ import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.co
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -113,6 +114,7 @@ import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail
     CapacityExamComponent,
     DialogConfirmComponent,
     CapacityDetailComponent,
+
   ],
   imports: [
     BrowserModule,

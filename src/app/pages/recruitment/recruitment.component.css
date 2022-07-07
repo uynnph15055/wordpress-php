@@ -1,5 +1,5 @@
 .recruitment-banner-box {
-  background-image: linear-gradient(to bottom, #081327, #051e44);
+  background-image: linear-gradient(to bottom, #08104e, #0f3368);
 }
 
 .recruitment-form-search {
@@ -15,7 +15,15 @@
   width: 200px;
 }
 
-.recruitment-banner-in {
+.recruitment-slider-banner .banner-arrow-prev{
+  left: 30px;
+}
+
+.recruitment-slider-banner .banner-arrow-next{
+  right: 30px;
+}
+
+.recruitment-banner-intro-page {
   padding: 12% 0px;
 }
 
@@ -51,6 +59,23 @@
   font-size: 16px;
 }
 
+.recruitment-slider-banner {
+  padding: 9% 5%;
+}
+
+.recruitment-slider-banner img {
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.recruitment-slider-banner .arrow-banner{
+  font-size: 35px;
+  color: var(--warning);
+  cursor: pointer;
+}
+
 /* CONTENT */
 .recruitment-content {
   background-color: #F8F8F8;
@@ -60,11 +85,11 @@
   border-radius: 10px;
 }
 
-.recruitment-list-hot-item {
+/* .recruitment-list-hot-item {
   display: grid;
   grid-template-columns: 120px auto;
   grid-gap: 15px;
-}
+} */
 
 .recruitment-list-hot-item-box:first-child {
   margin-top: 0px;
@@ -99,25 +124,34 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   width: 100%;
-
   text-overflow: ellipsis;
 }
 
-.recruitment-list-hot-item img {
+.recruitment-list-hot-item-box-img {
   object-fit: cover;
   width: 100%;
   height: 120px;
-  border-radius: 6px;
+  border-radius: 10px;
 }
 
 /* .list-company-support */
 
-.recruitment-list-skill {
-  margin-top: 0px;
-}
-
 .recruitment-list-hot-item-members {
   margin-top: -5px;
+}
+
+.recruitment-slill-and-member-number-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recruitment-list-skill {
+  width: 80%;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .recruitment-item-skill {
@@ -128,7 +162,6 @@
   margin-right: 10px;
   border-radius: 6px;
   font-size: 12px;
-  margin-top: -5px;
 }
 
 .list-company-support img {
@@ -144,7 +177,7 @@
 
 .recruitment-list-hot-item-name {
   font-size: 17px;
-  margin-bottom: -2px;
+  /* margin-bottom: -2px; */
 }
 
 /* LIST RECRUITMENT */
@@ -177,7 +210,94 @@
   box-shadow: 0px 0px 7px var(--warning);
 }
 
-/* END BANNER RECRUITMENT */
-.picsum-img-wrapper img {
+/* PAYING PAGE RECRUITMENT */
+.recruitment-paying-page-list {
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.recruitment-paying-page-item {
+  padding: 10px 15px;
+  background-color: var(--white);
+  cursor: pointer;
+  transition: all ease-in 0.1s;
+}
+
+.recruitment-paying-page-item:hover {
+  background-color: var(--warning);
+  color: var(--white);
+  transition: all ease-in 0.3s;
+}
+
+/* LIST  POST  */
+.list-post-new {
+  margin-top: -10px;
+}
+
+.list-post-new-slick .post-item {
+  background-color: var(--white);
+  /* margin-left: 15px; */
+  border-radius: 10px;
+  margin: 5px 10px;
+  transition: all ease-in 0.3s;
+  transform: translateY(0px);
+}
+
+
+.list-post-new-slick .post-item:hover {
+  transform: translateY(-3px);
+  transition: all ease-in 0.3s;
+  box-shadow: 0px 0px 5px var(--warning);
+  cursor: pointer;
+}
+
+.list-post-new-slick .post-item:hover .post-new-name {
+  color: var(--warning);
+}
+
+.list-post-new-slick .post-item-imgae {
   width: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.list-post-new-slick .post-item-in {
+  padding: 10px;
+}
+
+.list-post-new-slick .post-new-content {
+  margin-top: -12px;
+  /* text-align: justify; */
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+.list-post-new-slick .post-new-name {
+  font-size: 18px;
+}
+
+.list-post-new .prev-arrow {
+  left: -20px;
+}
+
+.list-post-new .next-arrow {
+  right: -20px;
+}
+
+.list-post-new .arrow-list-post {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50px;
+  background-color: #e77325;
+  color: var(--white);
+}
+
+.list-post-new .arrow-list-post:hover {
+  background-color: var(--warning);
 }

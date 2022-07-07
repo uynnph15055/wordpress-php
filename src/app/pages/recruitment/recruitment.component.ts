@@ -34,28 +34,13 @@ export class RecruitmentComponent implements OnInit {
   //     image_url: 'https://www.sage.com/en-us/blog/wp-content/uploads/sites/2/2018/04/peoplecenteredworklplace.jpg'
   //   }
   // ];
-
-  sliderRecruitment = {
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    infinite: true,
-    prevArrow: '.slick-next', nextArrow: '.slick-prev',
-    dots: true,
-    autoplay: true,
-  };
-
-  // Config doanh nghiệp
-  sliderCompany = {
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    infinite: true,
-    autoplay: true,
-    prevArrow: '.slick-company-next', nextArrow: '.slick-company-prev',
+  sliderPostNew = {
+    "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
           dots: true
@@ -64,50 +49,22 @@ export class RecruitmentComponent implements OnInit {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 2
         }
       },
       {
         breakpoint: 586,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1
         }
       }
     ]
   };
 
-  sliderWordKey = {
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    infinite: true,
-    autoplay: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2
-        }
-      },
-      {
-        breakpoint: 586,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1
-        }
-      }
-    ]
+  recruitmentBanner = {
+    "slidesToShow": 1, infinite: true, autoplay: true, arrows: true, prevArrow: '.banner-arrow-prev', nextArrow: '.banner-arrow-next', slidesToScroll: 1, fadeSpeed: 1000,
   };
 
   ngOnInit(): void {

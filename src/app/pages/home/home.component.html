@@ -108,14 +108,14 @@
         </div>
     </div>
     <div class="contest-list position-relative" *ngIf="contests.length > 0">
-        <div class="prev-arrow arrow-list-contest lick-arrow">
+        <div class="prev-arrow arrow-list-contest slick-arrow">
             <i class="fas fa-chevron-left"></i>
         </div>
         <ngx-slick-carousel class="carousel row slick-list-contest row" [config]="sliderContest">
             <app-contest-item ngxSlickItem *ngFor="let item of contests" class="col-3 contest-item" [item]="item">
             </app-contest-item>
         </ngx-slick-carousel>
-        <div class="next-arrow arrow-list-contest lick-arrow">
+        <div class="next-arrow arrow-list-contest slick-arrow">
             <i class="fas fa-chevron-right"></i>
         </div>
     </div>
