@@ -3,20 +3,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConfigViewService {
-  toasts: any = {
-    success: {
-      icon: '<i class="fas fa-check-circle"></i>',
-      msg: 'This is a success message !',
-    },
-    error: {
-      icon: '<i class="fas fa-exclamation-triangle"></i>',
-      msg: 'This is a error message !',
-    },
-    pending: {
-      icon: '<i class="fas fa-exclamation-circle"></i>',
-      msg: 'This is a warning message !',
-    },
-  }
+
   constructor() { }
 
   // Chuyển động phóng to khi scroll chuột

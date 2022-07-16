@@ -72,6 +72,7 @@ registerLocaleData(en);
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+import { RecruitmentSearchComponent } from './modal/recruitment-search/recruitment-search.component';
 
 
 
@@ -114,6 +115,7 @@ import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail
     CapacityExamComponent,
     DialogConfirmComponent,
     CapacityDetailComponent,
+    RecruitmentSearchComponent,
 
   ],
   imports: [

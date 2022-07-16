@@ -1,29 +1,29 @@
 <div class="container-fuild recruitment-banner-box">
     <div class="container recruitment-banner-in">
         <div class="row">
-            <div class="col-5 recruitment-banner-intro-page">
+            <div class="col-lg-5 col-xl-5 col-sm-12 recruitment-banner-intro-page">
                 <p class="title-banner fs-3 fw-bold">Đợt tuyển dụng</p>
                 <div class=" title-line-recruitment"></div>
                 <p class="my-4 recruitment-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Eum
                     officiis sapiente voluptate veritatis sed deserunt beatae illo dolorem. Voluptatibus quas
                     accusantium cumque modi accusamus autem officia aliquam dignissimos ullam minima.</p>
-                <form class="recruitment-form-search ">
-                    <input type="text" placeholder="Tìm kiếm đợt tuyển dụng ..." class="search-input">
+                <button class="recruitment-form-search" (click)="openModalSearchRecruitment()">
+                    <p class="btn-recruitment-form-text">Tim kiem</p>
                     <button class="btn-recruitment-form-search"><i class="fas fa-search"></i></button>
-                </form>
+                </button>
             </div>
-            <div class="col-7 recruitment-slider-banner position-relative">
+            <div class="col-lg-7 col-xl-7 col-md-none recruitment-slider-banner position-relative">
                 <div class="banner-arrow-prev arrow-banner slick-arrow">
                     <i class="fas fa-chevron-left"></i>
                 </div>
                 <ngx-slick-carousel class="carousel " [config]="recruitmentBanner">
                     <div ngxSlickItem class="post-item">
-                       <img src="https://www.freshbooks.com/wp-content/uploads/ltd-vs-plc.jpg.optimal.jpg" alt="">
+                        <img src="https://www.freshbooks.com/wp-content/uploads/ltd-vs-plc.jpg.optimal.jpg" alt="">
                     </div>
                     <div ngxSlickItem class=" post-item">
                         <img src="https://www.freshbooks.com/wp-content/uploads/ltd-vs-plc.jpg.optimal.jpg" alt="">
-                       
+
                     </div>
                     <div ngxSlickItem class="post-item">
                         <img src="https://www.freshbooks.com/wp-content/uploads/ltd-vs-plc.jpg.optimal.jpg" alt="">
@@ -42,7 +42,7 @@
 <div class="recruitment-content">
     <div class="container">
         <div class="py-4 recruitment-list-box row">
-            <div class="recruitment-list-hot-left col-4">
+            <div class="recruitment-list-hot-left col-lg-4 col-xl-4 col-md-12 col-sm-12">
                 <h2 class="fw-bold"><img class="image-title" src="./../../../assets/img/9c13a4ff5c359f6bc624.jpg"
                         alt="">
                     Đợt
@@ -50,7 +50,7 @@
                     dụng hot
                     nhất</h2>
                 <div class="bg-white w-100 recruitment-list-hot-box">
-                    <div class="p-3">
+                    <div class="p-3 recruitment-list-hot-reponsive">
                         <div class="recruitment-list-hot-item-box">
                             <div class="w-100">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZfJ2apETs_ZfvM1Cmb8NgRe4cmKKydBCqA&usqp=CAU"
@@ -89,7 +89,6 @@
                                 </ul>
                             </div>
                         </div>
-
                         <div class="recruitment-list-hot-item-box">
                             <div class="w-100">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZfJ2apETs_ZfvM1Cmb8NgRe4cmKKydBCqA&usqp=CAU"
@@ -204,12 +203,11 @@
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-            <div class="recruitment-list-right col-8">
-                <h2 class="fw-bold"><img class="image-title"
+            <div class="recruitment-list-right col-lg-8 col-xl-8 col-md-12  col-sm-12">
+                <h2 class="fw-bold title-list-recruitment"><img class="image-title"
                         src="./../../../assets/img/z3532098139922_ca96b677055ce79f9827060b8a92d962.jpg" alt="">Danh sách
                     đợi tuyển dụng
                 </h2>
@@ -252,11 +250,11 @@
                                         <p class="fw-bold color-blue">Doanh nghiệp :</p>
                                         <ul class="list-company-support ml-2 d-flex align-items-center">
                                             <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt="" placement="top" ngbTooltip="Tooltip on top"></li>
+                                                    alt=""></li>
                                             <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt="" placement="top" ngbTooltip="Tooltip on top"></li>
+                                                    alt=""></li>
                                             <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt="" placement="top" ngbTooltip="Tooltip on top"></li>
+                                                    alt=""></li>
                                         </ul>
                                     </div>
                                     <p class="color-text">Số bài test : 20</p>
@@ -383,14 +381,12 @@
                                     <li class="recruitment-item-skill">PHP</li>
                                     <li class="recruitment-item-skill">HTML</li>
                                 </ul>
-                                <p class="recruitment-list-hot-item-text" style="margin-top: -10px;">Đợt ut labore et
-                                    dolore
-                                    magna aliqua. Ut
-                                    enim ad
-                                    minim veniam Lorem ipsum dolor sit amet,
-                                    consectetur adipiscing elit, sed do eiusmod sed do eiusmod tempor incidtidunt ut
-                                    labore
-                                    et dolore magna aliqua do eiusmod sed do eiusmodblore magna aliqua. Ut...</p>
+                                <p class="recruitment-list-hot-item-text" style="margin-top: -10px;">Có thể khẳng định
+                                    rằng Tiếng Việt là một thứ tiếng đẹp, một thứ tiếng hay. Nó là một thứ tiếng “đẹp”
+                                    bởi “rất rành mạch trong lối nói, rất uyển chuyển trong câu kép, rất ngon lành trong
+                                    những câu tục ngữ”. Không chỉ vậy, tiếng Việt có một hệ thống nguyên âm, phụ âm
+                                    phong phú và giàu về thanh điệu. Tiếng Việt có những khả năng dồi dào về phần cấu
+                                    tạo từ ngữ, cũng như hình thức</p>
                                 <div class="d-flex  justify-content-start align-items-center">
                                     <p class="fw-bold color-blue">Doanh nghiệp :</p>
                                     <ul class="list-company-support ml-2 d-flex align-items-center">
@@ -498,7 +494,9 @@
                 </ul>
             </div>
         </div>
-        <h2 class="fw-bold">Tìm hiểu doanh nghiệp</h2>
+    </div>
+    <div class="container">
+        <h2 class="fw-bold ml-2 color-blue">Tìm hiểu doanh nghiệp</h2>
         <div class="list-post-new position-relative pb-4">
             <div class="prev-arrow arrow-list-post slick-arrow">
                 <i class="fas fa-chevron-left"></i>
@@ -570,8 +568,8 @@
                     </div>
                 </div>
                 <!-- <div ngxSlickItem class="col-3 post-item">
-                    <p>Nguyen Ngoc Uy</p>
-                </div> -->
+                        <p>Nguyen Ngoc Uy</p>
+                    </div> -->
             </ngx-slick-carousel>
             <div class="next-arrow arrow-list-post slick-arrow">
                 <i class="fas fa-chevron-right"></i>

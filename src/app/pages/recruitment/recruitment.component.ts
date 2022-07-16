@@ -6,6 +6,7 @@ import { Enterprise } from 'src/app/models/enterprise.model';
 import { RecruitmentsService } from 'src/app/services/recruitments.service';
 import { Recruitments } from 'src/app/models/recruitments.models';
 import { Slider } from 'src/app/models/slider.model';
+import { RecruitmentSearchComponent } from 'src/app/modal/recruitment-search/recruitment-search.component';
 @Component({
   selector: 'app-recruitment',
   templateUrl: './recruitment.component.html',
@@ -72,6 +73,7 @@ export class RecruitmentComponent implements OnInit {
     this.getListRecruitment();
     // this.openRecruitmentDetail(20);
     // this.openListCompanyRecruitment();
+    // this.openModalSearchRecruitment();
   }
 
   openRecruitmentDetail(rescruitment_id: number): void {
@@ -104,5 +106,13 @@ export class RecruitmentComponent implements OnInit {
 
       }
     })
+  }
+
+  // Open form search modal
+  openModalSearchRecruitment(){
+    this.dialog.open(RecruitmentSearchComponent ,{
+      height: '450px',
+      width: '600px',
+    });
   }
 }
