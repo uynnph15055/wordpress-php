@@ -36,7 +36,7 @@ export class ContestService {
 
   // Tìm kiếm cuộc thi
   searchContest(keyword: string): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>('http://127.0.0.1:8000/api/public/contests?q=' + keyword);
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}` + keyword);
   }
 
   // Lọc theo chuyên ngành

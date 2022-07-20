@@ -9,7 +9,7 @@
                     officiis sapiente voluptate veritatis sed deserunt beatae illo dolorem. Voluptatibus quas
                     accusantium cumque modi accusamus autem officia aliquam dignissimos ullam minima.</p>
                 <button class="recruitment-form-search" (click)="openModalSearchRecruitment()">
-                    <p class="btn-recruitment-form-text">Tim kiem</p>
+                    <p class="btn-recruitment-form-text">Tìm kiếm</p>
                     <button class="btn-recruitment-form-search"><i class="fas fa-search"></i></button>
                 </button>
             </div>
@@ -49,20 +49,17 @@
                     tuyển
                     dụng hot
                     nhất</h2>
-                <div class="bg-white w-100 recruitment-list-hot-box">
+                <div *ngIf="statusRecruitmentsHot" class="bg-white w-100 recruitment-list-hot-box">
                     <div class="p-3 recruitment-list-hot-reponsive">
-                        <div class="recruitment-list-hot-item-box">
+                        <div  *ngFor="let item of recruitmentsHot"  class="recruitment-list-hot-item-box">
                             <div class="w-100">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZfJ2apETs_ZfvM1Cmb8NgRe4cmKKydBCqA&usqp=CAU"
+                                <img [src]="item.image"
                                     alt="" class="recruitment-list-hot-item-box-img">
                             </div>
-                            <p class="recruitment-list-hot-item-text mt-1">10:30 27/2/2022</p>
+                            <p class="recruitment-list-hot-item-text mt-1 color-text">{{item.end_time |
+                                formatDate}}</p>
                             <p style="margin-top: -6px;"
-                                class="fw-bold color-blue recruitment-list-hot-item-name text-collapse ">Tuyển Dụng
-                                Việc
-                                Làm Online |
-                                Lương
-                                Khủng 200K - 1 Triệu/ Ngày
+                                class="fw-bold color-blue recruitment-list-hot-item-name text-collapse ">{{item.name}}
                             </p>
                             <div class="recruitment-slill-and-member-number-box">
                                 <ul class="recruitment-list-skill d-flex col-8">
@@ -80,130 +77,19 @@
                             <div class="d-flex  justify-content-start align-items-center">
                                 <p class="fw-bold color-blue">Doanh nghiệp :</p>
                                 <ul class="list-company-support ml-2 d-flex align-items-center">
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt="" placement="top" ngbTooltip="Shoppee"></li>
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt="" placement="top" ngbTooltip="Shoppee"></li>
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt="" placement="top" ngbTooltip="Shoppee"></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="recruitment-list-hot-item-box">
-                            <div class="w-100">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZfJ2apETs_ZfvM1Cmb8NgRe4cmKKydBCqA&usqp=CAU"
-                                    alt="" class="recruitment-list-hot-item-box-img">
-                            </div>
-                            <p class="recruitment-list-hot-item-text mt-1 color-text">10:30 27/2/2022</p>
-                            <p style="margin-top: -6px;"
-                                class="fw-bold color-blue recruitment-list-hot-item-name text-collapse ">Tuyển Dụng
-                                Việc
-                                Làm Online |
-                                Lương
-                                Khủng 200K - 1 Triệu/ Ngày
-                            </p>
-                            <div class="recruitment-slill-and-member-number-box">
-                                <ul class="recruitment-list-skill d-flex col-8">
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                </ul>
-                                <p class="color-blue fw-bold recruitment-list-hot-item-members"><i
-                                        class="fas fa-user-friends"></i> 35
-                                </p>
-                            </div>
-                            <div class="d-flex  justify-content-start align-items-center">
-                                <p class="fw-bold color-blue">Doanh nghiệp :</p>
-                                <ul class="list-company-support ml-2 d-flex align-items-center">
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt="" placement="top" ngbTooltip="Shoppee"></li>
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt=""></li>
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt=""></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="recruitment-list-hot-item-box">
-                            <div class="w-100">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZfJ2apETs_ZfvM1Cmb8NgRe4cmKKydBCqA&usqp=CAU"
-                                    alt="" class="recruitment-list-hot-item-box-img">
-                            </div>
-                            <p class="recruitment-list-hot-item-text mt-1">10:30 27/2/2022</p>
-                            <p style="margin-top: -6px;"
-                                class="fw-bold color-blue recruitment-list-hot-item-name text-collapse ">Tuyển Dụng
-                                Việc
-                                Làm Online |
-                                Lương
-                                Khủng 200K - 1 Triệu/ Ngày
-                            </p>
-                            <div class="recruitment-slill-and-member-number-box">
-                                <ul class="recruitment-list-skill d-flex col-8">
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                </ul>
-                                <p class="color-blue fw-bold recruitment-list-hot-item-members"><i
-                                        class="fas fa-user-friends"></i> 35
-                                </p>
-                            </div>
-                            <div class="d-flex  justify-content-start align-items-center">
-                                <p class="fw-bold color-blue">Doanh nghiệp :</p>
-                                <ul class="list-company-support ml-2 d-flex align-items-center">
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt=""></li>
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt=""></li>
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt=""></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="recruitment-list-hot-item-box">
-                            <div class="w-100">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZfJ2apETs_ZfvM1Cmb8NgRe4cmKKydBCqA&usqp=CAU"
-                                    alt="" class="recruitment-list-hot-item-box-img">
-                            </div>
-                            <p class="recruitment-list-hot-item-text mt-1">10:30 27/2/2022</p>
-                            <p style="margin-top: -6px;"
-                                class="fw-bold color-blue recruitment-list-hot-item-name text-collapse ">Tuyển Dụng
-                                Việc
-                                Làm Online |
-                                Lương
-                                Khủng 200K - 1 Triệu/ Ngày
-                            </p>
-                            <div class="recruitment-slill-and-member-number-box">
-                                <ul class="recruitment-list-skill d-flex col-8">
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                </ul>
-                                <p class="color-blue fw-bold recruitment-list-hot-item-members"><i
-                                        class="fas fa-user-friends"></i> 35
-                                </p>
-                            </div>
-                            <div class="d-flex  justify-content-start align-items-center">
-                                <p class="fw-bold color-blue">Doanh nghiệp :</p>
-                                <ul class="list-company-support ml-2 d-flex align-items-center">
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt=""></li>
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt=""></li>
-                                    <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                            alt=""></li>
+                                    <li *ngFor="let enterpriseItem  of item.enterprise"><img
+                                        [src]="enterpriseItem.logo" alt=""
+                                        [ngbTooltip]="enterpriseItem.name"></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div *ngIf="!statusRecruitmentsHot" class="recruitment-list-hot-box-loading">
+                    <ngx-skeleton-loader [theme]="{ 
+                        'height.px': '230',
+                        'margin-bottom' : '20'
+                      }" count="4" animation="pulse"></ngx-skeleton-loader>
                 </div>
             </div>
             <div class="recruitment-list-right col-lg-8 col-xl-8 col-md-12  col-sm-12">
@@ -211,24 +97,22 @@
                         src="./../../../assets/img/z3532098139922_ca96b677055ce79f9827060b8a92d962.jpg" alt="">Danh sách
                     đợi tuyển dụng
                 </h2>
-                <div class="">
-                    <div class="bg-white recruitment-list-item-box" style="border-radius: 10px;">
+                <div *ngIf="statusRecruitments">
+                    <div *ngFor="let item of recruitments" class="bg-white recruitment-list-item-box" style="border-radius: 10px;">
                         <div class="p-3 recruitment-list-item">
                             <div class=" text-center">
                                 <img class="recruitment-list-image"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpfiMTR4U2bAdlDLq74znNubncBJL1kn32Qg&usqp=CAU"
+                                    [src]="item.image"
                                     alt="">
-                                <p class="recruitment-list-hot-item-text color-text mt-3">10:30 27/2/2022</p>
+                                <p class="recruitment-list-hot-item-text color-text mt-3">{{item.end_time |
+                                    formatDate}}</p>
                             </div>
                             <div class="recruitment-list-item-info">
                                 <div
                                     class="recruitment-list-item-info-header d-flex justify-content-between align-items-center">
                                     <p style="width: 90%;"
                                         class="text-collapse recruitment-list-item-name color-blue recruitment-list-hot-item-name  fw-bold">
-                                        Đợt tuyển dụng mới nhất abc xyz
-                                        mới
-                                        nhất Backend
-                                        Developer</p>
+                                        {{item.name}}</p>
                                     <p class="color-blue fw-bold recruitment-list-hot-item-members"><i
                                             class="fas fa-user-friends"></i> 35
                                     </p>
@@ -237,343 +121,46 @@
                                     <li class="recruitment-item-skill">PHP</li>
                                     <li class="recruitment-item-skill">HTML</li>
                                 </ul>
-                                <p class="recruitment-list-hot-item-text" style="margin-top: -10px;">Đợt ut labore et
-                                    dolore
-                                    magna aliqua. Ut
-                                    enim ad
-                                    minim veniam Lorem ipsum dolor sit amet,
-                                    consectetur adipiscing elit, sed do eiusmod sed do eiusmod tempor incidtidunt ut
-                                    labore
-                                    et dolore magna aliqua do eiusmod sed do eiusmodblore magna aliqua. Ut...</p>
+                                <p class="recruitment-list-hot-item-text" style="margin-top: -10px;">
+                                    {{item.description}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-flex  justify-content-start align-items-center">
-                                        <p class="fw-bold color-blue">Doanh nghiệp :</p>
-                                        <ul class="list-company-support ml-2 d-flex align-items-center">
-                                            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt=""></li>
-                                            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt=""></li>
-                                            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt=""></li>
-                                        </ul>
+                                    <div>
+                                        <div *ngIf="item.enterprise.length > 0"
+                                            class="d-flex  justify-content-start align-items-center">
+                                            <p class="fw-bold color-blue">Doanh nghiệp :</p>
+                                            <ul class="list-company-support ml-2 d-flex align-items-center">
+                                                <li *ngFor="let enterpriseItem  of item.enterprise"><img
+                                                        [src]="enterpriseItem.logo" alt=""
+                                                        [ngbTooltip]="enterpriseItem.name"></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <p class="color-text">Số bài test : 20</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white recruitment-list-item-box" style="border-radius: 10px;">
-                        <div class="p-3 recruitment-list-item">
-                            <div class=" text-center">
-                                <img class="recruitment-list-image"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpfiMTR4U2bAdlDLq74znNubncBJL1kn32Qg&usqp=CAU"
-                                    alt="">
-                                <p class="recruitment-list-hot-item-text color-text mt-3">10:30 27/2/2022</p>
-                            </div>
-                            <div class="recruitment-list-item-info">
-                                <div
-                                    class="recruitment-list-item-info-header d-flex justify-content-between align-items-center">
-                                    <p style="width: 90%;"
-                                        class="text-collapse recruitment-list-item-name color-blue recruitment-list-hot-item-name  fw-bold">
-                                        Đợt tuyển dụng mới nhất abc xyz
-                                        mới
-                                        nhất Backend
-                                        Developer</p>
-                                    <p class="color-blue fw-bold recruitment-list-hot-item-members"><i
-                                            class="fas fa-user-friends"></i> 35
-                                    </p>
-                                </div>
-                                <ul class="recruitment-list-skill d-flex">
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                </ul>
-                                <p class="recruitment-list-hot-item-text" style="margin-top: -10px;">Đợt ut labore et
-                                    dolore
-                                    magna aliqua. Ut
-                                    enim ad
-                                    minim veniam Lorem ipsum dolor sit amet,
-                                    consectetur adipiscing elit, sed do eiusmod sed do eiusmod tempor incidtidunt ut
-                                    labore
-                                    et dolore magna aliqua do eiusmod sed do eiusmodblore magna aliqua. Ut...</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-flex  justify-content-start align-items-center">
-                                        <p class="fw-bold color-blue">Doanh nghiệp :</p>
-                                        <ul class="list-company-support ml-2 d-flex align-items-center">
-                                            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt=""></li>
-                                            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt=""></li>
-                                            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt=""></li>
-                                        </ul>
-                                    </div>
-                                    <p class="color-text">Số bài test : 20</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white recruitment-list-item-box" style="border-radius: 10px;">
-                        <div class="p-3 recruitment-list-item">
-                            <div class=" text-center">
-                                <img class="recruitment-list-image"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpfiMTR4U2bAdlDLq74znNubncBJL1kn32Qg&usqp=CAU"
-                                    alt="">
-                                <p class="recruitment-list-hot-item-text color-text mt-3">10:30 27/2/2022</p>
-                            </div>
-                            <div class="recruitment-list-item-info">
-                                <div
-                                    class="recruitment-list-item-info-header d-flex justify-content-between align-items-center">
-                                    <p style="width: 90%;"
-                                        class="text-collapse recruitment-list-item-name color-blue recruitment-list-hot-item-name  fw-bold">
-                                        Đợt tuyển dụng mới nhất abc xyz
-                                        mới
-                                        nhất Backend
-                                        Developer</p>
-                                    <p class="color-blue fw-bold recruitment-list-hot-item-members"><i
-                                            class="fas fa-user-friends"></i> 35
-                                    </p>
-                                </div>
-                                <ul class="recruitment-list-skill d-flex">
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                </ul>
-                                <p class="recruitment-list-hot-item-text" style="margin-top: -10px;">Đợt ut labore et
-                                    dolore
-                                    magna aliqua. Ut
-                                    enim ad
-                                    minim veniam Lorem ipsum dolor sit amet,
-                                    consectetur adipiscing elit, sed do eiusmod sed do eiusmod tempor incidtidunt ut
-                                    labore
-                                    et dolore magna aliqua do eiusmod sed do eiusmodblore magna aliqua. Ut...</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-flex  justify-content-start align-items-center">
-                                        <p class="fw-bold color-blue">Doanh nghiệp :</p>
-                                        <ul class="list-company-support ml-2 d-flex align-items-center">
-                                            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt=""></li>
-                                            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt=""></li>
-                                            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                    alt=""></li>
-                                        </ul>
-                                    </div>
-                                    <p class="color-text">Số bài test : 20</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white recruitment-list-item-box" style="border-radius: 10px;">
-                        <div class="p-3 recruitment-list-item">
-                            <div class=" text-center">
-                                <img class="recruitment-list-image"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpfiMTR4U2bAdlDLq74znNubncBJL1kn32Qg&usqp=CAU"
-                                    alt="">
-                                <p class="recruitment-list-hot-item-text mt-3">10:30 27/2/2022</p>
-                            </div>
-                            <div class="recruitment-list-item-info">
-                                <p
-                                    class="recruitment-list-item-name color-blue recruitment-list-hot-item-name  fw-bold">
-                                    Đợt tuyển dụng mới nhất abc xyz
-                                    mới
-                                    nhất Backend
-                                    Developer</p>
-                                <ul class="recruitment-list-skill d-flex mt-3">
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                </ul>
-                                <p class="recruitment-list-hot-item-text" style="margin-top: -10px;">Có thể khẳng định
-                                    rằng Tiếng Việt là một thứ tiếng đẹp, một thứ tiếng hay. Nó là một thứ tiếng “đẹp”
-                                    bởi “rất rành mạch trong lối nói, rất uyển chuyển trong câu kép, rất ngon lành trong
-                                    những câu tục ngữ”. Không chỉ vậy, tiếng Việt có một hệ thống nguyên âm, phụ âm
-                                    phong phú và giàu về thanh điệu. Tiếng Việt có những khả năng dồi dào về phần cấu
-                                    tạo từ ngữ, cũng như hình thức</p>
-                                <div class="d-flex  justify-content-start align-items-center">
-                                    <p class="fw-bold color-blue">Doanh nghiệp :</p>
-                                    <ul class="list-company-support ml-2 d-flex align-items-center">
-                                        <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                alt=""></li>
-                                        <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                alt=""></li>
-                                        <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                alt=""></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white recruitment-list-item-box" style="border-radius: 10px;">
-                        <div class="p-3 recruitment-list-item">
-                            <div class=" text-center">
-                                <img class="recruitment-list-image"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpfiMTR4U2bAdlDLq74znNubncBJL1kn32Qg&usqp=CAU"
-                                    alt="">
-                                <p class="recruitment-list-hot-item-text mt-3">10:30 27/2/2022</p>
-                            </div>
-                            <div class="recruitment-list-item-info">
-                                <p
-                                    class="recruitment-list-item-name color-blue recruitment-list-hot-item-name  fw-bold">
-                                    Đợt tuyển dụng mới nhất abc xyz
-                                    mới
-                                    nhất Backend
-                                    Developer</p>
-                                <ul class="recruitment-list-skill d-flex mt-3">
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                </ul>
-                                <p class="recruitment-list-hot-item-text" style="margin-top: -10px;">Đợt ut labore et
-                                    dolore
-                                    magna aliqua. Ut
-                                    enim ad
-                                    minim veniam Lorem ipsum dolor sit amet,
-                                    consectetur adipiscing elit, sed do eiusmod sed do eiusmod tempor incidtidunt ut
-                                    labore
-                                    et dolore magna aliqua do eiusmod sed do eiusmodblore magna aliqua. Ut...</p>
-                                <div class="d-flex  justify-content-start align-items-center">
-                                    <p class="fw-bold color-blue">Doanh nghiệp :</p>
-                                    <ul class="list-company-support ml-2 d-flex align-items-center">
-                                        <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                alt=""></li>
-                                        <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                alt=""></li>
-                                        <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                alt=""></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white recruitment-list-item-box" style="border-radius: 10px;">
-                        <div class="p-3 recruitment-list-item">
-                            <div class=" text-center">
-                                <img class="recruitment-list-image"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpfiMTR4U2bAdlDLq74znNubncBJL1kn32Qg&usqp=CAU"
-                                    alt="">
-                                <p class="recruitment-list-hot-item-text mt-3">10:30 27/2/2022</p>
-                            </div>
-                            <div class="recruitment-list-item-info">
-                                <p
-                                    class="recruitment-list-item-name color-blue recruitment-list-hot-item-name  fw-bold">
-                                    Đợt tuyển dụng mới nhất abc xyz
-                                    mới
-                                    nhất Backend
-                                    Developer</p>
-                                <ul class="recruitment-list-skill d-flex mt-3">
-                                    <li class="recruitment-item-skill">PHP</li>
-                                    <li class="recruitment-item-skill">HTML</li>
-                                </ul>
-                                <p class="recruitment-list-hot-item-text" style="margin-top: -10px;">Đợt ut labore et
-                                    dolore
-                                    magna aliqua. Ut
-                                    enim ad
-                                    minim veniam Lorem ipsum dolor sit amet,
-                                    consectetur adipiscing elit, sed do eiusmod sed do eiusmod tempor incidtidunt ut
-                                    labore
-                                    et dolore magna aliqua do eiusmod sed do eiusmodblore magna aliqua. Ut...</p>
-                                <div class="d-flex  justify-content-start align-items-center">
-                                    <p class="fw-bold color-blue">Doanh nghiệp :</p>
-                                    <ul class="list-company-support ml-2 d-flex align-items-center">
-                                        <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                alt=""></li>
-                                        <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                alt=""></li>
-                                        <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkT13723Hu-mOVrodNYWHeJ4w7IR1I3_EOg&usqp=CAU"
-                                                alt=""></li>
-                                    </ul>
+                                    <p class="color-text">Số bài test : {{item.contest.length > 0 ? item.contest.length
+                                        : '0'}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div *ngIf="!statusRecruitments" class="recruitment-loading">
+                    <ngx-skeleton-loader [theme]="{ 
+                        'height.px': '170',
+                        'margin-bottom' : '20'
+                      }" count="6" animation="pulse"></ngx-skeleton-loader>
+                </div>
                 <ul class="recruitment-paying-page-list mt-4">
-                    <li class="recruitment-paying-page-item"><i class="fa-solid fa-angle-left"></i> Prev</li>
-                    <li class="recruitment-paying-page-item">1</li>
-                    <li class="recruitment-paying-page-item">2</li>
-                    <li class="recruitment-paying-page-item">3</li>
-                    <li class="recruitment-paying-page-item">4</li>
-                    <li class="recruitment-paying-page-item">Next <i class="fa-solid fa-angle-right"></i></li>
+                    <li *ngFor="let item of recruitmentLinks" class="recruitment-paying-page-item">
+                        <a *ngIf="item.label == 'pagination.previous'"   (click)="getListRecruitment(item.url)"><i class="fa-solid fa-angle-left"></i> Prev</a>
+                        <a *ngIf="item.label != 'pagination.previous' && item.label != 'pagination.next'" (click)="getListRecruitment(item.url)"  class="{{item.active ? 'active' : 'text-dark'}}">{{item.label}}</a>
+                        <a *ngIf="item.label == 'pagination.next'"  (click)="getListRecruitment(item.url)"> Next <i class="fa-solid fa-angle-right"></i></a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container">
         <h2 class="fw-bold ml-2 color-blue">Tìm hiểu doanh nghiệp</h2>
-        <div class="list-post-new position-relative pb-4">
-            <div class="prev-arrow arrow-list-post slick-arrow">
-                <i class="fas fa-chevron-left"></i>
-            </div>
-            <ngx-slick-carousel class="carousel list-post-new-slick" [config]="sliderPostNew">
-                <div ngxSlickItem class="col-3 post-item">
-                    <div class="post-item-in">
-                        <img class="post-item-imgae"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZfJ2apETs_ZfvM1Cmb8NgRe4cmKKydBCqA&usqp=CAU"
-                            alt="">
-                        <h4 class="fw-bold post-new-name text-collapse mt-2">Angular Material offers a wide variety of
-                            UI components </h4>
-                        <p class="post-new-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex at
-                            exercitationem eligendi
-                            ipsam voluptatum veniam mollitia iusto officia accusamus dolore sapiente inventore sit
-                            possimus blanditiis excepturi repellendus adipisci. Iste.</p>
-                    </div>
-                </div>
-                <div ngxSlickItem class="col-3 post-item">
-                    <div class="post-item-in">
-                        <img class="post-item-imgae"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZfJ2apETs_ZfvM1Cmb8NgRe4cmKKydBCqA&usqp=CAU"
-                            alt="">
-                        <h4 class="fw-bold post-new-name text-collapse mt-2">Angular Material offers a wide variety of
-                            UI components </h4>
-                        <p class="post-new-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex at
-                            exercitationem eligendi
-                            ipsam voluptatum veniam mollitia iusto officia accusamus dolore sapiente inventore sit
-                            possimus blanditiis excepturi repellendus adipisci. Iste.</p>
-                    </div>
-                </div>
-                <div ngxSlickItem class="col-3 post-item">
-                    <div class="post-item-in">
-                        <img class="post-item-imgae"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZfJ2apETs_ZfvM1Cmb8NgRe4cmKKydBCqA&usqp=CAU"
-                            alt="">
-                        <h4 class="fw-bold post-new-name text-collapse mt-2">Angular Material offers a wide variety of
-                            UI components </h4>
-                        <p class="post-new-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex at
-                            exercitationem eligendi
-                            ipsam voluptatum veniam mollitia iusto officia accusamus dolore sapiente inventore sit
-                            possimus blanditiis excepturi repellendus adipisci. Iste.</p>
-                    </div>
-                </div>
-                <div ngxSlickItem class="col-3 post-item">
-                    <div class="post-item-in">
-                        <img class="post-item-imgae"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZfJ2apETs_ZfvM1Cmb8NgRe4cmKKydBCqA&usqp=CAU"
-                            alt="">
-                        <h4 class="fw-bold post-new-name text-collapse mt-2">Angular Material offers a wide variety of
-                            UI components </h4>
-                        <p class="post-new-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex at
-                            exercitationem eligendi
-                            ipsam voluptatum veniam mollitia iusto officia accusamus dolore sapiente inventore sit
-                            possimus blanditiis excepturi repellendus adipisci. Iste.</p>
-                    </div>
-                </div>
-                <div ngxSlickItem class="col-3 post-item">
-                    <div class="post-item-in">
-                        <img class="post-item-imgae"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZfJ2apETs_ZfvM1Cmb8NgRe4cmKKydBCqA&usqp=CAU"
-                            alt="">
-                        <h4 class="fw-bold post-new-name text-collapse mt-2">Angular Material offers a wide variety of
-                            UI components </h4>
-                        <p class="post-new-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex at
-                            exercitationem eligendi
-                            ipsam voluptatum veniam mollitia iusto officia accusamus dolore sapiente inventore sit
-                            possimus blanditiis excepturi repellendus adipisci. Iste.</p>
-                    </div>
-                </div>
-                <!-- <div ngxSlickItem class="col-3 post-item">
-                        <p>Nguyen Ngoc Uy</p>
-                    </div> -->
-            </ngx-slick-carousel>
-            <div class="next-arrow arrow-list-post slick-arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
-        </div>
+        <app-list-post></app-list-post>
     </div>
 </div>

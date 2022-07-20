@@ -244,91 +244,24 @@ p{
   border-radius: 5px;
 }
 
-.recruitment-paying-page-item {
+.recruitment-paying-page-item a{
   padding: 10px 15px;
   background-color: var(--white);
   cursor: pointer;
   transition: all ease-in 0.1s;
+  color: #444;
 }
 
-.recruitment-paying-page-item:hover {
+.recruitment-paying-page-item .active{
+  background-color: var(--warning);
+  color: var(--white);
+}
+
+.recruitment-paying-page-item a:hover {
   background-color: var(--warning);
   color: var(--white);
   transition: all ease-in 0.3s;
 }
-
-/* LIST  POST  */
-.list-post-new {
-  margin-top: -10px;
-}
-
-.list-post-new-slick .post-item {
-  background-color: var(--white);
-  /* margin-left: 15px; */
-  border-radius: 10px;
-  margin: 5px 10px;
-  transition: all ease-in 0.3s;
-  transform: translateY(0px);
-}
-
-
-.list-post-new-slick .post-item:hover {
-  transform: translateY(-3px);
-  transition: all ease-in 0.3s;
-  box-shadow: 0px 0px 5px var(--warning);
-  cursor: pointer;
-}
-
-.list-post-new-slick .post-item:hover .post-new-name {
-  color: var(--warning);
-}
-
-.list-post-new-slick .post-item-imgae {
-  width: 100%;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-.list-post-new-slick .post-item-in {
-  padding: 10px;
-}
-
-.list-post-new-slick .post-new-content {
-  margin-top: -12px;
-  /* text-align: justify; */
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  width: 100%;
-  text-overflow: ellipsis;
-}
-
-.list-post-new-slick .post-new-name {
-  font-size: 18px;
-}
-
-.list-post-new .prev-arrow {
-  left: -20px;
-}
-
-.list-post-new .next-arrow {
-  right: -20px;
-}
-
-.list-post-new .arrow-list-post {
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  border-radius: 50px;
-  background-color: #e77325;
-  color: var(--white);
-}
-
-.list-post-new .arrow-list-post:hover {
-  background-color: var(--warning);
-}
-
 
 /* RESPONSiVE */
 @media (max-width:568px) {

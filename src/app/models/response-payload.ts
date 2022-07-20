@@ -1,3 +1,4 @@
+import { PayingLinks } from "./paying-links";
 import { User } from "./user";
 
 export class ResponsePayload {
@@ -8,5 +9,6 @@ export class ResponsePayload {
   payload!: any;
   dataContest: any;
   user_pass: Array<User>;
-  user_not_pass: Array<User>;;
+  user_not_pass: Array<User>;
+
 }

@@ -18,6 +18,7 @@ import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 const routes: Routes = [
   {
     path: "",
@@ -72,6 +73,10 @@ const routes: Routes = [
       {
         path: "tuyen-dung",
         component: RecruitmentComponent,
+      },
+      {
+        path: "chi-tiet-doi-tuyen-dung",
+        component: RecruitmentDetailComponent,
       },
       {
         path: "cuoc-thi/:contest_id/vong/:round_id",
