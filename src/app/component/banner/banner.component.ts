@@ -8,30 +8,19 @@ import { SliderService } from 'src/app/services/slider.service';
 })
 export class BannerComponent implements OnInit {
   banner: Array<Slider> = [];
-  bannerStatus: string = 'pending';
-  @Input() bannerSub: Array<any>;
-
+  bannerStatus: boolean = false;
 
   constructor(private sliderService: SliderService) {
   }
 
   ngOnInit(): void {
-    if (this.bannerSub) {
-      this.banner = this.bannerSub;
-      this.bannerStatus = 'done';
-    } else {
-      this.sliderService.getListSlider('home', '', '').subscribe(res => {
-        if (res.status == true) {
-          this.banner = res.payload;
-          if (this.banner) {
-            setTimeout(() => {
-              this.bannerStatus = 'done';
-            }, 1000);
-          }
-
-        }
-      });
-    }
+    this.sliderService.getListSlider('home', '', '').subscribe(res => {
+      if (res.status) {
+        this.banner = res.payload;
+        this.banner ? this.bannerStatus = true : this.bannerStatus;
+        console.log(this.banner);
+      }
+    });
 
 
   }

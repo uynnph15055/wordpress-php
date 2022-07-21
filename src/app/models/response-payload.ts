@@ -10,5 +10,4 @@ export class ResponsePayload {
   dataContest: any;
   user_pass: Array<User>;
   user_not_pass: Array<User>;
-
 }

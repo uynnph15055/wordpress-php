@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list-post',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPostComponent implements OnInit {
 
+  @Input() listPost : any;
+
   constructor() { }
   sliderPostNew = {
-    "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
+    "slidesToShow": 3, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
     responsive: [
       {
         breakpoint: 1024,
@@ -36,7 +38,7 @@ export class ListPostComponent implements OnInit {
       }
     ]
   };
-  
+
   ngOnInit(): void {
   }
 

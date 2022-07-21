@@ -50,8 +50,8 @@
                     dụng hot
                     nhất</h2>
                 <div *ngIf="statusRecruitmentsHot" class="bg-white w-100 recruitment-list-hot-box">
-                    <div class="p-3 recruitment-list-hot-reponsive">
-                        <div  *ngFor="let item of recruitmentsHot"  class="recruitment-list-hot-item-box">
+                    <div   class="p-3 recruitment-list-hot-reponsive">
+                        <div  *ngFor="let item of recruitmentsHot" [routerLink]="['/tuyen-dung/chi-tiet/', item.id ]" class="recruitment-list-hot-item-box">
                             <div class="w-100">
                                 <img [src]="item.image"
                                     alt="" class="recruitment-list-hot-item-box-img">
@@ -98,7 +98,7 @@
                     đợi tuyển dụng
                 </h2>
                 <div *ngIf="statusRecruitments">
-                    <div *ngFor="let item of recruitments" class="bg-white recruitment-list-item-box" style="border-radius: 10px;">
+                    <div [routerLink]="['/tuyen-dung/chi-tiet/', item.id ]" *ngFor="let item of recruitments" class="bg-white recruitment-list-item-box" style="border-radius: 10px;">
                         <div class="p-3 recruitment-list-item">
                             <div class=" text-center">
                                 <img class="recruitment-list-image"
@@ -147,7 +147,7 @@
                     <ngx-skeleton-loader [theme]="{ 
                         'height.px': '170',
                         'margin-bottom' : '20'
-                      }" count="6" animation="pulse"></ngx-skeleton-loader>
+                      }" count="7" animation="pulse"></ngx-skeleton-loader>
                 </div>
                 <ul class="recruitment-paying-page-list mt-4">
                     <li *ngFor="let item of recruitmentLinks" class="recruitment-paying-page-item">

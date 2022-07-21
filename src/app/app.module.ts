@@ -62,6 +62,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+
 import { ModalInfoTeamComponent } from './modal/modal-info-team/modal-info-team.component';
 // import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
@@ -73,6 +74,7 @@ import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.co
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
 import { RecruitmentSearchComponent } from './modal/recruitment-search/recruitment-search.component';
 import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
+import { CapacityRelatedItemComponent } from './component/capacity-related-item/capacity-related-item.component';
 import { ListPostComponent } from './component/list-post/list-post.component';
 
 
@@ -115,10 +117,10 @@ import { ListPostComponent } from './component/list-post/list-post.component';
     CapacityExamComponent,
     DialogConfirmComponent,
     CapacityDetailComponent,
+    CapacityRelatedItemComponent,
     RecruitmentSearchComponent,
     RecruitmentDetailComponent,
-    ListPostComponent,
-
+    ListPostComponent
   ],
   imports: [
     BrowserModule,

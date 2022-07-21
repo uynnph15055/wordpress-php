@@ -75,7 +75,7 @@ const routes: Routes = [
         component: RecruitmentComponent,
       },
       {
-        path: "chi-tiet-doi-tuyen-dung",
+        path: "tuyen-dung/chi-tiet/:id",
         component: RecruitmentDetailComponent,
       },
       {
