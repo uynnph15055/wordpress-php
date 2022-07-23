@@ -74,6 +74,8 @@ import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.compo
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
 import { TestCapacityComponent } from './pages/test-capacity/test-capacity.component';
 
+import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+import { CapacityRelatedItemComponent } from './component/capacity-related-item/capacity-related-item.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +107,6 @@ import { TestCapacityComponent } from './pages/test-capacity/test-capacity.compo
     ListResultRoundComponent,
     RoundContestDetailComponent,
     LoadingPageComponent,
-
     HeaderComponent,
     FooterComponent,
     RecruitmentComponent,
@@ -115,6 +116,8 @@ import { TestCapacityComponent } from './pages/test-capacity/test-capacity.compo
     CapacityExamComponent,
     DialogConfirmComponent,
     TestCapacityComponent,
+    CapacityDetailComponent,
+    CapacityRelatedItemComponent,
   ],
   imports: [
     BrowserModule,

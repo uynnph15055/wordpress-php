@@ -1,3 +1,5 @@
+import { Round } from "./round.model";
+
 export class Capacity {
   id: number;
   name: string;
@@ -9,4 +11,5 @@ export class Capacity {
   status: number;
   slug_name: string;
   start_register_time: Date
+  rounds: Round[];
 }
