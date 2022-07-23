@@ -190,11 +190,13 @@ p{
 .list-company-support img {
   width: 30px;
   height: 30px;
+  object-fit: cover;
   border-radius: 50px;
+  cursor: pointer;
 }
 
 .list-company-support li {
-  margin-right: 20px;
+  margin-left: 20px;
 }
 
 

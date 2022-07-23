@@ -19,8 +19,7 @@
         <div class="capacity__related-content-list-item-icon">
           <i class="fa-solid fa-user-group"></i>
         </div>
-
-        891 lượt làm bài
+        {{capacityItem.users}} lượt làm bài
       </li>
 
       <li class="capacity__related-content-list-item">
@@ -29,8 +28,8 @@
         </div>
 
         <div class="capacity__related-content-list-item-skill">
-          <span>Skill:</span>
-          <strong class="capacity__related-content-list-item-skill-name">php, Java, NodeJs php, Java, NodeJs php, Java, NodeJs</strong>
+          <span>Skill:  </span>
+          <strong class="capacity__related-content-list-item-skill-name">{{changeSkillString(capacityItem.skills)}}</strong>
         </div>
       </li>
     </ul>

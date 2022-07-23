@@ -8,7 +8,7 @@
 <p  class="text-center color-text my-2" *ngIf="!statusRecruitment">Chưa có kết quả nào !</p>
 <p  *ngIf="statusRecruitment" class="text-center color-text my-2">Có {{countResultRecruitment}} kết quả tìm kiếm</p>
 <div *ngIf="statusRecruitment && statusOpenFormSearch" class="form-search-result">
-    <div *ngFor="let item of recruitments" class="form-search-result-item row">
+    <div *ngFor="let item of recruitments" class="form-search-result-item row" [routerLink]="['/tuyen-dung/chi-tiet/', item.id ]" >
         <div class="form-search-result-item-img-box col-3">
             <img class="form-search-result-item-img w-100"
                 [src]="item.image" alt="">
@@ -17,16 +17,15 @@
             <div class="d-flex justify-content-between">
                 <p>{{item.end_time | formatDate}}</p>
                 <span>
-                    <i class="fa-solid fa-user-group"></i>
-                    35
+                    <i class="fa-solid fa-user-group">&nbsp;</i>{{item.user.length}}
                 </span>
             </div>
             <p class="text-collapse recruitment-list-item-name color-blue  fw-bold">
                {{item.name}}</p>
             <div class="recruitment-skill-box d-flex justify-content-between">
                 <ul class="recruitment-list-skill d-flex ">
-                    <li class="recruitment-item-skill">PHP</li>
-                    <li class="recruitment-item-skill">HTML</li>
+                    <li *ngFor="let skill of getLimitSkill(item.skill)" class="recruitment-item-skill">
+                        {{skill.short_name}}</li>
                 </ul>
                 <p class="color-text">Số bài test : 20</p>
             </div>

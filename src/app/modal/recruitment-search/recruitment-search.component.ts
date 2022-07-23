@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PayingLinks } from 'src/app/models/paying-links';
 import { Recruitments } from 'src/app/models/recruitments.models';
+import { Skill } from 'src/app/models/skill.models';
 import { RecruitmentsService } from 'src/app/services/recruitments.service';
 
 @Component({
@@ -43,4 +45,14 @@ export class RecruitmentSearchComponent implements OnInit {
     })
   
   }
+
+  // get skill limit
+  getLimitSkill(arrSkill : Array<Skill>) : Array<Skill>{
+    let arrResult = arrSkill.filter((res , index) => {
+        return  index < 3;
+    });
+
+    return arrResult;
+  }
+
 }

@@ -9,6 +9,7 @@ import { RecruitmentSearchComponent } from 'src/app/modal/recruitment-search/rec
 import { Contest } from 'src/app/models/contest';
 import { PayingLinks } from 'src/app/models/paying-links';
 import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
+import { Skill } from 'src/app/models/skill.models';
 @Component({
   selector: 'app-recruitment',
   templateUrl: './recruitment.component.html',
@@ -40,7 +41,9 @@ export class RecruitmentComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.getListRecruitment('http://127.0.0.1:8000/api/public/recruitments');
+    this.getListRecruitment('http://127.0.0.1:8000/api/public/recruitments?recruitmentHot=nolmal');
+    this.getListRecruitmentHot('http://127.0.0.1:8000/api/public/recruitments?recruitmentHot=hot')
+  
   }
 
   // List Recruitment
@@ -49,12 +52,29 @@ export class RecruitmentComponent implements OnInit {
     this.recruitmentService.getAllRecruitment(url).subscribe(res => {
       if (res.status) {
         this.recruitments = res.payload.data;
-        this.recruitmentsHot = this.recruitments.slice(0, 4);
         this.recruitmentLinks = res.payload.links;
-        this.recruitmentsHot ? this.statusRecruitmentsHot = true : this.statusRecruitmentsHot;
         this.recruitments ? this.statusRecruitments = true : this.statusRecruitments;
       }
     })
+  }
+
+  // Get listRecruitment
+  getListRecruitmentHot(url : string){
+    this.recruitmentService.getAllRecruitment(url).subscribe(res => {
+      if (res.status) {
+        this.recruitmentsHot = res.payload.data;
+        this.recruitmentsHot ? this.statusRecruitmentsHot = true : this.statusRecruitmentsHot;
+      }
+    })
+  }
+
+  // get skill limit
+  getLimitSkill(arrSkill : Array<Skill>) : Array<Skill>{
+    let arrResult = arrSkill.filter((res , index) => {
+        return  index < 3;
+    });
+
+    return arrResult;
   }
 
   // Open form search modal

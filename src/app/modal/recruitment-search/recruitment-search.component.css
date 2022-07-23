@@ -79,3 +79,7 @@
 .form-search-result-item-img {
     border-radius: 6px;
 }
+
+.form-search-result-item{
+    cursor: pointer;
+}

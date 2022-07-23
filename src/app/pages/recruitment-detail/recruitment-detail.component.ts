@@ -13,6 +13,7 @@ import { RecruitmentsService } from 'src/app/services/recruitments.service';
 })
 export class RecruitmentDetailComponent implements OnInit {
   recruitmentDetail : Recruitments;
+  statusListCapacity : boolean = false;
   recruitmentCapacity : Array<Capacity>;
 
   constructor(private route: ActivatedRoute ,
@@ -26,6 +27,7 @@ export class RecruitmentDetailComponent implements OnInit {
     .subscribe(res => {
       if(res.status){
         this.recruitmentCapacity = res.payload.contest;
+        this.recruitmentCapacity ? this.statusListCapacity = true : this.statusListCapacity;
         this.recruitmentDetail = res.payload;
       }
     })

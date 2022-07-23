@@ -1,5 +1,7 @@
 .container-recruitment-detail{
     width: 100%;
+    background-color: var(--bg-content);
+    padding-bottom: 70px;
 }
 
 p , h1, h2,h3,h4 ,h5{
@@ -16,8 +18,18 @@ p , h1, h2,h3,h4 ,h5{
     opacity: 0.2;
 }
 
+.recruitment-detail-info-left{
+    background-color: #ffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
+}
+
 .recruitment-header-banner{
-    margin-bottom: 100px;
+    margin-bottom: 60px;
+    border-bottom: 5px solid var(--color-primary);
 }
 
 .recruitment-header-banner{
@@ -44,7 +56,7 @@ p , h1, h2,h3,h4 ,h5{
 
 .recruitment-detail-img{
     position: absolute;
-    top: 40%;
+    top: 25%;
     left: 6.8%;
     height: 200px;
     object-fit: cover;
@@ -54,3 +66,16 @@ p , h1, h2,h3,h4 ,h5{
     -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
 }
+
+.recruitment-detail-marquee_info{
+    font-size: 17px;
+    font-style: italic;
+}
+
+.list-company-support img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50px;
+    cursor: pointer;
+  }
