@@ -1,5 +1,5 @@
 export class TransmitToPost {
-    id: string;
-    posts : any;
+    id: number;
+    posts : [];
     numberColumn: number;
 }

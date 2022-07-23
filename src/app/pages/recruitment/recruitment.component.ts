@@ -8,6 +8,7 @@ import { Slider } from 'src/app/models/slider.model';
 import { RecruitmentSearchComponent } from 'src/app/modal/recruitment-search/recruitment-search.component';
 import { Contest } from 'src/app/models/contest';
 import { PayingLinks } from 'src/app/models/paying-links';
+import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
 @Component({
   selector: 'app-recruitment',
   templateUrl: './recruitment.component.html',
@@ -16,9 +17,14 @@ import { PayingLinks } from 'src/app/models/paying-links';
 export class RecruitmentComponent implements OnInit {
   companys: Array<Enterprise>;
   recruitments: Array<Recruitments>;
-  recruitmentsHot : Array<Recruitments>;
+  recruitmentsHot: Array<Recruitments>;
   // recruitmentPaying : Array<>
-  recruitmentLinks : Array<PayingLinks>;
+  recruitmentLinks: Array<PayingLinks>;
+  listPost: TransmitToPost = {
+    id: 0,
+    posts: [],
+    numberColumn: 4,
+  };
 
   // -------------
   statusCompany: boolean = false;
@@ -29,35 +35,6 @@ export class RecruitmentComponent implements OnInit {
 
   constructor(public dialog: MatDialog, public companyService: CompanyService, public recruitmentService: RecruitmentsService) { }
 
-  sliderPostNew = {
-    "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
-        }
-      },
-      {
-        breakpoint: 586,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
-
   recruitmentBanner = {
     "slidesToShow": 1, infinite: true, autoplay: true, arrows: true, prevArrow: '.banner-arrow-prev', nextArrow: '.banner-arrow-next', slidesToScroll: 1, fadeSpeed: 1000,
   };
@@ -67,32 +44,32 @@ export class RecruitmentComponent implements OnInit {
   }
 
   // List Recruitment
-  getListRecruitment(url : string) {
+  getListRecruitment(url: string) {
     this.statusRecruitments = false;
     this.recruitmentService.getAllRecruitment(url).subscribe(res => {
       if (res.status) {
         this.recruitments = res.payload.data;
-        this.recruitmentsHot = this.recruitments.slice(0 , 4);
+        this.recruitmentsHot = this.recruitments.slice(0, 4);
         this.recruitmentLinks = res.payload.links;
-        this.recruitmentsHot ? this.statusRecruitmentsHot = true : this.statusRecruitmentsHot;  
-        this.recruitments ? this.statusRecruitments = true : this.statusRecruitments;  
+        this.recruitmentsHot ? this.statusRecruitmentsHot = true : this.statusRecruitmentsHot;
+        this.recruitments ? this.statusRecruitments = true : this.statusRecruitments;
       }
     })
   }
 
   // Open form search modal
-  openModalSearchRecruitment(){
-    this.dialog.open(RecruitmentSearchComponent ,{
+  openModalSearchRecruitment() {
+    this.dialog.open(RecruitmentSearchComponent, {
       height: '450px',
       width: '600px',
     });
   }
-  
 
-  configArrayLink(arrayLink : Array<PayingLinks>){
+
+  configArrayLink(arrayLink: Array<PayingLinks>) {
     let arrayConfig = [];
-     arrayConfig = arrayLink.map(res => {
-        res.label.slice(0,4);
+    arrayConfig = arrayLink.map(res => {
+      res.label.slice(0, 4);
     })
     return arrayConfig;
   }

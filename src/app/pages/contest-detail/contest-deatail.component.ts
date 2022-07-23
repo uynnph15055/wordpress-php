@@ -21,6 +21,7 @@ import { SliderService } from 'src/app/services/slider.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
 import { User } from 'src/app/models/user';
+import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
 @Component({
   selector: 'app-contest-deatail',
   templateUrl: './contest-deatail.component.html',
@@ -42,6 +43,11 @@ export class ContestDeatailComponent implements OnInit {
   contestCompanySuppor: Enterprise;
   contentItem: Array<Contest> = [];
   forwardComponent: Array<any> = [];
+  listPost: TransmitToPost = {
+    id: 0,
+    posts: [],
+    numberColumn: 3,
+  };
   // ---------------------------
 
   contestDetail: Contest;
