@@ -61,6 +61,9 @@
             </div>
             <div class="tw-grid tw-grid-cols-4  tw-gap-7">
                 <div class="test-capacity__item" *ngFor="let capacity of listCapacity">
+                    <app-capacity-related-item [capacityItem]="capacity"></app-capacity-related-item>
+                </div>
+                <!-- <div class="test-capacity__item" *ngFor="let capacity of listCapacity">
                     <div class="tw-relative">
                         <a href="">
                             <img class="tw-w-full tw-h-[160px] tw-object-cover tw-rounded-xl" src={{capacity.img}}
@@ -104,7 +107,7 @@
                         </div>
                         <button class="btn-register tw-w-full tw-rounded tw-p-1.5">Đăng ký</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
