@@ -6,6 +6,7 @@ export class ExamCapacity {
     questions: {
         id: number,
         content: string,
+        type: number, // 0: 1 đáp án, 1: nhiều đáp án
         answers: {
             id: number,
             content: string

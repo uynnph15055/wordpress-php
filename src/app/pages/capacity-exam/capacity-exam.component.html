@@ -3,7 +3,10 @@
     <div class="capacity__exam-heading" *ngIf="!isFetchingRound">
       <div class="capacity__exam-heading-inner d-flex align-items-center justify-content-center">
         <span class="capacity__exam-heading-line"></span>
-        <h1 class="capacity__exam-heading-title text-center">Bài thi test năng lực: {{ roundDetail.contest.name }}</h1>
+        <h1 class="capacity__exam-heading-title text-center">
+          Bài thi test năng lực:
+          <a class="text-body" [routerLink]="['/test-nang-luc', roundDetail.contest.id]">{{ roundDetail.contest.name }}</a>
+        </h1>
         <span class="capacity__exam-heading-line"></span>
       </div>
   
@@ -19,7 +22,7 @@
     </div>
   
     <!-- chờ làm bài -->
-    <section class="capacity__exam-description text-center" *ngIf="statusTakingExam === 0 && !isFetchingRound">
+    <section class="capacity__exam-description text-center" *ngIf="statusTakingExam === 0 && !isFetchingRound && !isFetchingSttExam && !isFetchingExam">
       <h2 class="text-center capacity__exam-description-title">
         Hãy nhấn
         <span class="text-uppercase text-red">bắt đầu</span>
@@ -27,6 +30,15 @@
       </h2>
   
       <button class="btn btn-register text-center btn-base-type-bg" (click)="handleTakeExam()">Bắt đầu</button>
+    </section>
+
+    <!-- loading khi đàn get dữ liệu vòng thi và check trạng thái làm bài -->
+    <section>
+      <ngx-skeleton-loader count="2" *ngIf="isFetchingRound"></ngx-skeleton-loader>
+      <section class="capacity__exam-description text-center" *ngIf="isFetchingSttExam || isFetchingRound">
+        <ngx-skeleton-loader [theme]="{width: '300px'}"></ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{width: '100px', height: '35px'}" class="d-block"></ngx-skeleton-loader>
+      </section>
     </section>
   
     <!-- làm bài -->
@@ -99,7 +111,7 @@
               <span class="sidebar__note-title primary-color">* Lưu ý</span>
     
               <ul class="sidebar__note-list">
-                <li class="sidebar__note-list-item">1. Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li>
+                <li class="sidebar__note-list-item">1. Câu hỏi có đáp án hình ô vuông là câu hỏi có nhiều câu trả lời.</li>
                 <li class="sidebar__note-list-item">2. Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li>
               </ul>
             </section>
@@ -114,19 +126,63 @@
               <p class="question__content-item-content" [innerHTML]="question.content"></p>
     
               <ul class="answers">
-                <li class="answers__item" *ngFor="let answer of question.answers; let j = index" (click)="handleChooseAnswer(question.id)">
-                  <input class="answers__input" type="radio" hidden [id]="'answer-' + answer.id" [formControlName]="'question-' + (i + 1) + '-' + question.id" [value]="answer.id">
-                  <label [for]="'answer-' + answer.id" class="answer d-flex align-items-center">
-                    <span class="answer__num d-flex justify-content-center align-items-center">{{ (j + 10).toString(36).toUpperCase() }}</span>
-                    <p class="answer__content m-0">{{ answer.content }}</p>
-                  </label>
-                </li>
+                <!-- câu hỏi có 1 đáp án -->
+                <div *ngIf="question.type === 0">
+                  <li class="answers__item" *ngFor="let answer of question.answers; let j = index">
+                    <input class="answers__input" type="radio" hidden [id]="'answer-' + answer.id" [formControlName]="'question-' + (i + 1) + '-' + question.id + '-' + question.type" [value]="answer.id">
+                    <label [for]="'answer-' + answer.id" class="answer d-flex align-items-center" (click)="handleChooseAnswer(question.id, question.type)">
+                      <span class="answer__num d-flex justify-content-center align-items-center">{{ (j + 10).toString(36).toUpperCase() }}</span>
+                      <p class="answer__content m-0">{{ answer.content }}</p>
+                    </label>
+                  </li>
+                </div>
+
+                <!-- câu hỏi có nhiều đáp án -->
+                <div *ngIf="question.type === 1">
+                  <li class="answers__item border-square" *ngFor="let answer of question.answers; let j = index">
+                    <input class="answers__input" type="checkbox" hidden [id]="'answer-' + answer.id" (change)="onCheckChange('question-' + (i + 1) + '-' + question.id + '-' + question.type, $event)" [value]="answer.id">
+                    <label [for]="'answer-' + answer.id" class="answer d-flex align-items-center" (click)="handleChooseAnswer(question.id, question.type, answer.id)">
+                      <span class="answer__num d-flex justify-content-center align-items-center">{{ (j + 10).toString(36).toUpperCase() }}</span>
+                      <p class="answer__content m-0">{{ answer.content }}</p>
+                    </label>
+                  </li>
+                </div>
               </ul>
             </li>
           </ul>
         </div>
       </div>
     </form>
+
+    <!-- skeleton -->
+    <div class="row" *ngIf="isFetchingExam">
+      <div class="col col-12 col-md-3">
+        <div class="sidebar py-0">
+          <ngx-skeleton-loader></ngx-skeleton-loader>
+  
+          <ul class="sidebar__list m-0 p-0">
+            <ngx-skeleton-loader count="3"></ngx-skeleton-loader>
+          </ul>
+          <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+  
+          <section class="question">
+            <ngx-skeleton-loader count="3"></ngx-skeleton-loader>
+          </section>
+  
+          <section class="sidebar__note">
+            <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+          </section>
+        </div>
+      </div>
+  
+      <div class="col col-12 col-md-9 question__content">
+        <ul class="question__content-list">
+          <li class="question__content-item" *ngFor="let item of [].constructor(10)">
+            <ngx-skeleton-loader count="5"></ngx-skeleton-loader>
+          </li>
+        </ul>
+      </div>
+    </div>
   
     <!-- kết quả làm bài -->
     <div class="capacity__exam-result text-center" *ngIf="statusTakingExam === 2">

@@ -1,7 +1,7 @@
 import { DialogConfirmComponent } from './../../modal/dialog-confirm/dialog-confirm.component';
 import { NgToastService } from 'ng-angular-popup';
 import { RoundService } from 'src/app/services/round.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Component, ElementRef, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
@@ -24,11 +24,13 @@ export class CapacityExamComponent implements OnInit {
   formAnswers!: FormGroup;
   examData!: ExamCapacity;
   // DS id câu hỏi đã trả lời
-  questionListId: { questionId: number }[] = [];
+  questionListId: { questionId: number, answers?: [number?] }[] = [];
   // trạng thái làm bài: 0 -> màn hình chờ làm bài, 1 -> đang làm bài, 2 -> đã nộp
   statusTakingExam: number = 0;
   roundDetail!: Round;
   isFetchingRound = false;
+  isFetchingSttExam = false;
+  isFetchingExam = false;
   countDownTimeExam: {minutes: number | string, seconds: number | string} = {
     minutes: "00",
     seconds: "00"
@@ -70,6 +72,7 @@ export class CapacityExamComponent implements OnInit {
     ).subscribe(responseRound => {
       if (responseRound.status) {
         this.isFetchingRound = false;
+        this.isFetchingSttExam = true;
         this.roundDetail = responseRound.payload;
         console.log(responseRound)
 
@@ -79,16 +82,24 @@ export class CapacityExamComponent implements OnInit {
         if (this.userLogged.id) {
           this.roundService.getInfoCapacityExamRound({
             round_id: responseRound.payload.id
-          }).subscribe(resSttExam => {
-            // nếu đang làm ? tiếp tục làm bài
-            if (resSttExam.status && resSttExam.payload === 0) {
-              
-              this.takeExam();
-              console.log(resSttExam)
-            } else if (resSttExam.status && resSttExam.payload === 1) {
-              // đã nộp bài
+          }).subscribe(
+            resSttExam => {
+              // nếu đang làm ? tiếp tục làm bài
+              this.isFetchingSttExam = false;
+              if (resSttExam.status && resSttExam.payload === 0) {
+                this.takeExam();
+                console.log("đang làm", resSttExam);
+              } else if (resSttExam.status && resSttExam.payload === 1) {
+                // đã nộp bài
+                console.log("Đã nộp bài");
+              }
+            },
+            error => {
+              this.isFetchingSttExam = false;
             }
-          })
+          )
+        } else {
+          this.isFetchingSttExam = false;
         }
       }
     })
@@ -136,8 +147,11 @@ export class CapacityExamComponent implements OnInit {
   }
 
   takeExam() {
+    this.isFetchingExam = true;
+
     this.roundService.takeExam({round_id: this.roundDetail.id}).subscribe(res => {
       if (res.status) {
+        
         this.examData = {
           ...res.payload,
           exam_at: res.exam_at,
@@ -154,6 +168,7 @@ export class CapacityExamComponent implements OnInit {
             height: window.innerHeight
           }
 
+          this.isFetchingExam = false;
           // cập nhật trạng thái đang làm bài
           this.statusTakingExam = 1;
 
@@ -272,24 +287,52 @@ export class CapacityExamComponent implements OnInit {
     const answerFormData = this.formAnswers.value;
   
     // danh sách id câu hỏi và câu trả lời
-    const answersData: {questionId: number, answerId: number}[] = [];
+    const answersData: {
+      questionId: number, 
+      answerId?: number,
+      answerIds?: [],
+      answer?: string,
+      type: number // 0: câu hỏi 1 đáp án, 1: câu hỏi nhiều đáp án, 2: code onl
+    }[] = [];
     for (const key in answerFormData) {
       const questionId = key.split("-")[2];
-      
-      answersData.push({
-        questionId: +questionId,
-        answerId: answerFormData[key]
-      })
+      const questionType = +key.split("-")[3];
+
+      if (questionType === 0) {
+        answersData.push({
+          questionId: +questionId,
+          answerId: answerFormData[key],
+          type: questionType
+        })
+      } else if (questionType === 1) {
+        answersData.push({
+          questionId: +questionId,
+          answerIds: answerFormData[key],
+          type: questionType
+        })
+      } else if (questionType === 2) {
+        answersData.push({
+          questionId: +questionId,
+          answer: answerFormData[key],
+          type: questionType
+        })
+      }
     }
 
     return answersData;
   }
 
   createFormControl() {
-    const ctrls: { [name: string ]: FormControl } = {};
-    this.examData.questions.forEach((question: any, index: number) => {
-      const fieldName = `question-${++index}-${question.id}`;
-      ctrls[fieldName] = new FormControl('', Validators.required)
+    const ctrls: { [name: string ]: FormControl | FormArray } = {};
+    this.examData.questions.forEach((question, index: number) => {
+      const fieldName = `question-${++index}-${question.id}-${question.type}`; // question-stt câu hỏi-id câu hỏi-loại câu hỏi
+
+      // câu hỏi 1 đáp án
+      if (question.type === 0) {
+        ctrls[fieldName] = new FormControl('', Validators.required)
+      } else if (question.type === 1) {
+        ctrls[fieldName] = new FormArray([], Validators.required)
+      }
     })
 
     this.formAnswers = new FormGroup(ctrls);
@@ -311,14 +354,42 @@ export class CapacityExamComponent implements OnInit {
   }
 
   // lưu các câu hỏi đã trả lời
-  handleChooseAnswer(questionId: number) {
+  handleChooseAnswer(questionId: number, questionType: number, answerId?: number) {
     const exitsId = this.questionListId.some(item => item.questionId === questionId);
     
-    // nếu trong chưa có questionId
-    if (!exitsId) {
+    // nếu câu hỏi chưa trả lời và không phải câu hỏi có nhiều đáp án
+    if (!exitsId && questionType !== 1) {
       this.questionListId.push({
         questionId
       });
+    }
+
+    // câu hỏi cso nhiều đáp án
+    if (questionType === 1) {
+      const status = this.questionListId.find(item => item.questionId === questionId);
+
+      if (!status) {
+        this.questionListId.push({
+          questionId,
+          answers: [answerId]
+        })
+      } else {
+        // nếu câu hỏi đã chọn ? xóa khỏi mảng : thêm vào mảng
+        const exitsAnswerId = status.answers?.includes(answerId);
+
+        if (exitsAnswerId) {
+          const index: any = status.answers?.indexOf(answerId);
+          if (index > -1) {
+            status.answers?.splice(index, 1);
+          }
+
+          if(status.answers?.length as number <= 0) {
+            this.questionListId = this.questionListId.filter(quesItem => quesItem.questionId !== questionId);
+          }
+        } else {
+          status.answers = [...status.answers as [], answerId];
+        }
+      }
     }
   }
 
@@ -333,7 +404,7 @@ export class CapacityExamComponent implements OnInit {
   scrollToQuestion(indexQuestion: number) {
     this.questions.forEach((questionRef, index) => {
       if (indexQuestion === index) {
-        questionRef.nativeElement.scrollIntoView();
+        questionRef.nativeElement.scrollIntoView({ behavior: 'smooth' });
       }
     })
   }
@@ -551,5 +622,31 @@ export class CapacityExamComponent implements OnInit {
     }
 
     return timeExam;
+  }
+
+  // xử lý đối với câu hỏi có nhiều đáp án
+  onCheckChange(formControlName: string, event: any) {
+    const formArray: FormArray = this.formAnswers.get(formControlName) as FormArray;
+  
+    /* Selected */
+    if(event.target.checked){
+      // Add a new control in the arrayForm
+      formArray.push(new FormControl(event.target.value));
+    }
+    /* unselected */
+    else{
+      // find the unselected element
+      let i: number = 0;
+  
+      formArray.controls.forEach((ctrl) => {
+        if(ctrl.value == event.target.value) {
+          // Remove the unselected element from the arrayForm
+          formArray.removeAt(i);
+          return;
+        }
+  
+        i++;
+      });
+    }
   }
 }

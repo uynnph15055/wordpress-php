@@ -185,6 +185,11 @@
   transition: all 0.25s linear;
 }
 
+.answers__item.border-square .answer,
+.answers__item.border-square .answer__num {
+  border-radius: 6px;
+}
+
 .answer:hover .answer__num,
 .answers__input:checked ~ .answer .answer__num {
   background-color: var(--warning);
