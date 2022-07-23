@@ -8,7 +8,7 @@
       </div>
   
       <div class="text-center">
-        <p *ngIf="statusTakingExam === 1">Câu hỏi: <span class="text-red">45 câu</span>, thời gian: <span class="text-red">60 phút</span></p>
+        <p *ngIf="statusTakingExam === 1">Câu hỏi: <span class="text-red">{{ examData.questions.length }} câu</span>, thời gian: <span class="text-red">{{ examData.time_exam }} phút</span></p>
   
         <div *ngIf="statusTakingExam === 0 || statusTakingExam === 2">
           <span>Phần thi: {{ roundDetail.name }}</span>,
@@ -34,7 +34,7 @@
       <div class="row">
         <div class="col col-12 col-md-3">
           <div class="sidebar">
-            <h2 class="sidebar__title">Đề thi kiểm tra số 1</h2>
+            <h2 class="sidebar__title">{{ examData.name }}</h2>
     
             <ul class="sidebar__list m-0 p-0">
               <li class="sidebar__list-item d-flex align-items-center">
@@ -43,7 +43,7 @@
                 </div>
     
                 <div class="sidebar__list-item-text">
-                  <strong>45</strong> câu hỏi
+                  <strong>{{ examData.questions.length }}</strong> câu hỏi
                 </div>
               </li>
     
@@ -53,7 +53,7 @@
                 </div>
     
                 <div class="sidebar__list-item-text">
-                  <strong>60</strong> phút làm bài
+                  <strong>{{ examData.time_exam }}</strong> phút làm bài
                 </div>
               </li>
     
@@ -89,7 +89,7 @@
     
               <div class="question__list">
                 <!-- active câu hỏi đã làm -->
-                <div class="question__list-item" (click)="scrollToQuestion(i)" [ngClass]="{active: checkQuesAnswered(ques.id)}" *ngFor="let ques of fakeQuestionData; let i = index">
+                <div class="question__list-item" (click)="scrollToQuestion(i)" [ngClass]="{active: checkQuesAnswered(ques.id)}" *ngFor="let ques of examData.questions; let i = index">
                   <div class="question__list-item-inner">{{ i + 1 }}</div>
                 </div>
               </div>
@@ -108,7 +108,7 @@
     
         <div class="col col-12 col-md-9 question__content">
           <ul class="question__content-list">
-            <li class="question__content-item" *ngFor="let question of fakeQuestionData; let i = index" #questions>
+            <li class="question__content-item" *ngFor="let question of examData.questions; let i = index" #questions>
               <span class="question__content-item-num d-block">Câu {{ i + 1 }}:</span>
     
               <p class="question__content-item-content" [innerHTML]="question.content"></p>
