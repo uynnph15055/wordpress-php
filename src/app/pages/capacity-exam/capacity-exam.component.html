@@ -114,7 +114,7 @@
                 <div
                   class="question__list-item"
                   (click)="scrollToQuestion(i)"
-                  [ngClass]="{ active: checkQuesAnswered(ques.id) }"
+                  [ngClass]="{ active: checkQuesAnswered('question-' + (i + 1) + '-' + ques.id + '-' + ques.type) }"
                   *ngFor="let ques of examData.questions; let i = index"
                 >
                   <div class="question__list-item-inner">{{ i + 1 }}</div>
@@ -155,9 +155,9 @@
                       [value]="answer.id"
                     />
                     <label
+                      (click)="handleAutoSaveAnswer('question-' + (i + 1) + '-' + question.id + '-' + question.type)"
                       [for]="'answer-' + answer.id"
                       class="answer d-flex align-items-center"
-                      (click)="handleChooseAnswer(question.id, question.type)"
                     >
                       <span class="answer__num d-flex justify-content-center align-items-center">{{
                         (j + 10).toString(36).toUpperCase()
@@ -174,14 +174,17 @@
                       class="answers__input"
                       type="checkbox"
                       hidden
+                      [checked]="
+                        checkAnswerd('question-' + (i + 1) + '-' + question.id + '-' + question.type, answer.id)
+                      "
                       [id]="'answer-' + answer.id"
                       (change)="onCheckChange('question-' + (i + 1) + '-' + question.id + '-' + question.type, $event)"
                       [value]="answer.id"
                     />
                     <label
+                      (click)="handleAutoSaveAnswer('question-' + (i + 1) + '-' + question.id + '-' + question.type)"
                       [for]="'answer-' + answer.id"
                       class="answer d-flex align-items-center"
-                      (click)="handleChooseAnswer(question.id, question.type, answer.id)"
                     >
                       <span class="answer__num d-flex justify-content-center align-items-center">{{
                         (j + 10).toString(36).toUpperCase()

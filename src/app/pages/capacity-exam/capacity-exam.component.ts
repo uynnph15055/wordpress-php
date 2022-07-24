@@ -23,7 +23,7 @@ export class CapacityExamComponent implements OnInit {
   formAnswers!: FormGroup;
   examData!: ExamCapacity;
   // DS id câu hỏi đã trả lời
-  questionListId: { questionId: number; answers?: [number?] }[] = [];
+  // questionListId: { questionId: number; answers?: [number?] }[] = [];
   // trạng thái làm bài: 0 -> màn hình chờ làm bài, 1 -> đang làm bài, 2 -> đã nộp
   statusTakingExam: number = 0;
   roundDetail!: Round;
@@ -288,7 +288,6 @@ export class CapacityExamComponent implements OnInit {
 
   getAnswersData() {
     const answerFormData = this.formAnswers.value;
-    console.log(answerFormData);
 
     // danh sách id câu hỏi và câu trả lời
     const answersData: {
@@ -340,6 +339,30 @@ export class CapacityExamComponent implements OnInit {
     });
 
     this.formAnswers = new FormGroup(ctrls);
+
+    // check câu trả lời trong localStorage
+    const testResult = JSON.parse(localStorage.getItem("test_result") as string);
+    if (testResult && testResult.data) {
+      for (const item in testResult.data) {
+        const questionType = +item.split("-")[3];
+
+        // câu hỏi 1 đáp án
+        if (questionType === 0) {
+          this.formAnswers.patchValue({
+            [item]: testResult.data[item],
+          });
+        } else if (questionType === 1) {
+          // câu hỏi nhiều đáp án
+          const formArray: FormArray = this.formAnswers.get(item) as FormArray;
+
+          testResult.data[item].forEach((answerId: string) => {
+            formArray.push(new FormControl(answerId));
+          });
+        }
+      }
+    }
+
+    console.log("Ban đầu:", this.formAnswers.value);
   }
 
   // lấy danh sách câu hỏi chưa trả lời
@@ -358,48 +381,76 @@ export class CapacityExamComponent implements OnInit {
   }
 
   // lưu các câu hỏi đã trả lời
-  handleChooseAnswer(questionId: number, questionType: number, answerId?: number) {
-    const exitsId = this.questionListId.some((item) => item.questionId === questionId);
+  handleAutoSaveAnswer(formControlName: string) {
+    const tempValue = { ...this.formAnswers.value };
 
-    // nếu câu hỏi chưa trả lời và không phải câu hỏi có nhiều đáp án
-    if (!exitsId && questionType !== 1) {
-      this.questionListId.push({
-        questionId,
-      });
-    }
+    this.formAnswers.get(formControlName)?.valueChanges.subscribe((value) => {
+      tempValue[formControlName] = value;
+      localStorage.setItem(
+        "test_result",
+        JSON.stringify({
+          exam_id: this.examData.id,
+          data: tempValue,
+        }),
+      );
+    });
+  }
 
-    // câu hỏi cso nhiều đáp án
-    if (questionType === 1) {
-      const status = this.questionListId.find((item) => item.questionId === questionId);
+  // handleChooseAnswer(questionId: number, questionType: number, answerId?: number) {
+  //   const exitsId = this.questionListId.some((item) => item.questionId === questionId);
 
-      if (!status) {
-        this.questionListId.push({
-          questionId,
-          answers: [answerId],
-        });
-      } else {
-        // nếu câu hỏi đã chọn ? xóa khỏi mảng : thêm vào mảng
-        const exitsAnswerId = status.answers?.includes(answerId);
+  //   // nếu câu hỏi chưa trả lời và không phải câu hỏi có nhiều đáp án
+  //   if (!exitsId && questionType !== 1) {
+  //     this.questionListId.push({
+  //       questionId,
+  //     });
+  //   }
 
-        if (exitsAnswerId) {
-          const index: any = status.answers?.indexOf(answerId);
-          if (index > -1) {
-            status.answers?.splice(index, 1);
-          }
+  //   // câu hỏi cso nhiều đáp án
+  //   if (questionType === 1) {
+  //     const status = this.questionListId.find((item) => item.questionId === questionId);
 
-          if ((status.answers?.length as number) <= 0) {
-            this.questionListId = this.questionListId.filter((quesItem) => quesItem.questionId !== questionId);
-          }
-        } else {
-          status.answers = [...(status.answers as []), answerId];
+  //     if (!status) {
+  //       this.questionListId.push({
+  //         questionId,
+  //         answers: [answerId],
+  //       });
+  //     } else {
+  //       // nếu câu hỏi đã chọn ? xóa khỏi mảng : thêm vào mảng
+  //       const exitsAnswerId = status.answers?.includes(answerId);
+
+  //       if (exitsAnswerId) {
+  //         const index: any = status.answers?.indexOf(answerId);
+  //         if (index > -1) {
+  //           status.answers?.splice(index, 1);
+  //         }
+
+  //         if ((status.answers?.length as number) <= 0) {
+  //           this.questionListId = this.questionListId.filter((quesItem) => quesItem.questionId !== questionId);
+  //         }
+  //       } else {
+  //         status.answers = [...(status.answers as []), answerId];
+  //       }
+  //     }
+  //   }
+  // }
+
+  // check câu hỏi đã làm
+  checkQuesAnswered(controlName: string) {
+    let isAnswerd = false;
+    const formValues = this.formAnswers.value;
+
+    for (const item in formValues) {
+      if (item === controlName) {
+        if (Array.isArray(formValues[item]) && formValues[item].length >= 1) {
+          isAnswerd = true;
+        }
+
+        if (!Array.isArray(formValues[item]) && formValues[item]) {
+          isAnswerd = true;
         }
       }
     }
-  }
-
-  // check câu hỏi đã làm
-  checkQuesAnswered(questionId: number) {
-    const isAnswerd = this.questionListId.some((item) => item.questionId === questionId);
 
     return isAnswerd;
   }
@@ -656,5 +707,21 @@ export class CapacityExamComponent implements OnInit {
         i++;
       });
     }
+  }
+
+  // check đáp án của câu hỏi có nhiều đáp án
+  checkAnswerd(formControlNam: string, answerId: number) {
+    let isChecked = false;
+    const testResult = JSON.parse(localStorage.getItem("test_result") as string);
+
+    if (testResult && testResult.data) {
+      for (const item in testResult.data) {
+        if (item === formControlNam) {
+          isChecked = testResult.data[item].includes(answerId.toString()) ? true : false;
+        }
+      }
+    }
+
+    return isChecked;
   }
 }
