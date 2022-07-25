@@ -10,6 +10,8 @@ import { Contest } from 'src/app/models/contest';
 import { PayingLinks } from 'src/app/models/paying-links';
 import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
 import { Skill } from 'src/app/models/skill.models';
+import { ListPostService } from 'src/app/services/list-post.service';
+import { Post } from 'src/app/models/post.model';
 @Component({
   selector: 'app-recruitment',
   templateUrl: './recruitment.component.html',
@@ -19,31 +21,47 @@ export class RecruitmentComponent implements OnInit {
   companys: Array<Enterprise>;
   recruitments: Array<Recruitments>;
   recruitmentsHot: Array<Recruitments>;
-  // recruitmentPaying : Array<>
   recruitmentLinks: Array<PayingLinks>;
-  listPost: TransmitToPost = {
-    id: 0,
-    posts: [],
-    numberColumn: 4,
-  };
+  cinfigData: TransmitToPost;
+  listPostResult : Array<Post>;
 
   // -------------
   statusCompany: boolean = false;
   statusRecruitments: boolean = false;
   statusRecruitmentsHot: boolean = false;
 
-  sliderStudentPointHight = { "slidesToShow": 2, prevArrow: '.prev-student-arrow', nextArrow: '.next-student-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true };
-
-  constructor(public dialog: MatDialog, public companyService: CompanyService, public recruitmentService: RecruitmentsService) { }
+  constructor(public dialog: MatDialog,
+    public companyService: CompanyService,
+    public recruitmentService: RecruitmentsService,
+    public listPostService : ListPostService) { }
 
   recruitmentBanner = {
     "slidesToShow": 1, infinite: true, autoplay: true, arrows: true, prevArrow: '.banner-arrow-prev', nextArrow: '.banner-arrow-next', slidesToScroll: 1, fadeSpeed: 1000,
   };
 
   ngOnInit(): void {
-    this.getListRecruitment('http://127.0.0.1:8000/api/public/recruitments?recruitmentHot=nolmal');
-    this.getListRecruitmentHot('http://127.0.0.1:8000/api/public/recruitments?recruitmentHot=hot')
-  
+    this.getListRecruitment('nolmal');
+    this.getListRecruitmentHot('hot');
+    this.getListPost();
+
+     
+  }
+
+  // 
+  getListPost() {
+     this.listPostService.getPostWhereCate('post-contest').subscribe(res => {
+      if(res.status){
+        this.listPostResult = res.payload.data;
+        this.cinfigData = {
+          id: 0,
+          posts: this.listPostResult,
+          numberColumn: 4,
+        };
+        
+      }
+    })
+
+    
   }
 
   // List Recruitment
@@ -59,7 +77,7 @@ export class RecruitmentComponent implements OnInit {
   }
 
   // Get listRecruitment
-  getListRecruitmentHot(url : string){
+  getListRecruitmentHot(url: string) {
     this.recruitmentService.getAllRecruitment(url).subscribe(res => {
       if (res.status) {
         this.recruitmentsHot = res.payload.data;
@@ -69,9 +87,9 @@ export class RecruitmentComponent implements OnInit {
   }
 
   // get skill limit
-  getLimitSkill(arrSkill : Array<Skill>) : Array<Skill>{
-    let arrResult = arrSkill.filter((res , index) => {
-        return  index < 3;
+  getLimitSkill(arrSkill: Array<Skill>): Array<Skill> {
+    let arrResult = arrSkill.filter((res, index) => {
+      return index < 3;
     });
 
     return arrResult;
@@ -83,14 +101,5 @@ export class RecruitmentComponent implements OnInit {
       height: '450px',
       width: '600px',
     });
-  }
-
-
-  configArrayLink(arrayLink: Array<PayingLinks>) {
-    let arrayConfig = [];
-    arrayConfig = arrayLink.map(res => {
-      res.label.slice(0, 4);
-    })
-    return arrayConfig;
   }
 }

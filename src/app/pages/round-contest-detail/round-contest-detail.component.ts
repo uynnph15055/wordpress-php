@@ -22,6 +22,9 @@ import { SliderService } from 'src/app/services/slider.service';
 import { Slider } from 'src/app/models/slider.model';
 import { Judges } from 'src/app/models/judges.model';
 import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
+import { ListPostService } from 'src/app/services/list-post.service';
+import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
+import { Post } from 'src/app/models/post.model';
 
 @Component({
   selector: 'app-round-contest-detail',
@@ -53,7 +56,8 @@ export class RoundContestDetailComponent implements OnInit {
   nameBtnRegister: string = 'Đăng ký';
   dataResultRound: Array<ResultRound>
   sliderContest: Array<Slider>;
-
+  cinfigData: TransmitToPost;
+  listPostResult : Array<Post>;
   statusResultRound: boolean = false;
 
   roundEndTime: any;
@@ -83,13 +87,13 @@ export class RoundContestDetailComponent implements OnInit {
     private userService: UserService,
     config: NgbModalConfig, private modalService: NgbModal,
     private slider: SliderService,
+    public listPostService : ListPostService
   ) {
   }
 
   ngOnInit(): void {
-
-
     this.runTop();
+    this.getListPost();
     this.routeStateRegister = history.state.registerNow;
 
     this.route.paramMap.subscribe(params => {
@@ -106,14 +110,13 @@ export class RoundContestDetailComponent implements OnInit {
           if (res.status) {
             this.roundDetail = res.payload;
             this.roundDetail ? this.statusRoundDetail = true : false;
-            console.log(this.roundDetail);
+            // console.log(this.roundDetail);
           }
         })
 
 
       }
     })
-
 
 
     this.route.paramMap.pipe(
@@ -132,9 +135,13 @@ export class RoundContestDetailComponent implements OnInit {
 
       // Các cuộc thi liên quan
       this.contestService.getWhereMajor(this.contestDetail.major_id).subscribe(res => {
-        this.contestRelated = res.payload.data.filter((item: any, index: any) => {
-          return item.id != this.contestDetail.id && index < 4;
-        })
+        let countItem = this.generateRandomInteger(0, res.payload.data.length - 3);
+        // console.log(countItem);
+        // console.log();
+        
+        this.contestRelated = res.payload.data.slice(countItem, countItem+3);
+        // console.log(this.contestRelated);
+        
         if (this.contestRelated) {
           this.statusContestRelated = true;
         }
@@ -180,6 +187,22 @@ export class RoundContestDetailComponent implements OnInit {
     let element = document.querySelector(elementString);
     let numberScroll = element.offsetTop;
     window.scrollTo({ top: numberScroll - distanceApart, behavior: 'smooth' });
+  }
+
+  //Cac bai post
+  getListPost() {
+    this.listPostService.getPostWhereCate('post-recruitment').subscribe(res => {
+      if (res.status) {
+        this.listPostResult = res.payload.data;
+        // console.log(this.listPostResult);
+
+        this.cinfigData = {
+          id: 0,
+          posts: this.listPostResult,
+          numberColumn: 3,
+        };
+      }
+    })
   }
 
 
@@ -333,6 +356,11 @@ export class RoundContestDetailComponent implements OnInit {
         team_id: this.teamIdMemberHasJoinTeam,
       }
     });
+  }
+
+  // 
+  generateRandomInteger(min: number, max : number) {
+    return Math.floor(min + Math.random()*(max - min + 1))
   }
 }
 

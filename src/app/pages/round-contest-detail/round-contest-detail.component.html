@@ -6,9 +6,9 @@
             <div class=" contest-detail-left">
                 <div class="contest-detail-left-header row">
                     <div class="col-5 contest-detail-left-img-box">
-                        <img *ngIf="statusRoundDetail==true" [src]="roundDetail.image" alt=""
+                        <img *ngIf="roundDetail" [src]="roundDetail.image" alt=""
                             class="w-100 contest-detail-left-img">
-                        <ngx-skeleton-loader *ngIf="statusContest==false"
+                        <ngx-skeleton-loader *ngIf="!roundDetail"
                             [theme]="{ 'height' : '270px' ,'margin-left' : '-15px' , 'width' : '100%' , 'margin-bottom' : '-5px' }"
                             appearance="line">
                         </ngx-skeleton-loader>
@@ -65,6 +65,7 @@
                                 &nbsp;
                                 <p class="" *ngIf="statusJudges == false">Chưa có ban giám khảo !</p>
                                 <div *ngIf="statusJudges == true">
+                                    <!-- {{roundDetail.judges}} -->
                                     <app-list-avatar-user [listTeam]="roundDetail.judges"
                                         [titleModelName]="'Danh sách ban giám khảo'">
                                     </app-list-avatar-user>
@@ -141,7 +142,35 @@
                     <app-round-detail id="round" [roundDetail]="roundDetail" [statusRoundDetail]="statusRoundDetail">
                     </app-round-detail>
                 </div>
-
+                <div *ngIf="listPostResult" class="mt-4">
+                    <p class="fw-bold mt-2 fs-5 color-blue">Bài viết liên quan</p>
+                    <div class="title-line"></div>
+                    <app-list-post [listPost]="cinfigData"></app-list-post>
+                </div>
+                <div>
+                    <p class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</p>
+                    <div class="title-line"></div>
+                    <div class="related-contest-list row" *ngIf="statusContestRelated == true">
+                        <div *ngFor="let item of contestRelated" class="col-4">
+                            <app-contest-item [item]="item">
+                            </app-contest-item>
+                        </div>
+                    </div>
+                    <div class="related-contest-list row" *ngIf="!statusContestRelated">
+                        <div class="col-4">
+                            <app-contest-load-item>
+                            </app-contest-load-item>
+                        </div>
+                        <div class="col-4">
+                            <app-contest-load-item>
+                            </app-contest-load-item>
+                        </div>
+                        <div class="col-4">
+                            <app-contest-load-item>
+                            </app-contest-load-item>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="contest-detail-right">
@@ -203,7 +232,7 @@
                         </ngx-skeleton-loader>
                     </div>
                 </div>
-                <div *ngFor="let itemImage of sliderContest" class="mt-3">
+                <!-- <div *ngFor="let itemImage of sliderContest" class="mt-3">
                     <img [src]="itemImage.image_url" alt="" class="w-100">
                 </div>
                 <h3 class="fw-bold fs-5 color-blue my-4" *ngIf="statusResultRoundBefore == true">Vòng thi trước
@@ -232,36 +261,10 @@
                     <footer class="student-rank-footer">
                         <a href="" class="student-rank-more">Xem thêm</a>
                     </footer>
-                </div>
+                </div> -->
             </div>
         </div>
-        <div>
-            <p class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</p>
-            <div class="title-line"></div>
-            <div class="related-contest-list row" *ngIf="statusContestRelated == true">
-                <div *ngFor="let item of contestRelated" class="col-3">
-                    <app-contest-item [item]="item">
-                    </app-contest-item>
-                </div>
-            </div>
-            <div class="related-contest-list row" *ngIf="statusContestRelated == false">
-                <div class="col-3">
-                    <app-contest-load-item>
-                    </app-contest-load-item>
-                </div>
-                <div class="col-3">
-                    <app-contest-load-item>
-                    </app-contest-load-item>
-                </div>
-                <div class="col-3">
-                    <app-contest-load-item>
-                    </app-contest-load-item>
-                </div>
-                <div class="col-3">
-                    <app-contest-load-item>
-                    </app-contest-load-item>
-                </div>
-            </div>
-        </div>
+      
+     
     </div>
 </div>

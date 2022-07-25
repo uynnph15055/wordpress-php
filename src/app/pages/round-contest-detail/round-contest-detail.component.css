@@ -266,8 +266,11 @@
 
 /* COUNT DOWN */
 .contest-detail-right {
+  /* position: sticky; */
+  position: -webkit-sticky;
   position: sticky;
   top: 100px;
+  height:350px;
 }
 
 .contest-detail-right-name {

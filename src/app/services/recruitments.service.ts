@@ -13,7 +13,7 @@ export class RecruitmentsService {
 
   // Gọi ra tất cả các đặt tuyển dụng
   getAllRecruitment(url : string): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(url);
+    return this.http.get<ResponsePayload>(`${environment.recruitment}?recruitmentHot=${url}`);
   }
 
   // search recruitment
@@ -27,5 +27,5 @@ export class RecruitmentsService {
     return this.http.get<ResponsePayload>(`${environment.recruitment}/${rescruitment_id}`);
   }
 
-  
+  //Get list post width recuitment
 }

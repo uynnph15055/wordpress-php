@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Post } from 'src/app/models/post.model';
 import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
 
 @Component({
@@ -11,9 +12,12 @@ export class ListPostComponent implements OnInit {
   @Input() listPost : TransmitToPost;
   constructor() { }
 
-  
+  posts: Array<Post>;
   sliderPostNew = {};
+  
   ngOnInit(): void {
+    this.posts = this.listPost.posts;
+    // -----------
     this.sliderPostNew = {
       "slidesToShow": this.listPost.numberColumn, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
       responsive: [

@@ -120,15 +120,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <div *ngIf="item.enterprise.length > 0"
-                                            class="d-flex  justify-content-start align-items-center">
-                                            <p class="fw-bold color-blue">Doanh nghiệp :</p>
-                                            <ul class="list-company-support ml-2 d-flex align-items-center">
-                                                <li *ngFor="let enterpriseItem  of item.enterprise"><img
-                                                        [src]="enterpriseItem.logo" alt=""
-                                                        [ngbTooltip]="enterpriseItem.name"></li>
-                                            </ul>
-                                        </div>
+                                        
                                     </div>
                                     <p class="color-text">Số bài test : {{item.contest.length > 0 ? item.contest.length
                                         : '0'}}</p>
@@ -142,7 +134,7 @@
                     <ngx-skeleton-loader [theme]="{ 
                         'height.px': '170',
                         'margin-bottom' : '20'
-                      }" count="7" animation="pulse"></ngx-skeleton-loader>
+                      }" count="5" animation="pulse"></ngx-skeleton-loader>
                 </div>
                 <ul class="recruitment-paying-page-list mt-4">
                     <li *ngFor="let item of recruitmentLinks" class="recruitment-paying-page-item">
@@ -158,8 +150,10 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <h2 class="fw-bold ml-2 color-blue">Tìm hiểu doanh nghiệp</h2>
-        <app-list-post [listPost]="listPost"></app-list-post>
+    <div *ngIf="listPostResult" class="container list-post-box pb-5" >
+        <h3 class="fw-bold title text-uppercase mb-2 text-left color-blue">Tìm hiểu doanh nghiệp</h3>
+        <div class="title-line">
+        </div>
+        <app-list-post [listPost]="cinfigData"></app-list-post>
     </div>
 </div>

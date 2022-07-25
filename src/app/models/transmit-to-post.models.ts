@@ -1,5 +1,7 @@
+import { Post } from "./post.model";
+
 export class TransmitToPost {
     id: number;
-    posts : [];
+    posts : Array<Post>;
     numberColumn: number;
 }

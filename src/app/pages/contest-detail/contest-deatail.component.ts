@@ -22,6 +22,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
 import { User } from 'src/app/models/user';
 import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
+import { ListPostService } from 'src/app/services/list-post.service';
+import { Post } from 'src/app/models/post.model';
 @Component({
   selector: 'app-contest-deatail',
   templateUrl: './contest-deatail.component.html',
@@ -64,7 +66,8 @@ export class ContestDeatailComponent implements OnInit {
   statusResultRoundBefore: boolean = false;
   statusUserHasJoinContest: boolean = false;
   statusUserLogin: boolean = false;
-
+  cinfigData: TransmitToPost;
+  listPostResult : Array<Post>;
 
   days: number;
   hours: number;
@@ -75,7 +78,7 @@ export class ContestDeatailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     public dialog: MatDialog,
-
+    public listPostService : ListPostService,
     private contestService: ContestService,
     private getUserLocal: GetValueLocalService,
     private router: Router,
@@ -102,7 +105,6 @@ export class ContestDeatailComponent implements OnInit {
     ).subscribe(res => {
       if (res.status) {
         this.contestDetail = res.payload;
-
         this.contestDetail ? this.statusContest = true : this.statusContest;
         this.statusPage = false;
         this.contestDetail.enterprise;
@@ -164,6 +166,8 @@ export class ContestDeatailComponent implements OnInit {
         }, 3000);
       }
     });
+
+    this.getListPost();
   }
 
   // Thông tin đội
@@ -188,6 +192,25 @@ export class ContestDeatailComponent implements OnInit {
       });
     })
   }
+
+  //Cac bai post
+  getListPost() {
+    this.listPostService.getPostWhereCate('post-recruitment').subscribe(res => {
+     if(res.status){
+       this.listPostResult = res.payload.data;
+       console.log(this.listPostResult);
+       
+       this.cinfigData = {
+         id: 0,
+         posts: this.listPostResult,
+         numberColumn: 3,
+       };
+       
+     }
+   })
+ }
+
+
 
   // Mở model thêm đội thi
   openFormRegister(): void {

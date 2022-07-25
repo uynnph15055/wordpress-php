@@ -12,13 +12,15 @@ export class ListAvatarUserComponent implements OnInit {
   avatarTeam: Array<any>;
   round_id: number;
   @Input() listTeam: any;
+
+  
   @Input() titleModelName: String = "";
 
   constructor(private modalService: NgbModal) { }
 
 
   ngOnInit(): void {
-
+    console.log(this.listTeam);
     this.lengthTeam = this.listTeam.length;
 
     if (this.lengthTeam > 5) {
