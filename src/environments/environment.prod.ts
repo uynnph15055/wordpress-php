@@ -1,5 +1,5 @@
 // const baseApiUrl = "https://admin.svpoly.xyz/api";
-const baseApiUrl = "http://admin.svpoly.breezecandles.vn/api";
+const baseApiUrl = "https://admin.svpoly.breezecandles.vn/api";
 const authApi = `${baseApiUrl}/auth`;
 
 export const jwtApiUrl = `${baseApiUrl}/v1`;
