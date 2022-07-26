@@ -30,6 +30,9 @@ export class CapacityExamComponent implements OnInit {
   isFetchingRound = false;
   isFetchingSttExam = false;
   isFetchingExam = false;
+  isFullScreen = false;
+  // đang làm bài ? button tiếp tục : button bắt đầu
+  isContinueExam = false;
   countDownTimeExam: { minutes: number | string; seconds: number | string } = {
     minutes: "00",
     seconds: "00",
@@ -57,6 +60,11 @@ export class CapacityExamComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    
     // chặn f11
     window.addEventListener("keydown", (e: any) => {
       if (e.keyCode === 122) this.disabledEvent(e);
@@ -90,7 +98,7 @@ export class CapacityExamComponent implements OnInit {
                   // nếu đang làm ? tiếp tục làm bài
                   this.isFetchingSttExam = false;
                   if (resSttExam.status && resSttExam.payload === 0) {
-                    this.takeExam();
+                    this.isContinueExam = true;
                     console.log("đang làm", resSttExam);
                   } else if (resSttExam.status && resSttExam.payload === 1) {
                     // đã nộp bài
@@ -145,32 +153,162 @@ export class CapacityExamComponent implements OnInit {
           return;
         }
 
+        this.openFullscreen();
         this.takeExam();
+      } else {
+        this.closeFullscreen();
       }
     });
   }
 
+  handleContinueTakeExam() {
+    const confimExamRef = this.dialog.open(DialogConfirmComponent, {
+      width: "450px",
+      data: {
+        title: "Lưu ý",
+        description:
+          "Bài làm sẽ được nộp tự động sau khi hết thời gian, không thoát toàn màn hình trong quá trình làm bài!",
+        textCancel: "Thoát",
+        textOk: "Đồng ý",
+      },
+    });
+
+    confimExamRef.afterClosed().subscribe((res) => {
+      if (res === "true") {
+        this.openFullscreen();
+        this.takeExam();
+      } else {
+        this.closeFullscreen();
+      }
+    });
+  }
+
+  // takeExam() {
+  //   this.isFetchingExam = true;
+
+  //   this.roundService.takeExam({ round_id: this.roundDetail.id }).subscribe((res) => {
+  //     if (res.status) {
+  //       this.examData = {
+  //         ...res.payload,
+  //         exam_at: res.exam_at,
+  //         time_exam: this.convertTimeExamToSeconds(res.payload.time, res.payload.time_type) / 60,
+  //       };
+
+  //       setTimeout(() => {
+  //         // kích thước khi full màn hình
+  //         this.windowScreenSize = {
+  //           width: window.innerWidth,
+  //           height: window.innerHeight,
+  //         };
+
+  //         this.isFetchingExam = false;
+  //         // cập nhật trạng thái đang làm bài
+  //         this.statusTakingExam = 1;
+
+  //         this.createFormControl();
+
+  //         const durationExam = this.convertTimeExamToSeconds(this.examData.time, this.examData.time_type);
+  //         this.handleStartExam(durationExam, this.examData.exam_at);
+
+  //         // bắt sự kiện thay đổi kích thước màn hình (f11)
+  //         window.onresize = (e: any) => {
+  //           if (this.isTimeOut) return;
+
+  //           const currentWindowWidth = e.target.innerWidth;
+  //           const currentWindowHeight = e.target.innerHeight;
+
+  //           const { width, height } = this.windowScreenSize;
+
+  //           if (currentWindowWidth !== width || currentWindowHeight !== height) {
+  //             this.dialog.closeAll();
+
+  //             const dialogFullscreen = this.dialog.open(DialogConfirmComponent, {
+  //               width: "300px",
+  //               disableClose: true,
+  //               data: {
+  //                 isNotShowBtnCancel: true,
+  //                 title: "Cảnh báo",
+  //                 description: "Vui lòng bật full màn hình khi làm bài!",
+  //               },
+  //             });
+
+  //             dialogFullscreen.afterClosed().subscribe((result) => {
+  //               result === "true" && this.openFullscreen();
+  //             });
+  //           } else {
+  //             this.dialog.closeAll();
+  //           }
+  //         };
+
+  //         // chặn f12
+  //         window.onkeydown = (e: any) => this.handleDisableKeydown(e);
+
+  //         // chặn chuột phải
+  //         window.oncontextmenu = (e: any) => this.disabledEvent(e);
+  //       }, 100);
+  //       console.log(res);
+  //     }
+  //   });
+  // }
+
   takeExam() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
     this.isFetchingExam = true;
 
-    this.roundService.takeExam({ round_id: this.roundDetail.id }).subscribe((res) => {
-      if (res.status) {
-        this.examData = {
-          ...res.payload,
-          exam_at: res.exam_at,
-          time_exam: this.convertTimeExamToSeconds(res.payload.time, res.payload.time_type) / 60,
-        };
+    setTimeout(() => {
+      // kích thước khi full màn hình
+      this.windowScreenSize = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
 
-        // bật toàn màn hình
-        this.openFullscreen();
+      // bắt sự kiện thay đổi kích thước màn hình (f11)
+      window.onresize = (e: any) => {
+        if (this.isTimeOut || this.isSubmitingExam) return;
 
-        setTimeout(() => {
-          // kích thước khi full màn hình
-          this.windowScreenSize = {
-            width: window.innerWidth,
-            height: window.innerHeight,
+        const currentWindowWidth = e.target.innerWidth;
+        const currentWindowHeight = e.target.innerHeight;
+
+        const { width, height } = this.windowScreenSize;
+
+        if (currentWindowWidth !== width || currentWindowHeight !== height) {
+          this.dialog.closeAll();
+
+          const dialogFullscreen = this.dialog.open(DialogConfirmComponent, {
+            width: "300px",
+            disableClose: true,
+            data: {
+              isNotShowBtnCancel: true,
+              title: "Cảnh báo",
+              description: "Vui lòng bật full màn hình khi làm bài!",
+            },
+          });
+
+          dialogFullscreen.afterClosed().subscribe((result) => {
+            result === "true" && this.openFullscreen();
+          });
+        } else {
+          this.dialog.closeAll();
+        }
+      };
+
+      // chặn f12
+      window.onkeydown = (e: any) => this.handleDisableKeydown(e);
+
+      // chặn chuột phải
+      window.oncontextmenu = (e: any) => this.disabledEvent(e);
+
+      this.roundService.takeExam({ round_id: this.roundDetail.id }).subscribe((res) => {
+        if (res.status) {
+          this.examData = {
+            ...res.payload,
+            exam_at: res.exam_at,
+            time_exam: this.convertTimeExamToSeconds(res.payload.time, res.payload.time_type) / 60,
           };
-
+  
           this.isFetchingExam = false;
           // cập nhật trạng thái đang làm bài
           this.statusTakingExam = 1;
@@ -179,46 +317,10 @@ export class CapacityExamComponent implements OnInit {
 
           const durationExam = this.convertTimeExamToSeconds(this.examData.time, this.examData.time_type);
           this.handleStartExam(durationExam, this.examData.exam_at);
-
-          // bắt sự kiện thay đổi kích thước màn hình (f11)
-          window.onresize = (e: any) => {
-            if (this.isTimeOut) return;
-
-            const currentWindowWidth = e.target.innerWidth;
-            const currentWindowHeight = e.target.innerHeight;
-
-            const { width, height } = this.windowScreenSize;
-
-            if (currentWindowWidth !== width || currentWindowHeight !== height) {
-              this.dialog.closeAll();
-
-              const dialogFullscreen = this.dialog.open(DialogConfirmComponent, {
-                width: "300px",
-                disableClose: true,
-                data: {
-                  isNotShowBtnCancel: true,
-                  title: "Cảnh báo",
-                  description: "Vui lòng bật full màn hình khi làm bài!",
-                },
-              });
-
-              dialogFullscreen.afterClosed().subscribe((result) => {
-                result === "true" && this.openFullscreen();
-              });
-            } else {
-              this.dialog.closeAll();
-            }
-          };
-
-          // chặn f12
-          window.onkeydown = (e: any) => this.handleDisableKeydown(e);
-
-          // chặn chuột phải
-          window.oncontextmenu = (e: any) => this.disabledEvent(e);
-        }, 100);
-        console.log(res);
-      }
-    });
+          console.log(res);
+        }
+      });
+    }, 100);
   }
 
   // nộp bài
@@ -276,10 +378,26 @@ export class CapacityExamComponent implements OnInit {
     setTimeout(() => {
       this.dialog.closeAll();
 
+      
+      // reset variable
       this.statusTakingExam = 2;
       clearInterval(this.timerId);
+      this.isFetchingRound = false;
+      this.isFetchingSttExam = false;
+      this.isFetchingExam = false;
+      this.isFullScreen = false;
+      this.isContinueExam = false;
+      this.isNotiExamTimeOut = false;
+      this.isSubmitingExam = false;
+      this.isTimeOut = false;
 
+      // remove event listener
       window.onresize = () => {};
+      window.onkeydown = () => {};
+      window.oncontextmenu = () => {};
+      window.addEventListener("keydown", () => {});
+
+      localStorage.removeItem("test_result");
 
       // thoát toàn màn hình
       this.closeFullscreen();
@@ -538,6 +656,10 @@ export class CapacityExamComponent implements OnInit {
   convertMsToMinutesAndSecond(milisecond: number) {
     let minutes: string | number = Math.floor(milisecond / 60000);
     let seconds: string | number = +((milisecond % 60000) / 1000).toFixed(0);
+    if (seconds === 60) {
+      seconds = 0;
+      minutes += 1;
+    }
 
     if (minutes < 10) minutes = `0${minutes}`;
     if (seconds < 10) seconds = `0${seconds}`;
@@ -585,7 +707,7 @@ export class CapacityExamComponent implements OnInit {
     this.statusTakingExam = 0;
     this.isSubmitingExam = false;
     this.isFetchingRound = true;
-    this.router.navigate(["/test-nang-luc/vao-thi", this.roundDetail.id, "bai-thi", round_id]);
+    this.router.navigate(["/test-nang-luc/vao-thi", this.roundDetail.contest.id, "bai-thi", round_id]);
   }
 
   // open full screen
@@ -602,6 +724,8 @@ export class CapacityExamComponent implements OnInit {
       /* IE/Edge */
       this.element.msRequestFullscreen();
     }
+
+    this.isFullScreen = true;
   }
 
   /* Close fullscreen */
@@ -618,6 +742,8 @@ export class CapacityExamComponent implements OnInit {
       /* IE/Edge */
       this.document.msExitFullscreen();
     }
+
+    this.isFullScreen = false;
   }
 
   // disable event

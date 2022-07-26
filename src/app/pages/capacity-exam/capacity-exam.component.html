@@ -1,4 +1,4 @@
-<div [ngClass]="{ exam: statusTakingExam === 1 ? true : false }">
+<div [ngClass]="{ exam: statusTakingExam === 1 || isFullScreen ? true : false }">
   <div class="container my-4">
     <div class="capacity__exam-heading" *ngIf="!isFetchingRound">
       <div class="capacity__exam-heading-inner d-flex align-items-center justify-content-center">
@@ -31,13 +31,25 @@
       class="capacity__exam-description text-center"
       *ngIf="statusTakingExam === 0 && !isFetchingRound && !isFetchingSttExam && !isFetchingExam"
     >
-      <h2 class="text-center capacity__exam-description-title">
-        Hãy nhấn
-        <span class="text-uppercase text-red">bắt đầu</span>
-        để làm bài
-      </h2>
+      <!-- button bắt đầu làm bài -->
+      <div *ngIf="!isContinueExam">
+        <h2 class="text-center capacity__exam-description-title">
+          Hãy nhấn
+          <span class="text-uppercase text-red">bắt đầu</span>
+          để làm bài
+        </h2>
+      </div>
 
-      <button class="btn btn-register text-center btn-base-type-bg" (click)="handleTakeExam()">Bắt đầu</button>
+      <!-- button tiếp tục làm bài -->
+      <div *ngIf="isContinueExam">
+        <h2 class="text-center capacity__exam-description-title">
+          Bạn chưa hoàn thành bài thi. Hãy nhấn
+          <span class="text-uppercase text-red">tiếp tục</span>
+          để tiếp tục làm bài!
+        </h2>
+      </div>
+
+      <button class="btn btn-register text-center btn-base-type-bg" (click)="isContinueExam ? handleContinueTakeExam() : handleTakeExam()">{{ isContinueExam ? "Tiếp tục" : "Bắt đầu" }}</button>
     </section>
 
     <!-- loading khi đàn get dữ liệu vòng thi và check trạng thái làm bài -->
