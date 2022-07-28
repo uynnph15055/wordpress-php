@@ -11,4 +11,6 @@ export class Capacity {
   status: number;
   slug_name: string;
   rounds: Round[];
+  user_capacity_done: [] // ds user làm bài
+  skills: { name: string, short_name: string }[]
 }

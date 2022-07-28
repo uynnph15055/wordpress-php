@@ -20,7 +20,7 @@
           <i class="fa-solid fa-user-group"></i>
         </div>
 
-        891 lượt làm bài
+        {{ capacityItem.user_capacity_done.length }} lượt làm bài
       </li>
 
       <li class="capacity__related-content-list-item">
@@ -30,7 +30,7 @@
 
         <div class="capacity__related-content-list-item-skill">
           <span>Skill:</span>
-          <strong class="capacity__related-content-list-item-skill-name">php, Java, NodeJs php, Java, NodeJs php, Java, NodeJs</strong>
+          <strong class="capacity__related-content-list-item-skill-name">{{ this.skillsName }}</strong>
         </div>
       </li>
     </ul>
