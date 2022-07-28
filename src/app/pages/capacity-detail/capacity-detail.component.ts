@@ -3,10 +3,9 @@ import { CapacityService } from './../../services/capacity.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Capacity } from 'src/app/models/capacity';
-import { map, switchMap } from 'rxjs';
-import * as moment from 'moment';
 import { Round } from 'src/app/models/round.model';
 import { NgToastService } from 'ng-angular-popup';
+import { Enterprise } from 'src/app/models/enterprise.model';
 
 @Component({
   selector: 'app-capacity-detail',
@@ -18,7 +17,7 @@ export class CapacityDetailComponent implements OnInit {
   tabActive!: string;
   capacity!: Capacity;
   // bài test liên quan
-  capacityRelated!: any[];
+  capacityRelated!: Capacity[];
   isFetchingCapacity = false;
   rounds!: Round[];
   countDown: {
@@ -36,6 +35,7 @@ export class CapacityDetailComponent implements OnInit {
     status: number,
     statustext: string
   };
+  enterprises!: {id: number, name: string, logo: string}[]
 
   constructor(
     private modalService: NgbModal,
@@ -56,6 +56,14 @@ export class CapacityDetailComponent implements OnInit {
         if (res.status) {
           this.capacity = res.payload;
           this.rounds = res.payload.rounds;
+
+          // get ds doanh nghiệp, xóa DN trùng lặp
+          this.enterprises = res.payload.recruitment_enterprise.reduce((result: Enterprise[], item: Enterprise) => {
+            const exitsEnterprise = result.some(enterprice => enterprice.id === item.id);
+
+            if (!exitsEnterprise) result.push(item);
+            return result;
+          }, [])
   
           // bài test liên quan
           this.capacityService.getRelated(this.capacity.id).subscribe(response => {
