@@ -19,6 +19,7 @@ import { RoundContestDetailComponent } from './pages/round-contest-detail/round-
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
 import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
+import { PostsComponent } from './pages/posts/posts.component';
 const routes: Routes = [
   {
     path: "",
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'cuoc-thi',
         component: ContestComponent,
+      },
+      {
+        path: 'bai-viet',
+        component: PostsComponent,
       },
       {
         path: 'vao-thi/:contest_id/vong/:round_id',

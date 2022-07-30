@@ -205,7 +205,6 @@ export class ContestDeatailComponent implements OnInit {
          posts: this.listPostResult,
          numberColumn: 3,
        };
-       
      }
    })
  }
@@ -282,11 +281,5 @@ export class ContestDeatailComponent implements OnInit {
   open(content: any) {
     this.modalService.open(content, { centered: true });
   }
-
-  // 
-  statusCountResultFn(event: any) {
-    console.log(event);
-  }
-
 
 }

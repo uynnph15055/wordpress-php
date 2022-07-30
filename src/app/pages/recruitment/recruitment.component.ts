@@ -57,7 +57,6 @@ export class RecruitmentComponent implements OnInit {
           posts: this.listPostResult,
           numberColumn: 4,
         };
-        
       }
     })
 

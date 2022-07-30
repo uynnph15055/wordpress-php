@@ -15,5 +15,10 @@ export class ListPostService {
   getPostWhereCate(cate: string) :Observable<ResponsePayload>{
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=${cate}`)
   }
+
+  // Get all list post
+  getAllListPost() : Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}`);
+  }
   
 }

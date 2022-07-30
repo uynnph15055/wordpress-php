@@ -76,6 +76,7 @@ import { RecruitmentSearchComponent } from './modal/recruitment-search/recruitme
 import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 import { CapacityRelatedItemComponent } from './component/capacity-related-item/capacity-related-item.component';
 import { ListPostComponent } from './component/list-post/list-post.component';
+import { PostsComponent } from './pages/posts/posts.component';
 
 
 
@@ -120,7 +121,8 @@ import { ListPostComponent } from './component/list-post/list-post.component';
     CapacityRelatedItemComponent,
     RecruitmentSearchComponent,
     RecruitmentDetailComponent,
-    ListPostComponent
+    ListPostComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
