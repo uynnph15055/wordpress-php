@@ -175,7 +175,11 @@ export class CapacityExamComponent implements OnInit {
               this.toast.info({ summary: "Bạn chưa làm phần thi trước đó!" });
             },
           );
+          return;
         }
+
+        this.openFullscreen();
+        this.takeExam();
       }
     });
   }
