@@ -22,8 +22,6 @@ export class CapacityExamComponent implements OnInit {
   userLogged!: User;
   formAnswers!: FormGroup;
   examData!: ExamCapacity;
-  // DS id câu hỏi đã trả lời
-  // questionListId: { questionId: number; answers?: [number?] }[] = [];
   // trạng thái làm bài: 0 -> màn hình chờ làm bài, 1 -> đang làm bài, 2 -> đã nộp
   statusTakingExam: number = 0;
   roundDetail!: Round;
@@ -62,9 +60,9 @@ export class CapacityExamComponent implements OnInit {
   ngOnInit(): void {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
-    
+
     // chặn f11
     window.addEventListener("keydown", (e: any) => {
       if (e.keyCode === 122) this.disabledEvent(e);
@@ -153,10 +151,31 @@ export class CapacityExamComponent implements OnInit {
           return;
         }
 
-        this.openFullscreen();
-        this.takeExam();
-      } else {
-        this.closeFullscreen();
+        // check trạng thái pass vòng thi trước
+        const preRoundExits = this.getPreRound();
+        if (preRoundExits.status) {
+          this.isFetchingRound = true;
+          const preRoundId = preRoundExits.round_id;
+
+          this.roundService.getInfoCapacityExamRound({ round_id: preRoundId }).subscribe(
+            (response) => {
+              if (!response.status) return;
+              this.isFetchingRound = false;
+
+              if (response.payload === 0) {
+                this.toast.info({ summary: "Vui lòng hoàn thành phần thi trước đó" });
+                return;
+              }
+
+              this.openFullscreen();
+              this.takeExam();
+            },
+            () => {
+              this.isFetchingRound = false;
+              this.toast.info({ summary: "Bạn chưa làm phần thi trước đó!" });
+            },
+          );
+        }
       }
     });
   }
@@ -177,84 +196,14 @@ export class CapacityExamComponent implements OnInit {
       if (res === "true") {
         this.openFullscreen();
         this.takeExam();
-      } else {
-        this.closeFullscreen();
       }
     });
   }
 
-  // takeExam() {
-  //   this.isFetchingExam = true;
-
-  //   this.roundService.takeExam({ round_id: this.roundDetail.id }).subscribe((res) => {
-  //     if (res.status) {
-  //       this.examData = {
-  //         ...res.payload,
-  //         exam_at: res.exam_at,
-  //         time_exam: this.convertTimeExamToSeconds(res.payload.time, res.payload.time_type) / 60,
-  //       };
-
-  //       setTimeout(() => {
-  //         // kích thước khi full màn hình
-  //         this.windowScreenSize = {
-  //           width: window.innerWidth,
-  //           height: window.innerHeight,
-  //         };
-
-  //         this.isFetchingExam = false;
-  //         // cập nhật trạng thái đang làm bài
-  //         this.statusTakingExam = 1;
-
-  //         this.createFormControl();
-
-  //         const durationExam = this.convertTimeExamToSeconds(this.examData.time, this.examData.time_type);
-  //         this.handleStartExam(durationExam, this.examData.exam_at);
-
-  //         // bắt sự kiện thay đổi kích thước màn hình (f11)
-  //         window.onresize = (e: any) => {
-  //           if (this.isTimeOut) return;
-
-  //           const currentWindowWidth = e.target.innerWidth;
-  //           const currentWindowHeight = e.target.innerHeight;
-
-  //           const { width, height } = this.windowScreenSize;
-
-  //           if (currentWindowWidth !== width || currentWindowHeight !== height) {
-  //             this.dialog.closeAll();
-
-  //             const dialogFullscreen = this.dialog.open(DialogConfirmComponent, {
-  //               width: "300px",
-  //               disableClose: true,
-  //               data: {
-  //                 isNotShowBtnCancel: true,
-  //                 title: "Cảnh báo",
-  //                 description: "Vui lòng bật full màn hình khi làm bài!",
-  //               },
-  //             });
-
-  //             dialogFullscreen.afterClosed().subscribe((result) => {
-  //               result === "true" && this.openFullscreen();
-  //             });
-  //           } else {
-  //             this.dialog.closeAll();
-  //           }
-  //         };
-
-  //         // chặn f12
-  //         window.onkeydown = (e: any) => this.handleDisableKeydown(e);
-
-  //         // chặn chuột phải
-  //         window.oncontextmenu = (e: any) => this.disabledEvent(e);
-  //       }, 100);
-  //       console.log(res);
-  //     }
-  //   });
-  // }
-
   takeExam() {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
     this.isFetchingExam = true;
 
@@ -308,7 +257,7 @@ export class CapacityExamComponent implements OnInit {
             exam_at: res.exam_at,
             time_exam: this.convertTimeExamToSeconds(res.payload.time, res.payload.time_type) / 60,
           };
-  
+
           this.isFetchingExam = false;
           // cập nhật trạng thái đang làm bài
           this.statusTakingExam = 1;
@@ -378,7 +327,6 @@ export class CapacityExamComponent implements OnInit {
     setTimeout(() => {
       this.dialog.closeAll();
 
-      
       // reset variable
       this.statusTakingExam = 2;
       clearInterval(this.timerId);
@@ -514,45 +462,6 @@ export class CapacityExamComponent implements OnInit {
     });
   }
 
-  // handleChooseAnswer(questionId: number, questionType: number, answerId?: number) {
-  //   const exitsId = this.questionListId.some((item) => item.questionId === questionId);
-
-  //   // nếu câu hỏi chưa trả lời và không phải câu hỏi có nhiều đáp án
-  //   if (!exitsId && questionType !== 1) {
-  //     this.questionListId.push({
-  //       questionId,
-  //     });
-  //   }
-
-  //   // câu hỏi cso nhiều đáp án
-  //   if (questionType === 1) {
-  //     const status = this.questionListId.find((item) => item.questionId === questionId);
-
-  //     if (!status) {
-  //       this.questionListId.push({
-  //         questionId,
-  //         answers: [answerId],
-  //       });
-  //     } else {
-  //       // nếu câu hỏi đã chọn ? xóa khỏi mảng : thêm vào mảng
-  //       const exitsAnswerId = status.answers?.includes(answerId);
-
-  //       if (exitsAnswerId) {
-  //         const index: any = status.answers?.indexOf(answerId);
-  //         if (index > -1) {
-  //           status.answers?.splice(index, 1);
-  //         }
-
-  //         if ((status.answers?.length as number) <= 0) {
-  //           this.questionListId = this.questionListId.filter((quesItem) => quesItem.questionId !== questionId);
-  //         }
-  //       } else {
-  //         status.answers = [...(status.answers as []), answerId];
-  //       }
-  //     }
-  //   }
-  // }
-
   // check câu hỏi đã làm
   checkQuesAnswered(controlName: string) {
     let isAnswerd = false;
@@ -680,6 +589,26 @@ export class CapacityExamComponent implements OnInit {
         isShowLoading: true,
       },
     });
+  }
+
+  // get vòng thi trước
+  getPreRound() {
+    let preRound: { status: boolean; round_id?: number };
+    const listRound = this.roundDetail.contest.rounds;
+
+    const currentRoundIndex = listRound.findIndex((item) => item.id === this.roundDetail.id);
+    if (currentRoundIndex > 0 && listRound.length >= 2) {
+      preRound = {
+        status: true,
+        round_id: listRound[currentRoundIndex - 1].id,
+      };
+    } else {
+      preRound = {
+        status: false,
+      };
+    }
+
+    return preRound;
   }
 
   // get vòng tiếp theo
