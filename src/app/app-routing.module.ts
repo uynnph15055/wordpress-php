@@ -17,6 +17,10 @@ import { RoundComponent } from './component/round/round.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
+import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
+import { PostsComponent } from './pages/posts/posts.component';
+import { TestCapacityComponent } from './pages/test-capacity/test-capacity.component';
 const routes: Routes = [
   {
     path: "",
@@ -29,6 +33,10 @@ const routes: Routes = [
       {
         path: 'cuoc-thi',
         component: ContestComponent,
+      },
+      {
+        path: 'bai-viet',
+        component: PostsComponent,
       },
       {
         path: 'vao-thi/:contest_id/vong/:round_id',
@@ -71,14 +79,30 @@ const routes: Routes = [
       {
         path: "tuyen-dung",
         component: RecruitmentComponent,
+      },
+      {
+        path: "tuyen-dung/chi-tiet/:id",
+        component: RecruitmentDetailComponent,
+      },
+      {
+        path: "cuoc-thi/:contest_id/vong/:round_id",
+        component: RoundContestDetailComponent,
+      },
+      {
+        path: "test-nang-luc/:capacity_id",
+        component: CapacityDetailComponent,
+      },
+      {
+        path: "test-nang-luc",
+        component: TestCapacityComponent,
       }
-     
     ]
   },
   {
     path: "login",
     component: LoginComponent
   },
+
 
 ];
 

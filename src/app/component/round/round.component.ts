@@ -41,11 +41,6 @@ export class RoundComponent implements OnInit {
     return arrayImage;
   }
 
-
-
-  // Check trạng thái xòng thi
-
-
   //  Điếm số thành viên tham gia vòng thi 
   getMembers(teams: Array<Team> = []): number {
     let totalMember = 0;

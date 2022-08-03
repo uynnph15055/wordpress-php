@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 // http://127.0.0.1:8000/api
 // https://admin.svpoly.xyz/api
-const baseApiUrl = "https://admin.svpoly.xyz/api";
+const baseApiUrl = "http://127.0.0.1:8000/api";
 const authApi = `${baseApiUrl}/auth`;
 export const jwtApiUrl = `${baseApiUrl}/v1`;
 const publicApiUrl = `${baseApiUrl}/public`;
@@ -21,6 +21,7 @@ export const environment = {
   companyListUrl: `${publicApiUrl}/company`,
   recruitment: `${publicApiUrl}/recruitments`,
   capacityListUrl: `${publicApiUrl}/capacity`,
+  postListUrl: `${publicApiUrl}/posts`,
 
   // Router API V1;
   userListUrl: `${jwtApiUrl}/users`,

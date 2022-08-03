@@ -1,7 +1,7 @@
 <app-loading-page [status]="statusPage">
 </app-loading-page>
-<div class="contest-detail-box mt-4">
-    <div class="container my-4">
+<div class="contest-detail-box">
+    <div class="container py-4">
         <div class="contest-detail-header">
             <div class=" contest-detail-left">
                 <div class="contest-detail-left-header row">
@@ -123,6 +123,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="mt-4 contest-detail-section">
@@ -143,19 +144,27 @@
 
 
                 <app-list-result-round id="contest-result" *ngIf="round_id != undefined" [statusPage]="false"
-                    (statusCountResult)="statusCountResultFn($event)" [round_id]="round_id" class="mt-3">
+                     [round_id]="round_id" class="mt-3">
                 </app-list-result-round>
 
-                <app-round id="round" *ngIf="statusRound_id == false" [contestDetail]="contestDetail"
-                    [statusContest]="statusContest">
-                </app-round>
+                <div class="mt-3 content-round-page bg-white">
+                    <app-round id="round" *ngIf="statusRound_id == false" [contestDetail]="contestDetail"
+                        [statusContest]="statusContest">
+                    </app-round>
 
-                <div id="new-page" *ngIf="statusContest == true">
-                    <h5 class="fw-bold fs-5 color-blue" *ngIf="contestDetail.post_new != null">Tin tức cuộc thi</h5>
-                    <div class="new-page-img" *ngIf="contestDetail.post_new != null"
-                        [innerHTML]="contestDetail.post_new"></div>
+                    <div id="new-page" *ngIf="statusContest == true">
+                        <p class="fw-bold fs-5 color-blue" *ngIf="contestDetail.post_new != null">Tin tức cuộc thi</p>
+                        <div *ngIf="contestDetail.post_new != null" class="title-line"></div>
+                        <div class="new-page-img" *ngIf="contestDetail.post_new != null"
+                            [innerHTML]="contestDetail.post_new"></div>
+                    </div>
+
                 </div>
-
+                <div *ngIf="listPostResult" class="mt-4">
+                    <p class="fw-bold mt-2 fs-5 color-blue">Bài viết liên quan</p>
+                    <div class="title-line"></div>
+                    <app-list-post [listPost]="cinfigData"></app-list-post>
+                </div>
             </div>
 
             <div class="contest-detail-right">
@@ -193,7 +202,8 @@
                             </ul>
                             <!-- *ngIf="statusUserHasJoinContest == true"
                                 [routerLink]="['/thong-tin/cuoc-thi' , contestDetail.id , 'chi-tiet-doi' , teamIdMemberHasJoinTeam ]" -->
-                            <a style="background-color: #e67e22;margin: 10px 0px 20px 0px;" class="btn text-white"
+                            <a *ngIf=" this.statusUserHasJoinContest == true"
+                                style="background-color: #e67e22;margin: 10px 0px 20px 0px;" class="btn text-white"
                                 (click)="openInfoTeam()"><i class="fas fa-user text-white"></i> Đội của bạn</a>
                             <button (click)="openFormRegister()"
                                 [disabled]="statusCheckDate == false || statusUserHasJoinContest == true"
@@ -210,6 +220,8 @@
                         </ngx-skeleton-loader>
                         <ngx-skeleton-loader [theme]="{ 'height.px' : 20 }" appearance="line">
                         </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 50 }" appearance="line">
+                        </ngx-skeleton-loader>
                         <ngx-skeleton-loader [theme]="{ 'height.px' : 30 ,'width.px' : '80%' , 'margin-top' : '10px' } "
                             appearance="line">
                         </ngx-skeleton-loader>
@@ -218,8 +230,9 @@
                 <div *ngFor="let itemImage of sliderContest" class="mt-3">
                     <img [src]="itemImage.image_url" alt="" class="w-100">
                 </div>
-                <h3 class="fw-bold fs-5 color-blue my-4" *ngIf="statusResultRoundBefore == true">Vòng thi trước
-                </h3>
+                <p class="fw-bold fs-5 color-blue mt-4" *ngIf="statusResultRoundBefore == true">Vòng thi trước
+                </p>
+                <div *ngIf="statusResultRoundBefore == true" class="title-line mb-4"></div>
                 <div class=" list-student-rank-box border text-center" *ngIf="statusResultRoundBefore == true">
                     <header>
                         <h3 class="list-student-rank-title fw-bold pt-3 primary-color">Thiết kế website</h3>
@@ -248,9 +261,10 @@
             </div>
         </div>
         <div class="related-contest" id="related-contest" *ngIf="statusContestRelated == true">
-            <h3 *ngIf="countContestRelated == true" class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</h3>
+            <p *ngIf="countContestRelated == true" class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</p>
+            <div class="title-line"></div>
             <div class="related-contest-list row" *ngIf="countContestRelated == true">
-                <div *ngFor="let item of contestRelated" class="col-3">
+                <div *ngFor="let item of contestRelated" class="col-3 bg-white">
                     <app-contest-item [item]="item">
                     </app-contest-item>
                 </div>

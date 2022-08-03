@@ -12,6 +12,7 @@
   --warning: #F26F21;
   --title-blue: #192a56;
   --title-footer: #F26F21;
+  --bg-content : #F8F8F8;
 }
 
 ::-webkit-scrollbar {
@@ -77,6 +78,10 @@ ul {
   color: var(--primary-color-sub);
 }
 
+.color-text{
+  color: var(--text-color);
+}
+
 .color-gray {
   color: #383b3f;
 }
@@ -138,6 +143,7 @@ ul {
   height: 3px;
   background-color: var(--primary-color);
   margin-bottom: 15px;
+  margin-top: -10px;
 }
 
 .text-collapse {
@@ -162,4 +168,8 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.form-search-result{
+  text-align: center;
 }

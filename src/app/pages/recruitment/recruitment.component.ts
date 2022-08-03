@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { RecruitmentComponent as RecruitmentModal } from 'src/app/modal/recruitment/recruitment.component';
-import { RecruitmentListCompanyComponent as ModalListCompany } from 'src/app/modal/recruitment-list-company/recruitment-list-company.component';
 import { CompanyService } from 'src/app/services/company.service';
 import { Enterprise } from 'src/app/models/enterprise.model';
 import { RecruitmentsService } from 'src/app/services/recruitments.service';
 import { Recruitments } from 'src/app/models/recruitments.models';
 import { Slider } from 'src/app/models/slider.model';
+import { RecruitmentSearchComponent } from 'src/app/modal/recruitment-search/recruitment-search.component';
+import { Contest } from 'src/app/models/contest';
+import { PayingLinks } from 'src/app/models/paying-links';
+import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
+import { Skill } from 'src/app/models/skill.models';
+import { ListPostService } from 'src/app/services/list-post.service';
+import { Post } from 'src/app/models/post.model';
 @Component({
   selector: 'app-recruitment',
   templateUrl: './recruitment.component.html',
@@ -15,136 +20,85 @@ import { Slider } from 'src/app/models/slider.model';
 export class RecruitmentComponent implements OnInit {
   companys: Array<Enterprise>;
   recruitments: Array<Recruitments>;
+  recruitmentsHot: Array<Recruitments>;
+  recruitmentLinks: Array<PayingLinks>;
+  cinfigData: TransmitToPost;
+  listPostResult : Array<Post>;
 
   // -------------
   statusCompany: boolean = false;
   statusRecruitments: boolean = false;
+  statusRecruitmentsHot: boolean = false;
 
-  constructor(public dialog: MatDialog, public companyService: CompanyService, public recruitmentService: RecruitmentsService) { }
+  constructor(public dialog: MatDialog,
+    public companyService: CompanyService,
+    public recruitmentService: RecruitmentsService,
+    public listPostService : ListPostService) { }
 
-  bannerSub: Array<any> = [
-    {
-      image_url: 'https://www.wework.com/ideas/wp-content/uploads/sites/4/2017/06/Web_150DPI-20190927_10th_Floor_Conference_Room_2_v1.jpg'
-    },
-    {
-      image_url: 'https://daily.jstor.org/wp-content/uploads/2018/03/conference_room_talk_1050x700.jpg'
-    },
-    {
-      image_url: 'https://www.sage.com/en-us/blog/wp-content/uploads/sites/2/2018/04/peoplecenteredworklplace.jpg'
-    }
-  ];
-
-  sliderRecruitment = {
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    infinite: true,
-    prevArrow: '.slick-next', nextArrow: '.slick-prev',
-    dots: true,
-    autoplay: true,
-  };
-
-  // Config doanh nghiệp
-  sliderCompany = {
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    infinite: true,
-    autoplay: true,
-    prevArrow: '.slick-company-next', nextArrow: '.slick-company-prev',
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2
-        }
-      },
-      {
-        breakpoint: 586,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
-
-  sliderWordKey = {
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    infinite: true,
-    autoplay: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2
-        }
-      },
-      {
-        breakpoint: 586,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1
-        }
-      }
-    ]
+  recruitmentBanner = {
+    "slidesToShow": 1, infinite: true, autoplay: true, arrows: true, prevArrow: '.banner-arrow-prev', nextArrow: '.banner-arrow-next', slidesToScroll: 1, fadeSpeed: 1000,
   };
 
   ngOnInit(): void {
-    this.getListCompany();
-    this.getListRecruitment();
-    // this.openRecruitmentDetail(20);
-    // this.openListCompanyRecruitment();
+    this.getListRecruitment('nolmal');
+    this.getListRecruitmentHot('hot');
+    this.getListPost();
+
+     
   }
 
-  openRecruitmentDetail(rescruitment_id: number): void {
-    this.dialog.open(RecruitmentModal, {
-      // width: '500px',
-      data: {
-        rescruitment_id: rescruitment_id,
+  // 
+  getListPost() {
+     this.listPostService.getPostWhereCate('post-contest').subscribe(res => {
+      if(res.status){
+        this.listPostResult = res.payload.data;
+        this.cinfigData = {
+          id: 0,
+          posts: this.listPostResult,
+          numberColumn: 4,
+        };
       }
     })
+
+    
   }
 
-  // Gọi tất cả các doanh nghiệp
-  getListCompany() {
-    this.companyService.getAllCompany().subscribe(res => {
+  // List Recruitment
+  getListRecruitment(url: string) {
+    this.statusRecruitments = false;
+    this.recruitmentService.getAllRecruitment(url).subscribe(res => {
       if (res.status) {
-        this.companys = res.dataContest;
-
-        this.companys ? this.statusCompany = true : this.statusCompany;
-
-      }
-    })
-  }
-
-  getListRecruitment() {
-    this.recruitmentService.getAllRecruitment().subscribe(res => {
-      if (res.status) {
-        this.recruitments = res.payload;
-
+        this.recruitments = res.payload.data;
+        this.recruitmentLinks = res.payload.links;
         this.recruitments ? this.statusRecruitments = true : this.statusRecruitments;
-
       }
     })
+  }
+
+  // Get listRecruitment
+  getListRecruitmentHot(url: string) {
+    this.recruitmentService.getAllRecruitment(url).subscribe(res => {
+      if (res.status) {
+        this.recruitmentsHot = res.payload.data;
+        this.recruitmentsHot ? this.statusRecruitmentsHot = true : this.statusRecruitmentsHot;
+      }
+    })
+  }
+
+  // get skill limit
+  getLimitSkill(arrSkill: Array<Skill>): Array<Skill> {
+    let arrResult = arrSkill.filter((res, index) => {
+      return index < 3;
+    });
+
+    return arrResult;
+  }
+
+  // Open form search modal
+  openModalSearchRecruitment() {
+    this.dialog.open(RecruitmentSearchComponent, {
+      height: '450px',
+      width: '600px',
+    });
   }
 }

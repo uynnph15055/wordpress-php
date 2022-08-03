@@ -3,11 +3,10 @@
     <div class="row intro-header my-1">
         <div class="col-xl-6 col-md-12 col-sm-12">
             <div class="intro-detail-box">
-                <h2 class="text-left left-to-right fs-3 color-blue fw-bold show-on-scroll" style="margin-top:40px">Ai có
+                <h2 class="text-left fs-3 color-blue fw-bold" style="margin-top:40px">Ai có
                     thể tham gia
                     cuộc thi ?</h2>
-                <p class="pt-2 show-on-scroll lh-base left-to-right fs-6 description-software"
-                    style="text-align:justify ">Lorem Phát
+                <p class="pt-2  lh-base fs-6 description-software" style="text-align:justify ">Lorem Phát
                     biểu với báo
                     giới sau
                     cuộc hòa đàm với
@@ -23,8 +22,8 @@
         </div>
         <div class="col-xl-6 col-md-12 col-sm-12">
             <span class="">
-                <img style="margin-top: 30px;" src="./../../../assets/img/image 407.svg"
-                    class="w-100 text-center right-to-left show-on-scroll" alt="">
+                <img style="margin-top: 30px;" src="./../../../assets/img/image 407.svg" class="w-100 text-center"
+                    alt="">
             </span>
         </div>
     </div>
@@ -35,10 +34,10 @@
         </div>
     </div>
     <div class="row benefit-join-box">
-        <div class="col-md-6 col-xl-4 col-sm-12 show-on-scroll left-to-right">
+        <div class="col-md-6 col-xl-4 col-sm-12 ">
             <span>
                 <img src="./../../../assets/img/image 408.svg" alt="" class="w-100 text-center">
-                <p class="mt-2 lh-base description-software text-justify">Lorem ipsum dolor sit amet consectetur
+                <p class="mt-2 text-justify">Lorem ipsum dolor sit amet consectetur
                     adipisicing elit.
                     Molestias voluptatum,
                     suscipit
@@ -46,12 +45,12 @@
                     beatae dolore asperiores corrupti laboriosam quis eum.</p>
             </span>
         </div>
-        <div class="col-md-6 col-xl-4 col-sm-12 show-on-scroll zoom">
+        <div class="col-md-6 col-xl-4 col-sm-12">
             <span>
                 <div class="text-center">
                     <img src="./../../../assets/img/image 409.svg" alt="" style="width: 65%;" class="">
                 </div>
-                <p class="mt-2 lh-base description-software text-justify">Lorem ipsum dolor sit amet consectetur
+                <p class="mt-2 text-justify">Lorem ipsum dolor sit amet consectetur
                     adipisicing elit.
                     Molestias voluptatum,
                     suscipit
@@ -59,10 +58,10 @@
                     beatae dolore asperiores corrupti laboriosam quis eum.</p>
             </span>
         </div>
-        <div class="col-md-6 col-xl-4 col-sm-12 show-on-scroll right-to-left">
+        <div class="col-md-6 col-xl-4 col-sm-12">
             <span>
                 <img src="./../../../assets/img/image 410.svg" alt="" class="w-100 text-center">
-                <p class="mt-2 lh-base description-software text-justify">Lorem ipsum dolor sit amet consectetur
+                <p class="mt-2 text-justify">Lorem ipsum dolor sit amet consectetur
                     adipisicing elit.
                     Molestias voluptatum,
                     suscipit
@@ -107,19 +106,19 @@
         <div class="title-line">
         </div>
     </div>
-    <div class="contest-list position-relative" *ngIf="contests.length > 0">
-        <div class="prev-arrow arrow-list-contest lick-arrow">
+    <div *ngIf="contests" class="contest-list position-relative">
+        <div class="prev-arrow arrow-list-contest slick-arrow">
             <i class="fas fa-chevron-left"></i>
         </div>
         <ngx-slick-carousel class="carousel row slick-list-contest row" [config]="sliderContest">
             <app-contest-item ngxSlickItem *ngFor="let item of contests" class="col-3 contest-item" [item]="item">
             </app-contest-item>
         </ngx-slick-carousel>
-        <div class="next-arrow arrow-list-contest lick-arrow">
+        <div class="next-arrow arrow-list-contest slick-arrow">
             <i class="fas fa-chevron-right"></i>
         </div>
     </div>
-    <div *ngIf="statusContest == 'pending'" class="d-flex justify-content-center mb-3">
+    <div *ngIf="!contests" class="d-flex justify-content-center mb-3">
         <div class="contest-loading-desktop container">
             <div class="row">
                 <app-contest-load-item class="col-3">
@@ -159,8 +158,9 @@
     <div class="container  py-4">
         <h4 class="text-center mb-3 title-student-point text-white">SINH VIÊN CÓ THÀNH TÍCH XUẤT SẮC</h4>
         <div class="d-flex justify-content-center">
-            <nz-select [(ngModel)]="selectedMajor" (nzScrollToBottom)="loadMore()" [nzPlaceHolder]="nameSelectMajor"
-                nzAllowClear [nzDropdownRender]="renderTemplate" (ngModelChange)="getResultWhereMajor($event)">
+            <nz-select [(ngModel)]="selectedMajor" (ngModelChange)="getResultWhereMajor($event)"
+                (nzScrollToBottom)="loadMore()" nzAllowClear [nzDropdownRender]="renderTemplate"
+                [nzPlaceHolder]="nameSelectMajor">
                 <nz-option *ngFor="let o of majors" [nzValue]="o.slug" [nzLabel]="o.name">
                     {{o}}
                 </nz-option>
@@ -171,22 +171,39 @@
         </div>
 
         <div class="list-student-point-hight  mt-3">
-            <div *ngIf="statusResultMajor == false"
-                class="d-flex justify-content-center loading-student-rank-box align-items-center">
-                <div *ngIf="countMajor == false" class="loading-student-rank"></div>
-                <div *ngIf="countMajor == true" class="">
+            <div *ngIf="!statusResult" class="d-flex justify-content-center loading-student-rank-box align-items-center">
+                <div *ngIf="!loadingResultContest" class="loading-student-rank"></div>
+                <div *ngIf="loadingResultContest" class="">
                     <p class="text-white">Kết quả chưa được cập nhật!!!</p>
                 </div>
             </div>
-            <ngx-slick-carousel *ngIf="statusResultMajor == true" class="carousel row slick-slide-student"
+            <ngx-slick-carousel *ngIf="statusResult" class="carousel row slick-slide-student"
                 [config]="sliderStudentPointHight">
                 <div ngxSlickItem *ngFor="let itemStu of resultMajor" class="student-point-item slide">
                     <div class="student-point-item-in text-center">
                         <img class="student-point-avatar text-center" [src]="itemStu.user.avatar" alt="">
                         <div *ngIf="itemStu.rank < 4" class="d-flex justify-content-center align-items-center">
                             <img class="mt-3" [ngStyle]=" {'width' : '50px' , 'height' : '50px' , 'object-fit' : 'cover'
-                            , 'border-radius' : '50px' }" [src]="itemStu.rank == 1 ? './../../../assets/img/4.png' : itemStu.rank == 2 ?
-                            './../../../assets/img/5.png' : './../../../assets/img/6.png'" alt="">
+                        , 'border-radius' : '50px' }" [src]="itemStu.rank == 1 ? './../../../assets/img/4.png' : itemStu.rank == 2 ?
+                        './../../../assets/img/5.png' : './../../../assets/img/6.png'" alt="">
+                        </div>
+                        <div *ngIf="itemStu.rank > 4 || itemStu.rank == 4" class="student-rank">{{itemStu.rank}}</div>
+                        <p class="student-ponit-number fs-4 my-4"><i class="fas fa-star"></i> <span class="fs-5">
+                                {{itemStu.reward_point}}</span>
+                        </p>
+                        <h4 class="student-name">
+                            {{itemStu.user.name}}
+                        </h4>
+
+                    </div>
+                </div>
+                <div ngxSlickItem *ngFor="let itemStu of resultMajor" class="student-point-item slide">
+                    <div class="student-point-item-in text-center">
+                        <img class="student-point-avatar text-center" [src]="itemStu.user.avatar" alt="">
+                        <div *ngIf="itemStu.rank < 4" class="d-flex justify-content-center align-items-center">
+                            <img class="mt-3" [ngStyle]=" {'width' : '50px' , 'height' : '50px' , 'object-fit' : 'cover'
+                        , 'border-radius' : '50px' }" [src]="itemStu.rank == 1 ? './../../../assets/img/4.png' : itemStu.rank == 2 ?
+                        './../../../assets/img/5.png' : './../../../assets/img/6.png'" alt="">
                         </div>
                         <div *ngIf="itemStu.rank > 4 || itemStu.rank == 4" class="student-rank">{{itemStu.rank}}</div>
                         <p class="student-ponit-number fs-4 my-4"><i class="fas fa-star"></i> <span class="fs-5">
@@ -222,9 +239,6 @@
 
 
         <div class="assess-content-box position-relative">
-            <!-- <div class="prev-compacity-arrow arrow-list-compacity slick-slider">
-                <i class="fas fa-chevron-left"></i>
-            </div> -->
             <ngx-slick-carousel class="carousel" [config]="sliderAssessCompacity">
                 <div class="d-flex" ngxSlickItem>
                     <div class="col-7 assess-content-left">
@@ -308,9 +322,6 @@
                     </div>
                 </div>
             </ngx-slick-carousel>
-            <!-- <div class="next-compacity-arrow arrow-list-compacity slick-slider">
-                <i class="fas fa-chevron-right"></i>
-            </div> -->
         </div>
 
 

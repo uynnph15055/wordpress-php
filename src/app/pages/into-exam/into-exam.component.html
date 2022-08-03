@@ -5,10 +5,10 @@
         <div class="row warper-into-exam-row">
             <div class="col-9  warper-info-contest">
                 <div class="info-contest-header pb-2 row" *ngIf="statusInfo == false">
-                    <div class="col-4 text-center ">
+                    <div class="col-4 mt-2 text-center ">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTudQwuYh8aQKOOByIe4hFX9ZWYCcF20aSfA&usqp=CAU"
                             alt="" class="info-contest-img">
-                        <p class="primary-color fw-bold fs-5">Vòng: {{roundDetail.name}}</p>
+                        <p class="primary-color fw-bold fs-6">Vòng: {{roundDetail.name}}</p>
                         <p class="fw-bold fs-text color-gray d-flex justify-content-center align-items-center">Số đội:
                             &nbsp;
                             <i class="fas fa-users d-block primary-color"></i>
@@ -20,10 +20,8 @@
                     </div>
                     <div class="col-8 mt-3">
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="color-gray color-blue  fs-text fw-bold"><i
-                                    class="fas -3 fa-clock contest-date-open-end"></i> &nbsp;
-                                <span class=" fw-normal">{{roundDetail.start_time |
-                                    formatDate}} - {{roundDetail.end_time |
+                            <p class="color-gray color-blue  fs-text fw-bold">Hạn nộp:
+                                <span class=" fw-normal">{{roundDetail.end_time |
                                     formatDate}}</span>
                             </p>
                             <button mat-icon-button color="warn" class="btn-copy-link" [matMenuTriggerFor]="menu"><i
@@ -43,14 +41,6 @@
                         <div class="d-flex justify-content-start align-items-center">
                             <p class="fw-bold fs-text color-gray">Ban giám khảo :
                             </p>
-                            &nbsp;
-                            &nbsp;
-                            <!-- <p class="" *ngIf="roundDetail.judges.length == 0">Chưa có ban giám khảo !</p>
-                            <div *ngIf="roundDetail.judges.length > 0">
-                                <app-list-avatar-user [listTeam]="roundDetail.judges"
-                                    [titleModelName]="'Danh sách ban giám khảo'">
-                                </app-list-avatar-user>
-                            </div> -->
                         </div>
                         <div class="button" (click)="downloadExam()">
                             <div class="button-wrapper">
@@ -66,26 +56,6 @@
                                 </span>
                             </div>
                         </div>
-                        <ng-template #content let-modal>
-                            <div class="modal-header">
-                                <h2 class="modal-title color-blue fw-bold">Vòng thi: <span class="text-dark">Vòng gửi xe
-                                        thứ nhất</span></h2>
-                                <p (click)="modal.dismiss('Cross click')"><i style="cursor:pointer;"
-                                        class="fs-4 fas fa-times"></i></p>
-                            </div>
-                            <div class="modal-body">
-                                <h3 class="fs-5 fw-bold">Đề bài :</h3>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab, cumque maxime. Minus ex
-                                    molestiae enim animi nostrum, eos voluptates maxime eveniet? Nobis, et! Rerum,
-                                    repudiandae consectetur commodi assumenda incidunt blanditiis.</p>
-                                <img src="https://khoanh24.com/uploads/w300//2018/10/01/banner5bb1cf7c142bc_89b94307293f5d03c07acf12f57862dc.jpg"
-                                    alt="">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" mat-raised-button
-                                    (click)="modal.close('Close click')">Đóng</button>
-                            </div>
-                        </ng-template>
                     </div>
                 </div>
                 <div class="row py-3 info-contest-header" *ngIf="statusInfo == true">
@@ -103,20 +73,19 @@
                         </ngx-skeleton-loader>
                     </div>
                 </div>
-                <h5 class="fw-bold fs-5 color-blue pt-3">Đội của bạn</h5>
+                <p class="fw-bold fs-5 color-blue pt-3">Đội của bạn</p>
+                <div class="title-line"></div>
                 <div class="my-3 bg-white team-detail-box pb-3">
                     <div *ngIf="statusTeamDetail == true" style="border-radius: 10px;">
 
                         <div class="info-your-team text-center" ngbTooltip="Xem chi tiết">
-                            <div class="p-3 bg-white">
+                            <div (click)="openInfoTeamDetail()" class="p-3 bg-white">
                                 <img class="info-your-team-avatar" [src]="teamDetail.image" alt="">
                                 <h3 class="fw-bold mt-3 color-blue">{{teamDetail.name}}</h3>
                                 <p> <i class="fas fa-users primary-color"></i> {{teamDetail.members.length}}</p>
                             </div>
                         </div>
-
                         <table mat-table class="w-100" [dataSource]="teamDetail.members">
-
                             <div class=" example-table-container">
                                 <ng-container matColumnDef="index">
                                     <th mat-header-cell *matHeaderCellDef class="text-center table-member-th"> STT </th>
@@ -174,7 +143,7 @@
             </div>
             <div class="col-3">
                 <div class="warper-submit-assignment">
-                    <div class="p-3">
+                    <div *ngIf="statusInfo == false" class="p-3">
                         <mat-progress-bar *ngIf="statusClickSubmit == true" color="warn" mode="indeterminate">
                         </mat-progress-bar>
                         <h3 class="fw-bold fs-5">Nộp bài</h3>
@@ -213,14 +182,14 @@
                         <!-- <a style="width:100%" class="btn mt-3 btn-register w-100'">Gỡ
                             bài làm</a> -->
                         <ng-template #submit let-modal>
+                            <mat-progress-bar *ngIf="statusSubmitExam ==  false" color="warn" mode="indeterminate">
+                            </mat-progress-bar>
                             <div class="modal-header">
                                 <h3 class="modal-title fw-bold">Sinh viên nộp bài tại đây
                                 </h3>
                                 <p (click)="modal.dismiss('Cross click')"><i style="cursor:pointer ;"
                                         class="fs-4 fas fa-times"></i></p>
                             </div>
-                            <mat-progress-bar *ngIf="statusSubmitExam ==  false" color="warn" mode="indeterminate">
-                            </mat-progress-bar>
                             <div class="modal-body">
                                 <mat-tab-group animationDuration="0ms">
                                     <mat-tab color="warn" [disabled]="assignmentLinks" label="Tải file">
@@ -241,7 +210,8 @@
                                 <div *ngIf="assignmentFiles" class="d-flex justify-content-start align-items-center">
                                     <div class=" btn-base-type-bg w-25 text-center number-files-upload">
                                         1 file </div>
-                                    <p class="btn-remove-ass" (click)="removeAssFile()"><i class="fas fa-times"></i></p>
+                                    <p class="btn-remove-ass" (click)="removeAssFile()"><i style="cursor:pointer;"
+                                            class="fas fa-times"></i></p>
                                 </div>
                                 &nbsp;&nbsp;
                                 <div *ngIf="assignmentLinks" class="d-flex justify-content-start align-items-center">
@@ -263,9 +233,23 @@
                             </div>
                         </ng-template>
                     </div>
+                    <div class="p-3">
+                        <ngx-skeleton-loader *ngIf="statusInfo == true" [theme]="{ 'height' : '30px'}"
+                            appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader *ngIf="statusInfo == true" [theme]="{ 'height' : '50px'}"
+                            appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader *ngIf="statusInfo == true" [theme]="{ 'height' : '50px'}"
+                            appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader *ngIf="statusInfo == true" [theme]="{ 'height' : '50px'}"
+                            appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
                 </div>
-                <div class=" node-submit-assignment mt-4 bg-white">
-                    <p class="p-3 color-gray">Lưu ý : Sinh viên hoàn thành bài và nộp đúng thời hạn ,
+                <div class=" node-submit-assignment mt-5 bg-white">
+                    <p class="p-3  color-gray">Lưu ý : Sinh viên hoàn thành bài và nộp đúng thời hạn ,
                         các bài làm nộp muộn
                         sẽ không
                         được chấp nhận

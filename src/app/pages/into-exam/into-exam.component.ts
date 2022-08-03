@@ -14,6 +14,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { TakeExam } from 'src/app/models/take-exam.model';
 import { NgToastService } from 'ng-angular-popup';
 import { Round } from 'src/app/models/round.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
 
 @Component({
   selector: 'app-into-exam',
@@ -52,7 +54,8 @@ export class IntoExamComponent implements OnInit {
     private router: Router,
     private teamService: TeamService,
     private roundService: RoundService,
-    private toast: NgToastService) { }
+    private toast: NgToastService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     // Chi tiết cuộc thi
@@ -162,6 +165,7 @@ export class IntoExamComponent implements OnInit {
       }
     }, 3000);
     this.assignment = resultExam;
+    console.log(this.assignment);
   }
 
   // Nộp bài bằng link
@@ -200,16 +204,6 @@ export class IntoExamComponent implements OnInit {
     }, 3000);
   }
 
-  // Hủy bài làm
-  // deleteExam() {
-  //   // this.statusSubmitExam = false;
-  //   let resultExam = {
-  //     result_url: '',
-  //     id: this.infoExam.id,
-  //   }
-  //   this.submitExam(resultExam);
-  // }
-
   submitExam() {
     this.statusClickSubmit = true;
     this.roundService.submitExam(this.assignment).subscribe(res => {
@@ -226,6 +220,18 @@ export class IntoExamComponent implements OnInit {
   copyLinkUrl() {
     navigator.clipboard.writeText(window.location.href);
     this.toast.info({ summary: 'Đã copy !!!', duration: 5000 });
+  }
+
+  // Thông tin chi tiết của đội thi
+  openInfoTeamDetail() {
+    this.dialog.open(ModalInfoTeamComponent, {
+      width: '900px',
+      data: {
+        statusExam: true,
+        contest_id: this.contestId,
+        team_id: this.teamDetail.id,
+      }
+    })
   }
 
   displayedColumns: string[] = ['index', 'name', 'avatar', 'email', 'bot'];

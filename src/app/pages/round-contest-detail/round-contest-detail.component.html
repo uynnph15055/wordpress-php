@@ -1,14 +1,14 @@
 <app-loading-page [status]="statusIntoExam">
 </app-loading-page>
 <div class=" contest-detail-box ">
-    <div class=" container my-4">
+    <div class=" container py-4">
         <div class="contest-detail-header">
             <div class=" contest-detail-left">
                 <div class="contest-detail-left-header row">
                     <div class="col-5 contest-detail-left-img-box">
-                        <img *ngIf="statusContest==true" [src]="roundDetail.image" alt=""
+                        <img *ngIf="roundDetail" [src]="roundDetail.image" alt=""
                             class="w-100 contest-detail-left-img">
-                        <ngx-skeleton-loader *ngIf="statusContest==false"
+                        <ngx-skeleton-loader *ngIf="!roundDetail"
                             [theme]="{ 'height' : '270px' ,'margin-left' : '-15px' , 'width' : '100%' , 'margin-bottom' : '-5px' }"
                             appearance="line">
                         </ngx-skeleton-loader>
@@ -65,6 +65,7 @@
                                 &nbsp;
                                 <p class="" *ngIf="statusJudges == false">Chưa có ban giám khảo !</p>
                                 <div *ngIf="statusJudges == true">
+                                    <!-- {{roundDetail.judges}} -->
                                     <app-list-avatar-user [listTeam]="roundDetail.judges"
                                         [titleModelName]="'Danh sách ban giám khảo'">
                                     </app-list-avatar-user>
@@ -118,64 +119,58 @@
 
                 <div class="mt-4 contest-detail-section">
                     <div class="example-button-row p-2">
-                        <button (click)="scrollWin(400)" mat-button class="example-button-item">Xếp
+                        <button mat-button (click)="scrollWin('#round' , 100)" class="example-button-item fw-bold">Xếp
                             hạng</button>
-                        <button (click)="scrollWin(1420)" mat-button class="example-button-item">Vòng
-                            thi</button>
-                        <button (click)="scrollWin(1820)" mat-button class="example-button-item">Tin
+                        <button (click)="scrollWin('#round' , 100)" mat-button class="example-button-item fw-bold">Các
+                            đội</button>
+                        <button *ngIf="statusContest == true && contestDetail.post_new != null"
+                            (click)="scrollWin('#new-page' , 200)" mat-button class="example-button-item fw-bold">Tin
                             tức</button>
-                        <button (click)="scrollWin(2600)" mat-button class="example-button-item">Cuộc thi liên
+                        <button (click)="scrollWin('#related-contest' , 200 )" mat-button
+                            class="example-button-item fw-bold">Cuộc thi
+                            liên
                             quan</button>
                     </div>
                 </div>
 
 
-                <app-list-result-round [statusPage]="true" [round_id]="round_id" class="mt-3">
-                </app-list-result-round>
+                <!-- <app-list-result-round [statusPage]="true" [round_id]="round_id" class="mt-3">
+                </app-list-result-round> -->
 
 
-                <app-round-detail [roundDetail]="roundDetail" [statusRoundDetail]="statusRoundDetail">
-                </app-round-detail>
-                <!-- <div class="supporters-box">
-                <h5 class="fw-bold fs-5 color-blue">Các nhà tài trợ</h5>
-                <div class="supporters-arrow-left arrow-list-supporter ">
-                    <i class="fas fa-long-arrow-left"></i>
+                <div class="mt-3 content-round-page bg-white">
+                    <app-round-detail id="round" [roundDetail]="roundDetail" [statusRoundDetail]="statusRoundDetail">
+                    </app-round-detail>
                 </div>
-                <ngx-slick-carousel class="carousel row slick-list-supporter row" [config]="sliderSupporter">
-                    <div ngxSlickItem class="col-4">
-                        <img alt="">
+                <div *ngIf="listPostResult" class="mt-4">
+                    <p class="fw-bold mt-2 fs-5 color-blue">Bài viết liên quan</p>
+                    <div class="title-line"></div>
+                    <app-list-post [listPost]="cinfigData"></app-list-post>
+                </div>
+                <div>
+                    <p class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</p>
+                    <div class="title-line"></div>
+                    <div class="related-contest-list row" *ngIf="statusContestRelated == true">
+                        <div *ngFor="let item of contestRelated" class="col-4">
+                            <app-contest-item [item]="item">
+                            </app-contest-item>
+                        </div>
                     </div>
-                </ngx-slick-carousel>
-                <div class="supporters-arrow-right arrow-list-supporter ">
-                    <i class="fas fa-long-arrow-right"></i>
+                    <div class="related-contest-list row" *ngIf="!statusContestRelated">
+                        <div class="col-4">
+                            <app-contest-load-item>
+                            </app-contest-load-item>
+                        </div>
+                        <div class="col-4">
+                            <app-contest-load-item>
+                            </app-contest-load-item>
+                        </div>
+                        <div class="col-4">
+                            <app-contest-load-item>
+                            </app-contest-load-item>
+                        </div>
+                    </div>
                 </div>
-            </div> -->
-
-                <div id="new-page" *ngIf="statusRound_id == false">
-                    <h5 class="fw-bold fs-5 color-blue">Tin tức cuộc thi</h5>
-                    <p class="color-gray p-justify fs-text"></p>
-                    <p class="color-gray p-justify fs-text">Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                        Dolorum,
-                        ad nesciunt. Earum necessitatibus,
-                        perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas
-                        veritatis. Rem
-                        quam
-                        beatae alias
-                        laboriosam tenetur.</p>
-                    <img src="https://caodang.fpt.edu.vn/wp-content/uploads/IMG_5572-ok.jpg" alt="" class="w-100">
-                    <p class="color-gray p-justify fs-text mt-3">Lorem ipsum dolor, sit amet consectetur
-                        adipisicing
-                        elit.
-                        Dolorum,
-                        ad nesciunt. Earum necessitatibus,
-                        perspiciatis dicta eaque magni, eveniet neque autem obcaecati commodi voluptas
-                        veritatis. Rem
-                        quam
-                        beatae alias
-                        laboriosam tenetur.</p>
-                </div>
-
             </div>
 
             <div class="contest-detail-right">
@@ -212,14 +207,13 @@
                                     <p class="text-center">Giây</p>
                                 </div>
                             </ul>
-                            <a *ngIf="statusUserHasJoinContest == true"
-                                [routerLink]="['/thong-tin/cuoc-thi' , contestDetail.id , 'chi-tiet-doi' , teamIdMemberHasJoinTeam ]"
-                                style="background-color: #e67e22;margin: 10px 0px 10px 0px;" class="btn text-white"><i
-                                    class="fas fa-user text-white"></i> Đội của bạn</a>
+                            <a *ngIf=" this.statusUserHasJoinContest == true"
+                                style="background-color: #e67e22;margin: 10px 0px 20px 0px;" class="btn text-white"
+                                (click)="openInfoTeam()"><i class="fas fa-user text-white"></i> Đội của bạn</a>
                             <button (click)="openFormRegister()"
                                 [disabled]="statusCheckDate == false || statusUserHasJoinContest == true"
-                                [ngClass]=" statusCheckDate==false ? 'btn mt-3 btn-register-disable w-100'
-                            : statusUserHasJoinContest == true ? 'btn btn-success mt-3 w-100' : ' btn contest-detail-register-btn mt-3 btn-register w-100' ">{{statusCheckDate
+                                [ngClass]=" statusCheckDate==false ? 'btn btn-register-disable w-100'
+                            : statusUserHasJoinContest == true ? 'btn btn-success w-100' : ' btn contest-detail-register-btn  btn-register w-100' ">{{statusCheckDate
                                 == false ? 'Hết hạn đăng ký' :
                                 statusUserHasJoinContest == true ? 'Đã tham gia' : 'Đăng ký'}}</button>
                         </div>
@@ -238,7 +232,7 @@
                         </ngx-skeleton-loader>
                     </div>
                 </div>
-                <div *ngFor="let itemImage of sliderContest" class="mt-3">
+                <!-- <div *ngFor="let itemImage of sliderContest" class="mt-3">
                     <img [src]="itemImage.image_url" alt="" class="w-100">
                 </div>
                 <h3 class="fw-bold fs-5 color-blue my-4" *ngIf="statusResultRoundBefore == true">Vòng thi trước
@@ -267,35 +261,10 @@
                     <footer class="student-rank-footer">
                         <a href="" class="student-rank-more">Xem thêm</a>
                     </footer>
-                </div>
+                </div> -->
             </div>
         </div>
-        <div>
-            <h3 class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</h3>
-            <div class="related-contest-list row" *ngIf="statusContestRelated == true">
-                <div *ngFor="let item of contestRelated" class="col-3">
-                    <app-contest-item [item]="item">
-                    </app-contest-item>
-                </div>
-            </div>
-            <div class="related-contest-list row" *ngIf="statusContestRelated == false">
-                <div class="col-3">
-                    <app-contest-load-item>
-                    </app-contest-load-item>
-                </div>
-                <div class="col-3">
-                    <app-contest-load-item>
-                    </app-contest-load-item>
-                </div>
-                <div class="col-3">
-                    <app-contest-load-item>
-                    </app-contest-load-item>
-                </div>
-                <div class="col-3">
-                    <app-contest-load-item>
-                    </app-contest-load-item>
-                </div>
-            </div>
-        </div>
+      
+     
     </div>
 </div>

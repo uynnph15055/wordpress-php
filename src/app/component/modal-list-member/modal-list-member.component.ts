@@ -37,18 +37,29 @@ export class ModalListMemberComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const data = {
-      key: this.keyWord
-    }
-
+    this.searchMembers();
     this.contestService.getWhereId(this.contestId).subscribe(res => {
       this.max_user = res.payload.max_user;
     })
 
+  }
 
+  // Set keyword seachMembers
+  setValueSearchMember(event: any) {
+    this.keyWord = event.target.value;
+  }
+
+  // Tìm kiếm thành viên
+  searchMembers() {
+    this.statusArrayMember = false;
+    this.statusResultMembers = false;
+    const data = {
+      key: this.keyWord
+    }
     this.teamService.searchMembers(this.contestId, data).subscribe(res => {
       if (res.status == true) {
         this.arrayMembers = res.payload;
+
         if (this.arrayMembers) {
           this.statusArrayMember = true;
           if (this.arrayMembers.length == 0) {
@@ -108,9 +119,6 @@ export class ModalListMemberComponent implements OnInit {
     return this.arrayMembers.every(res => res.checked)
   }
 
-  searchMember(event: any) {
-    console.log(event.target.value);
-  }
 
   displayedColumns: string[] = ['index', 'name', 'img', 'email', 'check-box'];
 

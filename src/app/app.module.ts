@@ -62,9 +62,8 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { RecruitmentComponent as RecruitmentComponentModal } from './modal/recruitment/recruitment.component';
+
 import { ModalInfoTeamComponent } from './modal/modal-info-team/modal-info-team.component';
-import { RecruitmentListCompanyComponent } from './modal/recruitment-list-company/recruitment-list-company.component';
 // import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
 registerLocaleData(en);
@@ -72,6 +71,13 @@ registerLocaleData(en);
 
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
+import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+import { RecruitmentSearchComponent } from './modal/recruitment-search/recruitment-search.component';
+import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
+import { CapacityRelatedItemComponent } from './component/capacity-related-item/capacity-related-item.component';
+import { ListPostComponent } from './component/list-post/list-post.component';
+import { PostsComponent } from './pages/posts/posts.component';
+
 
 
 @NgModule({
@@ -104,15 +110,18 @@ import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.co
     ListResultRoundComponent,
     RoundContestDetailComponent,
     LoadingPageComponent,
-
     HeaderComponent,
     FooterComponent,
     RecruitmentComponent,
-    RecruitmentComponentModal,
     ModalInfoTeamComponent,
-    RecruitmentListCompanyComponent,
     CapacityExamComponent,
     DialogConfirmComponent,
+    CapacityDetailComponent,
+    CapacityRelatedItemComponent,
+    RecruitmentSearchComponent,
+    RecruitmentDetailComponent,
+    ListPostComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
