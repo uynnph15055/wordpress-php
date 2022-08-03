@@ -18,12 +18,7 @@ export class BannerComponent implements OnInit {
       if (res.status) {
         this.banner = res.payload;
         this.banner ? this.bannerStatus = true : this.bannerStatus;
-        console.log(this.banner);
       }
     });
-
-
   }
-
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 }

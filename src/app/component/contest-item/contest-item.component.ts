@@ -24,6 +24,7 @@ export class ContestItemComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    
     this.date_end = moment(this.item.end_register_time).format('lll');
     setInterval(() => {
 

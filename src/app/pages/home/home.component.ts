@@ -24,20 +24,20 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class HomeComponent implements OnInit {
-    majors: Major[] = [];
+    majors: Array<Major>;
     selectedMajor: string;
     isLoading = false;
     statusResultMajor: boolean = false;
     users: Array<User>;
-    statusContest: string = 'pending';
     loggedInUser: User;
     sponsors: Array<Sponsor>;
-    contests: Array<Contest> = [];
+    contests: Array<Contest>;
     item: Contest;
+    nameSelectMajor: string;
 
     resultMajor: Array<ResultMajor>;
-    nameSelectMajor: any = 'Cơ khí';
-    countMajor: boolean = false;
+    loadingResultContest: boolean = false;
+    statusResult: boolean = false;
 
     sliderContest = {
         "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
     sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', autoplay: true, nextArrow: '.next-student-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true };
 
     sliderAssessCompacity = {
-        "slidesToShow": 1, prevArrow: '.prev-compacity-arrow', nextArrow: '.next-compacity-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true, fade: true,
+        "slidesToShow": 1, autoplay: true, prevArrow: '.prev-compacity-arrow', nextArrow: '.next-compacity-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true, fade: true,
         cssEase: 'linear'
     };
 
@@ -84,7 +84,6 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         let elToShow = document.querySelectorAll('.show-on-scroll')
-
         // Lấy ra tất cả các cuộc thi
         if (this.UserService.getUserValue().id !== undefined) {
             this.getListHasAfterLogin();
@@ -92,9 +91,6 @@ export class HomeComponent implements OnInit {
             this.contestService.getWhereStatus(1).subscribe(res => {
                 if (res.status == true) {
                     this.contests = res.payload.data;
-                    if (this.contests) {
-                        this.statusContest = 'done'
-                    }
                 }
             })
         }
@@ -111,9 +107,9 @@ export class HomeComponent implements OnInit {
         this.configView.runStatisticHome(yearStatistic, 4000);
         this.configView.runStatisticHome(passStatistic, 2000);
 
-        // getAllMajor
+
+        // Get All Major
         this.getAllMajor();
-        this.loadMore();
     }
 
     //Lấy ra tất cả các chuyên ngành
@@ -121,28 +117,22 @@ export class HomeComponent implements OnInit {
         this.majorService.getAll().subscribe(res => {
             if (res.status) {
                 this.majors = res.payload;
+                this.nameSelectMajor = this.majors[0].name;
+                this.getResultWhereMajor(this.majors[0].slug);
             }
         })
     }
 
     // Gọi kết quả theo chuyên ngành.
     getResultWhereMajor(majorSlug: any) {
-        this.statusResultMajor = false;
-        this.countMajor = false;
-        this.nameSelectMajor = this.majors.map((item: any) => {
-            if (item.slug == majorSlug) {
-                return item.name;
-            }
-        }).join(' ');
-
-        this.majorService.getResultWhereMajor('co-khi').subscribe(res => {
+        this.loadingResultContest = false;
+        this.statusResult = false;
+        this.majorService.getResultWhereMajor(majorSlug).subscribe(res => {
             if (res.status) {
                 this.resultMajor = res.payload;
-                this.resultMajor ? this.statusResultMajor = true : this.statusResultMajor;
-            } else {
-                setTimeout(() => {
-                    this.countMajor = true;
-                }, 3000);
+                console.log(this.resultMajor);
+                this.resultMajor ? this.loadingResultContest = true : this.loadingResultContest;
+                this.resultMajor.length == 0 ? this.statusResult : this.statusResult = true;
             }
         })
     }
@@ -151,15 +141,9 @@ export class HomeComponent implements OnInit {
     getListHasAfterLogin() {
         this.contestService.getListContestHasJoin().subscribe(res => {
             res.status ? this.contests = res.payload.data : this.contests;
-            this.contests ? this.statusContest = 'done' : this.statusContest = 'pending';
         })
     }
 
-    changeMajor(slugMajor: string) {
-        console.log(slugMajor);
-        this.statusResultMajor = false;
-        this.getResultWhereMajor(slugMajor);
-    }
 
 
     /* eslint-disable @typescript-eslint/no-explicit-any */

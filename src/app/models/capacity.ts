@@ -12,6 +12,7 @@ export class Capacity {
   major_id: number;
   status: number;
   slug_name: string;
+  start_register_time: Date
   rounds: Round[];
   skills: Array<Skill>
   users: Array<User>;

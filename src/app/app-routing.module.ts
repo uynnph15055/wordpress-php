@@ -20,6 +20,7 @@ import { RecruitmentComponent } from './pages/recruitment/recruitment.component'
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
 import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 import { PostsComponent } from './pages/posts/posts.component';
+import { TestCapacityComponent } from './pages/test-capacity/test-capacity.component';
 const routes: Routes = [
   {
     path: "",
@@ -90,6 +91,10 @@ const routes: Routes = [
       {
         path: "test-nang-luc/:capacity_id",
         component: CapacityDetailComponent,
+      },
+      {
+        path: "test-nang-luc",
+        component: TestCapacityComponent,
       }
     ]
   },
@@ -97,6 +102,7 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent
   },
+
 
 ];
 

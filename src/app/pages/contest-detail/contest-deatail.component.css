@@ -127,7 +127,6 @@
 /* List student point rank */
 .list-student-rank-title {
   font-style: 22px;
-
 }
 
 .form-input {
@@ -267,6 +266,7 @@
 /* COUNT DOWN */
 .contest-detail-right {
   position: sticky;
+  height: 1000px;
   top: 100px;
 }
 
@@ -307,7 +307,7 @@
   padding: 10px 5px;
   background-color: var(--primary-color);
   width: 100%;
-  margin: 0px 5px;
+  margin: 0px 10px;
   border-radius: 6px;
   font-size: 17px;
   font-weight: 500;

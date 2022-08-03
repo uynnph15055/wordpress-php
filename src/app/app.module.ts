@@ -110,7 +110,6 @@ import { PostsComponent } from './pages/posts/posts.component';
     ListResultRoundComponent,
     RoundContestDetailComponent,
     LoadingPageComponent,
-
     HeaderComponent,
     FooterComponent,
     RecruitmentComponent,
