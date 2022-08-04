@@ -70,6 +70,7 @@ registerLocaleData(en);
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
+import { CapacityRelatedItemComponent } from './component/capacity-related-item/capacity-related-item.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.co
     CapacityDetailComponent,
     CapacityExamComponent,
     DialogConfirmComponent,
+    CapacityRelatedItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,4 +15,9 @@ export class CapacityService {
   getWhereId(id: number): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.capacityListUrl}/${id}`);
   }
+
+  // bài test liên quan
+  getRelated(capacity_id: number): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.capacityListUrl}/${capacity_id}/related`);
+  }
 }

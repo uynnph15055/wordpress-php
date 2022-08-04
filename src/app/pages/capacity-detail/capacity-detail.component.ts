@@ -1,11 +1,11 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CapacityService } from './../../services/capacity.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Capacity } from 'src/app/models/capacity';
-import { map, switchMap } from 'rxjs';
-import * as moment from 'moment';
 import { Round } from 'src/app/models/round.model';
+import { NgToastService } from 'ng-angular-popup';
+import { Enterprise } from 'src/app/models/enterprise.model';
 
 @Component({
   selector: 'app-capacity-detail',
@@ -16,6 +16,9 @@ export class CapacityDetailComponent implements OnInit {
 
   tabActive!: string;
   capacity!: Capacity;
+  // bài test liên quan
+  capacityRelated!: Capacity[];
+  isFetchingCapacity = false;
   rounds!: Round[];
   countDown: {
     days: number,
@@ -32,28 +35,53 @@ export class CapacityDetailComponent implements OnInit {
     status: number,
     statustext: string
   };
+  enterprises!: {id: number, name: string, logo: string}[]
 
   constructor(
     private modalService: NgbModal,
     private capacityService: CapacityService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private toast: NgToastService
   ) { }
 
   ngOnInit(): void {
-    this.route.params.pipe(
-      map(params => params['capacity_id']),
-      switchMap(id => this.capacityService.getWhereId(id))
-    ).subscribe(res => {
-      if (res.status) {
-        this.capacity = res.payload;
-        this.rounds = res.payload.rounds;
+    this.route.params.subscribe(params => {
+      this.isFetchingCapacity = true;
+      this.scrollToTop();
+      
+      const { capacity_id } = params;
 
-        // đếm ngược thời gian
-        this.countDownTimer();
+      this.capacityService.getWhereId(capacity_id).subscribe(res => {
+        if (res.status) {
+          this.capacity = res.payload;
+          this.rounds = res.payload.rounds;
 
-        // get trạng thái bài test
-        this.getStatusCapacity();
-      }
+          // get ds doanh nghiệp, xóa DN trùng lặp
+          this.enterprises = res.payload.recruitment_enterprise.reduce((result: Enterprise[], item: Enterprise) => {
+            const exitsEnterprise = result.some(enterprice => enterprice.id === item.id);
+
+            if (!exitsEnterprise) result.push(item);
+            return result;
+          }, [])
+  
+          // bài test liên quan
+          this.capacityService.getRelated(this.capacity.id).subscribe(response => {
+            this.isFetchingCapacity = false;
+  
+            if (response.status) {
+              this.capacityRelated = response.payload.slice(0, 3);
+            }
+          })
+          
+          // đếm ngược thời gian khi bài test sắp diễn ra
+          const status = new Date().getTime() < new Date(this.capacity.date_start).getTime();
+          status && this.countDownTimer();
+          
+          // get trạng thái bài test
+          this.getStatusCapacity();
+        }
+      })
     })
   }
 
@@ -102,11 +130,9 @@ export class CapacityDetailComponent implements OnInit {
   // đếm ngược thời gian
   countDownTimer() {
     let timerId: any;
-
+    
     timerId = setInterval(() => {
-      const timeStart = moment(this.capacity.date_start).format('lll');
-
-      let futureDate = new Date(timeStart).getTime();
+      let futureDate = new Date(this.capacity.date_start).getTime();
 
       let today = new Date().getTime();
       let distance = futureDate - today;
@@ -130,4 +156,23 @@ export class CapacityDetailComponent implements OnInit {
     }, 1000);
   }
 
+  // vào bài thi đầu tiên
+  handleGoToFirstTest() {
+    if (this.statusExam.status === 1) {
+      if (!this.rounds.length) {
+        this.toast.warning({ summary: "Chưa có bài thi nào", duration: 3000 });
+        return;
+      }
+
+      this.router.navigate(['/test-nang-luc/vao-thi', this.capacity.id, 'bai-thi', this.rounds[0].id]);
+    }
+  }
+
+  // scroll top
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
 }
