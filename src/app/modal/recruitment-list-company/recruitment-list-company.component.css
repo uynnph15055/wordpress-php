@@ -1,0 +1,15 @@
+.recruitment-info-img-box img {
+  height: 100px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.recruitment-company-box {
+  height: 250px;
+  overflow-y: auto;
+}
+
+.recruitment-company-box::-webkit-scrollbar {
+  width: 5px;
+}
+

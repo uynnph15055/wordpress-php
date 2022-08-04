@@ -5,7 +5,8 @@ export class ResponsePayload {
     throw new Error('Method not implemented.');
   }
   status!: boolean;
-  payload!: any
+  payload!: any;
+  dataContest: any;
   user_pass: Array<User>;
   user_not_pass: Array<User>;;
 }

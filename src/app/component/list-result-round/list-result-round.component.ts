@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ResultRound } from 'src/app/models/result-round.model';
+import { Round } from 'src/app/models/round.model';
 import { ConfigFunctionService } from 'src/app/services/config-function.service';
 import { ContestService } from 'src/app/services/contest.service';
 import { RoundService } from 'src/app/services/round.service';
@@ -14,10 +15,13 @@ export class ListResultRoundComponent implements OnInit {
   @Input() round_id: number;
   @Input() statusPage: boolean;
   @Input() contest_id: number;
+  @Output() statusCountResult: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+
   dataResultRound: Array<ResultRound>;
   statusResultRound: boolean = false;
   payingLinks: Array<any>;
   pages: number = 1;
+  checkTeamPoint: boolean = false;
   resPayLoad: any;
   titleResult: string = "Kết quả chung cuộc";
   constructor(private roundService: RoundService,
@@ -27,8 +31,6 @@ export class ListResultRoundComponent implements OnInit {
   ngOnInit(): void {
     this.round_id && this.statusPage == true ?
       this.titleResult = "Kết quả vòng thi" : this.titleResult;
-  
-
 
     this.roundService.getResultRound(this.round_id).subscribe(res => {
       this.resPayLoad = res.payload;
@@ -36,13 +38,18 @@ export class ListResultRoundComponent implements OnInit {
         this.dataResultRound = res.payload.data;
         this.payingLinks = this.editLink(res.payload.links);
         this.dataResultRound ? this.statusResultRound = true : this.statusResultRound;
-        console.log(this.dataResultRound);
-
+        this.checkPointTeamNotNull(this.dataResultRound);
       } else {
         this.statusResultRound = true;
       };
     })
   }
+
+  statusCountRound(status: boolean) {
+    this.statusCountResult.emit(status);
+    console.log(status);
+  }
+
 
   sortRankTeam(result_id: number): number {
     return this.configFunctionService.indexTable(result_id, this.dataResultRound, this.pages, 10);
@@ -54,7 +61,6 @@ export class ListResultRoundComponent implements OnInit {
   payingPage(link: any, pages: any) {
     this.statusResultRound = false;
     this.pages = pages;
-    console.log(this.pages);
 
     this.contestService.getContestWherePage(link).subscribe(res => {
       if (res.status) {
@@ -72,4 +78,11 @@ export class ListResultRoundComponent implements OnInit {
     });
   }
 
+  // Kiểm tra xem đã có kế quả cho tường đọi chưa
+  checkPointTeamNotNull(data: Array<ResultRound>) {
+    data.forEach(item => {
+      item.result.point != null ? this.checkTeamPoint = true : this.checkTeamPoint;
+      this.statusCountRound(this.checkTeamPoint);
+    })
+  }
 }

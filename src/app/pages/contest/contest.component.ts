@@ -21,7 +21,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ContestComponent implements OnInit {
   statusMajor: string = 'pending';
   statusContest: string = 'pending';
-  checkUserHasLogin: boolean;
+  checkUserHasLogin: boolean = false;
   days: number = 5;
   hours: number = 16;
   minutes: number = 20;
@@ -29,7 +29,7 @@ export class ContestComponent implements OnInit {
   seconds: number = 25;
   statusContestFilter: number;
   major_slug: any = '';
-  major_id: any;
+  major_id: any = '';
   contests: Array<Contest> = [];
   majorItem: Array<Contest> = [];
   majors: Array<Major> = [];
@@ -49,7 +49,9 @@ export class ContestComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.UserService.getUserValue().id !== undefined ? this.checkUserHasLogin = true : this.checkUserHasLogin;
+    this.UserService.getUserValue().id != undefined ? this.checkUserHasLogin = true : this.checkUserHasLogin;
+
+    // console.log(this.UserService.getUserValue().id);
     $('html , body').animate({
       scrollTop: 0
     }, 1000);
@@ -59,13 +61,12 @@ export class ContestComponent implements OnInit {
       this.majorService.getMajorWhereSlug(this.major_slug).subscribe(res => {
 
         if (this.major_slug == null) {
-
           this.checkUserHasLogin == true ? this.getContestHasAfterLogin() : this.getAllContest();
         } else {
           this.contests = [];
           this.statusContest = 'pending';
           this.major_id = res.payload.id;
-          this.filterContest('', this.major_id, 0, this.checkUserHasLogin)
+          this.filterContest('', this.major_id, "", this.checkUserHasLogin)
         }
       })
     });
@@ -110,13 +111,14 @@ export class ContestComponent implements OnInit {
   //   Set value need search
   setValueSearch(event: any) {
     this.valueSearch = event.target.value;
+
   }
 
   // Tìm kiếm cuộc thi
   searchContest() {
     this.contests = [];
     this.statusContest = 'pending';
-    this.filterContest(this.valueSearch, this.major_id, 0, this.checkUserHasLogin);
+    this.filterContest(this.valueSearch, this.major_id, "", this.checkUserHasLogin);
   }
 
   // Điểm số người tham gia
@@ -136,22 +138,19 @@ export class ContestComponent implements OnInit {
     let statusMajor = e.target.value;
     if (statusMajor == 0) {
       if (this.major_id) {
-        this.filterContest('', this.major_id, statusMajor, this.checkUserHasLogin);
+        this.filterContest(this.valueSearch, this.major_id, statusMajor, this.checkUserHasLogin);
       } else {
-        this.filterContest('', 0, statusMajor, this.checkUserHasLogin);
+        this.filterContest(this.valueSearch, 0, statusMajor, this.checkUserHasLogin);
       }
     }
     else {
       if (this.major_id) {
-        this.filterContest('', this.major_id, statusMajor, this.checkUserHasLogin)
+        this.filterContest(this.valueSearch, this.major_id, statusMajor, this.checkUserHasLogin)
       } else {
-        this.filterContest('', 0, statusMajor, this.checkUserHasLogin)
+        this.filterContest(this.valueSearch, 0, statusMajor, this.checkUserHasLogin)
       }
     }
   }
-  
-
-
   // Filter where major
   getWhereMajor() {
     this.filterContest('', this.major_id, 0, this.checkUserHasLogin);
@@ -174,25 +173,43 @@ export class ContestComponent implements OnInit {
     })
   }
 
-  // Function comom filter contest
-  filterContest(keyword: string, major_id: number, status: number, statusUser: boolean) {
+
+  // Function dùng chung để lọc sản phẩm
+  filterContest(keyword: string, major_id: any, status: any, statusUser: boolean) {
     this.statusContest = 'pending';
-    if (statusUser == false) {
-      this.contestService.filterContest(keyword, major_id, status).subscribe(res => {
-        if (res.status)
-          this.contests = res.payload.data;
-        this.contests ? this.statusContest = 'done' : this.statusContest;
-      })
-    } else {
-      this.contestService.filterContestHasLogin(keyword, major_id, status).subscribe(res => {
-        if (res.status)
-          this.contests = res.payload.data;
-        this.contests ? this.statusContest = 'done' : this.statusContest;
-      })
-    }
+    if (keyword == undefined)
+      keyword = '';
+    setTimeout(() => {
+      if (statusUser == false) {
+        this.contestService.filterContest(keyword, major_id, status).subscribe(res => {
+          if (res.status)
+            this.contests = res.payload.data;
+          this.contests ? this.statusContest = 'done' : this.statusContest;
+        })
+        // console.log(this.contests);
+      } else {
+        console.log('Uy');
+        this.contestService.filterContestHasLogin(keyword, major_id, status).subscribe(res => {
+          if (res.status)
+            this.contests = res.payload.data;
+          this.contests ? this.statusContest = 'done' : this.statusContest;
+        })
+      }
+    }, 2000);
 
   }
 
 
-  // Filter Contest Has Login
+  // Gọi các cuộc thi theo id chuyên ngành khi responsive
+  getContestWWhereIdMajor(event: any) {
+    this.statusContest = 'pending';
+    let major_id = event.target.value;
+
+
+    if (major_id == 0) {
+      this.ngOnInit();
+    } else {
+      this.filterContest('', major_id, 0, this.checkUserHasLogin);
+    }
+  }
 }

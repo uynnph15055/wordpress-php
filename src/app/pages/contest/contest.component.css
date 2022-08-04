@@ -38,14 +38,21 @@
   padding: 10px 15px;
   box-shadow: 0px 0px 3px #ccc;
   color: #2c3e50;
-  transition: all ease-in 0.5s;
+  transition: all ease-in-out 0.2s;
   display: -webkit-box;
   -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   width: 100%;
   text-overflow: ellipsis;
   max-width: 100%;
+}
+
+.select-major-responsive {
+  display: none;
+}
+
+.form-input-search {
+  width: 65%;
 }
 
 .major-contest-link:first-child {
@@ -57,7 +64,7 @@
   background-color: var(--warning);
   color: var(--white);
   cursor: pointer;
-  transition: all ease-in 0.5s;
+  transition: all ease-out 0.1s;
 }
 
 /* Phan trang cuoc thi */
@@ -69,5 +76,37 @@
   cursor: pointer;
   margin-right: 10px;
   border-radius: 4px;
+}
 
+@media (max-width:568px) {
+  .select-major-responsive {
+    margin-bottom: 20px;
+  }
+
+  .contest-select-status {
+    margin-bottom: 20px;
+  }
+}
+
+
+@media (max-width:987px) {
+  .select-major-responsive {
+    display: block;
+  }
+
+  .select-major-responsive {
+    margin-bottom: 20px;
+  }
+
+  .slider-bar {
+    display: none;
+  }
+
+  .title-sub-list-contest {
+    display: none;
+  }
+
+  .contest-select-status {
+    margin-bottom: 20px;
+  }
 }

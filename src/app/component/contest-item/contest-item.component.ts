@@ -21,20 +21,17 @@ export class ContestItemComponent implements OnInit {
   minutes: number = 20;
   seconds: number = 25;
 
-
-
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-
-    this.date_end = moment(this.item.register_deadline).format('lll');
+    this.date_end = moment(this.item.end_register_time).format('lll');
     setInterval(() => {
 
       let futureDate = new Date(this.date_end).getTime();
       let today = new Date().getTime();
 
       let distance = futureDate - today;
-      if (distance < 0) {
+      if (distance < 0 || this.item.status == 3) {
         this.days = 0;
         this.hours = 0;
         this.minutes = 0;
