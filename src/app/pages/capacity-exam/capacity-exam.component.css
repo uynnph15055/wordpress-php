@@ -6,6 +6,7 @@
   left: 0;
   background-color: #fff;
   overflow-y: scroll;
+  z-index: 1000;
 }
 
 .capacity__exam-heading {
@@ -182,8 +183,11 @@
   border: 1px solid #d9d9d9;
   padding: 6px 12px;
   margin-bottom: 8px;
-  cursor: pointer;
   transition: all 0.25s linear;
+}
+
+.answer:not(.answer-hover-none):hover {
+  cursor: pointer;
 }
 
 .answers__item.border-square .answer,
@@ -192,14 +196,29 @@
 }
 
 .answer:hover .answer__num,
+.answer.active .answer__num,
 .answers__input:checked ~ .answer .answer__num {
   background-color: var(--warning);
   color: #fff;
 }
 
 .answer:hover,
+.answer.active,
 .answers__input:checked ~ .answer {
   border-color: var(--primary-color);
+}
+
+.answer-hover-none:hover {
+  cursor: default;
+}
+
+.answer-hover-none:not(.active):hover {
+  border-color: #d9d9d9;
+}
+
+.answer-hover-none:not(.active):hover .answer__num {
+  background-color: #d9d9d9;
+  color: #000;
 }
 
 .answer__num {

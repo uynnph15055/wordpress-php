@@ -1,7 +1,9 @@
+import { DataExam, ResponseCheckSttExam } from './../models/capacity';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ResponseSubmitExam } from '../models/capacity';
 import { ResponsePayload } from '../models/response-payload';
 
 @Injectable({
@@ -26,13 +28,18 @@ export class RoundService {
   }
 
   // check trạng thái làm bài
-  getInfoCapacityExamRound(round: {}): Observable<ResponsePayload> {
-    return this.http.post<ResponsePayload>(`${environment.takeExamUrl}/check-student-capacity`, round);
+  getInfoCapacityExamRound(round: {}): Observable<ResponseCheckSttExam> {
+    return this.http.post<ResponseCheckSttExam>(`${environment.takeExamUrl}/check-student-capacity`, round);
   }
 
   // sinh viên làm bài
   takeExam(round: { round_id: number }): Observable<{status: boolean, payload: any, exam_at: Date}> {
     return this.http.post<{status: boolean, payload: any, exam_at: Date}>(`${environment.takeExamUrl}/student-capacity`, round);
+  }
+
+  // nộp bài test năng lực
+  capacitySubmitExam(data: DataExam): Observable<ResponseSubmitExam> {
+    return this.http.post<ResponseSubmitExam>(`${environment.takeExamUrl}/student-capacity-submit`, data)
   }
 
   // Sinh viên nộp bài 

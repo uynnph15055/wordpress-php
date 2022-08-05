@@ -245,7 +245,7 @@
     <!-- kết quả làm bài -->
     <div class="capacity__exam-result text-center" *ngIf="statusTakingExam === 2">
       <h2>Kết quả làm bài</h2>
-      <span class="text-uppercase text-red capacity__exam-result-point">8/10</span>
+      <span class="text-uppercase text-red capacity__exam-result-point">{{ this.resultExam.score.toFixed(1) }}/10</span>
 
       <ul class="capacity__exam-result-list">
         <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
@@ -275,7 +275,7 @@
       </ul>
 
       <ul class="flex-wrap capacity__exam-result-actions d-flex justify-content-center align-items-center">
-        <li class="capacity__exam-result-actions-item btn btn-register mx-1 my-1">Lịch sử làm bài</li>
+        <li (click)="handleOpenHistoryExam(modalHistoryExam)" class="capacity__exam-result-actions-item btn btn-register mx-1 my-1">Lịch sử làm bài</li>
 
         <li
           (click)="handleGoToNextRound(getNextRound().round_id)"
@@ -295,3 +295,125 @@
     </div>
   </div>
 </div>
+
+<!-- modal lịch sử làm bài -->
+<ng-template #modalHistoryExam let-modal>
+  <div class="modal-header align-items-center">
+    <h4 class="modal-title m-0">Lịch sử làm bài</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <ul class="question__content-list m-0 p-0">
+      <li class="question__content-item px-0">
+        <span class="question__content-item-num d-block">Câu 1:</span>
+        <p class="question__content-item-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et unde blanditiis voluptatem. Eaque neque sed, aliquid mollitia quasi at quo quas optio dolorum quaerat error nihil, nobis totam esse hic.</p>
+
+        <ul class="answers m-0 p-0">
+          <!-- câu hỏi có 1 đáp án -->
+          <li class="answers__item">
+            <label class="answer active answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">A</span>
+              <p class="answer__content m-0">Đáp án 1</p>
+            </label>
+          </li>
+
+          <li class="answers__item">
+            <label class="answer answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">B</span>
+              <p class="answer__content m-0">Đáp án 2</p>
+            </label>
+          </li>
+
+          <li class="answers__item">
+            <label class="answer answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">C</span>
+              <p class="answer__content m-0">Đáp án 3</p>
+            </label>
+          </li>
+
+          <li class="answers__item">
+            <label class="answer answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">D</span>
+              <p class="answer__content m-0">Đáp án 4</p>
+            </label>
+          </li>
+        </ul>
+      </li>
+
+      <li class="question__content-item px-0">
+        <span class="question__content-item-num d-block">Câu 2:</span>
+        <p class="question__content-item-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et unde blanditiis voluptatem. Eaque neque sed, aliquid mollitia quasi at quo quas optio dolorum quaerat error nihil, nobis totam esse hic.</p>
+
+        <ul class="answers m-0 p-0">
+          <!-- câu hỏi có 1 đáp án -->
+          <li class="answers__item">
+            <label class="answer answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">A</span>
+              <p class="answer__content m-0">Đáp án 1</p>
+            </label>
+          </li>
+
+          <li class="answers__item">
+            <label class="answer answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">B</span>
+              <p class="answer__content m-0">Đáp án 2</p>
+            </label>
+          </li>
+
+          <li class="answers__item">
+            <label class="answer answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">C</span>
+              <p class="answer__content m-0">Đáp án 3</p>
+            </label>
+          </li>
+
+          <li class="answers__item">
+            <label class="answer answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">D</span>
+              <p class="answer__content m-0">Đáp án 4</p>
+            </label>
+          </li>
+        </ul>
+      </li>
+
+      <li class="question__content-item px-0">
+        <span class="question__content-item-num d-block">Câu 3:</span>
+        <p class="question__content-item-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et unde blanditiis voluptatem. Eaque neque sed, aliquid mollitia quasi at quo quas optio dolorum quaerat error nihil, nobis totam esse hic.</p>
+
+        <ul class="answers m-0 p-0">
+          <!-- câu hỏi có 1 đáp án -->
+          <li class="answers__item border-square">
+            <label class="answer answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">A</span>
+              <p class="answer__content m-0">Đáp án 1</p>
+            </label>
+          </li>
+
+          <li class="answers__item border-square">
+            <label class="answer answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">B</span>
+              <p class="answer__content m-0">Đáp án 2</p>
+            </label>
+          </li>
+
+          <li class="answers__item border-square">
+            <label class="answer answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">C</span>
+              <p class="answer__content m-0">Đáp án 3</p>
+            </label>
+          </li>
+
+          <li class="answers__item border-square">
+            <label class="answer answer-hover-none d-flex align-items-center">
+              <span class="answer__num d-flex justify-content-center align-items-center">D</span>
+              <p class="answer__content m-0">Đáp án 4</p>
+            </label>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

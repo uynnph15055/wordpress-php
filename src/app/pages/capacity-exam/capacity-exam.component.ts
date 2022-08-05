@@ -1,8 +1,8 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogConfirmComponent } from "./../../modal/dialog-confirm/dialog-confirm.component";
-import { NgToastService } from "ng-angular-popup";
 import { RoundService } from "src/app/services/round.service";
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
-import { Component, ElementRef, Inject, OnInit, QueryList, ViewChildren } from "@angular/core";
+import { Component, ElementRef, Inject, OnInit, QueryList, TemplateRef, ViewChildren } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { map, switchMap } from "rxjs";
 import { Round } from "src/app/models/round.model";
@@ -11,6 +11,7 @@ import { UserService } from "src/app/services/user.service";
 import { DOCUMENT } from "@angular/common";
 import { User } from "src/app/models/user";
 import { ExamCapacity } from "src/app/models/exam.model";
+import { NgToastService } from "ng-angular-popup";
 
 @Component({
   selector: "app-capacity-exam",
@@ -44,6 +45,15 @@ export class CapacityExamComponent implements OnInit {
   timerId!: any;
   element!: any;
 
+  // kết quả bài test
+  resultExam!: {
+    score: number,
+    submit_at: Date, // thời gian nộp bài,
+    donotAnswer: number, // tổng số câu chưa làm,
+    falseAnswer: number, // tổng số câu làm sai,
+    trueAnswer: number, // tổng số câu làm đúng
+  }
+
   // kích thước màn hình
   windowScreenSize!: { width: number; height: number };
 
@@ -54,6 +64,7 @@ export class CapacityExamComponent implements OnInit {
     private userService: UserService,
     private toast: NgToastService,
     private router: Router,
+    private modalService: NgbModal,
     @Inject(DOCUMENT) private document: any,
   ) {}
 
@@ -95,12 +106,21 @@ export class CapacityExamComponent implements OnInit {
                 (resSttExam) => {
                   // nếu đang làm ? tiếp tục làm bài
                   this.isFetchingSttExam = false;
-                  if (resSttExam.status && resSttExam.payload === 0) {
+                  if (!resSttExam.status) return;
+                  if (resSttExam.payload === 0) {
                     this.isContinueExam = true;
                     console.log("đang làm", resSttExam);
-                  } else if (resSttExam.status && resSttExam.payload === 1) {
+                  } else if (resSttExam.payload === 1) {
                     // đã nộp bài
-                    console.log("Đã nộp bài");
+                    console.log("Đã nộp bài", resSttExam);
+                    this.statusTakingExam = 2;
+                    this.resultExam = {
+                      score: resSttExam.result.scores,
+                      submit_at: resSttExam.result.updated_at,
+                      donotAnswer: 0,
+                      falseAnswer: 0,
+                      trueAnswer: 0,
+                    }
                   }
                 },
                 (error) => {
@@ -278,8 +298,6 @@ export class CapacityExamComponent implements OnInit {
 
   // nộp bài
   handleSubmitExam() {
-    const answersData = this.getAnswersData();
-    console.log(answersData);
     // check làm thiếu câu hỏi
     if (this.formAnswers.valid) {
       const confirmSubmitExam = this.dialog.open(DialogConfirmComponent, {
@@ -300,7 +318,6 @@ export class CapacityExamComponent implements OnInit {
           this.submitExam();
         }
       });
-      console.log(answersData);
     } else {
       const listQuesNum = this.getFormValidationErrors();
 
@@ -318,7 +335,6 @@ export class CapacityExamComponent implements OnInit {
       confirmSubmitExam.afterClosed().subscribe((result) => {
         // xác nhận nộp bài
         if (result === "true") {
-          console.log(answersData);
           this.openDialogSubmitExam();
           this.submitExam();
         }
@@ -327,33 +343,47 @@ export class CapacityExamComponent implements OnInit {
   }
   // nộp bài
   submitExam() {
-    // fake api
-    setTimeout(() => {
-      this.dialog.closeAll();
+    const answersData = this.getAnswersData();
+    console.log(answersData)
 
-      // reset variable
-      this.statusTakingExam = 2;
-      clearInterval(this.timerId);
-      this.isFetchingRound = false;
-      this.isFetchingSttExam = false;
-      this.isFetchingExam = false;
-      this.isFullScreen = false;
-      this.isContinueExam = false;
-      this.isNotiExamTimeOut = false;
-      this.isSubmitingExam = false;
-      this.isTimeOut = false;
+    this.roundService.capacitySubmitExam({
+      exam_id: this.examData.id,
+      data: answersData
+    }).subscribe(res => {
+      if (res.status) {
+        this.resultExam = {
+          score: res.score,
+          donotAnswer: res.donotAnswer,
+          falseAnswer: res.falseAnswer,
+          trueAnswer: res.trueAnswer,
+          submit_at: res.payload.updated_at
+        }
 
-      // remove event listener
-      window.onresize = () => {};
-      window.onkeydown = () => {};
-      window.oncontextmenu = () => {};
-      window.addEventListener("keydown", () => {});
+        this.dialog.closeAll();
+        // reset variable
+        this.statusTakingExam = 2;
+        clearInterval(this.timerId);
+        this.isFetchingRound = false;
+        this.isFetchingSttExam = false;
+        this.isFetchingExam = false;
+        this.isFullScreen = false;
+        this.isContinueExam = false;
+        this.isNotiExamTimeOut = false;
+        this.isSubmitingExam = false;
+        this.isTimeOut = false;
 
-      localStorage.removeItem("test_result");
+        // remove event listener
+        window.onresize = () => {};
+        window.onkeydown = () => {};
+        window.oncontextmenu = () => {};
+        window.addEventListener("keydown", () => {});
 
-      // thoát toàn màn hình
-      this.closeFullscreen();
-    }, 3000);
+        localStorage.removeItem("test_result");
+
+        // thoát toàn màn hình
+        this.closeFullscreen();
+      }
+    })
   }
 
   getAnswersData() {
@@ -538,10 +568,7 @@ export class CapacityExamComponent implements OnInit {
 
           submitExamRef.afterClosed().subscribe((result) => {
             if (result === "true") {
-              const answersData = this.getAnswersData();
-              console.log(answersData);
               this.openDialogSubmitExam();
-
               this.submitExam();
             }
           });
@@ -560,8 +587,6 @@ export class CapacityExamComponent implements OnInit {
           this.isNotiExamTimeOut = true;
         }
       }
-
-      console.log(this.countDownTimeExam.minutes, this.countDownTimeExam.seconds);
     }, 1000);
   }
 
@@ -782,5 +807,10 @@ export class CapacityExamComponent implements OnInit {
     }
 
     return isChecked;
+  }
+
+  // open modal lịch sử bài làm
+  handleOpenHistoryExam(content: TemplateRef<any>) {
+    this.modalService.open(content, { size: "lg", scrollable: true });
   }
 }
