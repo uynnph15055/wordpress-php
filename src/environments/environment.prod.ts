@@ -20,6 +20,7 @@ export const environment = {
   companyListUrl: `${publicApiUrl}/company`,
   recruitment: `${publicApiUrl}/recruitments`,
   capacityListUrl: `${publicApiUrl}/capacity`,
+  postListUrl: `${publicApiUrl}/posts`,
 
   // Router API V1
   userListUrl: `${jwtApiUrl}/users`,
