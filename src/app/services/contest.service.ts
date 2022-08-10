@@ -12,7 +12,7 @@ export class ContestService {
   constructor(private http: HttpClient) { }
   // Gọi tất cả các cuộc thi
   getAll(): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(environment.contestListUrl);
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?sort=desc`);
   }
 
   // Lấy ra cuộc thi theo id
