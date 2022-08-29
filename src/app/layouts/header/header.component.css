@@ -43,7 +43,7 @@
 
 .menu-res-item .menu-res-link {
   font-size: 15px;
-  color: var(--title-blue);
+  color: var(--blue);
 }
 
 .icon-open-nav-mobile i {
@@ -78,7 +78,7 @@
 
 .menu_login-box .nav-link-item {
   display: block;
-  color: var(--title-blue);
+  color: var(--blue);
   position: relative;
   font-size: 15px;
 }
@@ -94,7 +94,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background-color: var(--primary-color-sub);
+  background-color: var(--sub-color);
   transform-origin: bottom right;
   transform: scaleX(0);
   transition: transform 0.5s ease;
@@ -167,7 +167,7 @@
   font-size: 25px;
   padding: 12px 30px 10px 30px;
   cursor: pointer;
-  color: var(--title-blue);
+  color: var(--blue);
 }
 
 .exam-now {
@@ -246,6 +246,17 @@
   color: var(--white);
   transition: all ease-in-out 0.4s;
   border: 1px solid var(--warning);
+}
+
+/* ----PARTNER COMPANY */
+.company-img{
+  width: 100%;  
+}
+
+.company-item{
+  height: 150px;
+  display: flex;
+  align-items: center;
 }
 
 /* ---END HEADER---- */

@@ -61,13 +61,13 @@
                 <li class="nav-item active"><a routerLink="/tuyen-dung"
                         class=" fw-bold nav-link-item  text-uppercase  text-decoration-none " href="">Tuyển dụng</a>
                 </li>
-                <li *ngIf="statusLogin == true"><i matBadge="4" matBadgePosition="after"
+                <li *ngIf="user"><i matBadge="4" matBadgePosition="after"
                         class="fas fa-bell header-icon-message  color-blue" matBadgeColor="warn"></i>
                 </li>
-                <li *ngIf="statusLogin == false" class="btn-login">
-                    <a routerLink="/login" class="text-decoration-none mb-2 btn-outline-login">Đăng nhập</a>
+                <li *ngIf="!user">
+                    <a routerLink="/login" class="text-decoration-none mb-2 btn-main">Đăng nhập</a>
                 </li>
-                <li *ngIf="statusLogin == true">
+                <li *ngIf="user">
 
                     <img *ngIf="user.avatar" mat-icon-button [matMenuTriggerFor]="menu" class="header-avatar-user"
                         [src]="user.avatar" alt="">
@@ -88,7 +88,7 @@
                 </li>
             </ul>
         </div>
-        <a href="/login" *ngIf="statusLogin == false" class="fa-icon-login">
+        <a href="/login" *ngIf="!false" class="fa-icon-login">
             <fa-icon [icon]="['fas' , 'sign-in-alt']"></fa-icon>
         </a>
     </nav>

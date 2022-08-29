@@ -1,21 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Sponsor } from 'src/app/models/sponsor';
 import { User } from 'src/app/models/user';
-import { SponsorService } from 'src/app/services/sponsor.service';
 import { UserService } from 'src/app/services/user.service';
-import { OwlOptions } from 'ngx-owl-carousel-o';
 
 import { Contest } from 'src/app/models/contest';
-import { Team } from 'src/app/models/team';
 import { ContestService } from 'src/app/services/contest.service';
 import { ConfigViewService } from 'src/app/services/config-view.service';
 import { Major } from 'src/app/models/major';
 import { MajorService } from 'src/app/services/major.service';
-import { ResultRound } from 'src/app/models/result-round.model';
 import { ResultMajor } from 'src/app/models/result-major.model';
-import { catchError, map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+import { RankStudentComponent } from 'src/app/modal/rank-student/rank-student.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
     selector: 'app-home',
@@ -34,7 +30,6 @@ export class HomeComponent implements OnInit {
     contests: Array<Contest>;
     item: Contest;
     nameSelectMajor: string;
-
     resultMajor: Array<ResultMajor>;
     loadingResultContest: boolean = false;
     statusResult: boolean = false;
@@ -68,23 +63,47 @@ export class HomeComponent implements OnInit {
         ]
     };
 
-    sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', autoplay: true, nextArrow: '.next-student-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true };
+    sliderCompany = {
+        "slidesToShow": 5, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-parner', nextArrow: '.next-parner', slidesToScroll: 1, fadeSpeed: 1000,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 586,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    }
 
-    sliderAssessCompacity = {
-        "slidesToShow": 1, autoplay: true, prevArrow: '.prev-compacity-arrow', nextArrow: '.next-compacity-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true, fade: true,
-        cssEase: 'linear'
-    };
+    sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', autoplay: true, nextArrow: '.next-student-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true };
 
     constructor(private contestService: ContestService,
         private configView: ConfigViewService,
         private majorService: MajorService,
         private UserService: UserService,
-        private http: HttpClient) { }
+        private http: HttpClient,
+        public dialog: MatDialog) { }
 
 
     ngOnInit(): void {
         let elToShow = document.querySelectorAll('.show-on-scroll')
-        // Lấy ra tất cả các cuộc thi
         if (this.UserService.getUserValue().id !== undefined) {
             this.getListHasAfterLogin();
         } else {
@@ -95,14 +114,12 @@ export class HomeComponent implements OnInit {
             })
         }
 
-
         // Config giao dien
         let studentStatistic = document.querySelector('.section_plan-student');
         let yearStatistic = document.querySelector('.section_plan-year');
         let passStatistic = document.querySelector('.section_plan-pass');
 
         this.configView.activityStrollView(elToShow);
-
         this.configView.runStatisticHome(studentStatistic, 10);
         this.configView.runStatisticHome(yearStatistic, 4000);
         this.configView.runStatisticHome(passStatistic, 2000);
@@ -137,26 +154,33 @@ export class HomeComponent implements OnInit {
         })
     }
 
-    // get list contest after login
+    // Get list contest after login
     getListHasAfterLogin() {
         this.contestService.getListContestHasJoin().subscribe(res => {
             res.status ? this.contests = res.payload.data : this.contests;
         })
     }
 
-
-
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    loadMore(): void {
-        this.isLoading = true;
-        this.majorService.getAll().subscribe(res => {
-            if (res.status) {
-                this.isLoading = false;
-                this.majors = res.payload;
-                let majorRandom = Math.floor(Math.random() * this.majors.length);
-                this.selectedMajor = this.majors[majorRandom].name;
-                this.getResultWhereMajor(this.majors[majorRandom].slug);
-            }
-        })
+    // Open rank student
+    openRankStudent() {
+        this.dialog.open(RankStudentComponent, {
+            width: '500px'
+        });
     }
+
+    // Parner of company
+    getTabsParner(event: any ,tabName:string){
+       const assContent =  document.querySelectorAll('.assess-content-wrapper');
+       const avatarAssess =  document.querySelectorAll('.avatar-company');
+       for (let i = 0; i < assContent.length; i++) {
+         assContent[i].classList.remove('active');
+       }
+       for (let i = 0; i < avatarAssess.length; i++) {
+        avatarAssess[i].classList.remove('display');
+      }
+       event.currentTarget.classList.add('display');
+       document.querySelector('#' + tabName)?.classList.add('active');
+    }
+
+  
 }

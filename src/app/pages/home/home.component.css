@@ -1,24 +1,9 @@
-/* COMMOM */
-@import url('https://fonts.googleapis.com/css2?family=Gelasio&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital@1&family=Open+Sans:ital,wght@1,300;1,400&display=swap');
-
-
-.font-size-sml {
-  font-size: 15px;
-  color: var(--text-color);
+.title {
+  font-size: 1.3rem;
+  margin-bottom: 0;
 }
 
-/* Chuyện chuyên ngành  */
-
-
-.color-yellow {
-  color: var(--color-yellow)
-}
-
-.font-size-ml {
-  font-size: 19px;
-  color: var(--text-color);
-}
+/* LIST CONTEST */
 
 .contest-loading-tablet {
   display: none;
@@ -27,23 +12,6 @@
 .contest-loading-mobile {
   display: none;
 }
-
-.title {
-  font-size: 1.3rem;
-  margin-bottom: 0;
-}
-
-.title-line {
-  margin-bottom: 20px;
-  width: 100px;
-  margin-top: -3px;
-  height: 3px;
-  margin: 0 auto;
-  background-color: var(--primary-color-sub);
-}
-
-
-/* -------- */
 
 .contest-list {
   margin-left: 22px;
@@ -56,7 +24,7 @@
 .contest-list .arrow-list-contest {
   cursor: pointer;
   padding: 8px 12px;
-  color: var(--primary-color);
+  color: var(--sub-color);
   border-radius: 50px;
   background-color: #f4f2f2;
   transition: 0.3s;
@@ -64,7 +32,7 @@
 
 .contest-list .arrow-list-contest:hover {
   color: var(--white);
-  background-color: var(--primary-color);
+  background-color: var(--sub-color);
   transition: all ease-in-out 0.3s;
 }
 
@@ -88,7 +56,6 @@
 
 /* STATISTICAL */
 .section_plan {
-  height: 320px;
   background-color: #091529;
 }
 
@@ -127,14 +94,28 @@
 /* LIST STUDENT POINT HIGHT */
 .list-student-point-box {
   background: linear-gradient(to bottom, #081327, #122035);
-  min-height: 500px;
+  min-height: 600px;
+}
+
+.slider-control {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  color: var(--sub-color);
+}
+
+.slider-control:hover i {
+  opacity: 1;
+}
+
+.slider-control .rank{
+  font-size: 2rem;
+  opacity: 0.5;
 }
 
 .list-student-top-rank-box {
   max-height: 400px;
 }
 
-/*  */
 .student-point-select-major {
   margin: 0 auto;
   position: relative;
@@ -148,15 +129,6 @@
 
 }
 
-
-/* .student-point-select-major::before {
-  content: '';
-  width: 100%;
-  height: 5px;
-  background-color: red;
-  top: 10;
-} */
-
 .student-point-select-in {
   display: flex;
   justify-content: space-between;
@@ -168,45 +140,14 @@
   cursor: pointer;
 }
 
-.student-point-dropdown {
-  position: absolute;
-  width: 100%;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  opacity: 0;
-  display: none;
-  transition: all ease-in-out 0.3s;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.student-point-dropdown::-webkit-scrollbar {
-  width: 2px;
-  color: #ffff;
-}
-
-
-.assess-compacity-name {
-  padding-left: 40px;
-  font-size: 20px;
-}
-
-.student-point-dropdown-item {
-  padding: 7px 15px;
-  color: #e8ebeb;
-  background: linear-gradient(45deg, #EE5A24, #F79F1F);
-}
-
-.student-point-dropdown-item:hover {
-  background-color: #f7b990;
+.select-major {
+  padding: 7px;
+  min-width: 200px;
   cursor: pointer;
 }
 
-/*  */
-.list-student-point-hight {
-  min-height: 350px;
+.select-major:focus {
+  outline: none;
 }
 
 .student-point-avatar {
@@ -215,15 +156,16 @@
   margin: 0px auto;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--primary-color);
+  border: 4px solid var(--sub-color);
 }
 
 .student-point-item {
   background-color: var(--white);
-  margin-right: 10px;
+  margin-right: 20px;
   border-radius: 20px;
   z-index: -1;
   box-shadow: 0px 0px 6px var(--gray);
+  cursor: pointer;
 }
 
 .student-top-one {
@@ -231,32 +173,35 @@
 }
 
 .student-point-item-in {
-  padding: 20px 0px;
+  padding: 40px 0px;
 }
 
 .student-name {
   margin: 10px 0px;
   font-size: 20px;
   color: #333;
-  font-weight: 400;
+  font-size: 1rem;
+  font-weight: bold;
   font-size: 19px;
+  color: var(--title-blue)
 }
 
 .student-rank {
   width: 40px;
   height: 40px;
-  background: linear-gradient(45deg, #EE5A24, #F79F1F);
+  background: var(--sub-color);
   ;
   border-radius: 50px;
   color: var(--white);
   margin: 0 auto;
   line-height: 40px;
-  /* margin: 10px 0px; */
   margin-top: 10px;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .student-ponit-number i {
-  color: var(--color-yellow);
+  color: var(--yellow);
 }
 
 .student-ponit-number span {
@@ -264,27 +209,64 @@
   color: var(--title-blue);
 }
 
-.slick-slide-student .slick-slide {
+.slick-slide-student-more,
+.slick-slide-student-three,
+.slick-slide-student-first,
+.slick-slide-student-two {
+  margin-left: -50px;
+}
+
+
+/* MODE MORE  STUDENT */
+.slick-slide-student-more .slick-slide {
   transform: scale(0.8);
   transition: all linear 0.3s;
   opacity: 0.3;
 }
 
-.slick-slide-student .slick-slide.slick-current {
+.slick-slide-student-more .slick-slide.slick-current {
   transform: scale(1);
   transition: all linear 0.3s;
   opacity: 1;
 }
 
-
-.prev-student-arrow {
-  transform: translateY(290px);
-  left: 5%;
+/* MODE ONE STUDENT */
+.slick-slide-student-first {
+  transform: translateX(-380px);
 }
 
-.next-student-arrow {
-  transform: translateY(-300px);
-  right: 5%;
+.slick-slide-student-first .slick-slide.slick-current {
+  transform: scale(1);
+  transition: all linear 0.3s;
+  opacity: 1;
+}
+
+/* MODE TWO STUDENT */
+.slick-slide-student-two {
+  transform: translateX(-200px);
+}
+
+.slick-slide-student-first .slick-slide.slick-current {
+  transform: scale(1);
+  transition: all linear 0.3s;
+  opacity: 1;
+}
+
+/* MODE TWO STUDENT */
+.slick-slide-student-two {
+  transform: translateX(-200px);
+}
+
+.slick-slide-student-first .slick-slide.slick-current {
+  transform: scale(1);
+  transition: all linear 0.3s;
+  opacity: 1;
+}
+
+/* MODE THREE STUDENT */
+.slick-slide-student-three .slick-slide {
+  transform: scale(1);
+  transition: all linear 0.3s;
 }
 
 .list-student-point-box .arrow-list-student {
@@ -294,6 +276,7 @@
   color: #925648;
   border-radius: 50px;
   transition: 0.3s;
+
 }
 
 .list-student-point-box .arrow-list-student:hover {
@@ -302,6 +285,7 @@
 
 .title-student-point {
   font-size: 22px;
+  margin-bottom: 0px;
 }
 
 .btn-review-more {
@@ -312,6 +296,7 @@
   width: 15%;
   border-radius: 6px;
   transition: all ease-in-out 0.4s;
+  margin-top: 20px;
 }
 
 .btn-review-more:hover {
@@ -319,141 +304,65 @@
   transition: all ease-in-out 0.4s;
 }
 
-.skill-contest-item {
-  padding: 5px 7px;
-  background-color: var(--primary-color);
-  color: #ffff;
-  margin-right: 10px;
-  border-radius: 5px;
-}
 
-/* DOANH NGHIỆP */
-
-
-.assess-content-box {
-  width: 100%;
-  min-height: 400px;
-  box-shadow: 0px 0px 10px var(--gray);
-  border-radius: 20px;
-  z-index: -1;
-}
-
-.arrow-list-compacity {
-  font-size: 27px;
-  cursor: pointer;
-  color: #1e272e;
-  border-radius: 50px;
-  transition: 0.3s;
-  background-color: var(--white);
-  padding: 10px 15px;
-  box-shadow: 0px 0px 10px var(--gray);
-  z-index: 10;
-}
-
-.prev-compacity-arrow {
-  left: -100px;
-}
-
-.next-compacity-arrow {
-  right: -100px;
-}
-
-.assess-compacity-logo {
-  width: 300px;
-  max-height: 250px;
+/* ASSESS OF CAPACITY  */
+.avatar-company{
+  width: 120px;
+  height: 120px;
   object-fit: cover;
+  object-position:top;
+  cursor: pointer;
+  opacity: 0.3;
 }
 
-.assess-content-left {
-  padding-left: 70px;
+.assess-content-wrapper{
+  display: none;
 }
 
-.assess-compacity-content {
-  position: relative;
+.assess-company .active{
   display: block;
-  width: 100%;
-  line-height: 1.5rem;
-  font-size: 1.2rem;
-  font-family: 'Times', serif;
-  color: #222f3e;
-  font-style: italic;
 }
 
-.assess-compacity-content::before {
-  content: '\201c';
-  top: 10px;
-  margin-right: 5px;
-  left: -40px;
+.assess-company-box .display{
+  opacity: 1;
+  border: 2px solid var(--sub-color);
 }
 
-.assess-compacity-content::after {
-  content: '\201d';
-  bottom: -30px;
-  margin-left: 5px;
+.assess-content{
+  border-left: 5px solid var(--sub-color);
+  padding: 0px 60px 0px 15px;
+  font-family: 'Noto Serif', serif;
+  text-align: justify;
 }
 
-
-
-.assess-compacity-content::before,
-.assess-compacity-content::after {
-  font-size: 2rem;
+.assess-content::before{
+  content: '\201C';
 }
 
-.assess-compacity-name {
-  font-family: 'Gelasio', serif;
-  font-weight: bold;
+.assess-content::after{
+  content: '\201D';
 }
 
-.assess-compacity-logo-res {
-  width: 100px;
-}
+/* ----PARTNER COMPANY */
 
-/* Loadinggae */
-
-.loading-student-rank-box {
-  height: 400px;
-}
-
-.loading-student-rank {
+.company-item{
+  height: 150px;
   display: flex;
-  width: 4em;
-  height: 4em;
-  border: 3px solid transparent;
-  border-top-color: var(--primary-color-sub);
-  border-bottom-color: var(--primary-color-sub);
-  border-radius: 50%;
-  animation: spin 1.5s linear infinite;
+  align-items: center;
+  justify-content: center;
 }
 
-.loading-student-rank:before {
-  content: '';
-  display: block;
-  margin: auto;
-  width: 0.75em;
-  height: 0.75em;
-  border: 3px solid var(--primary-color-sub);
-  border-radius: 50%;
-  animation: pulse 1s alternate ease-in-out infinite;
+.next-parner , .prev-parner{
+  font-size: 0.7rem;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.slider-control .parner{
+  font-size: 1.5rem;
+  opacity: 0.5;
 }
 
-@keyframes pulse {
-  from {
-    transform: scale(0.5);
-  }
-
-  to {
-    transform: scale(1);
-  }
-}
 
 /*  RESPONSIVE */
-/* ---END HEADER---- */
 @media (max-width:568px) {
   .assess-compacity-wraper {
     display: none;
@@ -469,7 +378,6 @@
   }
 
 
-  /* NEXT | PREV */
   .prev-arrow {
     left: -50px;
   }
@@ -493,45 +401,34 @@
     height: 600px;
   }
 
-  /* Sinh viên đạt điểm cao nhất */
   .btn-review-more {
     width: 30%;
   }
-
-  /* Đánh giá của doanh nghiệp */
-  .company-represent img {
-    width: 200px;
-  }
-
-  .prev-arrow {
-    left: -30px;
-  }
-
-  .next-arrow {
-    right: -15px;
-  }
 }
 
 
-@media (max-width:987px) {
 
-  .contest-loading-desktop,
-  .contest-loading-mobile {
-    display: none;
-  }
 
-  .contest-loading-tablet {
-    display: block;
-  }
 
-  /* Phần lịch sử website */
-  .section_plan-item .section_plan-bag-number,
-  .section_plan-item .section_plan-bag-text {
-    font-size: 20px;
-    font-weight: bold;
-  }
+  @media (max-width:987px) {
 
-  .assess-compacity-wraper {
-    display: none;
+    .contest-loading-desktop,
+    .contest-loading-mobile {
+      display: none;
+    }
+
+    .contest-loading-tablet {
+      display: block;
+    }
+
+    /* Phần lịch sử website */
+    .section_plan-item .section_plan-bag-number,
+    .section_plan-item .section_plan-bag-text {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .assess-compacity-wraper {
+      display: none;
+    }
   }
-}

@@ -1,18 +1,31 @@
+@import '~normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital@1&display=swap');
+
 :root {
-  --primary-color: #ff5622;
+  --primary: #ff5622;
+  --sub-color: #ff6638;
   --black: #000;
-  --midnight-blue: #2c3e50;
   --white: #ffff;
-  --red: #e55039;
-  --primary-color-sub: #ff6638;
-  --text-color: #83838b;
   --gray: #ccc;
-  --color-yellow: #fbc531;
-  --text-gray: #808e9b;
-  --warning: #F26F21;
-  --title-blue: #192a56;
-  --title-footer: #F26F21;
+  --gray-400: #73777B;
+  --yellow: #FFC300;
+  --gray: #808e9b;
+  --blue: #192a56;
+  --blue-500: #091529;
   --bg-content : #F8F8F8;
+}
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 62%;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -21,21 +34,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--title-footer);
+  background-color: var(--sub-color);
   border-radius: 6px;
-}
-
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-}
-
-body {
-  font-size: 62%;
-  overflow-x: hidden;
 }
 
 .fs-text {
@@ -47,114 +47,6 @@ body {
 a {
   text-decoration: none;
 }
-
-ul {
-  list-style-type: none;
-  margin-left: -30px;
-}
-
-
-.margin-header {
-  padding-top: 40px;
-}
-
-.text-justify {
-  text-align: justify;
-}
-
-.primary-color {
-  color: var(--primary-color);
-}
-
-.bg-warn {
-  background-color: var(--warning);
-}
-
-.color-red {
-  color: var(--red);
-}
-
-.color-title {
-  color: var(--primary-color-sub);
-}
-
-.color-text{
-  color: var(--text-color);
-}
-
-.color-gray {
-  color: #383b3f;
-}
-
-
-.color-blue {
-  color: var(--title-blue)
-}
-
-/* FONT - SIZE */
-.fs-text-contest {
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--text-color)
-}
-
-/* BTN REGISTER  */
-.btn-register {
-  color: var(--warning);
-  border: 1px solid var(--warning);
-}
-
-.btn-register:focus {
-  box-shadow: unset;
-}
-
-.btn-base-type-bg {
-  color: var(--white);
-  background-color: var(--warning);
-
-}
-
-.btn-base-type-bg:hover {
-  opacity: 0.9;
-  color: var(--white);
-}
-
-.btn-register-disable {
-  background-color: #7f8c8d;
-  color: white;
-}
-
-.btn-register:hover {
-  transition: all ease-in-out 0.5s;
-  background-color: var(--warning);
-  color: var(--white);
-}
-
-
-/* set up css bootstrap */
-.form-control:focus,
-.form-select:focus {
-  border: var(--warning);
-  box-shadow: 0 0 0 0.1rem var(--warning);
-}
-
-.title-line {
-  width: 100px;
-  height: 3px;
-  background-color: var(--primary-color);
-  margin-bottom: 15px;
-  margin-top: -10px;
-}
-
-.text-collapse {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  width: 100%;
-  text-overflow: ellipsis;
-}
-
 
 /* SLICK SLIDER */
 .slick-arrow {
@@ -170,6 +62,13 @@ ul {
   align-items: center;
 }
 
-.form-search-result{
-  text-align: center;
+
+
+.title-line {
+  margin-bottom: 20px;
+  width: 100px;
+  margin-top: -3px;
+  height: 3px;
+  margin: 0 auto;
+  background-color: var(--sub-color);
 }

@@ -1,0 +1,32 @@
+.primary-color {
+    color: var(--primary);
+}
+
+.color-red {
+    color: var(--red);
+}
+
+.color-yellow {
+    color: var(--yellow);
+}
+
+
+.color-title {
+    color: var(--primary);
+}
+
+.color-text {
+    color: var(--gray-400);
+}
+
+.color-gray {
+    color: #383b3f;
+}
+
+.color-blue{
+    color: var(--blue);
+}
+
+.bg-blue{
+    background-color: var(--blue);
+}

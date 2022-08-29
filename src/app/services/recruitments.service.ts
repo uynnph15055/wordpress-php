@@ -11,6 +11,10 @@ export class RecruitmentsService {
 
   constructor(private http: HttpClient) { }
 
+  getAll() : Observable<ResponsePayload>  {
+    return this.http.get<ResponsePayload>(`${environment.recruitment}`);
+  }
+
   // Gọi ra tất cả các đặt tuyển dụng
   getAllRecruitment(url : string): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.recruitment}?recruitmentHot=${url}`);
