@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.toast.error({ summary: 'Không thể đăng nhập !', duration: 5000 });
   }
 
   loginWithGoogle(): void {
@@ -42,7 +41,8 @@ export class LoginComponent implements OnInit {
               this.statusLogin = false;
               setTimeout(() => {
                 this.toast.success({ summary: 'Đăng nhập thành công', duration: 5000 });
-                this.router.navigate(['/']);
+                const backUrl  = localStorage.getItem('url-current');
+                this.router.navigate([backUrl]);
               }, 1000)
             } else {
               this.toast.error({ summary: 'Không thể đăng nhập', duration: 5000 });
