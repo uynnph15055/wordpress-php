@@ -28,14 +28,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.toast.error({ summary: 'Không thể đăng nhập !', duration: 5000 });
   }
 
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then(data => {
         this.statusLogin = true;
-        this.toast.warning({ summary: 'Đang tiến hành đăng nhập', duration: 10000 });
         this.userService.login(data.authToken)
           .subscribe(status => {
             if (status == true) {

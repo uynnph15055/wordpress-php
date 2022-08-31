@@ -7,20 +7,11 @@
 }
 
 .color-yellow {
-    color: var(--yellow);
-}
-
-
-.color-title {
-    color: var(--primary);
+    color: var(--yellow-500);
 }
 
 .color-text {
     color: var(--gray-400);
-}
-
-.color-gray {
-    color: #383b3f;
 }
 
 .color-blue{

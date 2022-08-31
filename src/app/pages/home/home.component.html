@@ -105,15 +105,15 @@
         <div class="title-line">
         </div>
     </div>
-    <div *ngIf="contests" class="contest-list position-relative">
-        <div class="prev-arrow arrow-list-contest slick-arrow">
+    <div *ngIf="contests" class="contest-list position-relative mb-4">
+        <div class="prev-arrow position-absolute top-50 start-0 translate-middle arrow-list-contest slick-arrow">
             <i class="fas fa-chevron-left"></i>
         </div>
         <ngx-slick-carousel class="carousel row slick-list-contest row" [config]="sliderContest">
             <app-contest-item ngxSlickItem *ngFor="let item of contests" class="col-3 contest-item" [item]="item">
             </app-contest-item>
         </ngx-slick-carousel>
-        <div class="next-arrow arrow-list-contest slick-arrow">
+        <div class="next-arrow position-absolute top-50 start-100 translate-middle arrow-list-contest slick-arrow">
             <i class="fas fa-chevron-right"></i>
         </div>
     </div>
@@ -130,7 +130,7 @@
                 </app-contest-load-item>
             </div>
         </div>
-        <div class="contest-loading-tablet container">
+        <!-- <div class="contest-loading-tablet container">
             <div class="  d-flex justify-content-around ">
                 <app-contest-load-item class=" col-6">
                 </app-contest-load-item>
@@ -146,7 +146,7 @@
                 <app-contest-load-item class="col-12">
                 </app-contest-load-item>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -154,154 +154,42 @@
     <div class="container">
         <h4 class="text-center py-4 title-student-point text-white">SINH VIÊN CÓ THÀNH TÍCH XUẤT SẮC</h4>
         <div class="d-flex justify-content-center mb-4">
-            <select name="" id="" class="select-major">
-                <option selected hidden value="">Chọn bộ môn</option>
-                <option *ngFor="let item  of majors" value="">{{item.name}}</option>
-            </select>
+            <div class="select-box">
+                <select name="" id="" class="select-major"  (change)="changMajor($event)" >
+                    <option *ngFor="let item  of majors" [selected]="item .id == majorIdSelect" [value]="item.slug">{{item.name}}</option>
+                </select>
+            </div>
         </div>
         <div class="list-student-point-hight position-relative w-100 ">
             <button class="slider-control position-absolute  top-50 start-0 translate-middle-y prev-student-arrow"><i
                     class="rank fa-solid fa-chevron-left"></i></button>
-            <div *ngIf="!statusResult"
+            <div
                 class="d-flex justify-content-center loading-student-rank-box align-items-center">
-                <div *ngIf="!loadingResultContest" class="loading-student-rank"></div>
-                <div *ngIf="loadingResultContest" class="">
+                <div   *ngIf="statusResult" class="loading-student-rank"></div>
+                <div *ngIf="!statusResult && resultMajor.length == 0" class="alert-message">
+                    <h3 class="text-white fw-bold">Chưa cập nhật kết quả !!!</h3>
                 </div>
             </div>
-            <ngx-slick-carousel class="carousel row slick-slide-student-more" [config]="sliderStudentPointHight">
-                <div ngxSlickItem class="student-point-item slide">
+            <ngx-slick-carousel class="slider-rank-student row " [config]="sliderStudentPointHight">
+                <div *ngFor="let item of resultMajor" ngxSlickItem class="student-point-item slide">
                     <div class="student-point-item-in text-center">
-                        <!-- [src]="itemStu.user.avatar" -->
+                        <!-- [src]="item.user.avatar" -->
                         <img class="student-point-avatar text-center"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUvYaJOC1XJEMneXwSLCUizp-FaD-75JIxkg&usqp=CAU"
+                            [src]="item.avatar"
                             alt="">
-                        <!-- <div *ngIf="itemStu.rank < 4" class="d-flex justify-content-center align-items-center">
-                            <img class="mt-3" [ngStyle]=" {'width' : '50px' , 'height' : '50px' , 'object-fit' : 'cover'
-                        , 'border-radius' : '50px' }" [src]="itemStu.rank == 1 ? './../../../assets/img/4.png' : itemStu.rank == 2 ?
-                        './../../../assets/img/5.png' : './../../../assets/img/6.png'" alt="">
-                        </div> -->
-                        <!-- *ngIf="itemStu.rank > 4 || itemStu.rank == 4" -->
-                        <div class="student-rank my-3">20</div>
-                        <p class="student-ponit-number fs-4 my-4"><i class="fas fa-star"></i> <span class="fs-5">
-                                100</span>
-                        </p>
+                            <div *ngIf="item.rank < 4" class="d-flex justify-content-center align-items-center my-2">
+                                <img class="mt-3" [ngStyle]=" {'width' : '50px' , 'height' : '50px' , 'object-fit' : 'cover'
+                            , 'border-radius' : '50px' }" [src]="item.rank == 1 ? './../../../assets/img/4.png' : item.rank == 2 ?
+                            './../../../assets/img/5.png' : './../../../assets/img/6.png'" alt="">
+                            </div>
+                            <div *ngIf="item.rank > 4 || item.rank == 4" class="student-rank">{{item.rank}}</div>
+                            <p class="student-ponit-number fs-4 my-4"><i class="fas fa-star"></i> <span class="fs-5">
+                                    {{item.reward_point}}</span>
+                            </p>
+                  
                         <h4 class="student-name">
-                            <!-- {{itemStu.user.name}} -->
-                            Nguyen Ngoc Uy
-                        </h4>
-
-                    </div>
-                </div>
-                <div ngxSlickItem class="student-point-item slide">
-                    <div class="student-point-item-in text-center">
-                        <!-- [src]="itemStu.user.avatar" -->
-                        <img class="student-point-avatar text-center"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUvYaJOC1XJEMneXwSLCUizp-FaD-75JIxkg&usqp=CAU"
-                            alt="">
-                        <!-- <div *ngIf="itemStu.rank < 4" class="d-flex justify-content-center align-items-center">
-                            <img class="mt-3" [ngStyle]=" {'width' : '50px' , 'height' : '50px' , 'object-fit' : 'cover'
-                        , 'border-radius' : '50px' }" [src]="itemStu.rank == 1 ? './../../../assets/img/4.png' : itemStu.rank == 2 ?
-                        './../../../assets/img/5.png' : './../../../assets/img/6.png'" alt="">
-                        </div> -->
-                        <!-- *ngIf="itemStu.rank > 4 || itemStu.rank == 4" -->
-                        <div class="student-rank my-3">20</div>
-                        <p class="student-ponit-number fs-4 my-4"><i class="fas fa-star"></i> <span class="fs-5">
-                                100</span>
-                        </p>
-                        <h4 class="student-name">
-                            <!-- {{itemStu.user.name}} -->
-                            Nguyen Ngoc Uy
-                        </h4>
-
-                    </div>
-                </div>
-                <div ngxSlickItem class="student-point-item slide">
-                    <div class="student-point-item-in text-center">
-                        <!-- [src]="itemStu.user.avatar" -->
-                        <img class="student-point-avatar text-center"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUvYaJOC1XJEMneXwSLCUizp-FaD-75JIxkg&usqp=CAU"
-                            alt="">
-                        <!-- <div *ngIf="itemStu.rank < 4" class="d-flex justify-content-center align-items-center">
-                            <img class="mt-3" [ngStyle]=" {'width' : '50px' , 'height' : '50px' , 'object-fit' : 'cover'
-                        , 'border-radius' : '50px' }" [src]="itemStu.rank == 1 ? './../../../assets/img/4.png' : itemStu.rank == 2 ?
-                        './../../../assets/img/5.png' : './../../../assets/img/6.png'" alt="">
-                        </div> -->
-                        <!-- *ngIf="itemStu.rank > 4 || itemStu.rank == 4" -->
-                        <div class="student-rank my-3">20</div>
-                        <p class="student-ponit-number fs-4 my-4"><i class="fas fa-star"></i> <span class="fs-5">
-                                100</span>
-                        </p>
-                        <h4 class="student-name">
-                            Nguyen Ngoc Uy
-                        </h4>
-
-                    </div>
-                </div>
-                <div ngxSlickItem class="student-point-item slide">
-                    <div class="student-point-item-in text-center">
-                        <!-- [src]="itemStu.user.avatar" -->
-                        <img class="student-point-avatar text-center"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUvYaJOC1XJEMneXwSLCUizp-FaD-75JIxkg&usqp=CAU"
-                            alt="">
-                        <!-- <div *ngIf="itemStu.rank < 4" class="d-flex justify-content-center align-items-center">
-                            <img class="mt-3" [ngStyle]=" {'width' : '50px' , 'height' : '50px' , 'object-fit' : 'cover'
-                        , 'border-radius' : '50px' }" [src]="itemStu.rank == 1 ? './../../../assets/img/4.png' : itemStu.rank == 2 ?
-                        './../../../assets/img/5.png' : './../../../assets/img/6.png'" alt="">
-                        </div> -->
-                        <!-- *ngIf="itemStu.rank > 4 || itemStu.rank == 4" -->
-                        <div class="student-rank my-3">20</div>
-                        <p class="student-ponit-number fs-4 my-4"><i class="fas fa-star"></i> <span class="fs-5">
-                                100</span>
-                        </p>
-                        <h4 class="student-name">
-                            <!-- {{itemStu.user.name}} -->
-                            Nguyen Ngoc Uy
-                        </h4>
-
-                    </div>
-                </div>
-                <div ngxSlickItem class="student-point-item slide">
-                    <div class="student-point-item-in text-center">
-                        <!-- [src]="itemStu.user.avatar" -->
-                        <img class="student-point-avatar text-center"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUvYaJOC1XJEMneXwSLCUizp-FaD-75JIxkg&usqp=CAU"
-                            alt="">
-                        <!-- <div *ngIf="itemStu.rank < 4" class="d-flex justify-content-center align-items-center">
-                            <img class="mt-3" [ngStyle]=" {'width' : '50px' , 'height' : '50px' , 'object-fit' : 'cover'
-                        , 'border-radius' : '50px' }" [src]="itemStu.rank == 1 ? './../../../assets/img/4.png' : itemStu.rank == 2 ?
-                        './../../../assets/img/5.png' : './../../../assets/img/6.png'" alt="">
-                        </div> -->
-                        <!-- *ngIf="itemStu.rank > 4 || itemStu.rank == 4" -->
-                        <div class="student-rank my-3">20</div>
-                        <p class="student-ponit-number fs-4 my-4"><i class="fas fa-star"></i> <span class="fs-5">
-                                100</span>
-                        </p>
-                        <h4 class="student-name">
-                            <!-- {{itemStu.user.name}} -->
-                            Nguyen Ngoc Uy
-                        </h4>
-
-                    </div>
-                </div>
-                <div ngxSlickItem class="student-point-item slide">
-                    <div class="student-point-item-in text-center">
-                        <!-- [src]="itemStu.user.avatar" -->
-                        <img class="student-point-avatar text-center"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUvYaJOC1XJEMneXwSLCUizp-FaD-75JIxkg&usqp=CAU"
-                            alt="">
-                        <!-- <div *ngIf="itemStu.rank < 4" class="d-flex justify-content-center align-items-center">
-                            <img class="mt-3" [ngStyle]=" {'width' : '50px' , 'height' : '50px' , 'object-fit' : 'cover'
-                        , 'border-radius' : '50px' }" [src]="itemStu.rank == 1 ? './../../../assets/img/4.png' : itemStu.rank == 2 ?
-                        './../../../assets/img/5.png' : './../../../assets/img/6.png'" alt="">
-                        </div> -->
-                        <!-- *ngIf="itemStu.rank > 4 || itemStu.rank == 4" -->
-                        <div class="student-rank my-3">20</div>
-                        <p class="student-ponit-number fs-4 my-4"><i class="fas fa-star"></i> <span class="fs-5">
-                                100</span>
-                        </p>
-                        <h4 class="student-name">
-                            <!-- {{itemStu.user.name}} -->
-                            Nguyen Ngoc Uy
+                            <!-- {{item.user.name}} -->
+                            {{item.user_name}}
                         </h4>
 
                     </div>
@@ -310,8 +198,8 @@
             <button class="slider-control position-absolute top-50 end-0 translate-middle-y next-student-arrow"><i
                     class="rank fa-solid fa-chevron-right"></i></button>
         </div>
-        <div class="d-flex justify-content-center my-4">
-            <a (click)="openRankStudent()" class="btn-review-more text-center">Xem thêm
+        <div  class="d-flex justify-content-center my-4">
+            <a *ngIf="!statusResult && resultMajor.length > 0" (click)="openRankStudent()" class="btn-review-more text-center">Xem thêm
             </a>
         </div>
     </div>
@@ -391,36 +279,8 @@
         <button class="slider-control prev-parner position-absolute top-100 start-0 translate-middle"><i
                 class="parner fa-solid fa-arrow-left-long"></i></button>
         <ngx-slick-carousel class="row" [config]="sliderCompany">
-            <div class="col-2 company-item">
-                <img ngxSlickItem class="company-img"
-                    src="https://caodang.fpt.edu.vn/wp-content/uploads/Eden-3-e1503387601339.jpg" alt="">
-            </div>
-            <div class="col-2 company-item">
-                <img ngxSlickItem class="company-img"
-                    src="https://caodang.fpt.edu.vn/wp-content/uploads/Eden-3-e1503387601339.jpg" alt="">
-            </div>
-            <div class="col-2 company-item">
-                <img ngxSlickItem class="company-img"
-                    src="https://caodang.fpt.edu.vn/wp-content/uploads/Smartnet-e1503387655439.png" alt="">
-            </div>
-            <div class="col-2 company-item">
-                <img ngxSlickItem class="company-img"
-                    src="https://caodang.fpt.edu.vn/wp-content/uploads/Eden-3-e1503387601339.jpg" alt="">
-            </div>
-            <div class="col-2 company-item">
-                <img ngxSlickItem class="company-img"
-                    src="https://caodang.fpt.edu.vn/wp-content/uploads/Eden-3-e1503387601339.jpg" alt="">
-            </div>
-            <div class="col-2 company-item">
-                <img ngxSlickItem class="company-img" src="https://caodang.fpt.edu.vn/wp-content/uploads/carevell.jpg"
-                    alt="">
-            </div>
-            <div class="col-2 company-item">
-                <img ngxSlickItem class="company-img" src="https://caodang.fpt.edu.vn/wp-content/uploads/carevell.jpg"
-                    alt="">
-            </div>
-            <div class="col-2 company-item">
-                <img ngxSlickItem class="company-img" src="https://caodang.fpt.edu.vn/wp-content/uploads/carevell.jpg"
+            <div ngxSlickItem *ngFor="let item of companys" class="col-2 company-item">
+                <img  class="company-img" [src]="item.logo"
                     alt="">
             </div>
         </ngx-slick-carousel>

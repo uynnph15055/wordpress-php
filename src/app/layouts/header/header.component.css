@@ -1,7 +1,7 @@
 /* HEADER */
 .header {
   z-index: 99;
-  box-shadow: 0px 0px 7px #ccc;
+  box-shadow: 0px 0px 7px var(--gray);
   background: transparent;
 }
 
@@ -38,7 +38,7 @@
   background: #fff;
   margin: 0 !important;
   animation: slideDown 0.6s ease-in-out;
-  box-shadow: 0 0px 6px gray;
+  box-shadow: 0 0px 6px var(--gray-500);
 }
 
 .menu-res-item .menu-res-link {
@@ -94,7 +94,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background-color: var(--sub-color);
+  background-color: var(--primary);
   transform-origin: bottom right;
   transform: scaleX(0);
   transition: transform 0.5s ease;
@@ -140,7 +140,7 @@
   top: 0;
   left: 0;
   bottom: 0;
-  background-color: #ffff;
+  background-color: var(--white);
   /* display: none; */
   transform: translateX(-100%);
   transition: all linear 0.4s;
@@ -201,7 +201,7 @@
   animation-delay: 10s;
   animation-iteration-count: infinite;
   position: relative;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   margin-top: 30%;
   padding: 12px 30px;
   border-radius: 10px;
@@ -237,27 +237,18 @@
   font-size: 1rem;
   border-radius: 10px;
   padding: 8px 20px;
-  border: 1px solid var(--warning);
-  color: var(--warning);
+  border: 1px solid var(--primary);
+  color: var(--primary);
 }
 
 .btn-outline-login:hover {
-  background-color: var(--warning);
+  background-color: var(--primary);
   color: var(--white);
   transition: all ease-in-out 0.4s;
-  border: 1px solid var(--warning);
+  border: 1px solid var(--primary);
 }
 
-/* ----PARTNER COMPANY */
-.company-img{
-  width: 100%;  
-}
 
-.company-item{
-  height: 150px;
-  display: flex;
-  align-items: center;
-}
 
 /* ---END HEADER---- */
 @media (max-width:568px) {

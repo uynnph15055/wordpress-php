@@ -29,10 +29,10 @@
 
 .contest-count-team .count-team {
   font-size: 13px;
-  padding: 3px;
+  padding: 4px;
   max-width: 9px;
   background: var(--primary);
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .fs-name-time {

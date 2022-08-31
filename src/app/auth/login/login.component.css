@@ -9,7 +9,7 @@
 
 .btn_login-google {
   padding: 10px 150px;
-  background-color: var(--sub-color);
+  background-color: var(--primary);
   color: #ffff;
   border-radius: 6px;
 }
