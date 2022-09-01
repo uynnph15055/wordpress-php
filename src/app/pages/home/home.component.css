@@ -350,14 +350,16 @@ h3{
 /* ----PARTNER COMPANY */
 
 .company-item{
-  height: 150px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 20px;
 }
 
 .next-parner , .prev-parner{
   font-size: 0.7rem;
+  z-index: 10;
 }
 
 .slider-control .parner{

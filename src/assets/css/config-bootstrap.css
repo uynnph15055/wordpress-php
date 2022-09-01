@@ -1,13 +1,11 @@
-.btn-primary:focus {
+
+.btn:focus,
+.form-control:focus ,
+.form-select:focus{
     box-shadow: unset;
 }
 
-.row>* {
-    padding-right: 0px !important;
-  }
-  
 .form-control:focus,
 .form-select:focus {
-    border: var(--sub-color);
-    box-shadow: 0 0 0 0.1rem var(--sub-color);
+    border:1px solid var(--primary) ;
 }

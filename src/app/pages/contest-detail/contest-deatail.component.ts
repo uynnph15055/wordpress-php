@@ -134,10 +134,11 @@ export class ContestDeatailComponent implements OnInit {
           }
         });
 
-        this.checkUserHasJoinContest();
         // Chạy thời gian hết hạn cuộc thi 
         setInterval(() => {
           this.roundEndTime = moment(this.contestDetail.end_register_time).format('lll');
+          console.log(this.roundEndTime);
+          
           let futureDate = new Date(this.roundEndTime).getTime();
           let today = new Date().getTime();
           let distance = futureDate - today;
@@ -179,18 +180,6 @@ export class ContestDeatailComponent implements OnInit {
         team_id: this.teamIdMemberHasJoinTeam,
       }
   });
-  }
-
-  // Check xem user đã join cuộc thi chưa
-  checkUserHasJoinContest() {
-    this.contestDetail.teams.forEach(item => {
-      item.members.forEach(itemMember => {
-        if (itemMember.id == this.infoUser.id) {
-          this.teamIdMemberHasJoinTeam = itemMember.pivot.team_id;
-          this.statusUserHasJoinContest = true;
-        }
-      });
-    })
   }
 
   //Cac bai post

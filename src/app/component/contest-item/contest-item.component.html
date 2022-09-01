@@ -1,4 +1,4 @@
-<div class="  slide">
+<div class="slide">
     <a [routerLink]="['/cuoc-thi/' , item.id]"><img class="contest-item-img" [src]="item.img" alt=""></a>
     <h3><a class="contest-name" [routerLink]="['/cuoc-thi/' , item.id]">{{item.name}}</a></h3>
     <div class="text-Secondary d-flex justify-content-between time-contest-register font-size-sml fs-text-contest">
@@ -30,7 +30,7 @@
         </div>
     </div>
     <p class="contest-count-team mt-2 fs-text-contest">Số đội tham gia : <span
-            class="count-team text-white">{{getMembers(item.teams)}}</span></p>
+            class="count-team text-white">{{item.teams_count}}</span></p>
     <a *ngIf="!pageContestByUser" [routerLink]="['/cuoc-thi' , item.id]"
         [state]="{registerNow : item.status_user_has_join_contest}"
         class="btn-main btn contest-btn-register text-center d-block w-100">{{item.status_user_has_join_contest ==

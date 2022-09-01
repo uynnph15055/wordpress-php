@@ -44,17 +44,16 @@ export class ContestComponent implements OnInit {
     private route: ActivatedRoute,
     private majorService: MajorService,
     private toast: NgToastService,
-    private UserService: UserService) {
+    private userService: UserService) {
   }
 
 
   ngOnInit(): void {
-    this.UserService.getUserValue().id != undefined ? this.checkUserHasLogin = true : this.checkUserHasLogin;
-
-    // console.log(this.UserService.getUserValue().id);
+    this.userService.getUserValue().id != undefined ? this.checkUserHasLogin = true : this.checkUserHasLogin;
     $('html , body').animate({
       scrollTop: 0
     }, 1000);
+
     // Get id
     this.route.paramMap.subscribe(params => {
       this.major_slug = params.get('slug');
@@ -70,6 +69,7 @@ export class ContestComponent implements OnInit {
         }
       })
     });
+
 
     // Gọi tất cả chuyên ngành
     this.majorService.getAll().subscribe(res => {
@@ -88,8 +88,6 @@ export class ContestComponent implements OnInit {
     this.statusContest = 'pending';
     this.contestService.getContestWherePage(url).subscribe(res => {
       this.contests = res.payload.data;
-      this.array_page_link = res.payload.links;
-      this.changeArrayLinks(this.array_page_link);
       if (this.contests) {
         this.statusContest = 'done';
       }
@@ -166,9 +164,12 @@ export class ContestComponent implements OnInit {
 
   // Get contest after login
   getContestHasAfterLogin() {
-    this.contestService.getListContestHasJoin().subscribe(res => {
+    this.userService.getListContestHasJoin(1 , 'desc').subscribe(res => {
       res.status ?
-        this.contests = res.payload.data : null;
+      this.contests = res.payload.data : null;
+      this.array_page_link = res.payload.links;
+      console.log(this.array_page_link);
+      
       this.contests ? this.statusContest = 'done' : this.statusContest == 'pending';
     })
   }
@@ -188,8 +189,7 @@ export class ContestComponent implements OnInit {
         })
         // console.log(this.contests);
       } else {
-        console.log('Uy');
-        this.contestService.filterContestHasLogin(keyword, major_id, status).subscribe(res => {
+        this.userService.filterContestHasLogin(keyword, major_id, status).subscribe(res => {
           if (res.status)
             this.contests = res.payload.data;
           this.contests ? this.statusContest = 'done' : this.statusContest;
@@ -204,12 +204,17 @@ export class ContestComponent implements OnInit {
   getContestWWhereIdMajor(event: any) {
     this.statusContest = 'pending';
     let major_id = event.target.value;
-
-
     if (major_id == 0) {
       this.ngOnInit();
     } else {
       this.filterContest('', major_id, 0, this.checkUserHasLogin);
     }
+  }
+
+  // Status scroll major
+  statusScrollMajor(){
+    const scrolled = window.scrollY;    
+    const statusScrollMajor = document.querySelector('.status-scroll-major');   
+    statusScrollMajor?.classList.add('active');
   }
 }

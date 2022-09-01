@@ -23,7 +23,7 @@
                                     formatDate}}</span>
                             </p>
                             <p class="fw-bold color-gray fs-text">Nội dung &nbsp;<span (click)="open(content)"
-                                    class="btn-base-type-bg  fw-normal rounded p-1 px-2" style="cursor:pointer"> Chi
+                                    class="btn-main fw-normal rounded p-1 px-2" style="cursor:pointer"> Chi
                                     tiết</span>
                             </p>
                             <p class="fw-bold color-gray fs-text">
@@ -154,7 +154,6 @@
 
                     <div id="new-page" *ngIf="statusContest == true">
                         <p class="fw-bold fs-5 color-blue" *ngIf="contestDetail.post_new != null">Tin tức cuộc thi</p>
-                        <div *ngIf="contestDetail.post_new != null" class="title-line"></div>
                         <div class="new-page-img" *ngIf="contestDetail.post_new != null"
                             [innerHTML]="contestDetail.post_new"></div>
                     </div>
@@ -162,7 +161,6 @@
                 </div>
                 <div *ngIf="listPostResult" class="mt-4">
                     <p class="fw-bold mt-2 fs-5 color-blue">Bài viết liên quan</p>
-                    <div class="title-line"></div>
                     <app-list-post [listPost]="cinfigData"></app-list-post>
                 </div>
             </div>
@@ -207,8 +205,8 @@
                                 (click)="openInfoTeam()"><i class="fas fa-user text-white"></i> Đội của bạn</a>
                             <button (click)="openFormRegister()"
                                 [disabled]="statusCheckDate == false || statusUserHasJoinContest == true"
-                                [ngClass]=" statusCheckDate==false ? 'btn btn-register-disable w-100'
-                            : statusUserHasJoinContest == true ? 'btn btn-success w-100' : ' btn contest-detail-register-btn  btn-register w-100' ">{{statusCheckDate
+                                [ngClass]=" statusCheckDate==false ? 'btn btn-dark w-100'
+                            : statusUserHasJoinContest == true ? 'btn btn-success w-100' : ' btn contest-detail-register-btn  btn-main w-100' ">{{statusCheckDate
                                 == false ? 'Hết hạn đăng ký' :
                                 statusUserHasJoinContest == true ? 'Đã tham gia' : 'Đăng ký'}}</button>
                         </div>
@@ -232,7 +230,6 @@
                 </div>
                 <p class="fw-bold fs-5 color-blue mt-4" *ngIf="statusResultRoundBefore == true">Vòng thi trước
                 </p>
-                <div *ngIf="statusResultRoundBefore == true" class="title-line mb-4"></div>
                 <div class=" list-student-rank-box border text-center" *ngIf="statusResultRoundBefore == true">
                     <header>
                         <h3 class="list-student-rank-title fw-bold pt-3 primary-color">Thiết kế website</h3>
@@ -262,7 +259,6 @@
         </div>
         <div class="related-contest" id="related-contest" *ngIf="statusContestRelated == true">
             <p *ngIf="countContestRelated == true" class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</p>
-            <div class="title-line"></div>
             <div class="related-contest-list row" *ngIf="countContestRelated == true">
                 <div *ngFor="let item of contestRelated" class="col-3 bg-white">
                     <app-contest-item [item]="item">

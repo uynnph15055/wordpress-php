@@ -64,7 +64,10 @@
   --red-900 : #7f1d1d;
 }
 
-
+ul{
+  list-style-type: none;
+  padding: 0;
+}
 
 * {
   margin: 0;
@@ -96,6 +99,7 @@ body {
 a {
   text-decoration: none;
 }
+
 
 /* SLICK SLIDER */
 .slick-arrow {
