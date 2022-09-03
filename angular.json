@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "b6a58f8c-10aa-4488-b55f-e663a349067b"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -41,8 +44,11 @@
                "node_modules/slick-carousel/slick/slick.css",
                "node_modules/slick-carousel/slick/slick-theme.css",
                "src/styles.css",
-               "src/assets/css/animationView.css",
-              "src/assets/css/base.css"
+                "src/assets/css/base.css",
+                "src/assets/css/base-color.css",
+                "src/assets/css/base-text.css",
+                "src/assets/css/base-btn.css",
+                "src/assets/css/config-bootstrap.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
