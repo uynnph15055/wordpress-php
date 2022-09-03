@@ -55,8 +55,7 @@ export class ContestItemComponent implements OnInit {
   checkStatusContest(status: number): any {
     let result;
     if (status == 1) {
-
-      result = 'Sắp diễn ra';
+      result = 'Đăng ký';
     } else if (status == 2) {
       result = 'Đang diễn ra';
     } else if (status == 3) {

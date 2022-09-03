@@ -65,7 +65,7 @@
                         class="fas fa-bell header-icon-message  color-blue" matBadgeColor="warn"></i>
                 </li>
                 <li *ngIf="!user">
-                    <a routerLink="/login" class="text-decoration-none mb-2 btn-main">Đăng nhập</a>
+                    <a (click)="saveUrlCurrent()" routerLink="/login" class="text-decoration-none mb-2 btn-main">Đăng nhập</a>
                 </li>
                 <li *ngIf="user">
 

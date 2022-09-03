@@ -84,7 +84,7 @@ export class UserService {
   //  Các cuộc thi mà user đã tham gia
   getContestByUser(): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(
-      `${environment.userListUrl}/contest-joined?sort=desc`
+      `${environment.userListUrl}/contest-joined-and-not-joined?sort=desc`
     );
   }
 
@@ -110,7 +110,7 @@ export class UserService {
   // get list contest user has join
   getListContestHasJoin(sta: any, sort: string): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(
-      `${environment.userListUrl}/contest-joined?status=${sta}&sort=${sort}`
+      `${environment.userListUrl}/contest-joined-and-not-joined?status=${sta}&sort=${sort}`
     );
   }
 
@@ -125,7 +125,7 @@ export class UserService {
     status: any
   ): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(
-      `${environment.userListUrl}/contest-joined?status=${status}&major_id=${major_id}&q=${keyword}`
+      `${environment.userListUrl}/contest-joined-and-not-joined?status=${status}&major_id=${major_id}&q=${keyword}`
     );
   }
 }

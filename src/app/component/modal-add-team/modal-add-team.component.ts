@@ -106,8 +106,14 @@ export class ModalAddTeamComponent implements OnInit {
     formDataTeam.append('image', this.imagePath);
     formDataTeam.append('contest_id', this.contest_id);
     formDataTeam.append('user_id', this.user_id);
+    console.log(this.contest_id);
+    console.log(dataTeam.name);
+    console.log(this.contest_id);
+    console.log(this.user_id);
+    console.log(this.imagePath);
+
     setTimeout(() => {
-        this.teamService.addTeam(formDataTeam).subscribe(res => {
+        this.teamService.addTeam(formDataTeam).subscribe(res => {          
           if (res.status == false) {
             this.toast.warning({ summary: res.payload, duration: 2000 });
             this.dialogRef.close();

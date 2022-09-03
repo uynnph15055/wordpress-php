@@ -31,13 +31,15 @@
     </div>
     <p class="contest-count-team mt-2 fs-text-contest">Số đội tham gia : <span
             class="count-team text-white">{{item.teams_count}}</span></p>
-    <a *ngIf="!pageContestByUser" [routerLink]="['/cuoc-thi' , item.id]"
-        [state]="{registerNow : item.status_user_has_join_contest}"
+    <!-- <a *ngIf="!pageContestByUser" [routerLink]="['/cuoc-thi' , item.id]"
+      
         class="btn-main btn contest-btn-register text-center d-block w-100">{{item.status_user_has_join_contest ==
         true
-        ? 'Đã tham gia' : 'Đăng ký'}}</a>
+        ? 'Đã tham gia' : 'Đăng ký'}}</a> -->
     <a [routerLink]="['/cuoc-thi/' , item.id]"
-        [ngStyle]="{'background-color': item.status == 3 ? '#c0392b' :  item.status == 2 ? '#27ae60' :  '#F26F21' }"
-        *ngIf="pageContestByUser" href=""
-        class="text-center btn contest-btn-register d-block w-100 text-whitroudne">{{checkStatusContest(item.status)}}</a>
+        [ngStyle]="{'background-color': item.status == 3 ? '#c0392b' :  item.status == 2 ? '#27ae60' :'' ,'color': item.status == 3 ? '#fffff' :  item.status == 2 ? '#fffff' :'#ff6638' }"
+        [state]="{registerNow : item.status_user_has_join_contest}"
+         href=""
+         class=" text-center btn  d-block w-100 "
+        [ngClass]="{'btn-main btn' : item.status == 1}">{{checkStatusContest(item.status)}}</a>
 </div>
