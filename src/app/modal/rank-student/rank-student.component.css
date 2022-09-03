@@ -1,0 +1,18 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+.rank-list-box {
+    height: 350px;
+}
+
+.header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}

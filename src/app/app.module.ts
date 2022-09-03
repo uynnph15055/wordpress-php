@@ -1,3 +1,5 @@
+
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -24,9 +26,6 @@ import { BackTimeComponent } from './component/back-time/back-time.component';
 import { RoundComponent } from './component/round/round.component';
 import { BackTopComponent } from './component/back-top/back-top.component';
 
-import { MatExpansionModule } from '@angular/material/expansion';
-
-
 import { LoadingItemComponent } from './component/loading-item/loading-item.component';
 import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
 import { FormatDatePipe } from './helper/pipe/format-date.pipe';
@@ -52,6 +51,7 @@ import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { ListResultRoundComponent } from './component/list-result-round/list-result-round.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { LoadingPageComponent } from './loading/loading-page/loading-page.component';
+
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -61,16 +61,25 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { RecruitmentComponent as RecruitmentComponentModal } from './modal/recruitment/recruitment.component';
+
 import { ModalInfoTeamComponent } from './modal/modal-info-team/modal-info-team.component';
-import { RecruitmentListCompanyComponent } from './modal/recruitment-list-company/recruitment-list-company.component';
 // import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
 registerLocaleData(en);
-import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+
+
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
+import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+import { RecruitmentSearchComponent } from './modal/recruitment-search/recruitment-search.component';
+import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 import { CapacityRelatedItemComponent } from './component/capacity-related-item/capacity-related-item.component';
+import { ListPostComponent } from './component/list-post/list-post.component';
+import { PostsComponent } from './pages/posts/posts.component';
+import { RankStudentComponent } from './modal/rank-student/rank-student.component';
+import { AvatarComponent } from './component/avatar/avatar.component';
+
+
 
 @NgModule({
   declarations: [
@@ -105,13 +114,17 @@ import { CapacityRelatedItemComponent } from './component/capacity-related-item/
     HeaderComponent,
     FooterComponent,
     RecruitmentComponent,
-    RecruitmentComponentModal,
     ModalInfoTeamComponent,
-    RecruitmentListCompanyComponent,
-    CapacityDetailComponent,
     CapacityExamComponent,
     DialogConfirmComponent,
+    CapacityDetailComponent,
     CapacityRelatedItemComponent,
+    RecruitmentSearchComponent,
+    RecruitmentDetailComponent,
+    ListPostComponent,
+    PostsComponent,
+    RankStudentComponent,
+    AvatarComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,9 +143,6 @@ import { CapacityRelatedItemComponent } from './component/capacity-related-item/
     NgToastModule,
     NzSelectModule,
     NzSpinModule,
-
-    // AndesginModule,
-
   ],
   providers: [
     {

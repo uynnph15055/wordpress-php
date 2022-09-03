@@ -21,4 +21,5 @@ export class Contest {
     judges: Array<Judges>;
     status_user_has_join_contest: boolean;
     post_new: string;
+    teams_count: number;
 }

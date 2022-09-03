@@ -106,26 +106,28 @@ export class ModalAddTeamComponent implements OnInit {
     formDataTeam.append('image', this.imagePath);
     formDataTeam.append('contest_id', this.contest_id);
     formDataTeam.append('user_id', this.user_id);
+    console.log(this.contest_id);
+    console.log(dataTeam.name);
+    console.log(this.contest_id);
+    console.log(this.user_id);
+    console.log(this.imagePath);
+
     setTimeout(() => {
-      if (!this.imagePath) {
-        this.statusRegister = true;
-        this.toast.warning({ summary: 'Bạn chưa chọn ảnh !!!', duration: 2000 });
-      } else {
-        this.teamService.addTeam(formDataTeam).subscribe(res => {
+        this.teamService.addTeam(formDataTeam).subscribe(res => {          
           if (res.status == false) {
             this.toast.warning({ summary: res.payload, duration: 2000 });
             this.dialogRef.close();
           } else {
+            console.log(res);
             this.statusRegister = true;
             this.dialogRef.close();
             this.openDialog(res.id_team, this.contest_id);
           }
         })
-      }
-    }, 3000);
+      })
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+      this.dialogRef.close();
   }
 }

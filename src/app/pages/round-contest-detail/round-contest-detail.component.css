@@ -1,16 +1,15 @@
 /* COMMOM */
-
 .p-justify {
   text-align: justify;
 }
 
-
-.example-button-item:hover {
-  background-color: var(--primary-color);
-  color: var(--white);
-  transition: all 0.3s ease-in;
+.contest-detail-box {
+  background-color: #F8F8F8;
 }
 
+.new-page-img img {
+  width: 100% !important;
+}
 
 .content-contest {
   display: -webkit-box;
@@ -21,11 +20,21 @@
   text-overflow: ellipsis;
 }
 
+.content-round-page {
+  border-radius: 6px;
+  padding: 2px 20px;
+}
+
+.example-button-item:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+  transition: all 0.3s ease-in;
+}
 
 .contest-detail-header {
   display: grid;
-  grid-template-columns: 70% 25%;
-  grid-gap: 50px;
+  grid-template-columns: 74% 23%;
+  grid-gap: 30px;
 }
 
 .related-contest-list {
@@ -45,7 +54,8 @@
 .contest-detail-left-header,
 .list-team-in,
 .contest-detail-right-in,
-.contest-detail-section {
+.contest-detail-section,
+.content-round-page {
   border-radius: 8px;
   box-shadow: 0px 0px 7px var(--gray);
   background-color: #ffff;
@@ -59,7 +69,7 @@
   border-bottom-left-radius: 10px;
   margin: 0px -12px !important;
   object-fit: cover;
-  height: 294px;
+  height: 291px;
 }
 
 .contest-date-open-end {
@@ -152,12 +162,19 @@
 
 .student-rank-name {
   color: #444;
+  text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  margin-left: 15px;
 }
 
 .student-rank-list .student-rank-avatar {
-  width: 40px;
-  height: 40px;
-  max-height: 40px;
+  width: 30px;
+  height: 30px;
   object-fit: cover;
   border-radius: 50px;
 }
@@ -204,10 +221,10 @@
 }
 
 .related-contest-item .related-contest-image {
-  height: 90px;
-  width: 100px;
+  height: 30px;
+  width: 30px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 50px;
 }
 
 .related-contest-item .related-contest-name {
@@ -248,6 +265,13 @@
 
 
 /* COUNT DOWN */
+.contest-detail-right {
+  /* position: sticky; */
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
+  height:350px;
+}
 
 .contest-detail-right-name {
   display: -webkit-box;
@@ -255,6 +279,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 1.1rem;
 }
 
 .img-detail-box img {
@@ -268,7 +293,7 @@
   display: flex;
   justify-content: center;
   /* margin: 20px 10px; */
-  margin-bottom: -0.7rem !important;
+  margin-bottom: -0.2rem !important;
 }
 
 .contest-detail-right-countdown-box {

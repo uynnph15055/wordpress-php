@@ -19,6 +19,8 @@ import { RoundContestDetailComponent } from './pages/round-contest-detail/round-
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
+import { PostsComponent } from './pages/posts/posts.component';
+import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,10 @@ const routes: Routes = [
       {
         path: 'cuoc-thi',
         component: ContestComponent,
+      },
+      {
+        path: 'bai-viet',
+        component: PostsComponent,
       },
       {
         path: 'vao-thi/:contest_id/vong/:round_id',
@@ -76,6 +82,14 @@ const routes: Routes = [
         component: RecruitmentComponent,
       },
       {
+        path: "tuyen-dung/chi-tiet/:id",
+        component: RecruitmentDetailComponent,
+      },
+      {
+        path: "cuoc-thi/:contest_id/vong/:round_id",
+        component: RoundContestDetailComponent,
+      },
+      {
         path: "test-nang-luc/:capacity_id",
         component: CapacityDetailComponent
       },
@@ -89,6 +103,7 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent
   },
+
 
 ];
 

@@ -1,11 +1,8 @@
-/* 
-  *Footer
-   */
 
 #footer {
   background-image: linear-gradient(to bottom, #081327, #122035);
   color: #fff;
-  border-top: 10px solid var(--title-footer);
+  border-top: 10px solid var(--primary);
   /* margin-top: 10px; */
   font-size: 13px;
 }
@@ -15,13 +12,13 @@
 }
 
 .footer-title-color {
-  color: var(--title-footer);
+  color: var(--primary);
 }
 
 #footer h6 {
   text-decoration: underline;
   font-size: 1rem;
-  color: var(--title-footer);
+  color: var(--primary);
 }
 
 .footer-size-p {
@@ -30,5 +27,5 @@
 
 #footer .fa-icon-phone {
   font-size: 16px;
-  color: var(--title-footer)
+  color: var(--primary)
 }

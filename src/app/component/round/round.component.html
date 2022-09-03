@@ -17,8 +17,8 @@
                         {{item.name}}
                     </div>
                     <p hidden> {{checkStatusRound(item.start_time , item.end_time , item.id)}}</p>
-                    <div class="">
-                        <h3 [ngStyle]="{'color': statusRound == 1 ? '#c0392b' : '#27ae60' }" class="mt-4 mr-2">
+                    <div class="" style="margin-top: 20px;">
+                        <h3 [ngStyle]="{'color': statusRound == 1 ? '#c0392b' : '#27ae60' }" class="mr-2">
                             {{checkStatusRound(item.start_time , item.end_time , item.id)}}</h3>
                     </div>
                 </mat-panel-title>

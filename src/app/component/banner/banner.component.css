@@ -1,6 +1,11 @@
-.home-banner-img-box {
-  max-height: 550px;
+.banner-img-box {
+  max-height: 90%;
   min-width: 100%;
+}
+
+.banner-img-box img{
+  min-height: 570px;
+  object-fit: cover;
 }
 
 .banner-name-major {

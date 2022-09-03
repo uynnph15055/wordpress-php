@@ -10,7 +10,6 @@ export class FormatDatePipe implements PipeTransform {
   transform(value: any): string {
     this.date = moment(value).format('HH:mm DD/MM/YYYY')
     let arrDate = this.date.split(' ');
-    return arrDate[0] + ' Ngày: ' + arrDate[1];
+    return `${arrDate[0]} - ${arrDate[1]}`;
   }
-
 }

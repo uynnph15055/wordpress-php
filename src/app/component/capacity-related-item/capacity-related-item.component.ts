@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Capacity } from 'src/app/models/capacity';
+import { Skill } from 'src/app/models/skill.models';
 
 @Component({
   selector: 'app-capacity-related-item',
@@ -11,17 +12,19 @@ import { Capacity } from 'src/app/models/capacity';
 export class CapacityRelatedItemComponent implements OnInit {
 
   @Input() capacityItem!: Capacity;
+
+
   countDown: {
     days: number,
     hours: number,
     minutes: number,
     seconds: number
   } = {
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  };
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    };
   timerId!: any;
   statusExam!: {
     status: number,
@@ -62,6 +65,8 @@ export class CapacityRelatedItemComponent implements OnInit {
     }, 1000);
 
     this.getStatusCapacity();
+
+
   }
 
   formatDate(date: Date) {
@@ -86,7 +91,7 @@ export class CapacityRelatedItemComponent implements OnInit {
         status: 0,
         statustext: "Sắp diễn ra"
       }
-    } else if (today >= timeDateStart && today <= timeDateEnd ) {
+    } else if (today >= timeDateStart && today <= timeDateEnd) {
       this.statusExam = {
         status: 1,
         statustext: "Đang diễn ra"
@@ -99,4 +104,13 @@ export class CapacityRelatedItemComponent implements OnInit {
     }
   }
 
+  // Chuyển skill sang chuỗi
+  changeSkillString(arrSkill: Array<Skill>): string{
+    let stringSkill: string;
+     stringSkill =  arrSkill.map(res => {
+      //  arr.push(res.name);
+       return  res.name;
+    }).join(',');
+    return stringSkill;
+  }
 }

@@ -1,0 +1,22 @@
+/* BTN REGISTER  */
+.btn-main {
+    color: var(--primary);
+    padding: 7px 15px;
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.btn-main:hover {
+    transition: all ease-in-out 0.5s;
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.btn-main-disable {
+    background-color: #7f8c8d;
+    color: white;
+}
+
+
+

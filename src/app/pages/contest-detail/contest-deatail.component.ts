@@ -20,9 +20,10 @@ import * as $ from 'jquery';
 import { SliderService } from 'src/app/services/slider.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
-
-
-
+import { User } from 'src/app/models/user';
+import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
+import { ListPostService } from 'src/app/services/list-post.service';
+import { Post } from 'src/app/models/post.model';
 @Component({
   selector: 'app-contest-deatail',
   templateUrl: './contest-deatail.component.html',
@@ -32,6 +33,7 @@ import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info
 
 export class ContestDeatailComponent implements OnInit {
   round_id: any;
+  infoUser: User;
   closeResult: string;
   contest_id: number = 0;
   teamIdMemberHasJoinTeam: number = 0;
@@ -43,6 +45,11 @@ export class ContestDeatailComponent implements OnInit {
   contestCompanySuppor: Enterprise;
   contentItem: Array<Contest> = [];
   forwardComponent: Array<any> = [];
+  listPost: TransmitToPost = {
+    id: 0,
+    posts: [],
+    numberColumn: 3,
+  };
   // ---------------------------
 
   contestDetail: Contest;
@@ -58,7 +65,9 @@ export class ContestDeatailComponent implements OnInit {
   statusPage: boolean = false;
   statusResultRoundBefore: boolean = false;
   statusUserHasJoinContest: boolean = false;
-
+  statusUserLogin: boolean = false;
+  cinfigData: TransmitToPost;
+  listPostResult : Array<Post>;
 
   days: number;
   hours: number;
@@ -69,6 +78,7 @@ export class ContestDeatailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     public dialog: MatDialog,
+    public listPostService : ListPostService,
     private contestService: ContestService,
     private getUserLocal: GetValueLocalService,
     private router: Router,
@@ -80,6 +90,11 @@ export class ContestDeatailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Check user đã đăng nhập hay chưa
+    this.infoUser = this.userService.getUserValue();
+    this.infoUser ? this.statusUserLogin = true : this.statusUserLogin;
+    // ----------------------------
+
     this.statusPage = true;
     this.runTop();
     this.routeStateRegister = history.state.registerNow;
@@ -119,15 +134,12 @@ export class ContestDeatailComponent implements OnInit {
           }
         });
 
-        this.checkUserHasJoinContest();
-
         // Chạy thời gian hết hạn cuộc thi 
         setInterval(() => {
           this.roundEndTime = moment(this.contestDetail.end_register_time).format('lll');
-
+          console.log(this.roundEndTime);
+          
           let futureDate = new Date(this.roundEndTime).getTime();
-
-
           let today = new Date().getTime();
           let distance = futureDate - today;
           if (distance < 0) {
@@ -155,6 +167,8 @@ export class ContestDeatailComponent implements OnInit {
         }, 3000);
       }
     });
+
+    this.getListPost();
   }
 
   // Thông tin đội
@@ -165,24 +179,26 @@ export class ContestDeatailComponent implements OnInit {
         contest_id: this.contestDetail.id,
         team_id: this.teamIdMemberHasJoinTeam,
       }
-    });
+  });
   }
 
-  // Check xem user đã join cuộc thi chưa
-  checkUserHasJoinContest() {
-    let user = this.userService.getUserValue();
+  //Cac bai post
+  getListPost() {
+    this.listPostService.getPostWhereCate('post-recruitment').subscribe(res => {
+     if(res.status){
+       this.listPostResult = res.payload.data;
+       console.log(this.listPostResult);
+       
+       this.cinfigData = {
+         id: 0,
+         posts: this.listPostResult,
+         numberColumn: 3,
+       };
+     }
+   })
+ }
 
-    this.contestDetail.teams.forEach(item => {
-      item.members.forEach(item => {
-        if (item.id == user.id) {
-          this.teamIdMemberHasJoinTeam = item.pivot.team_id;
 
-
-          this.statusUserHasJoinContest = true;
-        }
-      });
-    })
-  }
 
   // Mở model thêm đội thi
   openFormRegister(): void {
@@ -208,8 +224,6 @@ export class ContestDeatailComponent implements OnInit {
 
   // Kết quả vòng thi trước đó
   getResultRoundBefore(arrRound: Array<Round>, index: number) {
-
-    console.log(this.getRoundId(arrRound, index));
 
     this.roundService.getResultRound(this.getRoundId(arrRound, index)).subscribe(res => {
       if (res.status) {
@@ -256,11 +270,5 @@ export class ContestDeatailComponent implements OnInit {
   open(content: any) {
     this.modalService.open(content, { centered: true });
   }
-
-  // 
-  statusCountResultFn(event: any) {
-    console.log(event);
-  }
-
 
 }
