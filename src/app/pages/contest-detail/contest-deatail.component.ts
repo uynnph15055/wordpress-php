@@ -108,6 +108,7 @@ export class ContestDeatailComponent implements OnInit {
         this.contestDetail ? this.statusContest = true : this.statusContest;
         this.statusPage = false;
         this.contestDetail.enterprise;
+        
         this.slider.getListSlider('major', 'major_id', this.contestDetail.major_id).subscribe(res => {
           if (res.status) {
             this.sliderContest = res.payload;
@@ -118,8 +119,6 @@ export class ContestDeatailComponent implements OnInit {
           this.round_id = this.getRoundId(this.contestDetail.rounds, 1);
           this.getResultRoundBefore(this.contestDetail.rounds, 2);
         }
-
-        // ---
 
         // Các cuộc thi liên quan
         this.contestService.getWhereMajor(this.contestDetail.major_id).subscribe(res => {
@@ -137,7 +136,6 @@ export class ContestDeatailComponent implements OnInit {
         // Chạy thời gian hết hạn cuộc thi 
         setInterval(() => {
           this.roundEndTime = moment(this.contestDetail.end_register_time).format('lll');
-          console.log(this.roundEndTime);
           
           let futureDate = new Date(this.roundEndTime).getTime();
           let today = new Date().getTime();
@@ -186,9 +184,7 @@ export class ContestDeatailComponent implements OnInit {
   getListPost() {
     this.listPostService.getPostWhereCate('post-recruitment').subscribe(res => {
      if(res.status){
-       this.listPostResult = res.payload.data;
-       console.log(this.listPostResult);
-       
+       this.listPostResult = res.payload.data;       
        this.cinfigData = {
          id: 0,
          posts: this.listPostResult,

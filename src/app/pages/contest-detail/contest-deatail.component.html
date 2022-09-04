@@ -200,7 +200,7 @@
                             </ul>
                             <!-- *ngIf="statusUserHasJoinContest == true"
                                 [routerLink]="['/thong-tin/cuoc-thi' , contestDetail.id , 'chi-tiet-doi' , teamIdMemberHasJoinTeam ]" -->
-                            <a *ngIf=" this.statusUserHasJoinContest == true"
+                            <a 
                                 style="background-color: #e67e22;margin: 10px 0px 20px 0px;" class="btn text-white"
                                 (click)="openInfoTeam()"><i class="fas fa-user text-white"></i> Đội của bạn</a>
                             <button (click)="openFormRegister()"
@@ -225,10 +225,7 @@
                         </ngx-skeleton-loader>
                     </div>
                 </div>
-                <div *ngFor="let itemImage of sliderContest" class="mt-3">
-                    <img [src]="itemImage.image_url" alt="" class="w-100">
-                </div>
-                <p class="fw-bold fs-5 color-blue mt-4" *ngIf="statusResultRoundBefore == true">Vòng thi trước
+                 <p class="fw-bold fs-5 color-blue mt-4" *ngIf="statusResultRoundBefore == true">Vòng thi trước
                 </p>
                 <div class=" list-student-rank-box border text-center" *ngIf="statusResultRoundBefore == true">
                     <header>

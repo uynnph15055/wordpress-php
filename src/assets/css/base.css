@@ -78,6 +78,7 @@ ul{
 body {
   font-size: 62%;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
@@ -100,12 +101,6 @@ a {
   text-decoration: none;
 }
 
-<<<<<<< HEAD
-=======
-ul{
-  list-style-type: none;
-}
->>>>>>> uynn_fig_back_up_url_login
 
 /* SLICK SLIDER */
 .slick-arrow {
