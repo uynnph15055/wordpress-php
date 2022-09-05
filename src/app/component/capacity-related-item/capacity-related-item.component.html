@@ -19,7 +19,8 @@
         <div class="capacity__related-content-list-item-icon">
           <i class="fa-solid fa-user-group"></i>
         </div>
-        {{capacityItem.users}} lượt làm bài
+
+        {{ capacityItem.user_capacity_done.length }} lượt làm bài
       </li>
 
       <li class="capacity__related-content-list-item">
@@ -28,8 +29,8 @@
         </div>
 
         <div class="capacity__related-content-list-item-skill">
-          <span>Skill:  </span>
-          <strong class="capacity__related-content-list-item-skill-name">{{changeSkillString(capacityItem.skills)}}</strong>
+          <span>Skill:</span>
+          <strong class="capacity__related-content-list-item-skill-name">{{ this.skillsName }}</strong>
         </div>
       </li>
     </ul>

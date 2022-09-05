@@ -30,12 +30,15 @@ export class CapacityRelatedItemComponent implements OnInit {
     status: number,
     statustext: string
   };
+  skillsName!: string;
 
   constructor(
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.skillsName = this.capacityItem.skills.map(skill => skill.short_name).join(", ");
+
     // đếm ngược thời gian bắt đầu mở bài test
     this.timerId = setInterval(() => {
       let futureDate = new Date(this.capacityItem.date_start).getTime();
