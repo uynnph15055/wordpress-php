@@ -5,7 +5,7 @@
         <p class="contest-register-dealine">
             Thời gian :
         </p>
-        <div class="text-center ">
+        <div class="text-center">
             <span class="fw-bold primary-color">{{days}}</span>
             <br>
             <span class="fs-name-time"> Ngày </span>
@@ -33,7 +33,7 @@
             class="count-team text-white">{{getMembers(item.teams)}}</span></p>
     <a *ngIf="!pageContestByUser" [routerLink]="['/cuoc-thi' , item.id]"
         [state]="{registerNow : item.status_user_has_join_contest}"
-        class="btn-register btn contest-btn-register text-center d-block w-100">{{item.status_user_has_join_contest ==
+        class="btn-main btn contest-btn-register text-center d-block w-100">{{item.status_user_has_join_contest ==
         true
         ? 'Đã tham gia' : 'Đăng ký'}}</a>
     <a [routerLink]="['/cuoc-thi/' , item.id]"

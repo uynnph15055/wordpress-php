@@ -1,0 +1,26 @@
+.title {
+    font-size: 1.3rem;
+    margin-bottom: 0;
+}
+
+.title-line {
+    margin-bottom: 20px;
+    width: 100px;
+    margin-top: -3px;
+    height: 3px;
+    margin: 0 auto;
+    background-color: var(--sub-color);
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-collapse {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+}

@@ -24,9 +24,6 @@ import { BackTimeComponent } from './component/back-time/back-time.component';
 import { RoundComponent } from './component/round/round.component';
 import { BackTopComponent } from './component/back-top/back-top.component';
 
-import { MatExpansionModule } from '@angular/material/expansion';
-
-
 import { LoadingItemComponent } from './component/loading-item/loading-item.component';
 import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
 import { FormatDatePipe } from './helper/pipe/format-date.pipe';
@@ -77,6 +74,8 @@ import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitme
 import { CapacityRelatedItemComponent } from './component/capacity-related-item/capacity-related-item.component';
 import { ListPostComponent } from './component/list-post/list-post.component';
 import { PostsComponent } from './pages/posts/posts.component';
+import { RankStudentComponent } from './modal/rank-student/rank-student.component';
+import { AvatarComponent } from './component/avatar/avatar.component';
 
 
 
@@ -121,7 +120,9 @@ import { PostsComponent } from './pages/posts/posts.component';
     RecruitmentSearchComponent,
     RecruitmentDetailComponent,
     ListPostComponent,
-    PostsComponent
+    PostsComponent,
+    RankStudentComponent,
+    AvatarComponent,
   ],
   imports: [
     BrowserModule,
