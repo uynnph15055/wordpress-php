@@ -1,7 +1,9 @@
-.title {
-    font-size: 1.3rem;
-    margin-bottom: 0;
+.text-justify {
+    text-align: justify;
 }
+
+
+  
 
 .title-line {
     margin-bottom: 20px;
@@ -9,11 +11,7 @@
     margin-top: -3px;
     height: 3px;
     margin: 0 auto;
-    background-color: var(--sub-color);
-}
-
-.text-justify {
-    text-align: justify;
+    background-color: var(--primary);
 }
 
 .text-collapse {

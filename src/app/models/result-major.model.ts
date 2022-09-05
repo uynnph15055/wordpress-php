@@ -6,8 +6,9 @@ export class ResultMajor {
     rank: number;
     reward_point: number;
     contest_name: string;
-    name: string;
+    user_name: string;
     user: User;
     contest: Contest;
+    avatar: string;
 
 }

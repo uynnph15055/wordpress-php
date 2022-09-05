@@ -1,30 +1,24 @@
+h3{
+  margin-bottom:0 ;
+}
+/* LIST CONTEST */
+.contest-list {
+  margin-left: 22px;
+}
+
 .title {
   font-size: 1.3rem;
   margin-bottom: 0;
 }
 
-/* LIST CONTEST */
-
-.contest-loading-tablet {
-  display: none;
-}
-
-.contest-loading-mobile {
-  display: none;
-}
-
-.contest-list {
-  margin-left: 22px;
-}
-
-.slick-list-contest {
-  position: relative;
+.contest-item {
+  margin: 0px 10px; 
 }
 
 .contest-list .arrow-list-contest {
   cursor: pointer;
   padding: 8px 12px;
-  color: var(--sub-color);
+  color: var(--primary);
   border-radius: 50px;
   background-color: #f4f2f2;
   transition: 0.3s;
@@ -32,31 +26,14 @@
 
 .contest-list .arrow-list-contest:hover {
   color: var(--white);
-  background-color: var(--sub-color);
+  background-color: var(--primary);
   transition: all ease-in-out 0.3s;
 }
 
-.prev-arrow {
-  left: -50px;
-}
-
-.next-arrow {
-  right: -30px;
-}
-
-/* Rating */
-.subject-item {
-  font-size: 13px;
-}
-
-.contest-img img {
-  object-fit: cover;
-  height: 200px;
-}
 
 /* STATISTICAL */
 .section_plan {
-  background-color: #091529;
+  background-color: #081327;
 }
 
 .section_plan-title {
@@ -84,23 +61,89 @@
   font-size: 2rem;
 }
 
-
-/* LIST STUDENT */
-
-.contest-item {
-  margin-right: 20px;
-}
-
 /* LIST STUDENT POINT HIGHT */
 .list-student-point-box {
   background: linear-gradient(to bottom, #081327, #122035);
   min-height: 600px;
 }
 
+.list-student-point-hight{
+  min-height: 350px;
+}
+
+.alert-message{
+  margin-top: 15%;
+}
+
+.loading-student-rank {
+  display: flex;
+  width: 4em;
+  height: 4em;
+  border: 3px solid transparent;
+  border-top-color: var(--primary);
+  border-bottom-color: var(--primary);
+  border-radius: 50%;
+  margin-top: 14%;
+  animation: spin 1.5s linear infinite;
+}
+
+.loading-student-rank:before {
+  content: '';
+  display: block;
+  margin: auto;
+  width: 0.75em;
+  height: 0.75em;
+  border: 3px solid var(--primary);
+  border-radius: 50%;
+  animation: pulse 1s alternate ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.5);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+
+.select-box{
+  width: 300px;
+  position: relative;
+}
+
+.select-major {
+  padding: 7px 10px;
+  height: 40px;
+  cursor: pointer;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.select-box::before{
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -4px;
+  border-top: 7px solid #444;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
 .slider-control {
   background-color: rgba(255, 255, 255, 0);
   border: none;
-  color: var(--sub-color);
+  color: var(--primary);
 }
 
 .slider-control:hover i {
@@ -116,36 +159,6 @@
   max-height: 400px;
 }
 
-.student-point-select-major {
-  margin: 0 auto;
-  position: relative;
-  width: 25%;
-}
-
-.student-point-select-major:hover .student-point-dropdown {
-  display: block;
-  opacity: 1;
-  transition: all ease-in-out 0.3s;
-
-}
-
-.student-point-select-in {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 7px 15px;
-  background: linear-gradient(45deg, #EE5A24, #F79F1F);
-  border-radius: 5px;
-  color: #f5f6fa;
-  cursor: pointer;
-}
-
-.select-major {
-  padding: 7px;
-  min-width: 200px;
-  cursor: pointer;
-}
-
 .select-major:focus {
   outline: none;
 }
@@ -156,7 +169,7 @@
   margin: 0px auto;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--sub-color);
+  border: 4px solid var(--primary);
 }
 
 .student-point-item {
@@ -173,7 +186,7 @@
 }
 
 .student-point-item-in {
-  padding: 40px 0px;
+  padding: 30px 0px;
 }
 
 .student-name {
@@ -189,7 +202,7 @@
 .student-rank {
   width: 40px;
   height: 40px;
-  background: var(--sub-color);
+  background: var(--primary);
   ;
   border-radius: 50px;
   color: var(--white);
@@ -201,7 +214,7 @@
 }
 
 .student-ponit-number i {
-  color: var(--yellow);
+  color: var(--yellow-400);
 }
 
 .student-ponit-number span {
@@ -246,27 +259,18 @@
   transform: translateX(-200px);
 }
 
-.slick-slide-student-first .slick-slide.slick-current {
+.slick-slide-student-two .slick-slide.slick-current {
   transform: scale(1);
   transition: all linear 0.3s;
   opacity: 1;
 }
 
-/* MODE TWO STUDENT */
-.slick-slide-student-two {
-  transform: translateX(-200px);
-}
-
-.slick-slide-student-first .slick-slide.slick-current {
-  transform: scale(1);
-  transition: all linear 0.3s;
-  opacity: 1;
-}
 
 /* MODE THREE STUDENT */
 .slick-slide-student-three .slick-slide {
   transform: scale(1);
   transition: all linear 0.3s;
+  opacity: 1;
 }
 
 .list-student-point-box .arrow-list-student {
@@ -296,11 +300,11 @@
   width: 15%;
   border-radius: 6px;
   transition: all ease-in-out 0.4s;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .btn-review-more:hover {
-  box-shadow: 0px 0px 10px #F79F1F;
+  box-shadow: 0px 0px 10px var(--yellow-500);
   transition: all ease-in-out 0.4s;
 }
 
@@ -325,11 +329,11 @@
 
 .assess-company-box .display{
   opacity: 1;
-  border: 2px solid var(--sub-color);
+  border: 2px solid var(--primary);
 }
 
 .assess-content{
-  border-left: 5px solid var(--sub-color);
+  border-left: 5px solid var(--primary);
   padding: 0px 60px 0px 15px;
   font-family: 'Noto Serif', serif;
   text-align: justify;

@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then(data => {
         this.statusLogin = true;
-        this.toast.warning({ summary: 'Đang tiến hành đăng nhập', duration: 10000 });
         this.userService.login(data.authToken)
           .subscribe(status => {
             if (status == true) {
