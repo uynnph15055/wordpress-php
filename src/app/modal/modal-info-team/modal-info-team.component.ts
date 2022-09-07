@@ -13,8 +13,8 @@ import { ContestService } from 'src/app/services/contest.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { ConfigFunctionService } from 'src/app/services/config-function.service';
-import { ModalListMemberComponent } from 'src/app/component/modal-list-member/modal-list-member.component';
-import { ModalAddTeamComponent } from 'src/app/component/modal-add-team/modal-add-team.component';
+import { ModalListMemberComponent } from 'src/app/modal/modal-list-member/modal-list-member.component';
+import { ModalAddTeamComponent } from 'src/app/modal/modal-add-team/modal-add-team.component';
 
 @Component({
   selector: 'app-modal-info-team',
@@ -30,6 +30,7 @@ export class ModalInfoTeamComponent implements OnInit {
   statusTeamDetail: boolean = false;
   arrayMembers: Array<ContestMember>;
   user: User;
+  logoDefault = '/src/assets/img/Ai.jpeg';
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -49,13 +50,6 @@ export class ModalInfoTeamComponent implements OnInit {
   formSearchMembers = new FormGroup({
     keyWord: new FormControl('', Validators.required),
   });
-
-
-  // Timf kiếm thành viên
-  // searchMembers() {
-  //   let key_word = { ...this.formSearchMembers.value }
-  //   this.openListMemberJoinTeam(key_word.keyWord);
-  // }
 
   openDialog(): void {
     // Lấy dữ liệu từ modal điều hướng sang chi tiết đội thi

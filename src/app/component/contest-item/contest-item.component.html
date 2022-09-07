@@ -40,6 +40,6 @@
         [ngStyle]="{'background-color': item.status == 3 ? '#c0392b' :  item.status == 2 ? '#27ae60' :'' }"
         [state]="{registerNow : item.status_user_has_join_contest}"
          href=""
-         class=" text-center btn  d-block w-100 "
+        class=" text-center btn  d-block w-100 "
         [ngClass]="{'btn-main btn' : item.status == 1}">{{checkStatusContest(item.status)}}</a>
 </div>

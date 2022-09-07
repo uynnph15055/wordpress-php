@@ -5,7 +5,7 @@ import { Contest } from 'src/app/models/contest';
 import { Slider } from 'src/app/models/slider.model';
 import { ContestService } from 'src/app/services/contest.service';
 import * as moment from 'moment/moment';
-import { ModalAddTeamComponent } from 'src/app/component/modal-add-team/modal-add-team.component';
+import { ModalAddTeamComponent } from 'src/app/modal/modal-add-team/modal-add-team.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import { Enterprise } from 'src/app/models/enterprise.model';
@@ -105,6 +105,8 @@ export class ContestDeatailComponent implements OnInit {
     ).subscribe(res => {
       if (res.status) {
         this.contestDetail = res.payload;
+        console.log(this.contestDetail);
+        
         this.contestDetail ? this.statusContest = true : this.statusContest;
         this.statusPage = false;
         this.contestDetail.enterprise;
@@ -171,13 +173,24 @@ export class ContestDeatailComponent implements OnInit {
 
   // Thông tin đội
   openInfoTeam() {
-    this.dialog.open(ModalInfoTeamComponent, {
-      width: '900px',
-      data: {
-        contest_id: this.contestDetail.id,
-        team_id: this.teamIdMemberHasJoinTeam,
-      }
-  });
+    let teamId;
+    this.contestDetail.teams.forEach(it => {
+      it.members.forEach(item => {
+        if (item.id == this.userService.getUserValue().id) {
+          teamId = it.id;
+        }
+      });
+    })
+   
+    console.log(teamId);
+    
+      this.dialog.open(ModalInfoTeamComponent, {
+        width: '900px',
+        data: {
+          contest_id: this.contestDetail.id,
+          team_id: teamId,
+        }
+    })
   }
 
   //Cac bai post
@@ -206,6 +219,7 @@ export class ContestDeatailComponent implements OnInit {
   }
 
   openDialog(): void {
+    
     const dialogRef = this.dialog.open(ModalAddTeamComponent, {
       width: "490px",
       data: {

@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
                 this.toast.success({ summary: 'Đăng nhập thành công', duration: 5000 });
                 const backUrl  = localStorage.getItem('url-current');
                 
-                // localStorage.removeItem('url-current');
                 this.router.navigate([backUrl]);
               }, 1000)
             } else {

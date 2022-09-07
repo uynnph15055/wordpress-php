@@ -5,7 +5,7 @@ import { map, switchMap } from 'rxjs';
 import { Contest } from 'src/app/models/contest';
 import { ContestService } from 'src/app/services/contest.service';
 import * as moment from 'moment/moment';
-import { ModalAddTeamComponent } from 'src/app/component/modal-add-team/modal-add-team.component';
+import { ModalAddTeamComponent } from 'src/app/modal/modal-add-team/modal-add-team.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import { Enterprise } from 'src/app/models/enterprise.model';

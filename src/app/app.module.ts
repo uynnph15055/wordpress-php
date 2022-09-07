@@ -34,18 +34,14 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ContestLoadItemComponent } from './loading/contest-load-item/contest-load-item.component';
 import { MaterialModule } from './material/material.module';
-import { ModalAddTeamComponent } from './component/modal-add-team/modal-add-team.component';
+import { ModalAddTeamComponent } from './modal/modal-add-team/modal-add-team.component';
 import { NgToastModule } from 'ng-angular-popup';
-import { ModalDirectionTeamComponent } from './component/modal-direction-team/modal-direction-team.component';
 import { InfoTeamComponent } from './pages/info-team/info-team.component';
 import { ProfileUserComponent } from './component/profile-user/profile-user.component';
 import { ContestUserJoinComponent } from './component/contest-user-join/contest-user-join.component';
 
-import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/team-user-join-detail.component';
-
-
 import { ContestItemComponent } from './component/contest-item/contest-item.component';
-import { ModalListMemberComponent } from './component/modal-list-member/modal-list-member.component';
+import { ModalListMemberComponent } from './modal/modal-list-member/modal-list-member.component';
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { ListResultRoundComponent } from './component/list-result-round/list-result-round.component';
@@ -99,11 +95,9 @@ import { AvatarComponent } from './component/avatar/avatar.component';
     ListAvatarUserComponent,
     ContestLoadItemComponent,
     ModalAddTeamComponent,
-    ModalDirectionTeamComponent,
     InfoTeamComponent,
     ProfileUserComponent,
     ContestUserJoinComponent,
-    TeamUserJoinDetailComponent,
     ContestItemComponent,
     ModalListMemberComponent,
     RoundDetailComponent,

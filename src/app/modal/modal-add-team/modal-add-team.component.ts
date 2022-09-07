@@ -11,7 +11,6 @@ import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalDirectionTeamComponent } from '../modal-direction-team/modal-direction-team.component';
 import { Team } from 'src/app/models/team';
 import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
 @Component({
@@ -90,16 +89,6 @@ export class ModalAddTeamComponent implements OnInit {
     };
   }
 
-  openDialog(idTeamNew: any, contestId: number) {
-    const dialogRef = this.dialog.open(ModalDirectionTeamComponent, {
-      width: '400px',
-      data: { idTeamNew: idTeamNew, contestId: contestId },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
-  }
 
   // Add team
   addTeam() {
