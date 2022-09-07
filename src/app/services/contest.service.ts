@@ -53,6 +53,4 @@ export class ContestService {
     return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${valueStatus}&major_id=${valueMajor}&q=${keyword}`)
   }
 
-
- 
 }

@@ -159,10 +159,6 @@
                     </div>
 
                 </div>
-                <div *ngIf="listPostResult" class="mt-4">
-                    <p class="fw-bold mt-2 fs-5 color-blue">Bài viết liên quan</p>
-                    <app-list-post [listPost]="cinfigData"></app-list-post>
-                </div>
             </div>
 
             <div class="contest-detail-right">
@@ -253,6 +249,11 @@
                     </footer>
                 </div>
             </div>
+        </div>
+        <div *ngIf="listPostResult" class="my-4">
+            <p class="fw-bold mt-2 text-uppercase text-center fs-5 color-blue">Bài viết liên quan</p>
+            <div class="title-line"></div>
+            <app-list-post [listPost]="cinfigData"></app-list-post>
         </div>
         <div class="related-contest" id="related-contest" *ngIf="statusContestRelated == true">
             <p *ngIf="countContestRelated == true" class="fw-bold fs-5 color-blue mt-4">Cuộc thi liên quan</p>

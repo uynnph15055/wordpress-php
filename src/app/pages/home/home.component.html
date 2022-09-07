@@ -275,12 +275,12 @@
     <h3 class="fw-bold title text-uppercase text-center color-blue">Đối tác</h3>
     <div class="title-line mb-2">
     </div>
-    <div class="position-relative mt-4">
+    <div class="position-relative">
         <button class="slider-control prev-parner position-absolute top-100 start-0 translate-middle"><i
                 class="parner fa-solid fa-arrow-left-long"></i></button>
         <ngx-slick-carousel class="row" [config]="sliderCompany">
             <div ngxSlickItem *ngFor="let item of companys" class="col-2 company-item">
-                <img  class="w-100" [src]="item.logo"
+                <img  class="company-img" [src]="item.logo"
                     alt="">
             </div>
         </ngx-slick-carousel>

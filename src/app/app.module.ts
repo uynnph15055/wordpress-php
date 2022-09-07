@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './auth/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -74,6 +73,7 @@ import { ListPostComponent } from './component/list-post/list-post.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { RankStudentComponent } from './modal/rank-student/rank-student.component';
 import { AvatarComponent } from './component/avatar/avatar.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 
@@ -81,8 +81,8 @@ import { AvatarComponent } from './component/avatar/avatar.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     ContestComponent,
+    HomeComponent,
     HomeLayoutComponent,
     ContestDeatailComponent,
     BannerComponent,

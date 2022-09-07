@@ -19,7 +19,7 @@ export class ListPostComponent implements OnInit {
     this.posts = this.listPost.posts;
     // -----------
     this.sliderPostNew = {
-      "slidesToShow": this.listPost.numberColumn, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
+      "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
       responsive: [
         {
           breakpoint: 1024,

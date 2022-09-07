@@ -48,7 +48,7 @@ export class ContestDeatailComponent implements OnInit {
   listPost: TransmitToPost = {
     id: 0,
     posts: [],
-    numberColumn: 3,
+    numberColumn: 4,
   };
   // ---------------------------
 

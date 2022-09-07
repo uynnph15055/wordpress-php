@@ -1,6 +1,6 @@
 <ul class="d-flex">
     <li *ngFor="let item of avatarTeam" class="avatar-item">
-        <img *ngIf="item.image" class="avatar" [src]="item.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU'"
+        <img *ngIf="item.image || item.contest_id" class="avatar" [src]="item.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU'"
         [ngbTooltip]="item.name"  alt="">
         <img *ngIf="item.avatar" class="avatar" [src]="item.avatar || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU'"  [ngbTooltip]="item.name" alt="">
     </li>
