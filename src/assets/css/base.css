@@ -12,7 +12,7 @@
   --warning: #F26F21;
   --title-blue: #192a56;
   --title-footer: #F26F21;
-  --bg-content : #F8F8F8;
+  --bg-content: #F8F8F8;
 }
 
 ::-webkit-scrollbar {
@@ -48,11 +48,15 @@ a {
   text-decoration: none;
 }
 
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
 ul {
   list-style-type: none;
   margin-left: -30px;
 }
-
 
 .margin-header {
   padding-top: 40px;
@@ -78,7 +82,7 @@ ul {
   color: var(--primary-color-sub);
 }
 
-.color-text{
+.color-text {
   color: var(--text-color);
 }
 
@@ -170,6 +174,6 @@ ul {
   align-items: center;
 }
 
-.form-search-result{
+.form-search-result {
   text-align: center;
 }
