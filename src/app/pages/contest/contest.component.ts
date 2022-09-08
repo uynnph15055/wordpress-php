@@ -96,6 +96,7 @@ export class ContestComponent implements OnInit {
 
   // get all contest not login 
   getAllContest() {
+    this.statusContest = 'pending';
     this.contestService.getAll().subscribe(res => {
       this.contests = res.payload.data;
       this.array_page_link = res.payload.links;

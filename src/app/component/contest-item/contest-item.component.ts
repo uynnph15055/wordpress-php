@@ -18,6 +18,7 @@ export class ContestItemComponent implements OnInit {
   date_register_start : number;
   date_register_end : number;
   today : number;
+  disabled: boolean = true;
 
   days: number = 5;
   hours: number = 16;
@@ -27,15 +28,19 @@ export class ContestItemComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.date_end = new Date(moment(this.item.date_start).format('lll')).getTime();
+     
       this.date_start = new Date(moment(this.item.register_deadline).format('lll')).getTime();
       this.date_register_start = new Date(moment(this.item.start_register_time).format('lll')).getTime();
       this.date_register_end = new Date(moment(this.item.end_register_time).format('lll')).getTime();
+     
+    
+    setInterval(() => {
+      this.date_end = new Date(moment(this.item.date_start).format('lll')).getTime();
       this.today = new Date().getTime();
-
       let distance =  this.date_register_end - this.today;
-      if (distance < 0 || this.item.status == 2) {
+      this.date_register_start > this.today ? this.disabled = false : this.disabled;
+    
+      if (distance < 0 || this.item.status == 2 || this.date_register_start > this.today) {
         this.days = 0;
         this.hours = 0;
         this.minutes = 0;
@@ -57,7 +62,7 @@ export class ContestItemComponent implements OnInit {
 
   checkStatusContest(item: Contest): any {
     let result;
- 
+    let status;
     if (item.status <= 1) {
       if(this.date_register_start > this.today){
         result = 'Sắp diễn ra';

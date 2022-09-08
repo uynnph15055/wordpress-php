@@ -47,27 +47,25 @@ export class ModalInfoTeamComponent implements OnInit {
     this.contest_id = data.contest_id;
   }
 
-  formSearchMembers = new FormGroup({
-    keyWord: new FormControl('', Validators.required),
-  });
-
+  // Lấy dữ liệu từ modal điều hướng sang chi tiết đội thi
   openFormEditTeam(): void {
-    // Lấy dữ liệu từ modal điều hướng sang chi tiết đội thi
-    const dialogRef = this.dialog.open(ModalAddTeamComponent, {
+    let status = this.dialog.open(ModalAddTeamComponent, {
       width: "490px",
       data: {
-        contest_id: 40,
-        teamDetail: this.teamDetail,
+        team_id: this.team_id,
       },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    status.afterClosed().subscribe(result => {
+        if(result){
+          this.closeDialog();
+        }
     });
   }
 
   // Mở danh sách các member theo keyword
   openListMemberJoinTeam(keyWord: any = '') {
-    const dialogRef = this.dialog.open(ModalListMemberComponent, {
+    const members = this.dialog.open(ModalListMemberComponent, {
       width: "800px",
       data: {
         keyWord: keyWord,
@@ -77,15 +75,13 @@ export class ModalInfoTeamComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    members.afterClosed().subscribe(result => {
       this.arrayMembers.concat(result);
       this.ngOnInit();
     });
   }
 
   ngOnInit(): void {
-
-
     this.user = this.userService.getUserValue();
     if (!this.user) {
       this.router.navigate(['/login']);
@@ -93,8 +89,9 @@ export class ModalInfoTeamComponent implements OnInit {
 
     // Trả ra chi tiết đội
     this.teamService.getTeamDetail(this.team_id).subscribe(res => {
-      this.teamDetail = res.payload;
-      if (this.teamDetail) {
+        if (res.status) {
+        this.teamDetail = res.payload;
+        
         this.statusTeamDetail = true;
         this.arrayMembers = this.teamDetail.members;
         this.checkUserTeamLeader();
@@ -126,7 +123,7 @@ export class ModalInfoTeamComponent implements OnInit {
           member
         ]
       }
-
+      
       this.teamService.removeMembers(data).subscribe(res => {
         if (res.status == true) {
           this.ngOnInit();
@@ -139,6 +136,6 @@ export class ModalInfoTeamComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'image', 'weight', 'bot', 'symbol'];
 
   closeDialog() {
-    this.dialogRef.close('Pizza!');
+    this.dialogRef.close();
   }
 }

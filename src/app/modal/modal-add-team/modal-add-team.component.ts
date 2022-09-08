@@ -48,7 +48,8 @@ export class ModalAddTeamComponent implements OnInit {
     public dialog: MatDialog,
 
     config: NgbModalConfig,
-    @Inject(MAT_DIALOG_DATA) public data: { contest_id: string; teamDetail: Team }
+    @Inject(MAT_DIALOG_DATA)
+    public data: { contest_id: string; team_id: number }
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -57,18 +58,25 @@ export class ModalAddTeamComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.getUserLocal.getValueLocalUser('user');
 
-    if (this.data.teamDetail) {
-      this.titleModel = 'Sửa đội thi';
-      this.imgURL = this.teamDetail.image;
-      this.teamDetail.name = this.data.teamDetail.name;
-      this.buttonName = 'Sửa đội';
+    if(this.data.team_id){
+      this.statusRegister =  false;
+      this.teamService.getTeamDetail(this.data.team_id).subscribe((res) => {
+        if (res.status) {
+          this.statusRegister = true;
+          this.teamDetail = res.payload;
+          this.titleModel = 'Sửa đội thi';
+          this.imgURL = this.teamDetail.image;
+          this.formRegister.controls['name'].setValue(this.teamDetail.name);
+          this.buttonName = 'Sửa đội';
+        }
+      });
     }
   }
 
-  checkStatusForm(){
-    if(this.data.teamDetail){
+  checkStatusForm() {
+    if (this.teamDetail) {
       this.editTeam();
-    }else{
+    } else {
       this.addTeam();
     }
   }
@@ -76,7 +84,6 @@ export class ModalAddTeamComponent implements OnInit {
   // Render image after add
   preview(files: any) {
     if (files.length === 0) return;
-
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       return;
@@ -91,7 +98,6 @@ export class ModalAddTeamComponent implements OnInit {
     };
   }
 
-
   // Add team
   addTeam() {
     this.statusRegister = false;
@@ -104,13 +110,13 @@ export class ModalAddTeamComponent implements OnInit {
     formDataTeam.append('contest_id', this.data.contest_id);
     formDataTeam.append('user_id', this.user_id);
     setTimeout(() => {
-      this.teamService.addTeam(formDataTeam ).subscribe((res) => {
+      this.teamService.addTeam(formDataTeam).subscribe((res) => {
         if (res.status == false) {
           this.toast.warning({ summary: res.payload, duration: 2000 });
           this.dialogRef.close();
         } else {
           this.statusRegister = true;
-          this.openInfoTeam(res.id_team , this.data.contest_id);
+          this.openInfoTeam(res.id_team, this.data.contest_id);
           this.dialogRef.close();
         }
       });
@@ -120,8 +126,7 @@ export class ModalAddTeamComponent implements OnInit {
   editTeam() {
     this.statusRegister = false;
     let dataTeam = { ...this.formRegister.value };
-    console.log(dataTeam);
-    
+
     var formDataTeam = new FormData();
     formDataTeam.append('name', dataTeam.name);
     if (this.imagePath != undefined) {
@@ -129,18 +134,18 @@ export class ModalAddTeamComponent implements OnInit {
     }
     formDataTeam.append('user_id', this.user_id);
     setTimeout(() => {
-      this.teamService.editTeam(formDataTeam ,this.data.teamDetail.id).subscribe((res) => {
-        console.log(res);
-        
-        if (res.status == false) {
-          this.toast.warning({ summary: res.payload, duration: 2000 });
-          this.dialogRef.close();
-        } else {
-          this.statusRegister = true;
-          this.openInfoTeam(this.data.teamDetail.id , this.data.contest_id);
-          this.dialogRef.close();
-        }
-      });
+      this.teamService
+        .editTeam(formDataTeam, this.teamDetail.id)
+        .subscribe((res) => {
+          if (res.status == false) {
+            this.toast.warning({ summary: res.payload, duration: 2000 });
+            this.dialogRef.close();
+          } else {
+            this.statusRegister = true;
+            this.dialogRef.close(true);
+            this.openInfoTeam(this.teamDetail.id, this.data.contest_id);
+          }
+        });
     }, 1000);
   }
 
@@ -149,7 +154,7 @@ export class ModalAddTeamComponent implements OnInit {
   }
 
   // Thông tin đội
-  openInfoTeam(team_new_id: number , contest_id : string ) {
+  openInfoTeam(team_new_id: number, contest_id: string) {
     this.dialog.open(ModalInfoTeamComponent, {
       width: '900px',
       data: {

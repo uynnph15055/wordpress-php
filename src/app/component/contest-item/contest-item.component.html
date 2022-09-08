@@ -1,8 +1,8 @@
 <div class="slide">
-    <a [routerLink]="['/cuoc-thi/' , item.id]"><img class="contest-item-img" [src]="item.img" alt=""></a>
-    <h3><a class="contest-name" [routerLink]="['/cuoc-thi/' , item.id]">{{item.name}}</a></h3>
+    <a  [class.disabled]="!disabled" [routerLink]="['/cuoc-thi/' , item.id]"><img class="contest-item-img" [src]="item.img" alt=""></a>
+    <h3><a class="contest-name" [class.disabled]="!disabled"  [routerLink]="['/cuoc-thi/' , item.id]">{{item.name}}</a></h3>
     <div class="text-Secondary d-flex justify-content-between time-contest-register font-size-sml fs-text-contest">
-        <p class="contest-register-dealine">
+        <p [class.disabled]="!disabled"  class="contest-register-dealine">
             Thời gian :
         </p>
         <div class="text-center">
@@ -31,10 +31,10 @@
     </div>
     <p class="contest-count-team mt-2 fs-text-contest">Số đội tham gia : <span
             class="count-team text-white">{{item.teams_count}}</span></p>
-    <a [routerLink]="['/cuoc-thi/' , item.id]"
-        [ngStyle]="{'background-color': item.status == 2 ? '#c0392b' : '' }"
+  
+    <a [class.disabled]="!disabled"  [routerLink]="['/cuoc-thi/' , item.id]"
         [state]="{registerNow : item.status_user_has_join_contest}"
          href=""
         class=" text-center btn  d-block w-100"
-        [ngClass]="item.status == 0 || item.status == 1 ? 'btn-main btn' : item.status == 2 ? 'btn btn-danger text-white border-2 border-danger' : ''">{{checkStatusContest(item)}}</a>
+        [ngClass]="item.status == 1 ||  item.status == 0 ? 'btn-main btn' : 'btn btn-danger border-2 border-danger text-white'">{{checkStatusContest(item)}}</a>
 </div>

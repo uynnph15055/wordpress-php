@@ -22,6 +22,15 @@ h1,h2,h3,h4,h5,h6{
   opacity: 1;
 }
 
+.btn-refesh{
+  background-color: var(--white);
+  border: none;
+  border: 1px solid var(--gray);
+  font-size: 15px;
+  border-radius: 50%;
+  padding: 5px 6px;
+  margin-left: 20px;
+}
 
 
 /* CONTEST-ITEM */

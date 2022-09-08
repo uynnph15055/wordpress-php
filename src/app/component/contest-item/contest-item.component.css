@@ -1,9 +1,13 @@
+.slide{
+  border: none;
+  background-color: #ffff;
+}
+
 .contest-item-img {
   width: 100%;
   height: 170px;
   border-radius: 10px;
   object-fit: cover;
-  pointer-events: none;
 }
 
 .contest-name {
@@ -68,6 +72,13 @@
   .contest-count-team {
     margin-top: 20px;
   }
+}
+
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
 }
 
 

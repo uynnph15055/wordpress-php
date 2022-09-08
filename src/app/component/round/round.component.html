@@ -1,5 +1,6 @@
 <div class="list-round-box mt-4">
     <p class="fw-bold mt-2 fs-5 color-blue">Danh sách vòng thi</p>
+    <div class="title-line margin-0"></div>
     <mat-accordion *ngIf="statusContest == true">
         <p hidden *ngFor="let item of contestDetail.rounds">
             {{checkStatusRound(item.start_time , item.end_time , item.id)}}

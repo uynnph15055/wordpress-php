@@ -22,7 +22,7 @@ export class TeamService {
   // Edit team
   editTeam(data: any , team_id: number): Observable<ResponsePayload> {
     const headers = new HttpHeaders();
-    return this.http.put<ResponsePayload>(`${environment.teamListUrl}/edit-team/${team_id}`, data, {
+    return this.http.post<ResponsePayload>(`${environment.teamListUrl}/edit-team/${team_id}`, data, {
       headers: headers
     });
   }
