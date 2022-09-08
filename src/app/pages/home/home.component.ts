@@ -109,7 +109,6 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
         let elToShow = document.querySelectorAll('.show-on-scroll')
         if (this.userService.getUserValue().id) {
-            
             this.getListHasAfterLogin();
         } else {
             this.contestService.getWhereStatus(1 , 'desc').subscribe(res => {
@@ -178,7 +177,9 @@ export class HomeComponent implements OnInit {
     // Get api recruitments
     getAllCompany(){
         this.companyService.getAllCompany().subscribe(res =>{
+
             this.companys = res.payload.data;
+
         })
     }
 
