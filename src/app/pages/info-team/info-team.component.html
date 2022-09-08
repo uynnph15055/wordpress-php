@@ -3,10 +3,10 @@
         <div class="row pb-4">
             <div class="col-3 nav-bar-info-user">
                 <div class="d-flex  justify-content-start align-items-center border-bottom">
-                    <img [src]="user.avatar" class="info-team-user" alt="">
+                    <img [src]="user.avatar || 'https://external-preview.redd.it/ES-_Tef0O9gSzMsBXPxGEoY0rfB6pOI-7F4LyMJyrXY.jpg?width=640&crop=smart&auto=webp&s=175552a2af7529197a98caf4e4e8c5100afad01f'" class="info-team-user" alt="">
                     <div class="mx-2 mt-3">
                         <h4 class="info-name-user color-blue fw-bold">{{user.name}}</h4>
-                        <p class="color-gray mt-2" routerLink="/component-one" style="cursor: pointer;">
+                    <p class="color-gray mt-2" routerLink="/component-one" style="cursor: pointer;">
                             <i class="fas fa-pen"></i>
                             Sửa thông tin
                         </p>

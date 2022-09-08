@@ -5,7 +5,7 @@ import { Contest } from 'src/app/models/contest';
 import { Slider } from 'src/app/models/slider.model';
 import { ContestService } from 'src/app/services/contest.service';
 import * as moment from 'moment/moment';
-import { ModalAddTeamComponent } from 'src/app/component/modal-add-team/modal-add-team.component';
+import { ModalAddTeamComponent } from 'src/app/modal/modal-add-team/modal-add-team.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import { Enterprise } from 'src/app/models/enterprise.model';
@@ -105,9 +105,12 @@ export class ContestDeatailComponent implements OnInit {
     ).subscribe(res => {
       if (res.status) {
         this.contestDetail = res.payload;
+        console.log(this.contestDetail);
+        
         this.contestDetail ? this.statusContest = true : this.statusContest;
         this.statusPage = false;
         this.contestDetail.enterprise;
+        
         this.slider.getListSlider('major', 'major_id', this.contestDetail.major_id).subscribe(res => {
           if (res.status) {
             this.sliderContest = res.payload;
@@ -118,8 +121,6 @@ export class ContestDeatailComponent implements OnInit {
           this.round_id = this.getRoundId(this.contestDetail.rounds, 1);
           this.getResultRoundBefore(this.contestDetail.rounds, 2);
         }
-
-        // ---
 
         // Các cuộc thi liên quan
         this.contestService.getWhereMajor(this.contestDetail.major_id).subscribe(res => {
@@ -134,10 +135,10 @@ export class ContestDeatailComponent implements OnInit {
           }
         });
 
-        this.checkUserHasJoinContest();
         // Chạy thời gian hết hạn cuộc thi 
         setInterval(() => {
           this.roundEndTime = moment(this.contestDetail.end_register_time).format('lll');
+          
           let futureDate = new Date(this.roundEndTime).getTime();
           let today = new Date().getTime();
           let distance = futureDate - today;
@@ -172,24 +173,23 @@ export class ContestDeatailComponent implements OnInit {
 
   // Thông tin đội
   openInfoTeam() {
-    this.dialog.open(ModalInfoTeamComponent, {
-      width: '900px',
-      data: {
-        contest_id: this.contestDetail.id,
-        team_id: this.teamIdMemberHasJoinTeam,
-      }
-  });
-  }
-
-  // Check xem user đã join cuộc thi chưa
-  checkUserHasJoinContest() {
-    this.contestDetail.teams.forEach(item => {
-      item.members.forEach(itemMember => {
-        if (itemMember.id == this.infoUser.id) {
-          this.teamIdMemberHasJoinTeam = itemMember.pivot.team_id;
-          this.statusUserHasJoinContest = true;
+    let teamId;
+    this.contestDetail.teams.forEach(it => {
+      it.members.forEach(item => {
+        if (item.id == this.userService.getUserValue().id) {
+          teamId = it.id;
         }
       });
+    })
+   
+    console.log(teamId);
+    
+      this.dialog.open(ModalInfoTeamComponent, {
+        width: '900px',
+        data: {
+          contest_id: this.contestDetail.id,
+          team_id: teamId,
+        }
     })
   }
 
@@ -197,9 +197,7 @@ export class ContestDeatailComponent implements OnInit {
   getListPost() {
     this.listPostService.getPostWhereCate('post-recruitment').subscribe(res => {
      if(res.status){
-       this.listPostResult = res.payload.data;
-       console.log(this.listPostResult);
-       
+       this.listPostResult = res.payload.data;       
        this.cinfigData = {
          id: 0,
          posts: this.listPostResult,
@@ -221,6 +219,7 @@ export class ContestDeatailComponent implements OnInit {
   }
 
   openDialog(): void {
+    
     const dialogRef = this.dialog.open(ModalAddTeamComponent, {
       width: "490px",
       data: {

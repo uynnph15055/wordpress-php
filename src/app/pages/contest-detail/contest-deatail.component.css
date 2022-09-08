@@ -106,7 +106,6 @@
   z-index: -1;
 }
 
-
 .name-company {
   font-size: 1rem;
   color: var(--midnight-blue);
@@ -264,9 +263,8 @@
 
 
 /* COUNT DOWN */
-.contest-detail-right {
+.contest-detail-right-in {
   position: sticky;
-  height: 1000px;
   top: 100px;
 }
 
@@ -289,13 +287,12 @@
 .contest-detail-right-countdown {
   display: flex;
   justify-content: center;
-  /* margin: 20px 10px; */
   margin-bottom: -0.2rem !important;
 }
 
 .contest-detail-right-countdown-box {
   width: 20%;
-  margin-right: 8px;
+  margin: 0px 3px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -305,9 +302,8 @@
 .contest-detail-right-countdown-item {
   text-align: center;
   padding: 10px 5px;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   width: 100%;
-  margin: 0px 10px;
   border-radius: 6px;
   font-size: 17px;
   font-weight: 500;

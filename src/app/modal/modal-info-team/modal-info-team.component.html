@@ -4,12 +4,12 @@
         <p style="margin-top: -12px;" class="color-gray">Xem thông tin các thành viên</p>
     </div>
     <div class="">
-        <button (click)="openListMemberJoinTeam()" class="btn btn-register">Thêm thành viên</button>
+        <button (click)="openListMemberJoinTeam()" class="btn btn-main">Thêm thành viên</button>
     </div>
 </div>
 <div *ngIf="statusTeamDetail == true" class="body-team-user-box text-center">
     <div class="header-team-user-box">
-        <img [src]="teamDetail.image" alt="" class="header-team-user-img">
+        <img [src]="teamDetail.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMV97UpeAbbPPiPpJz8iFsmgeusjg_pVfTscc75Hm18KTA6np6O7Tro2YAaooQDdqq_zk&usqp=CAU'" alt="" class="header-team-user-img">
         <h3 class="header-team-user-name color-blue fw-bold">{{teamDetail.name}}</h3>
         <div class="header-team-user-edit-box">
             <p *ngIf=" statusLeader==true" (click)="openDialog()" class="header-team-user-edit" style="width:200px"><i
@@ -43,7 +43,7 @@
                 <ng-container matColumnDef="image">
                     <th mat-header-cell *matHeaderCellDef class="text-center table-member-th"> Ảnh</th>
                     <td mat-cell *matCellDef="let element">
-                        <img width="30px" class="rounded-circle item-member-img" [src]="element.avatar" alt="">
+                       <app-avatar [avatar]="element.avatar"></app-avatar>
                     </td>
                 </ng-container>
 
@@ -56,10 +56,8 @@
                 <ng-container matColumnDef="bot">
                     <th mat-header-cell *matHeaderCellDef class=" table-member-th text-center"> Chức danh </th>
                     <td mat-cell *matCellDef="let element">
-                        <p [class]="element.pivot.bot == 1 ? 'team-leader mt-3 py-1 bg-warn rounded text-white' : ''">
-                            {{element.pivot.bot == 1
-                            ?
-                            'Trưởng nhóm' : ''}}</p>
+                        <p *ngIf="element.pivot.bot == 1 "  class="team-leader mt-3 py-1 bg-warn rounded text-white">
+                            Trưởng nhóm</p>
                     </td>
                 </ng-container>
 

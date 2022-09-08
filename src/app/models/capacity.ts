@@ -14,6 +14,6 @@ export class Capacity {
   slug_name: string;
   start_register_time: Date
   rounds: Round[];
-  skills: Array<Skill>
-  users: Array<User>;
+  user_capacity_done: [] // ds user làm bài
+  skills: { name: string, short_name: string }[]
 }

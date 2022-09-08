@@ -256,7 +256,7 @@ h3{
 
 /* MODE TWO STUDENT */
 .slick-slide-student-two {
-  transform: translateX(-200px);
+  transform: translateX(-155px);
 }
 
 .slick-slide-student-two .slick-slide.slick-current {
@@ -317,6 +317,10 @@ h3{
   object-position:top;
   cursor: pointer;
   opacity: 0.3;
+  -webkit-user-drag: none; 
+  -khtml-user-drag: none; 
+  -moz-user-drag: none; 
+  -o-user-drag: none; 
 }
 
 .assess-content-wrapper{
@@ -350,14 +354,16 @@ h3{
 /* ----PARTNER COMPANY */
 
 .company-item{
-  height: 150px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 20px;
 }
 
 .next-parner , .prev-parner{
   font-size: 0.7rem;
+  z-index: 10;
 }
 
 .slider-control .parner{
