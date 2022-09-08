@@ -19,11 +19,11 @@ import { UserService } from 'src/app/services/user.service';
 import * as $ from 'jquery';
 import { SliderService } from 'src/app/services/slider.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
 import { User } from 'src/app/models/user';
 import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
 import { ListPostService } from 'src/app/services/list-post.service';
 import { Post } from 'src/app/models/post.model';
+import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
 @Component({
   selector: 'app-contest-deatail',
   templateUrl: './contest-deatail.component.html',
@@ -32,19 +32,20 @@ import { Post } from 'src/app/models/post.model';
 
 
 export class ContestDeatailComponent implements OnInit {
-  round_id: any;
+  round_id: number;
   infoUser: User;
   closeResult: string;
   contest_id: number = 0;
   teamIdMemberHasJoinTeam: number = 0;
   nameBtnRegister: string = 'Đăng ký';
   roundEndTime: any;
-  contestRelateTo: Array<Contest>;
+  contestRelateTo: Array<Contest> = [];
   resultRoundBefore: Array<ResultRound>;
   sliderContest: Array<Slider>;
   contestCompanySuppor: Enterprise;
   contentItem: Array<Contest> = [];
   forwardComponent: Array<any> = [];
+  resultRank: Array<ResultRound> = [];
   listPost: TransmitToPost = {
     id: 0,
     posts: [],
@@ -83,7 +84,6 @@ export class ContestDeatailComponent implements OnInit {
     private getUserLocal: GetValueLocalService,
     private router: Router,
     private roundService: RoundService,
-    private toast: NgToastService,
     private slider: SliderService,
     private userService: UserService,
     private modalService: NgbModal) {
@@ -105,8 +105,7 @@ export class ContestDeatailComponent implements OnInit {
     ).subscribe(res => {
       if (res.status) {
         this.contestDetail = res.payload;
-        console.log(this.contestDetail);
-        
+        this.getResultRank()
         this.contestDetail ? this.statusContest = true : this.statusContest;
         this.statusPage = false;
         this.contestDetail.enterprise;
@@ -116,6 +115,7 @@ export class ContestDeatailComponent implements OnInit {
             this.sliderContest = res.payload;
           }
         })
+
         this.runTop();
         if (this.contestDetail.rounds.length > 2) {
           this.round_id = this.getRoundId(this.contestDetail.rounds, 1);
@@ -162,7 +162,7 @@ export class ContestDeatailComponent implements OnInit {
         //  Check user có bẫm vào nút đăng ký ko 
         setTimeout(() => {
           if (this.routeStateRegister == false && this.getUserLocal.getValueLocalUser('user') && this.statusCheckDate == true) {
-            this.openDialog();
+            this.openAddTeam();
           }
         }, 3000);
       }
@@ -174,14 +174,15 @@ export class ContestDeatailComponent implements OnInit {
   // Thông tin đội
   openInfoTeam() {
     let teamId;
+    
     this.contestDetail.teams.forEach(it => {
       it.members.forEach(item => {
         if (item.id == this.userService.getUserValue().id) {
           teamId = it.id;
         }
       });
-    })
-   
+    })   
+    
     console.log(teamId);
     
       this.dialog.open(ModalInfoTeamComponent, {
@@ -195,7 +196,7 @@ export class ContestDeatailComponent implements OnInit {
 
   //Cac bai post
   getListPost() {
-    this.listPostService.getPostWhereCate('post-recruitment').subscribe(res => {
+    this.listPostService.getPostWhereCate('post-contest').subscribe(res => {
      if(res.status){
        this.listPostResult = res.payload.data;       
        this.cinfigData = {
@@ -207,19 +208,16 @@ export class ContestDeatailComponent implements OnInit {
    })
  }
 
-
-
   // Mở model thêm đội thi
   openFormRegister(): void {
     if (this.statusCheckDate == true && this.getUserLocal.getValueLocalUser('user')) {
-      this.openDialog();
+      this.openAddTeam();
     } else {
       this.router.navigate(['./login']);
     }
   }
 
-  openDialog(): void {
-    
+  openAddTeam(): void {
     const dialogRef = this.dialog.open(ModalAddTeamComponent, {
       width: "490px",
       data: {
@@ -229,6 +227,14 @@ export class ContestDeatailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  getResultRank(){
+    let rountIdEnd =  this.getRoundId(this.contestDetail.rounds , 1);
+    this.roundService.getResultRound(rountIdEnd).subscribe(res => {
+      res.status ? this.resultRank =  res.payload.data : null;
+      console.log(this.resultRank);
     });
   }
 

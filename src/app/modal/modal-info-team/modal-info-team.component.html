@@ -12,18 +12,11 @@
         <img [src]="teamDetail.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMV97UpeAbbPPiPpJz8iFsmgeusjg_pVfTscc75Hm18KTA6np6O7Tro2YAaooQDdqq_zk&usqp=CAU'" alt="" class="header-team-user-img">
         <h3 class="header-team-user-name color-blue fw-bold">{{teamDetail.name}}</h3>
         <div class="header-team-user-edit-box">
-            <p *ngIf=" statusLeader==true" (click)="openDialog()" class="header-team-user-edit" style="width:200px"><i
+            <p *ngIf=" statusLeader==true" (click)="openFormEditTeam()" class="header-team-user-edit" style="width:200px"><i
                     class="fas fa-pen"></i>
                 Sửa thông tin đội</p>
         </div>
     </div>
-    <!-- <form *ngIf="statusLeader == true" class="form-search-members d-flex justify-content-center align-items-center w-50"
-        [formGroup]="formSearchMembers" (submit)="searchMembers()">
-        <input formControlName="keyWord" type=" text" class="form-search-members-input" placeholder="Thêm đồng đội ...">
-        <button class="form-search-members-icon">
-            <i class="fas fa-search"></i>
-        </button>
-    </form> -->
 
     <div class=" table-team-info my-3">
         <table mat-table class=" w-100 example-container" [dataSource]="arrayMembers">
@@ -80,12 +73,12 @@
     <ngx-skeleton-loader [theme]=" { 'width' : '100px' , 'height' : '100px' }" appearance="circle">
     </ngx-skeleton-loader>
     <br>
-    <ngx-skeleton-loader animation="line" [theme]="{ 
+    <ngx-skeleton-loader  [theme]="{ 
                 'width': '150px',
                 'height': '20px'
               }"></ngx-skeleton-loader>
     <br>
-    <ngx-skeleton-loader animation="line" [theme]="{ 
+    <ngx-skeleton-loader  [theme]="{ 
                 'width': '200px',
                 'height': '30px'
               }"></ngx-skeleton-loader>
@@ -93,5 +86,5 @@
     </ngx-skeleton-loader>
 </div>
 <div class="d-flex justify-content-end">
-    <button (click)="closeDialog()" mat-raised-button>Đóng</button>
+    <button (click)="closeDialog()"  mat-stroked-button>Đóng</button>
 </div>

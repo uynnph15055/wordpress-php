@@ -51,14 +51,13 @@ export class ModalInfoTeamComponent implements OnInit {
     keyWord: new FormControl('', Validators.required),
   });
 
-  openDialog(): void {
+  openFormEditTeam(): void {
     // Lấy dữ liệu từ modal điều hướng sang chi tiết đội thi
     const dialogRef = this.dialog.open(ModalAddTeamComponent, {
       width: "490px",
       data: {
         contest_id: 40,
-        team_id: this.teamDetail,
-        countMembers: this.arrayMembers.length,
+        teamDetail: this.teamDetail,
       },
     });
 

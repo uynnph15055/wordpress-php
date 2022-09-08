@@ -3,10 +3,6 @@
   text-align: justify;
 }
 
-.contest-detail-box {
-  background-color: #F8F8F8;
-}
-
 .new-page-img img {
   width: 100% !important;
 }
@@ -26,19 +22,14 @@
 }
 
 .example-button-item:hover {
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: var(--white);
-  transition: all 0.3s ease-in;
 }
 
 .contest-detail-header {
   display: grid;
   grid-template-columns: 74% 23%;
   grid-gap: 30px;
-}
-
-.related-contest-list {
-  margin-top: -5px;
 }
 
 .contest-detail-left-name-contest {
@@ -69,7 +60,7 @@
   border-bottom-left-radius: 10px;
   margin: 0px -12px !important;
   object-fit: cover;
-  height: 270px;
+  height: 100%;
 }
 
 .contest-date-open-end {
@@ -85,7 +76,7 @@
   cursor: pointer;
   padding: 10px 12px;
   border-radius: 50px;
-  color: var(--primary-color);
+  color: var(--primary);
   transition: 0.3s;
 }
 
@@ -205,7 +196,7 @@
 .student-rank-more {
   padding: 10px 40px;
   line-height: 40px;
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 .student-rank-more:hover {

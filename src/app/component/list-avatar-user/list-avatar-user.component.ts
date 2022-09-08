@@ -16,7 +16,6 @@ export class ListAvatarUserComponent implements OnInit {
 
   constructor(private modalService: NgbModal) { }
   ngOnInit(): void {
-    console.log(this.listTeam);
     
     this.lengthTeam = this.listTeam.length;
 

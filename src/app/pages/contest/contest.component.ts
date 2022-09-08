@@ -168,7 +168,6 @@ export class ContestComponent implements OnInit {
       res.status ?
       this.contests = res.payload.data : null;
       this.array_page_link = res.payload.links;
-      console.log(this.array_page_link);
       
       this.contests ? this.statusContest = 'done' : this.statusContest == 'pending';
     })

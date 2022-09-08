@@ -1,5 +1,5 @@
 <h5 *ngIf="checkTeamPoint == true" class="fw-bold my-4 fs-5 color-blue">{{titleResult}}</h5>
-<table *ngIf="statusResultRound == true && dataResultRound != undefined && checkTeamPoint == true"
+<table
     class="w-100 table-result-round" mat-table [dataSource]="dataResultRound ">
     <!-- Name Column -->
     <ng-container matColumnDef="rank">

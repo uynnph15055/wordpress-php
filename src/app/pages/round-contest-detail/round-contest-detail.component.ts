@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
@@ -191,11 +190,11 @@ export class RoundContestDetailComponent implements OnInit {
 
   //Cac bai post
   getListPost() {
-    this.listPostService.getPostWhereCate('post-recruitment').subscribe(res => {
+    this.listPostService.getPostWhereCate('post-contest').subscribe(res => {
       if (res.status) {
         this.listPostResult = res.payload.data;
-        // console.log(this.listPostResult);
-
+        console.log(this.listPostResult);
+        
         this.cinfigData = {
           id: 0,
           posts: this.listPostResult,

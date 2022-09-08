@@ -10,7 +10,7 @@
                     [src]="item.thumbnail_url"
                     alt="">
                 <h4 class="fw-bold post-new-name text-collapse mt-2">{{item.title}}</h4>
-                <p class="color-name"><i class="fa-solid fa-clock"></i>&nbsp; {{item.published_at | formatDate}}</p>
+                <p class="color-name my-2"><i class="fa-solid fa-clock"></i>&nbsp; {{item.published_at | formatDate}}</p>
                 <p class="mb-3 color-name"><i class="fa-solid fa-user-pen"></i>&nbsp;{{item.user.name}}</p>
                 <p class="post-new-content color-text" [innerHTML]="item.description"></p>
             </div>

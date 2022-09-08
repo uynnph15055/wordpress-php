@@ -19,6 +19,14 @@ export class TeamService {
     });
   }
 
+  // Edit team
+  editTeam(data: any , team_id: number): Observable<ResponsePayload> {
+    const headers = new HttpHeaders();
+    return this.http.put<ResponsePayload>(`${environment.teamListUrl}/edit-team/${team_id}`, data, {
+      headers: headers
+    });
+  }
+
   // Lấy ra chi tiết đội thi
   getTeamDetail(team_id: any): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.teamListUrl}/${team_id}`);
