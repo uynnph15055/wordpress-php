@@ -3,15 +3,17 @@
 }
 
 .router--home {
-    @apply tw-text-blue-700
+    color: rgb(29 78 216)
 }
 
 .router--index {
-    @apply tw-text-gray-400
+    color: rgb(156 163 175)
 }
 
 .test-capacity__item {
-    @apply tw-bg-white tw-p-3 tw-rounded-xl
+    background-color: rgb(255 255 255);
+    padding: 0.75rem;
+    border-radius: 0.75rem
 }
 
 .test-capacity__title {
@@ -64,11 +66,18 @@
 }
 
 
+.test-capacity_wrapper {
+    background: #F8F8F8;
+}
 
 
+.py-4 {
+    padding: 16px 0px;
+}
 
-
-
+.pb-4 {
+    padding-bottom: 16px;
+}
 
 .sidebar__countdown,
 .capacity__related-countdown {
