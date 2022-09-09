@@ -19,17 +19,16 @@ export class Capacity {
 class ResultExam {
   id: number;
   scores: number;
-  updated_at: Date
+  donot_answer: number;
+  false_answer: number;
+  true_answer: number;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export class ResponseSubmitExam {
   status: boolean;
   payload: ResultExam;
-  exam: ResultExam;
-  score: number;
-  donotAnswer: number; // câu hỏi chưa trả lời
-  falseAnswer: number; // số câu trả lời sai
-  trueAnswer: number; // số câu trả lời đúng
 }
 
 export class DataExam {

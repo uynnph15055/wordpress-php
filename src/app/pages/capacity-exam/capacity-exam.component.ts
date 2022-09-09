@@ -1,4 +1,4 @@
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { DialogConfirmComponent } from "./../../modal/dialog-confirm/dialog-confirm.component";
 import { RoundService } from "src/app/services/round.service";
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
@@ -12,6 +12,7 @@ import { DOCUMENT } from "@angular/common";
 import { User } from "src/app/models/user";
 import { ExamCapacity } from "src/app/models/exam.model";
 import { NgToastService } from "ng-angular-popup";
+import * as moment from "moment";
 
 @Component({
   selector: "app-capacity-exam",
@@ -47,12 +48,13 @@ export class CapacityExamComponent implements OnInit {
 
   // kết quả bài test
   resultExam!: {
-    score: number,
-    submit_at: Date, // thời gian nộp bài,
-    donotAnswer: number, // tổng số câu chưa làm,
-    falseAnswer: number, // tổng số câu làm sai,
-    trueAnswer: number, // tổng số câu làm đúng
-  }
+    score: string; // điểm
+    examTime: string; // thời gian làm bài,
+    submitAt: string; // thời gian nộp bài,
+    donotAnswer: number; // tổng số câu chưa làm,
+    falseAnswer: number; // tổng số câu làm sai,
+    trueAnswer: number; // tổng số câu làm đúng
+  };
 
   // kích thước màn hình
   windowScreenSize!: { width: number; height: number };
@@ -92,7 +94,6 @@ export class CapacityExamComponent implements OnInit {
           this.isFetchingRound = false;
           this.isFetchingSttExam = true;
           this.roundDetail = responseRound.payload;
-          console.log(responseRound);
 
           // check login
           this.userLogged = this.userService.getUserValue();
@@ -103,24 +104,30 @@ export class CapacityExamComponent implements OnInit {
                 round_id: responseRound.payload.id,
               })
               .subscribe(
-                (resSttExam) => {
+                ({ status, payload, result }) => {
                   // nếu đang làm ? tiếp tục làm bài
                   this.isFetchingSttExam = false;
-                  if (!resSttExam.status) return;
-                  if (resSttExam.payload === 0) {
+                  if (!status) return;
+                  if (payload === 0) {
                     this.isContinueExam = true;
-                    console.log("đang làm", resSttExam);
-                  } else if (resSttExam.payload === 1) {
+                  } else if (payload === 1) {
                     // đã nộp bài
-                    console.log("Đã nộp bài", resSttExam);
                     this.statusTakingExam = 2;
+                    const { minutes, seconds } = this.getMinutesAndSecondBetweenTwoDate(
+                      result.created_at,
+                      result.updated_at,
+                    );
                     this.resultExam = {
-                      score: resSttExam.result.scores,
-                      submit_at: resSttExam.result.updated_at,
-                      donotAnswer: 0,
-                      falseAnswer: 0,
-                      trueAnswer: 0,
-                    }
+                      score: Number.isInteger(result.scores) ? result.scores.toString() : result.scores.toFixed(1),
+                      examTime: !+minutes ? `${seconds} giây` : `${minutes} phút ${seconds} giây`,
+                      submitAt:
+                        +moment(result.updated_at).format("YYYY") !== +new Date().getFullYear()
+                          ? moment(result.updated_at).format("DD [tháng] MM, YYYY [lúc] HH:mm")
+                          : moment(result.updated_at).format("DD [tháng] MM [lúc] HH:mm"),
+                      donotAnswer: result.donot_answer,
+                      falseAnswer: result.false_answer,
+                      trueAnswer: result.true_answer,
+                    };
                   }
                 },
                 (error) => {
@@ -290,7 +297,6 @@ export class CapacityExamComponent implements OnInit {
 
           const durationExam = this.convertTimeExamToSeconds(this.examData.time, this.examData.time_type);
           this.handleStartExam(durationExam, this.examData.exam_at);
-          console.log(res);
         }
       });
     }, 100);
@@ -344,46 +350,50 @@ export class CapacityExamComponent implements OnInit {
   // nộp bài
   submitExam() {
     const answersData = this.getAnswersData();
-    console.log(answersData)
 
-    this.roundService.capacitySubmitExam({
-      exam_id: this.examData.id,
-      data: answersData
-    }).subscribe(res => {
-      if (res.status) {
-        this.resultExam = {
-          score: res.score,
-          donotAnswer: res.donotAnswer,
-          falseAnswer: res.falseAnswer,
-          trueAnswer: res.trueAnswer,
-          submit_at: res.payload.updated_at
+    this.roundService
+      .capacitySubmitExam({
+        exam_id: this.examData.id,
+        data: answersData,
+      })
+      .subscribe(({ status, payload }) => {
+        if (status) {
+          // kết quả bài làm
+          const { minutes, seconds } = this.getMinutesAndSecondBetweenTwoDate(payload.created_at, payload.updated_at);
+          this.resultExam = {
+            score: Number.isInteger(payload.scores) ? payload.scores.toString() : payload.scores.toFixed(1),
+            examTime: !+minutes ? `${seconds} giây` : `${minutes} phút ${seconds} giây`,
+            submitAt: moment(payload.updated_at).format("DD [tháng] MM [lúc] HH:mm"),
+            donotAnswer: payload.donot_answer,
+            falseAnswer: payload.false_answer,
+            trueAnswer: payload.true_answer,
+          };
+
+          this.dialog.closeAll();
+          // reset variable
+          this.statusTakingExam = 2;
+          clearInterval(this.timerId);
+          this.isFetchingRound = false;
+          this.isFetchingSttExam = false;
+          this.isFetchingExam = false;
+          this.isFullScreen = false;
+          this.isContinueExam = false;
+          this.isNotiExamTimeOut = false;
+          this.isSubmitingExam = false;
+          this.isTimeOut = false;
+
+          // remove event listener
+          window.onresize = () => {};
+          window.onkeydown = () => {};
+          window.oncontextmenu = () => {};
+          window.addEventListener("keydown", () => {});
+
+          localStorage.removeItem("test_result");
+
+          // thoát toàn màn hình
+          this.closeFullscreen();
         }
-
-        this.dialog.closeAll();
-        // reset variable
-        this.statusTakingExam = 2;
-        clearInterval(this.timerId);
-        this.isFetchingRound = false;
-        this.isFetchingSttExam = false;
-        this.isFetchingExam = false;
-        this.isFullScreen = false;
-        this.isContinueExam = false;
-        this.isNotiExamTimeOut = false;
-        this.isSubmitingExam = false;
-        this.isTimeOut = false;
-
-        // remove event listener
-        window.onresize = () => {};
-        window.onkeydown = () => {};
-        window.oncontextmenu = () => {};
-        window.addEventListener("keydown", () => {});
-
-        localStorage.removeItem("test_result");
-
-        // thoát toàn màn hình
-        this.closeFullscreen();
-      }
-    })
+      });
   }
 
   getAnswersData() {
@@ -461,8 +471,6 @@ export class CapacityExamComponent implements OnInit {
         }
       }
     }
-
-    console.log("Ban đầu:", this.formAnswers.value);
   }
 
   // lấy danh sách câu hỏi chưa trả lời
@@ -812,5 +820,14 @@ export class CapacityExamComponent implements OnInit {
   // open modal lịch sử bài làm
   handleOpenHistoryExam(content: TemplateRef<any>) {
     this.modalService.open(content, { size: "lg", scrollable: true });
+  }
+
+  // tính thời gian làm bài
+  getMinutesAndSecondBetweenTwoDate(firstDate: Date, lastDate: Date) {
+    const firstDateMs = new Date(firstDate).getTime();
+    const lastDateMs = new Date(lastDate).getTime();
+    const diffMs = lastDateMs - firstDateMs;
+
+    return this.convertMsToMinutesAndSecond(diffMs);
   }
 }

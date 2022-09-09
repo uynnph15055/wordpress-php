@@ -244,33 +244,33 @@
 
     <!-- kết quả làm bài -->
     <div class="capacity__exam-result text-center" *ngIf="statusTakingExam === 2">
-      <h2>Kết quả làm bài</h2>
-      <span class="text-uppercase text-red capacity__exam-result-point">{{ this.resultExam.score.toFixed(1) }}/10</span>
+      <h2>Kết quả bài làm</h2>
+      <span class="text-uppercase text-red capacity__exam-result-point">{{ this.resultExam.score }}/10</span>
 
       <ul class="capacity__exam-result-list">
         <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
           <span>Thời gian</span>
-          <span class="fw-bolder">10 phút 59 giây</span>
+          <span class="fw-bolder">{{ this.resultExam.examTime }}</span>
         </li>
 
         <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
           <span>Nộp lúc</span>
-          <span class="fw-bolder">28 tháng 6 lúc 9:40</span>
+          <span class="fw-bolder">{{ this.resultExam.submitAt }}</span>
         </li>
 
         <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
           <span>Số câu đúng</span>
-          <span class="fw-bolder">8</span>
+          <span class="fw-bolder">{{ this.resultExam.trueAnswer }}</span>
         </li>
 
         <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
           <span>Số câu sai</span>
-          <span class="fw-bolder">3</span>
+          <span class="fw-bolder">{{ this.resultExam.falseAnswer }}</span>
         </li>
 
         <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
           <span>Chưa làm</span>
-          <span class="fw-bolder">1</span>
+          <span class="fw-bolder">{{ this.resultExam.donotAnswer }}</span>
         </li>
       </ul>
 
@@ -414,6 +414,6 @@
     </ul>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Đóng</button>
   </div>
 </ng-template>
