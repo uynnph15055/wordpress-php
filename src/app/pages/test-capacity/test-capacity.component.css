@@ -68,12 +68,16 @@
 }
 
 .test-capacity__del-tag {
+    outline: none;
+    border: none;
     color: #9CA3AF;
+    background-color: #E5E7EB
 }
 
 .test-capacity__action {
     text-decoration: underline;
     margin-left: 10px;
+    border: none
 }
 
 .action--del {
@@ -159,6 +163,9 @@
     color: #9CA3AF;
     align-items: center;
     pointer-events: none;
+    border-right: 0px;
+    border-color: #9CA3AF;
+    border: 2px
 }
 
 .test-capacity_search-icon {
