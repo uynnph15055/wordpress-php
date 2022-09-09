@@ -188,7 +188,6 @@ export class ContestComponent implements OnInit {
         })
         // console.log(this.contests);
       } else {
-        console.log('Uy');
         this.contestService.filterContestHasLogin(keyword, major_id, status).subscribe(res => {
           if (res.status)
             this.contests = res.payload.data;

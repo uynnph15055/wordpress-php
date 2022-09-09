@@ -20,52 +20,74 @@
 }
 
 .test-capacity__title {
-    @apply tw-mb-0;
+    margin-bottom: 0;
     font: 400 18px/20px Roboto, "Helvetica Neue", sans-serif !important;
 }
 
 .test-capacity__item:hover .btn-save {
-    @apply tw-bg-opacity-100 tw-duration-500 tw-bg-white
+    background-color: #ffffff;
+    --bg-opacity: 1;
+    transition-duration: 500ms;
 }
 
 .test-capacity__tag {
-    @apply tw-p-1.5 tw-bg-gray-200 tw-rounded tw-space-x-2
+    display: inline-block;
+    padding: 0.375rem;
+    margin-left: 0.5rem;
+    margin-top: 10px;
+    background-color: #E5E7EB;
+    border-radius: 0.25rem;
+
 }
 
 .test-capacity__tag i:hover {
-    @apply tw-text-orange-500
+    color: rgb(249 115 22)
 }
 
 .btn-save {
-    @apply tw-absolute tw-top-2 tw-right-2 tw-bg-gray-200 tw-p-1 tw-px-2 tw-rounded tw-bg-opacity-60 tw-duration-500
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: #E5E7EB;
+    --bg-opacity: 0.6;
+    transition-duration: 500ms;
+    border-radius: 0.25rem;
 }
 
 .btn-save:hover .icon-save {
-    @apply tw-text-orange-500
+    color: rgb(249 115 22)
 }
 
 .icon-save {
-    @apply tw-text-lg tw-text-gray-500
+    color: #9CA3AF;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
 }
 
 .test-capacity__del-tag {
-    @apply tw-text-gray-400
+    color: #9CA3AF;
 }
 
 .test-capacity__action {
-    @apply tw-underline
+    text-decoration: underline;
+    margin-left: 10px;
 }
 
 .action--del {
-    @apply tw-text-orange-400
+    color: rgb(251 146 60)
 }
 
 .action--hidden {
-    @apply tw-text-blue-800
+    color: #1E40AF;
 }
 
 .test-capacity__time {
-    @apply tw-block tw-text-gray-400 tw-mt-1
+    display: block;
+    margin-top: 0.25rem;
+    color: #9CA3AF;
 }
 
 
@@ -80,6 +102,100 @@
 
 .pb-4 {
     padding-bottom: 16px;
+}
+
+.test-capacity_title-head {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+}
+
+.test-capacity_item-tag {
+    display: grid;
+    margin-bottom: 1.25rem;
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.test-capacity_item {
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+    grid-column: span 3 / span 3;
+}
+
+.test-capacity_search {
+    display: flex;
+    align-items: center;
+
+}
+
+.test-capacity_search-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.test-capacity_search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.test-capacity_search-button {
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding-left: 0.75rem;
+    color: #9CA3AF;
+    align-items: center;
+    pointer-events: none;
+}
+
+.test-capacity_search-icon {
+    color: #9CA3AF;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.test-capacity_search-input {
+    display: block;
+    padding: 0.625rem;
+    padding-left: 2.5rem;
+    background-color: #F9FAFB;
+    color: #111827;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    width: 100%;
+    border-radius: 0.25rem;
+    border-width: 1px;
+    border-color: #D1D5DB;
+    outline: 0;
+}
+
+.test-capacity_search-input::placeholder {
+    color: rgb(156 163 175);
+    --placeholder-opacity: 1;
+}
+
+.test-capacity_search-input:focus {
+    color: rgb(59 130 246);
+    border-color: rgb(59 130 246)
+}
+
+.test-capacity_list-item {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.75rem
 }
 
 .sidebar__countdown,

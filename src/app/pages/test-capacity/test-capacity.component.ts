@@ -9,6 +9,7 @@ import { TestCapacityService } from 'src/app/services/test-capacity.service';
 })
 export class TestCapacityComponent implements OnInit {
   listCapacity: Capacity[]
+   valueSearch: string;
   // fakeTag: any = [
   //   {id: 1, name: "Javascript"},
   // ]
@@ -24,9 +25,12 @@ export class TestCapacityComponent implements OnInit {
 
   getListTestCapacity(){
     this.testCapacityService.getAllTestCapacity().subscribe(data=>{
-      console.log(data.payload.data);
         this.listCapacity = data.payload.data;
     })
+  }
+  // Tìm kiếm danh sách test năng lực
+  searchTestCapacity(){
+    this.listCapacity = []
   }
 
 }
