@@ -25,7 +25,7 @@ import { BackTimeComponent } from './component/back-time/back-time.component';
 import { RoundComponent } from './component/round/round.component';
 import { BackTopComponent } from './component/back-top/back-top.component';
 
-import { LoadingItemComponent } from './component/loading-item/loading-item.component';
+import { LoadingItemComponent } from './loading/loading-item/loading-item.component';
 import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
 import { FormatDatePipe } from './helper/pipe/format-date.pipe';
 import { ListAvatarUserComponent } from './component/list-avatar-user/list-avatar-user.component';
@@ -66,7 +66,6 @@ registerLocaleData(en);
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
-import { RecruitmentSearchComponent } from './modal/recruitment-search/recruitment-search.component';
 import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 import { CapacityRelatedItemComponent } from './component/capacity-related-item/capacity-related-item.component';
 import { ListPostComponent } from './component/list-post/list-post.component';
@@ -113,7 +112,6 @@ import { HomeComponent } from './pages/home/home.component';
     DialogConfirmComponent,
     CapacityDetailComponent,
     CapacityRelatedItemComponent,
-    RecruitmentSearchComponent,
     RecruitmentDetailComponent,
     ListPostComponent,
     PostsComponent,
