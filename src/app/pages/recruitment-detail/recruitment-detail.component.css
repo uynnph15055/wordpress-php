@@ -29,7 +29,7 @@ p , h1, h2,h3,h4 ,h5{
 
 .recruitment-header-banner{
     margin-bottom: 60px;
-    border-bottom: 5px solid var(--color-primary);
+    border-bottom: 5px solid var(--primary);
 }
 
 .recruitment-header-banner{
