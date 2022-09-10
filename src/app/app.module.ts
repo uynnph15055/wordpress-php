@@ -74,6 +74,8 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { RankStudentComponent } from './modal/rank-student/rank-student.component';
 import { AvatarComponent } from './component/avatar/avatar.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AsidePostComponent } from './component/post/aside-post/aside-post.component';
+import { ListSocialComponent } from './component/list-social/list-social.component';
 
 
 
@@ -119,6 +121,8 @@ import { HomeComponent } from './pages/home/home.component';
     PostsComponent,
     RankStudentComponent,
     AvatarComponent,
+    AsidePostComponent,
+    ListSocialComponent,
   ],
   imports: [
     BrowserModule,
