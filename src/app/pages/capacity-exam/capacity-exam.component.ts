@@ -1,32 +1,34 @@
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { CapacityService } from "./../../services/capacity.service";
 import { DialogConfirmComponent } from "./../../modal/dialog-confirm/dialog-confirm.component";
 import { RoundService } from "src/app/services/round.service";
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
-import { Component, ElementRef, Inject, OnInit, QueryList, TemplateRef, ViewChildren } from "@angular/core";
+import { Component, ElementRef, Inject, OnInit, QueryList, ViewChildren, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { map, switchMap } from "rxjs";
-import { Round } from "src/app/models/round.model";
+import { CapacityRound } from "src/app/models/round.model";
 import { MatDialog } from "@angular/material/dialog";
 import { UserService } from "src/app/services/user.service";
 import { DOCUMENT } from "@angular/common";
 import { User } from "src/app/models/user";
-import { ExamCapacity } from "src/app/models/exam.model";
+import { ExamCapacity, ResultExam } from "src/app/models/exam.model";
 import { NgToastService } from "ng-angular-popup";
 import * as moment from "moment";
+import { ModalHistoryCapacityComponent } from "src/app/modal/modal-history-capacity/modal-history-capacity.component";
+import { CapacityExamHistory } from "src/app/models/capacity";
 
 @Component({
   selector: "app-capacity-exam",
   templateUrl: "./capacity-exam.component.html",
   styleUrls: ["./capacity-exam.component.css"],
 })
-export class CapacityExamComponent implements OnInit {
+export class CapacityExamComponent implements OnInit, OnDestroy {
   @ViewChildren("questions") questions: QueryList<ElementRef>;
   userLogged!: User;
   formAnswers!: FormGroup;
   examData!: ExamCapacity;
   // trạng thái làm bài: 0 -> màn hình chờ làm bài, 1 -> đang làm bài, 2 -> đã nộp
   statusTakingExam: number = 0;
-  roundDetail!: Round;
+  roundDetail!: CapacityRound;
   isFetchingRound = false;
   isFetchingSttExam = false;
   isFetchingExam = false;
@@ -43,18 +45,16 @@ export class CapacityExamComponent implements OnInit {
   isSubmitingExam = false;
   // trạng thái hết giờ làm bài
   isTimeOut = false;
+  // trạng thái get ls bài làm
+  isFetchingHistoryExam = false;
   timerId!: any;
   element!: any;
 
   // kết quả bài test
-  resultExam!: {
-    score: string; // điểm
-    examTime: string; // thời gian làm bài,
-    submitAt: string; // thời gian nộp bài,
-    donotAnswer: number; // tổng số câu chưa làm,
-    falseAnswer: number; // tổng số câu làm sai,
-    trueAnswer: number; // tổng số câu làm đúng
-  };
+  resultExam!: ResultExam;
+
+  // lịch sử làm bài
+  examHistory!: CapacityExamHistory;
 
   // kích thước màn hình
   windowScreenSize!: { width: number; height: number };
@@ -66,7 +66,7 @@ export class CapacityExamComponent implements OnInit {
     private userService: UserService,
     private toast: NgToastService,
     private router: Router,
-    private modalService: NgbModal,
+    private capacityService: CapacityService,
     @Inject(DOCUMENT) private document: any,
   ) {}
 
@@ -76,10 +76,14 @@ export class CapacityExamComponent implements OnInit {
       behavior: "smooth",
     });
 
-    // chặn f11
-    window.addEventListener("keydown", (e: any) => {
-      if (e.keyCode === 122) this.disabledEvent(e);
-    });
+    // chặn f12, f11
+    window.onkeydown = (e: any) => {
+      this.handleDisableKeydown(e);
+      this.handleDisableF11Key(e);
+    };
+
+    // chặn chuột phải
+    window.oncontextmenu = (e: any) => this.disabledEvent(e);
 
     this.element = this.document.documentElement;
 
@@ -118,6 +122,7 @@ export class CapacityExamComponent implements OnInit {
                       result.updated_at,
                     );
                     this.resultExam = {
+                      capacityId: result.id,
                       score: Number.isInteger(result.scores) ? result.scores.toString() : result.scores.toFixed(1),
                       examTime: !+minutes ? `${seconds} giây` : `${minutes} phút ${seconds} giây`,
                       submitAt:
@@ -128,6 +133,9 @@ export class CapacityExamComponent implements OnInit {
                       falseAnswer: result.false_answer,
                       trueAnswer: result.true_answer,
                     };
+
+                    // clear data lịch sử làm bài của vòng trước
+                    this.examHistory = null as any;
                   }
                 },
                 (error) => {
@@ -139,6 +147,10 @@ export class CapacityExamComponent implements OnInit {
           }
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    this.handleRemoveAllEvent();
   }
 
   // làm bài
@@ -275,11 +287,11 @@ export class CapacityExamComponent implements OnInit {
         }
       };
 
-      // chặn f12
-      window.onkeydown = (e: any) => this.handleDisableKeydown(e);
-
-      // chặn chuột phải
-      window.oncontextmenu = (e: any) => this.disabledEvent(e);
+      // chặn f12, chặn copy
+      window.onkeydown = (e: any) => {
+        this.handleDisableKeydown(e);
+        this.handleDisableCopy(e);
+      };
 
       this.roundService.takeExam({ round_id: this.roundDetail.id }).subscribe((res) => {
         if (res.status) {
@@ -361,6 +373,7 @@ export class CapacityExamComponent implements OnInit {
           // kết quả bài làm
           const { minutes, seconds } = this.getMinutesAndSecondBetweenTwoDate(payload.created_at, payload.updated_at);
           this.resultExam = {
+            capacityId: payload.id,
             score: Number.isInteger(payload.scores) ? payload.scores.toString() : payload.scores.toFixed(1),
             examTime: !+minutes ? `${seconds} giây` : `${minutes} phút ${seconds} giây`,
             submitAt: moment(payload.updated_at).format("DD [tháng] MM [lúc] HH:mm"),
@@ -384,9 +397,12 @@ export class CapacityExamComponent implements OnInit {
 
           // remove event listener
           window.onresize = () => {};
-          window.onkeydown = () => {};
-          window.oncontextmenu = () => {};
-          window.addEventListener("keydown", () => {});
+
+          // mặc định chặn f12, f11
+          window.onkeydown = (e: any) => {
+            this.handleDisableKeydown(e);
+            this.handleDisableF11Key(e);
+          };
 
           localStorage.removeItem("test_result");
 
@@ -732,6 +748,12 @@ export class CapacityExamComponent implements OnInit {
     if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
       this.disabledEvent(e);
     }
+
+    // "C" key
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 67) {
+      this.disabledEvent(e);
+    }
+
     // "S" key + macOS
     if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
       this.disabledEvent(e);
@@ -749,11 +771,28 @@ export class CapacityExamComponent implements OnInit {
       e.preventDefault();
       e.stopImmediatePropagation();
     }
+  }
 
+  // chặn f11
+  handleDisableF11Key(e: any) {
+    if (e.keyCode === 122) {
+      this.disabledEvent(e);
+    }
+  }
+
+  // chặn copy
+  handleDisableCopy(e: any) {
     if (e.ctrlKey && e.keyCode === 67) {
       this.disabledEvent(e);
       navigator.clipboard.writeText("Thí sinh không được gian lận trong quá trình làm bài!");
     }
+  }
+
+  // remove all event in page
+  handleRemoveAllEvent() {
+    window.onresize = () => {};
+    window.onkeydown = () => {};
+    window.oncontextmenu = () => {};
   }
 
   // get thời gian làm bài
@@ -817,9 +856,39 @@ export class CapacityExamComponent implements OnInit {
     return isChecked;
   }
 
-  // open modal lịch sử bài làm
-  handleOpenHistoryExam(content: TemplateRef<any>) {
-    this.modalService.open(content, { size: "lg", scrollable: true });
+  // modal lịch sử làm bài
+  handleOpenHistoryExam() {
+    // chưa có data ls làm bài ? get data : open modal
+    if (!this.examHistory) {
+      this.isFetchingHistoryExam = true;
+      // get ls làm bài
+      this.capacityService.getHistoryExam(this.resultExam.capacityId).subscribe(
+        (res) => {
+          this.examHistory = {
+            capacity: this.roundDetail.contest,
+            round: this.roundDetail,
+            exam: {
+              ...res.exam,
+              time_exam: this.convertTimeExamToSeconds(res.exam.time, res.exam.time_type) / 60,
+            },
+          };
+
+          this.dialog.open(ModalHistoryCapacityComponent, {
+            width: "1000px",
+            maxWidth: "100%",
+            data: this.examHistory,
+          });
+        },
+        () => {},
+        () => (this.isFetchingHistoryExam = false),
+      );
+    } else {
+      this.dialog.open(ModalHistoryCapacityComponent, {
+        width: "1000px",
+        maxWidth: "100%",
+        data: this.examHistory,
+      });
+    }
   }
 
   // tính thời gian làm bài

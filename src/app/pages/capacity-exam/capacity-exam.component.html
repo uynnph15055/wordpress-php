@@ -1,419 +1,308 @@
-<div [ngClass]="{ exam: statusTakingExam === 1 || isFullScreen ? true : false }">
-  <div class="container my-4">
-    <div class="capacity__exam-heading" *ngIf="!isFetchingRound">
-      <div class="capacity__exam-heading-inner d-flex align-items-center justify-content-center">
-        <span class="capacity__exam-heading-line"></span>
-        <h1 class="capacity__exam-heading-title text-center">
-          Bài thi test năng lực:
-          <a class="text-body" [routerLink]="['/test-nang-luc', roundDetail.contest.id]">{{
-            roundDetail.contest.name
-          }}</a>
-        </h1>
-        <span class="capacity__exam-heading-line"></span>
-      </div>
+<nz-spin [nzSpinning]="isFetchingHistoryExam" nzTip="Đang lấy dữ liệu bài làm...">
+  <div [ngClass]="{ exam: statusTakingExam === 1 || isFullScreen ? true : false }">
+    <div class="container my-4">
+      <div class="capacity__exam-heading" *ngIf="!isFetchingRound">
+        <div class="capacity__exam-heading-inner d-flex align-items-center justify-content-center">
+          <span class="capacity__exam-heading-line"></span>
+          <h1 class="capacity__exam-heading-title text-center">
+            Bài test năng lực:
+            <a class="text-body" [routerLink]="['/test-nang-luc', roundDetail.contest.id]">{{
+              roundDetail.contest.name
+            }}</a>
+          </h1>
+          <span class="capacity__exam-heading-line"></span>
+        </div>
 
-      <div class="text-center">
-        <p *ngIf="statusTakingExam === 1">
-          Câu hỏi: <span class="text-red">{{ examData.questions.length }} câu</span>, thời gian:
-          <span class="text-red">{{ examData.time_exam }} phút</span>
-        </p>
+        <div class="text-center">
+          <p *ngIf="statusTakingExam === 1">
+            Câu hỏi: <span class="text-red">{{ examData.questions.length }} câu</span>, thời gian:
+            <span class="text-red">{{ examData.time_exam }} phút</span>
+          </p>
 
-        <div *ngIf="statusTakingExam === 0 || statusTakingExam === 2">
-          <span>Phần thi: {{ roundDetail.name }}</span
-          >, bắt đầu: <span class="text-red">{{ roundDetail.start_time | formatDate }}</span
-          >, hạn chót: <span class="text-red">{{ roundDetail.end_time | formatDate }}</span>
+          <div *ngIf="statusTakingExam === 0 || statusTakingExam === 2">
+            <span>Phần thi: {{ roundDetail.name }}</span
+            >, bắt đầu: <span class="text-red">{{ roundDetail.start_time | formatDate }}</span
+            >, hạn chót: <span class="text-red">{{ roundDetail.end_time | formatDate }}</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- chờ làm bài -->
-    <section
-      class="capacity__exam-description text-center"
-      *ngIf="statusTakingExam === 0 && !isFetchingRound && !isFetchingSttExam && !isFetchingExam"
-    >
-      <!-- button bắt đầu làm bài -->
-      <div *ngIf="!isContinueExam">
-        <h2 class="text-center capacity__exam-description-title">
-          Hãy nhấn
-          <span class="text-uppercase text-red">bắt đầu</span>
-          để làm bài
-        </h2>
-      </div>
+      <!-- chờ làm bài -->
+      <section
+        class="capacity__exam-description text-center"
+        *ngIf="statusTakingExam === 0 && !isFetchingRound && !isFetchingSttExam && !isFetchingExam"
+      >
+        <!-- button bắt đầu làm bài -->
+        <div *ngIf="!isContinueExam">
+          <h2 class="text-center capacity__exam-description-title">
+            Hãy nhấn
+            <span class="text-uppercase text-red">bắt đầu</span>
+            để làm bài
+          </h2>
+        </div>
 
-      <!-- button tiếp tục làm bài -->
-      <div *ngIf="isContinueExam">
-        <h2 class="text-center capacity__exam-description-title">
-          Bạn chưa hoàn thành bài thi. Hãy nhấn
-          <span class="text-uppercase text-red">tiếp tục</span>
-          để tiếp tục làm bài!
-        </h2>
-      </div>
+        <!-- button tiếp tục làm bài -->
+        <div *ngIf="isContinueExam">
+          <h2 class="text-center capacity__exam-description-title">
+            Bạn chưa hoàn thành bài thi. Hãy nhấn
+            <span class="text-uppercase text-red">tiếp tục</span>
+            để tiếp tục làm bài!
+          </h2>
+        </div>
 
-      <button class="btn btn-register text-center btn-base-type-bg" (click)="isContinueExam ? handleContinueTakeExam() : handleTakeExam()">{{ isContinueExam ? "Tiếp tục" : "Bắt đầu" }}</button>
-    </section>
-
-    <!-- loading khi đàn get dữ liệu vòng thi và check trạng thái làm bài -->
-    <section>
-      <ngx-skeleton-loader count="2" *ngIf="isFetchingRound"></ngx-skeleton-loader>
-      <section class="capacity__exam-description text-center" *ngIf="isFetchingSttExam || isFetchingRound">
-        <ngx-skeleton-loader [theme]="{ width: '300px' }"></ngx-skeleton-loader>
-        <ngx-skeleton-loader [theme]="{ width: '100px', height: '35px' }" class="d-block"></ngx-skeleton-loader>
+        <button
+          class="btn btn-register text-center btn-base-type-bg"
+          (click)="isContinueExam ? handleContinueTakeExam() : handleTakeExam()"
+        >
+          {{ isContinueExam ? "Tiếp tục" : "Bắt đầu" }}
+        </button>
       </section>
-    </section>
 
-    <!-- làm bài -->
-    <form (ngSubmit)="handleSubmitExam()" [formGroup]="formAnswers" *ngIf="statusTakingExam === 1">
-      <div class="row">
+      <!-- loading khi đàn get dữ liệu vòng thi và check trạng thái làm bài -->
+      <section>
+        <ngx-skeleton-loader count="2" *ngIf="isFetchingRound"></ngx-skeleton-loader>
+        <section class="capacity__exam-description text-center" *ngIf="isFetchingSttExam || isFetchingRound">
+          <ngx-skeleton-loader [theme]="{ width: '300px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', height: '35px' }" class="d-block"></ngx-skeleton-loader>
+        </section>
+      </section>
+
+      <!-- làm bài -->
+      <form (ngSubmit)="handleSubmitExam()" [formGroup]="formAnswers" *ngIf="statusTakingExam === 1">
+        <div class="row">
+          <div class="col col-12 col-md-3">
+            <div class="sidebar">
+              <h2 class="sidebar__title">{{ examData.name }}</h2>
+
+              <ul class="sidebar__list m-0 p-0">
+                <li class="sidebar__list-item d-flex align-items-center">
+                  <div class="sidebar__list-item-icon">
+                    <i class="fa-solid fa-list"></i>
+                  </div>
+
+                  <div class="sidebar__list-item-text">
+                    <strong>{{ examData.questions.length }}</strong> câu hỏi
+                  </div>
+                </li>
+
+                <li class="sidebar__list-item d-flex align-items-center">
+                  <div class="sidebar__list-item-icon">
+                    <i class="fa-solid fa-clock"></i>
+                  </div>
+
+                  <div class="sidebar__list-item-text">
+                    <strong>{{ examData.time_exam }}</strong> phút làm bài
+                  </div>
+                </li>
+
+                <li class="sidebar__list-item d-flex align-items-center primary-color">
+                  <div class="sidebar__list-item-icon primary-color">
+                    <i class="fa-solid fa-hourglass"></i>
+                  </div>
+
+                  <div class="sidebar__list-item-text">Thời gian còn lại</div>
+                </li>
+              </ul>
+
+              <ul class="sidebar__countdown d-flex justify-content-center p-0">
+                <li class="sidebar__countdown-item text-center">
+                  <strong class="sidebar__countdown-item-time d-block primary-color">{{
+                    countDownTimeExam.minutes
+                  }}</strong>
+                  Phút
+                </li>
+
+                <li class="primary-color sidebar__countdown-item-time">:</li>
+
+                <li class="sidebar__countdown-item text-center">
+                  <strong class="sidebar__countdown-item-time d-block primary-color">{{
+                    countDownTimeExam.seconds
+                  }}</strong>
+                  Giây
+                </li>
+              </ul>
+
+              <button class="btn btn-register sidebar__countdown-btn">Nộp bài</button>
+
+              <section class="question">
+                <span class="question__title">Câu hỏi</span>
+
+                <div class="question__list">
+                  <!-- active câu hỏi đã làm -->
+                  <div
+                    class="question__list-item"
+                    (click)="scrollToQuestion(i)"
+                    [ngClass]="{ active: checkQuesAnswered('question-' + (i + 1) + '-' + ques.id + '-' + ques.type) }"
+                    *ngFor="let ques of examData.questions; let i = index"
+                  >
+                    <div class="question__list-item-inner">{{ i + 1 }}</div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="sidebar__note">
+                <span class="sidebar__note-title primary-color">* Lưu ý</span>
+
+                <ul class="sidebar__note-list">
+                  <li class="sidebar__note-list-item">
+                    1. Câu hỏi có đáp án hình ô vuông là câu hỏi có nhiều câu trả lời.
+                  </li>
+                  <li class="sidebar__note-list-item">2. Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li>
+                </ul>
+              </section>
+            </div>
+          </div>
+
+          <div class="col col-12 col-md-9 question__content">
+            <ul class="question__content-list">
+              <li class="question__content-item" *ngFor="let question of examData.questions; let i = index" #questions>
+                <span class="question__content-item-num d-block">Câu {{ i + 1 }}:</span>
+
+                <p class="question__content-item-content" [innerHTML]="question.content"></p>
+
+                <ul class="answers">
+                  <!-- câu hỏi có 1 đáp án -->
+                  <div *ngIf="question.type === 0">
+                    <li class="answers__item" *ngFor="let answer of question.answers; let j = index">
+                      <input
+                        class="answers__input"
+                        type="radio"
+                        hidden
+                        [id]="'answer-' + answer.id"
+                        [formControlName]="'question-' + (i + 1) + '-' + question.id + '-' + question.type"
+                        [value]="answer.id"
+                      />
+                      <label
+                        (click)="handleAutoSaveAnswer('question-' + (i + 1) + '-' + question.id + '-' + question.type)"
+                        [for]="'answer-' + answer.id"
+                        class="answer d-flex align-items-center"
+                      >
+                        <span class="answer__num d-flex justify-content-center align-items-center">{{
+                          (j + 10).toString(36).toUpperCase()
+                        }}</span>
+                        <p class="answer__content m-0">{{ answer.content }}</p>
+                      </label>
+                    </li>
+                  </div>
+
+                  <!-- câu hỏi có nhiều đáp án -->
+                  <div *ngIf="question.type === 1">
+                    <li class="answers__item border-square" *ngFor="let answer of question.answers; let j = index">
+                      <input
+                        class="answers__input"
+                        type="checkbox"
+                        hidden
+                        [checked]="
+                          checkAnswerd('question-' + (i + 1) + '-' + question.id + '-' + question.type, answer.id)
+                        "
+                        [id]="'answer-' + answer.id"
+                        (change)="
+                          onCheckChange('question-' + (i + 1) + '-' + question.id + '-' + question.type, $event)
+                        "
+                        [value]="answer.id"
+                      />
+                      <label
+                        (click)="handleAutoSaveAnswer('question-' + (i + 1) + '-' + question.id + '-' + question.type)"
+                        [for]="'answer-' + answer.id"
+                        class="answer d-flex align-items-center"
+                      >
+                        <span class="answer__num d-flex justify-content-center align-items-center">{{
+                          (j + 10).toString(36).toUpperCase()
+                        }}</span>
+                        <p class="answer__content m-0">{{ answer.content }}</p>
+                      </label>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </form>
+
+      <!-- skeleton -->
+      <div class="row" *ngIf="isFetchingExam">
         <div class="col col-12 col-md-3">
-          <div class="sidebar">
-            <h2 class="sidebar__title">{{ examData.name }}</h2>
+          <div class="sidebar py-0">
+            <ngx-skeleton-loader></ngx-skeleton-loader>
 
             <ul class="sidebar__list m-0 p-0">
-              <li class="sidebar__list-item d-flex align-items-center">
-                <div class="sidebar__list-item-icon">
-                  <i class="fa-solid fa-list"></i>
-                </div>
-
-                <div class="sidebar__list-item-text">
-                  <strong>{{ examData.questions.length }}</strong> câu hỏi
-                </div>
-              </li>
-
-              <li class="sidebar__list-item d-flex align-items-center">
-                <div class="sidebar__list-item-icon">
-                  <i class="fa-solid fa-clock"></i>
-                </div>
-
-                <div class="sidebar__list-item-text">
-                  <strong>{{ examData.time_exam }}</strong> phút làm bài
-                </div>
-              </li>
-
-              <li class="sidebar__list-item d-flex align-items-center primary-color">
-                <div class="sidebar__list-item-icon primary-color">
-                  <i class="fa-solid fa-hourglass"></i>
-                </div>
-
-                <div class="sidebar__list-item-text">Thời gian còn lại</div>
-              </li>
+              <ngx-skeleton-loader count="3"></ngx-skeleton-loader>
             </ul>
-
-            <ul class="sidebar__countdown d-flex justify-content-center p-0">
-              <li class="sidebar__countdown-item text-center">
-                <strong class="sidebar__countdown-item-time d-block primary-color">{{
-                  countDownTimeExam.minutes
-                }}</strong>
-                Phút
-              </li>
-
-              <li class="primary-color sidebar__countdown-item-time">:</li>
-
-              <li class="sidebar__countdown-item text-center">
-                <strong class="sidebar__countdown-item-time d-block primary-color">{{
-                  countDownTimeExam.seconds
-                }}</strong>
-                Giây
-              </li>
-            </ul>
-
-            <button class="btn btn-register sidebar__countdown-btn">Nộp bài</button>
+            <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
 
             <section class="question">
-              <span class="question__title">Câu hỏi</span>
-
-              <div class="question__list">
-                <!-- active câu hỏi đã làm -->
-                <div
-                  class="question__list-item"
-                  (click)="scrollToQuestion(i)"
-                  [ngClass]="{ active: checkQuesAnswered('question-' + (i + 1) + '-' + ques.id + '-' + ques.type) }"
-                  *ngFor="let ques of examData.questions; let i = index"
-                >
-                  <div class="question__list-item-inner">{{ i + 1 }}</div>
-                </div>
-              </div>
+              <ngx-skeleton-loader count="3"></ngx-skeleton-loader>
             </section>
 
             <section class="sidebar__note">
-              <span class="sidebar__note-title primary-color">* Lưu ý</span>
-
-              <ul class="sidebar__note-list">
-                <li class="sidebar__note-list-item">
-                  1. Câu hỏi có đáp án hình ô vuông là câu hỏi có nhiều câu trả lời.
-                </li>
-                <li class="sidebar__note-list-item">2. Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li>
-              </ul>
+              <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
             </section>
           </div>
         </div>
 
         <div class="col col-12 col-md-9 question__content">
           <ul class="question__content-list">
-            <li class="question__content-item" *ngFor="let question of examData.questions; let i = index" #questions>
-              <span class="question__content-item-num d-block">Câu {{ i + 1 }}:</span>
-
-              <p class="question__content-item-content" [innerHTML]="question.content"></p>
-
-              <ul class="answers">
-                <!-- câu hỏi có 1 đáp án -->
-                <div *ngIf="question.type === 0">
-                  <li class="answers__item" *ngFor="let answer of question.answers; let j = index">
-                    <input
-                      class="answers__input"
-                      type="radio"
-                      hidden
-                      [id]="'answer-' + answer.id"
-                      [formControlName]="'question-' + (i + 1) + '-' + question.id + '-' + question.type"
-                      [value]="answer.id"
-                    />
-                    <label
-                      (click)="handleAutoSaveAnswer('question-' + (i + 1) + '-' + question.id + '-' + question.type)"
-                      [for]="'answer-' + answer.id"
-                      class="answer d-flex align-items-center"
-                    >
-                      <span class="answer__num d-flex justify-content-center align-items-center">{{
-                        (j + 10).toString(36).toUpperCase()
-                      }}</span>
-                      <p class="answer__content m-0">{{ answer.content }}</p>
-                    </label>
-                  </li>
-                </div>
-
-                <!-- câu hỏi có nhiều đáp án -->
-                <div *ngIf="question.type === 1">
-                  <li class="answers__item border-square" *ngFor="let answer of question.answers; let j = index">
-                    <input
-                      class="answers__input"
-                      type="checkbox"
-                      hidden
-                      [checked]="
-                        checkAnswerd('question-' + (i + 1) + '-' + question.id + '-' + question.type, answer.id)
-                      "
-                      [id]="'answer-' + answer.id"
-                      (change)="onCheckChange('question-' + (i + 1) + '-' + question.id + '-' + question.type, $event)"
-                      [value]="answer.id"
-                    />
-                    <label
-                      (click)="handleAutoSaveAnswer('question-' + (i + 1) + '-' + question.id + '-' + question.type)"
-                      [for]="'answer-' + answer.id"
-                      class="answer d-flex align-items-center"
-                    >
-                      <span class="answer__num d-flex justify-content-center align-items-center">{{
-                        (j + 10).toString(36).toUpperCase()
-                      }}</span>
-                      <p class="answer__content m-0">{{ answer.content }}</p>
-                    </label>
-                  </li>
-                </div>
-              </ul>
+            <li class="question__content-item" *ngFor="let item of [].constructor(10)">
+              <ngx-skeleton-loader count="5"></ngx-skeleton-loader>
             </li>
           </ul>
         </div>
       </div>
-    </form>
 
-    <!-- skeleton -->
-    <div class="row" *ngIf="isFetchingExam">
-      <div class="col col-12 col-md-3">
-        <div class="sidebar py-0">
-          <ngx-skeleton-loader></ngx-skeleton-loader>
+      <!-- kết quả làm bài -->
+      <div class="capacity__exam-result text-center" *ngIf="statusTakingExam === 2">
+        <h2>Kết quả bài làm</h2>
+        <span class="text-uppercase text-red capacity__exam-result-point">{{ this.resultExam.score }}/10</span>
 
-          <ul class="sidebar__list m-0 p-0">
-            <ngx-skeleton-loader count="3"></ngx-skeleton-loader>
-          </ul>
-          <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+        <ul class="capacity__exam-result-list">
+          <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
+            <span>Thời gian</span>
+            <span class="fw-bolder">{{ this.resultExam.examTime }}</span>
+          </li>
 
-          <section class="question">
-            <ngx-skeleton-loader count="3"></ngx-skeleton-loader>
-          </section>
+          <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
+            <span>Nộp lúc</span>
+            <span class="fw-bolder">{{ this.resultExam.submitAt }}</span>
+          </li>
 
-          <section class="sidebar__note">
-            <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
-          </section>
-        </div>
-      </div>
+          <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
+            <span>Số câu đúng</span>
+            <span class="fw-bolder">{{ this.resultExam.trueAnswer }}</span>
+          </li>
 
-      <div class="col col-12 col-md-9 question__content">
-        <ul class="question__content-list">
-          <li class="question__content-item" *ngFor="let item of [].constructor(10)">
-            <ngx-skeleton-loader count="5"></ngx-skeleton-loader>
+          <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
+            <span>Số câu sai</span>
+            <span class="fw-bolder">{{ this.resultExam.falseAnswer }}</span>
+          </li>
+
+          <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
+            <span>Chưa làm</span>
+            <span class="fw-bolder">{{ this.resultExam.donotAnswer }}</span>
+          </li>
+        </ul>
+
+        <ul class="flex-wrap capacity__exam-result-actions d-flex justify-content-center align-items-center">
+          <li (click)="handleOpenHistoryExam()" class="capacity__exam-result-actions-item btn btn-register mx-1 my-1">
+            Lịch sử làm bài
+          </li>
+
+          <li
+            (click)="handleGoToNextRound(getNextRound().round_id)"
+            class="capacity__exam-result-actions-item btn btn-register d-flex align-items-center mx-1 my-1"
+            *ngIf="getNextRound().status"
+          >
+            Phần thi tiếp theo
+            <div class="capacity__exam-result-actions-item-icon mx-1">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </li>
+
+          <li class="capacity__exam-result-actions-item mx-1 my-1" *ngIf="!getNextRound().status">
+            <a href="" class="btn btn-register">Bảng xếp hạng</a>
           </li>
         </ul>
       </div>
     </div>
-
-    <!-- kết quả làm bài -->
-    <div class="capacity__exam-result text-center" *ngIf="statusTakingExam === 2">
-      <h2>Kết quả bài làm</h2>
-      <span class="text-uppercase text-red capacity__exam-result-point">{{ this.resultExam.score }}/10</span>
-
-      <ul class="capacity__exam-result-list">
-        <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
-          <span>Thời gian</span>
-          <span class="fw-bolder">{{ this.resultExam.examTime }}</span>
-        </li>
-
-        <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
-          <span>Nộp lúc</span>
-          <span class="fw-bolder">{{ this.resultExam.submitAt }}</span>
-        </li>
-
-        <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
-          <span>Số câu đúng</span>
-          <span class="fw-bolder">{{ this.resultExam.trueAnswer }}</span>
-        </li>
-
-        <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
-          <span>Số câu sai</span>
-          <span class="fw-bolder">{{ this.resultExam.falseAnswer }}</span>
-        </li>
-
-        <li class="capacity__exam-result-list-item d-flex justify-content-between align-items-center my-1">
-          <span>Chưa làm</span>
-          <span class="fw-bolder">{{ this.resultExam.donotAnswer }}</span>
-        </li>
-      </ul>
-
-      <ul class="flex-wrap capacity__exam-result-actions d-flex justify-content-center align-items-center">
-        <li (click)="handleOpenHistoryExam(modalHistoryExam)" class="capacity__exam-result-actions-item btn btn-register mx-1 my-1">Lịch sử làm bài</li>
-
-        <li
-          (click)="handleGoToNextRound(getNextRound().round_id)"
-          class="capacity__exam-result-actions-item btn btn-register d-flex align-items-center mx-1 my-1"
-          *ngIf="getNextRound().status"
-        >
-          Phần thi tiếp theo
-          <div class="capacity__exam-result-actions-item-icon mx-1">
-            <i class="fa-solid fa-arrow-right"></i>
-          </div>
-        </li>
-
-        <li class="capacity__exam-result-actions-item mx-1 my-1" *ngIf="!getNextRound().status">
-          <a href="" class="btn btn-register">Bảng xếp hạng</a>
-        </li>
-      </ul>
-    </div>
   </div>
-</div>
-
-<!-- modal lịch sử làm bài -->
-<ng-template #modalHistoryExam let-modal>
-  <div class="modal-header align-items-center">
-    <h4 class="modal-title m-0">Lịch sử làm bài</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-  </div>
-  <div class="modal-body">
-    <ul class="question__content-list m-0 p-0">
-      <li class="question__content-item px-0">
-        <span class="question__content-item-num d-block">Câu 1:</span>
-        <p class="question__content-item-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et unde blanditiis voluptatem. Eaque neque sed, aliquid mollitia quasi at quo quas optio dolorum quaerat error nihil, nobis totam esse hic.</p>
-
-        <ul class="answers m-0 p-0">
-          <!-- câu hỏi có 1 đáp án -->
-          <li class="answers__item">
-            <label class="answer active answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">A</span>
-              <p class="answer__content m-0">Đáp án 1</p>
-            </label>
-          </li>
-
-          <li class="answers__item">
-            <label class="answer answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">B</span>
-              <p class="answer__content m-0">Đáp án 2</p>
-            </label>
-          </li>
-
-          <li class="answers__item">
-            <label class="answer answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">C</span>
-              <p class="answer__content m-0">Đáp án 3</p>
-            </label>
-          </li>
-
-          <li class="answers__item">
-            <label class="answer answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">D</span>
-              <p class="answer__content m-0">Đáp án 4</p>
-            </label>
-          </li>
-        </ul>
-      </li>
-
-      <li class="question__content-item px-0">
-        <span class="question__content-item-num d-block">Câu 2:</span>
-        <p class="question__content-item-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et unde blanditiis voluptatem. Eaque neque sed, aliquid mollitia quasi at quo quas optio dolorum quaerat error nihil, nobis totam esse hic.</p>
-
-        <ul class="answers m-0 p-0">
-          <!-- câu hỏi có 1 đáp án -->
-          <li class="answers__item">
-            <label class="answer answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">A</span>
-              <p class="answer__content m-0">Đáp án 1</p>
-            </label>
-          </li>
-
-          <li class="answers__item">
-            <label class="answer answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">B</span>
-              <p class="answer__content m-0">Đáp án 2</p>
-            </label>
-          </li>
-
-          <li class="answers__item">
-            <label class="answer answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">C</span>
-              <p class="answer__content m-0">Đáp án 3</p>
-            </label>
-          </li>
-
-          <li class="answers__item">
-            <label class="answer answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">D</span>
-              <p class="answer__content m-0">Đáp án 4</p>
-            </label>
-          </li>
-        </ul>
-      </li>
-
-      <li class="question__content-item px-0">
-        <span class="question__content-item-num d-block">Câu 3:</span>
-        <p class="question__content-item-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et unde blanditiis voluptatem. Eaque neque sed, aliquid mollitia quasi at quo quas optio dolorum quaerat error nihil, nobis totam esse hic.</p>
-
-        <ul class="answers m-0 p-0">
-          <!-- câu hỏi có 1 đáp án -->
-          <li class="answers__item border-square">
-            <label class="answer answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">A</span>
-              <p class="answer__content m-0">Đáp án 1</p>
-            </label>
-          </li>
-
-          <li class="answers__item border-square">
-            <label class="answer answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">B</span>
-              <p class="answer__content m-0">Đáp án 2</p>
-            </label>
-          </li>
-
-          <li class="answers__item border-square">
-            <label class="answer answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">C</span>
-              <p class="answer__content m-0">Đáp án 3</p>
-            </label>
-          </li>
-
-          <li class="answers__item border-square">
-            <label class="answer answer-hover-none d-flex align-items-center">
-              <span class="answer__num d-flex justify-content-center align-items-center">D</span>
-              <p class="answer__content m-0">Đáp án 4</p>
-            </label>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Đóng</button>
-  </div>
-</ng-template>
+</nz-spin>

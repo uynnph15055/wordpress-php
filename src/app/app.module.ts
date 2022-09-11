@@ -71,6 +71,7 @@ import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
 import { CapacityRelatedItemComponent } from './component/capacity-related-item/capacity-related-item.component';
+import { ModalHistoryCapacityComponent } from './modal/modal-history-capacity/modal-history-capacity.component';
 
 @NgModule({
   declarations: [
@@ -112,6 +113,7 @@ import { CapacityRelatedItemComponent } from './component/capacity-related-item/
     CapacityExamComponent,
     DialogConfirmComponent,
     CapacityRelatedItemComponent,
+    ModalHistoryCapacityComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
-import { Exam } from "./exam.model";
-import { Round } from "./round.model";
+import { ExamCapacity } from "./exam.model";
+import { CapacityRound, Round } from "./round.model";
 
 export class Capacity {
   id: number;
@@ -12,8 +12,8 @@ export class Capacity {
   status: number;
   slug_name: string;
   rounds: Round[];
-  user_capacity_done: [] // ds user làm bài
-  skills: { name: string, short_name: string }[]
+  user_capacity_done: []; // ds user làm bài
+  skills: { name: string; short_name: string }[];
 }
 
 class ResultExam {
@@ -38,7 +38,7 @@ export class DataExam {
     answerIds?: string[];
     type: number;
     answerId?: number;
-  }[]
+  }[];
 }
 
 // kết quả check trạng thái làm bài
@@ -46,5 +46,18 @@ export class ResponseCheckSttExam {
   status: boolean;
   payload: number;
   message: string;
-  result: ResultExam
+  result: ResultExam;
+}
+
+// lịch sử làm bài
+export class ResponseCapacityHistory {
+  status: boolean;
+  payload: ResultExam;
+  exam: ExamCapacity;
+}
+
+export class CapacityExamHistory {
+  capacity: Capacity;
+  round: CapacityRound;
+  exam: ExamCapacity;
 }
