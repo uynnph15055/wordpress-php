@@ -34,7 +34,11 @@ export class CapacityRelatedItemComponent implements OnInit {
   ngOnInit(): void {
     this.skillsName = this.capacityItem.skills.map((skill) => skill.short_name).join(", ");
 
-    // đếm ngược thời gian bắt đầu mở bài test
+    // trạng thái bài test
+    this.getStatusCapacity();
+
+    // nếu bài test sắp diễn ra ? đếm ngược thời gian bắt đầu mở bài test
+    if (this.statusExam.status !== 0) return;
     this.timerId = setInterval(() => {
       let futureDate = new Date(this.capacityItem.date_start).getTime();
 
@@ -58,8 +62,6 @@ export class CapacityRelatedItemComponent implements OnInit {
         this.countDown.seconds = Math.floor((distance % (1000 * 60)) / 1000);
       }
     }, 1000);
-
-    this.getStatusCapacity();
   }
 
   formatDate(date: Date) {
