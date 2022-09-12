@@ -88,6 +88,11 @@
   transform: translateY(-0.5rem);
 }
 
+.avatar.avatar-hover:last-child:hover {
+  z-index: 1;
+  transform: translateY(0);
+}
+
 .avatar-name {
   position: absolute;
   bottom: calc(100% + 0.5rem);
@@ -119,7 +124,8 @@
   visibility: visible;
 }
 
-.avatar img {
+.avatar img,
+.avatar__last {
   background-color: #f7f7f7;
   width: 40px;
   height: 40px;
@@ -128,6 +134,25 @@
   border-radius: 50%;
   border: 2px solid #fff;
   box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.avatar__last {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0 0 0 200px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s linear;
+}
+
+.avatar__last:hover {
+  box-shadow: inset 0 0 0 200px rgba(0, 0, 0, 0.2);
+}
+
+.avatar__last i {
+  color: #fff;
 }
 /* end: Avatar */
 

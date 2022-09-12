@@ -1,6 +1,5 @@
 import { Router } from "@angular/router";
 import { Component, Input, OnInit } from "@angular/core";
-import * as moment from "moment";
 import { Capacity } from "src/app/models/capacity";
 
 @Component({
@@ -62,11 +61,6 @@ export class CapacityRelatedItemComponent implements OnInit {
         this.countDown.seconds = Math.floor((distance % (1000 * 60)) / 1000);
       }
     }, 1000);
-  }
-
-  formatDate(date: Date) {
-    const dateFormat = moment(date).format("HH:mm DD/MM/YYYY");
-    return dateFormat;
   }
 
   handleGoToExam(capacity_id: number) {

@@ -7,7 +7,7 @@
 
   <div class="capacity__related-content">
     <p class="capacity__related-content-time">
-      {{ formatDate(capacityItem.date_start) }} - {{ formatDate(capacityItem.register_deadline) }}
+      {{ capacityItem.date_start | formatDate }} - {{ capacityItem.register_deadline | formatDate }}
     </p>
     <a [routerLink]="['/test-nang-luc', capacityItem.id]" class="capacity__related-content-title-link">
       <h2 class="capacity__related-content-title">{{ capacityItem.name }}</h2>
