@@ -9,10 +9,12 @@ p , ul{
 }
 
 .filter-skill-item{
-  padding: 10px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
   background-color: var(--gray-200);
   margin-right: 15px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .filter-skill-box .active{
@@ -67,6 +69,11 @@ p , ul{
 .recruitment-list-hot-item-box:hover {
   border: 1px solid var(--primary);
   transition: all ease-in-out 0.3s;
+}
+
+.recruitment-left{
+  position: sticky;
+  top: 100px;
 }
 
 .recruitment-list-hot-item-text {

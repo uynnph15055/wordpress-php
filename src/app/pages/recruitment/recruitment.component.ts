@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { CompanyService } from 'src/app/services/company.service';
 import { Enterprise } from 'src/app/models/enterprise.model';
 import { RecruitmentsService } from 'src/app/services/recruitments.service';
@@ -13,118 +17,139 @@ import { ListPostService } from 'src/app/services/list-post.service';
 import { Post } from 'src/app/models/post.model';
 import { MajorService } from 'src/app/services/major.service';
 import { Major } from 'src/app/models/major';
-import { FormGroup ,FormControl  } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ConfigFunctionService } from 'src/app/services/config-function.service';
+import { SkillServiceService } from 'src/app/services/skill-service.service';
 @Component({
   selector: 'app-recruitment',
   templateUrl: './recruitment.component.html',
-  styleUrls: ['./recruitment.component.css']
+  styleUrls: ['./recruitment.component.css'],
 })
 export class RecruitmentComponent implements OnInit {
   companys: Array<Enterprise>;
   recruitments: Array<Recruitments>;
-  recruitmentsHot: Array<Recruitments>;
+  recruitmentsHot: Array<Recruitments> = [];
   recruitmentLinks: Array<PayingLinks>;
   cinfigData: TransmitToPost;
-  listPostResult : Array<Post>;
+  listPostResult: Array<Post>;
   majors: Array<Major>;
+  skills: Array<Skill>;
 
   // -------------
   statusCompany: boolean = false;
   statusRecruitments: boolean = false;
   statusRecruitmentsHot: boolean = false;
 
-  constructor(public dialog: MatDialog,
+  constructor(
+    public dialog: MatDialog,
     public companyService: CompanyService,
     public recruitmentService: RecruitmentsService,
-    public listPostService : ListPostService,
+    public listPostService: ListPostService,
     public majorService: MajorService,
-    public configService: ConfigFunctionService) { }
+    public configService: ConfigFunctionService,
+    public skillService: SkillServiceService
+  ) {}
 
-    statusFilter : Array<any> = [
-      {
-        prams : 'normal',
-        name: 'Mới nhất',
-      },
-      {
-        prams : 'hot',
-        name: 'Hot nhất',
-      }
-    ] 
+  statusFilter: Array<any> = [
+    {
+      prams: 'normal',
+      name: 'Mới nhất',
+    },
+    {
+      prams: 'hot',
+      name: 'Hot nhất',
+    },
+  ];
 
-    formFilter =  new FormGroup({
-      filterName : new FormControl(''),
-      filterSkill : new FormControl(''),
-      filterMajor : new FormControl(''),
-      filterStatus :  new FormControl(''),
-    })
+  formFilter = new FormGroup({
+    filterSkill: new FormControl(''),
+    filterName: new FormControl(''),
+    filterMajor: new FormControl(''),
+    filterStatus: new FormControl(''),
+  });
 
   ngOnInit(): void {
-    this.getListRecruitment('hot');
+    this.getListRecruitment();
     this.getListPost();
     this.getListMajor();
+    this.getAllSkill();
   }
 
   // Set filter value
-  setValueFilterMajor(item: Major){
+  setValueFilterMajor(item: Major) {
     this.formFilter.controls['filterMajor'].setValue(item.name);
   }
 
   // Set filter status
-  setValueStatus(status:string){
+  setValueStatus(status: string) {
     this.formFilter.controls['filterStatus'].setValue(status);
   }
 
   // Set keyword recruitments
-  setValueKeyword(event : any){
+  setValueKeyword(event: any) {
     this.formFilter.controls['filterName'].setValue(event.target.value);
   }
 
-  filterSelect(arr: Array<any> , value: string , input: string){    
+  // Fillter comom recruitments
+  filterSelect(arr: Array<any>, value: string, input: string) {
     switch (input) {
       case 'major':
-        if(!value){
+        if (!value) {
           this.getListMajor();
-        }else{
-          this.majors = arr.filter(item =>  {return this.configService.changeString(item.name).includes(this.configService.changeString(value))}); 
+        } else {
+          this.majors = arr.filter((item) => {
+            return this.configService
+              .changeString(item.name)
+              .includes(this.configService.changeString(value));
+          });
         }
         break;
-    
+
       default:
         break;
     }
   }
 
-
-  // get list post
+  // Get list post
   getListPost() {
-     this.listPostService.getPostWhereCate('post-recruitmentt').subscribe(res => {
-      if(res.status){
-        this.listPostResult = res.payload.data.filter((item:Recruitments ,index :number) => {
-          return index < 4;
-        });
-      }
-    })
+    this.listPostService
+      .getPostWhereCate('post-recruitmentt')
+      .subscribe((res) => {
+        if (res.status) {
+          this.listPostResult = res.payload.data.filter(
+            (item: Recruitments, index: number) => {
+              return index < 4;
+            }
+          );
+        }
+      });
   }
 
-  getListMajor(){
-    this.majorService.getAll().subscribe(res => {
-      if(res.status){
+  getListMajor() {
+    this.majorService.getAll().subscribe((res) => {
+      if (res.status) {
         this.majors = res.payload;
       }
-    })
+    });
+  }
+
+  // ScrollWin
+  scrollWin() {
+    window.scrollTo({ top: 500, behavior: 'smooth'  });
   }
 
   // Get listRecruitment
-  getListRecruitment(url: string) {
+  getListRecruitment() {
     this.recruitments = [];
-    this.recruitmentService.getAllRecruitment(url).subscribe(res => {
+    this.recruitmentService.getAllRecruitment().subscribe((res) => {
       if (res.status) {
         this.recruitments = res.payload.data;
-        this.recruitmentLinks = res.payload.links;
-        this.recruitments ? this.statusRecruitments = true : this.statusRecruitments;
+        this.recruitments
+          ? (this.statusRecruitments = true)
+          : this.statusRecruitments;
+          this.scrollWin();
       }
-    })
+    });
   }
 
   // get skill limit
@@ -135,34 +160,67 @@ export class RecruitmentComponent implements OnInit {
     return arrResult;
   }
 
-  filterSkill(event: any){
-     const skills = document.querySelectorAll('.filter-skill-item');
-     for (let index = 0; index < skills.length; index++) {
-      const element = skills[index];
-      element.classList.remove('active');
-     }
-     event.currentTarget.classList.add('active');
+  // Filter recruitments
+  filterRecruitments() {
+    this.statusRecruitments = false;
+    let major_id;
+    let status;
+    let keyword = '';
+    if (this.formFilter.controls['filterName'].value) {
+      keyword = this.formFilter.controls['filterName'].value;
+    }
+
+    if (this.formFilter.controls['filterMajor'].value) {
+      major_id = this.majors.filter(
+        (item) => item.name === this.formFilter.controls['filterMajor'].value
+      )[0].id;
+    }
+
+    if (this.formFilter.controls['filterStatus'].value) {
+      status = this.statusFilter.filter(
+        (item) => item.name === this.formFilter.controls['filterStatus'].value
+      )[0].prams;
+    }
+   
+    this.recruitmentService
+      .filterRecruitment(keyword, major_id, status)
+      .subscribe((res) => {
+        if (res.status) {
+          this.statusRecruitments = true;
+          this.recruitments = res.payload.data;
+          this.scrollWin();
+        }
+      });
   }
 
-  // Filter recruitments
-  filterRecruitments(){
+  filterSkill(event: any, id: number) {
     this.statusRecruitments = false;
-    let keyword =this.formFilter.controls['filterName'].value;
-    let major_id
-    if(this.formFilter.controls['filterMajor'].value){
-      major_id = this.majors.filter(item => item.name === this.formFilter.controls['filterMajor'].value)[0].id;
+    const skills = document.querySelectorAll('.filter-skill-item');
+    for (let index = 0; index < skills.length; index++) {
+      const element = skills[index];
+      element.classList.remove('active');
     }
-    console.log(major_id);
-    console.log(keyword);
-    
-    this.recruitmentService.filterRecruitment(keyword , 0 , major_id , 0).subscribe(res => {
-      if(res.status){
-        this.statusRecruitments = true;
-        this.recruitments = res.payload.data;
-        console.log(this.recruitments);
-        
+    event.currentTarget.classList.add('active');
+    if (id == 0) {
+      this.getListRecruitment();
+    } else {
+      this.recruitmentService.filterRecruitmentSkill(id).subscribe((res) => {
+        if (res.status) {
+          this.statusRecruitments = true;
+          this.recruitments = res.payload.data;
+          this.scrollWin();
+        }
+      });
+    }
+  }
+
+  // Get all skill
+  getAllSkill() {
+    this.skillService.getAll().subscribe((res) => {
+      if (res.status) {
+        this.skills = res.payload;
+        console.log(this.skills);
       }
     });
   }
-
 }
