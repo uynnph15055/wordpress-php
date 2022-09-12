@@ -31,5 +31,11 @@ export class RecruitmentsService {
     return this.http.get<ResponsePayload>(`${environment.recruitment}/${rescruitment_id}`);
   }
 
-  //Get list post width recuitment
+  //  Filter recruitment
+  filterRecruitment(keyword:string , skill:number = 0 , major_id: number = 0 , status: number = 0):Observable<ResponsePayload>{
+    let skillChange =  skill == 0 ? '' : skill;
+    let majorChange =  major_id == 0 ? '' : major_id;
+    let statusChange =  status == 0 ? '' : status;
+    return this.http.get<ResponsePayload>(`${environment.recruitment}?progress="registration_date"&keyword=${keyword}&major_id=${majorChange}&skill=${skillChange}&status=${statusChange}`);
+  }
 }

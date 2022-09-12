@@ -28,9 +28,9 @@
 </div>
 <div class="recruitment-content">
     <div class="container py-4">
-        <form class="recruitment-filter-box mb-4 py-3 rounded row" [formGroup]="formFilter">
+        <form class="recruitment-filter-box mb-4 py-3 rounded row" [formGroup]="formFilter" (submit)="filterRecruitments()">
             <div class="col-4">
-                <input type="text" class="form-control" placeholder="Tìm kiếm theo kỹ năng ..." id="exampleInputEmail1"
+                <input type="text" class="form-control" (keyup)="setValueKeyword($event)" placeholder="Tìm kiếm ..." id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
             <div class="col-3">
@@ -41,8 +41,8 @@
                         <div *ngIf="!majors" class="d-flex justify-content-center">
                             <app-loading-item class="py-2"></app-loading-item>
                         </div>
-                        <button *ngFor="let item of majors" (click)="setValueFilterMajor(item)" class="text-collapse"
-                            ngbDropdownItem>{{item.name}}</button>
+                        <a *ngFor="let item of majors" (click)="setValueFilterMajor(item)" class="text-collapse"
+                            ngbDropdownItem>{{item.name}}</a>
                     </div>
                 </div>
             </div>
@@ -51,15 +51,22 @@
                     <input type="text" formControlName="filterStatus" class="form-control" placeholder="Trạng thái"
                         id="dropdownBasic1" ngbDropdownToggle>
                     <div class="w-100" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                        <button ngbDropdownItem *ngFor="let item of statusFilter"
-                            (click)="setValueStatusMajor(item.name)">Mới nhất</button>
+                        <a ngbDropdownItem *ngFor="let item of statusFilter"
+                            (click)="setValueStatus(item.name)">Mới nhất</a>
                     </div>
                 </div>
             </div>
             <div class="col-2">
-                <button class="btn-search-recruitment w-100 h-100">Tìm kiếm</button>
+                <button   class="btn-search-recruitment w-100 h-100">Tìm kiếm</button>
             </div>
         </form>
+        <ul class="d-flex filter-skill-box mb-4">
+            <li class="filter-skill-item active" (click)="filterSkill($event)">Java</li>
+            <li class="filter-skill-item" (click)="filterSkill($event)">PH</li>
+            <li class="filter-skill-item" (click)="filterSkill($event)">HTML/CS</li>
+            <li class="filter-skill-item" (click)="filterSkill($event)">Javascrip</li>
+            <li class="filter-skill-item" (click)="filterSkill($event)">Python</li>
+        </ul>
         <div class=" recruitment-list-box row">
             <div class="recruitment-list-hot-left col-lg-4 col-xl-4 col-md-12 col-sm-12">
                 <h2 class="fw-bold"><img class="image-title" src="./../../../assets/img/9c13a4ff5c359f6bc624.jpg"
@@ -107,7 +114,7 @@
                                 </div>
                                 <ul class="recruitment-list-skill mt-2 d-flex">
                                     <li *ngFor="let skill of getLimitSkill(item.skill)" class="recruitment-item-skill">
-                                        {{skill.short_name}}</li>
+                                        {{skill.name}}</li>
                                 </ul>
                                 <ul class=" mt-2 ">
                                         <li>+ Trợ cấp đến 6M/ tháng</li>

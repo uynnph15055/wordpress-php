@@ -73,6 +73,8 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { RankStudentComponent } from './modal/rank-student/rank-student.component';
 import { AvatarComponent } from './component/avatar/avatar.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ModalLoginComponent } from './modal/modal-login/modal-login.component';
+import { ModalUploadCvComponent } from './modal/modal-upload-cv/modal-upload-cv.component';
 
 
 
@@ -117,6 +119,8 @@ import { HomeComponent } from './pages/home/home.component';
     PostsComponent,
     RankStudentComponent,
     AvatarComponent,
+    ModalLoginComponent,
+    ModalUploadCvComponent,
   ],
   imports: [
     BrowserModule,
