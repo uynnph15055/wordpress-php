@@ -1,43 +1,38 @@
-import { Router } from '@angular/router';
-import { Component, Input, OnInit } from '@angular/core';
-import * as moment from 'moment';
-import { Capacity } from 'src/app/models/capacity';
-import { Skill } from 'src/app/models/skill.models';
+import { Router } from "@angular/router";
+import { Component, Input, OnInit } from "@angular/core";
+import * as moment from "moment";
+import { Capacity } from "src/app/models/capacity";
 
 @Component({
-  selector: 'app-capacity-related-item',
-  templateUrl: './capacity-related-item.component.html',
-  styleUrls: ['./capacity-related-item.component.css']
+  selector: "app-capacity-related-item",
+  templateUrl: "./capacity-related-item.component.html",
+  styleUrls: ["./capacity-related-item.component.css"],
 })
 export class CapacityRelatedItemComponent implements OnInit {
-
   @Input() capacityItem!: Capacity;
 
-
   countDown: {
-    days: number,
-    hours: number,
-    minutes: number,
-    seconds: number
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
   } = {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-    };
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  };
   timerId!: any;
   statusExam!: {
-    status: number,
-    statustext: string
+    status: number;
+    statustext: string;
   };
   skillsName!: string;
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.skillsName = this.capacityItem.skills.map(skill => skill.short_name).join(", ");
+    this.skillsName = this.capacityItem.skills.map((skill) => skill.short_name).join(", ");
 
     // đếm ngược thời gian bắt đầu mở bài test
     this.timerId = setInterval(() => {
@@ -53,8 +48,8 @@ export class CapacityRelatedItemComponent implements OnInit {
         this.countDown.seconds = 0;
         this.statusExam = {
           status: 1,
-          statustext: "Đang diễn ra"
-        }
+          statustext: "Đang diễn ra",
+        };
         clearInterval(this.timerId);
       } else {
         this.countDown.days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -65,8 +60,6 @@ export class CapacityRelatedItemComponent implements OnInit {
     }, 1000);
 
     this.getStatusCapacity();
-
-
   }
 
   formatDate(date: Date) {
@@ -77,7 +70,7 @@ export class CapacityRelatedItemComponent implements OnInit {
   handleGoToExam(capacity_id: number) {
     if (this.statusExam.status === 2) return;
 
-    this.router.navigate(['/test-nang-luc', capacity_id]);
+    this.router.navigate(["/test-nang-luc", capacity_id]);
   }
 
   // get trạng thái bài test
@@ -89,28 +82,18 @@ export class CapacityRelatedItemComponent implements OnInit {
     if (today < timeDateStart) {
       this.statusExam = {
         status: 0,
-        statustext: "Sắp diễn ra"
-      }
+        statustext: "Sắp diễn ra",
+      };
     } else if (today >= timeDateStart && today <= timeDateEnd) {
       this.statusExam = {
         status: 1,
-        statustext: "Đang diễn ra"
-      }
+        statustext: "Đang diễn ra",
+      };
     } else if (today > timeDateEnd) {
       this.statusExam = {
         status: 2,
-        statustext: "Đã kết thúc"
-      }
+        statustext: "Đã kết thúc",
+      };
     }
-  }
-
-  // Chuyển skill sang chuỗi
-  changeSkillString(arrSkill: Array<Skill>): string{
-    let stringSkill: string;
-     stringSkill =  arrSkill.map(res => {
-      //  arr.push(res.name);
-       return  res.name;
-    }).join(',');
-    return stringSkill;
   }
 }
