@@ -8,6 +8,18 @@ p , ul{
   background-color: var(--gray-300);
 }
 
+.filter-skill-item{
+  padding: 10px;
+  background-color: var(--gray-200);
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+.filter-skill-box .active{
+  background-color: var(--primary);
+  color: var(--white);
+}
+
 .btn-search-recruitment{
   background-color: var(--primary);
   color: var(--white);

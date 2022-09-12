@@ -53,6 +53,7 @@ export class RecruitmentComponent implements OnInit {
     ] 
 
     formFilter =  new FormGroup({
+      filterName : new FormControl(''),
       filterSkill : new FormControl(''),
       filterMajor : new FormControl(''),
       filterStatus :  new FormControl(''),
@@ -69,8 +70,14 @@ export class RecruitmentComponent implements OnInit {
     this.formFilter.controls['filterMajor'].setValue(item.name);
   }
 
-  setValueStatusMajor(status:string){
+  // Set filter status
+  setValueStatus(status:string){
     this.formFilter.controls['filterStatus'].setValue(status);
+  }
+
+  // Set keyword recruitments
+  setValueKeyword(event : any){
+    this.formFilter.controls['filterName'].setValue(event.target.value);
   }
 
   filterSelect(arr: Array<any> , value: string , input: string){    
@@ -126,6 +133,36 @@ export class RecruitmentComponent implements OnInit {
       return index < 3;
     });
     return arrResult;
+  }
+
+  filterSkill(event: any){
+     const skills = document.querySelectorAll('.filter-skill-item');
+     for (let index = 0; index < skills.length; index++) {
+      const element = skills[index];
+      element.classList.remove('active');
+     }
+     event.currentTarget.classList.add('active');
+  }
+
+  // Filter recruitments
+  filterRecruitments(){
+    this.statusRecruitments = false;
+    let keyword =this.formFilter.controls['filterName'].value;
+    let major_id
+    if(this.formFilter.controls['filterMajor'].value){
+      major_id = this.majors.filter(item => item.name === this.formFilter.controls['filterMajor'].value)[0].id;
+    }
+    console.log(major_id);
+    console.log(keyword);
+    
+    this.recruitmentService.filterRecruitment(keyword , 0 , major_id , 0).subscribe(res => {
+      if(res.status){
+        this.statusRecruitments = true;
+        this.recruitments = res.payload.data;
+        console.log(this.recruitments);
+        
+      }
+    });
   }
 
 }

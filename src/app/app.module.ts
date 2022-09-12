@@ -75,6 +75,7 @@ import { AvatarComponent } from './component/avatar/avatar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ModalLoginComponent } from './modal/modal-login/modal-login.component';
 import { ModalUploadCvComponent } from './modal/modal-upload-cv/modal-upload-cv.component';
+import { SkillServiceComponent } from './services/skill-service/skill-service.component';
 
 
 
@@ -121,6 +122,7 @@ import { ModalUploadCvComponent } from './modal/modal-upload-cv/modal-upload-cv.
     AvatarComponent,
     ModalLoginComponent,
     ModalUploadCvComponent,
+    SkillServiceComponent,
   ],
   imports: [
     BrowserModule,
