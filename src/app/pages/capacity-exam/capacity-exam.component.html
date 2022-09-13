@@ -16,10 +16,12 @@
         <div class="text-center">
           <p *ngIf="statusTakingExam === 1">
             Câu hỏi: <span class="text-red">{{ examData.questions.length }} câu</span>, thời gian:
-            <span class="text-red">{{ examData.time_exam }} phút</span>
+            <span class="text-red">{{ examData.time_exam }} phút</span>, phần thi: {{ roundDetail.name }}
           </p>
 
-          <div *ngIf="statusTakingExam === 0 || statusTakingExam === 2">
+          <ngx-skeleton-loader *ngIf="isFetchingExam" [theme]="{ 'margin-top': '6px' }"></ngx-skeleton-loader>
+
+          <div *ngIf="statusTakingExam !== 1 && !isFetchingExam">
             <span>Phần thi: {{ roundDetail.name }}</span
             >, bắt đầu: <span class="text-red">{{ roundDetail.start_time | formatDate }}</span
             >, hạn chót: <span class="text-red">{{ roundDetail.end_time | formatDate }}</span>

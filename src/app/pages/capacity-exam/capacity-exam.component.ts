@@ -59,6 +59,13 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
   // kích thước màn hình
   windowScreenSize!: { width: number; height: number };
 
+  // trạng thái vòng (bài) thi trước
+  statusPreRound!: {
+    status: boolean; // false: chưa làm
+    payload?: number; // 0: đang làm, 1: đã làm
+    message: string;
+  };
+
   constructor(
     private roundService: RoundService,
     private route: ActivatedRoute,
@@ -139,6 +146,33 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
                   }
                 },
                 (error) => {
+                  //chưa làm bài
+                  // check trạng thái pass vòng thi trước
+                  const preRoundExits = this.getPreRound();
+                  if (preRoundExits.status) {
+                    const preRoundId = preRoundExits.round_id;
+
+                    this.roundService.getInfoCapacityExamRound({ round_id: preRoundId }).subscribe(
+                      (res) => {
+                        this.statusPreRound = {
+                          status: true,
+                          payload: res.payload,
+                          message: res.message,
+                        };
+                      },
+                      () => {
+                        this.statusPreRound = {
+                          status: false,
+                          message: "Chưa làm",
+                        };
+                        this.isFetchingSttExam = false;
+                      },
+                      () => {
+                        this.isFetchingSttExam = false;
+                      },
+                    );
+                    return;
+                  }
                   this.isFetchingSttExam = false;
                 },
               );
@@ -193,27 +227,22 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
         // check trạng thái pass vòng thi trước
         const preRoundExits = this.getPreRound();
         if (preRoundExits.status) {
-          this.isFetchingRound = true;
-          const preRoundId = preRoundExits.round_id;
+          const { status, payload } = this.statusPreRound;
+          if (status) {
+            if (payload === 0) {
+              this.toast.info({ summary: "Vui lòng hoàn thành phần thi trước đó" });
+              console.log("Vui lòng hoàn thành phần thi trước đó");
 
-          this.roundService.getInfoCapacityExamRound({ round_id: preRoundId }).subscribe(
-            (response) => {
-              if (!response.status) return;
-              this.isFetchingRound = false;
+              return;
+            }
 
-              if (response.payload === 0) {
-                this.toast.info({ summary: "Vui lòng hoàn thành phần thi trước đó" });
-                return;
-              }
+            this.openFullscreen();
+            this.takeExam();
+          } else {
+            this.toast.info({ summary: "Bạn chưa làm phần thi trước đó!" });
+            console.log("Bạn chưa làm phần thi trước đó!");
+          }
 
-              this.openFullscreen();
-              this.takeExam();
-            },
-            () => {
-              this.isFetchingRound = false;
-              this.toast.info({ summary: "Bạn chưa làm phần thi trước đó!" });
-            },
-          );
           return;
         }
 
@@ -506,6 +535,7 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
 
   // lưu các câu hỏi đã trả lời
   handleAutoSaveAnswer(formControlName: string) {
+    if (this.isTimeOut) return;
     const tempValue = { ...this.formAnswers.value };
 
     this.formAnswers.get(formControlName)?.valueChanges.subscribe((value) => {
@@ -611,7 +641,7 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
           this.isNotiExamTimeOut = true;
         }
       }
-    }, 1000);
+    }, 500);
   }
 
   // convert milisecond to minus

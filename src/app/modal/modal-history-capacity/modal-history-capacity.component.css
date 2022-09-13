@@ -119,7 +119,7 @@
 
 .question__list-item {
   position: relative;
-  flex-basis: calc(16.666% - 8px);
+  flex-basis: calc(20% - 8px);
   margin: 4px;
   box-sizing: border-box;
   border-radius: 50px;
