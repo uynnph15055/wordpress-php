@@ -177,6 +177,7 @@ export class HomeComponent implements OnInit {
     getAllCompany(){
         this.companyService.getAllCompany().subscribe(res =>{
             this.companys = res.dataContest;
+            this.companys = res.payload.data;
         })
     }
 
