@@ -76,6 +76,7 @@ import { AvatarComponent } from './component/avatar/avatar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AsidePostComponent } from './component/post/aside-post/aside-post.component';
 import { ListSocialComponent } from './component/list-social/list-social.component';
+import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 
 
 
@@ -123,6 +124,7 @@ import { ListSocialComponent } from './component/list-social/list-social.compone
     AvatarComponent,
     AsidePostComponent,
     ListSocialComponent,
+    PostDetailComponent,
   ],
   imports: [
     BrowserModule,

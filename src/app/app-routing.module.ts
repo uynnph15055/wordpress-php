@@ -20,6 +20,7 @@ import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
+import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'bai-viet',
         component: PostsComponent,
+      },
+      {
+        path: 'bai-viet/:slug',
+        component: PostDetailComponent,
       },
       {
         path: 'vao-thi/:contest_id/vong/:round_id',

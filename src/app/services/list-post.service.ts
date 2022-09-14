@@ -21,4 +21,8 @@ export class ListPostService {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}`);
   }
   
+  // get detail post
+  getPostById(): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}`);
+  }
 }
