@@ -281,6 +281,7 @@
         <ngx-slick-carousel class="row" [config]="sliderCompany">
             <div ngxSlickItem *ngFor="let item of companys" class="col-2 company-item">
                 <img  class="company-img" [src]="item.logo"
+                 <img  class="w-100" [src]="item.logo"
                     alt="">
             </div>
         </ngx-slick-carousel>
