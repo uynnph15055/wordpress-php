@@ -10,6 +10,7 @@ export class Recruitments {
     description: string;
     start_time: string;
     end_time: string;
+    hot: number;
     image: string;
     user: Array<User>;
     skill: Array<Skill>;

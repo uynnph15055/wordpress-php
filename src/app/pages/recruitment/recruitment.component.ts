@@ -34,6 +34,7 @@ export class RecruitmentComponent implements OnInit {
   listPostResult: Array<Post>;
   majors: Array<Major>;
   skills: Array<Skill>;
+  skill_id: number = 0;
 
   // -------------
   statusCompany: boolean = false;
@@ -143,7 +144,7 @@ export class RecruitmentComponent implements OnInit {
     this.recruitments = [];
     this.recruitmentService.getAllRecruitment().subscribe((res) => {
       if (res.status) {
-        this.recruitments = res.payload.data;
+        this.recruitments = res.payload;
         this.recruitments
           ? (this.statusRecruitments = true)
           : this.statusRecruitments;
@@ -166,6 +167,8 @@ export class RecruitmentComponent implements OnInit {
     let major_id;
     let status;
     let keyword = '';
+    let skill;
+  
     if (this.formFilter.controls['filterName'].value) {
       keyword = this.formFilter.controls['filterName'].value;
     }
@@ -183,11 +186,11 @@ export class RecruitmentComponent implements OnInit {
     }
    
     this.recruitmentService
-      .filterRecruitment(keyword, major_id, status)
+      .filterRecruitment(keyword, major_id, status , this.skill_id)
       .subscribe((res) => {
         if (res.status) {
           this.statusRecruitments = true;
-          this.recruitments = res.payload.data;
+          this.recruitments = res.payload;
           this.scrollWin();
         }
       });
@@ -204,13 +207,8 @@ export class RecruitmentComponent implements OnInit {
     if (id == 0) {
       this.getListRecruitment();
     } else {
-      this.recruitmentService.filterRecruitmentSkill(id).subscribe((res) => {
-        if (res.status) {
-          this.statusRecruitments = true;
-          this.recruitments = res.payload.data;
-          this.scrollWin();
-        }
-      });
+      this.skill_id = id;
+      this.filterRecruitments();
     }
   }
 
@@ -219,7 +217,6 @@ export class RecruitmentComponent implements OnInit {
     this.skillService.getAll().subscribe((res) => {
       if (res.status) {
         this.skills = res.payload;
-        console.log(this.skills);
       }
     });
   }

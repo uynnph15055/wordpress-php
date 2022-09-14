@@ -1,6 +1,6 @@
 // https://admin.svpoly.breezecandles.vn/api
 // http://127.0.0.1:8000/api
-const baseApiUrl = "http://127.0.0.1:8000/api";
+const baseApiUrl = " http://127.0.0.1:8000/api";
 const authApi = `${baseApiUrl}/auth`;
 export const jwtApiUrl = `${baseApiUrl}/v1`;
 export const publicApiUrl = `${baseApiUrl}/public`;

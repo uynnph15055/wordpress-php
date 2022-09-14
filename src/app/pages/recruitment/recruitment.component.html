@@ -107,9 +107,11 @@
                     <div [routerLink]="['/tuyen-dung/chi-tiet/', item.id ]" *ngFor="let item of recruitments"
                         class="bg-white recruitment-list-item-box" style="border-radius: 10px;">
                         <div class="px-3 pt-3 recruitment-list-item">
-                            <div class=" text-center">
-                                <img class="recruitment-list-image" [src]="item.image" alt="">
-
+                            <div class="recruitment-image-box text-center">
+                                <img class="recruitment-image" [src]="item.image" alt="">
+                                <div class="recruitment-outs-commom" [ngClass]=" item.hot == 1 ? 'recruitment-isHot' : 'recruitment-isNew'">
+                                    <span class="d-inline fw-bold">{{item.hot == 1 ? 'HOT' : 'NEW'}}</span>
+                                </div>
                             </div>
                             <div class="recruitment-list-item-info">
                                 <div
@@ -123,7 +125,7 @@
                                 </div>
                                 <ul class="recruitment-list-skill mt-2 d-flex">
                                     <li *ngFor="let skill of getLimitSkill(item.skill)" class="recruitment-item-skill">
-                                        {{skill.name}}</li>
+                                        {{skill.short_name}}</li>
                                 </ul>
                                 <ul class=" mt-2 ">
                                     <li>+ Trợ cấp đến 6M/ tháng</li>
@@ -131,7 +133,6 @@
                                     <li>+ Môi trường trẻ trung, năng động</li>
                                     <li>+ Môi trường trẻ trung, năng động</li>
                                 </ul>
-
                             </div>
                         </div>
                         <div class="px-3 pb-3 recruitment-list-item align-items-center">
