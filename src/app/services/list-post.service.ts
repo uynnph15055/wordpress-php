@@ -33,5 +33,8 @@ export class ListPostService {
   getPostCapacity() : Observable<ResponsePayload>{
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-capacity`);
   }
+  getPostByCategory(data: string) : Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=${data}`);
+  }
   
 }
