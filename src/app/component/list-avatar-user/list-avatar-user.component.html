@@ -1,7 +1,8 @@
 <ul class="d-flex">
-    <li *ngFor="let item of avatarTeam" class="avatar-item"><img *ngIf="item.image" class="avatar" [src]="item.image"
-            alt="">
-        <img *ngIf="item.avatar" class="avatar" [src]="item.avatar" alt="">
+    <li *ngFor="let item of avatarTeam" class="avatar-item">
+        <img *ngIf="item.contest_id" class="avatar" [src]="item.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU'"
+        [ngbTooltip]="item.name"  alt="">
+        <img *ngIf="item.email" class="avatar" [src]="item.avatar || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU'"  [ngbTooltip]="item.name" alt="">
     </li>
     <li class="avatar-item" *ngIf="lengthTeam > 5">
         <a (click)="openVerticallyCentered(content)">
@@ -18,7 +19,7 @@
         <div class="modal-body">
             <div *ngFor="let item of listTeam" class="member-item d-flex justify-content-start  align-items-center">
                 <div class="img-avatar-round my-2">
-                    <img *ngIf="item.image" [src]="item.image" alt="" class="w-100 h-100">
+                    <img  *ngIf="item.image" [src]="item.image || ''" alt="" class="w-100 h-100">
                     <img *ngIf="item.user.avatar" [src]="item.user.avatar" alt="" class="w-100 h-100">
                 </div>
                 &nbsp;

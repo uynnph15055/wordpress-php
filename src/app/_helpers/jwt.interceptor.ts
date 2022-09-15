@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
-import { jwtApiUrl } from 'src/environments/environment';
+import { jwtApiUrl, publicApiUrl } from 'src/environments/environment';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -16,10 +16,11 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const user = this.userService.getUserValue();
-    const jwtToken = this.userService.getJwtToken();
+    const jwtToken = this.userService.getJwtToken();    
     const isLoggedin = user && jwtToken;
-    const isJwtApiUrl = request.url.startsWith(jwtApiUrl);
-    if(isLoggedin && isJwtApiUrl){
+    const isJwtApiPublic = request.url.startsWith(publicApiUrl);
+    const isJwtApiV1 = request.url.startsWith(jwtApiUrl);
+    if(isLoggedin && (isJwtApiV1 || isJwtApiPublic)){
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${jwtToken}`

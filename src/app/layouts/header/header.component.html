@@ -5,11 +5,9 @@
             <label class="icon-open-nav-mobile" for="input_check">
                 <i class="fas fa-bars"></i>
             </label>
-            <input #inputChecked hidden class="input-menu" type="checkbox" id="input_check">
-            <!-- <h1>Nguyễn Ngọc Uy</h1> -->
+            <input #inputChecked hidden class="input-menu" type="checkbox" id="input_check" />
 
-            <label for="input_check" class="over__lay">
-            </label>
+            <label for="input_check" class="over__lay"> </label>
 
             <div class="menu-response">
                 <div class="border-bottom">
@@ -18,78 +16,117 @@
                     </label>
                 </div>
                 <ul class="menu-res mt-5 border-top">
-                    <li (click)="closeMenuRes(inputChecked)" class="menu-res-item "><a routerLink="/"
-                            class="menu-res-link text-decoration-none text-uppercase fw-bold">
+                    <li (click)="closeMenuRes(inputChecked)" class="menu-res-item">
+                        <a routerLink="/" class="menu-res-link text-decoration-none text-uppercase fw-bold">
                             Trang chủ
-                        </a></li>
-                    <li class="menu-res-item "><a routerLink="/cuoc-thi"
-                            class="menu-res-link text-decoration-none text-uppercase fw-bold">
+                        </a>
+                    </li>
+                    <li class="menu-res-item">
+                        <a routerLink="/cuoc-thi" class="menu-res-link text-decoration-none text-uppercase fw-bold">
                             Cuộc thi
-                        </a></li>
-                    <li class="menu-res-item "><a href=""
-                            class="menu-res-link text-decoration-none text-uppercase fw-bold">
-                            Test năng lực
-                        </a></li>
-                    <li class="menu-res-item "><a href=""
-                            class="menu-res-link text-decoration-none text-uppercase fw-bold">
-                            Tuyển dụng
-                        </a></li>
+                        </a>
+                    </li>
+                    <li class="menu-res-item">
+                        <a href="" class="menu-res-link text-decoration-none text-uppercase fw-bold"> Test năng lực </a>
+                    </li>
+                    <li class="menu-res-item">
+                        <a href="" class="menu-res-link text-decoration-none text-uppercase fw-bold"> Tuyển dụng </a>
+                    </li>
                 </ul>
 
                 <div class="logo-nav-bar-res text-center">
-                    <img class="w-75" src="./../../../assets/img/logo.png" alt="">
+                    <img class="w-75" src="./../../../assets/img/logo.png" alt="" />
                 </div>
             </div>
         </div>
 
-        <a href="" class="img-header-box"><img class="" src="./../../../assets/img/logo.png" alt=""></a>
+        <a routerLink="/" class="img-header-box">
+            <img class="" src="./../../../assets/img/logo.png" alt="" />
+        </a>
         <div class="d-flex" id="menu_login-box">
             <ul class="nav menu_login-box d-flex align-items-center mr-auto home-nav pr-2">
-                <li class="nav-item active"><a class=" fw-bold text-decoration-none text-uppercase nav-link-item "
-                        routerLink="">Trang
-                        Chủ</a>
+                <li class="nav-item active">
+                    <a class="fw-bold text-decoration-none text-uppercase nav-link-item" routerLink="/">Trang Chủ</a>
                 </li>
-                <li class="nav-item active"><a class="  fw-bold nav-link-item  text-uppercase  text-decoration-none"
-                        [routerLink]="['/cuoc-thi']">Các
-                        cuộc
-                        thi</a>
+                <li class="nav-item active">
+                    <a class="fw-bold nav-link-item text-uppercase text-decoration-none" [routerLink]="['/cuoc-thi']">
+                        Cuộc thi
+                    </a>
                 </li>
-                <li class="nav-item active"><a class=" fw-bold nav-link-item  text-uppercase  text-decoration-none "
-                        href="">Test
-                        năng
-                        lực</a></li>
-                <li class="nav-item active"><a routerLink="/tuyen-dung"
-                        class=" fw-bold nav-link-item  text-uppercase  text-decoration-none " href="">Tuyển dụng</a>
-                </li>
-                <li *ngIf="statusLogin == true"><i matBadge="4" matBadgePosition="after"
-                        class="fas fa-bell header-icon-message  color-blue" matBadgeColor="warn"></i>
-                </li>
-                <li *ngIf="statusLogin == false" class="btn-login">
-                    <a routerLink="/login" class="text-decoration-none mb-2 btn-outline-login">Đăng nhập</a>
-                </li>
-                <li *ngIf="statusLogin == true">
 
-                    <img *ngIf="user.avatar" mat-icon-button [matMenuTriggerFor]="menu" class="header-avatar-user"
-                        [src]="user.avatar" alt="">
+                <li class="nav-item active">
+                    <div
+                        class="position-relative fw-bold nav-link-item text-uppercase text-decoration-none d-flex align-items-center"
+                    >
+                        <span>Tuyển dụng</span>
+                        <div class="nav-item__icon">
+                            <i class="fa-solid fa-caret-down"></i>
+                        </div>
+
+                        <ul class="sub-menu position-absolute">
+                            <li class="sub-menu__item">
+                                <a
+                                    class="sub-menu__link fw-bold nav-link-item text-uppercase text-decoration-none"
+                                    routerLink="/tin-tuyen-dung"
+                                >
+                                    Tin tuyển dụng
+                                </a>
+                            </li>
+                            <li class="sub-menu__item">
+                                <a
+                                    class="sub-menu__link fw-bold nav-link-item text-uppercase text-decoration-none"
+                                    routerLink="/test-nang-luc"
+                                >
+                                    Test năng lực
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="fw-bold nav-link-item text-uppercase text-decoration-none" routerLink="/bai-viet">
+                        Bài viết
+                    </a>
+                </li>
+
+                <li *ngIf="user">
+                    <i
+                        matBadge="4"
+                        matBadgePosition="after"
+                        class="fas fa-bell header-icon-message color-blue"
+                        matBadgeColor="warn"
+                    ></i>
+                </li>
+                <li *ngIf="!user">
+                    <a (click)="saveUrlCurrent()" routerLink="/login" class="text-decoration-none mb-2 btn-main">
+                        Đăng nhập
+                    </a>
+                </li>
+                <li *ngIf="user">
+                    <img
+                        *ngIf="user.avatar"
+                        mat-icon-button
+                        [matMenuTriggerFor]="menu"
+                        class="header-avatar-user"
+                        [src]="user.avatar"
+                        alt=""
+                    />
                     <mat-menu class="mt-2" #menu="matMenu">
                         <button mat-menu-item>
-
                             <span routerLink="/thong-tin/ca-nhan">Thông tin tài khoản</span>
                         </button>
                         <button mat-menu-item>
-
                             <span>Thành tích</span>
                         </button>
                         <button (click)="logOut()" mat-menu-item>
-
                             <span>Đăng xuất</span>
                         </button>
                     </mat-menu>
                 </li>
             </ul>
         </div>
-        <a href="/login" *ngIf="statusLogin == false" class="fa-icon-login">
-            <fa-icon [icon]="['fas' , 'sign-in-alt']"></fa-icon>
+        <a href="/login" *ngIf="!false" class="fa-icon-login">
+            <fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon>
         </a>
     </nav>
 </div>

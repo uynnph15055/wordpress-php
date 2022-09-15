@@ -52,7 +52,6 @@ export class RoundService {
 
   // Trả kết quả của vòng thi
   getResultRound(round_id: number) {
-    console.log(round_id);
     return this.http.get<ResponsePayload>(`${environment.publicApiUrl}/contest/round/${round_id}/result`)
   }
 }

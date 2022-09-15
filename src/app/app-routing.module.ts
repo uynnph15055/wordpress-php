@@ -11,7 +11,6 @@ import { InfoTeamComponent } from './pages/info-team/info-team.component';
 import { ProfileUserComponent } from './component/profile-user/profile-user.component';
 import { ContestUserJoinComponent } from './component/contest-user-join/contest-user-join.component';
 
-import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/team-user-join-detail.component';
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
 import { RoundComponent } from './component/round/round.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
@@ -19,6 +18,8 @@ import { RoundContestDetailComponent } from './pages/round-contest-detail/round-
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
+import { PostsComponent } from './pages/posts/posts.component';
+import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'cuoc-thi',
         component: ContestComponent,
+      },
+      {
+        path: 'bai-viet',
+        component: PostsComponent,
       },
       {
         path: 'vao-thi/:contest_id/vong/:round_id',
@@ -49,10 +54,7 @@ const routes: Routes = [
             path: 'cuoc-thi-tham-gia',
             component: ContestUserJoinComponent,
           },
-          {
-            path: 'cuoc-thi/:contest_id/chi-tiet-doi/:team_id',
-            component: TeamUserJoinDetailComponent,
-          },
+         
         ]
       },
       {
@@ -76,6 +78,14 @@ const routes: Routes = [
         component: RecruitmentComponent,
       },
       {
+        path: "tuyen-dung/chi-tiet/:id",
+        component: RecruitmentDetailComponent,
+      },
+      {
+        path: "cuoc-thi/:contest_id/vong/:round_id",
+        component: RoundContestDetailComponent,
+      },
+      {
         path: "test-nang-luc/:capacity_id",
         component: CapacityDetailComponent
       },
@@ -89,6 +99,7 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent
   },
+
 
 ];
 

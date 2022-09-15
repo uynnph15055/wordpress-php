@@ -1,16 +1,14 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import * as moment from 'moment/moment';
+import { Pipe, PipeTransform } from "@angular/core";
+import * as moment from "moment/moment";
 @Pipe({
-  name: 'formatDate'
+  name: "formatDate",
 })
 export class FormatDatePipe implements PipeTransform {
-
   date: string;
   dateFormat: string;
   transform(value: any): string {
-    this.date = moment(value).format('HH:mm DD/MM/YYYY')
-    let arrDate = this.date.split(' ');
-    return arrDate[0] + ' Ngày: ' + arrDate[1];
+    this.date = moment(value).format("HH:mm DD/MM/YYYY");
+    let arrDate = this.date.split(" ");
+    return `${arrDate[0]} ${arrDate[1]}`;
   }
-
 }

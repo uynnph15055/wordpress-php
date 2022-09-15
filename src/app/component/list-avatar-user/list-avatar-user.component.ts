@@ -15,10 +15,8 @@ export class ListAvatarUserComponent implements OnInit {
   @Input() titleModelName: String = "";
 
   constructor(private modalService: NgbModal) { }
-
-
   ngOnInit(): void {
-
+    
     this.lengthTeam = this.listTeam.length;
 
     if (this.lengthTeam > 5) {

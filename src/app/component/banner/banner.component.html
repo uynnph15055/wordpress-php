@@ -1,13 +1,13 @@
-<ngb-carousel *ngIf="images">
+<ngb-carousel *ngIf="bannerStatus">
     <ng-template ngbSlide *ngFor="let b of banner">
-        <div class="picsum-img-wrapper home-banner-img-box">
+        <div class="picsum-img-wrapper banner-img-box">
             <img [src]="b.image_url" class="w-100" alt="Random first slide">
         </div>
     </ng-template>
 
 </ngb-carousel>
-<div *ngIf="bannerStatus == 'pending'" class="">
-    <ngx-skeleton-loader class="loading-banner" [theme]="{ 'height.px' : 500, 'margin-bottom' : '10px' }"
+<div *ngIf="!bannerStatus">
+    <ngx-skeleton-loader class="loading-banner" [theme]="{ 'height.px' : '550', 'margin-bottom' : '10px' }"
         appearance="line">
     </ngx-skeleton-loader>
 </div>

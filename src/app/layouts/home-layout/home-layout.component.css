@@ -33,9 +33,8 @@
 
 .fixed {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: -50px;
+  width: 100%;
   background: #fff;
   margin: 0 !important;
   animation: slideDown 0.6s ease-in-out;
@@ -220,10 +219,6 @@
   transition: all ease-in-out 0.4s;
   border: 1px solid var(--warning);
 }
-
-
-/* ---END HEADER---- */
-
 /* 
   * BANNER
    */
@@ -274,7 +269,7 @@
 .back-top {
   width: 50px;
   height: 50px;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   border-radius: 50%;
   cursor: pointer;
   bottom: 40px;

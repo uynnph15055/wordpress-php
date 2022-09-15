@@ -1,0 +1,19 @@
+<div class="header">
+    <h2 mat-dialog-title class="m-0 fw-bold">Bảng xếp hạng tháng {{monCurrent}}</h2>
+    <p class="m-0 fw-bold">Bộ môn: <span class="fw-normal">{{data.nameMajor}}</span></p>
+</div>
+<div mat-dialog-content class="overflow-auto rank-list-box">
+    <div *ngFor="let item of data.rank; let i = index" class="d-flex justify-content-between my-3 align-items-center">
+        <div class="d-flex align-items-center">
+            <p class="fx-bold fs-6 color-blue">{{i +1}}</p>
+            <app-avatar class="mx-2" [avatar]="item.avatar"></app-avatar>
+            <h4 class="">{{item.user_name}}</h4>
+        </div>
+        <p class="color-yellow fs-6"><i class="fas fa-star"></i> <span class="color-blue" >
+            {{item.reward_point}}</span>
+        </p>
+    </div>
+</div>
+<div class="float-end" mat-dialog-actions>
+    <button mat-stroked-button  mat-dialog-close>Đóng</button>
+</div>

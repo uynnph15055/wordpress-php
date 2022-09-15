@@ -1,12 +1,10 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+// https://admin.svpoly.breezecandles.vn/api
 // http://127.0.0.1:8000/api
 // https://admin.svpoly.xyz/api
 const baseApiUrl = "http://127.0.0.1:8000/api";
 const authApi = `${baseApiUrl}/auth`;
 export const jwtApiUrl = `${baseApiUrl}/v1`;
-const publicApiUrl = `${baseApiUrl}/public`;
+export const publicApiUrl = `${baseApiUrl}/public`;
 export const environment = {
   production: false,
   GG_CLIENT_ID: "437095088104-c58gonumb2mu71c1d21ofn6ita2uvqr5.apps.googleusercontent.com",
@@ -18,9 +16,15 @@ export const environment = {
   majorListUrl: `${publicApiUrl}/majors`,
   roundListUrl: `${publicApiUrl}/rounds`,
   sliderListUrl: `${publicApiUrl}/sliders`,
-  companyListUrl: `${publicApiUrl}/company`,
+
+  companyListUrl: `${publicApiUrl}/enterprise`,
+
+
   recruitment: `${publicApiUrl}/recruitments`,
   capacityListUrl: `${publicApiUrl}/capacity`,
+  postListUrl: `${publicApiUrl}/posts`,
+  skillListUrl: `${publicApiUrl}/skill`,
+  
 
   // Router API V1;
   userListUrl: `${jwtApiUrl}/users`,

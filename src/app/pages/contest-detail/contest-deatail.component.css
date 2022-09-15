@@ -1,7 +1,10 @@
 /* COMMOM */
-
 .p-justify {
   text-align: justify;
+}
+
+.new-page-img img {
+  width: 100% !important;
 }
 
 .content-contest {
@@ -13,21 +16,20 @@
   text-overflow: ellipsis;
 }
 
+.content-round-page {
+  border-radius: 6px;
+  padding: 2px 20px;
+}
 
 .example-button-item:hover {
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: var(--white);
-  transition: all 0.3s ease-in;
 }
 
 .contest-detail-header {
   display: grid;
-  grid-template-columns: 70% 25%;
-  grid-gap: 50px;
-}
-
-.related-contest-list {
-  margin-top: -5px;
+  grid-template-columns: 74% 23%;
+  grid-gap: 30px;
 }
 
 .contest-detail-left-name-contest {
@@ -43,7 +45,8 @@
 .contest-detail-left-header,
 .list-team-in,
 .contest-detail-right-in,
-.contest-detail-section {
+.contest-detail-section,
+.content-round-page {
   border-radius: 8px;
   box-shadow: 0px 0px 7px var(--gray);
   background-color: #ffff;
@@ -57,7 +60,7 @@
   border-bottom-left-radius: 10px;
   margin: 0px -12px !important;
   object-fit: cover;
-  height: 270px;
+  height: 100%;
 }
 
 .contest-date-open-end {
@@ -73,7 +76,7 @@
   cursor: pointer;
   padding: 10px 12px;
   border-radius: 50px;
-  color: var(--primary-color);
+  color: var(--primary);
   transition: 0.3s;
 }
 
@@ -93,7 +96,6 @@
   position: relative;
   z-index: -1;
 }
-
 
 .name-company {
   font-size: 1rem;
@@ -115,7 +117,6 @@
 /* List student point rank */
 .list-student-rank-title {
   font-style: 22px;
-
 }
 
 .form-input {
@@ -195,7 +196,7 @@
 .student-rank-more {
   padding: 10px 40px;
   line-height: 40px;
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 .student-rank-more:hover {
@@ -252,8 +253,10 @@
 
 
 
+
+
 /* COUNT DOWN */
-.contest-detail-right {
+.contest-detail-right-in {
   position: sticky;
   top: 100px;
 }
@@ -277,13 +280,12 @@
 .contest-detail-right-countdown {
   display: flex;
   justify-content: center;
-  /* margin: 20px 10px; */
   margin-bottom: -0.2rem !important;
 }
 
 .contest-detail-right-countdown-box {
   width: 20%;
-  margin-right: 8px;
+  margin: 0px 3px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -293,9 +295,8 @@
 .contest-detail-right-countdown-item {
   text-align: center;
   padding: 10px 5px;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   width: 100%;
-  margin: 0px 5px;
   border-radius: 6px;
   font-size: 17px;
   font-weight: 500;
@@ -306,3 +307,51 @@
   color: rgba(20, 20, 20, 0.333);
   margin-left: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

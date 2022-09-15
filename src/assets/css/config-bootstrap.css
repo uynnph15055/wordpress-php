@@ -1,0 +1,11 @@
+
+.btn:focus,
+.form-control:focus ,
+.form-select:focus{
+    box-shadow: unset;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border:1px solid var(--primary) ;
+}

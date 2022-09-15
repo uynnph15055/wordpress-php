@@ -13,8 +13,8 @@ import { ContestService } from 'src/app/services/contest.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { ConfigFunctionService } from 'src/app/services/config-function.service';
-import { ModalListMemberComponent } from 'src/app/component/modal-list-member/modal-list-member.component';
-import { ModalAddTeamComponent } from 'src/app/component/modal-add-team/modal-add-team.component';
+import { ModalListMemberComponent } from 'src/app/modal/modal-list-member/modal-list-member.component';
+import { ModalAddTeamComponent } from 'src/app/modal/modal-add-team/modal-add-team.component';
 
 @Component({
   selector: 'app-modal-info-team',
@@ -22,7 +22,7 @@ import { ModalAddTeamComponent } from 'src/app/component/modal-add-team/modal-ad
   styleUrls: ['./modal-info-team.component.css']
 })
 export class ModalInfoTeamComponent implements OnInit {
-
+  statusExam: boolean = false;
   team_id: any;
   contest_id: any;
   statusLeader: boolean = false;
@@ -30,6 +30,7 @@ export class ModalInfoTeamComponent implements OnInit {
   statusTeamDetail: boolean = false;
   arrayMembers: Array<ContestMember>;
   user: User;
+  logoDefault = '/src/assets/img/Ai.jpeg';
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -40,44 +41,31 @@ export class ModalInfoTeamComponent implements OnInit {
     private userService: UserService,
     public configFunctionService: ConfigFunctionService,
     public dialogRef: MatDialogRef<ModalInfoTeamComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { team_id: number, contest_id: number }) {
+    @Inject(MAT_DIALOG_DATA) public data: { team_id: number, contest_id: number, statusExam: boolean }) {
     this.team_id = data.team_id;
-    console.log(this.team_id);
-
+    this.statusExam = data.statusExam
     this.contest_id = data.contest_id;
-    console.log(this.contest_id);
   }
 
-  formSearchMembers = new FormGroup({
-    keyWord: new FormControl('', Validators.required),
-  });
-
-
-  // Timf kiếm thành viên
-  // searchMembers() {
-  //   let key_word = { ...this.formSearchMembers.value }
-  //   this.openListMemberJoinTeam(key_word.keyWord);
-  // }
-
-  openDialog(): void {
-    // Lấy dữ liệu từ modal điều hướng sang chi tiết đội thi
-    const dialogRef = this.dialog.open(ModalAddTeamComponent, {
+  // Lấy dữ liệu từ modal điều hướng sang chi tiết đội thi
+  openFormEditTeam(): void {
+    let status = this.dialog.open(ModalAddTeamComponent, {
       width: "490px",
       data: {
-
-        contest_id: 40,
-        team_id: this.teamDetail,
-        countMembers: this.arrayMembers.length,
+        team_id: this.team_id,
       },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    status.afterClosed().subscribe(result => {
+        if(result){
+          this.closeDialog();
+        }
     });
   }
 
   // Mở danh sách các member theo keyword
   openListMemberJoinTeam(keyWord: any = '') {
-    const dialogRef = this.dialog.open(ModalListMemberComponent, {
+    const members = this.dialog.open(ModalListMemberComponent, {
       width: "800px",
       data: {
         keyWord: keyWord,
@@ -87,7 +75,7 @@ export class ModalInfoTeamComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    members.afterClosed().subscribe(result => {
       this.arrayMembers.concat(result);
       this.ngOnInit();
     });
@@ -101,8 +89,9 @@ export class ModalInfoTeamComponent implements OnInit {
 
     // Trả ra chi tiết đội
     this.teamService.getTeamDetail(this.team_id).subscribe(res => {
-      this.teamDetail = res.payload;
-      if (this.teamDetail) {
+        if (res.status) {
+        this.teamDetail = res.payload;
+        
         this.statusTeamDetail = true;
         this.arrayMembers = this.teamDetail.members;
         this.checkUserTeamLeader();
@@ -134,7 +123,7 @@ export class ModalInfoTeamComponent implements OnInit {
           member
         ]
       }
-
+      
       this.teamService.removeMembers(data).subscribe(res => {
         if (res.status == true) {
           this.ngOnInit();
@@ -147,6 +136,6 @@ export class ModalInfoTeamComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'image', 'weight', 'bot', 'symbol'];
 
   closeDialog() {
-    this.dialogRef.close('Pizza!');
+    this.dialogRef.close();
   }
 }

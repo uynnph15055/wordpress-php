@@ -1,9 +1,17 @@
+p,h3{
+  margin-bottom: 0;
+}
+
 .icon-add-team {
   padding: 10px 9px;
   color: white;
-  background-color: #ff5622;
+  background-color:  var(--primary);
   border-radius: 50px;
   font-size: 13px;
+}
+
+.bg-warn{
+  background-color: var(--primary);
 }
 
 .header-team-user-edit-box {
@@ -21,10 +29,11 @@
 }
 
 .header-team-user-img {
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 3px;
+  border:3px solid var(--primary);
 }
 
 .item-member-img {

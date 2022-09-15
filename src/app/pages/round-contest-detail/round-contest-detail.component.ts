@@ -1,11 +1,10 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { Contest } from 'src/app/models/contest';
 import { ContestService } from 'src/app/services/contest.service';
 import * as moment from 'moment/moment';
-import { ModalAddTeamComponent } from 'src/app/component/modal-add-team/modal-add-team.component';
+import { ModalAddTeamComponent } from 'src/app/modal/modal-add-team/modal-add-team.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import { Enterprise } from 'src/app/models/enterprise.model';
@@ -21,6 +20,10 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SliderService } from 'src/app/services/slider.service';
 import { Slider } from 'src/app/models/slider.model';
 import { Judges } from 'src/app/models/judges.model';
+import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
+import { ListPostService } from 'src/app/services/list-post.service';
+import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
+import { Post } from 'src/app/models/post.model';
 
 @Component({
   selector: 'app-round-contest-detail',
@@ -52,7 +55,8 @@ export class RoundContestDetailComponent implements OnInit {
   nameBtnRegister: string = 'Đăng ký';
   dataResultRound: Array<ResultRound>
   sliderContest: Array<Slider>;
-
+  cinfigData: TransmitToPost;
+  listPostResult : Array<Post>;
   statusResultRound: boolean = false;
 
   roundEndTime: any;
@@ -82,12 +86,13 @@ export class RoundContestDetailComponent implements OnInit {
     private userService: UserService,
     config: NgbModalConfig, private modalService: NgbModal,
     private slider: SliderService,
+    public listPostService : ListPostService
   ) {
   }
 
   ngOnInit(): void {
-
     this.runTop();
+    this.getListPost();
     this.routeStateRegister = history.state.registerNow;
 
     this.route.paramMap.subscribe(params => {
@@ -101,11 +106,17 @@ export class RoundContestDetailComponent implements OnInit {
         })
 
         this.roundService.getRoundWhereId(this.round_id).subscribe(res => {
-          this.roundDetail = res.payload;
-          this.roundDetail ? this.statusRoundDetail = true : false;
+          if (res.status) {
+            this.roundDetail = res.payload;
+            this.roundDetail ? this.statusRoundDetail = true : false;
+            // console.log(this.roundDetail);
+          }
         })
+
+
       }
     })
+
 
     this.route.paramMap.pipe(
       map(params => params.get('contest_id')),
@@ -123,9 +134,13 @@ export class RoundContestDetailComponent implements OnInit {
 
       // Các cuộc thi liên quan
       this.contestService.getWhereMajor(this.contestDetail.major_id).subscribe(res => {
-        this.contestRelated = res.payload.data.filter((item: any, index: any) => {
-          return item.id != this.contestDetail.id && index < 4;
-        })
+        let countItem = this.generateRandomInteger(0, res.payload.data.length - 3);
+        // console.log(countItem);
+        // console.log();
+        
+        this.contestRelated = res.payload.data.slice(countItem, countItem+3);
+        // console.log(this.contestRelated);
+        
         if (this.contestRelated) {
           this.statusContestRelated = true;
         }
@@ -165,6 +180,32 @@ export class RoundContestDetailComponent implements OnInit {
       }, 3000);
     });
   }
+
+
+  scrollWin(elementString: any, distanceApart: number) {
+    let element = document.querySelector(elementString);
+    let numberScroll = element.offsetTop;
+    window.scrollTo({ top: numberScroll - distanceApart, behavior: 'smooth' });
+  }
+
+  //Cac bai post
+  getListPost() {
+    this.listPostService.getPostWhereCate('post-contest').subscribe(res => {
+      if (res.status) {
+        this.listPostResult = res.payload.data;
+        console.log(this.listPostResult);
+        
+        this.cinfigData = {
+          id: 0,
+          posts: this.listPostResult,
+          numberColumn: 3,
+        };
+      }
+    })
+  }
+
+
+
 
   // Check trạng thái vòng thi
   checkStatusRound(start_time: Date, end_time: Date): any {
@@ -223,10 +264,6 @@ export class RoundContestDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
-  }
-
-  scrollWin(section: number) {
-    window.scrollTo(0, section);
   }
 
   runTop() {
@@ -291,6 +328,9 @@ export class RoundContestDetailComponent implements OnInit {
       }
     })
   }
+
+
+
   //Tìm kiếm sinh viên kết quả
   searchTeamRank(event: any) {
     let searchTeamRank = event.target.value;
@@ -306,6 +346,21 @@ export class RoundContestDetailComponent implements OnInit {
 
   }
 
+  // Thông tin đội
+  openInfoTeam() {
+    this.dialog.open(ModalInfoTeamComponent, {
+      width: '900px',
+      data: {
+        contest_id: this.contestDetail.id,
+        team_id: this.teamIdMemberHasJoinTeam,
+      }
+    });
+  }
+
+  // 
+  generateRandomInteger(min: number, max : number) {
+    return Math.floor(min + Math.random()*(max - min + 1))
+  }
 }
 
 

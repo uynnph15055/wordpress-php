@@ -1,17 +1,84 @@
+@import '~normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital@1&display=swap');
+
 :root {
-  --primary-color: #ff5622;
+  --primary: #ff6638;
+  --bg-content : #F8F8F8;
   --black: #000;
-  --midnight-blue: #2c3e50;
   --white: #ffff;
-  --red: #e55039;
-  --primary-color-sub: #ff6638;
-  --text-color: #83838b;
   --gray: #ccc;
-  --color-yellow: #fbc531;
-  --text-gray: #808e9b;
-  --warning: #F26F21;
-  --title-blue: #192a56;
-  --title-footer: #F26F21;
+  --blue :#081327;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #73777B;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --black-100 : #f5f5f4;
+  --black-200 : #e7e5e4;
+  --black-300 : #d6d3d1;
+  --black-400 : #a8a29e;
+  --black-500 : #78716c;
+  --black-600 : #57534e;
+  --black-700 : #44403c;
+  --black-800 : #292524;
+  --black-900 : #000;
+  --orange-100 : #fff7ed;
+  --orange-200 : #fed7aa;
+  --orange-300 : #fdba74;
+  --orange-400 : #fb923c;
+  --orange-500 : #f97316;
+  --orange-600 : #ea580c;
+  --orange-700 : #c2410c;
+  --orange-800 : #9a3412;
+  --orange-900 : #7c2d12;
+  --blue-100 :#dbeafe;
+  --blue-200 :#bfdbfe;
+  --blue-300 :#93c5fd;
+  --blue-400 :#60a5fa;
+  --blue-500 :#3b82f6;
+  --blue-600 :#2563eb;
+  --blue-700 :#1d4ed8;
+  --blue-800 :#1e40af;
+  --blue-900 :#1e3a8a;
+  --yellow-100 : #fef9c3;
+  --yellow-200 : #fef08a;
+  --yellow-300 : #fde047;
+  --yellow-400 : #eab308;
+  --yellow-500 : #eab308;
+  --yellow-600 : #ca8a04;
+  --yellow-700 : #a16207;
+  --yellow-800 : #854d0e;
+  --yellow-900 : #713f12;
+  --red-100 : #fee2e2;
+  --red-200 : #fecaca;
+  --red-300 : #fca5a5;
+  --red-400 : #f87171;
+  --red-500 : #ef4444;
+  --red-600 : #dc2626;
+  --red-700 : #b91c1c;
+  --red-800 : #991b1b;
+  --red-900 : #7f1d1d;
+}
+
+ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 62%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
@@ -20,21 +87,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--title-footer);
+  background-color: var(--primary);
   border-radius: 6px;
-}
-
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-}
-
-body {
-  font-size: 62%;
-  overflow-x: hidden;
 }
 
 .fs-text {
@@ -45,108 +99,6 @@ body {
 
 a {
   text-decoration: none;
-}
-
-ul {
-  list-style-type: none;
-  margin-left: -30px;
-}
-
-
-.margin-header {
-  padding-top: 40px;
-}
-
-.text-justify {
-  text-align: justify;
-}
-
-.primary-color {
-  color: var(--primary-color);
-}
-
-.bg-warn {
-  background-color: var(--warning);
-}
-
-.color-red {
-  color: var(--red);
-}
-
-.color-title {
-  color: var(--primary-color-sub);
-}
-
-.color-gray {
-  color: #383b3f;
-}
-
-
-.color-blue {
-  color: var(--title-blue)
-}
-
-/* FONT - SIZE */
-.fs-text-contest {
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--text-color)
-}
-
-/* BTN REGISTER  */
-.btn-register {
-  color: var(--warning);
-  border: 1px solid var(--warning);
-}
-
-.btn-register:focus {
-  box-shadow: unset;
-}
-
-.btn-base-type-bg {
-  color: var(--white);
-  background-color: var(--warning);
-
-}
-
-.btn-base-type-bg:hover {
-  opacity: 0.9;
-  color: var(--white);
-}
-
-.btn-register-disable {
-  background-color: #7f8c8d;
-  color: white;
-}
-
-.btn-register:hover {
-  transition: all ease-in-out 0.5s;
-  background-color: var(--warning);
-  color: var(--white);
-}
-
-
-/* set up css bootstrap */
-.form-control:focus,
-.form-select:focus {
-  border: var(--warning);
-  box-shadow: 0 0 0 0.1rem var(--warning);
-}
-
-.title-line {
-  width: 100px;
-  height: 3px;
-  background-color: var(--primary-color);
-  margin-bottom: 15px;
-}
-
-.text-collapse {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  width: 100%;
-  text-overflow: ellipsis;
 }
 
 

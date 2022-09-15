@@ -28,23 +28,21 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.toast.error({ summary: 'Không thể đăng nhập !', duration: 5000 });
   }
 
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then(data => {
         this.statusLogin = true;
-        this.toast.warning({ summary: 'Đang tiến hành đăng nhập', duration: 10000 });
-        this.configView.createToast('success');
         this.userService.login(data.authToken)
           .subscribe(status => {
-
             if (status == true) {
               this.statusLogin = false;
               setTimeout(() => {
                 this.toast.success({ summary: 'Đăng nhập thành công', duration: 5000 });
-                this.router.navigate(['/']);
+                const backUrl  = localStorage.getItem('url-current');
+                
+                this.router.navigate([backUrl]);
               }, 1000)
             } else {
               this.toast.error({ summary: 'Không thể đăng nhập', duration: 5000 });

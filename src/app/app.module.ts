@@ -1,3 +1,5 @@
+
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './auth/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -24,10 +25,7 @@ import { BackTimeComponent } from './component/back-time/back-time.component';
 import { RoundComponent } from './component/round/round.component';
 import { BackTopComponent } from './component/back-top/back-top.component';
 
-import { MatExpansionModule } from '@angular/material/expansion';
-
-
-import { LoadingItemComponent } from './component/loading-item/loading-item.component';
+import { LoadingItemComponent } from './loading/loading-item/loading-item.component';
 import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
 import { FormatDatePipe } from './helper/pipe/format-date.pipe';
 import { ListAvatarUserComponent } from './component/list-avatar-user/list-avatar-user.component';
@@ -35,23 +33,20 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ContestLoadItemComponent } from './loading/contest-load-item/contest-load-item.component';
 import { MaterialModule } from './material/material.module';
-import { ModalAddTeamComponent } from './component/modal-add-team/modal-add-team.component';
+import { ModalAddTeamComponent } from './modal/modal-add-team/modal-add-team.component';
 import { NgToastModule } from 'ng-angular-popup';
-import { ModalDirectionTeamComponent } from './component/modal-direction-team/modal-direction-team.component';
 import { InfoTeamComponent } from './pages/info-team/info-team.component';
 import { ProfileUserComponent } from './component/profile-user/profile-user.component';
 import { ContestUserJoinComponent } from './component/contest-user-join/contest-user-join.component';
 
-import { TeamUserJoinDetailComponent } from './component/team-user-join-detail/team-user-join-detail.component';
-
-
 import { ContestItemComponent } from './component/contest-item/contest-item.component';
-import { ModalListMemberComponent } from './component/modal-list-member/modal-list-member.component';
+import { ModalListMemberComponent } from './modal/modal-list-member/modal-list-member.component';
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { ListResultRoundComponent } from './component/list-result-round/list-result-round.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { LoadingPageComponent } from './loading/loading-page/loading-page.component';
+
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -61,24 +56,35 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { RecruitmentComponent as RecruitmentComponentModal } from './modal/recruitment/recruitment.component';
+
 import { ModalInfoTeamComponent } from './modal/modal-info-team/modal-info-team.component';
-import { RecruitmentListCompanyComponent } from './modal/recruitment-list-company/recruitment-list-company.component';
 // import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
 
 registerLocaleData(en);
-import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+
+
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
+import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 import { CapacityRelatedItemComponent } from './component/capacity-related-item/capacity-related-item.component';
 import { ModalHistoryCapacityComponent } from './modal/modal-history-capacity/modal-history-capacity.component';
+import { ListPostComponent } from './component/list-post/list-post.component';
+import { PostsComponent } from './pages/posts/posts.component';
+import { RankStudentComponent } from './modal/rank-student/rank-student.component';
+import { AvatarComponent } from './component/avatar/avatar.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ModalLoginComponent } from './modal/modal-login/modal-login.component';
+import { ModalUploadCvComponent } from './modal/modal-upload-cv/modal-upload-cv.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     ContestComponent,
+    HomeComponent,
     HomeLayoutComponent,
     ContestDeatailComponent,
     BannerComponent,
@@ -91,11 +97,9 @@ import { ModalHistoryCapacityComponent } from './modal/modal-history-capacity/mo
     ListAvatarUserComponent,
     ContestLoadItemComponent,
     ModalAddTeamComponent,
-    ModalDirectionTeamComponent,
     InfoTeamComponent,
     ProfileUserComponent,
     ContestUserJoinComponent,
-    TeamUserJoinDetailComponent,
     ContestItemComponent,
     ModalListMemberComponent,
     RoundDetailComponent,
@@ -106,14 +110,19 @@ import { ModalHistoryCapacityComponent } from './modal/modal-history-capacity/mo
     HeaderComponent,
     FooterComponent,
     RecruitmentComponent,
-    RecruitmentComponentModal,
     ModalInfoTeamComponent,
-    RecruitmentListCompanyComponent,
-    CapacityDetailComponent,
     CapacityExamComponent,
     DialogConfirmComponent,
+    CapacityDetailComponent,
     CapacityRelatedItemComponent,
     ModalHistoryCapacityComponent,
+    RecruitmentDetailComponent,
+    ListPostComponent,
+    PostsComponent,
+    RankStudentComponent,
+    AvatarComponent,
+    ModalLoginComponent,
+    ModalUploadCvComponent,
   ],
   imports: [
     BrowserModule,
@@ -132,9 +141,6 @@ import { ModalHistoryCapacityComponent } from './modal/modal-history-capacity/mo
     NgToastModule,
     NzSelectModule,
     NzSpinModule,
-
-    // AndesginModule,
-
   ],
   providers: [
     {

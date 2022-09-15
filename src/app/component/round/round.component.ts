@@ -30,21 +30,18 @@ export class RoundComponent implements OnInit {
   getImageJudges(judges: any): Array<any> {
     let arrayImage: any = [];
     let imageItem = {
-      image: '',
-      name: ''
+      avatar: '',
+      name: '', 
+      email: '',
     }
     judges.forEach((res: any) => {
-      imageItem.image = res.user.avatar;
+      imageItem.avatar = res.user.avatar;
       imageItem.name = res.user.name;
+      imageItem.email = res.user.email;
       arrayImage.push(imageItem);
     })
     return arrayImage;
   }
-
-
-
-  // Check trạng thái xòng thi
-
 
   //  Điếm số thành viên tham gia vòng thi 
   getMembers(teams: Array<Team> = []): number {
@@ -63,7 +60,6 @@ export class RoundComponent implements OnInit {
     let startTime = new Date(start_time).getTime();
     let endTime = new Date(end_time).getTime();
     let todayTime = new Date().getTime();
-
 
     if (todayTime > endTime) {
       this.statusRound = 1;

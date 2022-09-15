@@ -1,30 +1,30 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { CapacityService } from './../../services/capacity.service';
-import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Capacity } from 'src/app/models/capacity';
-import { Round } from 'src/app/models/round.model';
-import { NgToastService } from 'ng-angular-popup';
-import { Enterprise } from 'src/app/models/enterprise.model';
+import { ActivatedRoute, Router } from "@angular/router";
+import { CapacityService } from "./../../services/capacity.service";
+import { Component, OnInit } from "@angular/core";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Capacity } from "src/app/models/capacity";
+import { Round } from "src/app/models/round.model";
+import { NgToastService } from "ng-angular-popup";
+import { Enterprise } from "src/app/models/enterprise.model";
 
 @Component({
-  selector: 'app-capacity-detail',
-  templateUrl: './capacity-detail.component.html',
-  styleUrls: ['./capacity-detail.component.css']
+  selector: "app-capacity-detail",
+  templateUrl: "./capacity-detail.component.html",
+  styleUrls: ["./capacity-detail.component.css"],
 })
 export class CapacityDetailComponent implements OnInit {
-
   tabActive!: string;
   capacity!: Capacity;
   // bài test liên quan
   capacityRelated!: Capacity[];
   isFetchingCapacity = false;
+  isFetchingCapacityRelated = false;
   rounds!: Round[];
   countDown: {
-    days: number,
-    hours: number,
-    minutes: number,
-    seconds: number
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
   } = {
     days: 0,
     hours: 0,
@@ -32,75 +32,77 @@ export class CapacityDetailComponent implements OnInit {
     seconds: 0,
   };
   statusExam!: {
-    status: number,
-    statustext: string
+    status: number;
+    statustext: string;
   };
-  enterprises!: {id: number, name: string, logo: string}[]
+  enterprises!: { id: number; name: string; logo: string }[];
 
   constructor(
     private modalService: NgbModal,
     private capacityService: CapacityService,
     private route: ActivatedRoute,
     private router: Router,
-    private toast: NgToastService
-  ) { }
+    private toast: NgToastService,
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.isFetchingCapacity = true;
+    this.route.params.subscribe((params) => {
       this.scrollToTop();
-      
+      this.isFetchingCapacity = true;
+      this.isFetchingCapacityRelated = true;
+
       const { capacity_id } = params;
 
-      this.capacityService.getWhereId(capacity_id).subscribe(res => {
+      this.capacityService.getWhereId(capacity_id).subscribe((res) => {
         if (res.status) {
+          this.isFetchingCapacity = false;
           this.capacity = res.payload;
           this.rounds = res.payload.rounds;
 
           // get ds doanh nghiệp, xóa DN trùng lặp
           this.enterprises = res.payload.recruitment_enterprise.reduce((result: Enterprise[], item: Enterprise) => {
-            const exitsEnterprise = result.some(enterprice => enterprice.id === item.id);
+            const exitsEnterprise = result.some((enterprice) => enterprice.id === item.id);
 
             if (!exitsEnterprise) result.push(item);
             return result;
-          }, [])
-  
+          }, []);
+
           // bài test liên quan
-          this.capacityService.getRelated(this.capacity.id).subscribe(response => {
-            this.isFetchingCapacity = false;
-  
+          this.capacityService.getRelated(this.capacity.id).subscribe((response) => {
+            this.isFetchingCapacityRelated = false;
+
             if (response.status) {
               this.capacityRelated = response.payload.slice(0, 3);
             }
-          })
-          
+          });
+
           // đếm ngược thời gian khi bài test sắp diễn ra
           const status = new Date().getTime() < new Date(this.capacity.date_start).getTime();
           status && this.countDownTimer();
-          
+
           // get trạng thái bài test
           this.getStatusCapacity();
         }
-      })
-    })
+      });
+    });
   }
 
   openModalDesc(content: Object) {
-    this.modalService.open(content, { scrollable: true })
+    this.modalService.open(content, { scrollable: true });
   }
 
   scrollToElement(el: HTMLElement, activeItem: string) {
     this.tabActive = activeItem;
 
     let offsetTop = el.offsetTop;
-    if (activeItem === 'testRelated') {
+    if (activeItem === "testRelated") {
       offsetTop -= 150;
     }
 
     window.scrollTo({
       top: offsetTop,
-      behavior: 'smooth'
-    })
+      behavior: "smooth",
+    });
   }
 
   // get trạng thái bài test
@@ -112,25 +114,25 @@ export class CapacityDetailComponent implements OnInit {
     if (today < timeDateStart) {
       this.statusExam = {
         status: 0,
-        statustext: "Sắp diễn ra"
-      }
-    } else if (today >= timeDateStart && today <= timeDateEnd ) {
+        statustext: "Sắp diễn ra",
+      };
+    } else if (today >= timeDateStart && today <= timeDateEnd) {
       this.statusExam = {
         status: 1,
-        statustext: "Đang diễn ra"
-      }
+        statustext: "Đang diễn ra",
+      };
     } else if (today > timeDateEnd) {
       this.statusExam = {
         status: 2,
-        statustext: "Đã kết thúc"
-      }
+        statustext: "Đã kết thúc",
+      };
     }
   }
 
   // đếm ngược thời gian
   countDownTimer() {
     let timerId: any;
-    
+
     timerId = setInterval(() => {
       let futureDate = new Date(this.capacity.date_start).getTime();
 
@@ -143,10 +145,9 @@ export class CapacityDetailComponent implements OnInit {
         this.countDown.seconds = 0;
         this.statusExam = {
           status: 1,
-          statustext: "Đang diễn ra"
-        }
+          statustext: "Đang diễn ra",
+        };
         clearInterval(timerId);
-
       } else {
         this.countDown.days = Math.floor(distance / (1000 * 60 * 60 * 24));
         this.countDown.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -164,7 +165,7 @@ export class CapacityDetailComponent implements OnInit {
         return;
       }
 
-      this.router.navigate(['/test-nang-luc/vao-thi', this.capacity.id, 'bai-thi', this.rounds[0].id]);
+      this.router.navigate(["/test-nang-luc/vao-thi", this.capacity.id, "bai-thi", this.rounds[0].id]);
     }
   }
 
@@ -172,7 +173,7 @@ export class CapacityDetailComponent implements OnInit {
   scrollToTop() {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }
 }

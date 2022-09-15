@@ -1,5 +1,6 @@
 <div class="list-round-box mt-4">
     <p class="fw-bold mt-2 fs-5 color-blue">Danh sách vòng thi</p>
+    <div class="title-line margin-0"></div>
     <mat-accordion *ngIf="statusContest == true">
         <p hidden *ngFor="let item of contestDetail.rounds">
             {{checkStatusRound(item.start_time , item.end_time , item.id)}}
@@ -17,8 +18,8 @@
                         {{item.name}}
                     </div>
                     <p hidden> {{checkStatusRound(item.start_time , item.end_time , item.id)}}</p>
-                    <div class="">
-                        <h3 [ngStyle]="{'color': statusRound == 1 ? '#c0392b' : '#27ae60' }" class="mt-4 mr-2">
+                    <div class="" style="margin-top: 20px;">
+                        <h3 [ngStyle]="{'color': statusRound == 1 ? '#c0392b' : '#27ae60' }" class="mr-2">
                             {{checkStatusRound(item.start_time , item.end_time , item.id)}}</h3>
                     </div>
                 </mat-panel-title>
@@ -53,7 +54,7 @@
                         </app-list-avatar-user>
                     </div>
                 </div>
-                <a class="btn btn-register float-end" [routerLink]="['./vong' , item.id ]">Chi tiết</a>
+                <a class="btn-main float-end" [routerLink]="['./vong' , item.id ]">Chi tiết</a>
 
             </ul>
         </mat-expansion-panel>

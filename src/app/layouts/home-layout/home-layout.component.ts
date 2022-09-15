@@ -13,7 +13,6 @@ import * as $ from 'jquery';
     styleUrls: ['./home-layout.component.css']
 })
 
-
 export class HomeLayoutComponent implements OnInit {
     user: User;
     statusWindow: boolean = false;
@@ -46,17 +45,13 @@ export class HomeLayoutComponent implements OnInit {
             header?.classList.add('fixed');
         } else {
             header?.classList.remove('fixed');
+            // document.getElementById = "-50px";
         }
     }
 
 
-
-    // Chuyển trạng thái web về đầu trang
+    // Change screen back top
     backTop() {
-        $('html , body').animate({
-            scrollTop: 0
-        }, 1000);
+        window.scrollTo({ top: 0, behavior: 'smooth' })
     }
-
-
 }

@@ -1,6 +1,6 @@
-.row>* {
-  padding-right: 0px !important;
-
+.slide{
+  border: none;
+  background-color: #ffff;
 }
 
 .contest-item-img {
@@ -8,7 +8,6 @@
   height: 170px;
   border-radius: 10px;
   object-fit: cover;
-  pointer-events: none;
 }
 
 .contest-name {
@@ -34,10 +33,10 @@
 
 .contest-count-team .count-team {
   font-size: 13px;
-  padding: 3px;
+  padding: 4px;
   max-width: 9px;
-  background: var(--primary-color);
-  border-radius: 5px;
+  background: var(--primary);
+  border-radius: 4px;
 }
 
 .fs-name-time {
@@ -55,7 +54,7 @@
   font-size: 17px;
   padding: 6px 0px;
   border-radius: 5px;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   border: none;
   opacity: 0.7;
 }
@@ -73,6 +72,13 @@
   .contest-count-team {
     margin-top: 20px;
   }
+}
+
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
 }
 
 

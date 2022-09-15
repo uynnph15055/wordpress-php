@@ -11,6 +11,7 @@ export class Capacity {
   major_id: number;
   status: number;
   slug_name: string;
+  start_register_time: Date
   rounds: Round[];
   user_capacity_done: []; // ds user làm bài
   skills: { name: string; short_name: string }[];

@@ -20,6 +20,7 @@
   background-position: center;
   padding-top: 65%;
   border-radius: 8px;
+  display: block;
 }
 
 .capacity__related-content-time {
@@ -99,7 +100,7 @@
 
 .capacity__related-countdown-item-box {
   background-color: transparent;
-  color: var(--primary-color);
+  color: var(--primary);
   padding: 4px 12px;
   min-width: 30px;
   font-size: 18px;
@@ -119,7 +120,7 @@
 }
 
 .capacity__related-countdown-item-box {
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: #fff;
   padding: 12px;
   min-width: 50px;
@@ -131,7 +132,7 @@
 
 .capacity__related-countdown-item-box {
   background-color: transparent;
-  color: var(--primary-color);
+  color: var(--primary);
   padding: 4px 12px;
   min-width: 30px;
   font-size: 18px;

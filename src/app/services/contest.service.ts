@@ -10,9 +10,10 @@ import { ResponsePayload } from '../models/response-payload';
 export class ContestService {
 
   constructor(private http: HttpClient) { }
+
   // Gọi tất cả các cuộc thi
   getAll(): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(environment.contestListUrl);
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?sort=desc`);
   }
 
   // Lấy ra cuộc thi theo id
@@ -21,8 +22,8 @@ export class ContestService {
   }
 
   // Gọi cuộc thi theo trạng thái
-  getWhereStatus(status: number): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${status}`);
+  getWhereStatus(status: number , sort: string): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${status}&sort=${sort}`);
   }
 
   // Phân trang theo link
@@ -31,18 +32,17 @@ export class ContestService {
   }
 
   getWhereStatusAndMajor(status: number, major_id: number): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${status}&major_id=${major_id}`);
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${status}&major_id=${major_id}&sort='desc'`);
   }
 
   // Tìm kiếm cuộc thi
   searchContest(keyword: string): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>('http://127.0.0.1:8000/api/public/contests?q=' + keyword);
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}` + keyword);
   }
 
   // Lọc theo chuyên ngành
   getWhereMajor(major_id: any): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?major_id=${major_id}`);
-
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?major_id=${major_id}&sort='desc'`);
   }
 
   filterContest(keyword: string, major_id: number, status: number): Observable<ResponsePayload> {
@@ -50,15 +50,7 @@ export class ContestService {
     let valueMajor;
     status == 0 ? valueStatus = '' : valueStatus = status;
     major_id == 0 ? valueMajor = '' : valueMajor = major_id;
-    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${valueStatus}&major_id=${valueMajor}&q=${keyword}`)
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${valueStatus}&major_id=${valueMajor}&q=${keyword}&sort='desc'`)
   }
 
-  // get list contest user has join
-  getListContestHasJoin(): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined`);
-  }
-
-  filterContestHasLogin(keyword: string, major_id: any, status: any): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined?status=${status}&major_id=${major_id}&q=${keyword}`)
-  }
 }
