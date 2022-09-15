@@ -66,6 +66,7 @@ export class UserService {
   // Update localStorageHasEdit
   setLocalStorageHasEdit(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
+    this.userSubject.next(user);
   }
 
   logout() {

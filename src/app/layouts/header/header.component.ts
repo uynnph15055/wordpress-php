@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
-import { GetValueLocalService } from 'src/app/services/get-value-local.service';
-import { Router} from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { User } from "src/app/models/user";
+import { GetValueLocalService } from "src/app/services/get-value-local.service";
+import { Router } from "@angular/router";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
   user: User;
   statusWindow: boolean = false;
-  constructor(private userInfo: GetValueLocalService ,private router: Router) { }
+  constructor(private userInfo: GetValueLocalService, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.user = this.userInfo.getValueLocalUser('user');
+    this.userService.user.subscribe((data) => {
+      this.user = data!;
+    });
+
+    this.user = this.userInfo.getValueLocalUser("user");
     this.saveUrlCurrent();
   }
 
@@ -23,16 +28,16 @@ export class HeaderComponent implements OnInit {
     element.removeAttribute("checked");
   }
 
-
   // LogOut
   logOut() {
     localStorage.clear();
     this.ngOnInit();
+    this.userService.logout();
   }
 
   // Save url login
-  saveUrlCurrent(){
+  saveUrlCurrent() {
     const urlCurrent = window.location.pathname;
-    localStorage.setItem('url-current' , urlCurrent);    
+    localStorage.setItem("url-current", urlCurrent);
   }
 }
