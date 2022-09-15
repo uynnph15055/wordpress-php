@@ -1,4 +1,12 @@
 /* COMMOM */
+h1, h2 , h3 , h4 , h5 , h6 , p , ul{
+  margin-bottom: 0;
+}
+
+.contest-info-box .contest-info-item{
+  margin-bottom: 10px;
+}
+
 .p-justify {
   text-align: justify;
 }
@@ -39,8 +47,8 @@
 
 .contest-detail-left-header {
   margin: 0 0 !important;
+  height: 250px;
 }
-
 
 .contest-detail-left-header,
 .list-team-in,
@@ -52,7 +60,6 @@
   background-color: #ffff;
 }
 
-
 /*  */
 
 .contest-detail-left-img {
@@ -60,7 +67,7 @@
   border-bottom-left-radius: 10px;
   margin: 0px -12px !important;
   object-fit: cover;
-  height: 100%;
+  height: 250px;
 }
 
 .contest-date-open-end {
@@ -79,7 +86,6 @@
   color: var(--primary);
   transition: 0.3s;
 }
-
 
 .supporters-arrow-left {
   left: 5%;
@@ -251,8 +257,6 @@
   padding: 3px 10px;
 }
 
-
-
 /* COUNT DOWN */
 .contest-detail-right-in {
   position: sticky;
@@ -266,6 +270,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1.1rem;
+}
+
+.list-avatar-user{
+  margin-top: -10px;
 }
 
 .img-detail-box img {

@@ -1,8 +1,11 @@
+h1, h2 , h3 , h4 , h5 , h6 , p , ul{
+  margin-bottom: 0;
+}
+
 /* LIST ROUND */
 .list-round-box {
   min-height: 400px;
 }
-
 
 .round-header {
   box-shadow: 0px 0px 5px var(--gray);
