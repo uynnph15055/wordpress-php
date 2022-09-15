@@ -53,7 +53,7 @@
         </div>
 
         <button
-          class="btn btn-register text-center btn-base-type-bg"
+          class="btn btn-main text-center btn-base-type-bg"
           (click)="isContinueExam ? handleContinueTakeExam() : handleTakeExam()"
         >
           {{ isContinueExam ? "Tiếp tục" : "Bắt đầu" }}
@@ -124,7 +124,7 @@
                 </li>
               </ul>
 
-              <button class="btn btn-register sidebar__countdown-btn">Nộp bài</button>
+              <button class="btn btn-main sidebar__countdown-btn">Nộp bài</button>
 
               <section class="question">
                 <span class="question__title">Câu hỏi</span>
@@ -285,13 +285,13 @@
         </ul>
 
         <ul class="flex-wrap capacity__exam-result-actions d-flex justify-content-center align-items-center">
-          <li (click)="handleOpenHistoryExam()" class="capacity__exam-result-actions-item btn btn-register mx-1 my-1">
+          <li (click)="handleOpenHistoryExam()" class="capacity__exam-result-actions-item btn btn-main mx-1 my-1">
             Lịch sử làm bài
           </li>
 
           <li
             (click)="handleGoToNextRound(getNextRound().round_id)"
-            class="capacity__exam-result-actions-item btn btn-register d-flex align-items-center mx-1 my-1"
+            class="capacity__exam-result-actions-item btn btn-main d-flex align-items-center mx-1 my-1"
             *ngIf="getNextRound().status"
           >
             Phần thi tiếp theo
@@ -301,7 +301,7 @@
           </li>
 
           <li class="capacity__exam-result-actions-item mx-1 my-1" *ngIf="!getNextRound().status">
-            <a href="" class="btn btn-register">Bảng xếp hạng</a>
+            <a href="" class="btn btn-main">Bảng xếp hạng</a>
           </li>
         </ul>
       </div>

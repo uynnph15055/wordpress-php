@@ -79,7 +79,7 @@
 }
 
 .sidebar__list-item-icon.primary-color {
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 .sidebar__countdown {
@@ -129,7 +129,7 @@
 }
 
 .question__list-item.active {
-  background-color: var(--warning);
+  background-color: var(--primary);
   color: #fff;
 }
 
@@ -199,14 +199,14 @@
 .answer:hover .answer__num,
 .answer.active .answer__num,
 .answers__input:checked ~ .answer .answer__num {
-  background-color: var(--warning);
+  background-color: var(--primary);
   color: #fff;
 }
 
 .answer:hover,
 .answer.active,
 .answers__input:checked ~ .answer {
-  border-color: var(--primary-color);
+  border-color: var(--primary);
 }
 
 .answer-hover-none:hover {

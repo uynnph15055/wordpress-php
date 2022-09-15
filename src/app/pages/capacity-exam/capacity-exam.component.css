@@ -37,6 +37,17 @@
   font-size: 26px;
 }
 
+.btn-base-type-bg {
+  background-color: var(--primary);
+  color: #fff;
+  text-transform: uppercase;
+  transition: all 0.25s linear;
+}
+
+.btn-base-type-bg:hover {
+  opacity: 0.8;
+}
+
 .capacity__exam-result {
   padding: 32px 0;
 }
@@ -75,7 +86,7 @@
 }
 
 .sidebar__list-item-icon.primary-color {
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 .sidebar__countdown {
@@ -127,7 +138,7 @@
 
 .question__list-item:hover,
 .question__list-item.active {
-  background-color: var(--warning);
+  background-color: var(--primary);
   color: #fff;
 }
 
@@ -198,14 +209,14 @@
 .answer:hover .answer__num,
 .answer.active .answer__num,
 .answers__input:checked ~ .answer .answer__num {
-  background-color: var(--warning);
+  background-color: var(--primary);
   color: #fff;
 }
 
 .answer:hover,
 .answer.active,
 .answers__input:checked ~ .answer {
-  border-color: var(--primary-color);
+  border-color: var(--primary);
 }
 
 .answer-hover-none:hover {
