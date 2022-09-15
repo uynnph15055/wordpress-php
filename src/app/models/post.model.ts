@@ -7,4 +7,6 @@ export class Post {
     published_at: Date;
     description: string;
     content: string;
+    slug: string;
+    postable_type: string;
 }

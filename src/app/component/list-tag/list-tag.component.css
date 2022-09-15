@@ -1,0 +1,8 @@
+.tag-list .tag-item {
+    display: inline-block;
+    text-decoration: underline;
+}
+
+.tag-item+.tag-item {
+    margin-left: 4px;
+}

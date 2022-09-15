@@ -9,38 +9,29 @@
         <div class="post-main">
             <div class="post-main-content">
                 <h1 class="post-detail__title">
-                    Art is the way to express it to abc idw
+                    {{postDetail.title}}
                 </h1>
                 <div class="post-detail__head-info">
                     <div class="post-detail__head-info-item"><span
-                            class="post-detail__head-info-item-cate">Danh mục: Category</span>
+                            class="post-detail__head-info-item-cate">Bài viết thuộc: {{postDetail.postable_type}}</span>
                         <app-list-social></app-list-social>
                     </div>
                     <div class="post-detail__head-info-item">
-                        <span class="post-detail__head-info-item-text"><i class="fa-solid fa-clock"></i>&ensp;April 19,
-                            2018 ácas</span>
-                        <span class="post-detail__head-info-item-text"><i class="fa-solid fa-clock"></i>&ensp;April 19,
-                            2018 ácas</span>
+                        <span class="post-detail__head-info-item-text"><i class="fa-solid fa-user"></i>&ensp; {{postDetail.user.name}}</span>
+                        <span class="post-detail__head-info-item-text"><i class="fa-solid fa-clock"></i>&ensp; {{postDetail.published_at}}</span>
                     </div>
                 </div>
+                <div class="post_upload-cv"></div>
+                <div class="post-detail__short-desc" [innerHTML]="postDetail.description">
+                </div>
                 <div class="post-detail__img-section">
-                    <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                    <img [src]="postDetail.thumbnail_url"
                         alt="" class="post-detail__img">
                 </div>
-                <div class="post-detail__content-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                <div class="post-detail__content-text"  [innerHTML]="postDetail.content">
                 </div>
-                <div class="post-detail__tag-list">
-                    <span>Tags: </span>
-                    <a routerLink="" class="post-detail__tag-item">Tuyển dụng</a>
-                    <a routerLink="" class="post-detail__tag-item">CNTT</a>
-                    <a routerLink="" class="post-detail__tag-item">IT</a>
+                <div class="post-detail__tag-section">
+                    <app-list-tag></app-list-tag>
                 </div>
                 <div class="post-detail__social-section">
                     <app-list-social></app-list-social>

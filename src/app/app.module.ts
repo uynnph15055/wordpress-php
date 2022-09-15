@@ -77,6 +77,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AsidePostComponent } from './component/post/aside-post/aside-post.component';
 import { ListSocialComponent } from './component/list-social/list-social.component';
 import { PostDetailComponent } from './pages/post-detail/post-detail.component';
+import { ListTagComponent } from './component/list-tag/list-tag.component';
 
 
 
@@ -125,6 +126,7 @@ import { PostDetailComponent } from './pages/post-detail/post-detail.component';
     AsidePostComponent,
     ListSocialComponent,
     PostDetailComponent,
+    ListTagComponent,
   ],
   imports: [
     BrowserModule,

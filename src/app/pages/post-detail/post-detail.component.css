@@ -34,6 +34,10 @@
     margin-left: 8px;
 }
 
+.post-detail__short-desc {
+    text-align: justify;
+}
+
 .post-detail__img-section {
     margin: 12px 0;
 }
@@ -42,19 +46,8 @@
     border-radius: 10px
 }
 
-.post-detail__tag-list {
+.post-detail__tag-section {
     border-top: 1px solid #ccc;
     margin: 16px 0;
     padding-top: 16px;
 }
-
-.post-detail__tag-list .post-detail__tag-item {
-    display: inline-block;
-    text-decoration: underline;
-}
-
-.post-detail__tag-item+.post-detail__tag-item {
-    margin-left: 4px;
-}
-
-.post-detail__social-section {}

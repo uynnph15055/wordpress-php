@@ -22,7 +22,7 @@ export class ListPostService {
   }
   
   // get detail post
-  getPostById(): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.postListUrl}`);
+  getPostBySlug(slug: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}/${slug}`);
   }
 }
