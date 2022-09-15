@@ -95,7 +95,7 @@ export class UserService {
     status: any
   ): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(
-      `${environment.userListUrl}/contest-joined-1?status=${status}&q=${key_word}`
+      `${environment.userListUrl}/contest-joined?status=${status}&q=${key_word}`
     );
   }
 

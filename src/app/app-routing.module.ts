@@ -47,11 +47,7 @@ const routes: Routes = [
             component: ProfileUserComponent,
           },
           {
-            path: "ca-nhan",
-            component: ProfileUserComponent,
-          },
-          {
-            path: "cuoc-thi-tham-gia",
+            path: "cuoc-thi-da-tham-gia",
             component: ContestUserJoinComponent,
           },
         ],

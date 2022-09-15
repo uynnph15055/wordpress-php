@@ -13,28 +13,18 @@
           />
           <div class="mx-2 mt-3">
             <h4 class="info-name-user color-blue fw-bold">{{ user.name }}</h4>
-            <p class="color-gray mt-2" routerLink="/component-one" style="cursor: pointer">
+            <p class="color-gray mt-2 profile-action" routerLink="/tai-khoan" style="cursor: pointer">
               <i class="fas fa-pen"></i>
-              Sửa thông tin
+              <span class="mx-2">Sửa thông tin</span>
             </p>
           </div>
         </div>
         <div class="info-team-tab-list">
-          <a
-            routerLink="/thong-tin/cuoc-thi-tham-gia"
-            class="info-team-tab-item"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <a routerLink="/tai-khoan/cuoc-thi-da-tham-gia" class="info-team-tab-item" routerLinkActive="active">
             <i class="fas fa-pager"></i>
             <span>Cuộc thi đã tham gia</span>
           </a>
-          <a
-            routerLink="/thong-tin/cuoc-thi-tham-gia"
-            class="info-team-tab-item"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <a routerLink="/thong-tin/cuoc-thi-tham-gia" class="info-team-tab-item" routerLinkActive="active">
             <i class="fa-solid fa-list-check"></i>
             <span>Bài test năng lực đã làm</span>
           </a>

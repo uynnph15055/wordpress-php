@@ -25,6 +25,14 @@
   font-size: 17px;
 }
 
+.profile-action {
+  transition: all 0.25s linear;
+}
+
+.profile-action:hover {
+  color: var(--primary);
+}
+
 .box-component-right {
   background-color: #ffff;
   border-radius: 10px;
