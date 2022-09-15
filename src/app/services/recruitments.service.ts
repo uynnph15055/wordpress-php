@@ -16,14 +16,13 @@ export class RecruitmentsService {
   }
 
   // Gọi ra tất cả các đặt tuyển dụng
-  getAllRecruitment(url : string): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.recruitment}?recruitmentHot=${url}`);
+  getAllRecruitment(): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.recruitment}`);
   }
 
   // search recruitment
-  searchRecruitment(keyword : string): Observable<ResponsePayload>{
-    
-    return this.http.get<ResponsePayload>(`${environment.recruitment}?keyword=${keyword}`);
+  filterRecruitmentSkill(skill: number): Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.recruitment}?skill_id=${skill}`);
   }
 
   // Chi tiết một đợt tuyển dụng
@@ -31,5 +30,11 @@ export class RecruitmentsService {
     return this.http.get<ResponsePayload>(`${environment.recruitment}/${rescruitment_id}`);
   }
 
-  //Get list post width recuitment
+  //  Filter recruitment
+  filterRecruitment(keyword:string , major_id: number = 0 , status: number = 0 , skill:number = 0):Observable<ResponsePayload>{
+    let majorChange =  major_id == 0 ? '' : major_id;
+    let statusChange =  status == 0 ? '' : status;
+    let skillChange = skill == 0 ? '' : skill;
+    return this.http.get<ResponsePayload>(`${environment.recruitment}?progress="registration_date"&keyword=${keyword}&major_id=${majorChange}&recruitmentHot=${statusChange}?skill_id=${skillChange}`);
+  }
 }

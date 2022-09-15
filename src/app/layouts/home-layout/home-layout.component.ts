@@ -45,6 +45,7 @@ export class HomeLayoutComponent implements OnInit {
             header?.classList.add('fixed');
         } else {
             header?.classList.remove('fixed');
+            // document.getElementById = "-50px";
         }
     }
 

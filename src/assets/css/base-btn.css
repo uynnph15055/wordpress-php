@@ -18,5 +18,16 @@
     color: white;
 }
 
+.btn-paint-color {
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+}
+
+.btn-paint-color:hover{
+    opacity: 0.8;
+}
+
 
 
