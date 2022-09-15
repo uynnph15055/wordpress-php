@@ -209,11 +209,14 @@ h5 {
 
 .post-item__info-item:first-child {
     display: -webkit-box;
+    display: inline-block;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
     max-width: 160px;
+    width: 100%;
 }
 
 .post-item__info-item+.post-item__info-item {
