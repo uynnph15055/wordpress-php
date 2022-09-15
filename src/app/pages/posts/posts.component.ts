@@ -28,9 +28,6 @@ export class PostsComponent implements OnInit {
         this.posts = arrResult.filter((res: Post , index: number) => {
           return index > 1;
         });
-        console.log(this.posts);
-        
-        
        }
 
       // console.log(this.listPostNewFirst);

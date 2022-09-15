@@ -6,6 +6,10 @@
                 <li class="breadcrumb-item"><a routerLink="/bai-viet">Bài viết</a></li>
             </ol>
         </nav>
+        <div class="header-post-category">
+            <h2 class="header-section__title">Bài viết tuyển dụng</h2>
+            <a routerLink="" class="header-section__link">Tất cả</a>
+        </div>
         <div class="post-new-latest">
             <div class="post-new-latest__img-section">
                 <img src={{listPostNewFirst.thumbnail_url}} alt="" class="post-new-latest__img">
@@ -62,30 +66,7 @@
                     </div>
                     <div class="main-section">
                         <div class="post-item">
-                            <div class="post-item-img-section">
-                                <img class="post-item__img"
-                                    src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                                    alt="">
-                                <div class="post-item-content post-item-content--new-in-cate">
-                                    <h3 class="post-item__title"><a routerLink="">Capturing the correct moment</a></h3>
-                                    <div class="post-item__info">
-                                        <div class="post-item__info-item">
-                                            <i class="fa-solid fa-user"></i>&ensp; Blossom Themes Abc Hello
-                                        </div>
-                                        <div class="post-item__info-item">
-                                            <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018
-                                        </div>
-                                    </div>
-                                    <div class="post-item-bottom">
-                                        <p class="short-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                            sed
-                                            do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua. Ut enim ad mini</p>
-                                        <a class="btn btn-register" routerLink="">Chi tiết</a>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <app-post-related-item [postItem]="listPostNewFirst"></app-post-related-item>
                         </div>
                         <div class="post-in-cate-list">
                             <div class="post-in-cate-item">
@@ -144,33 +125,63 @@
                 </div>
                 <div class="post-main-content-section">
                     <div class="header-section">
-                        <h2 class="header-section__title">Tất cả bài viết</h2>
+                        <h2 class="header-section__title">Danh mục bài viết</h2>
+                        <a routerLink="" class="header-section__link">Tất cả</a>
                     </div>
-                    <div class="main-section post-list">
-                        <div class="post-item" *ngFor="let listPost of posts">
-                            <div class="post-item-img-section">
-                                <img class="post-item__img"
-                                    src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                                    alt="">
-                                <div class="post-item-content">
-                                    <h3 class="post-item__title"><a routerLink="">{{listPost.title}}</a>
+                    <div class="main-section">
+                        <div class="post-item">
+                            <app-post-related-item [postItem]="postSeccond"></app-post-related-item>
+                        </div>
+                        <div class="post-in-cate-list">
+                            <div class="post-in-cate-item">
+                                <div class="post-in-cate-item__img-section">
+                                    <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                                        alt="" class="post-in-cate-item__img">
+                                </div>
+                                <div class="post-in-cate-item-content">
+                                    <h3 class="post-in-cate-item-content__title text-collapse">asd asdasd asdawc ascwcd
+                                        adcwf it to
                                     </h3>
-                                    <div class="post-item__info">
-                                        <div class="post-item__info-item">
-                                            <i class="fa-solid fa-user"></i>&ensp; Blossom Themes Abc Hello
-                                        </div>
-                                        <div class="post-item__info-item">
+                                    <div class="post-in-cate-item-content__info">
+                                        <div class="post-in-cate-item-content__info-item">
                                             <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018
                                         </div>
                                     </div>
-                                    <div class="post-item-bottom">
-                                        <p class="short-desc">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit,
-                                            sed
-                                            do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua. Ut enim ad mini</p>
-                                        <a class="btn btn-register" routerLink="">Chi tiết</a>
+                                    <div class=""></div>
+                                </div>
+                            </div>
+                            <div class="post-in-cate-item">
+                                <div class="post-in-cate-item__img-section">
+                                    <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                                        alt="" class="post-in-cate-item__img">
+                                </div>
+                                <div class="post-in-cate-item-content">
+                                    <h3 class="post-in-cate-item-content__title text-collapse">asd asdasd asdawc ascwcd
+                                        adcwf it to
+                                    </h3>
+                                    <div class="post-in-cate-item-content__info">
+                                        <div class="post-in-cate-item-content__info-item">
+                                            <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018
+                                        </div>
                                     </div>
+                                    <div class=""></div>
+                                </div>
+                            </div>
+                            <div class="post-in-cate-item">
+                                <div class="post-in-cate-item__img-section">
+                                    <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                                        alt="" class="post-in-cate-item__img">
+                                </div>
+                                <div class="post-in-cate-item-content">
+                                    <h3 class="post-in-cate-item-content__title text-collapse">asd asdasd asdawc ascwcd
+                                        adcwf it to
+                                    </h3>
+                                    <div class="post-in-cate-item-content__info">
+                                        <div class="post-in-cate-item-content__info-item">
+                                            <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018
+                                        </div>
+                                    </div>
+                                    <div class=""></div>
                                 </div>
                             </div>
                         </div>

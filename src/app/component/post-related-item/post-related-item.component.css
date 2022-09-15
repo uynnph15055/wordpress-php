@@ -101,10 +101,11 @@ h5 {
     margin-bottom: 32px;
 }
 
-.header-post-category {
+.title-category-post {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 32px;
 }
 
 .header-section .header-section__link {
@@ -166,9 +167,7 @@ h5 {
 }
 
 /* ------------------- post item ------------ */
-.post-item {
-    height: 450px;
-}
+.post-item {}
 
 .post-item-img-section {
     position: relative;
