@@ -74,6 +74,7 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { RankStudentComponent } from './modal/rank-student/rank-student.component';
 import { AvatarComponent } from './component/avatar/avatar.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ContestAsideComponent } from './component/contest-aside/contest-aside.component';
 
 
 
@@ -119,6 +120,7 @@ import { HomeComponent } from './pages/home/home.component';
     PostsComponent,
     RankStudentComponent,
     AvatarComponent,
+    ContestAsideComponent,
   ],
   imports: [
     BrowserModule,

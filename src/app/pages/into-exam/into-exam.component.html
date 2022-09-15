@@ -5,10 +5,9 @@
         <div class="row warper-into-exam-row">
             <div class="col-9  warper-info-contest">
                 <div class="info-contest-header pb-2 row" *ngIf="statusInfo == false">
-                    <div class="col-4 mt-2 text-center ">
+                    <div class="col-4 mt-2 info-contest-header-left  text-center ">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTudQwuYh8aQKOOByIe4hFX9ZWYCcF20aSfA&usqp=CAU"
                             alt="" class="info-contest-img">
-                        <p class="primary-color fw-bold fs-6">Vòng: {{roundDetail.name}}</p>
                         <p class="fw-bold fs-text color-gray d-flex justify-content-center align-items-center">Số đội:
                             &nbsp;
                             <i class="fas fa-users d-block primary-color"></i>
@@ -18,31 +17,40 @@
                             </app-list-avatar-user>
                         </div>
                     </div>
-                    <div class="col-8 mt-3">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="color-gray color-blue  fs-text fw-bold">Hạn nộp:
-                                <span class=" fw-normal">{{roundDetail.end_time |
-                                    formatDate}}</span>
-                            </p>
+                    <div class="col-8 my-2 exam-info-box">
+                        <div class="d-flex ml-3  justify-content-between align-items-center">
+                            <h3 class="fw-bold fs-6">Vòng: {{roundDetail.name}}</h3>
                             <button mat-icon-button color="warn" class="btn-copy-link" [matMenuTriggerFor]="menu"><i
                                     class="fas fa-ellipsis-v"></i></button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item (click)="copyLinkUrl()">Copy-link</button>
                             </mat-menu>
                         </div>
-
-                        <p *ngIf="statusContest == true" class="info-contest-item fw-bold">Cuộc Thi: <span
+                        <p class="color-gray color-blue exam-info-item  fs-text fw-bold">Hạn nộp:
+                            <span class=" fw-normal">{{roundDetail.end_time |
+                                formatDate}}</span>
+                        </p>
+                        <p *ngIf="statusContest == true" class="info-contest-item  exam-info-item fw-bold">Cuộc Thi: <span
                                 class="color-primary fw-normal">{{infoContest.name}}</span>
                         </p>
-                        <p class="info-contest-item fw-bold">Trạng thái: <span class="color-primary fw-normal">Vào
+                        <p class="info-contest-item fw-bold   exam-info-item">Trạng thái: <span class="color-primary fw-normal">Vào
                                 thi</span>
                         </p>
 
-                        <div class="d-flex justify-content-start align-items-center">
+                        <div class="d-flex  mb-3 justify-content-start align-items-center">
                             <p class="fw-bold fs-text color-gray">Ban giám khảo :
                             </p>
+                            &nbsp;
+                            &nbsp;
+                            <p class="" *ngIf="roundDetail.judges.length == 0">Chưa có ban giám khảo !</p>
+                            <div *ngIf="roundDetail.judges.length > 0">
+                                <!-- {{roundDetail.judges}} -->
+                                <app-list-avatar-user [listTeam]="roundDetail.judges"
+                                    [titleModelName]="'Danh sách ban giám khảo'">
+                                </app-list-avatar-user>
+                            </div>
                         </div>
-                        <div class="button" (click)="downloadExam()">
+                        <div class="button   exam-info-item" (click)="downloadExam()">
                             <div class="button-wrapper">
                                 <div class="text">Đề bài</div>
                                 <span class="icon">
@@ -59,7 +67,7 @@
                     </div>
                 </div>
                 <div class="row py-3 info-contest-header" *ngIf="statusInfo == true">
-                    <div class="col-4">
+                    <div class="col-4  info-contest-item">
                         <ngx-skeleton-loader
                             [theme]="{ 'height.px' : 230, 'margin-bottom' : '10px' , 'width' : '100%' }"
                             appearance="line"></ngx-skeleton-loader>
@@ -73,7 +81,7 @@
                         </ngx-skeleton-loader>
                     </div>
                 </div>
-                <p class="fw-bold fs-5 color-blue pt-3">Đội của bạn</p>
+                <p class="fw-bold fs-5 color-blue py-3">Đội của bạn</p>
                 <div class="title-line"></div>
                 <div class="my-3 bg-white team-detail-box pb-3">
                     <div *ngIf="statusTeamDetail == true" style="border-radius: 10px;">
@@ -81,8 +89,8 @@
                         <div class="info-your-team text-center" ngbTooltip="Xem chi tiết">
                             <div (click)="openInfoTeamDetail()" class="p-3 bg-white">
                                 <img class="info-your-team-avatar" [src]="teamDetail.image" alt="">
-                                <h3 class="fw-bold mt-3 color-blue">{{teamDetail.name}}</h3>
-                                <p> <i class="fas fa-users primary-color"></i> {{teamDetail.members.length}}</p>
+                                <h3 class="fw-bold mt-2 color-blue">{{teamDetail.name}}</h3>
+                                <p> Tổng số : {{teamDetail.members.length}} thành viên</p>
                             </div>
                         </div>
                         <table mat-table class="w-100" [dataSource]="teamDetail.members">
@@ -129,13 +137,13 @@
                     </div>
 
                     <div *ngIf="statusTeamDetail == false">
-                        <div class="d-flex pt-4 justify-content-center">
+                        <div class="d-flex pt-4  justify-content-center">
                             <ngx-skeleton-loader
                                 [theme]="{ 'height.px' : 170, 'margin-bottom' : '10px' , 'width' : '150px' }"
                                 appearance="line"></ngx-skeleton-loader>
                         </div>
 
-                        <ngx-skeleton-loader count="6" [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px'}"
+                        <ngx-skeleton-loader  count="6" [theme]="{ 'height.px' : 40, 'margin-bottom' : '7px' , 'padding': '0px 20px'}"
                             appearance="line">
                         </ngx-skeleton-loader>
                     </div>
@@ -177,7 +185,7 @@
                             </div>
                         </ul>
                         <a [ngStyle]="{'display':  statusSubmitExam ==  true ? 'none' : 'block' }"
-                            class="btn mt-2 contest-detail-register-btn d-block btn-base-type-bg w-100'"
+                            class=" mt-2 text-center btn-main d-block btn-base-type-bg w-100'"
                             (click)="openVerticallyCentered(submit)">Nộp bài</a>
                         <!-- <a style="width:100%" class="btn mt-3 btn-register w-100'">Gỡ
                             bài làm</a> -->

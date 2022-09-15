@@ -16,6 +16,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { Round } from 'src/app/models/round.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-into-exam',
@@ -110,15 +111,17 @@ export class IntoExamComponent implements OnInit {
     if (this.roundId) {
       this.getInfoExam(round);
     }
-
-    // Get roundId vs get teamDetail
-
   }
 
   // dowload đề bài
   downloadExam() {
     this.statusPage = true;
-    window.location.href = 'https://drive.google.com/uc?id=1SBfNihiQPHx9Fp8XaoADpKFis2w7MNB6&export=media';
+    let urlOrigin = environment.publicApiUrl.split(' ');
+    if(this.roundDetail.exams){
+      this.roundDetail.exams.forEach(item => {
+        window.location.href = `http://127.0.0.1:8000/download-file?url=${item.external_url}`;
+      });
+    }
     setTimeout(() => {
       this.statusPage = false;
     }, 2000);

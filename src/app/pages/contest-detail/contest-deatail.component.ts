@@ -4,7 +4,6 @@ import { map, switchMap } from 'rxjs';
 import { Contest } from 'src/app/models/contest';
 import { Slider } from 'src/app/models/slider.model';
 import { ContestService } from 'src/app/services/contest.service';
-import * as moment from 'moment/moment';
 import { ModalAddTeamComponent } from 'src/app/modal/modal-add-team/modal-add-team.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
@@ -35,8 +34,6 @@ export class ContestDeatailComponent implements OnInit {
   closeResult: string;
   contest_id: number = 0;
   teamIdMemberHasJoinTeam: number = 0;
-  nameBtnRegister: string = 'Đăng ký';
-  roundEndTime: any;
   contestRelateTo: Array<Contest> = [];
   resultRoundBefore: Array<ResultRound>;
   sliderContest: Array<Slider>;
@@ -63,15 +60,9 @@ export class ContestDeatailComponent implements OnInit {
   statusCheckDate: boolean = true;
   statusPage: boolean = false;
   statusResultRoundBefore: boolean = false;
-  statusUserHasJoinContest: boolean = false;
   statusUserLogin: boolean = false;
   cinfigData: TransmitToPost;
   listPostResult: Array<Post>;
-
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
 
   sliderSupporter = {
     slidesToShow: 3,
@@ -90,7 +81,7 @@ export class ContestDeatailComponent implements OnInit {
     public listPostService: ListPostService,
     private contestService: ContestService,
     private getUserLocal: GetValueLocalService,
-    private router: Router,
+    
     private roundService: RoundService,
     private slider: SliderService,
     private userService: UserService,
@@ -151,70 +142,11 @@ export class ContestDeatailComponent implements OnInit {
                 }
               }
             });
-
-          // Chạy thời gian hết hạn cuộc thi
-          setInterval(() => {
-            this.roundEndTime = moment(
-              this.contestDetail.end_register_time
-            ).format('lll');
-
-            let futureDate = new Date(this.roundEndTime).getTime();
-            let today = new Date().getTime();
-            let distance = futureDate - today;
-            if (distance < 0) {
-              this.statusCheckDate = false;
-              this.days = 0;
-              this.hours = 0;
-              this.minutes = 0;
-              this.seconds = 0;
-              this.nameBtnRegister = 'Đã hết hạn';
-            } else {
-              this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-              this.hours = Math.floor(
-                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-              );
-              this.minutes = Math.floor(
-                (distance % (1000 * 60 * 60)) / (1000 * 60)
-              );
-              this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            }
-          }, 1000);
-
-          //  Check user có bẫm vào nút đăng ký ko
-          setTimeout(() => {
-            if (
-              this.routeStateRegister == false &&
-              this.getUserLocal.getValueLocalUser('user') &&
-              this.statusCheckDate == true
-            ) {
-              this.openAddTeam();
-            }
-          }, 3000);
+          
         }
       });
 
     this.getListPost();
-  }
-
-  // Thông tin đội
-  openInfoTeam() {
-    let teamId;
-
-    this.contestDetail.teams.forEach((it) => {
-      it.members.forEach((item) => {
-        if (item.id == this.userService.getUserValue().id) {
-          teamId = it.id;
-        }
-      });
-    });
-
-    this.dialog.open(ModalInfoTeamComponent, {
-      width: '900px',
-      data: {
-        contest_id: this.contestDetail.id,
-        team_id: teamId,
-      },
-    });
   }
 
   //Cac bai post
@@ -232,34 +164,10 @@ export class ContestDeatailComponent implements OnInit {
   }
 
   // Mở model thêm đội thi
-  openFormRegister(): void {
-    if (
-      this.statusCheckDate == true &&
-      this.getUserLocal.getValueLocalUser('user')
-    ) {
-      this.openAddTeam();
-    } else {
-      this.router.navigate(['./login']);
-    }
-  }
-
-  openAddTeam(): void {
-    const dialogRef = this.dialog.open(ModalAddTeamComponent, {
-      width: '490px',
-      data: {
-        contest_id: this.contestDetail.id,
-        team_id: '',
-      },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {});
-  }
-
   getResultRank() {
     let rountIdEnd = this.getRoundId(this.contestDetail.rounds, 1);
     this.roundService.getResultRound(rountIdEnd).subscribe((res) => {
       res.status ? (this.resultRank = res.payload.data) : null;
-      console.log(this.resultRank);
     });
   }
 
@@ -312,6 +220,6 @@ export class ContestDeatailComponent implements OnInit {
 
   // Mở nộ dung vòng thi
   open(content: any) {
-    this.modalService.open(content, { scrollable: true  });
+    this.modalService.open(content, { scrollable: true });
   }
 }

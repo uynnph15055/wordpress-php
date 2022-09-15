@@ -1,7 +1,15 @@
 /* Phần trang thông tin cuộc thi */
+h3 ,p{
+  margin-bottom: 0px;
+}
+
 .warper-into-exam {
   padding-top: 35px;
   background-color: #f5f5f5;
+}
+
+.info-contest-header-left {
+  border-right: 1px solid var(--gray-300);
 }
 
 .description img {
@@ -12,6 +20,9 @@
   margin: 0 !important;
 }
 
+.exam-info-box .exam-info-item{
+  margin-bottom: 10px;
+}
 
 .info-contest-header,
 .team-detail-box {
@@ -53,7 +64,6 @@
 .contest-detail-right-countdown {
   display: flex;
   justify-content: center;
-  /* margin: 20px 10px; */
   margin-bottom: -0.3rem !important;
 }
 
@@ -69,7 +79,7 @@
 .contest-detail-right-countdown-item {
   text-align: center;
   padding: 10px 5px;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   width: 100%;
   margin: 0px 5px;
   border-radius: 6px;
@@ -105,11 +115,11 @@
 
 .team-leader {
   padding: 5px 10px;
-  background-color: var(--warning);
+  background-color: var(--primary);
   font-size: 14px;
   display: inline-block;
   margin-top: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   color: var(--white);
 }
 
@@ -156,7 +166,7 @@
 }
 
 .btn-upload-assignment:hover {
-  background-color: var(--warning);
+  background-color: var(--primary);
   box-shadow: 0px 15px 20px rgb(243, 165, 113);
   color: #fff;
   transform: translateY(-7px);
@@ -179,7 +189,7 @@
 }
 
 .input-link-submit:focus {
-  outline-color: var(--warning);
+  outline-color: var(--primary);
   background: #ffff;
   box-shadow: inset 20px 20px 60px #f0eeee,
     inset -20px -20px 60px #ffffff;
@@ -197,7 +207,7 @@
   --tooltip-color: #fff;
   width: var(--width);
   height: var(--height);
-  background: var(--primary-color);
+  background: #3CCF4E;
   position: relative;
   text-align: center;
   border-radius: 0.45em;
@@ -251,7 +261,7 @@
 }
 
 .button:hover {
-  background: #27ae60;
+  background: var(--primary);
 }
 
 .button:hover .text {
