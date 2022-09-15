@@ -161,13 +161,6 @@ export class RoundContestDetailComponent implements OnInit {
     this.listPostService.getPostWhereCate('post-contest').subscribe(res => {
       if (res.status) {
         this.listPostResult = res.payload.data;
-        console.log(this.listPostResult);
-        
-        this.cinfigData = {
-          id: 0,
-          posts: this.listPostResult,
-          numberColumn: 3,
-        };
       }
     })
   }

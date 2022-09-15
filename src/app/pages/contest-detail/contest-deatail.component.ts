@@ -61,7 +61,7 @@ export class ContestDeatailComponent implements OnInit {
   statusPage: boolean = false;
   statusResultRoundBefore: boolean = false;
   statusUserLogin: boolean = false;
-  cinfigData: TransmitToPost;
+
   listPostResult: Array<Post>;
 
   sliderSupporter = {
@@ -154,11 +154,6 @@ export class ContestDeatailComponent implements OnInit {
     this.listPostService.getPostWhereCate('post-contest').subscribe((res) => {
       if (res.status) {
         this.listPostResult = res.payload.data;
-        this.cinfigData = {
-          id: 0,
-          posts: this.listPostResult,
-          numberColumn: 3,
-        };
       }
     });
   }

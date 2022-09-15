@@ -75,6 +75,7 @@ import { RankStudentComponent } from './modal/rank-student/rank-student.componen
 import { AvatarComponent } from './component/avatar/avatar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ContestAsideComponent } from './component/contest-aside/contest-aside.component';
+import { PostRelatedItemComponent } from './component/post-related-item/post-related-item.component';
 
 
 
@@ -118,6 +119,7 @@ import { ContestAsideComponent } from './component/contest-aside/contest-aside.c
     RecruitmentDetailComponent,
     ListPostComponent,
     PostsComponent,
+    PostRelatedItemComponent,
     RankStudentComponent,
     AvatarComponent,
     ContestAsideComponent,
