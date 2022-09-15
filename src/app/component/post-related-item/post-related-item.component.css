@@ -228,6 +228,17 @@ h5 {
     color: #8E8E95
 }
 
+.btn-detail {
+    background-color: white;
+    border: solid 1px #8E8E95
+}
+
+.btn-detail:hover {
+    background-color: #0E0759;
+    color: white
+}
+
+
 .post-item-bottom .btn {
     font-size: 12px;
     padding: 4px 10px;
