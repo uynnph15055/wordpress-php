@@ -71,10 +71,16 @@
                         <div class="post-in-cate-list">
                             <div class="post-in-cate-item" *ngFor=" let postCapacity of ListPostCapacity">
                                 <div class="post-in-cate-item__img-section">
-                                    <img src={{postCapacity.thumbnail_url}} alt="" class="post-in-cate-item__img">
+                                    <a routerLink="/bai-viet/{{postCapacity.slug}}">
+                                        <img src={{postCapacity.thumbnail_url}} alt="" class="post-in-cate-item__img">
+
+                                    </a>
                                 </div>
                                 <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse">{{postCapacity.title}}
+                                    <h3 class="post-in-cate-item-content__title text-collapse">
+                                        <a routerLink="/bai-viet/{{postCapacity.slug}}">
+                                            {{postCapacity.title}}
+                                        </a>
                                     </h3>
                                     <div class="post-in-cate-item-content__info">
                                         <div class="post-in-cate-item-content__info-item">
@@ -94,55 +100,23 @@
                     </div>
                     <div class="main-section">
                         <div class="post-item">
-                            <!-- <app-post-related-item [postItem]="postSeccond"></app-post-related-item> -->
+                            <app-post-related-item [postItem]="PostContestFirst"></app-post-related-item>
                         </div>
                         <div class="post-in-cate-list">
-                            <div class="post-in-cate-item">
+                            <div class="post-in-cate-item " *ngFor=" let postContes of ListPostContest">
                                 <div class="post-in-cate-item__img-section">
-                                    <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                                        alt="" class="post-in-cate-item__img">
+                                    <a routerLink="/bai-viet/{{postContes.slug}}">
+                                        <img src={{postContes.thumbnail_url}} alt="" class="post-in-cate-item__img">
+                                    </a>
                                 </div>
                                 <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse">asd asdasd asdawc ascwcd
-                                        adcwf it to
+                                    <h3 class="post-in-cate-item-content__title text-collapse" data-toggle="tooltip"
+                                        title={{postContes.title}}> <a
+                                            routerLink="/bai-viet/{{postContes.slug}}">{{postContes.title}}</a>
                                     </h3>
                                     <div class="post-in-cate-item-content__info">
                                         <div class="post-in-cate-item-content__info-item">
-                                            <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018
-                                        </div>
-                                    </div>
-                                    <div class=""></div>
-                                </div>
-                            </div>
-                            <div class="post-in-cate-item">
-                                <div class="post-in-cate-item__img-section">
-                                    <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                                        alt="" class="post-in-cate-item__img">
-                                </div>
-                                <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse">asd asdasd asdawc ascwcd
-                                        adcwf it to
-                                    </h3>
-                                    <div class="post-in-cate-item-content__info">
-                                        <div class="post-in-cate-item-content__info-item">
-                                            <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018
-                                        </div>
-                                    </div>
-                                    <div class=""></div>
-                                </div>
-                            </div>
-                            <div class="post-in-cate-item">
-                                <div class="post-in-cate-item__img-section">
-                                    <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                                        alt="" class="post-in-cate-item__img">
-                                </div>
-                                <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse">asd asdasd asdawc ascwcd
-                                        adcwf it to
-                                    </h3>
-                                    <div class="post-in-cate-item-content__info">
-                                        <div class="post-in-cate-item-content__info-item">
-                                            <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018
+                                            <i class="fa-solid fa-clock"></i>&ensp;{{postContes.published_at}}
                                         </div>
                                     </div>
                                     <div class=""></div>

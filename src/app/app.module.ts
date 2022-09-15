@@ -78,6 +78,7 @@ import { CapacityRelatedItemComponent } from './component/capacity-related-item/
 import { ListPostComponent } from './component/list-post/list-post.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { PostRelatedItemComponent } from './component/post-related-item/post-related-item.component';
+import { PostCategoryComponent } from './pages/post-category/post-category.component';
 
 
 
@@ -124,7 +125,8 @@ import { PostRelatedItemComponent } from './component/post-related-item/post-rel
     RecruitmentDetailComponent,
     ListPostComponent,
     PostsComponent,
-    PostRelatedItemComponent
+    PostRelatedItemComponent,
+    PostCategoryComponent
   ],
   imports: [
     BrowserModule,
