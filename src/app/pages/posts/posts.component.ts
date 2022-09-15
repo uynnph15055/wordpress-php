@@ -8,7 +8,7 @@ import { ListPostService } from 'src/app/services/list-post.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  posts:  Array<Post>;
+  posts:  Post[];
   listPostNewFirst : Post; 
   postSeccond: Post; 
   constructor(private postService : ListPostService) { }
@@ -25,11 +25,12 @@ export class PostsComponent implements OnInit {
         let indexRan = Math.floor(Math.random() * arrResult.length ) +1;
         
         this.postSeccond = arrResult[indexRan];
-        console.log( this.postSeccond );
         this.posts = arrResult.filter((res: Post , index: number) => {
-         
           return index > 1;
         });
+        console.log(this.posts);
+        
+        
        }
 
       // console.log(this.listPostNewFirst);
