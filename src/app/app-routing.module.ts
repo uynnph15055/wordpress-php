@@ -43,6 +43,8 @@ const routes: Routes = [
       {
         path: 'bai-viet/:slug',
         component: PostDetailComponent,
+      },
+      {
         path: 'danh-muc-bai-viet',
         component: PostCategoryComponent,
       },
@@ -62,7 +64,7 @@ const routes: Routes = [
             path: 'cuoc-thi-tham-gia',
             component: ContestUserJoinComponent,
           },
-         
+
         ]
       },
       {
