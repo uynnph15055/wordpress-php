@@ -10,9 +10,15 @@
                     placeholder="Tìm kiếm tag, tên bài viết...">
             </form>
             <div class="result-post-list" *ngIf="!results">
-                <app-contest-load-item></app-contest-load-item>
-                <app-contest-load-item></app-contest-load-item>
-                <app-contest-load-item></app-contest-load-item>
+                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
+                    appearance="line">
+                </ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
+                    appearance="line">
+                </ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
+                    appearance="line">
+                </ngx-skeleton-loader>
             </div>
             <div class="result-post-list">
                 <app-post-related-item *ngFor="let item of results" [postItem]="item"></app-post-related-item>
