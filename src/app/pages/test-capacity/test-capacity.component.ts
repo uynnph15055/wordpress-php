@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Capacity } from 'src/app/models/capacity';
 import { TestCapacityService } from 'src/app/services/test-capacity.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-test-capacity',
@@ -8,6 +9,7 @@ import { TestCapacityService } from 'src/app/services/test-capacity.service';
   styleUrls: ['./test-capacity.component.css']
 })
 export class TestCapacityComponent implements OnInit {
+  validateForm!: FormGroup; 
   listCapacity: Capacity[]
    valueSearch: string;
   // fakeTag: any = [
@@ -15,12 +17,16 @@ export class TestCapacityComponent implements OnInit {
   // ]
 
   constructor(
-    private testCapacityService: TestCapacityService
+    private testCapacityService: TestCapacityService,
+    private fb: FormBuilder
   ) {
     this.getListTestCapacity()
    }
 
   ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      value: [null, [Validators.required]],
+    });
   }
 
   getListTestCapacity(){
@@ -29,8 +35,19 @@ export class TestCapacityComponent implements OnInit {
     })
   }
   // Tìm kiếm danh sách test năng lực
-  searchTestCapacity(){
-    this.listCapacity = []
+  onSubmit(){
+  if (this.validateForm.valid) {
+         this.testCapacityService.SearchTestCapacity(this.valueSearch).subscribe(data=>{
+           this.listCapacity = data.payload.data;
+       })
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }    
   }
 
 }

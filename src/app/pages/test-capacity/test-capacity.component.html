@@ -12,7 +12,7 @@
         </div>
         <div class="">
             <div class="">
-                <h2 class="test-capacity_title-head ">Test năng lực</h2>
+                <h2 class="test-capacity_title-head ">Danh Sách Test Năng Lực</h2>
             </div>
             <div class="test-capacity_item-tag">
                 <div class="test-capacity_item ">
@@ -45,13 +45,14 @@
                             class="bi bi-arrow-down"></i></button>
                 </div>
                 <div class="">
-                    <form class="test-capacity_search ">
+                    <form class="test-capacity_search" [formGroup]="validateForm" (ngSubmit)="onSubmit()">
                         <label for="simple-search" class="test-capacity_search-title">Search</label>
                         <div class="test-capacity_search-wrapper ">
                             <button class="test-capacity_search-button ">
                                 <i class="bi bi-search test-capacity_search-icon "></i>
                             </button>
-                            <input type="text" id="simple-search" class="test-capacity_search-input "
+                            <input [(ngModel)]="valueSearch" name="value" formControlName="value" type="text"
+                                id="simple-search" class="test-capacity_search-input "
                                 placeholder="Tìm kiếm tag, tên bài test,..." required>
                         </div>
                     </form>
