@@ -2,6 +2,14 @@
 </app-loading-page>
 <div class=" contest-detail-box ">
     <div class=" container py-4">
+        <nav aria-label="breadcrumb" *ngIf="roundDetail && contestDetail">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-primary"><a routerLink="/">Trang chủ</a></li>
+                <li class="breadcrumb-item  text-primary"><a routerLink="/cuoc-thi/">Cuộc thi</a></li>
+                <li class="breadcrumb-item  text-primary" aria-current="page"><a [routerLink]="['/cuoc-thi/' , contestDetail.id ]">{{ contestDetail.name }}</a></li> 
+                <li class="breadcrumb-item active" aria-current="page">{{ roundDetail.name }}</li>
+            </ol>
+        </nav>
         <div class="contest-detail-header">
             <div class=" contest-detail-left">
                 <div class="contest-detail-left-header row">

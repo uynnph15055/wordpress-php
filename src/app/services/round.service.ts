@@ -27,7 +27,6 @@ export class RoundService {
 
   // check trạng thái làm bài
   getInfoCapacityExamRound() {
-    // status: 1 - đang làm, 2 - đã nộp
     const response = {
       status: true,
       payload: {

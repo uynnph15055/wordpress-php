@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
   logOut() {
     localStorage.clear();
     this.ngOnInit();
+    window.location.reload();
   }
 
   // Save url login

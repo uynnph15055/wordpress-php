@@ -18,5 +18,7 @@ export class Round {
 }
 
 class exams {
+    name: string;
     external_url: string;
+    description: string;
 }

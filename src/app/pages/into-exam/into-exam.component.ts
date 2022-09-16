@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { map, switchMap } from 'rxjs';
 import { Contest } from 'src/app/models/contest';
 
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 import { ContestService } from 'src/app/services/contest.service';
 import { param } from 'jquery';
 import { TeamService } from 'src/app/services/team.service';
@@ -17,14 +17,14 @@ import { Round } from 'src/app/models/round.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
 import { environment } from 'src/environments/environment';
+import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 
 @Component({
   selector: 'app-into-exam',
   templateUrl: './into-exam.component.html',
-  styleUrls: ['./into-exam.component.css']
+  styleUrls: ['./into-exam.component.css'],
 })
 export class IntoExamComponent implements OnInit {
-
   days: number;
   hours: number;
   minutes: number;
@@ -47,65 +47,76 @@ export class IntoExamComponent implements OnInit {
   statusClickSubmit: boolean = false;
   assignmentFiles: boolean = false;
   assignmentLinks: boolean = false;
+  statusTakeExam: boolean = false;
 
-
-  constructor(private modalService: NgbModal,
+  constructor(
+    private modalService: NgbModal,
     private route: ActivatedRoute,
     private contestService: ContestService,
-    private router: Router,
-    private teamService: TeamService,
     private roundService: RoundService,
     private toast: NgToastService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private router: Router,
+    private getUserLocal: GetValueLocalService
+  ) {}
 
   ngOnInit(): void {
+     if(!this.getUserLocal.getValueLocalUser('user')){
+      this.router.navigate(['./login']);
+     }
+    
     // Chi tiết cuộc thi
-    this.route.paramMap.pipe(
-      map(params => params.get('contest_id')),
-      switchMap(id => this.contestService.getWhereId(id))
-    ).subscribe(res => {
-      if (res.status) {
-        this.infoContest = res.payload;
-        this.infoContest ? this.statusContest = true : this.statusContest;
-      }
-    })
+    this.route.paramMap
+      .pipe(
+        map((params) => params.get('contest_id')),
+        switchMap((id) => this.contestService.getWhereId(id))
+      )
+      .subscribe((res) => {
+        if (res.status) {
+          this.infoContest = res.payload;
+          this.infoContest ? (this.statusContest = true) : this.statusContest;
+        }
+      });
 
     const round = {
-      round_id: 0
-    }
+      round_id: 0,
+    };
 
-    this.route.paramMap.subscribe(param => {
+    this.route.paramMap.subscribe((param) => {
       this.roundId = param.get('round_id');
       round.round_id = this.roundId;
-      this.roundService.getRoundWhereId(this.roundId).subscribe(res => {
-        if (res.payload)
-          this.roundDetail = res.payload;
+      this.roundService.getRoundWhereId(this.roundId).subscribe((res) => {
+        if (res.payload) this.roundDetail = res.payload;
         round.round_id = this.roundId;
-        this.roundDetail ? this.statusInfo = false : this.statusInfo;
+        this.roundDetail ? (this.statusInfo = false) : this.statusInfo;
         setInterval(() => {
           let futureDate = new Date(this.roundDetail.end_time).getTime();
           let today = new Date().getTime();
           let distance = futureDate - today;
 
           this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          this.hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          this.minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60)
+          );
           this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
         }, 1000);
-        this.roundService.getInfoTeamFromContestId(this.roundId)
-          .subscribe(res => {
+        this.roundService
+          .getInfoTeamFromContestId(this.roundId)
+          .subscribe((res) => {
             if (res.status) {
               this.teamDetail = res.payload;
 
-              this.teamDetail ? this.statusTeamDetail = true : this.statusTeamDetail;
+              this.teamDetail
+                ? (this.statusTeamDetail = true)
+                : this.statusTeamDetail;
               round.round_id = this.teamDetail.id;
             }
-          })
-      })
-
-
-    }
-    );
+          });
+      });
+    });
 
     // thông tin đề thi thoe vòng thi
     if (this.roundId) {
@@ -116,15 +127,18 @@ export class IntoExamComponent implements OnInit {
   // dowload đề bài
   downloadExam() {
     this.statusPage = true;
-    let urlOrigin = environment.publicApiUrl.split(' ');
-    if(this.roundDetail.exams){
-      this.roundDetail.exams.forEach(item => {
-        window.location.href = `http://127.0.0.1:8000/download-file?url=${item.external_url}`;
+    if (this.infoExam.exam) {
+      this.roundDetail.exams.forEach((item) => {
+        window.location.href = this.infoExam.exam.external_url;
       });
+    }else{
+      this.statusClickSubmit = false;
+          this.toast.error({
+            summary: 'Chưa cập nhật đề bài !!!',
+            duration: 5000,
+          });
     }
-    setTimeout(() => {
-      this.statusPage = false;
-    }, 2000);
+
   }
 
   openXl(content: any) {
@@ -145,14 +159,11 @@ export class IntoExamComponent implements OnInit {
 
   // get Info Đề bài
   getInfoExam(round: object) {
-    this.roundService.getInfoExamRound(round).subscribe(res => {
-      if (res.status)
-        this.infoExam = res.payload;
-    })
-  }
-
-  // Nộp bài
-  submit() {
+    this.roundService.getInfoExamRound(round).subscribe((res) => {
+      if (res.status) this.infoExam = res.payload;
+      if(this.infoExam) this.checkStatusExam(this.infoExam.status);
+      // if(!this.infoExam.exam.external_url) 
+    });
   }
 
   // Nộp bài bằng file
@@ -168,7 +179,6 @@ export class IntoExamComponent implements OnInit {
       }
     }, 3000);
     this.assignment = resultExam;
-    console.log(this.assignment);
   }
 
   // Nộp bài bằng link
@@ -177,7 +187,7 @@ export class IntoExamComponent implements OnInit {
     let resultExam = {
       result_url: link.target.value,
       id: this.infoExam.id,
-    }
+    };
     setTimeout(() => {
       if (resultExam.result_url != '') {
         this.statusSubmitExam = true;
@@ -186,7 +196,6 @@ export class IntoExamComponent implements OnInit {
     }, 3000);
     this.assignment = resultExam;
   }
-
 
   removeAssFile() {
     this.statusSubmitExam = false;
@@ -197,7 +206,6 @@ export class IntoExamComponent implements OnInit {
     }, 3000);
   }
 
-
   removeAssLink() {
     this.statusSubmitExam = false;
     setTimeout(() => {
@@ -207,17 +215,39 @@ export class IntoExamComponent implements OnInit {
     }, 3000);
   }
 
+  // Submit assignment
   submitExam() {
     this.statusClickSubmit = true;
-    this.roundService.submitExam(this.assignment).subscribe(res => {
-      console.log(res);
-      if (res.status) {
-        setTimeout(() => {
+    this.roundService.submitExam(this.assignment).subscribe((res) => {
+      setTimeout(() => {
+        if (res.status) {
           this.statusClickSubmit = false;
-          this.toast.success({ summary: 'Nộp bài thành công !!!', duration: 5000 });
-        }, 3000);
-      }
-    })
+          // this.assignment.
+          this.toast.success({
+            summary: 'Nộp bài thành công !!!',
+            duration: 5000,
+          });
+        } else {
+          this.statusClickSubmit = false;
+          this.toast.error({
+            summary: 'Lỗi nộp bài !!!',
+            duration: 5000,
+          });
+        }
+      });
+    });
+  }
+
+  cancelExam(){
+    this.statusClickSubmit = true;
+    const cancelObject = {
+      id: this.infoExam.id,
+    };
+
+    this.roundService.submitExam(cancelObject).subscribe((res) => {
+      this.checkStatusExam(res.payload.takeExam.status);
+      
+    });
   }
 
   copyLinkUrl() {
@@ -233,8 +263,14 @@ export class IntoExamComponent implements OnInit {
         statusExam: true,
         contest_id: this.contestId,
         team_id: this.teamDetail.id,
-      }
-    })
+      },
+    });
+  }
+
+
+  // Check team has  submit ass
+  checkStatusExam(status : number){
+    status == 1 ? this.statusTakeExam == false : this.statusTakeExam = true;
   }
 
   displayedColumns: string[] = ['index', 'name', 'avatar', 'email', 'bot'];

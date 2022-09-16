@@ -58,7 +58,6 @@ export class ContestComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.major_slug = params.get('slug');
       this.majorService.getMajorWhereSlug(this.major_slug).subscribe(res => {
-
         if (this.major_slug == null) {
           this.checkUserHasLogin == true ? this.getContestHasAfterLogin() : this.getAllContest();
         } else {

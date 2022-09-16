@@ -110,7 +110,6 @@ export class ContestDeatailComponent implements OnInit {
           this.contestDetail ? (this.statusContest = true) : this.statusContest;
           this.statusPage = false;
           this.contestDetail.enterprise;
-
           this.slider
             .getListSlider('major', 'major_id', this.contestDetail.major_id)
             .subscribe((res) => {
@@ -142,7 +141,6 @@ export class ContestDeatailComponent implements OnInit {
                 }
               }
             });
-          
         }
       });
 
@@ -162,7 +160,9 @@ export class ContestDeatailComponent implements OnInit {
   getResultRank() {
     let rountIdEnd = this.getRoundId(this.contestDetail.rounds, 1);
     this.roundService.getResultRound(rountIdEnd).subscribe((res) => {
+      console.log(res);
       res.status ? (this.resultRank = res.payload.data) : null;
+    
     });
   }
 
