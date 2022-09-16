@@ -82,9 +82,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="">
+                                <div class="" *ngIf="statusBtnTakeExam">
                                     <a class="btn-join-exam"
-                                        (click)="takeTheExam(roundDetail.id , roundDetail.end_time , roundDetail.start_time )">Vào
+                                        (click)="takeTheExam(roundDetail.id  )">Vào
                                         Thi</a>
                                 </div>
                             </div>

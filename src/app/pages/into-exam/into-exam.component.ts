@@ -138,7 +138,6 @@ export class IntoExamComponent implements OnInit {
             duration: 5000,
           });
     }
-
   }
 
   openXl(content: any) {
@@ -177,7 +176,7 @@ export class IntoExamComponent implements OnInit {
         this.statusSubmitExam = true;
         this.assignmentFiles = true;
       }
-    }, 3000);
+    }, 2000);
     this.assignment = resultExam;
   }
 
@@ -192,6 +191,9 @@ export class IntoExamComponent implements OnInit {
       if (resultExam.result_url != '') {
         this.statusSubmitExam = true;
         this.assignmentLinks = true;
+      }else{
+        this.assignmentLinks = false;
+        this.statusSubmitExam = true;
       }
     }, 3000);
     this.assignment = resultExam;
@@ -200,18 +202,14 @@ export class IntoExamComponent implements OnInit {
   removeAssFile() {
     this.statusSubmitExam = false;
     setTimeout(() => {
-      this.assignment = {};
-      this.assignmentFiles = false;
-      this.statusSubmitExam = true;
+      this.resetAllStatus()
     }, 3000);
   }
 
   removeAssLink() {
     this.statusSubmitExam = false;
     setTimeout(() => {
-      this.assignment = {};
-      this.assignmentLinks = false;
-      this.statusSubmitExam = true;
+        this.resetAllStatus()
     }, 3000);
   }
 
@@ -222,11 +220,11 @@ export class IntoExamComponent implements OnInit {
       setTimeout(() => {
         if (res.status) {
           this.statusClickSubmit = false;
-          // this.assignment.
           this.toast.success({
             summary: 'Nộp bài thành công !!!',
             duration: 5000,
           });
+          this.checkStatusExam(2);
         } else {
           this.statusClickSubmit = false;
           this.toast.error({
@@ -245,8 +243,11 @@ export class IntoExamComponent implements OnInit {
     };
 
     this.roundService.submitExam(cancelObject).subscribe((res) => {
-      this.checkStatusExam(res.payload.takeExam.status);
-      
+      if(res.status){
+        this.statusClickSubmit = false;
+        this.checkStatusExam(1);
+        this.resetAllStatus();
+      } 
     });
   }
 
@@ -270,7 +271,16 @@ export class IntoExamComponent implements OnInit {
 
   // Check team has  submit ass
   checkStatusExam(status : number){
-    status == 1 ? this.statusTakeExam == false : this.statusTakeExam = true;
+    status == 1 ? this.statusTakeExam = false : this.statusTakeExam = true;
+  }
+
+  // reset All Status
+  resetAllStatus(){
+    this.assignment = {};
+    this.assignmentLinks = false;
+    this.assignmentFiles = false;
+    this.statusSubmitExam = true;
+    this.statusClickSubmit = false;
   }
 
   displayedColumns: string[] = ['index', 'name', 'avatar', 'email', 'bot'];

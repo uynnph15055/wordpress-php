@@ -150,8 +150,8 @@
                 </div>
             </div>
             <div class="col-3">
-                <div class="warper-submit-assignment">
-                    <mat-progress-bar *ngIf="statusClickSubmit == true" color="warn" mode="indeterminate">
+                <div class="warper-submit-assignment position-relative">
+                    <mat-progress-bar style="top: 0px" class="position-absolute" *ngIf="statusClickSubmit == true" color="warn" mode="indeterminate">
                     </mat-progress-bar>
                     <div *ngIf="statusInfo == false && infoExam" class="p-3">
                         <h3 class="fw-bold fs-5">Nộp bài</h3>
@@ -188,7 +188,6 @@
                             [ngClass]="statusTakeExam == true ? 'btn btn-danger' : 'btn btn-main'"
                             class=" mt-2 text-center btn d-block  w-100'"
                             (click)="statusTakeExam == true ? cancelExam() : openVerticallyCentered(submit)">{{statusTakeExam == true ? 'Huỷ bài ' : 'Nộp bài'}}</a>
-                      
                         <ng-template #submit let-modal>
                             <mat-progress-bar *ngIf="statusSubmitExam ==  false" color="warn" mode="indeterminate">
                             </mat-progress-bar>
@@ -210,7 +209,7 @@
                                     </mat-tab>
                                     <mat-tab label="Link" [disabled]="assignmentFiles" color="warn">
                                         <div class="submit-assignment-box">
-                                            <input (change)="submitExamByLink($event)" type="text" name="text"
+                                            <input (keyup)="submitExamByLink($event)" type="text" name="text"
                                                 class="input" class="input-link-submit" placeholder="Link bài làm ..">
                                         </div>
                                     </mat-tab>
@@ -223,17 +222,17 @@
                                 </div>
                                 &nbsp;&nbsp;
                                 <div *ngIf="assignmentLinks" class="d-flex justify-content-start align-items-center">
-                                    <div *ngIf="assignmentLinks"
+                                    <div style="cursor:pointer;" (click)="removeAssLink()"
                                         class="w-25 text-center number-files-upload d-flex justify-content-between algin-items-center">
-                                        1 link </div>
-                                    <p (click)="removeAssLink()" class="btn-remove-ass"><i class="fas fa-times"></i></p>
+                                        <p>1 link</p> <span class="d-block"><i class="fas fa-times"></i></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" mat-stroked-button
                                     (click)="modal.close('Close click')">Đóng</button>
                                 &nbsp;&nbsp;
-                                <button type="button" [disabled]="!assignmentFiles && !assignmentLinks" mat-raised-button class="btn-submit text-white" (click)="submitExam()">Nộp
+                                <button type="button" [ngStyle]="{opacity: !assignmentFiles && !assignmentLinks ? 0.8 : 1}" [disabled]="!assignmentFiles && !assignmentLinks" mat-raised-button class="btn-submit text-white" (click)="submitExam()">Nộp
                                     bài</button>
                                 {{ statusClickSubmit
                                 == true ? modal.close() : null }}
