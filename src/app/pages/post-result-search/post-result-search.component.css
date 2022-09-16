@@ -1,7 +1,20 @@
+.page-post-box {
+    background: #f6f8fa
+}
+/* ---------------------- */
+.result-search__text {
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    margin: 12px 0;
+    color: #0E0759
+}
+/* ---------------------- */
 .result-post-list {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 44px;
+    margin-top: 12px;
 }
  /*------------ form-search --------*/
 .form-search {

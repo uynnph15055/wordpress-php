@@ -45,7 +45,7 @@ const routes: Routes = [
         component: PostDetailComponent,
       },
       {
-        path: 'bai-viet/:keyword/tim-kiem',
+        path: 'tim-kiem/bai-viet',
         component: PostResultSearchComponent,
       },
       {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
 import { ListPostService } from 'src/app/services/list-post.service';
 
@@ -12,13 +12,17 @@ import { ListPostService } from 'src/app/services/list-post.service';
 export class AsidePostComponent implements OnInit {
   validateForm!: FormGroup; 
   inputKeyword: string;
+  paramsObject: any
 
   constructor(
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
+    
+
     this.validateForm = this.fb.group({
       keyword: [null, [Validators.required]],
     });
@@ -26,9 +30,8 @@ export class AsidePostComponent implements OnInit {
 
   // tìm kiếm
   searchPost() {  
-    console.log("firstabc", this.inputKeyword)
     if (this.validateForm.valid) {
-        this.router.navigateByUrl('/bai-viet/tim-kiem?keyword=');
+      this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${this.inputKeyword}`);
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {

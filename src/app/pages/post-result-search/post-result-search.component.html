@@ -9,6 +9,14 @@
                 <input type="text" class="form__input" [(ngModel)]="inputKeyword" name="keyword" formControlName="keyword"
                     placeholder="Tìm kiếm tag, tên bài viết...">
             </form>
+            <div class="result-post-list" *ngIf="!results">
+                <app-contest-load-item></app-contest-load-item>
+                <app-contest-load-item></app-contest-load-item>
+                <app-contest-load-item></app-contest-load-item>
+                <app-contest-load-item></app-contest-load-item>
+                <app-contest-load-item></app-contest-load-item>
+                <app-contest-load-item></app-contest-load-item>
+            </div>
             <div class="result-post-list">
                 <app-post-related-item *ngFor="let item of results" [postItem]="item"></app-post-related-item>
             </div>
