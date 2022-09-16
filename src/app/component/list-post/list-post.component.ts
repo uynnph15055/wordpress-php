@@ -7,7 +7,7 @@ import { Post } from 'src/app/models/post.model';
   styleUrls: ['./list-post.component.css']
 })
 export class ListPostComponent implements OnInit {
-
+  @Input() countColumn: number;
   @Input() listPost : Array<Post>;
   constructor() { }
 

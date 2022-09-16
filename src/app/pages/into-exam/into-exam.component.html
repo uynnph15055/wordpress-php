@@ -9,10 +9,10 @@
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTudQwuYh8aQKOOByIe4hFX9ZWYCcF20aSfA&usqp=CAU"
                             alt="" class="info-contest-img">
                         <p class="fw-bold fs-text color-gray d-flex justify-content-center align-items-center">Số đội:
-                            &nbsp;
+                            &nbsp;{{roundDetail.teams.length}}  &nbsp;
                             <i class="fas fa-users d-block primary-color"></i>
                         </p>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center mt-2">
                             <app-list-avatar-user [listTeam]="roundDetail.teams" [titleModelName]="'Danh sách các đội'">
                             </app-list-avatar-user>
                         </div>
@@ -81,14 +81,13 @@
                         </ngx-skeleton-loader>
                     </div>
                 </div>
-                <p class="fw-bold fs-5 color-blue py-3">Đội của bạn</p>
+                <p class="fw-bold fs-5 color-blue py-2">Đội của bạn</p>
                 <div class="title-line"></div>
                 <div class="my-3 bg-white team-detail-box pb-3">
                     <div *ngIf="statusTeamDetail == true" style="border-radius: 10px;">
-
                         <div class="info-your-team text-center" ngbTooltip="Xem chi tiết">
                             <div (click)="openInfoTeamDetail()" class="p-3 bg-white">
-                                <img class="info-your-team-avatar" [src]="teamDetail.image" alt="">
+                                <img class="info-your-team-avatar " [src]="teamDetail.image" alt="">
                                 <h3 class="fw-bold mt-2 color-blue">{{teamDetail.name}}</h3>
                                 <p> Tổng số : {{teamDetail.members.length}} thành viên</p>
                             </div>

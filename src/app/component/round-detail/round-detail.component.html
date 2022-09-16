@@ -12,12 +12,7 @@
                     &nbsp;
                     <p class="mt-3">{{item.name}}</p>
                 </div>
-                <div class="text-gray">
-                    <!-- <span>{{getMembers(item.members)}} thành viên</span> -->
-                    &nbsp;
-                    <a (click)="openVerticallyCentered(content ,item ,  item.members)" class="btn btn-main">Chi
-                        tiết</a>
-                </div>
+                <div  style="cursor:pointer;" (click)="openVerticallyCentered(content ,item ,  item.members)" ><i class="fa-solid fs-5 fa-eye"></i></div>
             </div>
         </div>
 

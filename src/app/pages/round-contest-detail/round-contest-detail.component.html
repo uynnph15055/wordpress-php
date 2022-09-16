@@ -142,10 +142,10 @@
                     <app-round-detail id="round" [roundDetail]="roundDetail" [statusRoundDetail]="statusRoundDetail">
                     </app-round-detail>
                 </div>
-                <div *ngIf="listPostResult" class="mt-4">
-                    <p class="fw-bold my-3 fs-5 color-blue">Bài viết liên quan</p>
+                <div *ngIf="listPostResult " class="mt-4">
+                    <p class="fw-bold my-2 fs-5 color-blue">Bài viết liên quan</p>
                     <div class="title-line"></div>
-                    <app-list-post [listPost]="listPostResult"></app-list-post>
+                    <app-list-post [countColumn]="3" [listPost]="listPostResult"></app-list-post>
                 </div>
                 <div>
                     <p class="fw-bold fs-5 color-blue my-3">Cuộc thi liên quan</p>
