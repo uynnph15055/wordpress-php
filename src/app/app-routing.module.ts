@@ -22,6 +22,7 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 
+import { PostCategoryComponent } from './pages/post-category/post-category.component';
 const routes: Routes = [
   {
     path: "",
@@ -42,6 +43,8 @@ const routes: Routes = [
       {
         path: 'bai-viet/:slug',
         component: PostDetailComponent,
+        path: 'danh-muc-bai-viet',
+        component: PostCategoryComponent,
       },
       {
         path: 'vao-thi/:contest_id/vong/:round_id',

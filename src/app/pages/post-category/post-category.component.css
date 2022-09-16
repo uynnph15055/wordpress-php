@@ -98,6 +98,7 @@ h5 {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #D9D9D9;
+    margin-bottom: 32px;
 }
 
 .header-post-category {
@@ -140,16 +141,6 @@ h5 {
     flex-direction: column;
     justify-content: space-between;
 } */
-
-.btn-detail {
-    background-color: white;
-    border: solid 1px #8E8E95
-}
-
-.btn-detail:hover {
-    background-color: #0E0759;
-    color: white
-}
 
 .post-in-cate-item-content__info {
     color: #8E8E95;

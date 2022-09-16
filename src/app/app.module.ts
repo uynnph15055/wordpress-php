@@ -78,6 +78,8 @@ import { AsidePostComponent } from './component/post/aside-post/aside-post.compo
 import { ListSocialComponent } from './component/list-social/list-social.component';
 import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 import { ListTagComponent } from './component/list-tag/list-tag.component';
+import { PostRelatedItemComponent } from './component/post-related-item/post-related-item.component';
+import { PostCategoryComponent } from './pages/post-category/post-category.component';
 
 
 
@@ -127,6 +129,8 @@ import { ListTagComponent } from './component/list-tag/list-tag.component';
     ListSocialComponent,
     PostDetailComponent,
     ListTagComponent,
+    PostRelatedItemComponent,
+    PostCategoryComponent
   ],
   imports: [
     BrowserModule,
