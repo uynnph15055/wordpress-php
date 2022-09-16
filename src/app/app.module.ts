@@ -78,6 +78,8 @@ import { AsidePostComponent } from './component/post/aside-post/aside-post.compo
 import { ListSocialComponent } from './component/list-social/list-social.component';
 import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 import { ListTagComponent } from './component/list-tag/list-tag.component';
+import { PostItemSearchComponent } from './component/post/post-item-search/post-item-search.component';
+import { PostResultSearchComponent } from './pages/post-result-search/post-result-search.component';
 
 
 
@@ -127,6 +129,8 @@ import { ListTagComponent } from './component/list-tag/list-tag.component';
     ListSocialComponent,
     PostDetailComponent,
     ListTagComponent,
+    PostItemSearchComponent,
+    PostResultSearchComponent,
   ],
   imports: [
     BrowserModule,

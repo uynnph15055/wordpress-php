@@ -1,8 +1,12 @@
 <aside>
-    <form action="" class="form-search">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" class="form__input" placeholder="Tìm kiếm tag, tên bài viết ...">
-    </form>
+    <div class="post-search" >
+        <form action="" class="form-search" [formGroup]="validateForm" (ngSubmit)="searchPost()">
+            <button>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <input type="text" class="form__input" [(ngModel)]="inputKeyword" name="keyword" formControlName="keyword" placeholder="Tìm kiếm tag, tên bài viết...">
+        </form> 
+    </div>
     <div class="post-hot">
         <div class="header-section">
             <h2 class="header-section__title">Bài viết nổi bật</h2>
@@ -14,44 +18,12 @@
                         alt="" class="post-hot-item__img">
                 </div>
                 <div class="post-hot-item-content">
-                    <h3 class="post-hot-item-content__title text-collapse" data-toggle="tooltip" data-placement="top" title="Art is the way to express it to abc idw alsji">Art is the way to express it to abc idw alsji</h3>
+                    <h3 class="post-hot-item-content__title text-collapse" data-toggle="tooltip" data-placement="top"
+                        title="Art is the way to express it to abc idw alsji">Art is the way to express it to abc idw
+                        alsji</h3>
                     <div class="post-hot-item-content__info">
                         <div class="post-hot-item-content__info-item">
-                            <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018 ácas
-                        </div>
-                        <div class="post-hot-item-content__info-item">
-                            <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018ác ấccas
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="post-hot-item">
-                <div class="post-hot-item__img-section">
-                    <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                        alt="" class="post-hot-item__img">
-                </div>
-                <div class="post-hot-item-content">
-                    <h3 class="post-hot-item-content__title text-collapse" data-toggle="tooltip" data-placement="top" title="Art is the way to express it to abc idw alsji">Art is the way to express it to abc idw alsji</h3>
-                    <div class="post-hot-item-content__info">
-                        <div class="post-hot-item-content__info-item">
-                            <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018 ácas
-                        </div>
-                        <div class="post-hot-item-content__info-item">
-                            <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018ác ấccas
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="post-hot-item">
-                <div class="post-hot-item__img-section">
-                    <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                        alt="" class="post-hot-item__img">
-                </div>
-                <div class="post-hot-item-content">
-                    <h3 class="post-hot-item-content__title text-collapse" data-toggle="tooltip" data-placement="top" title="Art is the way to express it to abc idw alsji">Art is the way to express it to abc idw alsji</h3>
-                    <div class="post-hot-item-content__info">
-                        <div class="post-hot-item-content__info-item">
-                            <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018 ácas
+                            <i class="fa-solid fa-user"></i>&ensp;April 19, 2018 ácas
                         </div>
                         <div class="post-hot-item-content__info-item">
                             <i class="fa-solid fa-clock"></i>&ensp;April 19, 2018ác ấccas

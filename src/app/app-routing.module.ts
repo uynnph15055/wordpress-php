@@ -21,6 +21,7 @@ import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.compo
 import { PostsComponent } from './pages/posts/posts.component';
 import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 import { PostDetailComponent } from './pages/post-detail/post-detail.component';
+import { PostResultSearchComponent } from './pages/post-result-search/post-result-search.component';
 
 const routes: Routes = [
   {
@@ -40,8 +41,12 @@ const routes: Routes = [
         component: PostsComponent,
       },
       {
-        path: 'bai-viet/:slug',
+        path: ':slug',
         component: PostDetailComponent,
+      },
+      {
+        path: 'bai-viet/tim-kiem',
+        component: PostResultSearchComponent,
       },
       {
         path: 'vao-thi/:contest_id/vong/:round_id',

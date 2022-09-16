@@ -25,7 +25,6 @@ export class PostDetailComponent implements OnInit {
     ).subscribe(res => {
       if (res.status) {
         this.postDetail = res.payload;
-        console.log(res.payload)
       }
     })
   }
