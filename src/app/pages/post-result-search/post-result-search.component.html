@@ -2,9 +2,15 @@
     <div class="container">
         <div class="result-post">
             <span class="result-search__text">Kết quả tìm kiếm bài viết</span>
-            <form action=""></form>
+            <form action="" class="form-search" [formGroup]="validateForm" (ngSubmit)="searchPost()">
+                <button>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <input type="text" class="form__input" [(ngModel)]="inputKeyword" name="keyword" formControlName="keyword"
+                    placeholder="Tìm kiếm tag, tên bài viết...">
+            </form>
             <div class="result-post-list">
-                <app-post-item-search></app-post-item-search>
+                <app-post-related-item *ngFor="let item of results" [postItem]="item"></app-post-related-item>
             </div>
         </div>
     </div>

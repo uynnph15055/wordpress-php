@@ -41,11 +41,11 @@ const routes: Routes = [
         component: PostsComponent,
       },
       {
-        path: ':slug',
+        path: 'bai-viet/:slug',
         component: PostDetailComponent,
       },
       {
-        path: 'bai-viet/tim-kiem',
+        path: 'bai-viet/:keyword/tim-kiem',
         component: PostResultSearchComponent,
       },
       {
