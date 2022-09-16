@@ -16,6 +16,7 @@ import { CapacityExamComponent } from "./pages/capacity-exam/capacity-exam.compo
 import { PostsComponent } from "./pages/posts/posts.component";
 import { RecruitmentDetailComponent } from "./pages/recruitment-detail/recruitment-detail.component";
 import { ProfileLayoutComponent } from "./layouts/profile-layout/profile-layout.component";
+import { MyCapacityTestComponent } from "./pages/my-capacity-test/my-capacity-test.component";
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
           {
             path: "cuoc-thi-da-tham-gia",
             component: ContestUserJoinComponent,
+          },
+          {
+            path: "bai-test-da-lam",
+            component: MyCapacityTestComponent,
           },
         ],
       },

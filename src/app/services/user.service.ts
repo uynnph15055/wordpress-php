@@ -1,27 +1,22 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Observer } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { Contest } from '../models/contest';
-import { ResponsePayload } from '../models/response-payload';
-import { User } from '../models/user';
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { BehaviorSubject, Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { environment } from "src/environments/environment";
+import { ResponsePayload } from "../models/response-payload";
+import { User } from "../models/user";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UserService {
   private userSubject: BehaviorSubject<User>;
   private jwtToken: BehaviorSubject<string>;
   public user: Observable<User | null>;
   constructor(private http: HttpClient, private router: Router) {
-    this.userSubject = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem('user') || '{}')
-    );
-    this.jwtToken = new BehaviorSubject<string>(
-      localStorage.getItem('auth_token') || ''
-    );
+    this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem("user") || "{}"));
+    this.jwtToken = new BehaviorSubject<string>(localStorage.getItem("auth_token") || "");
     this.user = this.userSubject.asObservable();
   }
 
@@ -34,48 +29,39 @@ export class UserService {
   }
 
   login(authToken: string) {
-    return this.http
-      .post<ResponsePayload>(environment.loginUrl, { token: authToken })
-      .pipe(
-        map((response) => {
-          if (response.status == true) {
-            let dataUser = response.payload!.user;
-            if (dataUser.avatar == null) {
-              dataUser.avatar =
-                'https://cdn-icons-png.flaticon.com/512/149/149071.png';
-            }
-            localStorage.setItem(
-              'user',
-              JSON.stringify(response.payload!.user)
-            );
-            localStorage.setItem('avatar', JSON.stringify(dataUser.avatar));
-            localStorage.setItem('auth_token', response.payload!.token);
-            localStorage.setItem(
-              'token_type',
-              JSON.stringify(response.payload!.token_type)
-            );
-            this.userSubject.next(response.payload.user);
-            this.jwtToken.next(response.payload.token);
+    return this.http.post<ResponsePayload>(environment.loginUrl, { token: authToken }).pipe(
+      map((response) => {
+        if (response.status == true) {
+          let dataUser = response.payload!.user;
+          if (dataUser.avatar == null) {
+            dataUser.avatar = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
           }
+          localStorage.setItem("user", JSON.stringify(response.payload!.user));
+          localStorage.setItem("avatar", JSON.stringify(dataUser.avatar));
+          localStorage.setItem("auth_token", response.payload!.token);
+          localStorage.setItem("token_type", JSON.stringify(response.payload!.token_type));
+          this.userSubject.next(response.payload.user);
+          this.jwtToken.next(response.payload.token);
+        }
 
-          return response.status;
-        })
-      );
+        return response.status;
+      }),
+    );
   }
 
   // Update localStorageHasEdit
   setLocalStorageHasEdit(user: User) {
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
     this.userSubject.next(user);
   }
 
   logout() {
-    localStorage.removeItem('user');
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('token_type');
-    this.userSubject.next(JSON.parse('{}'));
-    this.jwtToken.next('');
-    this.router.navigate(['/login']);
+    localStorage.removeItem("user");
+    localStorage.removeItem("auth_token");
+    localStorage.removeItem("token_type");
+    this.userSubject.next(JSON.parse("{}"));
+    this.jwtToken.next("");
+    this.router.navigate(["/login"]);
   }
 
   listUser(): Observable<Array<User>> {
@@ -84,35 +70,39 @@ export class UserService {
 
   //  Các cuộc thi mà user đã tham gia
   getContestByUser(): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(
-      `${environment.userListUrl}/contest-joined-and-not-joined?sort=desc`
-    );
+    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined-and-not-joined?sort=desc`);
   }
 
   // Lộc cuộc thi đã tham gia theo trạng thái
-  getContestByUserStatus(
-    key_word: string,
-    status: any
-  ): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(
-      `${environment.userListUrl}/contest-joined?status=${status}&q=${key_word}`
-    );
+  getContestByUserStatus(key_word: string, status: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined?status=${status}&q=${key_word}`);
   }
 
   // Chỉnh sửa thông tin user
   editInfoUser(data: any): Observable<ResponsePayload> {
     const headers = new HttpHeaders();
-    return this.http.post<ResponsePayload>(
-      `${environment.userListUrl}/edit`,
-      data
-    );
+    return this.http.post<ResponsePayload>(`${environment.userListUrl}/edit`, data);
   }
 
   // get list contest user has join
   getListContestHasJoin(sta: any, sort: string): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(
-      `${environment.userListUrl}/contest-joined-and-not-joined?status=${sta}&sort=${sort}`
+      `${environment.userListUrl}/contest-joined-and-not-joined?status=${sta}&sort=${sort}`,
     );
+  }
+
+  // ds test năng lực đã tham gia
+  getListCapacityUserHasDone(paramsArgs?: {}): Observable<ResponsePayload> {
+    const params = new HttpParams({
+      fromObject: {
+        type: 1,
+        ...paramsArgs,
+      },
+    });
+
+    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined`, {
+      params,
+    });
   }
 
   // Phân trang theo link
@@ -120,13 +110,9 @@ export class UserService {
     return this.http.get<ResponsePayload>(`${url}?sort=desc`);
   }
 
-  filterContestHasLogin(
-    keyword: string,
-    major_id: any,
-    status: any
-  ): Observable<ResponsePayload> {
+  filterContestHasLogin(keyword: string, major_id: any, status: any): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(
-      `${environment.userListUrl}/contest-joined-and-not-joined?status=${status}&major_id=${major_id}&q=${keyword}`
+      `${environment.userListUrl}/contest-joined-and-not-joined?status=${status}&major_id=${major_id}&q=${keyword}`,
     );
   }
 }

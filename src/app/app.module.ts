@@ -54,6 +54,7 @@ import { FooterComponent } from "./layouts/footer/footer.component";
 import { RecruitmentComponent } from "./pages/recruitment/recruitment.component";
 import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzSpinModule } from "ng-zorro-antd/spin";
+import { NzPaginationModule } from "ng-zorro-antd/pagination";
 
 import { ModalInfoTeamComponent } from "./modal/modal-info-team/modal-info-team.component";
 // import { AndesginModule } from './anDesgin/andesgin/andesgin.module';
@@ -74,6 +75,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { ModalLoginComponent } from "./modal/modal-login/modal-login.component";
 import { ModalUploadCvComponent } from "./modal/modal-upload-cv/modal-upload-cv.component";
 import { ProfileLayoutComponent } from "./layouts/profile-layout/profile-layout.component";
+import { MyCapacityTestComponent } from "./pages/my-capacity-test/my-capacity-test.component";
 
 @NgModule({
   declarations: [
@@ -120,6 +122,7 @@ import { ProfileLayoutComponent } from "./layouts/profile-layout/profile-layout.
     ModalLoginComponent,
     ModalUploadCvComponent,
     ProfileLayoutComponent,
+    MyCapacityTestComponent,
   ],
   imports: [
     BrowserModule,
@@ -138,6 +141,7 @@ import { ProfileLayoutComponent } from "./layouts/profile-layout/profile-layout.
     NgToastModule,
     NzSelectModule,
     NzSpinModule,
+    NzPaginationModule,
   ],
   providers: [
     {

@@ -13,6 +13,12 @@ export class ProfileLayoutComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    // scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
     this.userService.user.subscribe((data) => {
       this.user = data!;
       return;
