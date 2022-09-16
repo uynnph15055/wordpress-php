@@ -20,6 +20,19 @@ export class ListPostService {
   getAllListPost() : Observable<ResponsePayload>{
     return this.http.get<ResponsePayload>(`${environment.postListUrl}`);
   }
+
+  // Get post thuộc tuyển dụng
+  getPostRecruitment() : Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-recruitment`);
+  }
+  // Get post thuộc cuộc thi
+  getPostContest() : Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-contest`);
+  }
+  // Get post thuộc test năng lực
+  getPostCapacity() : Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-capacity`);
+  }
   
   // get detail post
   getPostBySlug(slug: any): Observable<ResponsePayload> {
