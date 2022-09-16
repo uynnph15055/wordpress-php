@@ -30,7 +30,6 @@ export class PostResultSearchComponent implements OnInit {
     });
     this.keywordQuery = this.route.snapshot.queryParamMap.get('keyword')
     this.inputKeyword = this.keywordQuery;
-    console.log("first", this.keywordQuery, this.inputKeyword)
 
     // search
     this.search()
@@ -47,7 +46,6 @@ export class PostResultSearchComponent implements OnInit {
       this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${this.inputKeyword}`);
       this.postService.searchPost(this.inputKeyword).subscribe(res => {
         this.results = res.payload.data;
-        console.log("Ket qua", this.results);
       })
     // } else {
     //   Object.values(this.validateForm.controls).forEach(control => {
@@ -58,6 +56,7 @@ export class PostResultSearchComponent implements OnInit {
     //   });
     // }
   }
+  
   // tìm kiếm
   searchPost() {
     this.results = null

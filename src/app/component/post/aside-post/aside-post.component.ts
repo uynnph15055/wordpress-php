@@ -10,14 +10,13 @@ import { ListPostService } from 'src/app/services/list-post.service';
   styleUrls: ['./aside-post.component.css']
 })
 export class AsidePostComponent implements OnInit {
-  validateForm!: FormGroup; 
+  validateForm!: FormGroup;
   inputKeyword: string;
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private route: ActivatedRoute
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -26,7 +25,7 @@ export class AsidePostComponent implements OnInit {
   }
 
   // tìm kiếm
-  searchPost() {  
+  searchPost() {
     if (this.validateForm.valid) {
       this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${this.inputKeyword}`);
     } else {
@@ -36,7 +35,7 @@ export class AsidePostComponent implements OnInit {
           control.updateValueAndValidity({ onlySelf: true });
         }
       });
-    }    
+    }
   }
-  
+
 }
