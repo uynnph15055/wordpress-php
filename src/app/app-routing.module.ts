@@ -17,6 +17,7 @@ import { PostsComponent } from "./pages/posts/posts.component";
 import { RecruitmentDetailComponent } from "./pages/recruitment-detail/recruitment-detail.component";
 import { ProfileLayoutComponent } from "./layouts/profile-layout/profile-layout.component";
 import { MyCapacityTestComponent } from "./pages/my-capacity-test/my-capacity-test.component";
+import { AuthGuard } from "./guard/auth.guard";
 
 const routes: Routes = [
   {
@@ -42,6 +43,7 @@ const routes: Routes = [
       {
         path: "tai-khoan",
         component: ProfileLayoutComponent,
+        canActivate: [AuthGuard],
         children: [
           {
             path: "",
