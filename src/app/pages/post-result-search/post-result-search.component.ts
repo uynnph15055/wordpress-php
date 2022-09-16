@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/models/post.model';
 import { ListPostService } from 'src/app/services/list-post.service';
 
@@ -13,9 +13,11 @@ export class PostResultSearchComponent implements OnInit {
   results: Post[] | null
   validateForm!: FormGroup;
   inputKeyword: string;
+  keywordQuery: any
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private postService: ListPostService
   ) {
@@ -26,7 +28,7 @@ export class PostResultSearchComponent implements OnInit {
     this.validateForm = this.fb.group({
       keyword: [null, [Validators.required]],
     });
-
+    this.keywordQuery = this.route.snapshot.queryParamMap.get('keyword')
   }
 
   getList(){
@@ -38,6 +40,7 @@ export class PostResultSearchComponent implements OnInit {
   // tìm kiếm
   searchPost() {
     this.results = null
+    this.keywordQuery = this.route.snapshot.queryParamMap.get('keyword')
     if (this.validateForm.valid) {
       this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${this.inputKeyword}`);
       this.postService.searchPost(this.inputKeyword).subscribe(res=>{

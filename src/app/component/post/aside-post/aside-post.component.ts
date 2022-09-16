@@ -12,7 +12,6 @@ import { ListPostService } from 'src/app/services/list-post.service';
 export class AsidePostComponent implements OnInit {
   validateForm!: FormGroup; 
   inputKeyword: string;
-  paramsObject: any
 
   constructor(
     private router: Router,
@@ -21,8 +20,6 @@ export class AsidePostComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    
-
     this.validateForm = this.fb.group({
       keyword: [null, [Validators.required]],
     });
