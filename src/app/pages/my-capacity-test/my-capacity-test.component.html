@@ -33,7 +33,7 @@
           <p class="capacity__content-time">
             {{ capacity.date_start | formatDate }} - {{ capacity.register_deadline | formatDate }}
           </p>
-          <a [routerLink]="['/test-nang-luc', 1]" class="capacity__content-title-link">
+          <a [routerLink]="['/test-nang-luc', capacity.id]" class="capacity__content-title-link">
             <h2 class="capacity__content-title">{{ capacity.name }}</h2>
           </a>
 

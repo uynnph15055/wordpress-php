@@ -31,7 +31,8 @@ export class CapacityRelatedItemComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.skillsName = this.capacityItem.skills.map((skill) => skill.short_name).join(", ");
+    const listSkill = this.capacityItem.skills.map((skill) => skill.short_name);
+    this.skillsName = listSkill.length ? listSkill.join(", ") : "Không có kỹ năng nào!";
 
     // trạng thái bài test
     this.getStatusCapacity();
