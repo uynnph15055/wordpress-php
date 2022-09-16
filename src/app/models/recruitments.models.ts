@@ -15,4 +15,5 @@ export class Recruitments {
     skill: Array<Skill>;
     contest: Array<Capacity>;
     enterprise: Array<Enterprise>;
+    short_description: string;
 }

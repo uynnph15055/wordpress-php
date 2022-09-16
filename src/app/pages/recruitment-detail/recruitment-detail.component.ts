@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
+import { ModalUploadCvComponent } from 'src/app/modal/modal-upload-cv/modal-upload-cv.component';
 import { Capacity } from 'src/app/models/capacity';
 import { Contest } from 'src/app/models/contest';
 import { Post } from 'src/app/models/post.model';
@@ -24,7 +26,8 @@ export class RecruitmentDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute ,
     public postService:  ListPostService,
-    private recruitmentService: RecruitmentsService) { }
+    private recruitmentService: RecruitmentsService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
@@ -49,5 +52,17 @@ export class RecruitmentDetailComponent implements OnInit {
        this.listPostResult = res.payload.data;
      }
    })
+  }
+
+  // Open-model-dang-nhap
+  openModalLogin(){
+    const dialogRef = this.dialog.open(ModalUploadCvComponent, {
+      width: '700px',
+      data:{
+        recruitment: this.recruitmentDetail
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 }
