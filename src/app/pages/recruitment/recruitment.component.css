@@ -5,14 +5,16 @@ p , ul{
 
 /* CONTENT */
 .recruitment-filter-box{
-  background-color: var(--gray-300);
+  background-color: var(--gray-200);
 }
 
 .filter-skill-item{
-  padding: 10px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
   background-color: var(--gray-200);
   margin-right: 15px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .filter-skill-box .active{
@@ -67,6 +69,52 @@ p , ul{
 .recruitment-list-hot-item-box:hover {
   border: 1px solid var(--primary);
   transition: all ease-in-out 0.3s;
+}
+
+.recruitment-image-box{
+  position: relative;
+}
+
+.recruitment-outs-commom{
+  position: absolute;
+  top: 0;
+  right: 10px;
+  color: var(--white);
+  width: 40px;
+  height: 36px;
+  line-height: 36px;
+}
+
+.recruitment-isHot::before{
+  content:"";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  border-width: 0px 20px 7px;
+  border-style: solid;
+  border-color: transparent rgba(255, 0, 0, 0.781) transparent rgba(255, 0, 0, 0.781);
+}
+
+.recruitment-isNew::before{
+  content:"";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  border-width: 0px 20px 7px;
+  border-style: solid;
+  border-color: transparent rgba(0, 128, 0, 0.726) transparent rgba(0, 128, 0, 0.726);
+}
+
+.recruitment-isHot{
+  background-color: rgba(255, 0, 0, 0.781) ;
+}
+.recruitment-isNew{
+  background-color: rgba(0, 128, 0, 0.726);
+}
+
+.recruitment-left{
+  position: sticky;
+  top: 100px;
 }
 
 .recruitment-list-hot-item-text {
@@ -160,7 +208,7 @@ p , ul{
   cursor: pointer;
 }
 
-.recruitment-list-item .recruitment-list-image {
+.recruitment-list-item .recruitment-image {
   height: 200px;
   width: 100%;
   border-radius: 6px;

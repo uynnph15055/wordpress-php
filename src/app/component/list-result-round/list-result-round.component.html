@@ -64,7 +64,7 @@
 <div *ngIf="dataResultRound == undefined && statusResultRound == true" class=" d-flex justify-content-center mt-2">
     <p>Hiện chưa cập nhật kết quả !!!</p>
 </div>
-<div *ngIf="statusResultRound == false">
+<div *ngIf="statusResultRound">
     <ngx-skeleton-loader count="10" [theme]="{ 'height.px' : 35, 'margin-bottom' : '7px'}" appearance="line">
     </ngx-skeleton-loader>
 </div>

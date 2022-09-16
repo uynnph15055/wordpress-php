@@ -37,6 +37,7 @@ export class CapacityRelatedItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
     this.skillsName = this.capacityItem.skills.map(skill => skill.short_name).join(", ");
 
     // đếm ngược thời gian bắt đầu mở bài test

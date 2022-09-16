@@ -11,8 +11,7 @@ export class SkillServiceService {
 
   constructor(private http: HttpClient) { }
 
-  searchRecruitment(keyword : string): Observable<ResponsePayload>{
-    
-    return this.http.get<ResponsePayload>(`${environment.recruitment}?keyword=${keyword}`);
+  getAll(): Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.skillListUrl}`);
   }
 }

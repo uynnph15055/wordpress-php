@@ -28,15 +28,16 @@
 </div>
 <div class="recruitment-content">
     <div class="container py-4">
-        <form class="recruitment-filter-box mb-4 py-3 rounded row" [formGroup]="formFilter" (submit)="filterRecruitments()">
+        <form class="recruitment-filter-box py-3 rounded row" [formGroup]="formFilter" (submit)="filterRecruitments()">
             <div class="col-4">
-                <input type="text" class="form-control" (keyup)="setValueKeyword($event)" placeholder="Tìm kiếm ..." id="exampleInputEmail1"
-                    aria-describedby="emailHelp">
+                <input type="text" class="form-control" (keyup)="setValueKeyword($event)" placeholder="Tìm kiếm ..."
+                    id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="col-3">
                 <div ngbDropdown class="d-inline-block w-100">
-                    <input type="text" (keyup)="filterSelect(majors ,$any($event.target).value ,'major')" formControlName="filterMajor" class="form-control w-100"
-                        placeholder="Chuyên ngành" id="dropdownBasic1" ngbDropdownToggle>
+                    <input type="text" (keyup)="filterSelect(majors ,$any($event.target).value ,'major')"
+                        formControlName="filterMajor" class="form-control w-100" placeholder="Chuyên ngành"
+                        id="dropdownBasic1" ngbDropdownToggle>
                     <div ngbDropdownMenu class="w-100" aria-labelledby="dropdownBasic1">
                         <div *ngIf="!majors" class="d-flex justify-content-center">
                             <app-loading-item class="py-2"></app-loading-item>
@@ -52,40 +53,48 @@
                         id="dropdownBasic1" ngbDropdownToggle>
                     <div class="w-100" ngbDropdownMenu aria-labelledby="dropdownBasic1">
                         <a ngbDropdownItem *ngFor="let item of statusFilter"
-                            (click)="setValueStatus(item.name)">Mới nhất</a>
+                            (click)="setValueStatus(item.name)">{{item.name}}</a>
                     </div>
                 </div>
             </div>
             <div class="col-2">
-                <button   class="btn-search-recruitment w-100 h-100">Tìm kiếm</button>
+                <button class="btn-search-recruitment w-100 h-100">Tìm kiếm</button>
             </div>
         </form>
-        <ul class="d-flex filter-skill-box mb-4">
-            <li class="filter-skill-item active" (click)="filterSkill($event)">Java</li>
-            <li class="filter-skill-item" (click)="filterSkill($event)">PH</li>
-            <li class="filter-skill-item" (click)="filterSkill($event)">HTML/CS</li>
-            <li class="filter-skill-item" (click)="filterSkill($event)">Javascrip</li>
-            <li class="filter-skill-item" (click)="filterSkill($event)">Python</li>
+        <ul *ngIf="skills" class="d-flex  flex-wrap filter-skill-box ">
+            <li class="filter-skill-item active mt-4" (click)="filterSkill($event , 0)">Tất cả</li>
+            <li *ngFor="let item of skills" class="filter-skill-item mt-4" (click)="filterSkill($event ,item.id)">
+                {{item.short_name}}</li>
         </ul>
-        <div class=" recruitment-list-box row">
-            <div class="recruitment-list-hot-left col-lg-4 col-xl-4 col-md-12 col-sm-12">
-                <h2 class="fw-bold"><img class="image-title" src="./../../../assets/img/9c13a4ff5c359f6bc624.jpg"
-                        alt="">
-                    Bài viết nổi bật</h2>
-                <div *ngIf="listPostResult" class="bg-white w-100 recruitment-list-hot-box">
-                    <div class="p-3 recruitment-list-hot-reponsive">
-                        <div *ngFor="let item of listPostResult" class="recruitment-list-hot-item-box">
-                            <div class="w-100">
-                                <img [src]="item.thumbnail_url" alt="" class="recruitment-list-hot-item-box-img">
+        <div *ngIf="!skills" class="d-flex  flex-wrap">
+            <ngx-skeleton-loader [theme]="{ 
+                'height.px': '30',
+                'width.px': '150',
+                'margin-top.px' : '20',
+                'margin-right.px' : '30'
+              }" count="10" animation="pulse"></ngx-skeleton-loader>
+        </div>
+        <div #result class=" recruitment-list-box row  mt-4">
+            <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12">
+                <div class="recruitment-left">
+                    <h2 class="fw-bold"><img class="image-title" src="./../../../assets/img/9c13a4ff5c359f6bc624.jpg"
+                            alt="">
+                        Bài viết nổi bật</h2>
+                    <div *ngIf="listPostResult" class="bg-white w-100 recruitment-list-hot-box">
+                        <div class="p-3 recruitment-list-hot-reponsive">
+                            <div *ngFor="let item of listPostResult" class="recruitment-list-hot-item-box">
+                                <div class="w-100">
+                                    <img [src]="item.thumbnail_url" alt="" class="recruitment-list-hot-item-box-img">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div *ngIf="!listPostResult" class="recruitment-list-hot-box-loading">
-                    <ngx-skeleton-loader [theme]="{ 
-                    'height.px': '230',
-                    'margin-bottom' : '20'
-                  }" count="4" animation="pulse"></ngx-skeleton-loader>
+                    <div *ngIf="!listPostResult" class="recruitment-list-hot-box-loading">
+                        <ngx-skeleton-loader [theme]="{ 
+            'height.px': '230',
+            'margin-bottom' : '20'
+          }" count="4" animation="pulse"></ngx-skeleton-loader>
+                    </div>
                 </div>
             </div>
             <div class="recruitment-list-right col-lg-8 col-xl-8 col-md-12  col-sm-12">
@@ -98,9 +107,11 @@
                     <div [routerLink]="['/tuyen-dung/chi-tiet/', item.id ]" *ngFor="let item of recruitments"
                         class="bg-white recruitment-list-item-box" style="border-radius: 10px;">
                         <div class="px-3 pt-3 recruitment-list-item">
-                            <div class=" text-center">
-                                <img class="recruitment-list-image" [src]="item.image" alt="">
-
+                            <div class="recruitment-image-box text-center">
+                                <img class="recruitment-image" [src]="item.image" alt="">
+                                <div class="recruitment-outs-commom" [ngClass]=" item.hot == 1 ? 'recruitment-isHot' : 'recruitment-isNew'">
+                                    <span class="d-inline fw-bold">{{item.hot == 1 ? 'HOT' : 'NEW'}}</span>
+                                </div>
                             </div>
                             <div class="recruitment-list-item-info">
                                 <div
@@ -114,15 +125,14 @@
                                 </div>
                                 <ul class="recruitment-list-skill mt-2 d-flex">
                                     <li *ngFor="let skill of getLimitSkill(item.skill)" class="recruitment-item-skill">
-                                        {{skill.name}}</li>
+                                        {{skill.short_name}}</li>
                                 </ul>
                                 <ul class=" mt-2 ">
-                                        <li>+ Trợ cấp đến 6M/ tháng</li>
-                                        <li>+ Môi trường trẻ trung, năng động</li>
-                                        <li>+ Môi trường trẻ trung, năng động</li>
-                                        <li>+ Môi trường trẻ trung, năng động</li>
+                                    <li>+ Trợ cấp đến 6M/ tháng</li>
+                                    <li>+ Môi trường trẻ trung, năng động</li>
+                                    <li>+ Môi trường trẻ trung, năng động</li>
+                                    <li>+ Môi trường trẻ trung, năng động</li>
                                 </ul>
-
                             </div>
                         </div>
                         <div class="px-3 pb-3 recruitment-list-item align-items-center">
@@ -144,6 +154,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="text-center" style="margin-top: 100px;">
+                        <img *ngIf="recruitments.length == 0" src="https://homebond.ae/assets/images/no-result.png"
+                            alt="">
+                    </div>
                 </div>
 
                 <div *ngIf="!statusRecruitments" class="recruitment-loading">
@@ -152,17 +166,6 @@
                     'margin-bottom' : '20'
                   }" count="6" animation="pulse"></ngx-skeleton-loader>
                 </div>
-                <ul *ngIf="recruitmentLinks &&  recruitmentLinks.length > 3" class="recruitment-paying-page-list mt-4">
-                    <li *ngFor="let item of recruitmentLinks" class="recruitment-paying-page-item">
-                        <a *ngIf="item.label == 'pagination.previous'" (click)="getListRecruitment(item.url)"><i
-                                class="fa-solid fa-angle-left"></i> Prev</a>
-                        <a *ngIf="item.label != 'pagination.previous' && item.label != 'pagination.next'"
-                            (click)="getListRecruitment(item.url)"
-                            class="{{item.active ? 'active' : 'text-dark'}}">{{item.label}}</a>
-                        <a *ngIf="item.label == 'pagination.next'" (click)="getListRecruitment(item.url)"> Next <i
-                                class="fa-solid fa-angle-right"></i></a>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>

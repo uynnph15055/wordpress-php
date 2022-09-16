@@ -20,11 +20,12 @@ import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info
 })
 export class ModalAddTeamComponent implements OnInit {
   selectedImage: any;
-  statusRegister: boolean;
+  statusRegister: boolean = true;
+  statusFormEdit: boolean = true;
   titleModel: string = 'Thêm đội tham gia thi';
   public imagePath: string;
   buttonName: string = 'Đăng ký';
-  teamDetail = new Team();
+  teamDetail: Team;
   user: User;
   imgURL: any =
     'https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png';
@@ -59,22 +60,25 @@ export class ModalAddTeamComponent implements OnInit {
     this.user = this.getUserLocal.getValueLocalUser('user');
 
     if(this.data.team_id){
-      this.statusRegister =  false;
+      this.statusFormEdit =  false;
       this.teamService.getTeamDetail(this.data.team_id).subscribe((res) => {
         if (res.status) {
-          this.statusRegister = true;
+          this.statusFormEdit = true;
           this.teamDetail = res.payload;
           this.titleModel = 'Sửa đội thi';
-          this.imgURL = this.teamDetail.image;
+          this.imgURL = this.teamDetail.image  ? this.teamDetail.image : 'https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png';
           this.formRegister.controls['name'].setValue(this.teamDetail.name);
           this.buttonName = 'Sửa đội';
         }
       });
+    }else{
+      this.statusFormEdit =  true;
     }
   }
 
+  // Check status submit
   checkStatusForm() {
-    if (this.teamDetail) {
+    if (this.data.team_id) {
       this.editTeam();
     } else {
       this.addTeam();
@@ -118,6 +122,7 @@ export class ModalAddTeamComponent implements OnInit {
           this.statusRegister = true;
           this.openInfoTeam(res.id_team, this.data.contest_id);
           this.dialogRef.close();
+          this.ngOnInit();
         }
       });
     }, 1000);
@@ -144,6 +149,7 @@ export class ModalAddTeamComponent implements OnInit {
             this.statusRegister = true;
             this.dialogRef.close(true);
             this.openInfoTeam(this.teamDetail.id, this.data.contest_id);
+            this.ngOnInit();
           }
         });
     }, 1000);
