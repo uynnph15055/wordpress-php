@@ -27,7 +27,8 @@
                     </div>
                 </div>
                 <div class="post-new-latest__bottom">
-                    <p class="post-new-latest__short-desc">{{PostRecruitmentFirst.description}}</p>
+                    <p class="post-new-latest__short-desc" *ngIf="PostRecruitmentFirst.description "
+                        [innerHTML]="PostRecruitmentFirst.description"></p>
                     <a routerLink="" class="btn btn-detail">Chi tiết</a>
                     <div class="post-new-latest__slider-list">
                         <!-- <div class="prev-arrow arrow-list-post slick-arrow">
