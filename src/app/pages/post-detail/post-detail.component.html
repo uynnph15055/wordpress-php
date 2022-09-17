@@ -4,23 +4,35 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a routerLink="/">Trang chủ</a></li>
                 <li class="breadcrumb-item"><a routerLink="/bai-viet">Bài viết</a></li>
-                <li class="breadcrumb-item breadcrumb-item active">{{postDetail.title}}</li>
+                <li class="breadcrumb-item breadcrumb-item active" *ngIf="statusPost==true">{{postDetail.title}}</li>
+                <ngx-skeleton-loader *ngIf="statusPost==false"
+                    [theme]="{ 'height.px' : 30, 'width.px' : 100,  'margin-bottom' : '7px' , 'border-radius': '10px' }"
+                    appearance="line">
+                </ngx-skeleton-loader>
             </ol>
         </nav>
         <div class="post-main">
             <div class="post-main-content">
-                <h1 class="post-detail__title">
-                    {{postDetail.title}}
+                <h1 class="post-detail__title" *ngIf="statusPost==true">
+                    {{postDetail?.title}}
                 </h1>
+                <ngx-skeleton-loader *ngIf="statusPost==false"
+                    [theme]="{ 'height.px' : 30, 'width.px' : 100,  'margin-bottom' : '7px' , 'border-radius': '10px' }"
+                    appearance="line">
+                </ngx-skeleton-loader>
                 <div class="post-detail__head-info">
-                    <div class="post-detail__head-info-item"><span
-                            class="post-detail__head-info-item-cate">Bài viết thuộc: {{postDetail.postable_type}}</span>
+                    <div class="post-detail__head-info-item"><span class="post-detail__head-info-item-cate">Bài viết
+                            thuộc: {{postDetail?.postable_type}}</span>
                         <app-list-social></app-list-social>
                     </div>
                     <div class="post-detail__head-info-item">
-                        <span class="post-detail__head-info-item-text"><i class="fa-solid fa-user"></i>&ensp; {{postDetail.user.name}}</span>
-                        <span class="post-detail__head-info-item-text"><i class="fa-solid fa-clock"></i>&ensp; {{postDetail.published_at}}</span>
+                        <span class="post-detail__head-info-item-text"><i class="fa-solid fa-user"></i>&ensp;
+                            {{postDetail.user?.name}}</span>
+                        <span class="post-detail__head-info-item-text"><i class="fa-solid fa-clock"></i>&ensp;
+                            {{postDetail?.published_at}}</span>
                     </div>
+                </div>
+                <div class="post-detail__short-desc" [innerHTML]="postDetail?.description">
                 </div>
                 <div class="post_upload-cv">
                     <form action="">
@@ -28,13 +40,10 @@
                         <button>Upload CV</button>
                     </form>
                 </div>
-                <div class="post-detail__short-desc" [innerHTML]="postDetail.description">
-                </div>
                 <div class="post-detail__img-section">
-                    <img [src]="postDetail.thumbnail_url"
-                        alt="" class="post-detail__img">
+                    <img [src]="postDetail?.thumbnail_url" alt="" class="post-detail__img">
                 </div>
-                <div class="post-detail__content-text"  [innerHTML]="postDetail.content">
+                <div class="post-detail__content-text" [innerHTML]="postDetail?.content">
                 </div>
                 <div class="post-detail__tag-section">
                     <app-list-tag></app-list-tag>
