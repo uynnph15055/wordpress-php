@@ -17,6 +17,8 @@ p,h3{
 .header-team-user-edit-box {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
 }
 

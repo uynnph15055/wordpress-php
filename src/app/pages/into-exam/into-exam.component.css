@@ -1,7 +1,15 @@
 /* Phần trang thông tin cuộc thi */
+h3 ,p{
+  margin-bottom: 0px;
+}
+
 .warper-into-exam {
   padding-top: 35px;
   background-color: #f5f5f5;
+}
+
+.info-contest-header-left {
+  border-right: 1px solid var(--gray-300);
 }
 
 .description img {
@@ -12,6 +20,9 @@
   margin: 0 !important;
 }
 
+.exam-info-box .exam-info-item{
+  margin-bottom: 10px;
+}
 
 .info-contest-header,
 .team-detail-box {
@@ -53,8 +64,7 @@
 .contest-detail-right-countdown {
   display: flex;
   justify-content: center;
-  /* margin: 20px 10px; */
-  margin-bottom: -0.3rem !important;
+  margin-bottom: 20px;
 }
 
 .contest-detail-right-countdown-box {
@@ -69,7 +79,7 @@
 .contest-detail-right-countdown-item {
   text-align: center;
   padding: 10px 5px;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   width: 100%;
   margin: 0px 5px;
   border-radius: 6px;
@@ -105,11 +115,10 @@
 
 .team-leader {
   padding: 5px 10px;
-  background-color: var(--warning);
+  background-color: var(--primary);
   font-size: 14px;
   display: inline-block;
-  margin-top: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   color: var(--white);
 }
 
@@ -119,7 +128,6 @@
   border-radius: 10px;
   z-index: 10;
   cursor: pointer;
-
 }
 
 
@@ -128,6 +136,7 @@
   height: 100px;
   border-radius: 50px;
   object-fit: cover;
+  margin: auto;
 }
 
 
@@ -156,10 +165,10 @@
 }
 
 .btn-upload-assignment:hover {
-  background-color: var(--warning);
+  background-color: var(--primary);
   box-shadow: 0px 15px 20px rgb(243, 165, 113);
   color: #fff;
-  transform: translateY(-7px);
+  transform: translateY(-2px);
 }
 
 .btn-upload-assignment:active {
@@ -169,17 +178,16 @@
 /* INPUT LINK */
 .input-link-submit {
   border: none;
-  width: 300px;
+  width: 350px;
   padding: 15px 20px;
-  border-radius: 10px;
-  background: #f1f1f1;
-  box-shadow: 20px 20px 60px #c5c5c5,
-    -20px -20px 30px #ffffff;
+  border-radius: 5px;
+  background: var(--white);
+  box-shadow: 0px 8px 15px rgba(14, 13, 13, 0.1);
   transition: 0.3s;
 }
 
 .input-link-submit:focus {
-  outline-color: var(--warning);
+  outline-color: var(--primary);
   background: #ffff;
   box-shadow: inset 20px 20px 60px #f0eeee,
     inset -20px -20px 60px #ffffff;
@@ -197,7 +205,7 @@
   --tooltip-color: #fff;
   width: var(--width);
   height: var(--height);
-  background: var(--primary-color);
+  background: #3CCF4E;
   position: relative;
   text-align: center;
   border-radius: 0.45em;
@@ -251,7 +259,7 @@
 }
 
 .button:hover {
-  background: #27ae60;
+  background: var(--primary);
 }
 
 .button:hover .text {
@@ -275,6 +283,8 @@
 .number-files-upload {
   padding: 7px 15px;
   border-radius: 5px;
+  background-color: #EB1D36;
+  color: var(--white);
 }
 
 .btn-remove-ass {

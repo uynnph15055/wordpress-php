@@ -1,8 +1,9 @@
 /* LIST  POST  */
-.list-post-new {
-    margin-top: -10px;
+.post-item{
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px var(--gray-400);
+    cursor: pointer;
 }
-
 .post-item-in .color-content{
     color: #444;
 }
@@ -14,7 +15,6 @@ p , h1, h2,h3,h4 ,h5{
 .list-post-new-slick .post-item {
     background-color: var(--white);
     border-radius: 10px;
-    margin: 5px 12px;
     transition: all ease-in 0.3s;
     box-shadow: 0px 0px 7px var(--gray);
     transform: translateY(0px);
@@ -25,6 +25,10 @@ p , h1, h2,h3,h4 ,h5{
     transition: all ease-in 0.3s;
     box-shadow: 0px 0px 5px var(--primary);
     cursor: pointer;
+}
+
+.post-new-name{
+    font-size: 16px;
 }
 
 .color-name{
@@ -42,10 +46,6 @@ p , h1, h2,h3,h4 ,h5{
     border-radius: 6px;
 }
 
-.list-post-new-slick .post-item-in {
-    padding: 10px;
-}
-
 .list-post-new-slick .post-new-content {
     margin: -5px 0px;
     text-align: justify;
@@ -58,27 +58,3 @@ p , h1, h2,h3,h4 ,h5{
     margin-bottom: 0;
 }
 
-.list-post-new-slick .post-new-name {
-    font-size: 1rem;
-}
-
-.list-post-new .prev-arrow {
-    left: -20px;
-}
-
-.list-post-new .next-arrow {
-    right: -20px;
-}
-
-.list-post-new .arrow-list-post {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    border-radius: 50px;
-    background-color: #e77325;
-    color: var(--white);
-}
-
-.list-post-new .arrow-list-post:hover {
-    background-color: var(--primary);
-}

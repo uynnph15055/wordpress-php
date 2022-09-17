@@ -61,6 +61,9 @@ import { ModalInfoTeamComponent } from "./modal/modal-info-team/modal-info-team.
 
 registerLocaleData(en);
 
+import { ModalUploadCvComponent } from "./modal/modal-upload-cv/modal-upload-cv.component";
+import { ProfileLayoutComponent } from "./layouts/profile-layout/profile-layout.component";
+import { MyCapacityTestComponent } from "./pages/my-capacity-test/my-capacity-test.component";
 
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
@@ -72,18 +75,18 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { RankStudentComponent } from './modal/rank-student/rank-student.component';
 import { AvatarComponent } from './component/avatar/avatar.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AsidePostComponent } from './component/post/aside-post/aside-post.component';
-import { ListSocialComponent } from './component/list-social/list-social.component';
-import { PostDetailComponent } from './pages/post-detail/post-detail.component';
-import { ListTagComponent } from './component/list-tag/list-tag.component';
-import { PostCategoryComponent } from './pages/post-category/post-category.component';
-import { PostResultSearchComponent } from './pages/post-result-search/post-result-search.component';
+import { ContestAsideComponent } from './component/contest-aside/contest-aside.component';
 import { PostRelatedItemComponent } from './component/post-related-item/post-related-item.component';
 import { ModalHistoryCapacityComponent } from "./modal/modal-history-capacity/modal-history-capacity.component";
 import { ModalLoginComponent } from "./modal/modal-login/modal-login.component";
-import { ModalUploadCvComponent } from "./modal/modal-upload-cv/modal-upload-cv.component";
-import { ProfileLayoutComponent } from "./layouts/profile-layout/profile-layout.component";
-import { MyCapacityTestComponent } from "./pages/my-capacity-test/my-capacity-test.component";
+import { AsidePostComponent } from "./component/post/aside-post/aside-post.component";
+import { ListSocialComponent } from "./component/list-social/list-social.component";
+import { PostDetailComponent } from "./pages/post-detail/post-detail.component";
+import { ListTagComponent } from "./component/list-tag/list-tag.component";
+import { PostCategoryComponent } from "./pages/post-category/post-category.component";
+import { PostResultSearchComponent } from "./pages/post-result-search/post-result-search.component";
+
+
 
 @NgModule({
   declarations: [
@@ -125,6 +128,7 @@ import { MyCapacityTestComponent } from "./pages/my-capacity-test/my-capacity-te
     RecruitmentDetailComponent,
     ListPostComponent,
     PostsComponent,
+    PostRelatedItemComponent,
     RankStudentComponent,
     AvatarComponent,
     AsidePostComponent,
@@ -139,6 +143,7 @@ import { MyCapacityTestComponent } from "./pages/my-capacity-test/my-capacity-te
     ModalUploadCvComponent,
     ProfileLayoutComponent,
     MyCapacityTestComponent,
+    ContestAsideComponent,
   ],
   imports: [
     BrowserModule,

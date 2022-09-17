@@ -113,17 +113,11 @@ export class RecruitmentComponent implements OnInit {
 
   // Get list post
   getListPost() {
-    this.listPostService
-      .getPostWhereCate('post-recruitmentt')
-      .subscribe((res) => {
-        if (res.status) {
-          this.listPostResult = res.payload.data.filter(
-            (item: Recruitments, index: number) => {
-              return index < 4;
-            }
-          );
-        }
-      });
+     this.listPostService.getPostWhereCate('post-recruitmentt').subscribe(res => {
+      if(res.status){
+        this.listPostResult = res.payload.data;
+      }
+    })
   }
 
   getListMajor() {

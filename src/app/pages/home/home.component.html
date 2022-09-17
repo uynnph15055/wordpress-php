@@ -109,8 +109,8 @@
         <div class="prev-arrow position-absolute top-50 start-0 translate-middle arrow-list-contest slick-arrow">
             <i class="fas fa-chevron-left"></i>
         </div>
-        <ngx-slick-carousel class="carousel row slick-list-contest row" [config]="sliderContest">
-            <app-contest-item ngxSlickItem *ngFor="let item of contests" class="col-3 contest-item" [item]="item">
+        <ngx-slick-carousel class="carousel  row slick-list-contest" [config]="sliderContest">
+            <app-contest-item ngxSlickItem  *ngFor="let item of contests" class="col-3 py-2 contest-item" [item]="item">
             </app-contest-item>
         </ngx-slick-carousel>
         <div class="next-arrow position-absolute top-50 start-100 translate-middle arrow-list-contest slick-arrow">

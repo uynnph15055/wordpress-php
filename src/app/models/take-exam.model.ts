@@ -6,5 +6,8 @@ export class TakeExam {
     exam_id: number;
     result_url: string;
     final_point: string;
-    exam: Exam;
+    exam: {
+        external_url: string;
+    };
+    status: number;
 }
