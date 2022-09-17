@@ -26,7 +26,6 @@ export class PostDetailComponent implements OnInit {
     ).subscribe(res => {
       if (res.status) {
         this.postDetail = res.payload;
-        console.log("object", this.postDetail);
         (this.postDetail.postable_type === "App\\Models\\Contest") ? this.postDetail.postable_type = "Cuộc thi" :  
           (this.postDetail.postable_type === "App\\Models\\Recruitment") ? this.postDetail.postable_type ="Tuyển dụng" : 
             this.postDetail.postable_type = "Test năng lực"

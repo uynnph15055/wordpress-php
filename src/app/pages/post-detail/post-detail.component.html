@@ -5,18 +5,18 @@
                 <li class="breadcrumb-item"><a routerLink="/">Trang chủ</a></li>
                 <li class="breadcrumb-item"><a routerLink="/bai-viet">Bài viết</a></li>
                 <li class="breadcrumb-item breadcrumb-item active" *ngIf="statusPost==true">{{postDetail.title}}</li>
-                <ngx-skeleton-loader *ngIf="statusPost==false"
+                <!-- <ngx-skeleton-loader *ngIf="statusPost==false"
                     [theme]="{ 'height.px' : 30, 'width.px' : 100,  'margin-bottom' : '7px' , 'border-radius': '10px' }"
                     appearance="line">
-                </ngx-skeleton-loader>
+                </ngx-skeleton-loader> -->
             </ol>
         </nav>
         <div class="post-main">
             <div class="post-main-content">
-                <h1 class="post-detail__title" *ngIf="statusPost==true">
+                <h1 class="post-detail__title" *ngIf="statusPost">
                     {{postDetail?.title}}
                 </h1>
-                <ngx-skeleton-loader *ngIf="statusPost==false"
+                <ngx-skeleton-loader  *ngIf="!statusPost"
                     [theme]="{ 'height.px' : 30, 'width.px' : 100,  'margin-bottom' : '7px' , 'border-radius': '10px' }"
                     appearance="line">
                 </ngx-skeleton-loader>
