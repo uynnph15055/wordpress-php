@@ -41,4 +41,9 @@ export class ListPostService {
   getPostBySlug(slug: any): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}/${slug}`);
   }
+
+  // search
+  searchPost(keyword: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?keyword=${keyword}`);
+  } 
 }
