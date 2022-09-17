@@ -9,7 +9,8 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
-            <ngx-skeleton-loader *ngIf="!results" [theme]="{ 'height.px' : 30, 'width.px' :200, 'margin' : '12px 0 8px 0' , 'border-radius': '10px' }"
+            <ngx-skeleton-loader *ngIf="!results"
+                [theme]="{ 'height.px' : 30, 'width.px' :200, 'margin' : '12px 0 8px 0' , 'border-radius': '10px' }"
                 appearance="line">
             </ngx-skeleton-loader>
             <p class="result-post__length" *ngIf="results"> Kết quả tìm kiếm: <span
@@ -31,7 +32,9 @@
                 </ngx-skeleton-loader>
             </div>
             <div class="result-post-list">
-                <app-post-related-item *ngFor="let item of results" [postItem]="item"></app-post-related-item>
+                <div class="post-item" *ngFor="let item of results">
+                    <app-post-related-item  [postItem]="item"></app-post-related-item>
+                </div>
             </div>
         </div>
     </div>
