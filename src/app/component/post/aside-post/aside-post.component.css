@@ -86,10 +86,13 @@ img {
     border: 1px solid #E8EAEE;
     align-items: center;
 }
-
+.form-search button {
+    line-height: 1;
+}
 .form-search i {
     color: #FC4C02;
-    font-size: 16px
+    font-size: 16px;
+    line-height: 1;
 }
 
 .form-search .form__input {

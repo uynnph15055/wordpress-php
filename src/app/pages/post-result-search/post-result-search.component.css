@@ -16,6 +16,27 @@
     grid-gap: 44px;
     margin-top: 12px;
 }
+.result-post__length{
+    font-size: 18px;
+    color: #0E0759;
+    margin: 12px 0;
+}
+.result-post__number{
+    font-weight: bold;
+}
+.result-post__empty {
+    text-align: center;
+}
+.result-post__empty span{
+    display: block;
+    margin: auto;
+    width: 300px;
+}
+.result-post__empty span:first-child{
+    color: #FC4C02;
+    font-size: 24px;
+    padding: 8px 0;
+}
  /*------------ form-search --------*/
 .form-search {
     display: flex;
@@ -25,10 +46,14 @@
     border: 1px solid #E8EAEE;
     align-items: center;
 }
+.form-search button {
+    line-height: 1
+}
 
 .form-search i {
     color: #FC4C02;
-    font-size: 16px
+    font-size: 16px;
+    line-height: 1
 }
 
 .form-search .form__input {
@@ -40,4 +65,5 @@
     border-radius: 0.25rem;
     border-color: #D1D5DB;
     outline: 0;
+    font-size: 16px
 }

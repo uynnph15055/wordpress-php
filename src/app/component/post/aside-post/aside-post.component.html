@@ -1,11 +1,12 @@
 <aside>
-    <div class="post-search" >
+    <div class="post-search">
         <form action="" class="form-search" [formGroup]="validateForm" (ngSubmit)="searchPost()">
+            <input type="text" class="form__input" [(ngModel)]="inputKeyword" name="keyword" formControlName="keyword"
+                placeholder="Tìm kiếm tag, tên bài viết...">
             <button>
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
-            <input type="text" class="form__input" [(ngModel)]="inputKeyword" name="keyword" formControlName="keyword" placeholder="Tìm kiếm tag, tên bài viết...">
-        </form> 
+        </form>
     </div>
     <div class="post-hot">
         <div class="header-section">
