@@ -1,33 +1,11 @@
-
- <div *ngIf="posts" class="list-post-new mt-3 position-relative">
-    <div class="prev-arrow arrow-list-post slick-arrow">
-        <i class="fas fa-chevron-left"></i>
-    </div>
-    <ngx-slick-carousel class="carousel  list-post-new-slick" [config]="sliderPostNew">
-        <a *ngFor="let item of posts" ngxSlickItem class="col-3 post-item">
-            <div class="post-item-in">
-                <img class="post-item-imgae"
-                    [src]="item.thumbnail_url"
-                    alt="">
-                <h4 class="fw-bold post-new-name text-collapse mt-2">{{item.title}}</h4>
-                <p class="color-name my-2"><i class="fa-solid fa-clock"></i>&nbsp; {{item.published_at | formatDate}}</p>
-                <p class="mb-3 color-name"><i class="fa-solid fa-user-pen"></i>&nbsp;{{item.user.name}}</p>
-                <p class="post-new-content color-text" [innerHTML]="item.description"></p>
-            </div>
-        </a>
-        <a *ngFor="let item of posts" ngxSlickItem class="col-3 post-item">
-            <div class="post-item-in">
-                <img class="post-item-imgae"
-                    [src]="item.thumbnail_url"
-                    alt="">
-                <h4 class="fw-bold post-new-name text-collapse mt-2">{{item.title}}</h4>
-                <p class="color-name"><i class="fa-solid fa-clock"></i>&nbsp; {{item.published_at | formatDate}}</p>
-                <p class="mb-3 color-name"><i class="fa-solid fa-user-pen"></i>&nbsp;{{item.user.name}}</p>
-                <p class="post-new-content color-text" [innerHTML]="item.description"></p>
-            </div>
-        </a>
-    </ngx-slick-carousel>
-    <div class="next-arrow arrow-list-post slick-arrow">
-        <i class="fas fa-chevron-right"></i>
+<div *ngIf="listPost" class="row mt-3">
+    <div *ngFor="let item of listPost" [ngClass]="countColumn == 3 ? 'col-4' : 'col-3'" class="col-3 bg-white">
+         <div class="post-item p-3">
+            <img class="post-item-imgae" [src]="item.thumbnail_url" alt="">
+            <h4 class="fw-bold post-new-name text-collapse my-2">{{item.title}}</h4>
+            <p class="mb-2 color-text"><i class="fa-solid fa-user-pen"></i>&nbsp;{{item.user.name}}</p>
+            <p class="color-text mb-2"><i class="fa-solid fa-clock"></i>&nbsp; {{item.published_at | formatDate}}</p>
+            <p class="post-new-content color-text" [innerHTML]="item.description"></p>
+         </div>
     </div>
 </div>

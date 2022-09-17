@@ -1,6 +1,14 @@
 /* COMMOM */
+h1, h2 , h3 , h4 , h5 , h6 , p , ul{
+  margin-bottom: 0;
+}
+
 .p-justify {
   text-align: justify;
+}
+
+.round-info-box .round-info-item{
+  margin-bottom: 15px;
 }
 
 .contest-detail-box {
@@ -57,7 +65,7 @@
 .contest-detail-section,
 .content-round-page {
   border-radius: 8px;
-  box-shadow: 0px 0px 7px var(--gray);
+  box-shadow: 0px 0px 7px var(--gray-300);
   background-color: #ffff;
 }
 
@@ -106,6 +114,18 @@
   z-index: -1;
 }
 
+.btn-join-exam{
+  padding: 10px 20px;
+  background-color: var(--primary);
+  color: var(--white);
+  border-radius: 6px;
+  transition: 0.5s;
+}
+
+.btn-join-exam:hover{
+  opacity: 0.9;
+  transition: 0.6s;
+}
 
 .name-company {
   font-size: 1rem;
@@ -265,13 +285,7 @@
 
 
 /* COUNT DOWN */
-.contest-detail-right {
-  /* position: sticky; */
-  position: -webkit-sticky;
-  position: sticky;
-  top: 100px;
-  height:350px;
-}
+
 
 .contest-detail-right-name {
   display: -webkit-box;
@@ -308,13 +322,17 @@
 .contest-detail-right-countdown-item {
   text-align: center;
   padding: 10px 5px;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   width: 100%;
   margin: 0px 5px;
   border-radius: 6px;
   font-size: 17px;
   font-weight: 500;
-  color: white;
+}
+
+.contest-detail-right-in {
+  position: sticky;
+  top: 100px
 }
 
 .contest-detail-right-countdown-box p {

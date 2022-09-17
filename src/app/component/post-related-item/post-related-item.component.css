@@ -101,10 +101,11 @@ h5 {
     margin-bottom: 32px;
 }
 
-.header-post-category {
+.title-category-post {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 32px;
 }
 
 .header-section .header-section__link {
@@ -166,9 +167,7 @@ h5 {
 }
 
 /* ------------------- post item ------------ */
-.post-item {
-    height: 450px;
-}
+.post-item {}
 
 .post-item-img-section {
     position: relative;
@@ -210,11 +209,14 @@ h5 {
 
 .post-item__info-item:first-child {
     display: -webkit-box;
+    display: inline-block;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
     max-width: 160px;
+    width: 100%;
 }
 
 .post-item__info-item+.post-item__info-item {
@@ -225,6 +227,17 @@ h5 {
 .post-item-bottom {
     color: #8E8E95
 }
+
+.btn-detail {
+    background-color: white;
+    border: solid 1px #8E8E95
+}
+
+.btn-detail:hover {
+    background-color: #0E0759;
+    color: white
+}
+
 
 .post-item-bottom .btn {
     font-size: 12px;

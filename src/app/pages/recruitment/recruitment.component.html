@@ -169,3 +169,10 @@
             </div>
         </div>
     </div>
+    <div *ngIf="listPostResult" class="container list-post-box pb-5" >
+        <h3 class="fw-bold title text-uppercase mb-2 text-left color-blue">Tìm hiểu doanh nghiệp</h3>
+        <div class="title-line">
+        </div>
+        <app-list-post [listPost]="listPostResult"></app-list-post>
+    </div>
+</div>

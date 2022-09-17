@@ -50,12 +50,6 @@ export class RecruitmentDetailComponent implements OnInit {
     this.postService.getPostWhereCate('post-recruitment').subscribe(res => {
      if(res.status){
        this.listPostResult = res.payload.data;
-       this.cinfigData = {
-         id: 0,
-         posts: this.listPostResult,
-         numberColumn: 4,
-       };
-
      }
    })
   }
