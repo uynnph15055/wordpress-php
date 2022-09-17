@@ -222,14 +222,6 @@ h3{
   color: var(--title-blue);
 }
 
-.slick-slide-student-more,
-.slick-slide-student-three,
-.slick-slide-student-first,
-.slick-slide-student-two {
-  margin-left: -50px;
-}
-
-
 /* MODE MORE  STUDENT */
 .slick-slide-student-more .slick-slide {
   transform: scale(0.8);

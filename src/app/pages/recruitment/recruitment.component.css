@@ -38,6 +38,7 @@ p , ul{
 .image-title{
   width: 30px;
   margin-right: 15px;
+  display: inline-block;
 }
 
 .recruitment-content {

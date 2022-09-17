@@ -13,6 +13,9 @@ export class TestCapacityService {
 
     // List test năng lực
     getAllTestCapacity(): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.capacityListUrl}`);
-  }
+      return this.http.get<ResponsePayload>(`${environment.capacityListUrl}`);
+    }
+    SearchTestCapacity(data: string): Observable<ResponsePayload> {
+      return this.http.get<ResponsePayload>(`${environment.capacityListUrl}?q=${data}`);
+    }
 }

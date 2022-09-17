@@ -3,8 +3,10 @@
 }
 
 .login-box {
-  width: 400px;
-  height: 50%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 
 .btn_login-google {
