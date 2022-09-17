@@ -11,7 +11,7 @@
                     class="form-control">
             </div>
             <div class="">
-                <button type="button" (click)="filterContestSearch()" class="btn btn-register">Tìm
+                <button type="button" (click)="filterContestSearch()" class="btn btn-main">Tìm
                     kiếm</button>
             </div>
         </form>
@@ -30,7 +30,7 @@
                 [item]="item">
             </app-contest-item>
             <div class="d-flex justify-content-center" *ngIf=" listContestByUser.length==0">
-                <div class="image-not-data">
+                <div class="image-not-data mt-3">
                     <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_203587-28.jpg?w=2000"
                         alt="" class="w-100">
                 </div>

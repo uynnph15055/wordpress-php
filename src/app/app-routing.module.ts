@@ -1,15 +1,12 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ContestComponent } from './pages/contest/contest.component';
-import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
-import { ContestDeatailComponent } from './pages/contest-detail/contest-deatail.component';
-import { ListAvatarUserComponent } from './component/list-avatar-user/list-avatar-user.component';
-import { ContestLoadItemComponent } from './loading/contest-load-item/contest-load-item.component';
-import { InfoTeamComponent } from './pages/info-team/info-team.component';
-import { ProfileUserComponent } from './component/profile-user/profile-user.component';
-import { ContestUserJoinComponent } from './component/contest-user-join/contest-user-join.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { LoginComponent } from "./auth/login/login.component";
+import { HomeComponent } from "./pages/home/home.component";
+import { ContestComponent } from "./pages/contest/contest.component";
+import { HomeLayoutComponent } from "./layouts/home-layout/home-layout.component";
+import { ContestDeatailComponent } from "./pages/contest-detail/contest-deatail.component";
+import { ProfileUserComponent } from "./component/profile-user/profile-user.component";
+import { ContestUserJoinComponent } from "./component/contest-user-join/contest-user-join.component";
 
 import { RoundDetailComponent } from './component/round-detail/round-detail.component';
 import { RoundComponent } from './component/round/round.component';
@@ -22,6 +19,9 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 import { PostResultSearchComponent } from './pages/post-result-search/post-result-search.component';
+import { ProfileLayoutComponent } from "./layouts/profile-layout/profile-layout.component";
+import { MyCapacityTestComponent } from "./pages/my-capacity-test/my-capacity-test.component";
+import { AuthGuard } from "./guard/auth.guard";
 
 import { PostCategoryComponent } from './pages/post-category/post-category.component';
 const routes: Routes = [
@@ -30,15 +30,15 @@ const routes: Routes = [
     component: HomeLayoutComponent,
     children: [
       {
-        path: '',
+        path: "",
         component: HomeComponent,
       },
       {
-        path: 'cuoc-thi',
+        path: "cuoc-thi",
         component: ContestComponent,
       },
       {
-        path: 'bai-viet',
+        path: "bai-viet",
         component: PostsComponent,
       },
       {
@@ -58,26 +58,30 @@ const routes: Routes = [
         component: IntoExamComponent,
       },
       {
-        path: 'thong-tin',
-        component: InfoTeamComponent,
+        path: "tai-khoan",
+        component: ProfileLayoutComponent,
+        canActivate: [AuthGuard],
         children: [
           {
-            path: 'ca-nhan',
+            path: "",
             component: ProfileUserComponent,
           },
           {
-            path: 'cuoc-thi-tham-gia',
+            path: "cuoc-thi-da-tham-gia",
             component: ContestUserJoinComponent,
           },
-
-        ]
+          {
+            path: "bai-test-da-lam",
+            component: MyCapacityTestComponent,
+          },
+        ],
       },
       {
-        path: 'cuoc-thi/chuyen-nganh/:slug',
+        path: "cuoc-thi/chuyen-nganh/:slug",
         component: ContestComponent,
       },
       {
-        path: 'cuoc-thi/trang-thai/:status',
+        path: "cuoc-thi/trang-thai/:status",
         component: ContestComponent,
       },
       {
@@ -102,24 +106,22 @@ const routes: Routes = [
       },
       {
         path: "test-nang-luc/:capacity_id",
-        component: CapacityDetailComponent
+        component: CapacityDetailComponent,
       },
       {
         path: "test-nang-luc/vao-thi/:capacity_id/bai-thi/:round_id",
-        component: CapacityExamComponent
-      }
-    ]
+        component: CapacityExamComponent,
+      },
+    ],
   },
   {
     path: "login",
-    component: LoginComponent
+    component: LoginComponent,
   },
-
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

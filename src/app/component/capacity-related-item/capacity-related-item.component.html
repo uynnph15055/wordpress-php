@@ -1,8 +1,14 @@
 <div class="capacity__related-item">
-  <div class="capacity__related-item-image" [ngStyle]="{'background-image': 'url('+ capacityItem.img +')'}"></div>
+  <a
+    [routerLink]="['/test-nang-luc', capacityItem.id]"
+    class="capacity__related-item-image"
+    [ngStyle]="{ 'background-image': 'url(' + capacityItem.img + ')' }"
+  ></a>
 
   <div class="capacity__related-content">
-    <p class="capacity__related-content-time">{{ formatDate(capacityItem.date_start) }} - {{ formatDate(capacityItem.register_deadline) }}</p>
+    <p class="capacity__related-content-time">
+      {{ capacityItem.date_start | formatDate }} - {{ capacityItem.register_deadline | formatDate }}
+    </p>
     <a [routerLink]="['/test-nang-luc', capacityItem.id]" class="capacity__related-content-title-link">
       <h2 class="capacity__related-content-title">{{ capacityItem.name }}</h2>
     </a>
@@ -54,6 +60,12 @@
       </li>
     </ul>
 
-    <button class="btn btn-register capacity__related-content-btn" (click)="handleGoToExam(capacityItem.id)" [disabled]="statusExam.status === 0 || statusExam.status === 2">{{ statusExam.status === 1 ? "Tham gia ngay": statusExam.statustext }}</button>
+    <button
+      class="btn btn-main capacity__related-content-btn"
+      (click)="handleGoToExam(capacityItem.id)"
+      [disabled]="statusExam.status === 0 || statusExam.status === 2"
+    >
+      {{ statusExam.status === 1 ? "Tham gia ngay" : statusExam.statustext }}
+    </button>
   </div>
 </div>

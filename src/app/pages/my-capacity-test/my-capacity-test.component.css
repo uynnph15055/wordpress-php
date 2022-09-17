@@ -1,0 +1,168 @@
+.capacity__title {
+  margin-top: 12px;
+}
+
+.capacity__item {
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+  /* box-shadow: 0 5px 15px 0 #dedede; */
+  margin-bottom: 24px;
+}
+
+.capacity__item-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 65%;
+  border-radius: 8px;
+  display: block;
+}
+
+.capacity__content-time {
+  color: #898989;
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.capacity__content-title-link {
+  color: #444;
+}
+
+.capacity__content-title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  margin: 2px 0 8px;
+  transition: all 0.25s linear;
+}
+
+.capacity__content-title:hover {
+  color: var(--primary);
+}
+
+.capacity__content-btn {
+  margin: 6px 0 0;
+  padding: 6px 0;
+}
+
+.capacity__content-list {
+  margin-left: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.capacity__content-btn {
+  width: 100%;
+}
+
+.capacity__content-list-item {
+  display: flex;
+  padding-bottom: 2px;
+  font-size: 14px;
+}
+
+.capacity__content-list-item-icon {
+  min-width: 24px;
+}
+
+.sidebar__content-list-item-time {
+  padding-left: 2px;
+}
+
+.capacity__content-btn {
+  width: 100%;
+}
+
+.capacity__content-list-item-skill {
+  display: flex;
+}
+
+.capacity__content-list-item-skill-name {
+  text-transform: uppercase;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  padding-left: 4px;
+  color: #444;
+}
+
+.capacity__countdown-item-box {
+  background-color: transparent;
+  color: var(--primary);
+  padding: 4px 12px;
+  min-width: 30px;
+  font-size: 18px;
+}
+
+.capacity__countdown {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+
+.capacity__countdown-item {
+  padding: 0px 4px;
+  color: rgba(20, 20, 20, 0.333);
+}
+
+.capacity__countdown-item-box {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 12px;
+  min-width: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 2px;
+}
+
+.capacity__countdown-item-box {
+  background-color: transparent;
+  color: var(--primary);
+  padding: 4px 12px;
+  min-width: 30px;
+  font-size: 18px;
+}
+
+.capacity__countdown {
+  margin-top: 0;
+}
+
+/* pagination */
+::ng-deep .ant-pagination-item-active a,
+::ng-deep .ant-pagination-item:hover a,
+::ng-deep .ant-pagination-item-active:hover a,
+::ng-deep .ant-pagination-prev:not([ng-reflect-disabled="true"]):hover .ant-pagination-item-link,
+::ng-deep .ant-pagination-next:not([ng-reflect-disabled="true"]):hover .ant-pagination-item-link,
+::ng-deep .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-link-icon,
+::ng-deep .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-link-icon {
+  color: var(--primary);
+}
+
+::ng-deep .ant-pagination-item-active:hover,
+::ng-deep .ant-pagination-item:hover,
+::ng-deep .ant-pagination-prev:not([ng-reflect-disabled="true"]):hover .ant-pagination-item-link,
+::ng-deep .ant-pagination-next:not([ng-reflect-disabled="true"]):hover .ant-pagination-item-link,
+::ng-deep .ant-pagination-item-active {
+  border-color: var(--primary);
+}
+
+::ng-deep button.ant-pagination-item-link.ng-star-inserted {
+  line-height: normal;
+}
+
+.no-data-image {
+  display: block;
+  margin: 0 auto;
+}
