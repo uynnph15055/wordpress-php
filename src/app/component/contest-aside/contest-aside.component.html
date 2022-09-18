@@ -38,7 +38,7 @@
             <button (click)="openFormRegister()"
                 [disabled]="!statusCheckDate || contestDetail.status_user_has_join_contest"
                 [ngClass]="!statusCheckDate ? 'btn btn-register-disable w-100'
-                : contestDetail.status_user_has_join_contest ? 'btn btn-success w-100' : ' btn contest-detail-register-btn  btn-register w-100' ">{{!statusCheckDate
+                : contestDetail.status_user_has_join_contest ? 'btn btn-success w-100' : 'btn btn-main w-100' ">{{!statusCheckDate
                 ? 'Hết hạn đăng ký' :
                  contestDetail.status_user_has_join_contest ? 'Đã tham gia' : 'Đăng ký'}}</button>
         </div>
