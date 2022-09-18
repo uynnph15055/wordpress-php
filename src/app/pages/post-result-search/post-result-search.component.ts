@@ -21,8 +21,7 @@ export class PostResultSearchComponent implements OnInit {
     private fb: FormBuilder,
     private postService: ListPostService
   ) {
-    this.getList()
-   }
+  }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -35,18 +34,13 @@ export class PostResultSearchComponent implements OnInit {
     this.search()
   }
 
-  getList(){
-    this.postService.getAllListPost().subscribe(res => {
-      this.results = res.payload.data;
-    })
-  }
-
+  // tìm kiếm
   search() {
     // if (this.validateForm.valid) {
-      this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${this.inputKeyword}`);
-      this.postService.searchPost(this.inputKeyword).subscribe(res => {
-        this.results = res.payload.data;
-      })
+    this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${this.inputKeyword}`);
+    this.postService.searchPost(this.inputKeyword).subscribe(res => {
+      this.results = res.payload.data;
+    })
     // } else {
     //   Object.values(this.validateForm.controls).forEach(control => {
     //     if (control.invalid) {
@@ -56,18 +50,18 @@ export class PostResultSearchComponent implements OnInit {
     //   });
     // }
   }
-  
-  // tìm kiếm
+
+  // tìm kiếm khi từ trang khác và trên url
   searchPost() {
     this.results = null
 
     this.keywordQuery = this.route.snapshot.queryParamMap.get('keyword')
-    
+
     // search
     if (this.validateForm.valid) {
       this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${this.inputKeyword}`);
-      this.postService.searchPost(this.inputKeyword).subscribe(res=>{
-          this.results = res.payload.data;
+      this.postService.searchPost(this.inputKeyword).subscribe(res => {
+        this.results = res.payload.data;
       })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
