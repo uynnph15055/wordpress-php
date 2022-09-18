@@ -42,3 +42,8 @@ export class ResultExam {
   falseAnswer: number; // tổng số câu làm sai,
   trueAnswer: number; // tổng số câu làm đúng
 }
+
+export class TestResultStorage {
+  round_id: number;
+  data: any;
+}
