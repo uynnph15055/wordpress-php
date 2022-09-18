@@ -16,13 +16,14 @@
                 <h1 class="post-detail__title" *ngIf="statusPost">
                     {{postDetail?.title}}
                 </h1>
-                <ngx-skeleton-loader  *ngIf="!statusPost"
+                <ngx-skeleton-loader *ngIf="!statusPost"
                     [theme]="{ 'height.px' : 30, 'width.px' : 100,  'margin-bottom' : '7px' , 'border-radius': '10px' }"
                     appearance="line">
                 </ngx-skeleton-loader>
                 <div class="post-detail__head-info">
-                    <div class="post-detail__head-info-item"><span class="post-detail__head-info-item-cate">Bài viết
-                            thuộc: {{postDetail?.postable_type}}</span>
+                    <div class="post-detail__head-info-item"><span class="post-detail__head-info-item-cate">
+                            Bài viết thuộc:
+                            <a routerLink="/danh-muc-bai-viet"></a> {{postDetail?.postable_type}}</span>
                         <app-list-social></app-list-social>
                     </div>
                     <div class="post-detail__head-info-item">

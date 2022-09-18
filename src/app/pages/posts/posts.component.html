@@ -8,7 +8,7 @@
         </nav>
         <div class="header-section--first">
             <h2 class="header-section__title">Bài viết tuyển dụng</h2>
-            <a routerLink="" class="header-section__link">Tất cả</a>
+            <a routerLink="/danh-muc-bai-viet" class="header-section__link">Tất cả</a>
         </div>
         <div class="post-new-latest">
             <div class="post-new-latest__img-section">
@@ -16,7 +16,7 @@
             </div>
             <div class="post-new-latest-content">
                 <h3 class="post-new-latest__title">
-                    <a routerLink="">{{PostRecruitmentFirst.title}}</a>
+                    <a routerLink="/bai-viet/{{PostRecruitmentFirst.slug}}">{{PostRecruitmentFirst.title}}</a>
                 </h3>
                 <div class="post-new-latest__info">
                     <div class="post-new-latest__info-item">
@@ -30,7 +30,7 @@
                 <div class="post-new-latest__bottom">
                     <p class="post-new-latest__short-desc" *ngIf="PostRecruitmentFirst.description "
                         [innerHTML]="PostRecruitmentFirst.description"></p>
-                    <a routerLink="" class="btn btn-detail">Chi tiết</a>
+                    <a routerLink="/bai-viet/{{PostRecruitmentFirst.slug}}" class="btn btn-detail">Chi tiết</a>
                     <div class="post-new-latest__slider-list">
                         <!-- <div class="prev-arrow arrow-list-post slick-arrow">
                             <i class="fas fa-chevron-left"></i>
@@ -64,7 +64,7 @@
                 <div class="post-main-content-section">
                     <div class="header-section">
                         <h2 class="header-section__title">Bài viết test năng lực</h2>
-                        <a routerLink="" class="header-section__link">Tất cả</a>
+                        <a routerLink="/danh-muc-bai-viet" class="header-section__link">Tất cả</a>
                     </div>
                     <div class="main-section">
                         <div class="post-item">
@@ -98,7 +98,7 @@
                 <div class="post-main-content-section">
                     <div class="header-section">
                         <h2 class="header-section__title">Bài viết cuộc thi</h2>
-                        <a routerLink="" class="header-section__link">Tất cả</a>
+                        <a routerLink="/danh-muc-bai-viet" class="header-section__link">Tất cả</a>
                     </div>
                     <div class="main-section">
                         <div class="post-item">
