@@ -86,6 +86,7 @@ import { ListTagComponent } from "./component/list-tag/list-tag.component";
 import { PostCategoryComponent } from "./pages/post-category/post-category.component";
 import { PostResultSearchComponent } from "./pages/post-result-search/post-result-search.component";
 import { TestCapacityComponent } from "./pages/test-capacity/test-capacity.component";
+import { FormatDatePostPipe } from './helper/pipe/format-date-post.pipe';
 
 
 
@@ -145,7 +146,8 @@ import { TestCapacityComponent } from "./pages/test-capacity/test-capacity.compo
     ProfileLayoutComponent,
     MyCapacityTestComponent,
     ContestAsideComponent,
-    TestCapacityComponent
+    TestCapacityComponent,
+    FormatDatePostPipe
   ],
   imports: [
     BrowserModule,
