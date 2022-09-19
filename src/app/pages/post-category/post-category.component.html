@@ -25,13 +25,16 @@
         <div class="post-main">
             <div class="post-main-content">
                 <div class="post-main-content-section">
-                    <div class="" *ngIf="!ListPost">
-                        <app-contest-load-item></app-contest-load-item>
-                        <app-contest-load-item></app-contest-load-item>
-                        <app-contest-load-item></app-contest-load-item>
-                        <app-contest-load-item></app-contest-load-item>
-                        <app-contest-load-item></app-contest-load-item>
-                        <app-contest-load-item></app-contest-load-item>
+                    <div class="main-section" *ngIf="!ListPost">
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                            appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                            appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                            appearance="line">
+                        </ngx-skeleton-loader>
                     </div>
                     <div class="main-section">
                         <div class="post-item" *ngFor="let post of ListPost">
