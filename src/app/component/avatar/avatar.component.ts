@@ -5,11 +5,14 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.css']
 })
+
+
 export class AvatarComponent implements OnInit {
   @Input() avatar: string;
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
 }
+

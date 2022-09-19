@@ -2,15 +2,11 @@
     text-align: justify;
 }
 
-
-  
-
 .title-line {
     margin-bottom: 20px;
     width: 100px;
     margin-top: -3px;
     height: 3px;
-    margin: 0 auto;
     background-color: var(--primary);
 }
 

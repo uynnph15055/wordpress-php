@@ -20,6 +20,7 @@ import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
+import { TestCapacityComponent } from './pages/test-capacity/test-capacity.component';
 
 const routes: Routes = [
   {
@@ -76,6 +77,10 @@ const routes: Routes = [
       {
         path: "tuyen-dung",
         component: RecruitmentComponent,
+      },
+      {
+        path: "test-nang-luc",
+        component: TestCapacityComponent,
       },
       {
         path: "tuyen-dung/chi-tiet/:id",

@@ -30,7 +30,7 @@
     <hr>
     <div class="mb-3">
         <h3 class="fw-bold title text-uppercase text-center color-blue">Lợi ích khi tham gia</h3>
-        <div class="title-line">
+        <div class="title-line mt-2 mx-auto">
         </div>
     </div>
     <div class="row benefit-join-box">
@@ -102,15 +102,15 @@
     <!-- Cuộc thi -->
     <div class="mb-4">
         <h3 class="fw-bold title text-uppercase text-center color-blue">Các cuộc thi</h3>
-        <div class="title-line">
+        <div class="title-line mt-2 mx-auto">
         </div>
     </div>
     <div *ngIf="contests" class="contest-list position-relative mb-4">
         <div class="prev-arrow position-absolute top-50 start-0 translate-middle arrow-list-contest slick-arrow">
             <i class="fas fa-chevron-left"></i>
         </div>
-        <ngx-slick-carousel class="carousel row slick-list-contest row" [config]="sliderContest">
-            <app-contest-item ngxSlickItem *ngFor="let item of contests" class="col-3 contest-item" [item]="item">
+        <ngx-slick-carousel class="carousel  row slick-list-contest" [config]="sliderContest">
+            <app-contest-item ngxSlickItem  *ngFor="let item of contests" class="col-3 py-2 contest-item" [item]="item">
             </app-contest-item>
         </ngx-slick-carousel>
         <div class="next-arrow position-absolute top-50 start-100 translate-middle arrow-list-contest slick-arrow">
@@ -207,7 +207,7 @@
 
 <div class="container my-4">
     <h3 class="fw-bold title text-uppercase text-center color-blue">Đánh Giá Của Doanh Nghiệp</h3>
-    <div class="title-line mb-5">
+    <div class="title-line mt-2 mx-auto mb-5">
     </div>
     <div class="d-flex align-items-center justify-content-between">
         <div class="col-6 assess-company-box ">
@@ -273,17 +273,14 @@
 
 <div class="container  my-5">
     <h3 class="fw-bold title text-uppercase text-center color-blue">Đối tác</h3>
-    <div class="title-line mb-2">
+    <div class="title-line mt-2 mx-auto mb-2">
     </div>
-    <div class="position-relative mt-4">
+    <div class="position-relative">
         <button class="slider-control prev-parner position-absolute top-100 start-0 translate-middle"><i
                 class="parner fa-solid fa-arrow-left-long"></i></button>
         <ngx-slick-carousel class="row" [config]="sliderCompany">
             <div ngxSlickItem *ngFor="let item of companys" class="col-2 company-item">
-
-                <img  class="w-100" [src]="item.logo"
-
-                    alt="">
+                <img  class="company-img" [src]="item.logo" />
             </div>
         </ngx-slick-carousel>
         <button class="slider-control next-parner position-absolute top-100 start-100 translate-middle"><i

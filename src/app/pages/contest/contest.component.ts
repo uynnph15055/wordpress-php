@@ -58,7 +58,6 @@ export class ContestComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.major_slug = params.get('slug');
       this.majorService.getMajorWhereSlug(this.major_slug).subscribe(res => {
-
         if (this.major_slug == null) {
           this.checkUserHasLogin == true ? this.getContestHasAfterLogin() : this.getAllContest();
         } else {
@@ -96,6 +95,7 @@ export class ContestComponent implements OnInit {
 
   // get all contest not login 
   getAllContest() {
+    this.statusContest = 'pending';
     this.contestService.getAll().subscribe(res => {
       this.contests = res.payload.data;
       this.array_page_link = res.payload.links;
@@ -168,7 +168,6 @@ export class ContestComponent implements OnInit {
       res.status ?
       this.contests = res.payload.data : null;
       this.array_page_link = res.payload.links;
-      console.log(this.array_page_link);
       
       this.contests ? this.statusContest = 'done' : this.statusContest == 'pending';
     })

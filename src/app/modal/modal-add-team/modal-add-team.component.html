@@ -1,6 +1,6 @@
-<mat-progress-bar *ngIf="statusRegister ==  false" color="warn" mode="indeterminate">
+<mat-progress-bar *ngIf="!statusFormEdit || !statusRegister" color="warn" mode="indeterminate">
 </mat-progress-bar>
-<form action="" class="form-resgister-bg" [formGroup]="formRegister" (submit)="addTeam()">
+<form action="" *ngIf="statusRegister && statusFormEdit" class="form-resgister-bg" [formGroup]="formRegister" (submit)="checkStatusForm()">
     <div class="modal-header d-flex  justify-content-between align-items-center">
         <i class="fas icon-add-team fa-user-plus d-block"></i>
         <h5 class="mt-2 fw-bold title-form-info-team mx-2 color-blue">{{titleModel}}</h5>
@@ -15,7 +15,7 @@
                 <label for="imageUpload"></label>
             </div>
             <div class="avatar-preview">
-                <img [src]="imgURL" id="imagePreview" class="register-avatar-team" *ngIf="imgURL" alt="">
+                <img [src]="imgURL" id="imagePreview" class="register-avatar-team"  alt="">
             </div>
         </div>
         <h5 class="text-center fs-6 fw-bold">Ảnh nhóm</h5>

@@ -13,5 +13,12 @@ export class Round {
     start_time: Date;
     teams: Array<Team>;
     judges: Array<Judges>;
-    contest: Contest
+    contest: Contest;
+    exams: Array<exams>;
+}
+
+class exams {
+    name: string;
+    external_url: string;
+    description: string;
 }

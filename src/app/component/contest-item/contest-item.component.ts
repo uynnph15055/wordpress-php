@@ -13,9 +13,13 @@ export class ContestItemComponent implements OnInit {
   @Input() item: Contest;
   @Input() major_slug: any;
   @Input() pageContestByUser: boolean;
+  date_end : number;
+  date_start : number;
+  date_register_start : number;
+  date_register_end : number;
+  today : number;
+  disabled: boolean = true;
 
-  statusContest: number;
-  date_end: string;
   days: number = 5;
   hours: number = 16;
   minutes: number = 20;
@@ -24,15 +28,19 @@ export class ContestItemComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+     
+      this.date_start = new Date(moment(this.item.register_deadline).format('lll')).getTime();
+      this.date_register_start = new Date(moment(this.item.start_register_time).format('lll')).getTime();
+      this.date_register_end = new Date(moment(this.item.end_register_time).format('lll')).getTime();
+     
     
-    this.date_end = moment(this.item.end_register_time).format('lll');
     setInterval(() => {
-
-      let futureDate = new Date(this.date_end).getTime();
-      let today = new Date().getTime();
-
-      let distance = futureDate - today;
-      if (distance < 0 || this.item.status == 3) {
+      this.date_end = new Date(moment(this.item.date_start).format('lll')).getTime();
+      this.today = new Date().getTime();
+      let distance =  this.date_register_end - this.today;
+      this.date_register_start > this.today ? this.disabled = false : this.disabled;
+    
+      if (distance < 0 || this.item.status == 2 || this.date_register_start > this.today) {
         this.days = 0;
         this.hours = 0;
         this.minutes = 0;
@@ -52,13 +60,22 @@ export class ContestItemComponent implements OnInit {
     return totalMember;
   }
 
-  checkStatusContest(status: number): any {
+  checkStatusContest(item: Contest): any {
     let result;
-    if (status == 1) {
-      result = 'Đăng ký';
-    } else if (status == 2) {
-      result = 'Đang diễn ra';
-    } else if (status == 3) {
+    let status;
+    if (item.status <= 1) {
+      if(this.date_register_start > this.today){
+        result = 'Sắp diễn ra';
+      }else if(this.date_register_end > this.today){
+        result = 'Đang mở đăng ký';
+      }else if(this.date_start > this.today){
+        result = 'Đang đóng đăng ký';
+      }else if(this.date_end > this.today){
+        result = 'Đang diễn ra';
+      }else{
+        result = 'Đã diễn ra';
+      }
+    } else {
       result = 'Đã kết thúc';
     }
     return result;

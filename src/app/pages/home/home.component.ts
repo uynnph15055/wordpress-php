@@ -112,7 +112,6 @@ export class HomeComponent implements OnInit {
             this.getListHasAfterLogin();
         } else {
             this.contestService.getWhereStatus(1 , 'desc').subscribe(res => {
-                console.log('no');
                 if (res.status == true) {
                     this.contests = res.payload.data;
                 }
@@ -177,9 +176,8 @@ export class HomeComponent implements OnInit {
     // Get api recruitments
     getAllCompany(){
         this.companyService.getAllCompany().subscribe(res =>{
-
+            this.companys = res.dataContest;
             this.companys = res.payload.data;
-
         })
     }
 

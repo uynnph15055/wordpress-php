@@ -1,0 +1,25 @@
+<div class="form-upload">
+    <h2 class="fw-bold">{{recruitmentDetail.name}}</h2>
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Tên của bạn</label>
+            <input type="email" placeholder="Họ và tên của bạn " class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Upload CV</label>
+            <input type="file" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Những kỹ năng, dự án công việc hoặc thành tích nào
+                khiến bạn trở thành một ứng cử viên nặng ký?</label>
+            <textarea placeholder="Kinh nghiệm vào các thành tích đã đạt được ..." class="form-control"
+                id="exampleFormControlTextarea1" rows="4"></textarea>
+        </div>
+        <div mat-dialog-actions class="float-end">
+
+            <button type="submit" class="btn-paint-color btn-upload float-end">Upload</button>
+        </div>
+    </form>
+    <button class="btn-close fw-bold" mat-dialog-close></button>
+</div>

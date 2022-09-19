@@ -7,6 +7,7 @@ import { ResultMajor } from 'src/app/models/result-major.model';
   templateUrl: './rank-student.component.html',
   styleUrls: ['./rank-student.component.css']
 })
+
 export class RankStudentComponent implements OnInit {
   monCurrent : number;
   constructor( @Inject(MAT_DIALOG_DATA) public data: {rank : Array<ResultMajor> ,nameMajor:  string}) { }

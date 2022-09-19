@@ -27,7 +27,6 @@ export class RoundService {
 
   // check trạng thái làm bài
   getInfoCapacityExamRound() {
-    // status: 1 - đang làm, 2 - đã nộp
     const response = {
       status: true,
       payload: {
@@ -209,7 +208,6 @@ export class RoundService {
 
   // Trả kết quả của vòng thi
   getResultRound(round_id: number) {
-    console.log(round_id);
     return this.http.get<ResponsePayload>(`${environment.publicApiUrl}/contest/round/${round_id}/result`)
   }
 }

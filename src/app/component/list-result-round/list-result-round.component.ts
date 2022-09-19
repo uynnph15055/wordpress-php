@@ -12,10 +12,8 @@ import { RoundService } from 'src/app/services/round.service';
 })
 
 export class ListResultRoundComponent implements OnInit {
-  @Input() round_id: number;
-  @Input() statusPage: boolean;
-  @Input() contest_id: number;
-  @Output() statusCountResult: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+  @Input() roundResult: Array<ResultRound>;
+  
 
   dataResultRound: Array<ResultRound>;
   statusResultRound: boolean = false;
@@ -29,25 +27,17 @@ export class ListResultRoundComponent implements OnInit {
     private contestService: ContestService) { }
 
   ngOnInit(): void {
-    this.round_id && this.statusPage == true ?
-      this.titleResult = "Kết quả vòng thi" : this.titleResult;
-
-    this.roundService.getResultRound(this.round_id).subscribe(res => {
-      this.resPayLoad = res.payload;
-      if (res.payload.data.length > 0) {
-        this.dataResultRound = res.payload.data;
-        this.payingLinks = this.editLink(res.payload.links);
-        this.dataResultRound ? this.statusResultRound = true : this.statusResultRound;
-        this.checkPointTeamNotNull(this.dataResultRound);
-      } else {
-        this.statusResultRound = true;
-      };
-    })
-  }
-
-  statusCountRound(status: boolean) {
-    this.statusCountResult.emit(status);
-    console.log(status);
+    // this.roundService.getResultRound(this.round_id).subscribe(res => {
+    //   this.resPayLoad = res.payload;
+    //   if (res.payload.data.length > 0) {
+    //     this.dataResultRound = res.payload.data;
+    //     this.payingLinks = this.editLink(res.payload.links);
+    //     this.dataResultRound ? this.statusResultRound = true : this.statusResultRound;
+    //     this.checkPointTeamNotNull(this.dataResultRound);
+    //   } else {
+    //     this.statusResultRound = true;
+    //   };
+    // })
   }
 
 
@@ -82,7 +72,6 @@ export class ListResultRoundComponent implements OnInit {
   checkPointTeamNotNull(data: Array<ResultRound>) {
     data.forEach(item => {
       item.result.point != null ? this.checkTeamPoint = true : this.checkTeamPoint;
-      this.statusCountRound(this.checkTeamPoint);
     })
   }
 }

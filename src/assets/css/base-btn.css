@@ -7,6 +7,11 @@
     font-size: 1rem;
 }
 
+.btn-submit{
+    background-color: var(--primary) !important;
+    color: var(--white);
+}
+
 .btn-main:hover {
     transition: all ease-in-out 0.5s;
     background-color: var(--primary);
@@ -16,6 +21,17 @@
 .btn-main-disable {
     background-color: #7f8c8d;
     color: white;
+}
+
+.btn-paint-color {
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+}
+
+.btn-paint-color:hover{
+    opacity: 0.8;
 }
 
 

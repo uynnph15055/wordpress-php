@@ -20,12 +20,12 @@ import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info
 })
 export class ModalAddTeamComponent implements OnInit {
   selectedImage: any;
-  statusRegister: boolean;
+  statusRegister: boolean = true;
+  statusFormEdit: boolean = true;
   titleModel: string = 'Thêm đội tham gia thi';
   public imagePath: string;
-  contest_id: any;
   buttonName: string = 'Đăng ký';
-  teamDetail = new Team();
+  teamDetail: Team;
   user: User;
   imgURL: any =
     'https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png';
@@ -49,34 +49,47 @@ export class ModalAddTeamComponent implements OnInit {
     public dialog: MatDialog,
 
     config: NgbModalConfig,
-    @Inject(MAT_DIALOG_DATA) public data: { contest_id: number; team_id: Team }
+    @Inject(MAT_DIALOG_DATA)
+    public data: { contest_id: string; team_id: number }
   ) {
-    this.contest_id = data.contest_id;
-    if (data.team_id != null) {
-      this.teamDetail = { ...data.team_id };
-    }
     config.backdrop = 'static';
     config.keyboard = false;
   }
 
-  // --------
   ngOnInit(): void {
     this.user = this.getUserLocal.getValueLocalUser('user');
 
-    if (this.teamDetail.name) {
-      this.titleModel = 'Sửa đội thi';
-      this.imgURL = this.teamDetail.image;
-      this.buttonName = 'Sửa đội';
+    if(this.data.team_id){
+      this.statusFormEdit =  false;
+      this.teamService.getTeamDetail(this.data.team_id).subscribe((res) => {
+        if (res.status) {
+          this.statusFormEdit = true;
+          this.teamDetail = res.payload;
+          this.titleModel = 'Sửa đội thi';
+          this.imgURL = this.teamDetail.image  ? this.teamDetail.image : 'https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png';
+          this.formRegister.controls['name'].setValue(this.teamDetail.name);
+          this.buttonName = 'Sửa đội';
+        }
+      });
+    }else{
+      this.statusFormEdit =  true;
+    }
+  }
+
+  // Check status submit
+  checkStatusForm() {
+    if (this.data.team_id) {
+      this.editTeam();
+    } else {
+      this.addTeam();
     }
   }
 
   // Render image after add
   preview(files: any) {
     if (files.length === 0) return;
-
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
-      this.message = 'Only images are supported.';
       return;
     }
 
@@ -89,7 +102,6 @@ export class ModalAddTeamComponent implements OnInit {
     };
   }
 
-
   // Add team
   addTeam() {
     this.statusRegister = false;
@@ -99,7 +111,7 @@ export class ModalAddTeamComponent implements OnInit {
     if (this.imagePath != undefined) {
       formDataTeam.append('image', this.imagePath);
     }
-    formDataTeam.append('contest_id', this.contest_id);
+    formDataTeam.append('contest_id', this.data.contest_id);
     formDataTeam.append('user_id', this.user_id);
     setTimeout(() => {
       this.teamService.addTeam(formDataTeam).subscribe((res) => {
@@ -108,10 +120,38 @@ export class ModalAddTeamComponent implements OnInit {
           this.dialogRef.close();
         } else {
           this.statusRegister = true;
-          this.openInfoTeam(res.id_team);
+          this.openInfoTeam(res.id_team, this.data.contest_id);
           this.dialogRef.close();
+          this.ngOnInit();
         }
       });
+    }, 1000);
+  }
+
+  editTeam() {
+    this.statusRegister = false;
+    let dataTeam = { ...this.formRegister.value };
+
+    var formDataTeam = new FormData();
+    formDataTeam.append('name', dataTeam.name);
+    if (this.imagePath != undefined) {
+      formDataTeam.append('image', this.imagePath);
+    }
+    formDataTeam.append('user_id', this.user_id);
+    setTimeout(() => {
+      this.teamService
+        .editTeam(formDataTeam, this.teamDetail.id)
+        .subscribe((res) => {
+          if (res.status == false) {
+            this.toast.warning({ summary: res.payload, duration: 2000 });
+            this.dialogRef.close();
+          } else {
+            this.statusRegister = true;
+            this.dialogRef.close(true);
+            this.openInfoTeam(this.teamDetail.id, this.data.contest_id);
+            this.ngOnInit();
+          }
+        });
     }, 1000);
   }
 
@@ -120,11 +160,11 @@ export class ModalAddTeamComponent implements OnInit {
   }
 
   // Thông tin đội
-  openInfoTeam(team_new_id: number ,  ) {
+  openInfoTeam(team_new_id: number, contest_id: string) {
     this.dialog.open(ModalInfoTeamComponent, {
       width: '900px',
       data: {
-        contest_id: this.contest_id,
+        contest_id: contest_id,
         team_id: team_new_id,
       },
     });

@@ -1,5 +1,5 @@
-<h5 *ngIf="checkTeamPoint == true" class="fw-bold my-4 fs-5 color-blue">{{titleResult}}</h5>
-<table *ngIf="statusResultRound == true && dataResultRound != undefined && checkTeamPoint == true"
+<h5 *ngIf="!checkTeamPoint" class="fw-bold my-4 fs-5 color-blue">{{titleResult}}</h5>
+<table *ngIf="!checkTeamPoint" 
     class="w-100 table-result-round" mat-table [dataSource]="dataResultRound ">
     <!-- Name Column -->
     <ng-container matColumnDef="rank">
@@ -64,7 +64,7 @@
 <div *ngIf="dataResultRound == undefined && statusResultRound == true" class=" d-flex justify-content-center mt-2">
     <p>Hiện chưa cập nhật kết quả !!!</p>
 </div>
-<div *ngIf="statusResultRound == false">
+<div *ngIf="statusResultRound">
     <ngx-skeleton-loader count="10" [theme]="{ 'height.px' : 35, 'margin-bottom' : '7px'}" appearance="line">
     </ngx-skeleton-loader>
 </div>

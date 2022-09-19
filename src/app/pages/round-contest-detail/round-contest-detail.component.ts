@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
@@ -147,38 +146,6 @@ export class RoundContestDetailComponent implements OnInit {
         }
       });
 
-      this.checkUserHasJoinContest();
-
-      // Chạy thời gian hết hạn cuộc thi 
-      setInterval(() => {
-        this.roundEndTime = moment(this.contestDetail.end_register_time).format('lll');
-
-        let futureDate = new Date(this.roundEndTime).getTime();
-        let today = new Date().getTime();
-        let distance = futureDate - today;
-        if (distance < 0) {
-          this.statusCheckDate = false;
-          this.days = 0;
-          this.hours = 0;
-          this.minutes = 0;
-          this.seconds = 0;
-          this.nameBtnRegister = 'Đã hết hạn';
-        } else {
-          this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        }
-
-      }, 1000);
-
-
-      //  Check user có bẫm vào nút đăng ký ko 
-      setTimeout(() => {
-        if (this.routeStateRegister == true && this.getUserLocal.getValueLocalUser('user') && this.statusCheckDate == true) {
-          this.openDialog();
-        }
-      }, 3000);
     });
   }
 
@@ -191,16 +158,9 @@ export class RoundContestDetailComponent implements OnInit {
 
   //Cac bai post
   getListPost() {
-    this.listPostService.getPostWhereCate('post-recruitment').subscribe(res => {
+    this.listPostService.getPostWhereCate('post-contest').subscribe(res => {
       if (res.status) {
         this.listPostResult = res.payload.data;
-        // console.log(this.listPostResult);
-
-        this.cinfigData = {
-          id: 0,
-          posts: this.listPostResult,
-          numberColumn: 3,
-        };
       }
     })
   }
@@ -231,20 +191,6 @@ export class RoundContestDetailComponent implements OnInit {
     return result;
   }
 
-
-  // Check xem user đã join cuộc thi chưa
-  checkUserHasJoinContest() {
-    let user = this.userService.getUserValue();
-    this.contestDetail.teams.forEach(item => {
-      item.members.forEach(item => {
-        if (item.id == user.id) {
-          this.teamIdMemberHasJoinTeam = item.pivot.team_id;
-          this.statusUserHasJoinContest = true
-        }
-      });
-    })
-  }
-
   // Mơ lắm
   openFormRegister(): void {
     if (this.statusCheckDate == true && this.getUserLocal.getValueLocalUser('user')) {
@@ -273,7 +219,7 @@ export class RoundContestDetailComponent implements OnInit {
     }, 1000);
   }
 
-  takeTheExam(round_id: number, end_time: Date, start_time: Date) {
+  takeTheExam(round_id: number, end_time: Date, start_time: Date) {    
     this.statusIntoExam = true;
     setTimeout(() => {
       if (!this.userService.getUserValue()) {

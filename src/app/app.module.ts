@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './auth/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -26,7 +25,7 @@ import { BackTimeComponent } from './component/back-time/back-time.component';
 import { RoundComponent } from './component/round/round.component';
 import { BackTopComponent } from './component/back-top/back-top.component';
 
-import { LoadingItemComponent } from './component/loading-item/loading-item.component';
+import { LoadingItemComponent } from './loading/loading-item/loading-item.component';
 import { TypeExamPipe } from './helper/pipe/type-exam.pipe';
 import { FormatDatePipe } from './helper/pipe/format-date.pipe';
 import { ListAvatarUserComponent } from './component/list-avatar-user/list-avatar-user.component';
@@ -67,13 +66,15 @@ registerLocaleData(en);
 import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
 import { DialogConfirmComponent } from './modal/dialog-confirm/dialog-confirm.component';
 import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
-import { RecruitmentSearchComponent } from './modal/recruitment-search/recruitment-search.component';
 import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
 import { CapacityRelatedItemComponent } from './component/capacity-related-item/capacity-related-item.component';
 import { ListPostComponent } from './component/list-post/list-post.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { RankStudentComponent } from './modal/rank-student/rank-student.component';
 import { AvatarComponent } from './component/avatar/avatar.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ContestAsideComponent } from './component/contest-aside/contest-aside.component';
+import { PostRelatedItemComponent } from './component/post-related-item/post-related-item.component';
 
 
 
@@ -81,8 +82,8 @@ import { AvatarComponent } from './component/avatar/avatar.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     ContestComponent,
+    HomeComponent,
     HomeLayoutComponent,
     ContestDeatailComponent,
     BannerComponent,
@@ -113,12 +114,13 @@ import { AvatarComponent } from './component/avatar/avatar.component';
     DialogConfirmComponent,
     CapacityDetailComponent,
     CapacityRelatedItemComponent,
-    RecruitmentSearchComponent,
     RecruitmentDetailComponent,
     ListPostComponent,
     PostsComponent,
+    PostRelatedItemComponent,
     RankStudentComponent,
     AvatarComponent,
+    ContestAsideComponent,
   ],
   imports: [
     BrowserModule,
