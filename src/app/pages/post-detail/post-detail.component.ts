@@ -46,6 +46,8 @@ export class PostDetailComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe((result) => { });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log("result", result)
+     });
   }
 }

@@ -8,18 +8,16 @@
         <div class="row">
             <div class="mb-3 col">
                 <label for="exampleInputEmail1" class="form-label">Email <span class="input-required">*</span></label>
-                <input formControlName="email" type="email" placeholder="Vd: anhnv@gmail.com" class="form-control"
->
+                <input formControlName="email" type="email" placeholder="Vd: anhnv@gmail.com" class="form-control">
             </div>
             <div class="mb-3 col">
                 <label for="exampleInputEmail1" class="form-label">Số điện thoại <span class="input-required">*</span></label>
-                <input formControlName="phone" type="phone" placeholder="Vd: 0912345678" class="form-control"
->
+                <input formControlName="phone" type="phone" placeholder="Vd: 0912345678" class="form-control">
             </div>
         </div>
         <div class="mb-3">
             <label for="modalUploadCv" class="form-label">Upload CV <span class="input-required">*</span></label>
-            <input type="file" (change)="preview(file.files)" formControlName="file_link" class="form-control" id="modalUploadCv">
+            <input #file type="file" (change)="preview(file.files)" formControlName="file_link" class="form-control" id="modalUploadCv">
         </div>
         <mat-dialog-actions align="end">
             <button mat-button mat-dialog-close>Huỷ</button>

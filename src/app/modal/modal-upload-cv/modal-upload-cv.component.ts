@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { map, switchMap } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
+import { ResponsePayload } from 'src/app/models/response-payload';
 import { ListPostService } from 'src/app/services/list-post.service';
 
 @Component({
@@ -22,8 +23,8 @@ export class ModalUploadCvComponent implements OnInit {
   formUploadCv = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    // phone: new FormControl('', [Validators.required, Validators.pattern("(84|0[3|5|7|8|9])+([0-9]{8})\b")]),
-    // file_link: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
+    file_link: new FormControl('')
   });
 
   constructor(
@@ -35,7 +36,6 @@ export class ModalUploadCvComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.dataPostDetail.postDetail.id)
   }
   closeDialog() {
     this.dialogRef.close('Pizza!');
@@ -43,14 +43,11 @@ export class ModalUploadCvComponent implements OnInit {
 
   // review file upload
   preview(files: any) {
-
     if (files.length === 0) return;
     var mimeType = files[0].type;
     // if (mimeType.match(/image\/*/) == null) {
     //   return;
     // }
-
-    var reader = new FileReader();
     this.fileUpload = files[0];
   }
 
@@ -59,26 +56,24 @@ export class ModalUploadCvComponent implements OnInit {
     this.statusRegister = false;
     let dataInput = { ...this.formUploadCv.value };
     var formDataInput = new FormData();
-
-   
+    
     formDataInput.append('name', dataInput.name);
     formDataInput.append('email', dataInput.email);
     formDataInput.append('phone', dataInput.phone);
-    formDataInput.append('file_link', dataInput.file_link);
-    formDataInput.append('post_id', this.dataPostDetail.postDetail.id);
-    
-    // setTimeout(() => {
-    //   this.postService.addTeam(formDataInput).subscribe((res) => {
-    //     if (res.status == false) {
-    //       this.toast.warning({ summary: res.payload, duration: 2000 });
-    //       this.dialogRef.close();
-    //     } else {
-    //       this.statusRegister = true;
-    //       this.openInfoTeam(res.id_team, this.data.contest_id);
-    //       this.dialogRef.close();
-    //       this.ngOnInit();
-    //     }
-    //   });
-    // }, 1000);
+    formDataInput.append('file_link', this.fileUpload);
+    if (this.dataPostDetail.postDetail) formDataInput.append('post_id', this.dataPostDetail.postDetail.id)
+
+    setTimeout(() => {
+      this.postService.uploadCV(formDataInput).subscribe((res : ResponsePayload) => {
+        if (res.status == false) {
+          this.toast.warning({ summary: res.payload, duration: 2000 });
+        } else {
+          console.log("first", res)
+          this.statusRegister = true;
+          this.dialogRef.close();
+        }
+        return "Ok"
+      });
+    }, 1000);
   }
 }
