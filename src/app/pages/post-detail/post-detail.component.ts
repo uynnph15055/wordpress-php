@@ -42,7 +42,7 @@ export class PostDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalUploadCvComponent, {
       width: '700px',
       data: {
-        // recruitment: this.recruitmentDetail
+        postDetail: this.postDetail,
       }
     });
 

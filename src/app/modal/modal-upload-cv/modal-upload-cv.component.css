@@ -25,3 +25,6 @@ label{
     color: white;
     background: #ff6638
 }
+.btn-disabled {
+    opacity: 0.6;
+}
