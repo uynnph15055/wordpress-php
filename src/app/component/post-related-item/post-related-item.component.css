@@ -64,6 +64,15 @@ h5 {
     color: #8E8E95
 }
 
+.post-new-latest__bottom .post-new-latest__short-desc:first-child{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 50px;
+}
+
 .post-new-latest .btn {
     margin: 10px 0;
 }
