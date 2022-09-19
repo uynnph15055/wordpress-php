@@ -8,7 +8,7 @@ export class FormatDatePostPipe implements PipeTransform {
   dateFormat: string;
   transform(value: any): string {
     this.date = moment(value).format("DD/MM/YYYY");
-    // let arrDate = this.date.split(" ");
-    return this.date;
+    let newDateFormat = this.date;
+    return newDateFormat;
   }
 }
