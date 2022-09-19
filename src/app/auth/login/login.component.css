@@ -1,5 +1,6 @@
 .container-fluid {
   background-image: url("../../../assets/img/login-bg.jpg");
+  background-repeat: no-repeat;
 }
 
 .login-box {
@@ -31,6 +32,8 @@
 
   .logo_go-img {
     width: 55%;
+    display: block;
+    margin: 0 auto;
   }
 
   .btn_login-google {

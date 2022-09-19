@@ -1,5 +1,4 @@
 <div class="header bg-white">
-  <!-- <input checked type="checkbox"> -->
   <nav class="container d-flex justify-content-between align-items-center">
     <div class="nav-response">
       <label class="icon-open-nav-mobile" for="input_check">
@@ -17,14 +16,10 @@
         </div>
         <ul class="menu-res mt-5 border-top">
           <li (click)="closeMenuRes(inputChecked)" class="menu-res-item">
-            <a routerLink="/" class="menu-res-link text-decoration-none text-uppercase fw-bold">
-              Trang chủ
-            </a>
+            <a routerLink="/" class="menu-res-link text-decoration-none text-uppercase fw-bold"> Trang chủ </a>
           </li>
           <li class="menu-res-item">
-            <a routerLink="/cuoc-thi" class="menu-res-link text-decoration-none text-uppercase fw-bold">
-              Cuộc thi
-            </a>
+            <a routerLink="/cuoc-thi" class="menu-res-link text-decoration-none text-uppercase fw-bold"> Cuộc thi </a>
           </li>
           <li class="menu-res-item">
             <a href="" class="menu-res-link text-decoration-none text-uppercase fw-bold"> Test năng lực </a>
@@ -56,7 +51,8 @@
 
         <li class="nav-item active">
           <div
-            class="position-relative fw-bold nav-link-item text-uppercase text-decoration-none d-flex align-items-center">
+            class="position-relative fw-bold nav-link-item text-uppercase text-decoration-none d-flex align-items-center"
+          >
             <span [routerLink]="['/tuyen-dung']">Tuyển dụng</span>
             <div class="nav-item__icon">
               <i class="fa-solid fa-caret-down"></i>
@@ -64,14 +60,18 @@
 
             <ul class="sub-menu position-absolute">
               <li class="sub-menu__item">
-                <a class="sub-menu__link fw-bold nav-link-item text-uppercase text-decoration-none"
-                  [routerLink]="['/tuyen-dung']">
+                <a
+                  class="sub-menu__link fw-bold nav-link-item text-uppercase text-decoration-none"
+                  [routerLink]="['/tuyen-dung']"
+                >
                   Tin tuyển dụng
                 </a>
               </li>
               <li class="sub-menu__item">
-                <a class="sub-menu__link fw-bold nav-link-item text-uppercase text-decoration-none"
-                  routerLink="/test-nang-luc">
+                <a
+                  class="sub-menu__link fw-bold nav-link-item text-uppercase text-decoration-none"
+                  routerLink="/test-nang-luc"
+                >
                   Test năng lực
                 </a>
               </li>
@@ -79,26 +79,32 @@
           </div>
         </li>
         <li class="nav-item active">
-          <a class="fw-bold nav-link-item text-uppercase text-decoration-none" routerLink="/bai-viet">
-            Bài viết
-          </a>
+          <a class="fw-bold nav-link-item text-uppercase text-decoration-none" routerLink="/bai-viet"> Bài viết </a>
         </li>
 
         <li *ngIf="user">
-          <i matBadge="4" matBadgePosition="after" class="fas fa-bell header-icon-message color-blue"
-            matBadgeColor="warn"></i>
+          <i
+            matBadge="4"
+            matBadgePosition="after"
+            class="fas fa-bell header-icon-message color-blue"
+            matBadgeColor="warn"
+          ></i>
         </li>
         <li *ngIf="!user">
-          <a (click)="saveUrlCurrent()" routerLink="/login" class="text-decoration-none mb-2 btn-main">
-            Đăng nhập
-          </a>
+          <a (click)="saveUrlCurrent()" routerLink="/login" class="text-decoration-none mb-2 btn-main"> Đăng nhập </a>
         </li>
         <li *ngIf="user">
-          <img *ngIf="user.avatar" mat-icon-button [matMenuTriggerFor]="menu" class="header-avatar-user"
-            [src]="user.avatar" alt="" />
+          <img
+            *ngIf="user.avatar"
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            class="header-avatar-user"
+            [src]="user.avatar"
+            alt=""
+          />
           <mat-menu class="mt-2" #menu="matMenu">
-            <button mat-menu-item>
-              <span routerLink="/thong-tin/ca-nhan">Thông tin tài khoản</span>
+            <button mat-menu-item routerLink="/tai-khoan">
+              <span>Thông tin tài khoản</span>
             </button>
             <button mat-menu-item>
               <span>Thành tích</span>
@@ -110,7 +116,7 @@
         </li>
       </ul>
     </div>
-    <a href="/login" *ngIf="!false" class="fa-icon-login">
+    <a routerLink="/login" *ngIf="!false" class="fa-icon-login">
       <fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon>
     </a>
   </nav>
