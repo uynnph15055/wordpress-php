@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Recruitments } from 'src/app/models/recruitments.models';
+import { Post } from 'src/app/models/post.model';
 
 @Component({
   selector: 'app-modal-upload-cv',
@@ -8,17 +8,18 @@ import { Recruitments } from 'src/app/models/recruitments.models';
   styleUrls: ['./modal-upload-cv.component.css']
 })
 export class ModalUploadCvComponent implements OnInit {
-  recruitmentDetail: Recruitments;
+  postDetail: Post;
   constructor(
     public dialogRef: MatDialogRef<ModalUploadCvComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { recruitment: Recruitments;}
+    public data: { recruitment: Post}
   ) { }
 
   ngOnInit(): void {
-    this.recruitmentDetail = this.data.recruitment;
-    console.log(this.recruitmentDetail);
-    
+    this.postDetail = this.data.recruitment;
+  }
+  closeDialog() {
+    this.dialogRef.close('Pizza!');
   }
 
 }

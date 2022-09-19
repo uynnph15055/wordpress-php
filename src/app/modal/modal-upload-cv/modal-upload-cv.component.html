@@ -1,25 +1,30 @@
 <div class="form-upload">
-    <h2 class="fw-bold">{{recruitmentDetail.name}}</h2>
+    <h2 class="fw-bold">Ứng tuyển vị trí: </h2>
     <form>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Tên của bạn</label>
+        <div class="mb-3 col">
+            <label for="exampleInputEmail1" class="form-label">Tên của bạn <span class="input-required">*</span></label>
             <input type="email" placeholder="Họ và tên của bạn " class="form-control" id="exampleInputEmail1"
                 aria-describedby="emailHelp">
         </div>
+        <div class="row">
+            <div class="mb-3 col">
+                <label for="exampleInputEmail1" class="form-label">Email <span class="input-required">*</span></label>
+                <input type="email" placeholder="Email liên hệ" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 col">
+                <label for="exampleInputEmail1" class="form-label">Số điện thoại <span class="input-required">*</span></label>
+                <input type="email" placeholder="Số điện thoại liên hệ" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+            </div>
+        </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Upload CV</label>
+            <label for="exampleInputPassword1" class="form-label">Upload CV <span class="input-required">*</span></label>
             <input type="file" class="form-control" id="exampleInputPassword1">
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Những kỹ năng, dự án công việc hoặc thành tích nào
-                khiến bạn trở thành một ứng cử viên nặng ký?</label>
-            <textarea placeholder="Kinh nghiệm vào các thành tích đã đạt được ..." class="form-control"
-                id="exampleFormControlTextarea1" rows="4"></textarea>
-        </div>
-        <div mat-dialog-actions class="float-end">
-
-            <button type="submit" class="btn-paint-color btn-upload float-end">Upload</button>
-        </div>
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Huỷ</button>
+            <button class="btn-submit" type="submit" mat-button [mat-dialog-close]="true" cdkFocusInitial>Gửi</button>
+        </mat-dialog-actions>
     </form>
-    <button class="btn-close fw-bold" mat-dialog-close></button>
 </div>

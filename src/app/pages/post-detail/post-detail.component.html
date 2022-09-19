@@ -36,10 +36,7 @@
                 <div class="post-detail__short-desc" [innerHTML]="postDetail?.description">
                 </div>
                 <div class="post_upload-cv">
-                    <form action="">
-                        <input type="text">
-                        <button>Upload CV</button>
-                    </form>
+                    <button class="btn-paint-color btn-recruitment" (click)="openModal()">Ứng tuyển ngay</button>
                 </div>
                 <div class="post-detail__img-section">
                     <img [src]="postDetail?.thumbnail_url" alt="" class="post-detail__img">
