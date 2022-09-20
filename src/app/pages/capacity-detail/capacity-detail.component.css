@@ -240,6 +240,19 @@
   margin-bottom: 4px;
 }
 
+.sidebar__content-btn--disable {
+  color: var(--primary);
+  padding: 7px 15px;
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.sidebar__content-btn--disable:hover {
+  cursor: default;
+  background-color: #fff;
+}
+
 /* tab */
 .capacity__tab {
   background-color: #fff;

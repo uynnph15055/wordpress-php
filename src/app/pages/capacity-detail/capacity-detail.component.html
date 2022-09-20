@@ -261,7 +261,7 @@
 
       <!-- sidebar -->
       <div class="col col-lg-3 col-md-12 col-sm-12 col-12">
-        <div class="sidebar" *ngIf="!isFetchingCapacity">
+        <div class="sidebar" *ngIf="!isFetchingCapacity && !isFetchingNextRound">
           <div class="sidebar__image" [ngStyle]="{ 'background-image': 'url(' + capacity.img + ')' }"></div>
 
           <ul class="sidebar__countdown" *ngIf="statusExam.status === 0">
@@ -303,17 +303,22 @@
           </ul>
 
           <button
+            *ngIf="!isDoneExam"
             class="btn btn-main sidebar__content-btn"
             [ngClass]="{ 'btn-base-type-bg': statusExam.status === 1 }"
-            (click)="handleGoToFirstTest()"
+            (click)="handleGoToNextRound()"
             [disabled]="statusExam.status === 0 || statusExam.status === 2"
           >
             {{ statusExam.status === 1 ? "Tham gia ngay" : statusExam.statustext }}
           </button>
+
+          <button *ngIf="isDoneExam" class="btn sidebar__content-btn sidebar__content-btn--disable">
+            Đã hoàn thành
+          </button>
         </div>
 
         <!-- skeleton -->
-        <div class="sidebar" *ngIf="isFetchingCapacity">
+        <div class="sidebar" *ngIf="isFetchingCapacity || isFetchingNextRound">
           <ngx-skeleton-loader [theme]="{ height: '150px' }"></ngx-skeleton-loader>
 
           <ngx-skeleton-loader count="3" [theme]="{ margin: '0 0 4px' }"></ngx-skeleton-loader>
