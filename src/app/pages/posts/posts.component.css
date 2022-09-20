@@ -183,7 +183,7 @@ h5 {
 }
 
 /* ------------------- post item ------------ */
-/* .post-item {
+.post-item {
     height: 450px;
 }
 
@@ -247,4 +247,4 @@ h5 {
     font-size: 12px;
     padding: 4px 10px;
     margin-top: 5px;
-} */
+}

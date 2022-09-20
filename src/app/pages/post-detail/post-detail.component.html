@@ -28,18 +28,16 @@
                     </div>
                     <div class="post-detail__head-info-item">
                         <span class="post-detail__head-info-item-text"><i class="fa-solid fa-user"></i>&ensp;
-                            {{postDetail.user?.name}}</span>
+                            {{postDetail?.user?.name}}</span>
                         <span class="post-detail__head-info-item-text"><i class="fa-solid fa-clock"></i>&ensp;
                             {{postDetail?.published_at}}</span>
                     </div>
                 </div>
                 <div class="post-detail__short-desc" [innerHTML]="postDetail?.description">
                 </div>
+                <!-- Upload cv -->
                 <div class="post_upload-cv">
-                    <form action="">
-                        <input type="text">
-                        <button>Upload CV</button>
-                    </form>
+                    <button class="btn-paint-color btn-recruitment" (click)="openModal()">Ứng tuyển ngay</button>
                 </div>
                 <div class="post-detail__img-section">
                     <img [src]="postDetail?.thumbnail_url" alt="" class="post-detail__img">
