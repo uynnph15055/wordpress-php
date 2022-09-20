@@ -1,6 +1,8 @@
 .slide{
   border: none;
   background-color: #ffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 3px var(--gray-200);
 }
 
 .contest-item-img {
@@ -73,7 +75,6 @@
     margin-top: 20px;
   }
 }
-
 
 a.disabled {
   pointer-events: none;

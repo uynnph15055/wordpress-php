@@ -79,7 +79,7 @@
                 <div class="recruitment-left">
                     <h2 class="fw-bold"><img class="image-title" src="./../../../assets/img/9c13a4ff5c359f6bc624.jpg"
                             alt="">
-                        Bài viết nổi bật</h2>
+                        Bài viết tuyển dụng</h2>
                     <div *ngIf="listPostResult" class="bg-white w-100 recruitment-list-hot-box">
                         <div class="p-3 recruitment-list-hot-reponsive">
                             <div *ngFor="let item of listPostResult" class="recruitment-list-hot-item-box">
@@ -169,3 +169,10 @@
             </div>
         </div>
     </div>
+    <div *ngIf="listPostResult" class="container list-post-box pb-5" >
+        <h3 class="fw-bold title text-uppercase mb-2 text-left color-blue">Tìm hiểu doanh nghiệp</h3>
+        <div class="title-line">
+        </div>
+        <app-list-post [listPost]="listPostResult"></app-list-post>
+    </div>
+</div>

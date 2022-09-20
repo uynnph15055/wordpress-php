@@ -34,11 +34,6 @@
 .capacity__info-desc-btn {
   cursor: pointer;
   border: none;
-  transition: all 0.25s linear;
-}
-
-.capacity__info-desc-btn:hover {
-  opacity: 0.8;
 }
 
 .capacity__info-footer {
@@ -63,6 +58,8 @@
 
 .capacity__info-footer-btn:hover {
   opacity: unset;
+  background-color: #fff;
+  color: var(--primary);
 }
 
 /* start: Avatar */
@@ -448,6 +445,11 @@
 .btn-base-type-bg {
   background-color: var(--primary);
   color: #fff;
+  transition: all 0.25s linear;
+}
+
+.btn-base-type-bg:hover {
+  opacity: 0.8;
 }
 
 .modal-header .btn-close {

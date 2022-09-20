@@ -7,18 +7,23 @@ import { HomeLayoutComponent } from "./layouts/home-layout/home-layout.component
 import { ContestDeatailComponent } from "./pages/contest-detail/contest-deatail.component";
 import { ProfileUserComponent } from "./component/profile-user/profile-user.component";
 import { ContestUserJoinComponent } from "./component/contest-user-join/contest-user-join.component";
-
-import { IntoExamComponent } from "./pages/into-exam/into-exam.component";
-import { RoundContestDetailComponent } from "./pages/round-contest-detail/round-contest-detail.component";
-import { RecruitmentComponent } from "./pages/recruitment/recruitment.component";
-import { CapacityDetailComponent } from "./pages/capacity-detail/capacity-detail.component";
-import { CapacityExamComponent } from "./pages/capacity-exam/capacity-exam.component";
-import { PostsComponent } from "./pages/posts/posts.component";
-import { RecruitmentDetailComponent } from "./pages/recruitment-detail/recruitment-detail.component";
+import { PostDetailComponent } from './pages/post-detail/post-detail.component';
+import { PostResultSearchComponent } from './pages/post-result-search/post-result-search.component';
 import { ProfileLayoutComponent } from "./layouts/profile-layout/profile-layout.component";
 import { MyCapacityTestComponent } from "./pages/my-capacity-test/my-capacity-test.component";
 import { AuthGuard } from "./guard/auth.guard";
+import { RoundDetailComponent } from './component/round-detail/round-detail.component';
+import { RoundComponent } from './component/round/round.component';
+import { IntoExamComponent } from './pages/into-exam/into-exam.component';
+import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
+import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
+import { CapacityDetailComponent } from './pages/capacity-detail/capacity-detail.component';
+import { CapacityExamComponent } from './pages/capacity-exam/capacity-exam.component';
+import { PostsComponent } from './pages/posts/posts.component';
+import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitment-detail.component';
+import { TestCapacityComponent } from './pages/test-capacity/test-capacity.component';
 
+import { PostCategoryComponent } from './pages/post-category/post-category.component';
 const routes: Routes = [
   {
     path: "",
@@ -37,7 +42,19 @@ const routes: Routes = [
         component: PostsComponent,
       },
       {
-        path: "vao-thi/:contest_id/vong/:round_id",
+        path: 'bai-viet/:slug',
+        component: PostDetailComponent,
+      },
+      {
+        path: 'danh-muc-bai-viet',
+        component: PostCategoryComponent,
+      },
+      {
+        path: 'tim-kiem/bai-viet',
+        component: PostResultSearchComponent,
+      },
+      {
+        path: 'vao-thi/:contest_id/vong/:round_id',
         component: IntoExamComponent,
       },
       {
@@ -78,6 +95,10 @@ const routes: Routes = [
       {
         path: "tuyen-dung",
         component: RecruitmentComponent,
+      },
+      {
+        path: "test-nang-luc",
+        component: TestCapacityComponent,
       },
       {
         path: "tuyen-dung/chi-tiet/:id",

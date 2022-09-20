@@ -48,7 +48,7 @@
         <div class="col-md-6 col-xl-4 col-sm-12">
             <span>
                 <div class="text-center">
-                    <img src="./../../../assets/img/image 409.svg" alt="" style="width: 65%;" class="">
+                    <img src="./../../../assets/img/image 409.svg" alt="" style="width: 65%;margin:0px auto;">
                 </div>
                 <p class="mt-2 text-justify">Lorem ipsum dolor sit amet consectetur
                     adipisicing elit.
@@ -109,8 +109,8 @@
         <div class="prev-arrow position-absolute top-50 start-0 translate-middle arrow-list-contest slick-arrow">
             <i class="fas fa-chevron-left"></i>
         </div>
-        <ngx-slick-carousel class="carousel row slick-list-contest row" [config]="sliderContest">
-            <app-contest-item ngxSlickItem *ngFor="let item of contests" class="col-3 contest-item" [item]="item">
+        <ngx-slick-carousel class="carousel  row slick-list-contest" [config]="sliderContest">
+            <app-contest-item ngxSlickItem  *ngFor="let item of contests" class="col-3 py-2 contest-item" [item]="item">
             </app-contest-item>
         </ngx-slick-carousel>
         <div class="next-arrow position-absolute top-50 start-100 translate-middle arrow-list-contest slick-arrow">
@@ -130,23 +130,6 @@
                 </app-contest-load-item>
             </div>
         </div>
-        <!-- <div class="contest-loading-tablet container">
-            <div class="  d-flex justify-content-around ">
-                <app-contest-load-item class=" col-6">
-                </app-contest-load-item>
-                &nbsp;
-                &nbsp;&nbsp;
-                <app-contest-load-item class="col-6">
-                </app-contest-load-item>
-            </div>
-        </div>
-
-        <div class="contest-loading-mobile">
-            <div class="container">
-                <app-contest-load-item class="col-12">
-                </app-contest-load-item>
-            </div>
-        </div> -->
     </div>
 </div>
 
@@ -187,7 +170,7 @@
                                     {{item.reward_point}}</span>
                             </p>
                   
-                        <h4 class="student-name">
+                        <h4 class="student-name text-collapse">
                             <!-- {{item.user.name}} -->
                             {{item.user_name}}
                         </h4>

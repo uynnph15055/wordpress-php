@@ -1,5 +1,4 @@
 <div class="header bg-white">
-  <!-- <input checked type="checkbox"> -->
   <nav class="container d-flex justify-content-between align-items-center">
     <div class="nav-response">
       <label class="icon-open-nav-mobile" for="input_check">
@@ -54,7 +53,7 @@
           <div
             class="position-relative fw-bold nav-link-item text-uppercase text-decoration-none d-flex align-items-center"
           >
-            <span>Tuyển dụng</span>
+            <span [routerLink]="['/tuyen-dung']">Tuyển dụng</span>
             <div class="nav-item__icon">
               <i class="fa-solid fa-caret-down"></i>
             </div>
@@ -63,7 +62,7 @@
               <li class="sub-menu__item">
                 <a
                   class="sub-menu__link fw-bold nav-link-item text-uppercase text-decoration-none"
-                  routerLink="/tin-tuyen-dung"
+                  [routerLink]="['/tuyen-dung']"
                 >
                   Tin tuyển dụng
                 </a>
@@ -117,7 +116,7 @@
         </li>
       </ul>
     </div>
-    <a href="/login" *ngIf="!false" class="fa-icon-login">
+    <a routerLink="/login" *ngIf="!false" class="fa-icon-login">
       <fa-icon [icon]="['fas', 'sign-in-alt']"></fa-icon>
     </a>
   </nav>

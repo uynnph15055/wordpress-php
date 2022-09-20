@@ -76,16 +76,10 @@
 
                   <!-- empty enterprise -->
                   <p class="m-0" *ngIf="!enterprises.length">Chưa có doanh nghiệp nào!</p>
-
-                  <!-- <div class="avatar">
-                    <div class="avatar__last" style="background-image: url('http://picsum.photos/200/200')">
-                      <i class="fa-solid fa-ellipsis"></i>
-                    </div>
-                  </div> -->
                 </div>
               </div>
 
-              <button class="btn capacity__info-footer-btn btn-main btn-base-type-bg">
+              <button class="btn capacity__info-footer-btn btn-main">
                 {{ statusExam.statustext }}
               </button>
             </div>
@@ -310,6 +304,7 @@
 
           <button
             class="btn btn-main sidebar__content-btn"
+            [ngClass]="{ 'btn-base-type-bg': statusExam.status === 1 }"
             (click)="handleGoToFirstTest()"
             [disabled]="statusExam.status === 0 || statusExam.status === 2"
           >

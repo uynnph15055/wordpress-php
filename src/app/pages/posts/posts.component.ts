@@ -8,32 +8,62 @@ import { ListPostService } from 'src/app/services/list-post.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  posts:  Array<Post>;
-  listPostNewFirst : Post; 
-  postSeccond: Post; 
+  PostRecruitmentFirst : Post; 
+  ListPostRecruitment: Post[]
+
+  PostContestFirst : Post; 
+  ListPostContest: Post[]
+
+  PostCapacityFirst : Post; 
+  ListPostCapacity: Post[]
+
   constructor(private postService : ListPostService) { }
 
   ngOnInit(): void {
-    this.getListPost();
+    this.getListPostRecruitment();
+    this.getListPostCapacity()
+    this.getListPostContest()
   }
 
-  getListPost(){
-    this.postService.getAllListPost().subscribe(res => {
+  getListPostRecruitment(){
+    this.postService.getPostRecruitment().subscribe(res => {
        if(res.status){
         let arrResult= res.payload.data;
-        this.listPostNewFirst = arrResult[0];
-        let indexRan = Math.floor(Math.random() * arrResult.length ) +1;
-        
-        this.postSeccond = arrResult[indexRan];
-        console.log( this.postSeccond );
-        this.posts = arrResult.filter((res: Post , index: number) => {
-         
-          return index > 1;
+        this.PostRecruitmentFirst = arrResult[0];
+        // let indexRan = Math.floor(Math.random() * arrResult.length ) +1;
+        // this.postSeccond = arrResult[indexRan];
+        this.ListPostRecruitment = arrResult.filter((res: Post , index: number) => {
+          return index > 0 && index < 3;
         });
        }
+    })
+  }
 
-      // console.log(this.listPostNewFirst);
-      
+  getListPostContest(){
+    this.postService.getPostContest().subscribe(res => {
+       if(res.status){
+        let arrResult= res.payload.data;
+        this.PostContestFirst = arrResult[0];
+        // let indexRan = Math.floor(Math.random() * arrResult.length ) +1;
+        // this.postSeccond = arrResult[indexRan];
+        this.ListPostContest = arrResult.filter((res: Post , index: number) => {
+          return index > 0;
+        });
+       }
+    })
+  }
+
+  getListPostCapacity(){
+    this.postService.getPostCapacity().subscribe(res => {
+       if(res.status){
+        let arrResult= res.payload.data;
+        this.PostCapacityFirst = arrResult[0];
+        // let indexRan = Math.floor(Math.random() * arrResult.length ) +1;
+        // this.postSeccond = arrResult[indexRan];
+        this.ListPostCapacity = arrResult.filter((res: Post , index: number) => {
+           return index > 0 && index < 4;
+        });
+       }
     })
   }
 

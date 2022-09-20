@@ -1,0 +1,233 @@
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+}
+
+.text-collapse-post {
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+}
+
+/* ------ */
+.page-post-box {
+    background: #f6f8fa
+}
+
+.post-new-latest {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-gap: 44px;
+
+}
+
+.post-new-latest__img-section .post-new-latest__img {
+    border-radius: 10px;
+    width: 100%;
+    height: 420px;
+}
+
+/* ------ */
+.post-new-latest-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.post-new-latest__title {
+    font-size: 36px;
+    line-height: 1.2
+}
+
+.post-new-latest__info {
+    display: flex;
+    justify-content: start;
+    margin: 10px 0;
+}
+
+.post-new-latest__info-item {
+    color: #8E8E95
+}
+
+.post-new-latest__info-item+.post-new-latest__info-item {
+    margin-left: 20px;
+}
+
+.post-new-latest__bottom .post-new-latest__short-desc {
+    color: #8E8E95
+}
+
+.post-new-latest .btn {
+    margin: 10px 0;
+}
+
+.post-new-latest__slider-list .post-new-latest__slider-item {
+    margin: 0px 10px;
+}
+
+.post-new-latest__slider-list .post-new-latest__slider-item-img {
+    height: 150px;
+    border-radius: 10px;
+}
+
+/* ------------------------------------- */
+.post-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 44px;
+    margin-top: 32px;
+}
+
+.post-main-content-section:first-child {
+    margin: 0;
+}
+
+.post-main-content-section {
+    margin-top: 32px;
+}
+
+.post-main-content .post-main-content-section .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #D9D9D9;
+    margin-bottom: 32px;
+}
+
+.header-post-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-section .header-section__link {
+    color: #8E8E95
+}
+
+.post-main-content-section .main-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 44px
+}
+
+/* --------- */
+.post-in-cate-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.post-in-cate-item {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    grid-gap: 16px;
+}
+
+.post-in-cate-item__img-section .post-in-cate-item__img {
+    width: 100%;
+    border-radius: 10px;
+    height: 125px;
+}
+
+/* .post-in-cate-item-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} */
+
+.post-in-cate-item-content__info {
+    color: #8E8E95;
+    display: flex;
+    margin-top: 20px;
+}
+
+/* ------------------- aside ---------- */
+.form-search {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #E8EAEE
+}
+
+.form-search i {
+    color: var(--primary-color)
+}
+
+.form-search .form__input {
+    outline: none;
+    width: 100%;
+}
+
+/* ------------------- post item ------------ */
+.post-item {
+    height: 450px;
+}
+
+.post-item-img-section {
+    position: relative;
+}
+
+.post-item__img {
+    width: 100%;
+    border-radius: 10px;
+    height: 260px;
+}
+
+.post-item-content {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: white;
+    border-radius: 10px;
+    width: 320px;
+    padding: 20px;
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.15);
+}
+
+.post-item-content--new-in-cate {
+    top: 90%;
+}
+
+.post-item__title {
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.post-item__info {
+    margin: 10px 0;
+    display: flex;
+    justify-content: start;
+}
+
+.post-item__info-item:first-child {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+}
+
+.post-item__info-item+.post-item__info-item {
+    margin-left: 10px;
+}
+
+.post-item__info,
+.post-item-bottom {
+    color: #8E8E95
+}
+
+.post-item-bottom .btn {
+    font-size: 12px;
+    padding: 4px 10px;
+    margin-top: 5px;
+}
