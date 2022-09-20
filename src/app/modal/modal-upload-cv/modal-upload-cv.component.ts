@@ -68,12 +68,19 @@ export class ModalUploadCvComponent implements OnInit {
         if (res.status == false) {
           this.toast.warning({ summary: res.payload, duration: 2000 });
         } else {
-          console.log("first", res)
           this.statusRegister = true;
           this.dialogRef.close();
         }
         return "Ok"
       });
     }, 1000);
+  }
+  confirmClose(){
+    const confirm = window.confirm('Are you sure you want to close')
+    if (confirm){
+      this.dialogRef.close();
+    }else{
+    }
+    
   }
 }

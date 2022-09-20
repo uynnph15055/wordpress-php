@@ -20,7 +20,7 @@
             <input #file type="file" (change)="preview(file.files)" formControlName="file_link" class="form-control" id="modalUploadCv">
         </div>
         <mat-dialog-actions align="end">
-            <button mat-button mat-dialog-close>Huỷ</button>
+            <button mat-button  (click)="confirmClose()">Huỷ</button>
             <button class="btn-submit text-white" [ngClass]="formUploadCv.invalid ? 'btn-disabled' : ''" [disabled]="formUploadCv.invalid" type="submit" mat-button [mat-dialog-close]="true" cdkFocusInitial>Gửi</button>
         </mat-dialog-actions>
     </form>
