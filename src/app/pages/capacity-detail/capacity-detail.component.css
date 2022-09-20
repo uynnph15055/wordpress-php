@@ -325,6 +325,12 @@
   display: none;
 }
 
+.capacity__test-list-item-stt {
+  margin-left: auto;
+  padding-left: 12px;
+  color: red;
+}
+
 .capacity__test-detail-time {
   margin-top: 6px;
 }
@@ -343,6 +349,7 @@
   font-weight: bold;
   line-height: 1.2;
   margin-right: auto;
+  flex: 1;
 }
 /* related */
 .capacity__related-list {

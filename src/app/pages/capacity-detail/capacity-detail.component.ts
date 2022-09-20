@@ -65,7 +65,12 @@ export class CapacityDetailComponent implements OnInit {
         if (res.status) {
           this.isFetchingCapacity = false;
           this.capacity = res.payload;
-          this.rounds = res.payload.rounds;
+          this.rounds = res.payload.rounds.map((round: Round) => {
+            const isFinished = new Date().getTime() > new Date(round.end_time).getTime(); //vòng thi đã kết thúc
+
+            round["isRoundFinish"] = isFinished;
+            return round;
+          });
 
           // get ds doanh nghiệp, xóa DN trùng lặp
           this.enterprises = res.payload.recruitment_enterprise.reduce((result: Enterprise[], item: Enterprise) => {
