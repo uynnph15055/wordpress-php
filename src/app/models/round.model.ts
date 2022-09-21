@@ -16,6 +16,8 @@ export class Round {
   judges: Array<Judges>;
   contest: Contest;
   exams: Array<exams>;
+  isRoundFinish?: boolean; // trạng thái vòng thi đã kết thúc chưa
+  user_status_join?: any;
 }
 
 export class CapacityRound {
