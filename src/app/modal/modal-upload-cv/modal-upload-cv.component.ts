@@ -75,12 +75,10 @@ export class ModalUploadCvComponent implements OnInit {
       });
     }, 1000);
   }
-  confirmClose(){
-    const confirm = window.confirm('Are you sure you want to close')
-    if (confirm){
+  confirmClose() {
+    const confirm = window.confirm('Bạn có muốn hủy không?')
+    if (confirm) {
       this.dialogRef.close();
-    }else{
     }
-    
   }
 }
