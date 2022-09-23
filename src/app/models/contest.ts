@@ -14,6 +14,7 @@ export class Contest {
     start_register_time: Date;
     description: string;
     major_id: number;
+    rounds_count: number;
     status: number;
     teams: Array<Team>
     rounds: Array<Round>
