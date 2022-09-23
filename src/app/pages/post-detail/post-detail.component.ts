@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { ListPostService } from 'src/app/services/list-post.service';
 import { Post } from 'src/app/models/post.model';
+import { ModalUploadCvComponent } from 'src/app/modal/modal-upload-cv/modal-upload-cv.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-post-detail',
@@ -16,7 +18,8 @@ export class PostDetailComponent implements OnInit {
   constructor(
     private postService: ListPostService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -34,4 +37,17 @@ export class PostDetailComponent implements OnInit {
     })
   }
 
+  // Open-modal upload cv
+  openModal() {
+    const dialogRef = this.dialog.open(ModalUploadCvComponent, {
+      width: '700px',
+      data: {
+        postDetail: this.postDetail,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log("result", result)
+     });
+  }
 }

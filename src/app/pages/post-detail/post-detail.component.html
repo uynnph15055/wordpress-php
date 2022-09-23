@@ -1,16 +1,5 @@
 <div class="page-post-box py-3">
     <div class="container ">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a routerLink="/">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a routerLink="/bai-viet">Bài viết</a></li>
-                <li class="breadcrumb-item breadcrumb-item active" *ngIf="statusPost==true">{{postDetail.title}}</li>
-                <!-- <ngx-skeleton-loader *ngIf="statusPost==false"
-                    [theme]="{ 'height.px' : 30, 'width.px' : 100,  'margin-bottom' : '7px' , 'border-radius': '10px' }"
-                    appearance="line">
-                </ngx-skeleton-loader> -->
-            </ol>
-        </nav>
         <div class="post-main">
             <div class="post-main-content">
                 <h1 class="post-detail__title" *ngIf="statusPost">
@@ -28,18 +17,16 @@
                     </div>
                     <div class="post-detail__head-info-item">
                         <span class="post-detail__head-info-item-text"><i class="fa-solid fa-user"></i>&ensp;
-                            {{postDetail.user?.name}}</span>
+                            {{postDetail?.user?.name}}</span>
                         <span class="post-detail__head-info-item-text"><i class="fa-solid fa-clock"></i>&ensp;
                             {{postDetail?.published_at}}</span>
                     </div>
                 </div>
                 <div class="post-detail__short-desc" [innerHTML]="postDetail?.description">
                 </div>
+                <!-- Upload cv -->
                 <div class="post_upload-cv">
-                    <form action="">
-                        <input type="text">
-                        <button>Upload CV</button>
-                    </form>
+                    <button class="btn-paint-color btn-recruitment" (click)="openModal()">Ứng tuyển ngay</button>
                 </div>
                 <div class="post-detail__img-section">
                     <img [src]="postDetail?.thumbnail_url" alt="" class="post-detail__img">
