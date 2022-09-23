@@ -64,6 +64,7 @@ export class ContestComponent implements OnInit {
     this.checkUserHasLogin;
 
     window.addEventListener('scroll', this.scrollNavSub);
+    this.getAllMajor();
   }
 
   scrollNavSub() {
