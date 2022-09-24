@@ -38,19 +38,22 @@ export class RecruitmentComponent implements OnInit {
   recruitmentLinks: Array<PayingLinks>;
   cinfigData: TransmitToPost;
   listPostResult: Array<Post>;
-  majors: Array<Major> | null;
+  majors: Array<Major>  | null;
   skills: Array<Skill>;
-  skill_id: number;
-  major_id: number;
+  skill_id: any;
+  major_id: any;
   keywords: Array<Keyword> | null;
   orderObj: any;
   status: any;
   keyword: string;
 
   // -------------
+  statusPostSearch : boolean = false;
+  statusPost : boolean = false;
   statusCompany: boolean = false;
   statusRecruitments: boolean = false;
   statusRecruitmentsHot: boolean = false;
+  statusPage: boolean = true;
 
   constructor(
     public dialog: MatDialog,
@@ -64,7 +67,7 @@ export class RecruitmentComponent implements OnInit {
     public keywordService: KeywordService,
     private router: Router,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   statusFilter: Array<any> = [
@@ -91,39 +94,41 @@ export class RecruitmentComponent implements OnInit {
       this.orderObj = { ...params };
     });
 
+    this.getListMajor();
+    this.getAllSkill();
+    this.getKeywordAll()
+
     if (this.orderObj.params) {
-      this.keyword = this.orderObj.params.keyword ? this.orderObj.params.keyword : '';
-      this.major_id = this.orderObj.params.major_id  ? this.orderObj.params.major_id : '';
-      this.skill_id = this.orderObj.params.skill_id  ? this.orderObj.params.skill_id : '';
-      this.status = this.orderObj.params.status  ? this.orderObj.params.status : '';
+      this.keyword = this.orderObj.params.keyword
+        ? this.orderObj.params.keyword
+        : '';
+      this.major_id = this.orderObj.params.major_id
+        ? this.orderObj.params.major_id
+        : '';
+      this.skill_id = this.orderObj.params.skill_id
+        ? this.orderObj.params.skill_id
+        : '';
+      this.status = this.orderObj.params.status
+        ? this.orderObj.params.status
+        : '';
 
       this.filterRecruitments();
+    }else{
+      this.getListPost();
+      this.getListRecruitment();
     }
-    
 
-    console.log(this.keyword ,  this.major_id ,  this.skill_id , this.status);
-
-    window.addEventListener('scroll', () => {
-      const keywordSugg = document.querySelectorAll(
-        '.input__search-keyword--sugg'
-      );
-      keywordSugg.forEach((item) => {
-        item.classList.add('d-none');
-      });
-    });
+    window.addEventListener('scroll', this.noneSuggestFilter);
 
     const inputElement = document.querySelectorAll('.form-control');
     inputElement.forEach((item) => {
       item.addEventListener('focus', () => {
-        item.nextElementSibling?.classList.remove('d-none');
+         if( item.nextElementSibling?.classList.remove('d-none')){
+
+         }
+        
       });
     });
-
-    this.getListMajor();
-    this.getAllSkill();
-    this.getKeywordAll();
-    this.getListRecruitment();
-    this.getListPost();
   }
 
   // Set filter value
@@ -138,7 +143,7 @@ export class RecruitmentComponent implements OnInit {
 
   // Set keyword recruitments
   setValueKeyword(keyword: string) {
-      this.formFilter.controls['filterName'].setValue(keyword);
+    this.formFilter.controls['filterName'].setValue(keyword);
   }
 
   // Get All keyword trending;
@@ -155,25 +160,31 @@ export class RecruitmentComponent implements OnInit {
         case 'major':
           if (!value) {
             this.majors = null;
+            this.major_id = '';
             this.getListMajor();
           } else {
             this.majors = arr.filter((item) => {
               return this.configService
                 .changeString(item.name)
                 .includes(this.configService.changeString(value));
+                
             });
+            this.majors.length > 0 &&  this.noneSuggestFilter();
           }
           break;
         case 'keyword':
           if (!value) {
             this.keywords = null;
+            this.keyword = '';
             this.getKeywordAll();
+        
           } else {
             this.keywords = arr.filter((item) => {
               return this.configService
                 .changeString(item.keyword)
                 .includes(this.configService.changeString(value));
             });
+            this.keywords.length > 0 &&  this.noneSuggestFilter();
           }
           break;
         default:
@@ -189,6 +200,7 @@ export class RecruitmentComponent implements OnInit {
       .subscribe((res) => {
         if (res.status) {
           this.listPostResult = res.payload.data;
+          if( this.listPostResult ) this.statusPost = true;
         }
       });
   }
@@ -215,6 +227,7 @@ export class RecruitmentComponent implements OnInit {
         this.recruitments
           ? (this.statusRecruitments = true)
           : this.statusRecruitments;
+        this.statusPage = false;
         this.scrollWin();
       }
     });
@@ -231,7 +244,7 @@ export class RecruitmentComponent implements OnInit {
   // Filter recruitments
   filterRecruitments() {
     this.statusRecruitments = false;
-   
+    this.statusPost = false;
 
     if (this.formFilter.controls['filterName'].value) {
       this.keyword = this.formFilter.controls['filterName'].value;
@@ -250,7 +263,7 @@ export class RecruitmentComponent implements OnInit {
     }
 
 
-    if(this.status , this.keyword , this.major_id ,this.skill_id){
+    if (this.status  || this.keyword || this.major_id || this.skill_id) {
       this.router.navigate(['/tuyen-dung'], {
         queryParams: {
           status: this.status,
@@ -261,10 +274,26 @@ export class RecruitmentComponent implements OnInit {
         queryParamsHandling: 'merge',
       });
     }
-   
+    
+
+    this.listPostService.searchPostRecruitment(this.keyword).subscribe(res => {
+      
+      if(res.status && res.payload.data.length > 0 ){      
+        this.statusPostSearch = true;
+        this.listPostResult = res.payload.data;
+        this.statusPost = true;
+      }else{
+        this.getListPost();
+      }
+    })
 
     this.recruitmentService
-      .filterRecruitment(this.keyword, this.major_id, this.status, this.skill_id)
+      .filterRecruitment(
+        this.keyword,
+        this.major_id,
+        this.status,
+        this.skill_id
+      )
       .subscribe((res) => {
         if (res.status) {
           this.statusRecruitments = true;
@@ -302,10 +331,45 @@ export class RecruitmentComponent implements OnInit {
     });
   }
 
+
+  // Cập nhất tất cả trạng thái về more
   resetFilter() {
     this.formFilter.controls['filterMajor'].setValue('');
     this.formFilter.controls['filterStatus'].setValue('');
     this.formFilter.controls['filterName'].setValue('');
+    this.keyword = '';
+    this.major_id = '';
+    this.skill_id = '';
+    this.status = '';
     this.location.replaceState('');
   }
+
+  // Ẩn gợi ý khi seach ko ra kết quả
+  noneSuggestFilter(){
+    const keywordSugg = document.querySelectorAll(
+      '.input__search-keyword--sugg'
+    );
+    keywordSugg.forEach((item) => {
+      item.classList.add('d-none');
+    });
+  }
+
+
+  getAllPost(){
+    let keyword = '';
+    if(this.statusPostSearch){
+      keyword =  this.keyword;
+    }else{
+      keyword =  '';
+    }
+
+    this.router.navigate(['/tim-kiem/bai-viet'], {
+      queryParams: {
+        keyword :  keyword,
+      },
+      queryParamsHandling: 'merge',
+    });
+  }
+  
+  
 }

@@ -1,3 +1,5 @@
+<app-loading-page [status]="statusPage">
+</app-loading-page>
 <div class="container-fuild recruitment-banner-box">
   <ngb-carousel>
     <ng-template ngbSlide>
@@ -54,6 +56,7 @@
               class="w-100 input__search-keyword--sugg"
               aria-labelledby="dropdownBasic1"
             >
+             <span class="input__search-keyword-alert"></span>
               <div *ngIf="!keywords" class="d-flex justify-content-center">
                 <app-loading-item class="py-2"></app-loading-item>
               </div>
@@ -83,6 +86,7 @@
             class="w-100 input__search-keyword--sugg"
             aria-labelledby="dropdownBasic1"
           >
+          <span class="input__search-major-alert"></span>
             <div *ngIf="!majors" class="d-flex justify-content-center">
               <app-loading-item class="py-2"></app-loading-item>
             </div>
@@ -126,7 +130,8 @@
     </form>
     <ul *ngIf="skills" class="d-flex flex-wrap filter-skill-box">
       <li
-        class="filter-skill-item active mt-4"
+        class="filter-skill-item  mt-4"
+        [ngClass]="!skill_id ? 'active' :  ''"
         (click)="filterSkill($event, 0)"
       >
         Tất cả
@@ -134,6 +139,7 @@
       <li
         *ngFor="let item of skills"
         class="filter-skill-item mt-4"
+        [ngClass]="skill_id == item.id ?  'active' :  ''"
         (click)="filterSkill($event, item.id)"
       >
         {{ item.short_name }}
@@ -162,26 +168,45 @@
             />
             Bài viết tuyển dụng
           </h2>
+          <span  *ngIf="statusPost" style="cursor: pointer;" (click)="getAllPost()"  class="d-block text-decoration-underline mb-2 pe-auto primary-color" >Xem tất cả</span>
           <div
-            *ngIf="listPostResult"
+            *ngIf="statusPost"
             class="bg-white w-100 recruitment-list-hot-box"
           >
             <div class="p-3 recruitment-list-hot-reponsive">
+           
               <div
                 *ngFor="let item of listPostResult"
                 class="recruitment-list-hot-item-box"
               >
                 <div class="w-100">
-                  <img
+                  <img 
+                     routerLink="/bai-viet/{{item.slug}}"
                     [src]="item.thumbnail_url"
                     alt=""
                     class="recruitment-list-hot-item-box-img"
                   />
                 </div>
+                <h3 class="post-item__title mt-2"><a routerLink="/bai-viet/{{item.slug}}">{{item.title}}</a>
+                </h3>
+                <div class="post-item__info">
+                    <div class="post-item__info-item" data-toggle="tooltip" data-placement="bottom"
+                        title={{item.user.name}}>
+                        <i class="fa-solid fa-user"></i>&ensp; {{item.user.name}}
+                    </div>
+                    <div class="post-item__info-item">
+                        <i class="fa-solid fa-clock"></i>&ensp;{{item.published_at |
+                            formatDatePost }}
+                    </div>
+                </div>
+                <div class="post-item-bottom">
+                    <p class="short-desc" *ngIf="item.description " [innerHTML]="item.description"></p>
+                    <a class="btn btn-detail" routerLink="/bai-viet/{{item.slug}}">Chi tiết</a>
+                </div>
               </div>
             </div>
           </div>
-          <div *ngIf="!listPostResult" class="recruitment-list-hot-box-loading">
+          <div *ngIf="!statusPost" class="recruitment-list-hot-box-loading">
             <ngx-skeleton-loader
               [theme]="{
                 'height.px': '230',
