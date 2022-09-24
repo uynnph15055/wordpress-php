@@ -16,6 +16,8 @@ export class Capacity {
   rounds: Round[];
   user_capacity_done: []; // ds user làm bài
   skills: Skill[];
+  rounds_count: number;
+  user_capacity_done_count: number;
 }
 
 class ResultExam {

@@ -34,11 +34,6 @@
 .capacity__info-desc-btn {
   cursor: pointer;
   border: none;
-  transition: all 0.25s linear;
-}
-
-.capacity__info-desc-btn:hover {
-  opacity: 0.8;
 }
 
 .capacity__info-footer {
@@ -63,6 +58,8 @@
 
 .capacity__info-footer-btn:hover {
   opacity: unset;
+  background-color: #fff;
+  color: var(--primary);
 }
 
 /* start: Avatar */
@@ -243,6 +240,19 @@
   margin-bottom: 4px;
 }
 
+.sidebar__content-btn--disable {
+  color: var(--primary);
+  padding: 7px 15px;
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.sidebar__content-btn--disable:hover {
+  cursor: default;
+  background-color: #fff;
+}
+
 /* tab */
 .capacity__tab {
   background-color: #fff;
@@ -315,6 +325,12 @@
   display: none;
 }
 
+.capacity__test-list-item-stt {
+  margin-left: auto;
+  padding-left: 12px;
+  color: red;
+}
+
 .capacity__test-detail-time {
   margin-top: 6px;
 }
@@ -333,6 +349,7 @@
   font-weight: bold;
   line-height: 1.2;
   margin-right: auto;
+  flex: 1;
 }
 /* related */
 .capacity__related-list {
@@ -448,6 +465,11 @@
 .btn-base-type-bg {
   background-color: var(--primary);
   color: #fff;
+  transition: all 0.25s linear;
+}
+
+.btn-base-type-bg:hover {
+  opacity: 0.8;
 }
 
 .modal-header .btn-close {

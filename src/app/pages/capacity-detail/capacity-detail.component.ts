@@ -6,6 +6,8 @@ import { Capacity } from "src/app/models/capacity";
 import { Round } from "src/app/models/round.model";
 import { NgToastService } from "ng-angular-popup";
 import { Enterprise } from "src/app/models/enterprise.model";
+import { UserService } from "src/app/services/user.service";
+import { RoundService } from "src/app/services/round.service";
 
 @Component({
   selector: "app-capacity-detail",
@@ -19,6 +21,9 @@ export class CapacityDetailComponent implements OnInit {
   capacityRelated!: Capacity[];
   isFetchingCapacity = false;
   isFetchingCapacityRelated = false;
+  isFetchingNextRound = false;
+  isLogged = false;
+  isDoneExam = false; // trạng thái hoàn thành bài test
   rounds!: Round[];
   countDown: {
     days: number;
@@ -36,6 +41,7 @@ export class CapacityDetailComponent implements OnInit {
     statustext: string;
   };
   enterprises!: { id: number; name: string; logo: string }[];
+  nextRoundId: number;
 
   constructor(
     private modalService: NgbModal,
@@ -43,6 +49,8 @@ export class CapacityDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toast: NgToastService,
+    private userService: UserService,
+    private roundService: RoundService,
   ) {}
 
   ngOnInit(): void {
@@ -57,7 +65,12 @@ export class CapacityDetailComponent implements OnInit {
         if (res.status) {
           this.isFetchingCapacity = false;
           this.capacity = res.payload;
-          this.rounds = res.payload.rounds;
+          this.rounds = res.payload.rounds.map((round: Round) => {
+            const isFinished = new Date().getTime() > new Date(round.end_time).getTime(); //vòng thi đã kết thúc
+
+            round["isRoundFinish"] = isFinished;
+            return round;
+          });
 
           // get ds doanh nghiệp, xóa DN trùng lặp
           this.enterprises = res.payload.recruitment_enterprise.reduce((result: Enterprise[], item: Enterprise) => {
@@ -84,6 +97,25 @@ export class CapacityDetailComponent implements OnInit {
           this.getStatusCapacity();
         }
       });
+
+      // get vòng thi tiếp theo khi click btn tham gia ngay nếu đã đăng nhập
+      this.isLogged = !!(this.userService.getJwtToken() && this.userService.getUserValue());
+      if (this.isLogged) {
+        this.isFetchingNextRound = true;
+        this.roundService.getNextRound(capacity_id).subscribe(
+          ({ status, payload }) => {
+            this.isFetchingNextRound = false;
+
+            if (status) {
+              this.nextRoundId = payload.id;
+            }
+          },
+          () => {
+            this.isFetchingNextRound = false;
+            this.isDoneExam = true;
+          },
+        );
+      }
     });
   }
 
@@ -158,10 +190,15 @@ export class CapacityDetailComponent implements OnInit {
   }
 
   // vào bài thi đầu tiên
-  handleGoToFirstTest() {
+  handleGoToNextRound() {
     if (this.statusExam.status === 1) {
       if (!this.rounds.length) {
         this.toast.warning({ summary: "Chưa có bài thi nào", duration: 3000 });
+        return;
+      }
+
+      if (this.isLogged && !this.isDoneExam) {
+        this.router.navigate(["/test-nang-luc/vao-thi", this.capacity.id, "bai-thi", this.nextRoundId]);
         return;
       }
 

@@ -115,3 +115,8 @@ a {
   justify-content: center;
   align-items: center;
 }
+
+
+.input-required {
+  color: red
+}
