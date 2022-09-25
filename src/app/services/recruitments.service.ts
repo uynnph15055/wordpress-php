@@ -10,7 +10,6 @@ import { ResponsePayload } from '../models/response-payload';
 export class RecruitmentsService {
 
   constructor(private http: HttpClient) { }
-
   getAll() : Observable<ResponsePayload>  {
     return this.http.get<ResponsePayload>(`${environment.recruitment}`);
   }

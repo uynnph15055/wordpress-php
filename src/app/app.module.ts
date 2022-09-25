@@ -87,6 +87,7 @@ import { PostCategoryComponent } from "./pages/post-category/post-category.compo
 import { PostResultSearchComponent } from "./pages/post-result-search/post-result-search.component";
 import { TestCapacityComponent } from "./pages/test-capacity/test-capacity.component";
 import { FormatDatePostPipe } from './helper/pipe/format-date-post.pipe';
+import { ListAvatarComponent } from './component/list-avatar/list-avatar.component';
 
 
 
@@ -147,7 +148,8 @@ import { FormatDatePostPipe } from './helper/pipe/format-date-post.pipe';
     MyCapacityTestComponent,
     ContestAsideComponent,
     TestCapacityComponent,
-    FormatDatePostPipe
+    FormatDatePostPipe,
+    ListAvatarComponent
   ],
   imports: [
     BrowserModule,

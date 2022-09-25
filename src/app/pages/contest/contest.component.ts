@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 import { Contest } from 'src/app/models/contest';
 import { Major } from 'src/app/models/major';
 import { ContestService } from 'src/app/services/contest.service';
@@ -50,13 +51,16 @@ export class ContestComponent implements OnInit {
       this.orderObj = {...params };
     });
 
-    this.keyworkSearchContest = this.orderObj.params.keyword;
-    this.majorService.getMajorWhereSlug( this.orderObj.params.major_id).subscribe((res) => {
-      this.statusContest = false;
-      this.major_id = res.payload.id;
-
-    });
+    if(this.orderObj.params.major_id){
+      this.keyworkSearchContest = this.orderObj.params.keyword;
+      this.majorService.getMajorWhereSlug(this.orderObj.params.major_id).subscribe((res) => {
+        this.major_id = res.payload.id;
+      });
+    }
+   
     this.statusCurrContest = this.orderObj.params.status;
+    console.log(this.statusCurrContest);
+    
 
      this.filterContest(this.keyworkSearchContest ,  this.major_id , this.statusCurrContest);
 
@@ -134,7 +138,9 @@ export class ContestComponent implements OnInit {
   getAllContest() {
     this.contestService.getAll().subscribe((res) => {
       if (res.payload) {
-        this.contests = res.payload.data;
+        this.contests = res.payload.data.filter((item : Contest) => {
+          return this.getContestWhereStatus(item , this.statusCurrContest);
+        });
         this.statusContest = true;
       }
     });
@@ -168,8 +174,11 @@ export class ContestComponent implements OnInit {
       this.contestService
         .filterContest(keyword, major_id, status)
         .subscribe((res) => {
-          if (res.status) this.contests = res.payload.data;
+          // if (res.status) this.contests = res.payload.data.filter((item : Contest) => {
+          //   // return this.getContestWhereStatus(item , this.statusCurrContest) == true;
+          // });
           this.statusContest = true;
+          
         });
     } else {
       this.userService
@@ -179,5 +188,16 @@ export class ContestComponent implements OnInit {
           this.statusContest = true;
         });
     }
+  }
+
+  getContestWhereStatus(item: Contest ,status : number){
+    // let date_register_start = new Date(moment(item.start_register_time).format('lll')).getTime();
+    // let  today = new Date().getTime();    
+    // if(date_register_start > today && status ==  1 ){
+    //   console.log('uy');
+    // }
+
+    // return true;
+    
   }
 }

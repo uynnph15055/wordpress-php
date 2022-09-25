@@ -69,7 +69,7 @@ export class ContestItemComponent implements OnInit {
       }else if(this.date_register_end > this.today){
         result = 'Đang mở đăng ký';
       }else if(this.date_start > this.today){
-        result = 'Đang đóng đăng ký';
+        result = 'Đã đóng đăng ký';
       }else if(this.date_end > this.today){
         result = 'Đang diễn ra';
       }else{
