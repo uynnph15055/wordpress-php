@@ -157,7 +157,7 @@ export class TestCapacityComponent implements OnInit {
     }
    
     this.testCapacityService
-      .filterCapacity(keyword, major_id)
+      .filterCapacity(keyword, major_id, status)
       .subscribe((res) => {
         if (res.status) {
           this.statusCapacity = true;
