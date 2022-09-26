@@ -10,7 +10,6 @@ export class ListPostComponent implements OnInit {
   @Input() countColumn: number;
   @Input() listPost : Array<Post>;
   constructor() { }
-
   
   ngOnInit(): void {
     console.log(this.listPost);

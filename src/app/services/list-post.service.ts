@@ -20,6 +20,11 @@ export class ListPostService {
   getAllListPost() : Observable<ResponsePayload>{
     return this.http.get<ResponsePayload>(`${environment.postListUrl}`);
   }
+  // Get all list post
+
+  getHotPost() : Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?postHot=hot`);
+  }
 
   // Get post thuộc tuyển dụng
   getPostRecruitment() : Observable<ResponsePayload>{
