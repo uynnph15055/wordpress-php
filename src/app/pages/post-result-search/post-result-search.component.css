@@ -1,6 +1,7 @@
 .page-post-box {
     background: #f6f8fa
 }
+
 /* ---------------------- */
 .result-search__text {
     display: block;
@@ -9,6 +10,7 @@
     margin: 12px 0;
     color: #0E0759
 }
+
 /* ---------------------- */
 .result-post-list {
     display: grid;
@@ -16,28 +18,34 @@
     grid-gap: 44px;
     margin-top: 12px;
 }
-.result-post__length{
+
+.result-post__length {
     font-size: 18px;
     color: #0E0759;
     margin: 12px 0;
 }
-.result-post__number{
+
+.result-post__number {
     font-weight: bold;
 }
+
 .result-post__empty {
     text-align: center;
 }
-.result-post__empty span{
+
+.result-post__empty span {
     display: block;
     margin: auto;
     width: 300px;
 }
-.result-post__empty span:first-child{
+
+.result-post__empty span:first-child {
     color: #FC4C02;
     font-size: 24px;
     padding: 8px 0;
 }
- /*------------ form-search --------*/
+
+/*------------ form-search --------*/
 .form-search {
     display: flex;
     background: white;
@@ -46,6 +54,7 @@
     border: 1px solid #E8EAEE;
     align-items: center;
 }
+
 .form-search button {
     line-height: 1
 }
@@ -67,7 +76,46 @@
     outline: 0;
     font-size: 16px
 }
+
 /* ------------------- */
 .post-item {
     height: 450px;
+}
+
+/* CSS FILTER */
+.recruitment-filter-box {
+    background-color: var(--gray-200);
+}
+
+.filter-skill-item {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    background-color: var(--gray-200);
+    margin-right: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-skill-box .active {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.btn-search-recruitment {
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    padding-top: 3px;
+}
+
+.btn-search-recruitment:hover {
+    opacity: 0.8;
+}
+
+.image-title {
+    width: 30px;
+    margin-right: 15px;
+    display: inline-block;
 }
