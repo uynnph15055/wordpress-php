@@ -26,7 +26,8 @@ export class TestCapacityComponent implements OnInit {
   validateForm!: FormGroup; 
   listCapacity: Array<Capacity>;
   valueSearch: string;
-
+  skills: Array<Skill>;
+  skill_id: number = 0;
   companys: Array<Enterprise>;
   cinfigData: TransmitToPost;
   majors: Array<Major>;
@@ -68,7 +69,7 @@ export class TestCapacityComponent implements OnInit {
   ngOnInit(): void {
     this.getListTestCapacity()
     this.getListMajor();
-    // this.getAllSkill();
+    this.getAllSkill();
   }
 
   getListTestCapacity(){
@@ -79,9 +80,10 @@ export class TestCapacityComponent implements OnInit {
             ? (this.statusCapacity = true)
             : this.statusCapacity;
             this.scrollWin();
-            console.log(this.listCapacity);
         }
     })
+         
+    
   }
   
   // Set filter value
@@ -136,6 +138,8 @@ export class TestCapacityComponent implements OnInit {
 
   // Filter Capacity
   filterCapacity() {
+    this.listCapacity = []
+    this.statusCapacity = false
     let major_id;
     let keyword = '';
     let status;
@@ -157,42 +161,40 @@ export class TestCapacityComponent implements OnInit {
     }
    
     this.testCapacityService
-      .filterCapacity(keyword, major_id, status)
+      .filterCapacity(keyword, major_id, status, this.skill_id)
       .subscribe((res) => {
         if (res.status) {
-          this.statusCapacity = true;
           this.listCapacity = res.payload.data;
+          this.statusCapacity = true;
           this.scrollWin();
-          console.log("Filter", this.listCapacity);
-          
         }
       });
   }
 
-  // filterSkill(event: any, id: number) {
-  //   this.statusRecruitments = false;
-  //   const skills = document.querySelectorAll('.filter-skill-item');
-  //   for (let index = 0; index < skills.length; index++) {
-  //     const element = skills[index];
-  //     element.classList.remove('active');
-  //   }
-  //   event.currentTarget.classList.add('active');
-  //   if (id == 0) {
-  //     this.getListTestCapacity();
-  //   } else {
-  //     this.skill_id = id;
-  //     this.filterRecruitments();
-  //   }
-  // }
+  filterSkill(event: any, id: number) {
+    this.statusCapacity = false;
+    const skills = document.querySelectorAll('.filter-skill-item');
+    for (let index = 0; index < skills.length; index++) {
+      const element = skills[index];
+      element.classList.remove('active');
+    }
+    event.currentTarget.classList.add('active');
+    if (id == 0) {
+      this.getListTestCapacity();
+    } else {
+      this.skill_id = id;
+      this.filterCapacity();
+    }
+  }
 
   // // Get all skill
-  // getAllSkill() {
-  //   this.skillService.getAll().subscribe((res) => {
-  //     if (res.status) {
-  //       this.skills = res.payload;
-  //     }
-  //   });
-  // }
+  getAllSkill() {
+    this.skillService.getAll().subscribe((res) => {
+      if (res.status) {
+        this.skills = res.payload;
+      }
+    });
+  }
 
 
 }

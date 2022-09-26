@@ -49,7 +49,45 @@
                             <button class="btn-search-recruitment w-100 h-100">Tìm kiếm</button>
                         </div>
                     </form>
+                    <ul *ngIf="skills" class="d-flex  flex-wrap filter-skill-box ">
+                        <li class="filter-skill-item active mt-4" (click)="filterSkill($event , 0)">Tất cả</li>
+                        <li *ngFor="let item of skills" class="filter-skill-item mt-4" (click)="filterSkill($event ,item.id)">
+                            {{item.short_name}}</li>
+                    </ul>
+                    <div *ngIf="!skills" class="d-flex  flex-wrap">
+                        <ngx-skeleton-loader [theme]="{ 
+                            'height.px': '30',
+                            'width.px': '150',
+                            'margin-top.px' : '20',
+                            'margin-right.px' : '30'
+                          }" count="10" animation="pulse"></ngx-skeleton-loader>
+                    </div>
                 </div>
+            </div>
+            <div class="">
+                <!-- skeleton -->
+                <ul class="capacity__related-list row" *ngIf="!statusCapacity">
+                    <div class="col col-lg-4 col-md-6 col-sm-12 col-12" *ngFor="let _ of [].constructor(6)">
+                    <div class="capacity__related-item">
+                        <ngx-skeleton-loader [theme]="{ height: '150px' }"></ngx-skeleton-loader>
+
+                        <ngx-skeleton-loader [theme]="{ margin: '0 0 4px' }"></ngx-skeleton-loader>
+
+                        <ngx-skeleton-loader
+                        [theme]="{ margin: '0 0 4px', width: '30%', display: 'block' }"
+                        ></ngx-skeleton-loader>
+                        <ngx-skeleton-loader
+                        [theme]="{ margin: '0 0 4px', width: '50%', display: 'block' }"
+                        ></ngx-skeleton-loader>
+                        <ngx-skeleton-loader
+                        [theme]="{ margin: '0 0 4px', width: '70%', display: 'block' }"
+                        ></ngx-skeleton-loader>
+
+                        <ngx-skeleton-loader [theme]="{ height: '40px', margin: '6px 0 0' }"></ngx-skeleton-loader>
+                    </div>
+                    </div>
+                </ul>
+                <!-- skeleton -->
             </div>
             <div class="test-capacity_list-item ">
                 <div class="test-capacity__item" *ngFor="let capacity of listCapacity">

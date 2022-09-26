@@ -16,8 +16,9 @@ export class TestCapacityService {
       return this.http.get<ResponsePayload>(`${environment.capacityListUrl}`);
     }
     // Lọc Capacity
-    filterCapacity(keyword:string , major_id: number = 0 , status: boolean = false):Observable<ResponsePayload>{
+    filterCapacity(keyword:string , major_id: number = 0 , status: boolean = false, skill:number = 0):Observable<ResponsePayload>{
       let majorChange =  major_id == 0 ? '' : major_id;
-      return this.http.get<ResponsePayload>(`${environment.capacityListUrl}?q=${keyword}&major_id=${majorChange}&status_user_has_join_contest=${status}`);
+      let skillChange = skill == 0 ? '' : skill;
+      return this.http.get<ResponsePayload>(`${environment.capacityListUrl}?q=${keyword}&major_id=${majorChange}&status_user_has_join_contest=${status}?skill_id=${skillChange}`);
     }
 }
