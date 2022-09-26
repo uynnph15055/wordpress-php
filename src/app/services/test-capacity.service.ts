@@ -15,7 +15,9 @@ export class TestCapacityService {
     getAllTestCapacity(): Observable<ResponsePayload> {
       return this.http.get<ResponsePayload>(`${environment.capacityListUrl}`);
     }
-    SearchTestCapacity(data: string): Observable<ResponsePayload> {
-      return this.http.get<ResponsePayload>(`${environment.capacityListUrl}?q=${data}`);
+    // Lọc Capacity
+    filterCapacity(keyword:string , major_id: number = 0 , status: boolean = false):Observable<ResponsePayload>{
+      let majorChange =  major_id == 0 ? '' : major_id;
+      return this.http.get<ResponsePayload>(`${environment.capacityListUrl}?q=${keyword}&major_id=${majorChange}&status_user_has_join_contest=${status}`);
     }
 }
