@@ -47,7 +47,7 @@
           </form>
           <div class="contest__content-aside-major" *ngIf="statusMajor">
             <div *ngFor="let item of majors" class=" ">
-              <div class="contest__content-aside-major--item text-collapse" [routerLink]="['/cuoc-thi/chuyen-nganh/' , item.slug]" routerLinkActive="active"
+              <div class="contest__content-aside-major--item text-collapse" (click)="getWhereMajor()"  routerLinkActive="active"
               [routerLinkActiveOptions]="{exact: true}">
                 {{ item.name }}
               </div>
@@ -70,57 +70,7 @@
           <i class="fa-solid fa-list-timeline"></i> Trạng thái:
           <span>Đang diễn ra</span>
         </h3>
-        <div class="contest__item" *ngFor="let item of contests">
-          <img class="contest__image" [src]="item.img" alt="" />
-          <div class="contest__item--content">
-            <div class="d-flex justify-content-between algin-items-center">
-              <h3 class="contest__item--name">
-                Cuộc thi: <span>{{ item.name }}</span>
-              </h3>
-              <div class="d-flex">
-                <p class="fw-bold mx-3">
-                  <i class="fa-solid fa-list"></i>: {{ item.rounds_count }}
-                </p>
-                <p class="fw-bold">
-                  <i class="fa-solid fa-people-group"></i> :
-                  {{ item.teams_count }}
-                </p>
-              </div>
-            </div>
-            <div
-              class="text-Secondary d-flex justify-content-center font-size-sml fs-text-contest"
-            >
-              <div class="text-center contest__time-item">
-                <span class="fw-bold contest__time">0</span>
-                <span class="fs-name-time"> Ngày </span>
-              </div>
-
-              <div class="text-center contest__time-item">
-                <span class="fw-bold contest__time">0</span>
-                <span class="fs-name-time"> Giờ</span>
-              </div>
-              <div class="text-center contest__time-item">
-                <span class="contest__time fw-bold">0</span>
-                <span class="fs-name-time"> Phút</span>
-              </div>
-              <div class="text-center contest__time-item">
-                <span class="contest__time fw-bold">0</span>
-                <span class="fs-name-time">Giây</span>
-              </div>
-            </div>
-            <div class="row my-2">
-              <div class="col-10">
-                <p
-                  class="contest__item--description"
-                  [innerHTML]="item.description"
-                ></p>
-              </div>
-              <div class="col-2">
-                <button class="btn-main float-end">Đăng ký</button>
-              </div>
-            </div>
-          </div>
-        </div>
+         <app-contest-item-sub *ngFor="let item of contests" [contestItem]="item"></app-contest-item-sub>
       </div>
 
       <div *ngIf="statusContest" class=" col-9" >

@@ -158,15 +158,14 @@ export class RoundContestDetailComponent implements OnInit {
               0,
               res.payload.data.length - 3
             );
-            // console.log(countItem);
-            // console.log();
-
-            this.contestRelated = res.payload.data.slice(
+          
+            this.contestRelated = res.payload.data.filter((res: Contest , index : number) => {
+              return res.id != this.contestDetail.id;
+            }).slice(
               countItem,
               countItem + 3
             );
-            // console.log(this.contestRelated);
-
+        
             if (this.contestRelated) {
               this.statusContestRelated = true;
             }
@@ -184,7 +183,9 @@ export class RoundContestDetailComponent implements OnInit {
   getListPost() {
     this.listPostService.getPostWhereCate('post-contest').subscribe((res) => {
       if (res.status) {
-        this.listPostResult = res.payload.data;
+        this.listPostResult = res.payload.data.filter((res: Post , index: number) => {
+          return index <  3;
+        });
       }
     });
   }

@@ -11,9 +11,9 @@ export class ListPostComponent implements OnInit {
   @Input() listPost : Array<Post>;
   constructor() { }
 
-  posts: Array<Post>;
   
   ngOnInit(): void {
+    console.log(this.listPost);
   }
 
 }
