@@ -186,7 +186,7 @@
         <div *ngIf="listPostResult" class="my-4">
             <p class="fw-bold my-2 text-uppercase text-center fs-5 color-blue">Bài viết liên quan</p>
             <div class="title-line mx-auto"></div>
-            <app-list-post [listPost]="listPostResult"></app-list-post>
+            <app-list-post [countColumn]="3" [listPost]="listPostResult"></app-list-post>
         </div>
         <div class="related-contest" id="related-contest" *ngIf="statusContestRelated == true">
             <p *ngIf="countContestRelated == true" class="fw-bold my-2 text-uppercase text-center fs-5 color-blue">Cuộc

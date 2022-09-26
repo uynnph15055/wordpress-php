@@ -59,9 +59,7 @@ export class ContestComponent implements OnInit {
     }
    
     this.statusCurrContest = this.orderObj.params.status;
-    console.log(this.statusCurrContest);
-    
-
+  
      this.filterContest(this.keyworkSearchContest ,  this.major_id , this.statusCurrContest);
 
     this.titleService.setTitle('Cuộc thi');
@@ -78,17 +76,6 @@ export class ContestComponent implements OnInit {
     } else {
       element?.classList.remove('fixed-nav');
     }
-  }
-
-  // Get contest where major_slug
-  getContestWhereSlug() {
-    this.route.paramMap.subscribe((params) => {
-      let slug: any = params.get('slug');
-      if (!null) {
-      } else {
-        
-      }
-    });
   }
 
   // Tìm kiếm chuyên ngành
@@ -108,7 +95,7 @@ export class ContestComponent implements OnInit {
   searchContest() {
     this.statusContest = false;
     this.keyworkSearchContest =
-      this.formSearchContest.controls['keywordContest'].value;
+      this.formSearchContest.controls[''].value;
     console.log(this.keyworkSearchContest);
     this.filterContest(
       this.keyworkSearchContest,
@@ -138,9 +125,7 @@ export class ContestComponent implements OnInit {
   getAllContest() {
     this.contestService.getAll().subscribe((res) => {
       if (res.payload) {
-        this.contests = res.payload.data.filter((item : Contest) => {
-          return this.getContestWhereStatus(item , this.statusCurrContest);
-        });
+        this.contests = res.payload.data;
         this.statusContest = true;
       }
     });
@@ -174,11 +159,7 @@ export class ContestComponent implements OnInit {
       this.contestService
         .filterContest(keyword, major_id, status)
         .subscribe((res) => {
-          // if (res.status) this.contests = res.payload.data.filter((item : Contest) => {
-          //   // return this.getContestWhereStatus(item , this.statusCurrContest) == true;
-          // });
           this.statusContest = true;
-          
         });
     } else {
       this.userService
@@ -190,14 +171,9 @@ export class ContestComponent implements OnInit {
     }
   }
 
-  getContestWhereStatus(item: Contest ,status : number){
-    // let date_register_start = new Date(moment(item.start_register_time).format('lll')).getTime();
-    // let  today = new Date().getTime();    
-    // if(date_register_start > today && status ==  1 ){
-    //   console.log('uy');
-    // }
 
-    // return true;
-    
+  // Gọi các cuộc thi theo chuyên ngành
+  getWhereMajor(){
+     
   }
 }

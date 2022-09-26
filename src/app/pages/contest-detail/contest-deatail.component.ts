@@ -151,7 +151,7 @@ export class ContestDeatailComponent implements OnInit {
   getListPost() {
     this.listPostService.getPostWhereCate('post-contest').subscribe((res) => {
       if (res.status) {
-        this.listPostResult = res.payload.data;
+        this.listPostResult = res.payload.data;        
       }
     });
   }

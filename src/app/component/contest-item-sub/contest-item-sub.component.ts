@@ -1,18 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { Contest } from 'src/app/models/contest';
-import { Team } from 'src/app/models/team';
-import * as moment from 'moment/moment';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-contest-item',
-  templateUrl: './contest-item.component.html',
-  styleUrls: ['./contest-item.component.css']
+  selector: 'app-contest-item-sub',
+  templateUrl: './contest-item-sub.component.html',
+  styleUrls: ['./contest-item-sub.component.css']
 })
-export class ContestItemComponent implements OnInit {
-  @Input() item: Contest;
-  @Input() major_slug: any;
-  @Input() pageContestByUser: boolean;
+export class ContestItemSubComponent implements OnInit {
+  @Input() contestItem: Contest;
   date_end : number;
   date_start : number;
   date_register_start : number;
@@ -25,22 +22,22 @@ export class ContestItemComponent implements OnInit {
   minutes: number;
   seconds: number;
 
-  constructor(private userService: UserService) { }
+  constructor() { }
 
   ngOnInit(): void {
      
-      this.date_start = new Date(moment(this.item.register_deadline).format('lll')).getTime();
-      this.date_register_start = new Date(moment(this.item.start_register_time).format('lll')).getTime();
-      this.date_register_end = new Date(moment(this.item.end_register_time).format('lll')).getTime();
+      this.date_start = new Date(moment(this.contestItem.register_deadline).format('lll')).getTime();
+      this.date_register_start = new Date(moment(this.contestItem.start_register_time).format('lll')).getTime();
+      this.date_register_end = new Date(moment(this.contestItem.end_register_time).format('lll')).getTime();
      
     
       setInterval(() => {
-        this.date_end = new Date(moment(this.item.date_start).format('lll')).getTime();
+        this.date_end = new Date(moment(this.contestItem.date_start).format('lll')).getTime();
         this.today = new Date().getTime();
         let distance =  this.date_register_end - this.today;
         this.date_register_start > this.today ? this.disabled = false : this.disabled;
       
-        if (distance < 0 || this.item.status == 2 || this.date_register_start > this.today) {
+        if (distance < 0 || this.contestItem.status == 2 || this.date_register_start > this.today) {
           this.days = 0;
           this.hours = 0;
           this.minutes = 0;
