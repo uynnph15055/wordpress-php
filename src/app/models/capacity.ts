@@ -17,6 +17,8 @@ export class Capacity {
   start_register_time: Date;
   rounds: Round[];
   skills: Skill[];
+  rounds_count: number;
+  user_capacity_done_count: number;
 }
 
 class ResultExam {
