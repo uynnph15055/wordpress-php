@@ -16,6 +16,7 @@ import { PayingLinks } from 'src/app/models/paying-links';
 import { RecruitmentsService } from 'src/app/services/recruitments.service';
 import { Recruitments } from 'src/app/models/recruitments.models';
 import { Enterprise } from 'src/app/models/enterprise.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-test-capacity',
@@ -25,7 +26,7 @@ import { Enterprise } from 'src/app/models/enterprise.model';
 export class TestCapacityComponent implements OnInit {
   validateForm!: FormGroup; 
   listCapacity: Array<Capacity>;
-  valueSearch: string;
+  valueSearch: string | null;
   skills: Array<Skill>;
   skill_id: number = 0;
   companys: Array<Enterprise>;
@@ -39,6 +40,8 @@ export class TestCapacityComponent implements OnInit {
   constructor(
     private testCapacityService: TestCapacityService,
     public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
     public companyService: CompanyService,
     public recruitmentService: RecruitmentsService,
     public listPostService: ListPostService,
@@ -67,9 +70,28 @@ export class TestCapacityComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.getListTestCapacity()
-    this.getListMajor();
-    this.getAllSkill();
+    this.valueSearch = this.route.snapshot.queryParamMap.get('q')
+    let major_id= this.route.snapshot.queryParamMap.get('major_id')
+    let skill_id = this.route.snapshot.queryParamMap.get('skill_id')
+    
+    
+    if(this.valueSearch != null || major_id != null || skill_id != null){
+      this.listCapacity = []
+      this.statusCapacity = false
+      this.testCapacityService
+      .filterCapacity(this.valueSearch, major_id,  this.skill_id)
+      .subscribe((res) => {
+        if (res.status) {
+          this.listCapacity = res.payload.data;
+          this.statusCapacity = true;
+          this.scrollWin();
+        }
+      });
+    }else{
+      this.getListTestCapacity()
+      this.getListMajor();
+      this.getAllSkill();
+    }
   }
 
   getListTestCapacity(){
@@ -140,9 +162,8 @@ export class TestCapacityComponent implements OnInit {
   filterCapacity() {
     this.listCapacity = []
     this.statusCapacity = false
-    let major_id;
+    let major_id = 0;
     let keyword = '';
-    let status;
   
     if (this.formFilter.controls['filterName'].value) {
       keyword = this.formFilter.controls['filterName'].value;
@@ -154,14 +175,11 @@ export class TestCapacityComponent implements OnInit {
       )[0].id;
     }
 
-    if (this.formFilter.controls['filterStatus'].value) {
-      status = this.statusFilter.filter(
-        (item) => item.name === this.formFilter.controls['filterStatus'].value
-      )[0].prams;
-    }
+    // đẩy param search lên URL
+    this.router.navigateByUrl(`test-nang-luc?q=${keyword}&major_id=${major_id}&skill_id=${this.skill_id}`);
    
     this.testCapacityService
-      .filterCapacity(keyword, major_id, status, this.skill_id)
+      .filterCapacity(keyword, major_id,  this.skill_id)
       .subscribe((res) => {
         if (res.status) {
           this.listCapacity = res.payload.data;
@@ -180,6 +198,7 @@ export class TestCapacityComponent implements OnInit {
     }
     event.currentTarget.classList.add('active');
     if (id == 0) {
+      this.router.navigateByUrl(`test-nang-luc`);
       this.getListTestCapacity();
     } else {
       this.skill_id = id;

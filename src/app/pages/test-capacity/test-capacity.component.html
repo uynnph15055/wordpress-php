@@ -17,11 +17,11 @@
             <div class="">
                 <div class="container py-4">
                     <form class="recruitment-filter-box py-3 rounded row" [formGroup]="formFilter" (submit)="filterCapacity()">
-                        <div class="col-4">
+                        <div class="col-5">
                             <input type="text" class="form-control" (keyup)="setValueKeyword($event)" placeholder="Tìm kiếm ..."
                                 id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
-                        <div class="col-3">
+                        <div class="col-5">
                             <div ngbDropdown class="d-inline-block w-100">
                                 <input type="text" (keyup)="filterSelect(majors ,$any($event.target).value ,'major')"
                                     formControlName="filterMajor" class="form-control w-100" placeholder="Chuyên ngành"
@@ -32,16 +32,6 @@
                                     </div>
                                     <a *ngFor="let item of majors" (click)="setValueFilterMajor(item)" class="text-collapse"
                                         ngbDropdownItem>{{item.name}}</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div ngbDropdown class="d-inline-block w-100">
-                                <input type="text" formControlName="filterStatus" class="form-control" placeholder="Trạng thái"
-                                    id="dropdownBasic1" ngbDropdownToggle>
-                                <div class="w-100" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                    <a ngbDropdownItem *ngFor="let item of statusFilter"
-                                        (click)="setValueStatus(item.name)">{{item.name}}</a>
                                 </div>
                             </div>
                         </div>
@@ -89,6 +79,7 @@
                 </ul>
                 <!-- skeleton -->
             </div>
+            
             <div class="test-capacity_list-item ">
                 <div class="test-capacity__item" *ngFor="let capacity of listCapacity">
                     <app-capacity-related-item [capacityItem]="capacity"></app-capacity-related-item>
