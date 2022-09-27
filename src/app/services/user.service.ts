@@ -111,9 +111,17 @@ export class UserService {
     return this.http.get<ResponsePayload>(`${url}?sort=desc`);
   }
 
-  filterContestHasLogin(keyword: string, major_id: any, status: any): Observable<ResponsePayload> {
+  filterContestHasLogin(keyword: string ='', major_id: number, status: number): Observable<ResponsePayload> {
+    let majorValue;
+    let statusValue; 
+    majorValue = major_id == undefined ? '' : major_id;
+    statusValue = status == 0 ? 1 : status;
+    const params = new HttpParams()
+    .set('q', keyword)
+    .set('status', statusValue)
+    .set('major_id', majorValue)
     return this.http.get<ResponsePayload>(
-      `${environment.userListUrl}/contest-joined-and-not-joined?status=${status}&major_id=${major_id}&q=${keyword}`,
+      `${environment.userListUrl}/contest-joined-and-not-joined?${params}`,
     );
   }
 }

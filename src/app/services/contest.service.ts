@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -45,12 +45,16 @@ export class ContestService {
     return this.http.get<ResponsePayload>(`${environment.contestListUrl}?major_id=${major_id}&sort='desc'`);
   }
 
-  filterContest(keyword: string = '', major_id: number =  0, status: number = 0): Observable<ResponsePayload> {
-    let valueStatus;
-    let valueMajor;
-    status == 0 ? valueStatus = '' : valueStatus = status;
-    major_id == 0 ? valueMajor = '' : valueMajor = major_id;
-    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?status=${valueStatus}&major_id=${valueMajor}&q=${keyword}&sort=desc`)
+  filterContest(keyword: string = '', major_id: number , status: number = 1 ): Observable<ResponsePayload> {
+    let majorValue;
+    let statusValue; 
+    majorValue = major_id == undefined ? '' : major_id;
+    statusValue = status == 0 ? 1 : status;
+    const params = new HttpParams()
+    .set('q', keyword)
+    .set('status', statusValue)
+    .set('major_id', majorValue)
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}?${params}`);
   }
 
 }

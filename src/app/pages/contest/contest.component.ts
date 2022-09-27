@@ -17,13 +17,14 @@ import { UserService } from 'src/app/services/user.service';
 export class ContestComponent implements OnInit {
   majors: Array<Major>;
   major_id: number;
+  major_slug: string;
   contests: Array<Contest> = [];
   keyworkSearchContest: string;
   orderObj: any;
   statusContest: boolean = false;
   statusMajor: boolean = false;
   checkUserHasLogin: boolean = false;
-  statusCurrContest: number = 1;
+  statusCurrContest: number = 0;
 
   constructor(
     public majorService: MajorService,
@@ -43,9 +44,7 @@ export class ContestComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.userService.getUserValue().id != undefined
-      ? this.getContestHasAfterLogin()
-      : this.getAllContest();
+    this.userService.getUserValue().id != undefined ? this.checkUserHasLogin = true : this.checkUserHasLogin;
 
     this.route.queryParamMap.subscribe((params) => {
       this.orderObj = {...params };
@@ -53,17 +52,17 @@ export class ContestComponent implements OnInit {
 
     if(this.orderObj.params.major_id){
       this.keyworkSearchContest = this.orderObj.params.keyword;
-      this.majorService.getMajorWhereSlug(this.orderObj.params.major_id).subscribe((res) => {
+      this.majorService.getMajorWhereSlug(this.orderObj.params.major).subscribe((res) => {
         this.major_id = res.payload.id;
       });
     }
+
+    this.filterContest();
    
     this.statusCurrContest = this.orderObj.params.status;
+    this.keyworkSearchContest = this.orderObj.params.keyword;
   
-     this.filterContest(this.keyworkSearchContest ,  this.major_id , this.statusCurrContest);
-
     this.titleService.setTitle('Cuộc thi');
-    this.checkUserHasLogin;
 
     window.addEventListener('scroll', this.scrollNavSub);
     this.getAllMajor();
@@ -95,20 +94,8 @@ export class ContestComponent implements OnInit {
   searchContest() {
     this.statusContest = false;
     this.keyworkSearchContest =
-      this.formSearchContest.controls[''].value;
-    console.log(this.keyworkSearchContest);
-    this.filterContest(
-      this.keyworkSearchContest,
-      this.major_id,
-      this.statusCurrContest
-    );
-  }
-
-  // Get contest after login
-  getContestHasAfterLogin() {
-    this.userService.getListContestHasJoin(1, 'desc').subscribe((res) => {
-      res.status ? (this.contests = res.payload.data) : null;
-    });
+    this.formSearchContest.controls['keywordContest'].value;
+    this.filterContest();
   }
 
   // Gọi tất cả chuyên ngành
@@ -121,59 +108,100 @@ export class ContestComponent implements OnInit {
     });
   }
 
-  // get all contest not login
-  getAllContest() {
-    this.contestService.getAll().subscribe((res) => {
-      if (res.payload) {
-        this.contests = res.payload.data;
-        this.statusContest = true;
-      }
-    });
-  }
-
+ 
   // Update status  contest
   updateStatusContest(event: any, status: number) {
     this.statusCurrContest = status;
-    // window.location.search = jQuery.query.set("rows", 10);
     const statusAll = document.querySelectorAll('.contest__nav-item');
     for (let i = 0; i < statusAll.length; i++) {
       statusAll[i]?.classList.remove('active');
     }
-
-    this.filterContest(
-      this.keyworkSearchContest,
-      this.major_id,
-      this.statusCurrContest
-    );
+    this.filterContest();
     event.currentTarget.classList.add('active');
   }
 
   // Function dùng chung để lọc sản phẩm
-  filterContest(keyword: string, major_id: any, status: any) {
+  filterContest() {
     this.statusContest = false;
     this.router.navigate(['/cuoc-thi'], {
-      queryParams: { status: status, keyword: keyword, major_id: major_id },
+      queryParams: { status: this.statusCurrContest, keyword: this.keyworkSearchContest, major: this.major_slug },
       queryParamsHandling: 'merge',
     });
     if (!this.checkUserHasLogin) {
       this.contestService
-        .filterContest(keyword, major_id, status)
+        .filterContest( this.keyworkSearchContest, this.major_id , this.statusCurrContest)
         .subscribe((res) => {
+         if(res.status){
           this.statusContest = true;
+          let contests  = res.payload.data;
+          let today = new Date().getTime();
+          if(this.statusCurrContest == 1){
+             this.contests = [];
+              this.contests = contests.filter((item : Contest) => {
+                let time = this.getTime(item);
+                return time.date_register_start > today;
+            });
+          }else if(this.statusCurrContest == 0){
+              this.contests = contests.filter((item : Contest) => {
+                let time = this.getTime(item);
+                return time.date_end > today && !(time.date_register_start > today);
+            });
+          }else{
+            this.contests = contests;
+          }
+         }      
         });
     } else {
       this.userService
-        .filterContestHasLogin(keyword, major_id, status)
+        .filterContestHasLogin( this.keyworkSearchContest, this.major_id , this.statusCurrContest)
         .subscribe((res) => {
-          if (res.status) this.contests = res.payload.data;
-          this.statusContest = true;
+          if (res.status){
+            this.statusContest = true;
+          let contests  = res.payload.data;
+          let today = new Date().getTime();
+          if(this.statusCurrContest == 1){
+             this.contests = [];
+              this.contests = contests.filter((item : Contest) => {
+                let time = this.getTime(item);
+                return time.date_register_start > today;
+            });
+          }else if(this.statusCurrContest == 0){
+              this.contests = contests.filter((item : Contest) => {
+                let time = this.getTime(item);
+                return time.date_end > today && !(time.date_register_start > today);
+            });
+          }else{
+            this.contests = contests;
+          }
+
+          console.log(this.contests);
+          
+          }
         });
+    }
+  }
+
+  getTime(item: Contest){
+    let date_end = new Date(moment(item.register_deadline).format('lll')).getTime();
+    let date_register_start = new Date(moment(item.start_register_time).format('lll')).getTime();
+
+    return {
+      date_end: date_end,
+      date_register_start: date_register_start
     }
   }
 
 
   // Gọi các cuộc thi theo chuyên ngành
-  getWhereMajor(){
-     
+  getWhereMajor(event: any , item: Major){
+     const majors = document.querySelectorAll('.contest__content-aside-major--item');
+     majors.forEach(element => {
+      element.classList.remove('active');
+    });
+
+    this.major_slug = item.slug;
+    this.major_id = item.id;
+    event.currentTarget.classList.add('active');
+    this.filterContest();
   }
 }

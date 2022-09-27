@@ -10,11 +10,13 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ContestItemSubComponent implements OnInit {
   @Input() contestItem: Contest;
+  @Input() status: number;
   date_end : number;
   date_start : number;
   date_register_start : number;
   date_register_end : number;
   today : number;
+  checkUserHasLogin: boolean = false;
   disabled: boolean = true;
 
   days: number;
@@ -22,17 +24,17 @@ export class ContestItemSubComponent implements OnInit {
   minutes: number;
   seconds: number;
 
-  constructor() { }
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
-     
-      this.date_start = new Date(moment(this.contestItem.register_deadline).format('lll')).getTime();
+    this.userService.getUserValue().id != undefined ? this.checkUserHasLogin = true : this.checkUserHasLogin;
+      
+      this.date_start = new Date(moment(this.contestItem.date_start).format('lll')).getTime();
+      this.date_end = new Date(moment(this.contestItem.register_deadline).format('lll')).getTime();
       this.date_register_start = new Date(moment(this.contestItem.start_register_time).format('lll')).getTime();
-      this.date_register_end = new Date(moment(this.contestItem.end_register_time).format('lll')).getTime();
-     
     
       setInterval(() => {
-        this.date_end = new Date(moment(this.contestItem.date_start).format('lll')).getTime();
+        this.date_register_end = new Date(moment(this.contestItem.end_register_time).format('lll')).getTime();
         this.today = new Date().getTime();
         let distance =  this.date_register_end - this.today;
         this.date_register_start > this.today ? this.disabled = false : this.disabled;
@@ -49,21 +51,24 @@ export class ContestItemSubComponent implements OnInit {
           this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
         }
       }, 1000);
+
+    
   }
 
 
-  checkStatusContest(item: Contest): any {
+
+// Check trạng thái
+  checkStatusContest(): any {
     let result;
-    let status;
-    if (item.status <= 1) {
+    if (this.contestItem.status <= 1) {
       if(this.date_register_start > this.today){
         result = 'Sắp diễn ra';
       }else if(this.date_register_end > this.today){
-        result = 'Đang mở đăng ký';
+        result =  this.contestItem.status_user_has_join_contest ? 'Đã tham gia'  : 'Đăng ký';
       }else if(this.date_start > this.today){
         result = 'Đã đóng đăng ký';
       }else if(this.date_end > this.today){
-        result = 'Đang diễn ra';
+        result = this.contestItem.status_user_has_join_contest ? 'Đã tham gia'  : 'Đang diễn ra';
       }else{
         result = 'Đã diễn ra';
       }
@@ -72,4 +77,26 @@ export class ContestItemSubComponent implements OnInit {
     }
     return result;
   }
+
+  // Class name where status
+  classNameWhereStatus(): any {
+    let result;
+    if (this.contestItem.status <= 1) {
+      if(this.date_register_start > this.today){
+        'btn-main btn'
+      }else if(this.date_register_end > this.today){
+        result = this.contestItem.status_user_has_join_contest ? 'btn btn-success'  : 'btn-main btn';
+      }else if(this.date_start > this.today){
+        result = 'btn btn-success';
+      }else if(this.date_end > this.today){
+        result = this.contestItem.status_user_has_join_contest ? 'btn btn-success'  : 'btn-main btn'; 
+      }else{
+        result = 'btn-main btn';
+      }
+    } else {
+      result = 'btn btn-danger border-2 border-danger text-white';
+    }
+    return result;
+  }
+
 }

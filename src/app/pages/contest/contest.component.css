@@ -121,6 +121,10 @@ h5 {
   background-color: rgb(235, 232, 232);
 }
 
+.input-search-contest::placeholder{
+  font-size: 15px;
+}
+
 .contest__content-aside-major::-webkit-scrollbar-thumb {
   background-color: var(--primary);
 }

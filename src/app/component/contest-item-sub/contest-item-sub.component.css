@@ -1,3 +1,11 @@
+h3, p{
+  margin-bottom: 0;
+}
+
+p{
+  margin: 5px 0px;
+}
+
 .contest__item {
     background-color: var(--white);
     width: 100%;
