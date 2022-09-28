@@ -1,5 +1,18 @@
+.section {
+  padding: 64px 0;
+}
+.section-bg--1 {
+  background: var(--my-bg-color);
+}
+.section-bg--2 {
+  background: var(--my-bg-white);
+}
+.section-bg--3 {
+  background: var(--my-primary-50);
+}
 .section__title {
-  color: var(--my-secondary)
+  color: var(--my-secondary);
+  margin-bottom: 32px;
 }
 .section__title-icon {
   color: var(--my-primary);
