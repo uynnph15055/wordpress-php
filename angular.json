@@ -48,6 +48,7 @@
                 "src/assets/css/base-color.css",
                 "src/assets/css/base-text.css",
                 "src/assets/css/base-btn.css",
+                "src/assets/css/base-typography.css",
                 "src/assets/css/config-bootstrap.css"
             ],
             "scripts": [

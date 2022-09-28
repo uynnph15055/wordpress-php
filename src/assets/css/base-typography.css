@@ -1,0 +1,41 @@
+.my-h1 {
+    font-weight: 700 !important;
+    font-size: 56px !important;
+    line-height: 110% !important;
+}
+
+.my-h2 {
+    font-weight: 700 !important;
+    font-size: 56px !important;
+    line-height: 110% !important;
+}
+
+.my-h3 {
+    font-weight: 700 !important;
+    font-size: 32px !important;
+    line-height: 120% !important;
+}
+
+.my-h4 {
+    font-weight: 700 !important;
+    font-size: 24px !important;
+    line-height: 120% !important;
+}
+
+.my-h5 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 120%;
+}
+
+.my-body-1 {
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 110%;
+}
+
+.my-body-2 {
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 140% !important;
+}
