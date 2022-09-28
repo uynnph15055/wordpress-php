@@ -64,6 +64,15 @@ h5 {
     color: #8E8E95
 }
 
+.post-new-latest__bottom .post-new-latest__short-desc:first-child{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 50px;
+}
+
 .post-new-latest .btn {
     margin: 10px 0;
 }
@@ -187,9 +196,10 @@ h5 {
     z-index: 10;
     background: white;
     border-radius: 10px;
-    width: 320px;
+    width: 300px;
     padding: 20px;
     box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.15);
+    max-height: 250px;
 }
 
 .post-item-content--new-in-cate {
@@ -215,12 +225,12 @@ h5 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 160px;
+    max-width: 145px;
     width: 100%;
 }
 
 .post-item__info-item+.post-item__info-item {
-    margin-left: 10px;
+    /* margin-left: 2px; */
 }
 
 .post-item__info,
