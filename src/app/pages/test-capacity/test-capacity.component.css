@@ -380,159 +380,40 @@
     display: none;
   }
   
-  /* .list-company-support */
-  
-  .recruitment-list-hot-item-members {
-    margin-top: -5px;
-  }
-  
-  .recruitment-slill-and-member-number-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .recruitment-list-skill {
-    width: 80%;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .recruitment-item-skill {
-    padding: 3px 7px;
-    background-color: #f3d9cc;
-    color: var(--primary);
-    font-weight: bold;
-    margin-right: 10px;
-    border-radius: 6px;
-    font-size: 12px;
-  }
-  
-  
-  .list-company-support img {
-    width: 35px;
-    height: 35px;
-    object-fit: cover;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  
-  .list-company-support li {
-    margin-left: 20px;
-  }
-  
-  .number-test{
-    font-size: 1rem;
-  }
-  
-  
-  .recruitment-list-hot-item-name {
+
+  .test-capacity__keyword{
+    display: inline-block;
     font-size: 17px;
-    /* margin-bottom: -2px; */
+    font-weight: bold;;
+    margin: 20px 0px 0px 0px
+  }
+
+
+  .test-capacity__keyword-item{
+    margin: 20px 0px 0px 0px;
+    font-size: 16px;
+    padding: 0px 10px;
+    display: inline-block;
   }
   
-  /* LIST RECRUITMENT */
-  .recruitment-list-item-box {
-    transform: translateY(0);
-    transition: all ease-in-out 0.3s;
-    margin-top: 20px;
+  .test-capacity__keyword-title{
+    display: inline-block;
+    margin-left: 10px;
   }
-  
-  .recruitment-list-item {
-    display: grid;
-    grid-template-columns: 250px auto;
-    grid-gap: 20px;
+  .test-capacity__keyword-title:hover{
+    text-decoration: underline;
     cursor: pointer;
   }
-  
-  .recruitment-list-item .recruitment-image {
-    height: 200px;
-    width: 100%;
-    border-radius: 6px;
+
+  .test-capacity__keyword-icon{
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF0000
   }
-  
-  .recruitment-list-item-name {
-    width: 90%;
-  }
-  
-  .recruitment-list-item-box:hover .recruitment-list-item-name {
-    color: var(--primary);
-  }
-  
-  .recruitment-list-item-box:hover {
-    transform: translateY(-5px);
-    transition: all ease-in-out 0.3s;
-    box-shadow: 0px 0px 7px var(--primary);
-  }
-  
-  /* PAYING PAGE RECRUITMENT */
-  .recruitment-paying-page-list {
-    display: flex;
-    justify-content: center;
-    border-radius: 5px;
-  }
-  
-  .recruitment-paying-page-item a{
-    padding: 10px 15px;
-    background-color: var(--white);
-    cursor: pointer;
-    transition: all ease-in 0.1s;
-    color: #444;
-  }
-  
-  .recruitment-paying-page-item .active{
-    background-color: var(--primary);
-    color: var(--white);
-  }
-  
-  .recruitment-paying-page-item a:hover {
-    background-color: var(--primary);
-    color: var(--white);
-    transition: all ease-in 0.3s;
-  }
-  
-  /* RESPONSiVE */
-  @media (max-width:568px) {
-    .recruitment-banner-in {
-      padding: 0px 30px;
-    }
-  
-  
-    .recruitment-list-hot-reponsive {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .title-list-recruitment {
-      margin-top: 20px;
-    }
-  
-    .count-exam-test-lg {
-      display: none;
-    }
-  
-    .count-exam-test-sm {
-      display: block;
-      margin-top: -10px;
-    }
-  
-    .recruitment-list-item-name {
-      width: 85%;
-    }
-  }
-  
-  
-  @media (max-width:987px) {
-    .col-md-none {
-      display: none;
-    }
-  
-    .recruitment-list-hot-item-box-img {
-      object-fit: cover;
-      width: 100%;
-      height: 200px;
-      border-radius: 10px;
-    }
+
+ 
+  .no-results{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 30px 0px
   }
