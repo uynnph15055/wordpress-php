@@ -384,3 +384,27 @@
   .not-result{
     
   }
+
+  .test-capacity__keyword{
+    display: inline-block;
+    font-size: 17px;
+    font-weight: bold;;
+    margin: 20px 0px 0px 0px
+  }
+
+  .test-capacity__keyword-item{
+    margin: 20px 0px 0px 0px;
+    font-size: 16px;
+    padding: 0px 10px
+  }
+
+  .test-capacity__keyword-icon{
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF0000
+  }
+
+  .test-capacity__keyword-item:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }

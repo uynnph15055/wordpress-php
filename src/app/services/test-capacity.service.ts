@@ -16,8 +16,13 @@ export class TestCapacityService {
     getAllTestCapacity(): Observable<ResponsePayload> {
       return this.http.get<ResponsePayload>(`${environment.capacityListUrl}`);
     }
+
+    getAllKeywordTrendingCapacity(): Observable<ResponsePayload> {
+      return this.http.get<ResponsePayload>(`${environment.keywordTrendingUrl}?type=2`);
+    }
+
     // Lọc Capacity
-    filterCapacity(keyword:string | null , major_id: number | null | string = null ,  skill:number | null = null):Observable<ResponsePayload>{
+    filterCapacity(keyword:string | null , major_id: number | null | string = null ,  skill: string |number | null = null):Observable<ResponsePayload>{
       let keywordQuery =  keyword == null ? '' : keyword;
       let majorChange =  major_id == null ? '' : major_id;
       let skillChange = skill == null ? '' : skill;

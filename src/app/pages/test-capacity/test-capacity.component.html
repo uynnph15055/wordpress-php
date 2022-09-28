@@ -17,11 +17,11 @@
             <div class="">
                 <div class="container py-4">
                     <form class="recruitment-filter-box py-3 rounded row" [formGroup]="formFilter" (submit)="filterCapacity()">
-                        <div class="col-5">
+                        <div class="col-4">
                             <input type="text" class="form-control" (keyup)="setValueKeyword($event)" placeholder="Tìm kiếm ..."
-                                id="exampleInputEmail1" aria-describedby="emailHelp">
+                            formControlName="filterName">
                         </div>
-                        <div class="col-5">
+                        <div class="col-3">
                             <div ngbDropdown class="d-inline-block w-100">
                                 <input type="text" (keyup)="filterSelect(majors ,$any($event.target).value ,'major')"
                                     formControlName="filterMajor" class="form-control w-100" placeholder="Chuyên ngành"
@@ -35,23 +35,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-3">
+                            <div ngbDropdown class="d-inline-block w-100">
+                                <input type="text" (keyup)="filterSelect(skills ,$any($event.target).value ,'skill')"
+                                    formControlName="filterSkill" class="form-control w-100" placeholder="Kĩ năng"
+                                    id="dropdownBasic1" ngbDropdownToggle>
+                                <div ngbDropdownMenu class="w-100" aria-labelledby="dropdownBasic1">
+                                    <div *ngIf="!skills" class="d-flex justify-content-center">
+                                        <app-loading-item class="py-2"></app-loading-item>
+                                    </div>
+                                    <a *ngFor="let item of skills" (click)="setValueSkill(item)" class="text-collapse"
+                                        ngbDropdownItem>{{item.name}}</a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-2">
                             <button class="btn-search-recruitment w-100 h-100">Tìm kiếm</button>
                         </div>
                     </form>
-                    <ul *ngIf="skills" class="d-flex  flex-wrap filter-skill-box ">
-                        <li class="filter-skill-item active mt-4" (click)="filterSkill($event , 0)">Tất cả</li>
-                        <li *ngFor="let item of skills" class="filter-skill-item mt-4" (click)="filterSkill($event ,item.id)">
-                            {{item.short_name}}</li>
+                    <ul class="d-flex  flex-wrap filter-skill-box ">
+                        <li class="test-capacity__keyword">Đề xuất cho bạn:</li>
+                        <li *ngFor="let item of keywordTrending" (click)="setValueKeywordTrending(item.keyword)" class="test-capacity__keyword-item"><i class="fa-solid fa-fire test-capacity__keyword-icon"></i> {{item.keyword}}</li>
                     </ul>
-                    <div *ngIf="!skills" class="d-flex  flex-wrap">
-                        <ngx-skeleton-loader [theme]="{ 
-                            'height.px': '30',
-                            'width.px': '150',
-                            'margin-top.px' : '20',
-                            'margin-right.px' : '30'
-                          }" count="10" animation="pulse"></ngx-skeleton-loader>
-                    </div>
                 </div>
             </div>
             <div class="">

@@ -24,6 +24,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./test-capacity.component.css']
 })
 export class TestCapacityComponent implements OnInit {
+  keywordTrending: any
   validateForm!: FormGroup; 
   listCapacity: Array<Capacity>;
   valueSearch: string | null;
@@ -35,6 +36,7 @@ export class TestCapacityComponent implements OnInit {
 
   statusCompany: boolean = false;
   statusCapacity: boolean = false;
+  statusKeywordTrending: boolean = false;
   
 
   constructor(
@@ -70,16 +72,16 @@ export class TestCapacityComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.getListKeywordTrending()
     this.valueSearch = this.route.snapshot.queryParamMap.get('q')
     let major_id= this.route.snapshot.queryParamMap.get('major_id')
     let skill_id = this.route.snapshot.queryParamMap.get('skill_id')
-    
     
     if(this.valueSearch != null || major_id != null || skill_id != null){
       this.listCapacity = []
       this.statusCapacity = false
       this.testCapacityService
-      .filterCapacity(this.valueSearch, major_id,  this.skill_id)
+      .filterCapacity(this.valueSearch, major_id,  skill_id)
       .subscribe((res) => {
         if (res.status) {
           this.listCapacity = res.payload.data;
@@ -104,8 +106,17 @@ export class TestCapacityComponent implements OnInit {
             this.scrollWin();
         }
     })
-         
-    
+  }
+
+  getListKeywordTrending(){
+    this.testCapacityService.getAllKeywordTrendingCapacity().subscribe(res=>{
+        if (res.status) {
+          this.keywordTrending = res.payload;
+          this.keywordTrending
+            ? (this.statusKeywordTrending = true)
+            : this.statusKeywordTrending;
+        }
+    })
   }
   
   // Set filter value
@@ -114,16 +125,21 @@ export class TestCapacityComponent implements OnInit {
   }
 
   // Set filter status
-  setValueStatus(status: string) {
-    this.formFilter.controls['filterStatus'].setValue(status);
+  setValueSkill(skill: Skill) {
+    this.formFilter.controls['filterSkill'].setValue(skill.name);
   }
 
-  // Set keyword recruitments
+  // Set keyword 
   setValueKeyword(event: any) {
     this.formFilter.controls['filterName'].setValue(event.target.value);
   }
 
-  // Fillter comom recruitments
+  // Set keywordTrending to input search when click  
+  setValueKeywordTrending(keyword: string) {
+    this.formFilter.controls['filterName'].setValue(keyword);
+  }
+
+  // Fillter 
   filterSelect(arr: Array<any>, value: string, input: string) {
     switch (input) {
       case 'major':
@@ -137,11 +153,24 @@ export class TestCapacityComponent implements OnInit {
           });
         }
         break;
+      case 'skill':
+        if (!value) {
+          this.getAllSkill()
+        } else {
+          this.skills = arr.filter((item) => {
+            return this.configService
+              .changeString(item.name)
+              .includes(this.configService.changeString(value));
+          });
+        }
+        break;
 
       default:
         break;
     }
   }
+
+  
 
 
   getListMajor() {
@@ -175,6 +204,13 @@ export class TestCapacityComponent implements OnInit {
       )[0].id;
     }
 
+    if (this.formFilter.controls['filterSkill'].value) {
+      this.skill_id = this.skills.filter(
+        (item) => item.name === this.formFilter.controls['filterSkill'].value
+      )[0].id;
+    }
+    
+
     // đẩy param search lên URL
     this.router.navigateByUrl(`test-nang-luc?q=${keyword}&major_id=${major_id}&skill_id=${this.skill_id}`);
    
@@ -189,22 +225,6 @@ export class TestCapacityComponent implements OnInit {
       });
   }
 
-  filterSkill(event: any, id: number) {
-    this.statusCapacity = false;
-    const skills = document.querySelectorAll('.filter-skill-item');
-    for (let index = 0; index < skills.length; index++) {
-      const element = skills[index];
-      element.classList.remove('active');
-    }
-    event.currentTarget.classList.add('active');
-    if (id == 0) {
-      this.router.navigateByUrl(`test-nang-luc`);
-      this.getListTestCapacity();
-    } else {
-      this.skill_id = id;
-      this.filterCapacity();
-    }
-  }
 
   // // Get all skill
   getAllSkill() {
