@@ -12,7 +12,8 @@ import { ListPostService } from 'src/app/services/list-post.service';
 export class AsidePostComponent implements OnInit {
   validateForm!: FormGroup;
   inputKeyword: string;
-  listHotPost: Post[]
+  listHotPost: Post[];
+  statusPost: boolean = false;
 
   constructor(
     private router: Router,
@@ -46,7 +47,7 @@ export class AsidePostComponent implements OnInit {
     this.postService.getHotPost().subscribe(res => {
       if (res.status) {
         this.listHotPost = res.payload.data;
-        console.log("object", this.listHotPost);
+        this.statusPost = true
       }
     })
   }
