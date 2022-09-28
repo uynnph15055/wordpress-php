@@ -37,6 +37,7 @@ export class TestCapacityComponent implements OnInit {
   statusNotResultReturn: boolean = false;
   statusCapacity: boolean = false;
   statusKeywordTrending: boolean = false;
+  statusSubmit: boolean = false;
   
 
   constructor(
@@ -53,16 +54,6 @@ export class TestCapacityComponent implements OnInit {
   ) {
    }
 
-   statusFilter: Array<any> = [
-    {
-      prams: true,
-      name: 'Đã vào Vòng Thi',
-    },
-    {
-      prams: false,
-      name: 'Chưa vào Vòng Thi',
-    },
-  ];
 
   formFilter = new FormGroup({
     filterSkill: new FormControl(''),
@@ -72,12 +63,19 @@ export class TestCapacityComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    if(this.formFilter.controls['filterSkill'].value || this.formFilter.controls['filterName'].value || this.formFilter.controls['filterMajor'].value){
+      this.statusSubmit = true
+    }else{
+      this.statusSubmit = false
+    }
     this.getListKeywordTrending()
     this.getListMajor();
     this.getAllSkill();
     this.valueSearch = this.route.snapshot.queryParamMap.get('q')
     let major_id= this.route.snapshot.queryParamMap.get('major_id')
     let skill_id = this.route.snapshot.queryParamMap.get('skill_id')
+    this.formFilter.controls['filterName'].setValue(this.valueSearch);
+
     
     if(this.valueSearch != null || major_id != null || skill_id != null){
       this.listCapacity = []
@@ -131,21 +129,46 @@ export class TestCapacityComponent implements OnInit {
   // Set filter value
   setValueFilterMajor(item: Major) {
     this.formFilter.controls['filterMajor'].setValue(item.name);
+    this.statusSubmit = true
   }
 
   // Set filter status
   setValueSkill(skill: Skill) {
     this.formFilter.controls['filterSkill'].setValue(skill.name);
+    this.statusSubmit = true
   }
 
   // Set keyword 
   setValueKeyword(event: any) {
+    if(event.target.value == ''){
+      this.statusSubmit = false
+    }else{
     this.formFilter.controls['filterName'].setValue(event.target.value);
+      this.statusSubmit = true
+    }
   }
 
   // Set keywordTrending to input search when click  
   setValueKeywordTrending(keyword: string) {
+    let major_id = 0;
+    let skill_id = 0
     this.formFilter.controls['filterName'].setValue(keyword);
+    this.router.navigateByUrl(`test-nang-luc?q=${keyword}`);
+    this.testCapacityService
+      .filterCapacity(keyword, major_id,  skill_id)
+      .subscribe((res) => {
+        if (res.status) {
+          if(res.payload.data.length <= 0 ){
+            this.statusCapacity = true
+            this.statusNotResultReturn = true
+            this.listCapacity = []
+          }else{
+            this.listCapacity = res.payload.data;
+            this.statusCapacity = true;
+            this.scrollWin();
+          }
+        }
+      });
   }
 
   // Fillter 
@@ -154,6 +177,7 @@ export class TestCapacityComponent implements OnInit {
       case 'major':
         if (!value) {
           this.getListMajor();
+          this.statusSubmit = false
         } else {
           this.majors = arr.filter((item) => {
             return this.configService
@@ -165,6 +189,7 @@ export class TestCapacityComponent implements OnInit {
       case 'skill':
         if (!value) {
           this.getAllSkill()
+          this.statusSubmit = false
         } else {
           this.skills = arr.filter((item) => {
             return this.configService

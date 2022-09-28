@@ -388,10 +388,21 @@
     margin: 20px 0px 0px 0px
   }
 
+
   .test-capacity__keyword-item{
     margin: 20px 0px 0px 0px;
     font-size: 16px;
-    padding: 0px 10px
+    padding: 0px 10px;
+    display: inline-block;
+  }
+  
+  .test-capacity__keyword-title{
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .test-capacity__keyword-title:hover{
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   .test-capacity__keyword-icon{
@@ -400,10 +411,7 @@
     color: #FF0000
   }
 
-  .test-capacity__keyword-item:hover{
-    text-decoration: underline;
-    cursor: pointer;
-  }
+ 
   .no-results{
     font-size: 20px;
     font-weight: bold;
