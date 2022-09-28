@@ -6,8 +6,8 @@
             <div class=" contest-detail-left">
                 <nav aria-label="breadcrumb" *ngIf="contestDetail">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a routerLink="/">Trang chủ</a></li>
-                        <li class="breadcrumb-item"><a routerLink="/cuoc-thi">Cuộc thi</a></li>
+                        <li class="breadcrumb-item text-primary"><a routerLink="/">Trang chủ</a></li>
+                        <li class="breadcrumb-item  text-primary"><a routerLink="/cuoc-thi">Cuộc thi</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ contestDetail.name }}</li>
                     </ol>
                 </nav>
@@ -186,14 +186,14 @@
         <div *ngIf="listPostResult" class="my-4">
             <p class="fw-bold my-2 text-uppercase text-center fs-5 color-blue">Bài viết liên quan</p>
             <div class="title-line mx-auto"></div>
-            <app-list-post [listPost]="listPostResult"></app-list-post>
+            <app-list-post [countColumn]="3" [listPost]="listPostResult"></app-list-post>
         </div>
         <div class="related-contest" id="related-contest" *ngIf="statusContestRelated == true">
             <p *ngIf="countContestRelated == true" class="fw-bold my-2 text-uppercase text-center fs-5 color-blue">Cuộc
                 thi liên quan</p>
         <div class="title-line mx-auto "></div>
             <div class="mt-3 row" *ngIf="countContestRelated == true">
-                <div *ngFor="let item of contestRelated" class="col-3 bg-white">
+                <div *ngFor="let item of contestRelated" class="col-3">
                     <app-contest-item [item]="item">
                     </app-contest-item>
                 </div>

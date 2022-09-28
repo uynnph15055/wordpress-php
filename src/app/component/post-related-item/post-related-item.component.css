@@ -144,6 +144,7 @@ h5 {
     width: 100%;
     border-radius: 10px;
     height: 125px;
+    object-fit: cover;
 }
 
 /* .post-in-cate-item-content {
@@ -176,8 +177,6 @@ h5 {
 }
 
 /* ------------------- post item ------------ */
-.post-item {}
-
 .post-item-img-section {
     position: relative;
 }
@@ -186,6 +185,7 @@ h5 {
     width: 100%;
     border-radius: 10px;
     height: 260px;
+    object-fit: cover;
 }
 
 .post-item-content {

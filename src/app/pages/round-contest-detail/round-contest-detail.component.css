@@ -34,7 +34,7 @@ h1, h2 , h3 , h4 , h5 , h6 , p , ul{
 }
 
 .example-button-item:hover {
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: var(--white);
   transition: all 0.3s ease-in;
 }
@@ -65,7 +65,7 @@ h1, h2 , h3 , h4 , h5 , h6 , p , ul{
 .contest-detail-section,
 .content-round-page {
   border-radius: 8px;
-  box-shadow: 0px 0px 7px var(--gray-300);
+  box-shadow: 0px 0px 7px var(--gray-200);
   background-color: #ffff;
 }
 
@@ -93,7 +93,7 @@ h1, h2 , h3 , h4 , h5 , h6 , p , ul{
   cursor: pointer;
   padding: 10px 12px;
   border-radius: 50px;
-  color: var(--primary-color);
+  color: var(--primary);
   transition: 0.3s;
 }
 
@@ -227,7 +227,7 @@ h1, h2 , h3 , h4 , h5 , h6 , p , ul{
 .student-rank-more {
   padding: 10px 40px;
   line-height: 40px;
-  color: var(--primary-color);
+  color: var(--primary);
 }
 
 .student-rank-more:hover {

@@ -1,20 +1,20 @@
-import { CapacityService } from "./../../services/capacity.service";
-import { DialogConfirmComponent } from "./../../modal/dialog-confirm/dialog-confirm.component";
-import { RoundService } from "src/app/services/round.service";
-import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { Component, ElementRef, Inject, OnInit, QueryList, ViewChildren, OnDestroy } from "@angular/core";
+import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { map, switchMap } from "rxjs";
-import { CapacityRound } from "src/app/models/round.model";
-import { MatDialog } from "@angular/material/dialog";
-import { UserService } from "src/app/services/user.service";
 import { DOCUMENT } from "@angular/common";
-import { User } from "src/app/models/user";
-import { ExamCapacity, ResultExam } from "src/app/models/exam.model";
-import { NgToastService } from "ng-angular-popup";
+import { MatDialog } from "@angular/material/dialog";
+import { map, switchMap } from "rxjs";
 import * as moment from "moment";
+import { NgToastService } from "ng-angular-popup";
+import { CapacityService } from "./../../services/capacity.service";
+import { RoundService } from "src/app/services/round.service";
+import { UserService } from "src/app/services/user.service";
+import { DialogConfirmComponent } from "./../../modal/dialog-confirm/dialog-confirm.component";
 import { ModalHistoryCapacityComponent } from "src/app/modal/modal-history-capacity/modal-history-capacity.component";
+import { CapacityRound } from "src/app/models/round.model";
+import { ExamCapacity, ResultExam, TestResultStorage } from "src/app/models/exam.model";
 import { CapacityExamHistory } from "src/app/models/capacity";
+import { User } from "src/app/models/user";
 
 @Component({
   selector: "app-capacity-exam",
@@ -65,6 +65,8 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
     payload?: number; // 0: đang làm, 1: đã làm
     message: string;
   };
+
+  testResultStorageKey = "test_result";
 
   constructor(
     private roundService: RoundService,
@@ -231,8 +233,6 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
           if (status) {
             if (payload === 0) {
               this.toast.info({ summary: "Vui lòng hoàn thành phần thi trước đó" });
-              console.log("Vui lòng hoàn thành phần thi trước đó");
-
               return;
             }
 
@@ -240,7 +240,6 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
             this.takeExam();
           } else {
             this.toast.info({ summary: "Bạn chưa làm phần thi trước đó!" });
-            console.log("Bạn chưa làm phần thi trước đó!");
           }
 
           return;
@@ -433,7 +432,14 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
             this.handleDisableF11Key(e);
           };
 
-          localStorage.removeItem("test_result");
+          // remove storage test result
+          const testResultLocal: TestResultStorage[] = JSON.parse(
+            localStorage.getItem(this.testResultStorageKey) as string,
+          );
+          localStorage.setItem(
+            this.testResultStorageKey,
+            JSON.stringify(testResultLocal.filter((item) => item.round_id !== this.roundDetail.id)),
+          );
 
           // thoát toàn màn hình
           this.closeFullscreen();
@@ -496,21 +502,22 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
     this.formAnswers = new FormGroup(ctrls);
 
     // check câu trả lời trong localStorage
-    const testResult = JSON.parse(localStorage.getItem("test_result") as string);
-    if (testResult && testResult.data) {
-      for (const item in testResult.data) {
+    const testResultLocal: TestResultStorage[] = JSON.parse(localStorage.getItem(this.testResultStorageKey) as string);
+    const resultRoundExits = testResultLocal && testResultLocal.find((item) => item.round_id === this.roundDetail.id);
+    if (testResultLocal && resultRoundExits && resultRoundExits.data) {
+      for (const item in resultRoundExits.data) {
         const questionType = +item.split("-")[3];
 
         // câu hỏi 1 đáp án
         if (questionType === 0) {
           this.formAnswers.patchValue({
-            [item]: testResult.data[item],
+            [item]: resultRoundExits.data[item],
           });
         } else if (questionType === 1) {
           // câu hỏi nhiều đáp án
           const formArray: FormArray = this.formAnswers.get(item) as FormArray;
 
-          testResult.data[item].forEach((answerId: string) => {
+          resultRoundExits.data[item].forEach((answerId: string) => {
             formArray.push(new FormControl(answerId));
           });
         }
@@ -537,16 +544,34 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
   handleAutoSaveAnswer(formControlName: string) {
     if (this.isTimeOut) return;
     const tempValue = { ...this.formAnswers.value };
+    const testResultLocal = JSON.parse(localStorage.getItem(this.testResultStorageKey) as string);
 
     this.formAnswers.get(formControlName)?.valueChanges.subscribe((value) => {
       tempValue[formControlName] = value;
-      localStorage.setItem(
-        "test_result",
-        JSON.stringify({
-          exam_id: this.examData.id,
-          data: tempValue,
-        }),
-      );
+
+      if (testResultLocal && Array.isArray(testResultLocal)) {
+        let testResultByRoundIdExits = testResultLocal.find((item) => item.round_id === this.roundDetail.id);
+        if (testResultByRoundIdExits) {
+          testResultByRoundIdExits.data = tempValue;
+        } else {
+          testResultLocal.push({
+            round_id: this.roundDetail.id,
+            data: tempValue,
+          });
+        }
+
+        localStorage.setItem(this.testResultStorageKey, JSON.stringify(testResultLocal));
+      } else {
+        localStorage.setItem(
+          this.testResultStorageKey,
+          JSON.stringify([
+            {
+              round_id: this.roundDetail.id,
+              data: tempValue,
+            },
+          ]),
+        );
+      }
     });
   }
 
@@ -873,12 +898,13 @@ export class CapacityExamComponent implements OnInit, OnDestroy {
   // check đáp án của câu hỏi có nhiều đáp án
   checkAnswerd(formControlNam: string, answerId: number) {
     let isChecked = false;
-    const testResult = JSON.parse(localStorage.getItem("test_result") as string);
+    const testResultLocal: TestResultStorage[] = JSON.parse(localStorage.getItem(this.testResultStorageKey) as string);
+    const resultRoundExits = testResultLocal && testResultLocal.find((item) => item.round_id === this.roundDetail.id);
 
-    if (testResult && testResult.data) {
-      for (const item in testResult.data) {
+    if (testResultLocal && resultRoundExits && resultRoundExits.data) {
+      for (const item in resultRoundExits.data) {
         if (item === formControlNam) {
-          isChecked = testResult.data[item].includes(answerId.toString()) ? true : false;
+          isChecked = resultRoundExits.data[item].includes(answerId.toString()) ? true : false;
         }
       }
     }

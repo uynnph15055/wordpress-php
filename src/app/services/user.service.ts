@@ -59,6 +59,7 @@ export class UserService {
     localStorage.removeItem("user");
     localStorage.removeItem("auth_token");
     localStorage.removeItem("token_type");
+    localStorage.removeItem("test_result");
     this.userSubject.next(JSON.parse("{}"));
     this.jwtToken.next("");
     this.router.navigate(["/login"]);

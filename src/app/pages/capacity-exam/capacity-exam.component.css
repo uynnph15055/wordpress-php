@@ -64,6 +64,10 @@
   padding: 0;
 }
 
+.capacity__exam-result-actions-item {
+  text-transform: none;
+}
+
 /* sidebar */
 .sidebar {
   background-color: #fff;

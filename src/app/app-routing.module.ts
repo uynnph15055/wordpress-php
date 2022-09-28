@@ -35,10 +35,12 @@ const routes: Routes = [
       },
       {
         path: "cuoc-thi",
+        data: { title: 'Cuộc thi' },
         component: ContestComponent,
       },
       {
         path: "bai-viet",
+        data: { title: 'Bài viết' },
         component: PostsComponent,
       },
       {

@@ -46,4 +46,12 @@ export class ListPostService {
   searchPost(keyword: any): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?keyword=${keyword}`);
   } 
+
+  uploadCV(data: any): Observable<ResponsePayload> {
+    return this.http.post<ResponsePayload>(`${environment.candidateUrl}/add`, data);
+  }
+
+  searchPostRecruitment(keyword: string):Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-recruitment&keyword=${keyword}`);
+  } 
 }
