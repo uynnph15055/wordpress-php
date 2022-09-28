@@ -48,6 +48,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    transition-duration: 0.3s;
 }
 
 .my-btn-primary {
@@ -65,6 +66,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    transition-duration: 0.3s;
 }
 
 .my-btn-primary:hover {
@@ -87,6 +89,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    transition-duration: 0.3s;
 }
 
 .my-btn-secondary:hover {
@@ -107,6 +110,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    transition-duration: 0.3s;
 }
 
 .my-btn-tertiary:hover,
