@@ -34,7 +34,7 @@ export class TestCapacityComponent implements OnInit {
   cinfigData: TransmitToPost;
   majors: Array<Major>;
 
-  statusCompany: boolean = false;
+  statusNotResultReturn: boolean = false;
   statusCapacity: boolean = false;
   statusKeywordTrending: boolean = false;
   
@@ -73,6 +73,8 @@ export class TestCapacityComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListKeywordTrending()
+    this.getListMajor();
+    this.getAllSkill();
     this.valueSearch = this.route.snapshot.queryParamMap.get('q')
     let major_id= this.route.snapshot.queryParamMap.get('major_id')
     let skill_id = this.route.snapshot.queryParamMap.get('skill_id')
@@ -84,15 +86,18 @@ export class TestCapacityComponent implements OnInit {
       .filterCapacity(this.valueSearch, major_id,  skill_id)
       .subscribe((res) => {
         if (res.status) {
-          this.listCapacity = res.payload.data;
-          this.statusCapacity = true;
-          this.scrollWin();
+          if(res.payload.data.length <= 0 ){
+            this.statusCapacity = true
+            this.statusNotResultReturn = true
+          }else{
+            this.listCapacity = res.payload.data;
+            this.statusCapacity = true;
+            this.scrollWin();
+          }
         }
       });
     }else{
       this.getListTestCapacity()
-      this.getListMajor();
-      this.getAllSkill();
     }
   }
 
@@ -111,7 +116,11 @@ export class TestCapacityComponent implements OnInit {
   getListKeywordTrending(){
     this.testCapacityService.getAllKeywordTrendingCapacity().subscribe(res=>{
         if (res.status) {
-          this.keywordTrending = res.payload;
+          let arrResult= res.payload;
+          // Chỉ lấy ra 5 phần tử đầu tiên trong mảng
+          this.keywordTrending = arrResult.filter((res: any , index: number) => {
+            return index <= 4;
+          });
           this.keywordTrending
             ? (this.statusKeywordTrending = true)
             : this.statusKeywordTrending;
@@ -190,6 +199,7 @@ export class TestCapacityComponent implements OnInit {
   // Filter Capacity
   filterCapacity() {
     this.listCapacity = []
+    this.statusNotResultReturn = false
     this.statusCapacity = false
     let major_id = 0;
     let keyword = '';
@@ -218,9 +228,15 @@ export class TestCapacityComponent implements OnInit {
       .filterCapacity(keyword, major_id,  this.skill_id)
       .subscribe((res) => {
         if (res.status) {
-          this.listCapacity = res.payload.data;
-          this.statusCapacity = true;
-          this.scrollWin();
+          if(res.payload.data.length <= 0 ){
+            this.statusCapacity = true
+            this.statusNotResultReturn = true
+          }else{
+            this.listCapacity = res.payload.data;
+            this.statusCapacity = true;
+            this.statusNotResultReturn = false
+            this.scrollWin();
+          }
         }
       });
   }

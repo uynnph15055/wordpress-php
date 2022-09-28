@@ -380,10 +380,6 @@
     display: none;
   }
   
-  
-  .not-result{
-    
-  }
 
   .test-capacity__keyword{
     display: inline-block;
@@ -407,4 +403,9 @@
   .test-capacity__keyword-item:hover{
     text-decoration: underline;
     cursor: pointer;
+  }
+  .no-results{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 30px 0px
   }
