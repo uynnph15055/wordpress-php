@@ -114,17 +114,20 @@ export class HomeComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.getListPost()
-        // let elToShow = document.querySelectorAll('.show-on-scroll')
-        // if (this.userService.getUserValue().id) {
-        //     this.getListHasAfterLogin();
-        // } else {
-        //     this.contestService.getWhereStatus(1 , 'desc').subscribe(res => {
-        //         if (res.status == true) {
-        //             this.contests = res.payload.data;
-        //         }
-        //     })
-        // }   
+        this.getListPost();
+        if (this.userService.getUserValue().id) {
+            this.getListHasAfterLogin();
+        } else {
+            this.contestService.getWhereStatus(1 , 'desc').subscribe(res => {
+                if (res.status == true) {
+                    let arrResult = res.payload.data;
+                    this.contests = arrResult.filter((res: Contest, index: number) => {
+                        return index > -1 && index < 4;
+                    });
+                    console.log("object", this.contests);
+                }
+            })
+        }   
 
         // let studentStatistic = document.querySelector('.section_plan-student');
         // let yearStatistic = document.querySelector('.section_plan-year');
@@ -149,12 +152,12 @@ export class HomeComponent implements OnInit {
     //     })
     // }
 
-    // // Get api list contest after login
-    // getListHasAfterLogin() {
-    //     this.userService.getListContestHasJoin(1 , 'desc').subscribe(res => {
-    //         res.status ? this.contests = res.payload.data : this.contests;
-    //     })
-    // }
+    // Get api list contest after login
+    getListHasAfterLogin() {
+        this.userService.getListContestHasJoin(1 , 'desc').subscribe(res => {
+            res.status ? this.contests = res.payload.data : this.contests;
+        })
+    }
 
     // // Open api rank student
     // openRankStudent() {
@@ -220,9 +223,6 @@ export class HomeComponent implements OnInit {
     //         sliderRank?.classList.add('slick-slide-student-more');
     //     }
     // }
-
-
-
 
     getListPost() {
         this.postService.getPostRecruitment().subscribe(res => {

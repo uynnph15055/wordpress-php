@@ -15,13 +15,13 @@
           <a class="contest__nav-link">Đã kết thúc</a>
         </li>
       </ul>
-      <div class="btn__search-contest" >
+      <div class="btn__search-contest">
         <form class="input-group flex-nowrap" [formGroup]="formSearchContest" (submit)="searchContest()">
-            <input formControlName="keywordContest" type="text" class="form-control input-search" placeholder="Tìm kiếm cuộc thi ..." aria-label="Username" aria-describedby="addon-wrapping">
-            <button class="input-group-text primary-color bg-white border-none"
-            ><i class="fa-solid fa-magnifying-glass"></i
-          ></button>
-          </form>
+          <input formControlName="keywordContest" type="text" class="form-control input-search"
+            placeholder="Tìm kiếm cuộc thi ..." aria-label="Username" aria-describedby="addon-wrapping">
+          <button class="input-group-text primary-color bg-white border-none"><i
+              class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
       </div>
     </div>
   </div>
@@ -34,31 +34,22 @@
             <i class="fa-sharp fa-solid fa-filter"></i>
             Lọc chuyên ngành
           </div>
-          <form class="input-group contest__content-form--search"   [formGroup]="formSearchMajor" (submit)="searchMajor()">
-            <input
-              type="text"
-              placeholder="Tìm kiếm chuyên ngành..."
-              class="input-search form-control"
-              formControlName="keywordMajor"
-            />
-            <button class="input-group-text btn__search-major"
-              ><i class="fa-solid fa-magnifying-glass"></i
-            ></button>
+          <form class="input-group contest__content-form--search" [formGroup]="formSearchMajor"
+            (submit)="searchMajor()">
+            <input type="text" placeholder="Tìm kiếm chuyên ngành..." class="input-search form-control"
+              formControlName="keywordMajor" />
+            <button class="input-group-text btn__search-major"><i class="fa-solid fa-magnifying-glass"></i></button>
           </form>
           <div class="contest__content-aside-major" *ngIf="statusMajor">
             <div *ngFor="let item of majors" class=" ">
-              <div class="contest__content-aside-major--item text-collapse" (click)="getWhereMajor()"  routerLinkActive="active"
-              [routerLinkActiveOptions]="{exact: true}">
+              <div class="contest__content-aside-major--item text-collapse" (click)="getWhereMajor()"
+                routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 {{ item.name }}
               </div>
             </div>
           </div>
           <div *ngIf="!statusMajor">
-            <ngx-skeleton-loader
-              count="7"
-              [theme]="{ 'height.px': 35, 'margin-bottom': '10px' }"
-              appearance="line"
-            >
+            <ngx-skeleton-loader count="7" [theme]="{ 'height.px': 35, 'margin-bottom': '10px' }" appearance="line">
             </ngx-skeleton-loader>
           </div>
         </div>
@@ -70,15 +61,16 @@
           <i class="fa-solid fa-list-timeline"></i> Trạng thái:
           <span>Đang diễn ra</span>
         </h3>
-         <app-contest-item-sub *ngFor="let item of contests" [contestItem]="item"></app-contest-item-sub>
+        <app-contest-item *ngFor="let item of contests" [item]="item"></app-contest-item>
+
+        <!-- <app-contest-item-sub *ngFor="let item of contests" [contestItem]="item"></app-contest-item-sub> -->
       </div>
 
-      <div *ngIf="statusContest" class=" col-9" >
-        <h3 *ngIf="contests.length == 0" >Không tìm thấy kết quả nào !</h3>
-       <div *ngIf="contests.length == 0" class="d-flex justify-content-center">
-        <img class="d-flex justify-content-center mt-5" src="https://homebond.ae/assets/images/no-result.png"
-        alt="">
-       </div>
+      <div *ngIf="statusContest" class=" col-9">
+        <h3 *ngIf="contests.length == 0">Không tìm thấy kết quả nào !</h3>
+        <div *ngIf="contests.length == 0" class="d-flex justify-content-center">
+          <img class="d-flex justify-content-center mt-5" src="https://homebond.ae/assets/images/no-result.png" alt="">
+        </div>
       </div>
 
       <div *ngIf="!statusContest" class="col-9">
