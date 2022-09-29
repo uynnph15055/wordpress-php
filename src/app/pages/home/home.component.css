@@ -14,9 +14,31 @@
   color: var(--my-secondary);
   margin-bottom: 32px;
 }
+.section__title--center {
+  text-align: center;
+}
 .section__title-icon {
   color: var(--my-primary);
   background: -webkit-linear-gradient(rgb(232, 84, 84), rgb(255, 195, 195) , #FF6638);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
+
+/*------------- POST EVENT ---------- */
+@media (min-width: 768px) {
+  .post-event-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 24px;
+}
+}
+@media (min-width: 1280px) {
+  .post-event-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 24px;
+}
+}
+

@@ -38,18 +38,9 @@
             Các cuộc thi
         </h2>
         <div class="section-content">
-            <div class="recruitment-position-list">
-                <div class="recruitment-position-item">
-                    <button class="my-btn-primary my-btn-l">
-                        Abcasdsadasd
-                    </button>
-                    <button class="my-btn-secondary my-btn-m">
-                        Abcasdasdasd
-                    </button>
-                    <button class="my-btn btn-success my-btn-s">
-                        Abcasdasdsad
-                    </button>
-                    Hello Abcd nhé!
+            <div class="contest-list">
+                <div class="contest-item">
+
                 </div>
             </div>
         </div>
@@ -57,7 +48,7 @@
 </div>
 <div class="section section-bg--2">
     <div class="container">
-        <h2 class="section__title my-h3">Sinh viên có thành thích xuất sắc tháng 10</h2>
+        <h2 class="section__title section__title--center my-h3">Sinh viên có thành thích xuất sắc tháng 10</h2>
         <div class="section-content">
         </div>
     </div>
@@ -71,8 +62,27 @@
 </div>
 <div class="section section-bg--2">
     <div class="container">
-        <h2 class="section__title my-h3">Tin tức - sự kiện</h2>
+        <h2 class="section__title section__title--center my-h3">Tin tức - sự kiện</h2>
         <div class="section-content">
+            <div class="post-event-list grid gy-1" *ngIf="!listPostEvent">
+                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
+                    appearance="line">
+                </ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
+                    appearance="line">
+                </ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
+                    appearance="line">
+                </ngx-skeleton-loader>
+            </div>
+            <div class="post-event-list">
+                <div class="post-item " *ngFor="let item of listPostEvent">
+                    <app-post-related-item [postItem]="item"></app-post-related-item>
+                </div>
+            </div>
+            <div class="post-event-list grid gy-1">
+
+            </div>
         </div>
     </div>
 </div>

@@ -161,3 +161,10 @@ ul {
 .input-required {
   color: red
 }
+
+
+
+/* ------------------- post item ------------ */
+.post-item {
+  height: 450px;
+}

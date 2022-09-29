@@ -12,6 +12,8 @@ import { CompanyService } from 'src/app/services/company.service';
 import { Company } from 'src/app/models/company.models';
 import { NgToastService } from 'ng-angular-popup';
 import { ConfigViewService } from 'src/app/services/config-view.service';
+import { Post } from 'src/app/models/post.model';
+import { ListPostService } from 'src/app/services/list-post.service';
 
 
 
@@ -22,6 +24,10 @@ import { ConfigViewService } from 'src/app/services/config-view.service';
 })
 
 export class HomeComponent implements OnInit {
+    listPostEvent: Post[] | null
+
+
+
     majors: Array<Major>;
     statusResultMajor: boolean = false;
     users: Array<User>;
@@ -102,11 +108,13 @@ export class HomeComponent implements OnInit {
         private dialog: MatDialog,
         private companyService : CompanyService,
         private toast :NgToastService,
-        private configView : ConfigViewService
+        private configView : ConfigViewService,
+        private postService: ListPostService
         ) { }
 
 
     ngOnInit(): void {
+        this.getListPost()
         // let elToShow = document.querySelectorAll('.show-on-scroll')
         // if (this.userService.getUserValue().id) {
         //     this.getListHasAfterLogin();
@@ -212,5 +220,16 @@ export class HomeComponent implements OnInit {
     //         sliderRank?.classList.add('slick-slide-student-more');
     //     }
     // }
+
+
+
+
+    getListPost() {
+        this.postService.getPostRecruitment().subscribe(res => {
+            if (res.status) {
+                this.listPostEvent = res.payload.data
+            }
+        })
+    }
   
 }
