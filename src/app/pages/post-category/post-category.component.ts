@@ -18,7 +18,7 @@ export class PostCategoryComponent implements OnInit {
   }
 
   getListPost(){
-    this.postService.getPostRecruitment().subscribe(res => {
+    this.postService.getPostByCategory("post-recruitment").subscribe(res => {
        if(res.status){
         this.ListPost = res.payload.data
        }

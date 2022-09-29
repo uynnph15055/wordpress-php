@@ -10,7 +10,12 @@
             <h2 class="header-section__title">Bài viết tuyển dụng</h2>
             <a routerLink="/danh-muc-bai-viet" class="header-section__link">Tất cả</a>
         </div>
-        <div class="post-new-latest">
+        <div class="loading" *ngIf="!PostRecruitmentFirst">
+            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                appearance="line">
+            </ngx-skeleton-loader>
+        </div>
+        <div class="post-new-latest" *ngIf="PostRecruitmentFirst">
             <div class="post-new-latest__img-section">
                 <img src={{PostRecruitmentFirst.thumbnail_url}} alt="" class="post-new-latest__img">
             </div>
@@ -67,10 +72,20 @@
                         <a routerLink="/danh-muc-bai-viet" class="header-section__link">Tất cả</a>
                     </div>
                     <div class="main-section">
-                        <div class="post-item">
+                        <div class="" *ngIf="!PostCapacityFirst">
+                            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                                appearance="line">
+                            </ngx-skeleton-loader>
+                        </div>
+                        <div class="post-item" *ngIf="PostCapacityFirst">
                             <app-post-related-item [postItem]="PostCapacityFirst"></app-post-related-item>
                         </div>
-                        <div class="post-in-cate-list">
+                        <div class="" *ngIf="!ListPostCapacity">
+                            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                                appearance="line">
+                            </ngx-skeleton-loader>
+                        </div>
+                        <div class="post-in-cate-list">         
                             <div class="post-in-cate-item" *ngFor=" let postCapacity of ListPostCapacity">
                                 <div class="post-in-cate-item__img-section">
                                     <a routerLink="/bai-viet/{{postCapacity.slug}}">
@@ -101,8 +116,18 @@
                         <a routerLink="/danh-muc-bai-viet" class="header-section__link">Tất cả</a>
                     </div>
                     <div class="main-section">
-                        <div class="post-item">
+                        <div class="" *ngIf="!PostContestFirst">
+                            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                                appearance="line">
+                            </ngx-skeleton-loader>
+                        </div>
+                        <div class="post-item" *ngIf="PostContestFirst">
                             <app-post-related-item [postItem]="PostContestFirst"></app-post-related-item>
+                        </div>
+                        <div class="" *ngIf="!ListPostContest">
+                            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                                appearance="line">
+                            </ngx-skeleton-loader>
                         </div>
                         <div class="post-in-cate-list">
                             <div class="post-in-cate-item " *ngFor=" let postContes of ListPostContest">
