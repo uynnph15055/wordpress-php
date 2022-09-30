@@ -64,15 +64,10 @@
 
       <!-- ---Main -->
       <div *ngIf="statusContest && contests.length > 0" class="contest__list col-9">
-        <h3 class="contest__list-status">
-          <i class="fa-solid fa-list-timeline"></i> Trạng thái:
-          <span>{{statusCurrContest == 0 ? 'Đang diễn ra': statusCurrContest == 1 ? 'Sắp diễn ra' : 'Đã kết thúc'  }}</span>
-        </h3>
-         <app-contest-item-sub *ngFor="let item of contests" [status]="statusCurrContest" [contestItem]="item"></app-contest-item-sub>
+        <app-contest-item-sub *ngFor="let item of contests" [status]="statusCurrContest" [contestItem]="item"></app-contest-item-sub>
       </div>
 
       <div *ngIf="statusContest" class=" col-9" >
-        <h3 *ngIf="contests.length == 0" >Không tìm thấy kết quả nào !</h3>
        <div *ngIf="contests.length == 0" class="d-flex justify-content-center">
         <img class="d-flex justify-content-center mt-5" src="https://homebond.ae/assets/images/no-result.png"
         alt="">

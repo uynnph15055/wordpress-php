@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-9">
         <h3 class="contest__item--name">
-          {{ contestItem.name }}
+          {{ contestItem.name }}pcon
         </h3>
         <div class="d-flex">
           <p
@@ -31,7 +31,10 @@
         ></div>
       </div>
       <div class="col-3">
-        <div
+        <div class="my-3 text-center" *ngIf="!statusCountDown">
+           <p class="text-center contest-regiter-end">{{checkDateContest(contestItem)}}</p>
+        </div>
+        <div style="margin-right:15px" *ngIf="statusCountDown"
           class="text-Secondary d-flex justify-content-center pb-2 font-size-sml fs-text-contest"
         >
           <div class="text-center contest__time-item">
@@ -53,13 +56,12 @@
           </div>
         </div>
         <a
-          [class.disabled]="!disabled"
           [routerLink]="['/cuoc-thi/', contestItem.id]"
           [state]="{ registerNow: contestItem.status_user_has_join_contest }"
           href=""
           class="text-center btn d-block w-100"
-          [ngClass]="classNameWhereStatus()"
-          >{{ checkStatusContest() }}</a
+          [ngClass]="classNameWhereStatus(contestItem)"
+          >{{ checkStatusContest(contestItem) }}</a
         >
       </div>
     </div>

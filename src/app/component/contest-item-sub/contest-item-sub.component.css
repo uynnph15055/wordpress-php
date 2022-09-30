@@ -62,3 +62,8 @@ p{
     color: var(--white);
     border-radius: 6px;
   }
+
+  .contest-regiter-end{
+    font-size:15px;
+    color: var(--gray-600);
+  }

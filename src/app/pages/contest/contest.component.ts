@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { Contest } from 'src/app/models/contest';
 import { Major } from 'src/app/models/major';
+import { ConfigFunctionService } from 'src/app/services/config-function.service';
 import { ContestService } from 'src/app/services/contest.service';
 import { MajorService } from 'src/app/services/major.service';
 import { UserService } from 'src/app/services/user.service';
@@ -32,7 +33,8 @@ export class ContestComponent implements OnInit {
     public userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private configFuntionService: ConfigFunctionService
   ) {}
 
   formSearchMajor = new FormGroup({
@@ -44,27 +46,34 @@ export class ContestComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    // Load lên đầu trang 
+    this.configFuntionService.runTop();
+    
     this.userService.getUserValue().id != undefined ? this.checkUserHasLogin = true : this.checkUserHasLogin;
 
     this.route.queryParamMap.subscribe((params) => {
       this.orderObj = {...params };
     });
 
-    if(this.orderObj.params.major_id){
+    if(this.orderObj.params.status || this.orderObj.params.keyword){
+      this.statusCurrContest = this.orderObj.params.status;
       this.keyworkSearchContest = this.orderObj.params.keyword;
+    }
+
+    if(this.orderObj.params.major_id){
       this.majorService.getMajorWhereSlug(this.orderObj.params.major).subscribe((res) => {
         this.major_id = res.payload.id;
       });
     }
 
     this.filterContest();
-   
-    this.statusCurrContest = this.orderObj.params.status;
-    this.keyworkSearchContest = this.orderObj.params.keyword;
+  
   
     this.titleService.setTitle('Cuộc thi');
 
     window.addEventListener('scroll', this.scrollNavSub);
+    console.log(this.statusCurrContest);
+    
     this.getAllMajor();
   }
 

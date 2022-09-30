@@ -2,7 +2,9 @@
   border: none;
   background-color: #ffff;
   border-radius: 10px;
-  box-shadow: 0px 0px 3px var(--gray-200);
+  transition: all ease-in 0.3s;
+  box-shadow: 0px 0px 7px var(--gray);
+  transform: translateY(0px);
 }
 
 .contest-item-img {
@@ -101,3 +103,11 @@ a.disabled {
     display: block;
   }
 }
+
+.slide:hover {
+  transform: translateY(-3px);
+  transition: all ease-in 0.3s;
+  box-shadow: 0px 0px 5px var(--primary);
+  cursor: pointer;
+}
+

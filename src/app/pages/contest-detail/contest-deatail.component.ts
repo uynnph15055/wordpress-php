@@ -151,7 +151,9 @@ export class ContestDeatailComponent implements OnInit {
   getListPost() {
     this.listPostService.getPostWhereCate('post-contest').subscribe((res) => {
       if (res.status) {
-        this.listPostResult = res.payload.data;        
+        this.listPostResult = res.payload.data.filter((item: Contest , index: number) => {
+          return index < 4;
+        });        
       }
     });
   }
@@ -160,7 +162,6 @@ export class ContestDeatailComponent implements OnInit {
   getResultRank() {
     let rountIdEnd = this.getRoundId(this.contestDetail.rounds, 1);
     this.roundService.getResultRound(rountIdEnd).subscribe((res) => {
-      console.log(res);
       res.status ? (this.resultRank = res.payload.data) : null;
     
     });

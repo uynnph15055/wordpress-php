@@ -79,6 +79,7 @@ ul {
     top: 25%;
     left: 8%;
     height: 200px;
+    width: 250px;
     object-fit: cover;
     border: 8px solid #fff;
     border-radius: 10px;

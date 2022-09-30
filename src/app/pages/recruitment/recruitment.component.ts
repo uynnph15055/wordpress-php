@@ -54,6 +54,7 @@ export class RecruitmentComponent implements OnInit {
   statusRecruitments: boolean = false;
   statusRecruitmentsHot: boolean = false;
   statusPage: boolean = true;
+  statusSubmit: boolean = false;
 
   constructor(
     public dialog: MatDialog,
@@ -94,10 +95,7 @@ export class RecruitmentComponent implements OnInit {
       this.orderObj = { ...params };
     });
 
-    this.getListMajor();
-    this.getAllSkill();
-    this.getKeywordAll()
-
+    
     if (this.orderObj.params) {
       this.keyword = this.orderObj.params.keyword
         ? this.orderObj.params.keyword
@@ -118,15 +116,18 @@ export class RecruitmentComponent implements OnInit {
       this.getListRecruitment();
     }
 
+    this.getListMajor();
+    this.getAllSkill();
+    this.getKeywordAll()
+
+    
+
     window.addEventListener('scroll', this.noneSuggestFilter);
 
     const inputElement = document.querySelectorAll('.form-control');
     inputElement.forEach((item) => {
       item.addEventListener('focus', () => {
-         if( item.nextElementSibling?.classList.remove('d-none')){
-
-         }
-        
+        item.nextElementSibling?.classList.remove('d-none')
       });
     });
   }
@@ -153,11 +154,24 @@ export class RecruitmentComponent implements OnInit {
     });
   }
 
+
+  // Check btn submit
+  checkBtnSubmit(){
+    if(this.formFilter.controls['filterStatus'].value ||
+    this.formFilter.controls['filterName'].value  ||
+    this.formFilter.controls['filterMajor'].value ){
+      this.statusSubmit =  true;
+    }else{
+      this.statusSubmit =  false;
+    }
+  }
+
   // Fillter comom recruitments
   filterSelect(arr: Array<any> | null, value: string, input: string) {
     if (arr) {
       switch (input) {
         case 'major':
+          this.checkBtnSubmit();
           if (!value) {
             this.majors = null;
             this.major_id = '';
@@ -171,8 +185,10 @@ export class RecruitmentComponent implements OnInit {
             });
             this.majors.length > 0 &&  this.noneSuggestFilter();
           }
+          
           break;
         case 'keyword':
+          this.checkBtnSubmit();
           if (!value) {
             this.keywords = null;
             this.keyword = '';

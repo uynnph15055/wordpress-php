@@ -26,15 +26,15 @@
                             {{skill.short_name}}</li>
                     </ul>
                     <h4 class="my-2 count-person-joind">Số người tham gia: {{recruitmentDetail.user.length}}</h4>
+                    <div class="mt-2" [innerHTML]="recruitmentDetail.description"></div>
                     <div *ngIf="recruitmentDetail.enterprise.length > 0">
-                        <h4 class="fw-bold title d-block mt-2">Doanh nghiệp :</h4>
-                        <div class="company-joind mt-2" *ngFor="let item of recruitmentDetail.enterprise" >
-                            <h4>+ {{item.name}}</h4>
+                        <h4 class="fw-bold title d-block mt-2">Doanh nghiệp hỗ trợ:</h4>
+                        <div class="company-joind my-2" *ngFor="let item of recruitmentDetail.enterprise" >
+                            <h4 class="fw-bold">- {{item.name}}</h4>
                             <p class="ml-3" [innerHTML]="item.description" ></p>
                             <p *ngIf="item.link_web" class="fw-bold ">Xem chi tiết : <a class="fw-normal text-decoration-underline" [href]="item.link_web">{{item.link_web}}</a></p>
                         </div>
                     </div>
-                    <div class="mt-2" [innerHTML]="recruitmentDetail.description"></div>
                     <iframe width="780" height="450" src="https://www.youtube.com/embed/VcGnT9f4_-w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
 
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div *ngIf="listPostResult" class="list-post-box mt-3">
-            <h3 class="fw-bold title text-uppercase mb-2 text-left color-blue">Tìm hiểu doanh nghiệp</h3>
+            <h3 class="fw-bold title text-uppercase mb-2 text-left color-blue">Bài viết tuyển dụng</h3>
             <div class="title-line">
             </div>
             <app-list-post [listPost]="listPostResult"></app-list-post>

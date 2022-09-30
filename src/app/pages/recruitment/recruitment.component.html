@@ -1,5 +1,5 @@
-<app-loading-page [status]="statusPage">
-</app-loading-page>
+<!-- <app-loading-page [status]="statusPage">
+</app-loading-page> -->
 <div class="container-fuild recruitment-banner-box">
   <ngb-carousel>
     <ng-template ngbSlide>
@@ -125,7 +125,7 @@
         </div>
       </div>
       <div class="col-2">
-        <button class="btn-search-recruitment w-100 h-100">Tìm kiếm &nbsp; <i class="fa-solid fa-magnifying-glass"></i></button>
+        <button [disabled]="!statusSubmit" [ngClass]="statusSubmit ? '' : 'opacity-75'" class="btn-search-recruitment w-100 h-100">Tìm kiếm &nbsp; <i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
     </form>
     <ul *ngIf="skills" class="d-flex flex-wrap filter-skill-box">
