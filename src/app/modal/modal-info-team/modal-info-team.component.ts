@@ -49,10 +49,13 @@ export class ModalInfoTeamComponent implements OnInit {
 
   // Lấy dữ liệu từ modal điều hướng sang chi tiết đội thi
   openFormEditTeam(): void {
+    this.dialogRef.close();
     let status = this.dialog.open(ModalAddTeamComponent, {
       width: "490px",
       data: {
+        contest_id:  this.contest_id,
         team_id: this.team_id,
+        teams: this.teamDetail,
       },
     });
 
@@ -65,6 +68,7 @@ export class ModalInfoTeamComponent implements OnInit {
 
   // Mở danh sách các member theo keyword
   openListMemberJoinTeam(keyWord: any = '') {
+    this.dialogRef.close();
     const members = this.dialog.open(ModalListMemberComponent, {
       width: "800px",
       data: {
@@ -83,6 +87,8 @@ export class ModalInfoTeamComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.getUserValue();
+    console.log(this.contest_id);
+    
     if (!this.user) {
       this.router.navigate(['/login']);
     }
@@ -124,10 +130,12 @@ export class ModalInfoTeamComponent implements OnInit {
         ]
       }
       
-      this.teamService.removeMembers(data).subscribe(res => {
-        if (res.status == true) {
-          this.ngOnInit();
-          this.toast.success({ summary: res.payload, duration: 3000 });
+      this.teamService.removeMembers(data).subscribe(res => {        
+        if (res.status) {
+          this.arrayMembers =  this.arrayMembers.filter((item) => {
+            return item.id  != res.user_id[0];
+          })
+          this.toast.success({ summary: "Xóa thành công", duration: 2000 });
         }
       })
     }

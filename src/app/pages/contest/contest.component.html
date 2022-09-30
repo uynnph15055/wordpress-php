@@ -1,23 +1,22 @@
 <div class="wraper">
-  <app-banner class="banner"></app-banner>
 
   <!-- Content -->
   <div id="#contest__nav" class="my-2 contest__nav">
     <div class="container d-flex justify-content-between algin-items-center">
       <ul class="contest__nav-list">
-        <li (click)="updateStatusContest($event , 0)" class="contest__nav-item active">
+        <li (click)="updateStatusContest($event , 0)" [ngClass]="statusCurrContest == 0 ? 'active' : ''"  class="contest__nav-item">
           <a class="contest__nav-link">Đang diễn ra</a>
         </li>
-        <li (click)="updateStatusContest($event , 1)" class="contest__nav-item">
+        <li (click)="updateStatusContest($event , 1)" [ngClass]="statusCurrContest == 1 ? 'active' : ''"  class="contest__nav-item">
           <a class="contest__nav-link">Sắp diễn ra</a>
         </li>
-        <li (click)="updateStatusContest($event , 2)" class="contest__nav-item">
+        <li (click)="updateStatusContest($event , 2)"  [ngClass]="statusCurrContest == 2 ? 'active' : ''"  class="contest__nav-item">
           <a class="contest__nav-link">Đã kết thúc</a>
         </li>
       </ul>
       <div class="btn__search-contest" >
         <form class="input-group flex-nowrap" [formGroup]="formSearchContest" (submit)="searchContest()">
-            <input formControlName="keywordContest" type="text" class="form-control input-search" placeholder="Tìm kiếm cuộc thi ..." aria-label="Username" aria-describedby="addon-wrapping">
+            <input formControlName="keywordContest" type="text" class="form-control input-search input-search-contest" placeholder="Tìm kiếm cuộc thi ..." aria-label="Username" aria-describedby="addon-wrapping">
             <button class="input-group-text primary-color bg-white border-none"
             ><i class="fa-solid fa-magnifying-glass"></i
           ></button>
@@ -46,9 +45,8 @@
             ></button>
           </form>
           <div class="contest__content-aside-major" *ngIf="statusMajor">
-            <div *ngFor="let item of majors" class=" ">
-              <div class="contest__content-aside-major--item text-collapse" (click)="getWhereMajor()"  routerLinkActive="active"
-              [routerLinkActiveOptions]="{exact: true}">
+            <div *ngFor="let item of majors">
+              <div class="contest__content-aside-major--item text-collapse" (click)="getWhereMajor($event , item)" >
                 {{ item.name }}
               </div>
             </div>
@@ -66,15 +64,10 @@
 
       <!-- ---Main -->
       <div *ngIf="statusContest && contests.length > 0" class="contest__list col-9">
-        <h3 class="contest__list-status">
-          <i class="fa-solid fa-list-timeline"></i> Trạng thái:
-          <span>Đang diễn ra</span>
-        </h3>
-         <app-contest-item-sub *ngFor="let item of contests" [contestItem]="item"></app-contest-item-sub>
+        <app-contest-item-sub *ngFor="let item of contests" [status]="statusCurrContest" [contestItem]="item"></app-contest-item-sub>
       </div>
 
       <div *ngIf="statusContest" class=" col-9" >
-        <h3 *ngIf="contests.length == 0" >Không tìm thấy kết quả nào !</h3>
        <div *ngIf="contests.length == 0" class="d-flex justify-content-center">
         <img class="d-flex justify-content-center mt-5" src="https://homebond.ae/assets/images/no-result.png"
         alt="">

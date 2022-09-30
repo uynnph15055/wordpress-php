@@ -3,8 +3,8 @@
         {{runCountDownTime()}}
         <div class="img-detail-box">
             <img [src]="contestDetail.img" class="w-100" alt="">
-            <p style="margin: 10px 0px;"
-                class="fw-bold fs-5 pt-2 contest-detail-right-name text-dark">
+            <p style="margin: 10px 0px;font-size:17px"
+                class="fw-bold  pt-2 contest-detail-right-name text-dark">
                 {{contestDetail.name}}</p>
             <ul *ngIf="!contestDetail.status_user_has_join_contest" class="contest-detail-right-countdown">
                 <div class="contest-detail-right-countdown-box">
