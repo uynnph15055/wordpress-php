@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="post-item-bottom">
-                <p class="short-desc" *ngIf="postItem.description " [innerHTML]="postItem.description"></p>
+                <div class="short-desc" *ngIf="postItem.description " [innerHTML]="postItem.description"></div>
                 <a class="btn btn-detail" routerLink="/bai-viet/{{postItem.slug}}">Chi tiết</a>
             </div>
         </div>
