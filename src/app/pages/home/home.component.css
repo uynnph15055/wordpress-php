@@ -200,3 +200,17 @@
     grid-gap: 24px;
   }
 }
+
+/* ------------------- connect recruitment ----------- */
+.recruitment-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recruitment-item {
+  width: 160px;
+  height: 100%;
+  max-height: 160px;
+  object-fit: cover;
+}
