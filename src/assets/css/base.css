@@ -99,6 +99,11 @@
   /* text */
   --my-rounded: 4px;
   --my-rounded-2: 8px;
+
+  /* text body */
+  --fw: 400;
+  --fs: 16px;
+  --lh: 140%;
 }
 * {
   margin: 0;
@@ -114,9 +119,9 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   color: var(--my-black);
-  font-weight: 400 ;
-  font-size: 16px ;
-  line-height: 140% ;
+  font-weight: var(--fw) ;
+  font-size: var(--fs) ;
+  line-height: var(--lh) ;
 }
 
 ::-webkit-scrollbar {
@@ -129,12 +134,6 @@ body {
   border-radius: 6px;
 }
 
-.fs-text {
-  font-size: 16px;
-  text-align: justify;
-  line-height: 1.5;
-}
-
 a {
   text-decoration: none;
 }
@@ -145,7 +144,28 @@ ul {
 img {
   max-width: 100%;
 }
+.my-shadow-1 {
+  /* Elevation 1 */
+    box-shadow: 0px 4px 4px rgba(142, 141, 208, 0.16);
+}
+.my-shadow-2 {
+  /* Elevation 2 */
+    box-shadow: 0px 4px 8px rgba(142, 141, 208, 0.16);
+}
+.my-shadow-3 {
+  /* Elevation 3 */
+    box-shadow: 0px 4px 6px rgba(142, 141, 208, 0.16);
+}
+.my-shadow-4 {
+  /* Elevation 4 */
+    box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
+}
 
+.fs-text {
+  font-size: 16px;
+  text-align: justify;
+  line-height: 1.5;
+}
 /* SLICK SLIDER */
 .slick-arrow {
   position: absolute;
