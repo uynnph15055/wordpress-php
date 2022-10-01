@@ -181,7 +181,7 @@ export class RoundContestDetailComponent implements OnInit {
 
   //Cac bai post
   getListPost() {
-    this.listPostService.getPostWhereCate('post-contest').subscribe((res) => {
+    this.listPostService.getPostWhereCate('post-round').subscribe((res) => {
       if (res.status) {
         this.listPostResult = res.payload.data.filter((res: Post , index: number) => {
           return index <  3;

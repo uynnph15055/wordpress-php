@@ -32,7 +32,7 @@
     <p class="contest-count-team mt-2 fs-text-contest">Số đội tham gia : <span
             class="count-team text-white">{{item.teams_count}}</span></p>
   
-    <a [class.disabled]="!disabled"  [routerLink]="['/cuoc-thi/' , item.id]"
+    <a   [routerLink]="['/cuoc-thi/' , item.id]"
         [state]="{registerNow : item.status_user_has_join_contest}"
          href=""
         class=" text-center btn  d-block w-100"

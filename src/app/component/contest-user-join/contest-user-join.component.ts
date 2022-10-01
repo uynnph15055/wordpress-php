@@ -25,7 +25,6 @@ export class ContestUserJoinComponent implements OnInit {
     this.valueStatus = event.target.value;
     this.valueStatus > 0 ?
       this.filterContest('', this.valueStatus) : this.getAllContestByUser();
-
   }
 
   //  Tìm kiếm cuộc thi

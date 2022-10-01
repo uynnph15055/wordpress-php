@@ -2,6 +2,12 @@
   margin-top: 12px;
 }
 
+.input-group-text{
+  background-color: var(--primary);
+  color: white;
+  border: 2px solid var(--primary);
+}
+
 .capacity__item {
   background-color: #fff;
   padding: 12px;

@@ -22,7 +22,7 @@ export class ModalAddTeamComponent implements OnInit {
   selectedImage: any;
   statusRegister: boolean = true;
   statusFormEdit: boolean = true;
-  titleModel: string = 'Thêm đội tham gia thi';
+  titleModel: string = 'THÊM ĐỘI THAM GIA';
   public imagePath: string;
   buttonName: string = 'Đăng ký';
   teamDetail: Team;
@@ -61,7 +61,7 @@ export class ModalAddTeamComponent implements OnInit {
     this.user = this.getUserLocal.getValueLocalUser('user');
     if (this.data.teams) {
       this.formEdit = true;
-      this.titleModel = 'Sửa đội thi';
+      this.titleModel = 'SỬA THÔNG TIN ĐỘI';
       this.buttonName = 'Sửa đội';
       this.teamDetail = this.data.teams;
       this.imgURL = this.teamDetail.image

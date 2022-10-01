@@ -68,7 +68,7 @@ h5 {
 
 .post-new-latest__bottom .post-new-latest__short-desc:first-child{
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -78,6 +78,8 @@ h5 {
 .post-new-latest .btn {
     margin: 10px 0;
 }
+
+/* 00000 */
 
 .post-new-latest__slider-list .post-new-latest__slider-item {
     margin: 0px 10px;
