@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
     setTimeout(() => {
       this.userService.logout();
-    }, 60000);
+    }, 900000);
 
     this.user = this.userInfo.getValueLocalUser("user");
     this.saveUrlCurrent();

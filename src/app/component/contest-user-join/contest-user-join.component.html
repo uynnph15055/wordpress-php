@@ -15,16 +15,16 @@
         (change)="filterWhereStatus($event)"
         aria-label="Default select example"
       >
-        <option selected>Trạng thái</option>
-        <option value="3">Đã kết thúc</option>
-        <option value="2">Đang mở</option>
-        <option value="1">Sắp diễn ra</option>
+        <option   hidden>Trạng thái</option>
+        <option value="1" selected [selected]="valueStatus ==  '1'" >Đang mở</option>
+        <option value="2"  [selected]="valueStatus ==  '2'">Đã kết thúc</option>
       </select>
     </div>
     <form class="col-7" (submit)="filterContestSearch()">
         <div class="input-group">
           <input
             type="text"
+            [value]="keyword"
             (keyup)="setValueSearch($event)"
             placeholder="Tìm kiếm cuộc thi"
             class="input-search form-control"
