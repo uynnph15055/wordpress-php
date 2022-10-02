@@ -44,9 +44,11 @@
         <a routerLink="">
             <img class="contest-item__img" [src]="item.img" alt="">
         </a>
-        <button class="my-btn my-add-favorite__btn added">
-            <i class="my-add-favorite__icon fa-solid fa-bookmark"></i>
-        </button>
+        <div class="contest-item__btn-favorite">
+            <button class="my-btn my-add-favorite__btn">
+                <i class="my-add-favorite__icon fa-solid fa-bookmark"></i>
+            </button>
+        </div>
     </div>
     <div class="contest-item-content">
         <div class="contest-item-content-row">

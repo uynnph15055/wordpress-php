@@ -27,29 +27,10 @@
 }
 
 /* -------- button favorite --------- */
-.my-add-favorite__btn {
+.contest-item__btn-favorite {
   position: absolute;
   top: 8px;
   right: 8px;
-  padding: 4px 8px;
-  background: var(--my-gray);
-  opacity: .6;
-  transition-duration: .3s;
-}
-
-.my-add-favorite__btn:hover {
-  opacity: 1;
-}
-
-.my-add-favorite__btn.added,
-.my-add-favorite__btn.added .my-add-favorite__icon {
-  color: var(--my-primary);
-  opacity: 1;
-
-}
-
-.my-add-favorite__icon {
-  color: var(--my-darkest-gray);
 }
 
 /* ------------------------- content --------- */
@@ -152,5 +133,3 @@
 .my-countdown {
   margin-top: 0;
 }
-
-

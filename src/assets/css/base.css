@@ -1,5 +1,6 @@
 @import '~normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Vollkorn:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 :root {
   --primary: #ff6638;
   --bg-content: #F8F8F8;
@@ -78,7 +79,7 @@
   --my-dark-gray: #EEEEEE;
   --my-darkest-gray: #8A8894;
   --my-disabled: #F4F3FE;
-  
+
   /* background */
   --my-bg-color: #F4F3FE;
   --my-bg-white: #FFF;
@@ -105,23 +106,36 @@
   --fs: 16px;
   --lh: 140%;
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-h1, h2, h3, h4, h5, h6 , p , ul, li, span, strong{
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li,
+span,
+strong {
   font-family: 'Nunito Sans', sans-serif !important;
 }
+
 body {
   font-family: 'Nunito Sans', sans-serif !important;
   /* font-family: 'Vollkorn', serif; */
   overflow-x: hidden;
   scroll-behavior: smooth;
   color: var(--my-black);
-  font-weight: var(--fw) ;
-  font-size: var(--fs) ;
-  line-height: var(--lh) ;
+  font-weight: var(--fw);
+  font-size: var(--fs);
+  line-height: var(--lh);
 }
 
 ::-webkit-scrollbar {
@@ -137,28 +151,34 @@ body {
 a {
   text-decoration: none;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 img {
   max-width: 100%;
 }
+
 .my-shadow-1 {
   /* Elevation 1 */
-    box-shadow: 0px 4px 4px rgba(142, 141, 208, 0.16);
+  box-shadow: 0px 4px 4px rgba(142, 141, 208, 0.16);
 }
+
 .my-shadow-2 {
   /* Elevation 2 */
-    box-shadow: 0px 4px 8px rgba(142, 141, 208, 0.16);
+  box-shadow: 0px 4px 8px rgba(142, 141, 208, 0.16);
 }
+
 .my-shadow-3 {
   /* Elevation 3 */
-    box-shadow: 0px 4px 6px rgba(142, 141, 208, 0.16);
+  box-shadow: 0px 4px 16px rgba(142, 141, 208, 0.16);
 }
+
 .my-shadow-4 {
   /* Elevation 4 */
-    box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
+  box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
 }
 
 .fs-text {
@@ -166,6 +186,7 @@ img {
   text-align: justify;
   line-height: 1.5;
 }
+
 /* SLICK SLIDER */
 .slick-arrow {
   position: absolute;
@@ -185,7 +206,30 @@ img {
   color: red
 }
 
+/* ------------------- button favorite ------------ */
+.my-add-favorite__btn {
+  /* vi base btn import config sau base css */
+  padding: 4px 8px !important;
+  background: var(--my-gray);
+  opacity: .6;
+  transition-duration: .3s;
+  width: fit-content;
+}
 
+.my-add-favorite__btn:hover {
+  opacity: 1;
+}
+
+.my-add-favorite__btn.added,
+.my-add-favorite__btn.added .my-add-favorite__icon {
+  color: var(--my-primary);
+  opacity: 1;
+
+}
+
+.my-add-favorite__icon {
+  color: var(--my-darkest-gray);
+}
 
 /* ------------------- post item ------------ */
 .post-item {
