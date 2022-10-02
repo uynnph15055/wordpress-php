@@ -7,36 +7,7 @@
         </h2>
         <div class="section-content">
             <div class="recruitment-position-list">
-                <div class="recruitment-position-item">
-                    <div class="recruitment-position__img-section">
-                        <img src="https://images.unsplash.com/photo-1664658936499-f26d4ba3f2c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" class="recruitment-position__img" alt="">
-                    </div>
-                    <div class="recruitment-position__context">
-                        <div class="recruitment-position__context-row">
-                            <h3 class="recruitment-position__title"><a class="recruitment-position__title-link my-h5" routerLink="">Tuyển dụng thực tập sinh phần mềm abc sasd asdg asda</a></h3>
-                            <button class="my-btn my-add-favorite__btn">
-                                <i class="my-add-favorite__icon fa-solid fa-bookmark"></i>
-                            </button>
-                        </div>
-                        <div class="recruitment-position__context-recruitment">
-                            <i class="fa-regular fa-building"></i>
-                            <span class="recruitment-position__name-company my-xs">Doanh nghiệp: Shopee company</span>
-                        </div>
-                        <div class="recruitment-position__context-row">
-                            <div class="">
-                                <p class="recruitment-position__desc my-xs">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor,
-                                    adipisicing elit, sed do eiusmod tempor
-                                    incididunt
-                                    adipisicing elit, sed do eiusmod tempor
-                                    incididunt
-                                    adipisicing elit, sed do eiusmod tempor
-                                    incididunt
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <app-recruitment-position *ngFor="let item of listRecruitmentPosition" [item]="item"></app-recruitment-position>
             </div>
         </div>
     </div>

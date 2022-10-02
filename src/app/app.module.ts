@@ -88,6 +88,8 @@ import { PostResultSearchComponent } from "./pages/post-result-search/post-resul
 import { TestCapacityComponent } from "./pages/test-capacity/test-capacity.component";
 import { FormatDatePostPipe } from './helper/pipe/format-date-post.pipe';
 import { ContestItemSubComponent } from './component/contest-item-sub/contest-item-sub.component';
+import { RecruitmentPositionComponent } from './component/home/recruitment-position/recruitment-position.component';
+import { OutstandingAdvantagesComponent } from './component/home/outstanding-advantages/outstanding-advantages.component';
 
 @NgModule({
   declarations: [
@@ -148,6 +150,8 @@ import { ContestItemSubComponent } from './component/contest-item-sub/contest-it
     TestCapacityComponent,
     FormatDatePostPipe,
     ContestItemSubComponent,
+    RecruitmentPositionComponent,
+    OutstandingAdvantagesComponent,
   ],
   imports: [
     BrowserModule,

@@ -25,7 +25,7 @@ import { ListPostService } from 'src/app/services/list-post.service';
 
 export class HomeComponent implements OnInit {
     listPostEvent: Post[] | null
-
+    listRecruitmentPosition: Post[] | null
 
 
     majors: Array<Major>;
@@ -114,7 +114,9 @@ export class HomeComponent implements OnInit {
 
 
     ngOnInit(): void {
+        this.getRecruitmentPosition()
         this.getListPost();
+
         if (this.userService.getUserValue().id) {
             this.getListHasAfterLogin();
         } else {
@@ -223,11 +225,21 @@ export class HomeComponent implements OnInit {
     //         sliderRank?.classList.add('slick-slide-student-more');
     //     }
     // }
+    getRecruitmentPosition() {
+        this.postService.recruitmentPosition().subscribe(res => {
+            this.listRecruitmentPosition = res.payload.data;
+            console.log("object", this.listRecruitmentPosition);
+        })
+    }
 
     getListPost() {
         this.postService.getPostRecruitment().subscribe(res => {
-            if (res.status) {
-                this.listPostEvent = res.payload.data
+            if (res.status == true) {
+                let arrResult = res.payload.data;
+                this.listPostEvent = arrResult.filter((res: Post, index: number) => {
+                    return index > -1 && index < 3;
+                });
+                console.log("object", this.contests);
             }
         })
     }

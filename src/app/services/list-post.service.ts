@@ -59,4 +59,7 @@ export class ListPostService {
   searchPostRecruitment(keyword: string):Observable<ResponsePayload>{
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-recruitment&keyword=${keyword}`);
   } 
+  recruitmentPosition():Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?postHot=hot&post=post-recruitment`);
+  } 
 }
