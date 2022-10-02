@@ -225,7 +225,7 @@ export class HomeComponent implements OnInit {
     // }
 
     getListPost() {
-        this.postService.getPostRecruitment().subscribe(res => {
+        this.postService.getPostWhereCate('post-recruitment').subscribe(res => {
             if (res.status) {
                 this.listPostEvent = res.payload.data
             }

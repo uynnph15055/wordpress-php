@@ -51,6 +51,8 @@ export class ContestAsideComponent implements OnInit {
         this.openAddTeam();
       }
     }, 3000);
+
+
   }
 
   // Run status
@@ -205,6 +207,7 @@ export class ContestAsideComponent implements OnInit {
       data: {
         contest_id: this.contestDetail.id,
         team_id: teamId,
+        max_user : this.contestDetail.max_user
       },
     });
   }

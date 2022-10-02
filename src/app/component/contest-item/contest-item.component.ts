@@ -19,7 +19,9 @@ export class ContestItemComponent implements OnInit {
   date_register_end : number;
   today : number;
   disabled: boolean = true;
-
+  checkUserHasLogin: boolean = false;
+  statusCountDown: boolean = true;
+  
   days: number;
   hours: number;
   minutes: number;
@@ -29,29 +31,49 @@ export class ContestItemComponent implements OnInit {
 
   ngOnInit(): void {
      
-      this.date_start = new Date(moment(this.item.register_deadline).format('lll')).getTime();
-      this.date_register_start = new Date(moment(this.item.start_register_time).format('lll')).getTime();
-      this.date_register_end = new Date(moment(this.item.end_register_time).format('lll')).getTime();
-     
-    
-      setInterval(() => {
-        this.date_end = new Date(moment(this.item.date_start).format('lll')).getTime();
-        this.today = new Date().getTime();
-        let distance =  this.date_register_end - this.today;
-        this.date_register_start > this.today ? this.disabled = false : this.disabled;
-      
-        if (distance < 0 || this.item.status == 2 || this.date_register_start > this.today) {
-          this.days = 0;
-          this.hours = 0;
-          this.minutes = 0;
-          this.seconds = 0;
-        } else {
-          this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        }
-      }, 1000);
+    this.userService.getUserValue().id != undefined
+    ? (this.checkUserHasLogin = true)
+    : this.checkUserHasLogin;
+
+  this.date_start = new Date(
+    moment(this.item.date_start).format('lll')
+  ).getTime();
+  this.date_end = new Date(
+    moment(this.item.register_deadline).format('lll')
+  ).getTime();
+  this.date_register_start = new Date(
+    moment(this.item.start_register_time).format('lll')
+  ).getTime();
+
+  setInterval(() => {
+    this.date_register_end = new Date(
+      moment(this.item.end_register_time).format('lll')
+    ).getTime();
+    this.today = new Date().getTime();
+    let distance = this.date_register_end - this.today;
+    this.date_register_start > this.today
+      ? (this.disabled = false)
+      : this.disabled;
+
+    if (
+      distance < 0 ||
+      this.item.status == 2 ||
+      this.date_register_start > this.today
+    ) {
+      this.statusCountDown = false;
+      this.days = 0;
+      this.hours = 0;
+      this.minutes = 0;
+      this.seconds = 0;
+    } else {
+      this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      this.hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    }
+  }, 1000);
   }
 
 

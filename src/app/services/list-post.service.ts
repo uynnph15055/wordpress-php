@@ -11,6 +11,9 @@ export class ListPostService {
 
   constructor(private http : HttpClient) { }
 
+  
+
+
   // Get Post Where Category
   getPostWhereCate(cate: string) :Observable<ResponsePayload>{
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=${cate}`)

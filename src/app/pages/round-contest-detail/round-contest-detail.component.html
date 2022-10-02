@@ -156,23 +156,21 @@
                     <p class="fw-bold fs-5 color-blue my-3">Cuộc thi liên quan</p>
                     <div class="title-line"></div>
                     <div class="related-contest-list row" *ngIf="statusContestRelated == true">
-                        <div *ngFor="let item of contestRelated" class="col-4">
+                        <div *ngFor="let item of contestRelated" class="col-12">
                             <app-contest-item [item]="item">
                             </app-contest-item>
                         </div>
                     </div>
                     <div class="related-contest-list row" *ngIf="!statusContestRelated">
-                        <div class="col-4">
-                            <app-contest-load-item>
-                            </app-contest-load-item>
-                        </div>
-                        <div class="col-4">
-                            <app-contest-load-item>
-                            </app-contest-load-item>
-                        </div>
-                        <div class="col-4">
-                            <app-contest-load-item>
-                            </app-contest-load-item>
+                        <div class="col-12">
+                            <ngx-skeleton-loader
+                            [theme]="{
+                              'height.px': '200',
+                              'margin-bottom': '20'
+                            }"
+                            count="6"
+                            animation="pulse"
+                          ></ngx-skeleton-loader>
                         </div>
                     </div>
                 </div>
