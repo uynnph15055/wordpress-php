@@ -113,7 +113,6 @@
 
         <!-- tab -->
         <ul class="capacity__tab" *ngIf="!isFetchingCapacity">
-          <li class="capacity__tab-item" [ngClass]="{ active: tabActive === 'rank' }">Xếp hạng</li>
           <li
             class="capacity__tab-item"
             [ngClass]="{ active: tabActive === 'testList' }"
@@ -127,6 +126,13 @@
             (click)="scrollToElement(testRelated, 'testRelated')"
           >
             Bài test liên quan
+          </li>
+          <li
+            class="capacity__tab-item"
+            [ngClass]="{ active: tabActive === 'postRelated' }"
+            (click)="scrollToElement(postRelated, 'postRelated')"
+          >
+            Bài viết liên quan
           </li>
         </ul>
         <!-- end tab -->
@@ -288,7 +294,7 @@
         </div>
 
         <!-- bài viết liên quan -->
-        <div class="capacity__post">
+        <div class="capacity__post" #postRelated>
           <h2 class="capacity__test-title capacity__related-title fw-bold fs-5 color-blue">Bài viết liên quan</h2>
 
           <ul class="capacity__related-list row" *ngIf="!isFetchingPost" [ngClass]="{ 'm-0': !posts.length }">

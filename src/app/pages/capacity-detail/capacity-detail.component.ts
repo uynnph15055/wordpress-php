@@ -147,14 +147,9 @@ export class CapacityDetailComponent implements OnInit {
   scrollToElement(el: HTMLElement, activeItem: string) {
     this.tabActive = activeItem;
 
-    let offsetTop = el.offsetTop;
-    if (activeItem === "testRelated") {
-      offsetTop -= 150;
-    }
-
-    window.scrollTo({
-      top: offsetTop,
+    el.scrollIntoView({
       behavior: "smooth",
+      block: "center",
     });
   }
 
