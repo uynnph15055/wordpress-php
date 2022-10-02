@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { ResponsePayload } from "../models/response-payload";
@@ -17,8 +17,15 @@ export class CapacityService {
   }
 
   // bài test liên quan
-  getRelated(capacity_id: number): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.capacityListUrl}/${capacity_id}/related`);
+  getRelated({ capacity_id, ...args }: any): Observable<ResponsePayload> {
+    const params = new HttpParams({
+      fromObject: {
+        ...args,
+      },
+    });
+    return this.http.get<ResponsePayload>(`${environment.capacityListUrl}/${capacity_id}/related`, {
+      params,
+    });
   }
 
   // lịch sử làm bài

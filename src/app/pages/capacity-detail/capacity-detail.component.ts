@@ -87,11 +87,11 @@ export class CapacityDetailComponent implements OnInit {
           }, []);
 
           // bài test liên quan
-          this.capacityService.getRelated(this.capacity.id).subscribe((response) => {
+          this.capacityService.getRelated({ capacity_id: this.capacity.id, limit: 3 }).subscribe((response) => {
             this.isFetchingCapacityRelated = false;
 
             if (response.status) {
-              this.capacityRelated = response.payload.slice(0, 3);
+              this.capacityRelated = response.payload.data;
             }
           });
 
