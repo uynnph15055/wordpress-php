@@ -1,7 +1,7 @@
 <div class="recruitment-position-item">
     <div class="recruitment-position__img-section">
-        <a [routerLink]="['/bai-viet/' , item.id]">
-            <img src="https://images.unsplash.com/photo-1664658936499-f26d4ba3f2c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+        <a [routerLink]="['/bai-viet/' , item.slug]">
+            <img [src]="item.thumbnail_url"
                 class="recruitment-position__img" alt="">
         </a>
     </div>
@@ -10,7 +10,7 @@
             <h3 class="recruitment-position__title">
                 <a class="recruitment-position__title-link my-h5"
                 data-toggle="tooltip" data-placement="top" title={{item.title}}
-                    [routerLink]="['/bai-viet/' , item.id]">{{item.title}}</a>
+                    [routerLink]="['/bai-viet/' , item.slug]">{{item.title}}</a>
                 </h3>
             <button class="my-btn my-add-favorite__btn">
                 <i class="my-add-favorite__icon fa-solid fa-bookmark"></i>
@@ -22,14 +22,7 @@
         </div>
         <div class="recruitment-position__context-row">
             <div class="">
-                <p class="recruitment-position__desc my-xs">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor,
-                    adipisicing elit, sed do eiusmod tempor
-                    incididunt
-                    adipisicing elit, sed do eiusmod tempor
-                    incididunt
-                    adipisicing elit, sed do eiusmod tempor
-                    incididunt
+                <p class="recruitment-position__desc my-xs" *ngIf="item.description " [innerHTML]="item.description">
                 </p>
             </div>
         </div>
