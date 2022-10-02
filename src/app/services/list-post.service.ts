@@ -1,30 +1,42 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { ResponsePayload } from '../models/response-payload';
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
+import { ResponsePayload } from "../models/response-payload";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class ListPostService {
-
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // Get Post Where Category
-  getPostWhereCate(cate: string) :Observable<ResponsePayload>{
-    return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=${cate}`)
+  getPostWhereCate(cate: string): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=${cate}`);
   }
 
   // Get all list post
-  getAllListPost() : Observable<ResponsePayload>{
+  getAllListPost(): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}`);
   }
 
-  getPostByCategory(data: string) : Observable<ResponsePayload>{
+  getPostByCategory(data: string): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=${data}`);
   }
-  
+
+  // get posts by params
+  getPostsByParam(args: {}): Observable<ResponsePayload> {
+    const params = new HttpParams({
+      fromObject: {
+        ...args,
+      },
+    });
+
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}`, {
+      params,
+    });
+  }
+
   // get detail post
   getPostBySlug(slug: any): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}/${slug}`);
@@ -33,13 +45,13 @@ export class ListPostService {
   // search
   searchPost(keyword: any): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?keyword=${keyword}`);
-  } 
+  }
 
   uploadCV(data: any): Observable<ResponsePayload> {
     return this.http.post<ResponsePayload>(`${environment.candidateUrl}/add`, data);
   }
 
-  searchPostRecruitment(keyword: string):Observable<ResponsePayload>{
+  searchPostRecruitment(keyword: string): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-recruitment&keyword=${keyword}`);
-  } 
+  }
 }

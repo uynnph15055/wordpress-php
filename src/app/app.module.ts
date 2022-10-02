@@ -88,6 +88,7 @@ import { PostResultSearchComponent } from "./pages/post-result-search/post-resul
 import { TestCapacityComponent } from "./pages/test-capacity/test-capacity.component";
 import { FormatDatePostPipe } from './helper/pipe/format-date-post.pipe';
 import { ContestItemSubComponent } from './component/contest-item-sub/contest-item-sub.component';
+import { PostItemComponent } from './component/post-item/post-item.component';
 
 @NgModule({
   declarations: [
@@ -148,6 +149,7 @@ import { ContestItemSubComponent } from './component/contest-item-sub/contest-it
     TestCapacityComponent,
     FormatDatePostPipe,
     ContestItemSubComponent,
+    PostItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -131,23 +131,9 @@
         </ul>
         <!-- end tab -->
         <!-- skeleton -->
-        <ul class="capacity__tab" *ngIf="isFetchingCapacity">
-          <li class="capacity__tab-item" [ngClass]="{ active: tabActive === 'rank' }">Xếp hạng</li>
-          <li
-            class="capacity__tab-item"
-            [ngClass]="{ active: tabActive === 'testList' }"
-            (click)="scrollToElement(testList, 'testList')"
-          >
-            Danh sách bài thi
-          </li>
-          <li
-            class="capacity__tab-item"
-            [ngClass]="{ active: tabActive === 'testRelated' }"
-            (click)="scrollToElement(testRelated, 'testRelated')"
-          >
-            Bài test liên quan
-          </li>
-        </ul>
+        <div class="capacity__tab-skeleton" *ngIf="isFetchingCapacity">
+          <ngx-skeleton-loader [theme]="{ height: '100%' }"></ngx-skeleton-loader>
+        </div>
         <!-- skeleton -->
 
         <div class="capacity__test" #testList>
@@ -299,6 +285,39 @@
             </div>
           </ul>
           <!-- skeleton -->
+        </div>
+
+        <!-- bài viết liên quan -->
+        <div class="capacity__post">
+          <h2 class="capacity__test-title capacity__related-title fw-bold fs-5 color-blue">Bài viết liên quan</h2>
+
+          <ul class="capacity__related-list row" *ngIf="!isFetchingPost" [ngClass]="{ 'm-0': !posts.length }">
+            <div class="col col-lg-4 col-md-6 col-sm-12 col-12" *ngFor="let post of posts">
+              <app-post-item [postItem]="post"></app-post-item>
+            </div>
+          </ul>
+
+          <p *ngIf="!isFetchingPost && !posts.length">Không có bài viết liên quan nào!</p>
+
+          <!-- skeleton -->
+          <ul class="capacity__related-list row" *ngIf="isFetchingPost">
+            <div class="col col-lg-4 col-md-6 col-sm-12 col-12" *ngFor="let _ of [].constructor(3)">
+              <div class="capacity__related-item">
+                <ngx-skeleton-loader [theme]="{ height: '150px' }"></ngx-skeleton-loader>
+
+                <ngx-skeleton-loader [theme]="{ margin: '0 0 4px' }"></ngx-skeleton-loader>
+
+                <ngx-skeleton-loader
+                  [theme]="{ margin: '0 0 4px', width: '50%', display: 'block' }"
+                ></ngx-skeleton-loader>
+                <ngx-skeleton-loader
+                  [theme]="{ margin: '0 0 10px', width: '70%', display: 'block' }"
+                ></ngx-skeleton-loader>
+
+                <ngx-skeleton-loader count="3" [theme]="{ margin: 0 }"></ngx-skeleton-loader>
+              </div>
+            </div>
+          </ul>
         </div>
       </div>
 

@@ -8,6 +8,8 @@ import { NgToastService } from "ng-angular-popup";
 import { Enterprise } from "src/app/models/enterprise.model";
 import { UserService } from "src/app/services/user.service";
 import { RoundService } from "src/app/services/round.service";
+import { Post } from "src/app/models/post.model";
+import { ListPostService } from "src/app/services/list-post.service";
 
 @Component({
   selector: "app-capacity-detail",
@@ -19,9 +21,11 @@ export class CapacityDetailComponent implements OnInit {
   capacity!: Capacity;
   // bài test liên quan
   capacityRelated!: Capacity[];
+  posts!: Post[];
   isFetchingCapacity = false;
   isFetchingCapacityRelated = false;
   isFetchingNextRound = false;
+  isFetchingPost = false;
   isLogged = false;
   isDoneExam = false; // trạng thái hoàn thành bài test
   rounds!: Round[];
@@ -51,6 +55,7 @@ export class CapacityDetailComponent implements OnInit {
     private toast: NgToastService,
     private userService: UserService,
     private roundService: RoundService,
+    private postService: ListPostService,
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +63,7 @@ export class CapacityDetailComponent implements OnInit {
       this.scrollToTop();
       this.isFetchingCapacity = true;
       this.isFetchingCapacityRelated = true;
+      this.isFetchingPost = true;
 
       const { capacity_id } = params;
 
@@ -88,6 +94,21 @@ export class CapacityDetailComponent implements OnInit {
               this.capacityRelated = response.payload.slice(0, 3);
             }
           });
+
+          // bài viết liên quan
+          this.postService
+            .getPostsByParam({
+              capacity_id,
+              post: "post_capacity",
+              limit: 3,
+            })
+            .subscribe(
+              (res) => {
+                this.isFetchingPost = false;
+                this.posts = res.payload.data;
+              },
+              () => (this.isFetchingPost = false),
+            );
 
           // đếm ngược thời gian khi bài test sắp diễn ra
           const status = new Date().getTime() < new Date(this.capacity.date_start).getTime();
