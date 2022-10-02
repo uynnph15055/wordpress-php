@@ -10,6 +10,7 @@ import { UserService } from "src/app/services/user.service";
 import { RoundService } from "src/app/services/round.service";
 import { Post } from "src/app/models/post.model";
 import { ListPostService } from "src/app/services/list-post.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-capacity-detail",
@@ -56,10 +57,14 @@ export class CapacityDetailComponent implements OnInit {
     private userService: UserService,
     private roundService: RoundService,
     private postService: ListPostService,
+    private titleService: Title,
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
+      // initital title
+      this.titleService.setTitle("Test năng lực");
+
       this.scrollToTop();
       this.isFetchingCapacity = true;
       this.isFetchingCapacityRelated = true;
@@ -69,6 +74,9 @@ export class CapacityDetailComponent implements OnInit {
 
       this.capacityService.getWhereId(capacity_id).subscribe((res) => {
         if (res.status) {
+          // update title
+          this.titleService.setTitle(res.payload.name);
+
           this.isFetchingCapacity = false;
           this.capacity = res.payload;
           this.rounds = res.payload.rounds.map((round: Round) => {
