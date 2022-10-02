@@ -55,6 +55,7 @@
 
 .contest-item__title-link {
   color: initial;
+  font-weight: bold;
 }
 
 .contest-item__info {
