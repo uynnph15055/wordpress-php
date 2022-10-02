@@ -210,7 +210,9 @@ h5 {
     line-height: 1.2;
     font-weight: 500;
 }
-
+.post-item__title-link {
+    color: var(--my-black)
+}
 .post-item__info {
     margin: 10px 0;
     display: flex;
