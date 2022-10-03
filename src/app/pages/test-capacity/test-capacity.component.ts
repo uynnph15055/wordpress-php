@@ -215,9 +215,17 @@ export class TestCapacityComponent implements OnInit {
 
 
   getListMajor() {
+    let major_id: any  = this.route.snapshot.queryParamMap.get('major_id')
     this.majorService.getAll().subscribe((res) => {
       if (res.status) {
         this.majors = res.payload;
+        let major_query
+        for (let index = 0; index < this.majors.length; index++) {
+          if(major_id == this.majors[index].id) {
+            major_query = this.majors[index].name
+          }
+        }
+        this.formFilter.controls['filterMajor'].setValue(major_query);
       }
     });
   }
@@ -277,9 +285,17 @@ export class TestCapacityComponent implements OnInit {
 
   // // Get all skill
   getAllSkill() {
+    let skill_id: any = this.route.snapshot.queryParamMap.get('skill_id')
     this.skillService.getAll().subscribe((res) => {
       if (res.status) {
         this.skills = res.payload;
+        let skills_query
+        for (let index = 0; index < this.skills.length; index++) {
+          if(skill_id == this.skills[index].id) {
+            skills_query = this.skills[index].name
+          }
+        }
+        this.formFilter.controls['filterSkill'].setValue(skills_query);
       }
     });
   }
