@@ -2,12 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Enterprise } from 'src/app/models/enterprise.model';
 import { Major } from 'src/app/models/major';
 import { PayingLinks } from 'src/app/models/paying-links';
 import { Post } from 'src/app/models/post.model';
+import { Recruitments } from 'src/app/models/recruitments.models';
+import { Skill } from 'src/app/models/skill.models';
+import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
+import { CompanyService } from 'src/app/services/company.service';
 import { ConfigFunctionService } from 'src/app/services/config-function.service';
 import { ListPostService } from 'src/app/services/list-post.service';
 import { MajorService } from 'src/app/services/major.service';
+import { RecruitmentsService } from 'src/app/services/recruitments.service';
 import { SkillServiceService } from 'src/app/services/skill-service.service';
 
 @Component({
@@ -20,12 +26,20 @@ export class PostResultSearchComponent implements OnInit {
   validateForm!: FormGroup;
   inputKeyword: string;
   keywordQuery: any
-
+  // Filter Bien
+  companys: Array<Enterprise>;
+  recruitments: Array<Recruitments>;
+  recruitmentsHot: Array<Recruitments> = [];
+  recruitmentLinks: Array<PayingLinks>;
+  cinfigData: TransmitToPost;
+  listPostResult: Array<Post>;
+  valueSelectPost: string = ""
   // -------------
-  statusCompany: boolean = false;
-
-  statusResultPostFilter: boolean = false;
+  statusResultPost: boolean = false;
+  statusPostFilter: boolean = false;
   statusPostHot: boolean = false;
+  statusSubmit: boolean = false;
+  statusNotResultReturn: boolean = false;
 
   constructor(
     private router: Router,
@@ -33,6 +47,8 @@ export class PostResultSearchComponent implements OnInit {
     private fb: FormBuilder,
     private postService: ListPostService,
     public dialog: MatDialog,
+    public companyService: CompanyService,
+    public recruitmentService: RecruitmentsService,
     public listPostService: ListPostService,
     public majorService: MajorService,
     public configService: ConfigFunctionService,
@@ -40,7 +56,7 @@ export class PostResultSearchComponent implements OnInit {
   ) {
   }
 
-  catePosts: Array<any> = [
+  TypePost: Array<any> = [
     {
       prams: 'post-contest',
       name: 'Bài Viết Thuộc Cuộc Thi',
@@ -48,6 +64,10 @@ export class PostResultSearchComponent implements OnInit {
     {
       prams: 'post-capacity',
       name: 'Bài Viết Thuộc Test Năng Lực',
+    },
+    {
+      prams: 'post-round',
+      name: 'Bài Viết Thuộc Vòng Thi',
     },
     {
       prams: 'post-recruitment',
@@ -67,28 +87,65 @@ export class PostResultSearchComponent implements OnInit {
   ];
 
   formFilter = new FormGroup({
-    filterSkill: new FormControl(''),
-    filterKeyword: new FormControl(''),
-    filterPost: new FormControl(''),
+    filterName: new FormControl(''),
+    filterTypePost: new FormControl(''),
     filterStatus: new FormControl(''),
   });
 
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      keyword: [null, [Validators.required]],
-    });
-    this.keywordQuery = this.route.snapshot.queryParamMap.get('keyword')
-    this.inputKeyword = this.keywordQuery;
 
-    // search
-    this.search()
+  ngOnInit(): void {
+    if (this.formFilter.controls['filterTypePost'].value || this.formFilter.controls['filterStatus'].value || this.formFilter.controls['filterName'].value) {
+      this.statusSubmit = true
+    } else {
+      this.statusSubmit = false
+    }
+
+    this.keywordQuery = this.route.snapshot.queryParamMap.get('keyword')
+    let typePost = this.route.snapshot.queryParamMap.get('post')
+    let status = this.route.snapshot.queryParamMap.get('postHot')
+    this.inputKeyword = this.keywordQuery;
+    this.formFilter.controls['filterName'].setValue(this.keywordQuery);
+
+    if (this.keywordQuery != null || typePost != null || status != null) {
+      this.results = []
+      this.statusResultPost = false
+      this.listPostService
+        .filterPost(this.keywordQuery, typePost, status)
+        .subscribe((res) => {
+          if (res.status) {
+            if (res.payload.data.length <= 0) {
+              this.statusResultPost = true
+              this.statusNotResultReturn = true
+            } else {
+              this.statusResultPost = true
+              this.results = res.payload.data;
+            }
+          }
+        });
+      console.log(this.statusResultPost);
+
+    } else {
+      this.getListPost()
+    }
+
   }
 
   // tìm kiếm
-  search() {
-    this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${this.inputKeyword}`);
-    this.postService.searchPost(this.inputKeyword).subscribe(res => {
-      this.results = res.payload.data;
+  // search() {
+  //   this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${this.inputKeyword}`);
+  //   this.postService.searchPost(this.inputKeyword).subscribe(res => {
+  //     this.results = res.payload.data;
+  //   })
+  // }
+
+  getListPost() {
+    this.postService.getAllListPost().subscribe(res => {
+      if (res.status) {
+        this.results = res.payload.data;
+        this.results
+          ? (this.statusResultPost = true)
+          : this.statusResultPost;
+      }
     })
   }
 
@@ -96,34 +153,48 @@ export class PostResultSearchComponent implements OnInit {
   // =======================Filter============================
   // Set filter value
   setValueFilterPost(item: Major) {
-    this.formFilter.controls['filterPost'].setValue(item.name);
+    this.formFilter.controls['filterTypePost'].setValue(item.name);
+    this.statusSubmit = true
   }
 
   // Set filter status
   setValueStatus(status: string) {
     this.formFilter.controls['filterStatus'].setValue(status);
+    this.statusSubmit = true
   }
 
   // Set keyword recruitments
   setValueKeyword(event: any) {
-    this.formFilter.controls['filterKeyword'].setValue(event.target.value);
+    this.formFilter.controls['filterName'].setValue(event.target.value);
+    if (event.target.value == '') {
+      this.statusSubmit = false
+    } else {
+      this.formFilter.controls['filterName'].setValue(event.target.value);
+      this.statusSubmit = true
+    }
   }
+
+
+
+
 
   // Filter recruitments
   filterRecruitments() {
-    this.statusResultPostFilter = false;
+    this.results = [];
+    this.statusNotResultReturn = false
+    this.statusResultPost = false
     this.keywordQuery = this.route.snapshot.queryParamMap.get('keyword')
-    let catePost;
-    let status;
+    let typePost = '';
+    let status = '';
     let keyword = '';
 
-    if (this.formFilter.controls['filterKeyword'].value) {
-      keyword = this.formFilter.controls['filterKeyword'].value;
+    if (this.formFilter.controls['filterName'].value) {
+      keyword = this.formFilter.controls['filterName'].value;
     }
 
-    if (this.formFilter.controls['filterPost'].value) {
-      catePost = this.catePosts.filter(
-        (item) => item.name === this.formFilter.controls['filterPost'].value
+    if (this.formFilter.controls['filterTypePost'].value) {
+      typePost = this.TypePost.filter(
+        (item) => item.name === this.formFilter.controls['filterTypePost'].value
       )[0].prams;
     }
 
@@ -134,14 +205,20 @@ export class PostResultSearchComponent implements OnInit {
       )[0].prams;
     }
 
-    this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${keyword}&type=${catePost}&status=${status}`);
+    this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${keyword}&post=${typePost}&postHot=${status}`);
 
     this.listPostService
-      .filterPost(keyword, catePost, status)
+      .filterPost(keyword, typePost, status)
       .subscribe((res) => {
         if (res.status) {
-          this.statusResultPostFilter = true;
-          this.results = res.payload.data;
+          if (res.payload.data.length <= 0) {
+            this.statusResultPost = true
+            this.statusNotResultReturn = true
+          } else {
+            this.results = res.payload.data;
+            this.statusResultPost = true;
+            this.statusNotResultReturn = false
+          }
         }
       });
   }

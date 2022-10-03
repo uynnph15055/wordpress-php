@@ -5,14 +5,14 @@
                 (submit)="filterRecruitments()">
                 <div class="col-4">
                     <input type="text" class="form-control" (keyup)="setValueKeyword($event)" placeholder="Tìm kiếm ..."
-                       >
+                        id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="col-3">
                     <div ngbDropdown class="d-inline-block w-100">
-                        <input type="text" formControlName="filterPost" class="form-control w-100"
+                        <input type="text" formControlName="filterTypePost" class="form-control w-100"
                             placeholder="Bài Viết Thuộc Danh Mục" id="dropdownBasic1" ngbDropdownToggle>
                         <div ngbDropdownMenu class="w-100" aria-labelledby="dropdownBasic1">
-                            <a *ngFor="let item of catePosts" (click)="setValueFilterPost(item)" class="text-collapse"
+                            <a *ngFor="let item of TypePost" (click)="setValueFilterPost(item)" class="text-collapse"
                                 ngbDropdownItem>{{item.name}}</a>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    <button class="btn-search-recruitment w-100 h-100">Tìm kiếm</button>
+                    <button [disabled]="!statusSubmit" class="btn-search-recruitment w-100 h-100">Tìm kiếm</button>
                 </div>
             </form>
         </div>
@@ -40,12 +40,12 @@
             </ngx-skeleton-loader>
             <p class="result-post__length" *ngIf="results"> Kết quả tìm kiếm: <span
                     class="result-post__number">{{results?.length}}</span></p>
-            <div class="result-post__empty" *ngIf="results?.length == 0">
+            <div class="result-post__empty" *ngIf="statusNotResultReturn">
                 <span>Không tìm thấy kết quả!</span>
                 <span>Hãy thử tìm kiếm với từ khóa khác</span>
             </div>
 
-            <div class="result-post-list" *ngIf="!results">
+            <div class="result-post-list" *ngIf="!statusResultPost">
                 <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
                     appearance="line">
                 </ngx-skeleton-loader>

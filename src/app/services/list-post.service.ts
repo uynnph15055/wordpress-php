@@ -51,9 +51,10 @@ export class ListPostService {
     return this.http.post<ResponsePayload>(`${environment.candidateUrl}/add`, data);
   }
 
-  filterPost(keyword: string, post: string = "post-contest", status: number = 0): Observable<ResponsePayload> {
-    let postChange = post == "post-contest" ? 'post-contest' : post;
-    let statusChange = status == 0 ? '' : status;
-    return this.http.get<ResponsePayload>(`${environment.postListUrl}?keyword=${keyword}&post=${postChange}&postHot=${statusChange}`);
+  filterPost(keyword: string, post: string | null = null, status: number | null | string = null): Observable<ResponsePayload> {
+    let keywordQuery = keyword == null ? '' : keyword;
+    let typePostChange = post == null ? '' : post;
+    let statusPostChange = status == null ? '' : status;
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?keyword=${keywordQuery}&post=${typePostChange}&postHot=${statusPostChange}`);
   }
 }
