@@ -1,65 +1,44 @@
 <app-banner></app-banner>
 <div class="section section-bg--1">
-    <div class="container">
-        <h2 class="section__title my-h3">
-            <i class="section__title-icon fa-solid fa-clock-rotate-left"></i>
-            Vị trí tuyển dụng gấp
-        </h2>
-        <div class="section-content">
-            <div class="recruitment-position-list">
-                <div class="recruitment-position-item">
-                    <div class="recruitment-position__img-section">
-                        <img src="https://images.unsplash.com/photo-1664658936499-f26d4ba3f2c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" class="recruitment-position__img" alt="">
-                    </div>
-                    <div class="recruitment-position__context">
-                        <div class="recruitment-position__context-row">
-                            <h3 class="recruitment-position__title"><a class="recruitment-position__title-link my-h5" routerLink="">Tuyển dụng thực tập sinh phần mềm abc sasd asdg asda</a></h3>
-                            <button class="my-btn my-add-favorite__btn">
-                                <i class="my-add-favorite__icon fa-solid fa-bookmark"></i>
-                            </button>
-                        </div>
-                        <div class="recruitment-position__context-recruitment">
-                            <i class="fa-regular fa-building"></i>
-                            <span class="recruitment-position__name-company my-xs">Doanh nghiệp: Shopee company</span>
-                        </div>
-                        <div class="recruitment-position__context-row">
-                            <div class="">
-                                <p class="recruitment-position__desc my-xs">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor,
-                                    adipisicing elit, sed do eiusmod tempor
-                                    incididunt
-                                    adipisicing elit, sed do eiusmod tempor
-                                    incididunt
-                                    adipisicing elit, sed do eiusmod tempor
-                                    incididunt
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <h2 class="section__title my-h3">
+      <i class="section__title-icon fa-solid fa-clock-rotate-left"></i>
+      Vị trí tuyển dụng gấp
+    </h2>
+    <div class="section-content">
+      <div class="recruitment-position-list">
+        <div class="recruitment-position-item">
+          <button class="my-btn-primary my-btn-l">Abcasdsadasd</button>
+          <button class="my-btn-secondary my-btn-m">Abcasdasdasd</button>
+          <button class="my-btn btn-success my-btn-s">Abcasdasdsad</button>
+          Hello Abcd nhé!
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="section section-bg--2">
-    <div class="container">
-        <h2 class="section__title my-h3">
-            <i class="section__title-icon fa-solid fa-ranking-star"></i>
-            Các cuộc thi
-        </h2>
-        <div class="section-content">
-            <div class="contest-list">
-                <app-contest-item *ngFor="let item of contests" [item]="item"></app-contest-item>
-            </div>
-            <div class="contest-view">
-                <a class="contest-view-link" routerLink="/cuoc-thi">
-                    <button class="my-btn-secondary my-btn-m">Xem tất cả
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </a>
-            </div>
-        </div>
+  <div class="container">
+    <h2 class="section__title my-h3">
+      <i class="section__title-icon fa-solid fa-ranking-star"></i>
+      Các cuộc thi
+    </h2>
+    <div class="section-content">
+      <div class="contest-list">
+        <app-contest-item
+          *ngFor="let item of contests"
+          [item]="item"
+        ></app-contest-item>
+      </div>
+      <div class="contest-view">
+        <a class="contest-view-link" routerLink="/cuoc-thi">
+          <button class="my-btn-secondary my-btn-m">
+            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </a>
+      </div>
     </div>
+  </div>
 </div>
 <!-- <div class="section section-bg--2">
     <div class="container">
@@ -69,84 +48,123 @@
     </div>
 </div> -->
 <div class="section section-bg--3">
-    <div class="container">
-        <h2 class="section__title my-h3">Tính năng vượt trội khác</h2>
-        <div class="section-content outstanding-advantages-section">
-            <div class="advantage-show-container">
-                <div class="advantage-show__header">
-                </div>
-                <div class="advantage-show__content">
-                    <img src="https://bizflyportal.mediacdn.vn/thumb_wm/1000,100/bizflyportal/images/cod16174155365053.jpeg"
-                        alt="" class="advantage-show__img">
-                </div>
-            </div>
-            <div class="advantage-show-text">
-                <div class="advantage-list">
-                    <span class="advantage__tag advantage__tag--1 active">
-                        <i class="fa-solid fa-code"></i>
-                        Giải bài toán lập trình ngay trên code online abc def ghj klmn
-                    </span>
-                    <span class="advantage__tag advantage__tag--2">
-                        <i class="fa-solid fa-code"></i>
-                        Giải bài toán lập trình ngay trên code online abc def ghj klmn
-                    </span>
-                    <span class="advantage__tag advantage__tag--3">
-                        <i class="fa-solid fa-code"></i>
-                        Giải bài toán lập trình ngay trên code online abc def ghj klmn
-                    </span>
-                    <span class="advantage__tag advantage__tag--4">
-                        <i class="fa-solid fa-code"></i>
-                        Giải bài toán lập trình ngay trên code online abc def ghj klmn
-                    </span>
-                </div>
-            </div>
+  <div class="container">
+    <h2 class="section__title my-h3">Tính năng vượt trội khác</h2>
+    <div class="section-content outstanding-advantages-section">
+      <div class="advantage-show-container">
+        <div class="advantage-show__header"></div>
+        <ngx-slick-carousel
+          [config]="sliderFeature"
+          class="advantage-show__content"
+        >
+          <img
+            ngxSlickItem
+            src=""
+            alt=""
+            class="advantage-show__img"
+          />
+          <img
+            ngxSlickItem
+            src="https://media.istockphoto.com/vectors/programming-code-application-window-vector-id1124838925?k=20&m=1124838925&s=612x612&w=0&h=lKkgavYLrbDtSnQivxMm3_4ThyovkQEFvbOb2Dv3O6g="
+            alt=""
+            class="advantage-show__img"
+          />
+          <img
+            ngxSlickItem
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhLRc0tR6qEXBCJe9xW1qAZajwJrZzZy4ekXuLN3-5-pD3YucvDmF5OZkePFvQuBtjEF4&usqp=CAU"
+            alt=""
+            class="advantage-show__img"
+          />
+          <img
+            ngxSlickItem
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh2QAjDHF3tpZ7NVpX89eECZcg3NS-IaUXNA&usqp=CAU"
+            alt=""
+            class="advantage-show__img"
+          />
+        </ngx-slick-carousel>
+      </div>
+      <div class="advantage-show-text">
+        <div class="advantage-list">
+          <span class="advantage__tag advantage__tag--1">
+            <i class="fa-solid fa-code"></i>
+            Giải bài toán lập trình ngay trên code online abc def ghj klmn
+          </span>
+          <span class="advantage__tag advantage__tag--2">
+            <i class="fa-solid fa-code"></i>
+            Giải bài toán lập trình ngay trên code online abc def ghj klmn
+          </span>
+          <span class="advantage__tag advantage__tag--3">
+            <i class="fa-solid fa-code"></i>
+            Giải bài toán lập trình ngay trên code online abc def ghj klmn
+          </span>
+          <span class="advantage__tag advantage__tag--4">
+            <i class="fa-solid fa-code"></i>
+            Giải bài toán lập trình ngay trên code online abc def ghj klmn
+          </span>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="section section-bg--2">
-    <div class="container">
-        <h2 class="section__title section__title--center my-h3">Tin tức - sự kiện</h2>
-        <div class="section-content">
-            <div class="post-event-list grid gy-1" *ngIf="!listPostEvent">
-                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
-                    appearance="line">
-                </ngx-skeleton-loader>
-                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
-                    appearance="line">
-                </ngx-skeleton-loader>
-                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
-                    appearance="line">
-                </ngx-skeleton-loader>
-            </div>
-            <div class="post-event-list">
-                <div class="post-item " *ngFor="let item of listPostEvent">
-                    <app-post-related-item [postItem]="item"></app-post-related-item>
-                </div>
-            </div>
-            <div class="post-event-list grid gy-1">
-
-            </div>
+  <div class="container">
+    <h2 class="section__title section__title--center my-h3">
+      Tin tức - sự kiện
+    </h2>
+    <div class="section-content">
+      <div class="post-event-list grid gy-1" *ngIf="!listPostEvent">
+        <ngx-skeleton-loader
+          [theme]="{
+            'height.px': 450,
+            'margin-bottom': '7px',
+            'border-radius': '10px'
+          }"
+          appearance="line"
+        >
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          [theme]="{
+            'height.px': 450,
+            'margin-bottom': '7px',
+            'border-radius': '10px'
+          }"
+          appearance="line"
+        >
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          [theme]="{
+            'height.px': 450,
+            'margin-bottom': '7px',
+            'border-radius': '10px'
+          }"
+          appearance="line"
+        >
+        </ngx-skeleton-loader>
+      </div>
+      <div class="post-event-list">
+        <div class="post-item" *ngFor="let item of listPostEvent">
+          <app-post-related-item [postItem]="item"></app-post-related-item>
         </div>
+      </div>
+      <div class="post-event-list grid gy-1"></div>
     </div>
+  </div>
 </div>
 <div class="section section-bg--2">
-    <div class="container">
-        <h2 class="section__title section__title--center my-h3">Kết nối với các doanh nghiệp lớn</h2>
-        <div class="section-content">
-            <div class="recruitment-list">
-                <img class="recruitment-item"
-                    src="https://inkythuatso.com/uploads/thumbnails/800/2021/11/logo-fpt-inkythuatso-1-01-01-14-33-35.jpg"
-                    alt="">
-                <img class="recruitment-item"
-                    src="https://inkythuatso.com/uploads/thumbnails/800/2021/11/logo-fpt-inkythuatso-1-01-01-14-33-35.jpg"
-                    alt="">
-                <img class="recruitment-item"
-                    src="https://inkythuatso.com/uploads/thumbnails/800/2021/11/logo-fpt-inkythuatso-1-01-01-14-33-35.jpg"
-                    alt="">
-                <img class="recruitment-item"
-                    src="https://inkythuatso.com/uploads/thumbnails/800/2021/11/logo-fpt-inkythuatso-1-01-01-14-33-35.jpg"
-                    alt="">
-            </div>
-        </div>
+  <div class="container">
+    <h2 class="section__title section__title--center my-h3">
+      Kết nối với các doanh nghiệp lớn
+    </h2>
+    <div class="section-content">
+      <ngx-slick-carousel [config]="sliderCompany" class="recruitment-list">
+        <img 
+         *ngFor="let item of companys"
+          ngxSlickItem
+          class="recruitment-item mx-3"
+          [src]="item.logo"
+          alt=""
+        />
+      </ngx-slick-carousel>
     </div>
+  </div>
 </div>

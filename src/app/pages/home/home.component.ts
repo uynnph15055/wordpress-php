@@ -25,9 +25,7 @@ import { ListPostService } from 'src/app/services/list-post.service';
 
 export class HomeComponent implements OnInit {
     listPostEvent: Post[] | null
-
-
-
+    advanIndex : number = 0;
     majors: Array<Major>;
     statusResultMajor: boolean = false;
     users: Array<User>;
@@ -41,6 +39,8 @@ export class HomeComponent implements OnInit {
     majorIdSelect : number = 1;
     nameMajor : string;
     slugMajor : string;
+
+   
 
     sliderContest = {
         "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
     };
 
     sliderCompany = {
-        "slidesToShow": 5, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-parner', nextArrow: '.next-parner', slidesToScroll: 1, fadeSpeed: 1000,
+        "slidesToShow": 5, infinite: true, autoplay: true, arrows: true, slidesToScroll: 1, fadeSpeed: 1000,
         responsive: [
             {
                 breakpoint: 1024,
@@ -100,8 +100,11 @@ export class HomeComponent implements OnInit {
         ]
     }
 
-    sliderStudentPointHight = { "slidesToShow": 3, prevArrow: '.prev-student-arrow', autoplay: true, nextArrow: '.next-student-arrow', slidesToScroll: 1, fadeSpeed: 3000, centerMode: true }
-    
+    sliderFeature = {
+        "slidesToShow": 1, infinite: true,  cssEase: 'linear' , autoplay: true,  slidesToScroll: 1, fadeSpeed: 4000,
+        fade: true,
+    }
+
     constructor(private contestService: ContestService,
         private majorService: MajorService,
         private userService: UserService,
@@ -115,6 +118,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         this.getListPost();
+        this.getAllCompany();
         if (this.userService.getUserValue().id) {
             this.getListHasAfterLogin();
         } else {
@@ -128,6 +132,31 @@ export class HomeComponent implements OnInit {
                 }
             })
         }   
+
+        // Slider tính năng
+        const advantageFrist = document.querySelector('.advantage__tag--1');
+        advantageFrist?.classList.add('active');
+        setInterval(() => {
+            this.advanIndex++;
+            
+            const advantage =  document.querySelectorAll('.advantage__tag');
+            advantage.forEach((element , index) => {
+                element.classList.remove('active');
+                if(this.advanIndex == index + 1){
+                    element.classList.add('active');
+                }
+            });
+
+            if(this.advanIndex == advantage.length +1){
+                this.advanIndex = 0; 
+                setTimeout(() => {
+                    advantage[0].classList.add('active');
+                }, 1000);
+             
+            }
+        } , 4000)
+       
+          
 
         // let studentStatistic = document.querySelector('.section_plan-student');
         // let yearStatistic = document.querySelector('.section_plan-year');
@@ -184,12 +213,16 @@ export class HomeComponent implements OnInit {
     //    document.querySelector('#' + tabName)?.classList.add('active');
     // }
 
-    // // Get api recruitments
-    // getAllCompany(){
-    //     this.companyService.getAllCompany().subscribe(res =>{
-    //         this.companys = res.dataContest;
-    //     })
-    // }
+    // Get api recruitments
+    getAllCompany(){
+        this.companyService.getAllCompany().subscribe(res =>{
+            if(res.status){
+                this.companys = res.payload.data;
+                console.log(this.companys);
+            }
+            
+        })
+    }
 
     // // Change major major
     // changMajor(event: any = null){
