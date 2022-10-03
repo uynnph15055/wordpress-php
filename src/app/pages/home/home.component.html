@@ -5,11 +5,19 @@
             <i class="section__title-icon fa-solid fa-clock-rotate-left"></i>
             Vị trí tuyển dụng gấp
         </h2>
-        <div class="section-content">
+        <!-- <div class="section-content">
             <div class="recruitment-position-list">
                 <app-recruitment-position *ngFor="let item of listRecruitmentPosition" [item]="item"></app-recruitment-position>
             </div>
-        </div>
+        </div> -->
+        <ngx-slick-carousel class="carousel list-post-new-slick" [config]="sliderRecruitmentPosition">
+            <div ngxSlickItem class="recruitment-position-list">
+                <app-recruitment-position *ngFor="let item of listRecruitmentPosition" [item]="item">
+                </app-recruitment-position>
+                <app-recruitment-position *ngFor="let item of listRecruitmentPosition" [item]="item">
+                </app-recruitment-position>
+            </div>
+        </ngx-slick-carousel>
     </div>
 </div>
 <div class="section section-bg--2">

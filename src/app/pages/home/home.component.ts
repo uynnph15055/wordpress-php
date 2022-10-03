@@ -42,6 +42,9 @@ export class HomeComponent implements OnInit {
     nameMajor : string;
     slugMajor : string;
 
+    sliderRecruitmentPosition = {
+        "slidesToShow": 1, dots: true, autoplay: true, arrows: true, slidesToScroll: 1, fadeSpeed: 1000,
+    }
     sliderContest = {
         "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
         responsive: [
@@ -225,6 +228,7 @@ export class HomeComponent implements OnInit {
     //         sliderRank?.classList.add('slick-slide-student-more');
     //     }
     // }
+    
     getRecruitmentPosition() {
         this.postService.recruitmentPosition().subscribe(res => {
             this.listRecruitmentPosition = res.payload.data;
