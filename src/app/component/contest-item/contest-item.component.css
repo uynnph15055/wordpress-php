@@ -27,29 +27,10 @@
 }
 
 /* -------- button favorite --------- */
-.my-add-favorite__btn {
+.contest-item__btn-favorite {
   position: absolute;
   top: 8px;
   right: 8px;
-  padding: 4px 8px;
-  background: var(--my-gray);
-  opacity: .6;
-  transition-duration: .3s;
-}
-
-.my-add-favorite__btn:hover {
-  opacity: 1;
-}
-
-.my-add-favorite__btn.added,
-.my-add-favorite__btn.added .my-add-favorite__icon {
-  color: var(--my-primary);
-  opacity: 1;
-
-}
-
-.my-add-favorite__icon {
-  color: var(--my-darkest-gray);
 }
 
 /* ------------------------- content --------- */
@@ -138,31 +119,3 @@
 .my-countdown {
   margin-top: 0;
 }
-
-
-@media (max-width:987px) {
-  .contest-item-img {
-    height: 220px;
-  }
-
-  .menu_login-box .nav-item {
-    display: none;
-  }
-
-  .img-header-box {
-    height: 70px;
-    margin-left: 30px;
-  }
-
-  .nav-response {
-    display: block;
-  }
-}
-
-.slide:hover {
-  transform: translateY(-3px);
-  transition: all ease-in 0.3s;
-  box-shadow: 0px 0px 5px var(--primary);
-  cursor: pointer;
-}
-

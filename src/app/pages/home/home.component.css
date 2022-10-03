@@ -30,6 +30,81 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* ---------------------------- recruitment-position ---------------------- */
+.recruitment-position-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 24px;
+}
+
+.recruitment-position-item {
+  display: grid;
+  grid-template-columns: auto 2fr;
+  grid-gap: 16px;
+  padding: 16px;
+  background: var(--my-white);
+  border-radius: var(--my-rounded);
+  border: 1px solid var(--my-dark-gray);
+  transition-duration: .3s;
+}
+
+.recruitment-position-item:hover {
+  box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
+  border: 1px solid transparent;
+  transform: translateY(-8px)
+}
+
+.recruitment-position__img {
+  border-radius: var(--my-rounded);
+  height: 100px;
+  object-fit: cover;
+}
+.recruitment-position__context {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.recruitment-position__context-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.recruitment-position__title {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 2;
+}
+
+.recruitment-position__title-link {
+  color: initial;
+}
+
+.recruitment-position__context-recruitment {
+  color: var(--my-secondary);
+}
+
+.recruitment-position__name-company {
+  padding-left: 4px;
+}
+
+.recruitment-position__desc {
+  margin-bottom: 0;
+  color: var(--my-darkest-gray);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 2;
+}
+
 /*------------- Contest ------------------------------------------------------ */
 .contest-list {
   display: grid;
@@ -63,32 +138,6 @@
   width: 100%;
   height: 115px;
   border-radius: var(--my-rounded)
-}
-
-/* -------- button favorite --------- */
-.my-add-favorite__btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  padding: 4px 8px;
-  background: var(--my-gray);
-  opacity: .6;
-  transition-duration: .3s;
-}
-
-.my-add-favorite__btn:hover {
-  opacity: 1;
-}
-
-.my-add-favorite__btn.added,
-.my-add-favorite__btn.added .my-add-favorite__icon {
-  color: var(--my-primary);
-  opacity: 1;
-
-}
-
-.my-add-favorite__icon {
-  color: var(--my-darkest-gray);
 }
 
 /* ------------------------- content --------- */
