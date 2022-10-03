@@ -1,27 +1,37 @@
 <div class="wraper">
-  <app-banner class="banner"></app-banner>
-
   <!-- Content -->
   <div id="#contest__nav" class="my-2 contest__nav">
     <div class="container d-flex justify-content-between algin-items-center">
       <ul class="contest__nav-list">
-        <li (click)="updateStatusContest($event , 0)" class="contest__nav-item active">
+        <li
+          (click)="updateStatusContest($event, 0)"
+          [ngClass]="statusCurrContest == 0 ? 'active' : ''"
+          class="contest__nav-item"
+        >
           <a class="contest__nav-link">Đang diễn ra</a>
         </li>
-        <li (click)="updateStatusContest($event , 1)" class="contest__nav-item">
+        <li
+          (click)="updateStatusContest($event, 1)"
+          [ngClass]="statusCurrContest == 1 ? 'active' : ''"
+          class="contest__nav-item"
+        >
           <a class="contest__nav-link">Sắp diễn ra</a>
         </li>
-        <li (click)="updateStatusContest($event , 2)" class="contest__nav-item">
+        <li
+          (click)="updateStatusContest($event, 2)"
+          [ngClass]="statusCurrContest == 2 ? 'active' : ''"
+          class="contest__nav-item"
+        >
           <a class="contest__nav-link">Đã kết thúc</a>
         </li>
       </ul>
-      <div class="btn__search-contest" >
+      <div class="btn__search-contest">
         <form class="input-group flex-nowrap" [formGroup]="formSearchContest" (submit)="searchContest()">
-            <input formControlName="keywordContest" type="text" class="form-control input-search" placeholder="Tìm kiếm cuộc thi ..." aria-label="Username" aria-describedby="addon-wrapping">
-            <button class="input-group-text primary-color bg-white border-none"
-            ><i class="fa-solid fa-magnifying-glass"></i
-          ></button>
-          </form>
+          <input formControlName="keywordContest" type="text" class="form-control input-search"
+            placeholder="Tìm kiếm cuộc thi ..." aria-label="Username" aria-describedby="addon-wrapping">
+          <button class="input-group-text primary-color bg-white border-none"><i
+              class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
       </div>
     </div>
   </div>
@@ -34,31 +44,22 @@
             <i class="fa-sharp fa-solid fa-filter"></i>
             Lọc chuyên ngành
           </div>
-          <form class="input-group contest__content-form--search"   [formGroup]="formSearchMajor" (submit)="searchMajor()">
-            <input
-              type="text"
-              placeholder="Tìm kiếm chuyên ngành..."
-              class="input-search form-control"
-              formControlName="keywordMajor"
-            />
-            <button class="input-group-text btn__search-major"
-              ><i class="fa-solid fa-magnifying-glass"></i
-            ></button>
+          <form class="input-group contest__content-form--search" [formGroup]="formSearchMajor"
+            (submit)="searchMajor()">
+            <input type="text" placeholder="Tìm kiếm chuyên ngành..." class="input-search form-control"
+              formControlName="keywordMajor" />
+            <button class="input-group-text btn__search-major"><i class="fa-solid fa-magnifying-glass"></i></button>
           </form>
           <div class="contest__content-aside-major" *ngIf="statusMajor">
             <div *ngFor="let item of majors" class=" ">
-              <div class="contest__content-aside-major--item text-collapse" [routerLink]="['/cuoc-thi/chuyen-nganh/' , item.slug]" routerLinkActive="active"
-              [routerLinkActiveOptions]="{exact: true}">
+              <div class="contest__content-aside-major--item text-collapse" (click)="getWhereMajor($event , item)"
+                routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 {{ item.name }}
               </div>
             </div>
           </div>
           <div *ngIf="!statusMajor">
-            <ngx-skeleton-loader
-              count="7"
-              [theme]="{ 'height.px': 35, 'margin-bottom': '10px' }"
-              appearance="line"
-            >
+            <ngx-skeleton-loader count="7" [theme]="{ 'height.px': 35, 'margin-bottom': '10px' }" appearance="line">
             </ngx-skeleton-loader>
           </div>
         </div>
@@ -66,78 +67,27 @@
 
       <!-- ---Main -->
       <div *ngIf="statusContest && contests.length > 0" class="contest__list col-9">
-        <h3 class="contest__list-status">
-          <i class="fa-solid fa-list-timeline"></i> Trạng thái:
-          <span>Đang diễn ra</span>
-        </h3>
-        <div class="contest__item" *ngFor="let item of contests">
-          <img class="contest__image" [src]="item.img" alt="" />
-          <div class="contest__item--content">
-            <div class="d-flex justify-content-between algin-items-center">
-              <h3 class="contest__item--name">
-                Cuộc thi: <span>{{ item.name }}</span>
-              </h3>
-              <div class="d-flex">
-                <p class="fw-bold mx-3">
-                  <i class="fa-solid fa-list"></i>: {{ item.rounds_count }}
-                </p>
-                <p class="fw-bold">
-                  <i class="fa-solid fa-people-group"></i> :
-                  {{ item.teams_count }}
-                </p>
-              </div>
-            </div>
-            <div
-              class="text-Secondary d-flex justify-content-center font-size-sml fs-text-contest"
-            >
-              <div class="text-center contest__time-item">
-                <span class="fw-bold contest__time">0</span>
-                <span class="fs-name-time"> Ngày </span>
-              </div>
-
-              <div class="text-center contest__time-item">
-                <span class="fw-bold contest__time">0</span>
-                <span class="fs-name-time"> Giờ</span>
-              </div>
-              <div class="text-center contest__time-item">
-                <span class="contest__time fw-bold">0</span>
-                <span class="fs-name-time"> Phút</span>
-              </div>
-              <div class="text-center contest__time-item">
-                <span class="contest__time fw-bold">0</span>
-                <span class="fs-name-time">Giây</span>
-              </div>
-            </div>
-            <div class="row my-2">
-              <div class="col-10">
-                <p
-                  class="contest__item--description"
-                  [innerHTML]="item.description"
-                ></p>
-              </div>
-              <div class="col-2">
-                <button class="btn-main float-end">Đăng ký</button>
-              </div>
-            </div>
-          </div>
+        <div  *ngFor="let item of contests">
+          <app-contest-item    class="mb-3"[item]="item"></app-contest-item>
         </div>
       </div>
 
-      <div *ngIf="statusContest" class=" col-9" >
-        <h3 *ngIf="contests.length == 0" >Không tìm thấy kết quả nào !</h3>
-       <div *ngIf="contests.length == 0" class="d-flex justify-content-center">
-        <img class="d-flex justify-content-center mt-5" src="https://homebond.ae/assets/images/no-result.png"
-        alt="">
-       </div>
+      <div *ngIf="statusContest" class=" col-9">
+        <h3 *ngIf="contests.length == 0">Không tìm thấy kết quả nào !</h3>
+        <div *ngIf="contests.length == 0" class="d-flex justify-content-center">
+          <img class="d-flex justify-content-center mt-5" src="https://homebond.ae/assets/images/no-result.png" alt="">
+        </div>
       </div>
 
       <div *ngIf="!statusContest" class="col-9">
-        <app-contest-load-item></app-contest-load-item>
-        <app-contest-load-item></app-contest-load-item>
-        <app-contest-load-item></app-contest-load-item>
-        <app-contest-load-item></app-contest-load-item>
-        <app-contest-load-item></app-contest-load-item>
-        <app-contest-load-item></app-contest-load-item>
+        <ngx-skeleton-loader
+          [theme]="{
+            'height.px': '200',
+            'margin-bottom': '20'
+          }"
+          count="6"
+          animation="pulse"
+        ></ngx-skeleton-loader>
       </div>
     </div>
   </div>

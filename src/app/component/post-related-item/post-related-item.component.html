@@ -4,7 +4,8 @@
             <img class="post-item__img" src={{postItem.thumbnail_url}} alt="">
         </a>
         <div class="post-item-content post-item-content--new-in-cate">
-            <h3 class="post-item__title"><a routerLink="/bai-viet/{{postItem.slug}}">{{postItem.title}}</a>
+            <h3 class="post-item__title">
+                <a class="post-item__title-link" routerLink="/bai-viet/{{postItem.slug}}">{{postItem.title}}</a>
             </h3>
             <div class="post-item__info">
                 <div class="post-item__info-item" data-toggle="tooltip" data-placement="bottom"
@@ -12,11 +13,12 @@
                     <i class="fa-solid fa-user"></i>&ensp; {{postItem.user.name}}
                 </div>
                 <div class="post-item__info-item">
-                    <i class="fa-solid fa-clock"></i>&ensp;{{postItem.published_at}}
+                    <i class="fa-solid fa-clock"></i>&ensp;{{postItem.published_at |
+                    formatDatePost }}
                 </div>
             </div>
             <div class="post-item-bottom">
-                <p class="short-desc" *ngIf="postItem.description " [innerHTML]="postItem.description"></p>
+                <div class="short-desc" *ngIf="postItem.description " [innerHTML]="postItem.description"></div>
                 <a class="btn btn-detail" routerLink="/bai-viet/{{postItem.slug}}">Chi tiết</a>
             </div>
         </div>

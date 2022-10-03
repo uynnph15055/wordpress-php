@@ -50,7 +50,7 @@ export class RoundContestDetailComponent implements OnInit {
   statusContest: boolean = false;
   routeStateRegister: boolean = false;
   statusBtnTakeExam: boolean = true;
-  contest_id: number = 0;
+  contest_id: any;
   nameBtnRegister: string = 'Đăng ký';
   dataResultRound: Array<ResultRound>;
   sliderContest: Array<Slider>;
@@ -132,11 +132,8 @@ export class RoundContestDetailComponent implements OnInit {
       }
     });
 
-    this.route.paramMap
-      .pipe(
-        map((params) => params.get('contest_id')),
-        switchMap((id) => this.contestService.getWhereId(id))
-      )
+    this.contest_id = this.route.snapshot.paramMap.get('contest_id');
+    this.contestService.getWhereId(this.contest_id)
       .subscribe((res) => {
         if (res.status == true) {
           this.contestDetail = res.payload;
@@ -149,29 +146,20 @@ export class RoundContestDetailComponent implements OnInit {
             this.getResultRoundBefore(this.contestDetail.rounds, this.round_id);
           this.runTop();
         }
-
-        // Các cuộc thi liên quan
-        this.contestService
-          .getWhereMajor(this.contestDetail.major_id)
-          .subscribe((res) => {
-            let countItem = this.generateRandomInteger(
-              0,
-              res.payload.data.length - 3
-            );
-            // console.log(countItem);
-            // console.log();
-
-            this.contestRelated = res.payload.data.slice(
-              countItem,
-              countItem + 3
-            );
-            // console.log(this.contestRelated);
-
-            if (this.contestRelated) {
-              this.statusContestRelated = true;
-            }
-          });
       });
+
+      // Các cuộc thi liên quan
+    this.contestService
+    .getContestWhereMajor( this.contest_id)
+    .subscribe((res) => {
+      if (res.status)
+        this.contestRelated = res.payload.filter((item: Contest) => {
+          return item.id !=  this.contest_id;
+        });
+      if (this.contestRelated) {
+        this.statusContestRelated = true;
+      }
+    });
   }
 
   scrollWin(elementString: any, distanceApart: number) {
@@ -182,9 +170,11 @@ export class RoundContestDetailComponent implements OnInit {
 
   //Cac bai post
   getListPost() {
-    this.listPostService.getPostWhereCate('post-contest').subscribe((res) => {
+    this.listPostService.getPostWhereCate('post-round').subscribe((res) => {
       if (res.status) {
-        this.listPostResult = res.payload.data;
+        this.listPostResult = res.payload.data.filter((res: Post , index: number) => {
+          return index <  3;
+        });
       }
     });
   }

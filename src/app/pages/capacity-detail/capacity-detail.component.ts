@@ -8,6 +8,9 @@ import { NgToastService } from "ng-angular-popup";
 import { Enterprise } from "src/app/models/enterprise.model";
 import { UserService } from "src/app/services/user.service";
 import { RoundService } from "src/app/services/round.service";
+import { Post } from "src/app/models/post.model";
+import { ListPostService } from "src/app/services/list-post.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-capacity-detail",
@@ -19,9 +22,11 @@ export class CapacityDetailComponent implements OnInit {
   capacity!: Capacity;
   // bài test liên quan
   capacityRelated!: Capacity[];
+  posts!: Post[];
   isFetchingCapacity = false;
   isFetchingCapacityRelated = false;
   isFetchingNextRound = false;
+  isFetchingPost = false;
   isLogged = false;
   isDoneExam = false; // trạng thái hoàn thành bài test
   rounds!: Round[];
@@ -51,18 +56,27 @@ export class CapacityDetailComponent implements OnInit {
     private toast: NgToastService,
     private userService: UserService,
     private roundService: RoundService,
+    private postService: ListPostService,
+    private titleService: Title,
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
+      // initital title
+      this.titleService.setTitle("Test năng lực");
+
       this.scrollToTop();
       this.isFetchingCapacity = true;
       this.isFetchingCapacityRelated = true;
+      this.isFetchingPost = true;
 
       const { capacity_id } = params;
 
       this.capacityService.getWhereId(capacity_id).subscribe((res) => {
         if (res.status) {
+          // update title
+          this.titleService.setTitle(res.payload.name);
+
           this.isFetchingCapacity = false;
           this.capacity = res.payload;
           this.rounds = res.payload.rounds.map((round: Round) => {
@@ -81,13 +95,28 @@ export class CapacityDetailComponent implements OnInit {
           }, []);
 
           // bài test liên quan
-          this.capacityService.getRelated(this.capacity.id).subscribe((response) => {
+          this.capacityService.getRelated({ capacity_id: this.capacity.id, limit: 3 }).subscribe((response) => {
             this.isFetchingCapacityRelated = false;
 
             if (response.status) {
-              this.capacityRelated = response.payload.slice(0, 3);
+              this.capacityRelated = response.payload.data;
             }
           });
+
+          // bài viết liên quan
+          this.postService
+            .getPostsByParam({
+              capacity_id,
+              post: "post_capacity",
+              limit: 3,
+            })
+            .subscribe(
+              (res) => {
+                this.isFetchingPost = false;
+                this.posts = res.payload.data;
+              },
+              () => (this.isFetchingPost = false),
+            );
 
           // đếm ngược thời gian khi bài test sắp diễn ra
           const status = new Date().getTime() < new Date(this.capacity.date_start).getTime();
@@ -126,14 +155,9 @@ export class CapacityDetailComponent implements OnInit {
   scrollToElement(el: HTMLElement, activeItem: string) {
     this.tabActive = activeItem;
 
-    let offsetTop = el.offsetTop;
-    if (activeItem === "testRelated") {
-      offsetTop -= 150;
-    }
-
-    window.scrollTo({
-      top: offsetTop,
+    el.scrollIntoView({
       behavior: "smooth",
+      block: "center",
     });
   }
 

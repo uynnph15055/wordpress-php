@@ -22,7 +22,7 @@ export class ModalAddTeamComponent implements OnInit {
   selectedImage: any;
   statusRegister: boolean = true;
   statusFormEdit: boolean = true;
-  titleModel: string = 'Thêm đội tham gia thi';
+  titleModel: string = 'THÊM ĐỘI THAM GIA';
   public imagePath: string;
   buttonName: string = 'Đăng ký';
   teamDetail: Team;
@@ -31,6 +31,7 @@ export class ModalAddTeamComponent implements OnInit {
     'https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png';
   public message: string;
   user_id: any = 4;
+  formEdit: boolean = false;
 
   // set up form control
   formRegister = new FormGroup({
@@ -50,7 +51,7 @@ export class ModalAddTeamComponent implements OnInit {
 
     config: NgbModalConfig,
     @Inject(MAT_DIALOG_DATA)
-    public data: { contest_id: string; team_id: number }
+    public data: { contest_id: string; team_id: number; teams: Team }
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -58,21 +59,17 @@ export class ModalAddTeamComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.getUserLocal.getValueLocalUser('user');
-
-    if(this.data.team_id){
-      this.statusFormEdit =  false;
-      this.teamService.getTeamDetail(this.data.team_id).subscribe((res) => {
-        if (res.status) {
-          this.statusFormEdit = true;
-          this.teamDetail = res.payload;
-          this.titleModel = 'Sửa đội thi';
-          this.imgURL = this.teamDetail.image  ? this.teamDetail.image : 'https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png';
-          this.formRegister.controls['name'].setValue(this.teamDetail.name);
-          this.buttonName = 'Sửa đội';
-        }
-      });
-    }else{
-      this.statusFormEdit =  true;
+    if (this.data.teams) {
+      this.formEdit = true;
+      this.titleModel = 'SỬA THÔNG TIN ĐỘI';
+      this.buttonName = 'Sửa đội';
+      this.teamDetail = this.data.teams;
+      this.imgURL = this.teamDetail.image
+        ? this.teamDetail.image
+        : 'https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png';
+      this.formRegister.controls['name'].setValue(this.teamDetail.name);
+    } else {
+      this.statusFormEdit = true;
     }
   }
 
@@ -113,22 +110,21 @@ export class ModalAddTeamComponent implements OnInit {
     }
     formDataTeam.append('contest_id', this.data.contest_id);
     formDataTeam.append('user_id', this.user_id);
-    setTimeout(() => {
       this.teamService.addTeam(formDataTeam).subscribe((res) => {
-        if (res.status == false) {
+        if (!res.status) {
           this.toast.warning({ summary: res.payload, duration: 2000 });
           this.dialogRef.close();
         } else {
           this.statusRegister = true;
+          this.onNoClick();
           this.openInfoTeam(res.id_team, this.data.contest_id);
-          this.dialogRef.close();
-          this.ngOnInit();
+          this.toast.success({ summary: 'Thêm thành công', duration: 2000 });
         }
       });
-    }, 1000);
   }
 
   editTeam() {
+    
     this.statusRegister = false;
     let dataTeam = { ...this.formRegister.value };
 
@@ -138,21 +134,19 @@ export class ModalAddTeamComponent implements OnInit {
       formDataTeam.append('image', this.imagePath);
     }
     formDataTeam.append('user_id', this.user_id);
-    setTimeout(() => {
       this.teamService
         .editTeam(formDataTeam, this.teamDetail.id)
         .subscribe((res) => {
-          if (res.status == false) {
+          if (!res.status) {
             this.toast.warning({ summary: res.payload, duration: 2000 });
             this.dialogRef.close();
           } else {
             this.statusRegister = true;
-            this.dialogRef.close(true);
+            this.onNoClick();
             this.openInfoTeam(this.teamDetail.id, this.data.contest_id);
-            this.ngOnInit();
+            this.toast.success({ summary: 'Sửa thành công', duration: 2000 });
           }
         });
-    }, 1000);
   }
 
   onNoClick(): void {
