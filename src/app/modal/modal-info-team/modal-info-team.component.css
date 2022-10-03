@@ -18,11 +18,12 @@ p,h3{
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
+
 }
 
 .header-team-user-edit {
   width: 250px;
+  cursor: pointer;
 }
 
 .body-team-user-box {

@@ -45,6 +45,12 @@ export class ContestService {
     return this.http.get<ResponsePayload>(`${environment.contestListUrl}?major_id=${major_id}&sort='desc'`);
   }
 
+  // Cuộc thi liên quan
+  getContestWhereMajor(contest_id: number): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.contestListUrl}/${contest_id}/related`);
+  }
+
+  // Bộ lọc cuộc thi
   filterContest(keyword: string = '', major_id: number , status: number = 1 ): Observable<ResponsePayload> {
     let majorValue;
     let statusValue; 

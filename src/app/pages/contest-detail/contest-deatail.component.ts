@@ -32,7 +32,7 @@ export class ContestDeatailComponent implements OnInit {
   round_id: number;
   infoUser: User;
   closeResult: string;
-  contest_id: number = 0;
+  contest_id: any;
   teamIdMemberHasJoinTeam: number = 0;
   contestRelateTo: Array<Contest> = [];
   resultRoundBefore: Array<ResultRound>;
@@ -51,6 +51,7 @@ export class ContestDeatailComponent implements OnInit {
   contestDetail: Contest;
   contestRelated: Array<any>;
   countContestRelated: boolean = false;
+  countPostRelated: boolean = false;
   statusRound_id: boolean = false;
   statusRoundDetail: boolean = false;
   statusContestRelated: boolean = false;
@@ -62,7 +63,7 @@ export class ContestDeatailComponent implements OnInit {
   statusResultRoundBefore: boolean = false;
   statusUserLogin: boolean = false;
 
-  listPostResult: Array<Post>;
+  listPostResult: Array<Post> = [];
 
   sliderSupporter = {
     slidesToShow: 3,
@@ -81,7 +82,7 @@ export class ContestDeatailComponent implements OnInit {
     public listPostService: ListPostService,
     private contestService: ContestService,
     private getUserLocal: GetValueLocalService,
-    
+
     private roundService: RoundService,
     private slider: SliderService,
     private userService: UserService,
@@ -89,71 +90,56 @@ export class ContestDeatailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getListPost();
     // Check user đã đăng nhập hay chưa
     this.infoUser = this.userService.getUserValue();
     this.infoUser ? (this.statusUserLogin = true) : this.statusUserLogin;
-    // ----------------------------
 
     this.statusPage = true;
     this.runTop();
     this.routeStateRegister = history.state.registerNow;
 
-    this.route.paramMap
-      .pipe(
-        map((params) => params.get('contest_id')),
-        switchMap((id) => this.contestService.getWhereId(id))
-      )
+    this.contest_id = this.route.snapshot.paramMap.get('contest_id');
+    this.contestService.getWhereId(this.contest_id).subscribe((res) => {
+      if (res.status) {
+        this.contestDetail = res.payload;
+        this.contestDetail.rounds.length > 0 && this.getResultRank();
+        this.contestDetail ? (this.statusContest = true) : this.statusContest;
+        this.statusPage = false;
+        this.contestDetail.enterprise;
+      }
+    });
+
+    // Các cuộc thi liên quan
+    this.contestService
+      .getContestWhereMajor( this.contest_id)
       .subscribe((res) => {
-        if (res.status) {
-          this.contestDetail = res.payload;
-          this.contestDetail.rounds.length > 0 && this.getResultRank();
-          this.contestDetail ? (this.statusContest = true) : this.statusContest;
-          this.statusPage = false;
-          this.contestDetail.enterprise;
-          this.slider
-            .getListSlider('major', 'major_id', this.contestDetail.major_id)
-            .subscribe((res) => {
-              if (res.status) {
-                this.sliderContest = res.payload;
-              }
-            });
-
-          if (this.contestDetail.rounds.length > 2) {
-            this.round_id = this.getRoundId(this.contestDetail.rounds, 1);
-            this.getResultRoundBefore(this.contestDetail.rounds, 2);
-          }
-
-          // Các cuộc thi liên quan
-          this.contestService
-            .getWhereMajor(this.contestDetail.major_id)
-            .subscribe((res) => {
-              if (res.payload.data.length > 0) {
-                this.contestRelated = res.payload.data.filter(
-                  (item: any, index: any) => {
-                    return item.id != this.contestDetail.id && index < 4;
-                  }
-                );
-                if (this.contestRelated) {
-                  this.statusContestRelated = true;
-                  this.contestRelated.length > 0
-                    ? (this.countContestRelated = true)
-                    : this.countContestRelated;
-                }
-              }
-            });
+        if (res.status)
+          this.contestRelated = res.payload.filter((item: Contest) => {
+            return item.id !=  this.contest_id;
+          });
+        if (this.contestRelated) {
+          this.statusContestRelated = true;
+          this.contestRelated.length > 0
+            ? (this.countContestRelated = true)
+            : this.countContestRelated;
         }
       });
-
-    this.getListPost();
+    
   }
 
   //Cac bai post
   getListPost() {
     this.listPostService.getPostWhereCate('post-contest').subscribe((res) => {
       if (res.status) {
-        this.listPostResult = res.payload.data.filter((item: Contest , index: number) => {
-          return index < 4;
-        });        
+        this.listPostResult = res.payload.data.filter(
+          (item: Contest, index: number) => {
+            return index < 4;
+          }
+        );
+        if(this.listPostResult.length > 0){
+          this.countPostRelated == true;
+        }
       }
     });
   }
@@ -163,7 +149,6 @@ export class ContestDeatailComponent implements OnInit {
     let rountIdEnd = this.getRoundId(this.contestDetail.rounds, 1);
     this.roundService.getResultRound(rountIdEnd).subscribe((res) => {
       res.status ? (this.resultRank = res.payload.data) : null;
-    
     });
   }
 

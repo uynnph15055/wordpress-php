@@ -134,16 +134,19 @@ export class RecruitmentComponent implements OnInit {
 
   // Set filter value
   setValueFilterMajor(item: Major) {
+    this.statusSubmit = true;
     this.formFilter.controls['filterMajor'].setValue(item.name);
   }
 
   // Set filter status
   setValueStatus(status: string) {
+    this.statusSubmit = true;
     this.formFilter.controls['filterStatus'].setValue(status);
   }
 
   // Set keyword recruitments
   setValueKeyword(keyword: string) {
+    this.statusSubmit = true;
     this.formFilter.controls['filterName'].setValue(keyword);
   }
 

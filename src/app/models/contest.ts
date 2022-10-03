@@ -23,4 +23,5 @@ export class Contest {
     status_user_has_join_contest: boolean;
     post_new: string;
     teams_count: number;
+    max_user:number;
 }

@@ -10,6 +10,9 @@ import { ResponsePayload } from "../models/response-payload";
 export class ListPostService {
   constructor(private http: HttpClient) {}
 
+  
+
+
   // Get Post Where Category
   getPostWhereCate(cate: string): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=${cate}`);
@@ -18,6 +21,11 @@ export class ListPostService {
   // Get all list post
   getAllListPost(): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}`);
+  }
+  // Get all list post
+
+  getHotPost() : Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?postHot=hot`);
   }
 
   getPostByCategory(data: string): Observable<ResponsePayload> {

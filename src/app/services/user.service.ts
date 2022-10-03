@@ -76,9 +76,10 @@ export class UserService {
 
   // Lộc cuộc thi đã tham gia theo trạng thái
   getContestByUserStatus(key_word: string, status: any): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(
-      `${environment.userListUrl}/contest-joined?type=0&status=${status}&q=${key_word}`,
-    );
+    const params = new HttpParams()
+    .set('status', status)
+    .set('q', key_word)
+    return this.http.get<ResponsePayload>(`${environment.userListUrl}/contest-joined?${params}`);
   }
 
   // Chỉnh sửa thông tin user

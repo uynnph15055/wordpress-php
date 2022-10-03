@@ -19,6 +19,7 @@ h5 {
 }
 
 .post-item {
+  height: 370px;
   background-color: var(--white);
   border-radius: 10px;
   transition: all ease-in 0.3s;

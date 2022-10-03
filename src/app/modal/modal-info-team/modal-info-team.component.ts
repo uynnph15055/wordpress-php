@@ -41,7 +41,8 @@ export class ModalInfoTeamComponent implements OnInit {
     private userService: UserService,
     public configFunctionService: ConfigFunctionService,
     public dialogRef: MatDialogRef<ModalInfoTeamComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { team_id: number, contest_id: number, statusExam: boolean }) {
+    @Inject(MAT_DIALOG_DATA) public data: { team_id: number,
+       contest_id: number, max_user: number, statusExam: boolean }) {
     this.team_id = data.team_id;
     this.statusExam = data.statusExam
     this.contest_id = data.contest_id;
@@ -75,7 +76,8 @@ export class ModalInfoTeamComponent implements OnInit {
         keyWord: keyWord,
         contest_id: this.teamDetail.contest_id,
         team_id: this.team_id,
-        array_members: this.arrayMembers.length
+        max_user: this.data.max_user,
+        array_members: this.arrayMembers,
       },
     });
 
@@ -87,7 +89,6 @@ export class ModalInfoTeamComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.getUserValue();
-    console.log(this.contest_id);
     
     if (!this.user) {
       this.router.navigate(['/login']);

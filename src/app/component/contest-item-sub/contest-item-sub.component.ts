@@ -130,6 +130,9 @@ export class ContestItemSubComponent implements OnInit {
         result = 'Ngày đóng :' + this.formatDate(item.end_register_time);
       }else if (this.today > this.date_end) {
         result = 'Ngày kết thúc :' + this.formatDate(item.register_deadline);
+      }else if (this.date_end > this.today) {
+        result = item.status_user_has_join_contest
+        result = 'Ngày kết thúc :' + this.formatDate(item.register_deadline);
       }
     } else {
       result = 'Ngày kết thúc :' + this.formatDate(item.register_deadline);

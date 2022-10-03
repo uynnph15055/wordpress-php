@@ -12,6 +12,7 @@ h5 {
   background-color: var(--bg-content);
 }
 
+
 .fixed-nav{
   position: fixed;
   top: 68px;
@@ -52,6 +53,7 @@ h5 {
   color: var(--white);
   font-size: 16px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .contest__nav-list .active::after {
@@ -60,7 +62,7 @@ h5 {
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
   border-bottom: 10px solid var(--bg-content);
-  top: 75%;
+  top: 80%;
   transform: translateX(-60px);
 }
 
