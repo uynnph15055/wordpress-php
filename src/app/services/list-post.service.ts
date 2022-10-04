@@ -68,11 +68,11 @@ export class ListPostService {
 
   // Post  recruitment  page trang chủ.
   recruitmentPosition():Observable<ResponsePayload>{
-    return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-recruitment&limit=6`);
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-recruitment&limit=4`);
   } 
   
   // Post  recruitment  page trang chủ.
   paydingRecruitmentPosition(index: number):Observable<ResponsePayload>{
-    return this.http.get<ResponsePayload>(`${environment.postListUrl}?page=${index}&post=post-recruitment&limit=6`);
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?page=${index}&post=post-recruitment&limit=4`);
   } 
 }
