@@ -24,6 +24,7 @@ import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info
 import { ListPostService } from 'src/app/services/list-post.service';
 import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
 import { Post } from 'src/app/models/post.model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-round-contest-detail',
@@ -97,10 +98,11 @@ export class RoundContestDetailComponent implements OnInit {
     private modalService: NgbModal,
     private slider: SliderService,
     public listPostService: ListPostService,
-
+    private title : Title,
   ) {}
 
   ngOnInit(): void {
+    this.title.setTitle('Chi tiết vòng thi');
     this.runTop();
     this.getListPost();
 

@@ -23,6 +23,7 @@ import { TransmitToPost } from 'src/app/models/transmit-to-post.models';
 import { ListPostService } from 'src/app/services/list-post.service';
 import { Post } from 'src/app/models/post.model';
 import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-contest-deatail',
   templateUrl: './contest-deatail.component.html',
@@ -81,15 +82,15 @@ export class ContestDeatailComponent implements OnInit {
     public dialog: MatDialog,
     public listPostService: ListPostService,
     private contestService: ContestService,
-    private getUserLocal: GetValueLocalService,
 
     private roundService: RoundService,
-    private slider: SliderService,
     private userService: UserService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private title : Title
   ) {}
 
   ngOnInit(): void {
+    this.title.setTitle('Chi tiết cuộc thi');
     this.getListPost();
     // Check user đã đăng nhập hay chưa
     this.infoUser = this.userService.getUserValue();
@@ -115,10 +116,12 @@ export class ContestDeatailComponent implements OnInit {
       .getContestWhereMajor( this.contest_id)
       .subscribe((res) => {
         if (res.status)
-          this.contestRelated = res.payload.filter((item: Contest) => {
+          this.contestRelated = res.payload.data.filter((item: Contest) => {
             return item.id !=  this.contest_id;
           });
         if (this.contestRelated) {
+          console.log(this.contestRelated);
+          
           this.statusContestRelated = true;
           this.contestRelated.length > 0
             ? (this.countContestRelated = true)

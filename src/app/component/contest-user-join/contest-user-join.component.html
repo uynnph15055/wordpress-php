@@ -6,9 +6,6 @@
     </p>
   </div>
   <div style="box-shadow: 0 5px 6px -1px rgb(230, 229, 229)" class="row py-2">
-     <div class="col-2">
-        <button class="w-100" mat-stroked-button>Tất cả</button>
-     </div>
     <div class="col-3">
       <select
         class="form-select"
@@ -20,7 +17,7 @@
         <option value="2"  [selected]="valueStatus ==  '2'">Đã kết thúc</option>
       </select>
     </div>
-    <form class="col-7" (submit)="filterContestSearch()">
+    <form class="col-9" (submit)="filterContestSearch()">
         <div class="input-group">
           <input
             type="text"
@@ -41,9 +38,9 @@
       </form>
   </div>
   <div class="contest-user-body">
-    <div class="row pb-3 px-2" *ngIf="statusListContests == true">
+    <div class="pb-3 px-2" *ngIf="statusListContests == true">
       <app-contest-item
-        class="col-4 mt-3"
+        class="col-12 mt-3"
         *ngFor="let item of listContestByUser"
         [pageContestByUser]="true"
         [item]="item"
@@ -63,24 +60,14 @@
       </div>
     </div>
     <div class="row" *ngIf="statusListContests == false">
-      <div class="col-4 mt-3">
-        <app-contest-load-item> </app-contest-load-item>
-      </div>
-      <div class="col-4 mt-3">
-        <app-contest-load-item> </app-contest-load-item>
-      </div>
-      <div class="col-4 mt-3">
-        <app-contest-load-item> </app-contest-load-item>
-      </div>
-      <div class="col-4 mt-3">
-        <app-contest-load-item> </app-contest-load-item>
-      </div>
-      <div class="col-4 mt-3">
-        <app-contest-load-item> </app-contest-load-item>
-      </div>
-      <div class="col-4 mt-3">
-        <app-contest-load-item> </app-contest-load-item>
-      </div>
+      <ngx-skeleton-loader
+      [theme]="{
+        'height.px': '150',
+        'margin-bottom': '20'
+      }"
+      count="3"
+      animation="pulse"
+    ></ngx-skeleton-loader>
     </div>
   </div>
 </div>

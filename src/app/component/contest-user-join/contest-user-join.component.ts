@@ -66,9 +66,8 @@ export class ContestUserJoinComponent implements OnInit {
     this.usersService
       .getContestByUserStatus(this.keyword, this.valueStatus)
       .subscribe((res) => {
-        
         if (res.status){
-          this.listContestByUser = res.payload;
+          this.listContestByUser = res.payload.data;          
         };
         if (this.listContestByUser) {
           this.statusListContests = true;
