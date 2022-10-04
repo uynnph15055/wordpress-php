@@ -1,14 +1,8 @@
 <div class="page-post-box  py-3">
     <div class="container ">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a routerLink="/">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a routerLink="/bai-viet">Danh Mục Bài viết</a></li>
-            </ol>
-        </nav>
         <div class="header-post-category">
             <ul class="post__nav-list">
-                <li (click)="onChangeDataPost($event,'post-contest')" class="post__nav-item contest  active">
+                <li (click)="onChangeDataPost($event,'post-contest')" class="post__nav-item contest active">
                   <a class="post__nav-link">Cuộc Thi</a>
                 </li>
                 <li (click)="onChangeDataPost($event, 'post-capacity')" class="post__nav-item capacity ">
