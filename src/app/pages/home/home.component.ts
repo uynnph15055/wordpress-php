@@ -14,6 +14,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { ConfigViewService } from 'src/app/services/config-view.service';
 import { Post } from 'src/app/models/post.model';
 import { ListPostService } from 'src/app/services/list-post.service';
+import { ResponsePayload } from 'src/app/models/response-payload';
 
 
 
@@ -25,7 +26,9 @@ import { ListPostService } from 'src/app/services/list-post.service';
 
 export class HomeComponent implements OnInit {
     listPostEvent: Post[] | null
-    advanIndex : number = 0;
+    listRecruitmentPosition: Post[] | null
+    advanIndex: number = 0;
+
     majors: Array<Major>;
     statusResultMajor: boolean = false;
     users: Array<User>;
@@ -39,9 +42,13 @@ export class HomeComponent implements OnInit {
     majorIdSelect : number = 1;
     nameMajor : string;
     slugMajor : string;
+    arrLinkPost : Array<any>;
+    currentIndex: number = 1;
+    statusListPostRecruitment : boolean = false;
 
-   
-
+    sliderRecruitmentPosition = {
+        "slidesToShow": 1, dots: true, autoplay: true, arrows: true, slidesToScroll: 1, fadeSpeed: 1000,
+    }
     sliderContest = {
         "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
         responsive: [
@@ -117,6 +124,7 @@ export class HomeComponent implements OnInit {
 
 
     ngOnInit(): void {
+        this.getRecruitmentPosition()
         this.getListPost();
         this.getAllCompany();
         if (this.userService.getUserValue().id) {
@@ -218,9 +226,7 @@ export class HomeComponent implements OnInit {
         this.companyService.getAllCompany().subscribe(res =>{
             if(res.status){
                 this.companys = res.payload.data;
-                console.log(this.companys);
             }
-            
         })
     }
 
@@ -257,6 +263,60 @@ export class HomeComponent implements OnInit {
     //     }
     // }
 
+
+    // Control next
+    nextRecruitmentPosition(){
+        this.statusListPostRecruitment = false;
+        let index = this.currentIndex + 1;
+        if(index > this.arrLinkPost.length){
+            this.payingRecruitmentPosition(1);
+        }else{
+            this.payingRecruitmentPosition(index);
+        }
+    }
+
+   //  Prev next
+    prevRecruitmentPosition(){
+        this.statusListPostRecruitment = false;
+        let index = this.currentIndex - 1;
+        if(index <  1){
+            this.payingRecruitmentPosition(this.arrLinkPost.length);
+        }else{
+            this.payingRecruitmentPosition(index);
+        }
+    }
+    
+    // Get list các đợt tuyển dụng 
+    getRecruitmentPosition() {
+        this.statusListPostRecruitment = false;
+        this.postService.recruitmentPosition().subscribe(res => {
+           this.setDataRecruitmentPosition(res);
+        })
+    }
+
+
+    // Set value after click control
+    setDataRecruitmentPosition(res:  ResponsePayload){
+       if(res.status){
+        this.listRecruitmentPosition = res.payload.data;
+        this.arrLinkPost = res.payload.links;
+        this.arrLinkPost.pop();
+        this.arrLinkPost.shift();
+        this.statusListPostRecruitment = true;
+       }
+    }
+
+    //  Phân trang các bài viết tuyển dụng
+    payingRecruitmentPosition(index: number){   
+        this.statusListPostRecruitment = false;
+        this.currentIndex = index;     
+        this.postService.paydingRecruitmentPosition(index).subscribe(res => {
+            this.setDataRecruitmentPosition(res);
+        })
+    }
+
+
+     //  Danh sách các bài viết
     getListPost() {
         this.postService.getPostWhereCate('post-recruitment').subscribe(res => {
             if (res.status) {
