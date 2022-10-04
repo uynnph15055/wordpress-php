@@ -272,12 +272,9 @@
                     {{ skill.short_name }}
                   </li>
                 </ul>
-                <ul class="mt-2">
-                  <li>+ Trợ cấp đến 6M/ tháng</li>
-                  <li>+ Môi trường trẻ trung, năng động</li>
-                  <li>+ Môi trường trẻ trung, năng động</li>
-                  <li>+ Môi trường trẻ trung, năng động</li>
-                </ul>
+                <div class="mt-2" [innerHTML]="item.short_description">
+                   
+                </div>
               </div>
             </div>
             <div class="px-3 pb-3 recruitment-list-item align-items-center">
@@ -307,7 +304,7 @@
                 </div>
                 <p class="color-text number-test">
                   Số bài test :
-                  {{ item.contest.length > 0 ? item.contest.length : "0" }}
+                  {{ item.contest_count }}
                 </p>
               </div>
             </div>

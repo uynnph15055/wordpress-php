@@ -1,4 +1,4 @@
-// https://admin.svpoly.breezecandles.vn/api
+// http://127.0.0.1:8000/api
 //  https://admin.svpoly.breezecandles.vn/api
 const baseApiUrl = "http://127.0.0.1:8000/api";
 const authApi = `${baseApiUrl}/auth`;
