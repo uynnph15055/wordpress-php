@@ -89,6 +89,8 @@ import { TestCapacityComponent } from "./pages/test-capacity/test-capacity.compo
 import { FormatDatePostPipe } from './helper/pipe/format-date-post.pipe';
 import { ContestItemSubComponent } from './component/contest-item-sub/contest-item-sub.component';
 import { PostItemComponent } from './component/post-item/post-item.component';
+import { RecruitmentPositionComponent } from './component/home/recruitment-position/recruitment-position.component';
+import { OutstandingAdvantagesComponent } from './component/home/outstanding-advantages/outstanding-advantages.component';
 
 @NgModule({
   declarations: [
@@ -150,6 +152,8 @@ import { PostItemComponent } from './component/post-item/post-item.component';
     FormatDatePostPipe,
     ContestItemSubComponent,
     PostItemComponent,
+    RecruitmentPositionComponent,
+    OutstandingAdvantagesComponent,
   ],
   imports: [
     BrowserModule,

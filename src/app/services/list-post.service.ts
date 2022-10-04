@@ -61,5 +61,18 @@ export class ListPostService {
 
   searchPostRecruitment(keyword: string): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-recruitment&keyword=${keyword}`);
-  }
+  } 
+
+
+  // Post  recruitment  page trang chủ.
+  recruitmentPosition():Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-recruitment&limit=6`);
+  } 
+
+
+  
+  // Post  recruitment  page trang chủ.
+  paydingRecruitmentPosition(index: number):Observable<ResponsePayload>{
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?page=${index}&post=post-recruitment&limit=6`);
+  } 
 }

@@ -30,6 +30,9 @@
   -webkit-text-fill-color: transparent;
 }
 
+
+
+
 /* ---------------------------- recruitment-position ---------------------- */
 .recruitment-position-list {
   display: grid;
@@ -38,71 +41,48 @@
   grid-gap: 24px;
 }
 
-.recruitment-position-item {
-  display: grid;
-  grid-template-columns: auto 2fr;
-  grid-gap: 16px;
-  padding: 16px;
-  background: var(--my-white);
-  border-radius: var(--my-rounded);
-  border: 1px solid var(--my-dark-gray);
-  transition-duration: .3s;
+.post-link__item{
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+  background-color: var(--gray-300);
+  margin: 0px 10px;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
 }
 
-.recruitment-position-item:hover {
-  box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
-  border: 1px solid transparent;
-  transform: translateY(-8px)
+.post-control-prev{
+  margin-left: -30px;
 }
 
-.recruitment-position__img {
-  border-radius: var(--my-rounded);
-  height: 100px;
-  object-fit: cover;
-}
-.recruitment-position__context {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.recruitment-position__context-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 4px;
+.post-control-next i{
+  margin-right: -50px;
 }
 
-.recruitment-position__title {
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex-grow: 2;
+
+.list-post-control{
+  border: none;
+  font-size: 2rem;
+  color: var(--primary);
+  opacity: 0.7;
 }
 
-.recruitment-position__title-link {
-  color: initial;
+.list-post-control:hover{
+  opacity: 1;
 }
 
-.recruitment-position__context-recruitment {
-  color: var(--my-secondary);
+.post-link__list .active{
+  background-color: var(--primary);
 }
 
-.recruitment-position__name-company {
-  padding-left: 4px;
+.post-link__list:hover .post-link__item{
+  width: 16px;
+  height: 16px;
+  transition: all ease-in-out 0.3s;
 }
 
-.recruitment-position__desc {
-  margin-bottom: 0;
-  color: var(--my-darkest-gray);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex-grow: 2;
+.list-post-new-slick{
+  position: relative;
 }
 
 /*------------- Contest ------------------------------------------------------ */
@@ -302,8 +282,8 @@
 
 .advantage-show__content .advantage-show__img {
   display: inline-block;
-  /* max-height: 445px; */
-  max-height: 100%;
+  min-height: 445px;
+  object-fit: cover;
   margin: auto;
   border-radius: var(--my-rounded-2);
 }
