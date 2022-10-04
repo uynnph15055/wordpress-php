@@ -30,12 +30,59 @@
   -webkit-text-fill-color: transparent;
 }
 
+
+
+
 /* ---------------------------- recruitment-position ---------------------- */
 .recruitment-position-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 24px;
+}
+
+.post-link__item{
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+  background-color: var(--gray-300);
+  margin: 0px 10px;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+
+.post-control-prev{
+  margin-left: -30px;
+}
+
+.post-control-next i{
+  margin-right: -50px;
+}
+
+
+.list-post-control{
+  border: none;
+  font-size: 2rem;
+  color: var(--primary);
+  opacity: 0.7;
+}
+
+.list-post-control:hover{
+  opacity: 1;
+}
+
+.post-link__list .active{
+  background-color: var(--primary);
+}
+
+.post-link__list:hover .post-link__item{
+  width: 16px;
+  height: 16px;
+  transition: all ease-in-out 0.3s;
+}
+
+.list-post-new-slick{
+  position: relative;
 }
 
 /*------------- Contest ------------------------------------------------------ */
@@ -235,8 +282,8 @@
 
 .advantage-show__content .advantage-show__img {
   display: inline-block;
-  /* max-height: 445px; */
-  max-height: 100%;
+  min-height: 445px;
+  object-fit: cover;
   margin: auto;
   border-radius: var(--my-rounded-2);
 }

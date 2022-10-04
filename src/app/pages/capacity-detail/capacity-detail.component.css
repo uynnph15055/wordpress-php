@@ -334,6 +334,10 @@
 .capacity__test-list-item-stt {
   margin-left: auto;
   padding-left: 12px;
+  color: rgb(39, 174, 96);
+}
+
+.capacity__test-list-item-stt--end {
   color: red;
 }
 

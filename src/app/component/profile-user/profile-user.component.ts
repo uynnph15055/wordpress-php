@@ -15,10 +15,12 @@ export class ProfileUserComponent implements OnInit {
   nameUser: string;
   imgURL: string | ArrayBuffer | null;
 
-  constructor(private userService: UserService, private toast: NgToastService, private titleService: Title) {}
+  constructor(private userService: UserService, 
+    private toast: NgToastService,
+    private title: Title) {}
 
   ngOnInit(): void {
-    this.titleService.setTitle("Cập nhật thông tin");
+    this.title.setTitle('Thông tin tài khoản');
     this.userInfo = this.userService.getUserValue();
   }
 

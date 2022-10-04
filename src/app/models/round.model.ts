@@ -16,7 +16,8 @@ export class Round {
   judges: Array<Judges>;
   contest: Contest;
   exams: Array<exams>;
-  isRoundFinish?: boolean; // trạng thái vòng thi đã kết thúc chưa
+  status?: number; // trạng thái vòng thi
+  statusText?: string; // trạng thái vòng thi
   user_status_join?: any;
 }
 
