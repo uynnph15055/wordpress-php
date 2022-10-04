@@ -8,7 +8,7 @@ import { ResponsePayload } from "../models/response-payload";
   providedIn: "root",
 })
 export class ListPostService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Get Post Where Category
   getPostWhereCate(cate: string): Observable<ResponsePayload> {
@@ -21,7 +21,7 @@ export class ListPostService {
   }
   // Get all list post
 
-  getHotPost() : Observable<ResponsePayload>{
+  getHotPost(): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?postHot=hot`);
   }
 
@@ -61,5 +61,8 @@ export class ListPostService {
     let typePostChange = post == null ? '' : post;
     let statusPostChange = status == null ? '' : status;
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?keyword=${keywordQuery}&post=${typePostChange}&postHot=${statusPostChange}`);
+  } 
+  searchPostRecruitment(keyword: string): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-recruitment&keyword=${keyword}`);
   }
 }

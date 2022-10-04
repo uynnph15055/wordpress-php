@@ -56,32 +56,32 @@ export class PostResultSearchComponent implements OnInit {
   ) {
   }
 
-  TypePost: Array<any> = [
+  typePosts: Array<any> = [
     {
-      prams: 'post-contest',
+      param: 'post-contest',
       name: 'Bài Viết Thuộc Cuộc Thi',
     },
     {
-      prams: 'post-capacity',
+      param: 'post-capacity',
       name: 'Bài Viết Thuộc Test Năng Lực',
     },
     {
-      prams: 'post-round',
+      param: 'post-round',
       name: 'Bài Viết Thuộc Vòng Thi',
     },
     {
-      prams: 'post-recruitment',
+      param: 'post-recruitment',
       name: 'Bài Viết Thuộc Tuyển Dụng',
     }
   ];
 
-  statusFilter: Array<any> = [
+  statusHotPosts: Array<any> = [
     {
-      prams: 'normal',
+      param: 'normal',
       name: 'Mới nhất',
     },
     {
-      prams: 'hot',
+      param: 'hot',
       name: 'Hot nhất',
     },
   ];
@@ -100,17 +100,30 @@ export class PostResultSearchComponent implements OnInit {
       this.statusSubmit = false
     }
 
+    // set value on param into input value
     this.keywordQuery = this.route.snapshot.queryParamMap.get('keyword')
-    let typePost = this.route.snapshot.queryParamMap.get('post')
-    let status = this.route.snapshot.queryParamMap.get('postHot')
+    let typePost: any = ""
+    let statusHotPost: any = "" 
     this.inputKeyword = this.keywordQuery;
-    this.formFilter.controls['filterName'].setValue(this.keywordQuery);
 
-    if (this.keywordQuery != null || typePost != null || status != null) {
+    typePost = this.typePosts.filter((item) => {
+      return item.param == this.route.snapshot.queryParamMap.get('post')
+    })
+    statusHotPost = this.statusHotPosts.filter((item) => {
+      return item.param == this.route.snapshot.queryParamMap.get('postHot')
+    })
+
+    this.formFilter.controls['filterName'].setValue(this.keywordQuery);
+    
+    if (typePost.length > 0) this.formFilter.controls['filterTypePost'].setValue(typePost[0].name);
+    if (statusHotPost.length > 0) this.formFilter.controls['filterTypePost'].setValue(statusHotPost[0].name);
+
+    // check nếu có 1 trong 3 dữ liệu thì chạy search
+    if (this.keywordQuery != null || typePost != null || statusHotPost != null) {
       this.results = []
       this.statusResultPost = false
       this.listPostService
-        .filterPost(this.keywordQuery, typePost, status)
+        .filterPost(this.keywordQuery, typePost, statusHotPost)
         .subscribe((res) => {
           if (res.status) {
             if (res.payload.data.length <= 0) {
@@ -122,8 +135,6 @@ export class PostResultSearchComponent implements OnInit {
             }
           }
         });
-      console.log(this.statusResultPost);
-
     } else {
       this.getListPost()
     }
@@ -150,7 +161,7 @@ export class PostResultSearchComponent implements OnInit {
   }
 
 
-  // =======================Filter============================
+  // ---------------------- filter ----------------------
   // Set filter value
   setValueFilterPost(item: Major) {
     this.formFilter.controls['filterTypePost'].setValue(item.name);
@@ -163,20 +174,19 @@ export class PostResultSearchComponent implements OnInit {
     this.statusSubmit = true
   }
 
-  // Set keyword recruitments
+  // Set keyword recruitment
   setValueKeyword(event: any) {
     this.formFilter.controls['filterName'].setValue(event.target.value);
     if (event.target.value == '') {
       this.statusSubmit = false
+      if (this.statusPostFilter || this.statusPostHot) {
+        this.statusSubmit = true
+      }
     } else {
       this.formFilter.controls['filterName'].setValue(event.target.value);
       this.statusSubmit = true
     }
   }
-
-
-
-
 
   // Filter recruitments
   filterRecruitments() {
@@ -193,16 +203,16 @@ export class PostResultSearchComponent implements OnInit {
     }
 
     if (this.formFilter.controls['filterTypePost'].value) {
-      typePost = this.TypePost.filter(
+      typePost = this.typePosts.filter(
         (item) => item.name === this.formFilter.controls['filterTypePost'].value
-      )[0].prams;
+      )[0].param;
     }
 
 
     if (this.formFilter.controls['filterStatus'].value) {
-      status = this.statusFilter.filter(
+      status = this.statusHotPosts.filter(
         (item) => item.name === this.formFilter.controls['filterStatus'].value
-      )[0].prams;
+      )[0].param;
     }
 
     this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${keyword}&post=${typePost}&postHot=${status}`);
