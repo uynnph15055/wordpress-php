@@ -16,7 +16,7 @@
                     <div class="col-5 contest-detail-left-img-box">
                         <img *ngIf="roundDetail" [src]="roundDetail.image" alt="" class="w-100 contest-detail-left-img">
                         <ngx-skeleton-loader *ngIf="!roundDetail"
-                            [theme]="{ 'height' : '270px' ,'margin-left' : '-15px' , 'width' : '100%' , 'margin-bottom' : '-5px' }"
+                            [theme]="{ 'height' : '250px' ,'margin-left' : '-15px' , 'width' : '100%' , 'margin-bottom' : '-5px' }"
                             appearance="line">
                         </ngx-skeleton-loader>
                     </div>
@@ -98,9 +98,6 @@
                                 appearance="line">
                             </ngx-skeleton-loader>
                             <ngx-skeleton-loader [theme]="{ 'height.px' : 10, 'margin-bottom' : '10px'  }"
-                                appearance="line">
-                            </ngx-skeleton-loader>
-                            <ngx-skeleton-loader [theme]="{ 'height.px' : 30, 'margin-bottom' : '10px'  }"
                                 appearance="line">
                             </ngx-skeleton-loader>
                             <div class="d-flex align-items-center">

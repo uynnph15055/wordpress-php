@@ -1,48 +1,7 @@
-<!-- <div class="slide p-3">
-    <a [class.disabled]="!disabled" [routerLink]="['/cuoc-thi/' , item.id]"><img class="contest-item-img"
-            [src]="item.img" alt=""></a>
-    <h3><a class="contest-name" [class.disabled]="!disabled" [routerLink]="['/cuoc-thi/' , item.id]">{{item.name}}</a>
-    </h3>
-    <div class="text-Secondary d-flex justify-content-between time-contest-register font-size-sml fs-text-contest">
-        <p [class.disabled]="!disabled" class="contest-register-dealine">
-            Thời gian :
-        </p>
-        <div class="text-center">
-            <span class="fw-bold primary-color">{{days}}</span>
-            <br>
-            <span class="fs-name-time"> Ngày </span>
-        </div>
-        <span class="fw-bold text-dark">:</span>
-        <div class="text-center">
-            <span class="fw-bold primary-color">{{hours}}</span>
-            <br>
-            <span class="fs-name-time"> Giờ</span>
-        </div>
-        <span class="fw-bold primary-color text-dark">:</span>
-        <div class="text-center">
-            <span class="fw-bold primary-color">{{minutes}}</span>
-            <br>
-            <span class="fs-name-time"> Phút</span>
-        </div>
-        <span class="fw-bold primary-color text-dark">:</span>
-        <div class="text-center">
-            <span class="fw-bold primary-color">{{seconds}}</span>
-            <br>
-            <span class="fs-name-time">Giây</span>
-        </div>
-    </div>
-    <p class="contest-count-team mt-2 fs-text-contest">Số đội tham gia : <span
-            class="count-team text-white">{{item.teams_count}}</span></p>
-
-    <a [class.disabled]="!disabled" [routerLink]="['/cuoc-thi/' , item.id]"
-        [state]="{registerNow : item.status_user_has_join_contest}" href="" class=" text-center btn  d-block w-100"
-        [ngClass]="item.status == 1 ||  item.status == 0 ? 'btn-main btn' : 'btn btn-danger border-2 border-danger text-white'">{{checkStatusContest(item)}}</a>
-</div> -->
-
 <div class="contest-item">
     <div class="contest-item__img-section">
-        <a routerLink="">
-            <img class="contest-item__img" [src]="item.img" alt="">
+        <a   [routerLink]="['/cuoc-thi/' , item.id]" >
+            <img class="contest-item__img"[src]="item.img" alt="">
         </a>
         <div class="contest-item__btn-favorite">
             <button class="my-btn my-add-favorite__btn">

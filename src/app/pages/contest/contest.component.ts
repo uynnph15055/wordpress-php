@@ -17,7 +17,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ContestComponent implements OnInit {
   majors: Array<Major>;
-  major_id: number;
+  major_id: any;
   major_slug: string;
   contests: Array<Contest> = [];
   keyworkSearchContest: string;
@@ -58,6 +58,7 @@ export class ContestComponent implements OnInit {
     if(this.orderObj.params.status || this.orderObj.params.keyword){
       this.statusCurrContest = this.orderObj.params.status;
       this.keyworkSearchContest = this.orderObj.params.keyword;
+      this.formSearchContest.controls['keywordContest'].setValue(this.keyworkSearchContest);
     }
 
     if(this.orderObj.params.major_id){
@@ -109,12 +110,22 @@ export class ContestComponent implements OnInit {
 
   // Gọi tất cả chuyên ngành
   getAllMajor() {
+    this.statusMajor = false;
     this.majorService.getAll().subscribe((res) => {
       if (res.status) {
         this.majors = res.payload;
         this.statusMajor = true;
       }
     });
+  }
+
+
+  // Reset Chuyên ngành
+  resetMajor(){
+    this.major_id = null;
+    this.formSearchMajor.controls['keywordMajor'].setValue(null);
+    this.filterContest();
+    this.getAllMajor();
   }
 
  
@@ -142,7 +153,7 @@ export class ContestComponent implements OnInit {
         .subscribe((res) => {
          if(res.status){
           this.statusContest = true;
-          let contests  = res.payload;
+          let contests  = res.payload.data;
           let today = new Date().getTime();
           if(this.statusCurrContest == 1){
              this.contests = [];
@@ -166,7 +177,7 @@ export class ContestComponent implements OnInit {
         .subscribe((res) => {
           if (res.status){
             this.statusContest = true;
-          let contests  = res.payload;
+          let contests  = res.payload.data;
           let today = new Date().getTime();
           if(this.statusCurrContest == 1){
              this.contests = [];

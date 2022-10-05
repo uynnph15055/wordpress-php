@@ -98,13 +98,13 @@ export class RoundContestDetailComponent implements OnInit {
     private modalService: NgbModal,
     private slider: SliderService,
     public listPostService: ListPostService,
-    private title : Title,
+    private title: Title
   ) {}
 
   ngOnInit(): void {
     this.title.setTitle('Chi tiết vòng thi');
     this.runTop();
-    this.getListPost();
+    // this.getListPost();
 
     this.routeStateRegister = history.state.registerNow;
 
@@ -127,7 +127,7 @@ export class RoundContestDetailComponent implements OnInit {
             let startTime = new Date(this.roundDetail.start_time).getTime();
             let dateTime = new Date(this.roundDetail.end_time).getTime();
             let todayTime = new Date().getTime();
-            if(todayTime > dateTime || todayTime < startTime)
+            if (todayTime > dateTime || todayTime < startTime)
               this.statusBtnTakeExam = false;
           }
         });
@@ -135,33 +135,32 @@ export class RoundContestDetailComponent implements OnInit {
     });
 
     this.contest_id = this.route.snapshot.paramMap.get('contest_id');
-    this.contestService.getWhereId(this.contest_id)
-      .subscribe((res) => {
-        if (res.status == true) {
-          this.contestDetail = res.payload;
-          this.contestDetail ? (this.statusContest = true) : false;
-          this.contestDetail.enterprise;
-          this.contestDetail.judges !== undefined
-            ? (this.statusJudges = true)
-            : false;
-          if (this.contestDetail.rounds.length > 1)
-            this.getResultRoundBefore(this.contestDetail.rounds, this.round_id);
-          this.runTop();
-        }
-      });
-
-      // Các cuộc thi liên quan
-    this.contestService
-    .getContestWhereMajor( this.contest_id)
-    .subscribe((res) => {
-      if (res.status)
-        this.contestRelated = res.payload.filter((item: Contest) => {
-          return item.id !=  this.contest_id;
-        });
-      if (this.contestRelated) {
-        this.statusContestRelated = true;
+    this.contestService.getWhereId(this.contest_id).subscribe((res) => {
+      if (res.status == true) {
+        this.contestDetail = res.payload;
+        this.contestDetail ? (this.statusContest = true) : false;
+        this.contestDetail.enterprise;
+        this.contestDetail.judges !== undefined
+          ? (this.statusJudges = true)
+          : false;
+        if (this.contestDetail.rounds.length > 1)
+          this.getResultRoundBefore(this.contestDetail.rounds, this.round_id);
+        this.runTop();
       }
     });
+
+    // Các cuộc thi liên quan
+    this.contestService
+      .getContestWhereMajor(this.contest_id)
+      .subscribe((res) => {
+        if (res.status)
+          this.contestRelated = res.payload.data.filter((item: Contest) => {
+            return item.id != this.contest_id;
+          });
+        if (this.contestRelated) {
+          this.statusContestRelated = true;
+        }
+      });
   }
 
   scrollWin(elementString: any, distanceApart: number) {
@@ -237,32 +236,30 @@ export class RoundContestDetailComponent implements OnInit {
 
   takeTheExam(round_id: number) {
     this.statusIntoExam = true;
-    setTimeout(() => {
-      if (!this.userService.getUserValue()) {
-        this.toast.warning({
-          summary: 'Bạn chưa đăng nhập !!!',
-          duration: 3000,
-        });
-        this.router.navigate(['./login']);
-      }
-
-      this.roundService.getInfoTeamFromContestId(round_id).subscribe((res) => {
-        if (res.payload.length == 0) {
-          this.toast.warning({
-            summary: 'Đội của bạn chưa tham gia vòng này !',
-            duration: 5000,
-          });
-          this.statusIntoExam = false;
-        } else {
-          this.router.navigate([
-            '/vao-thi',
-            this.roundDetail.contest_id,
-            'vong',
-            this.roundDetail.id,
-          ]);
-        }
+    if (!this.userService.getUserValue()) {
+      this.toast.warning({
+        summary: 'Bạn chưa đăng nhập !!!',
+        duration: 3000,
       });
-    }, 3000);
+      this.router.navigate(['./login']);
+    }
+
+    this.roundService.getInfoExamRound({round_id : round_id}).subscribe((res) => {
+      if (res.payload.length == 0) {
+        this.toast.warning({
+          summary: 'Đội của bạn chưa tham gia vòng này !',
+          duration: 5000,
+        });
+        this.statusIntoExam = false;
+      } else {
+        this.router.navigate([
+          '/vao-thi',
+          this.roundDetail.contest_id,
+          'vong',
+          this.roundDetail.id,
+        ]);
+      }
+    });
   }
 
   open(content: any) {
