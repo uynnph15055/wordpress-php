@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
     resultMajor: Array<ResultMajor>;
     loadingResultContest: boolean = false;
     statusResult: boolean = false;
-    companys: Array<Company>;
+    companies: Array<Company>;
     majorIdSelect: number = 1;
     nameMajor: string;
     slugMajor: string;
@@ -46,9 +46,6 @@ export class HomeComponent implements OnInit {
     currentIndex: number = 1;
     statusListPostRecruitment: boolean = false;
 
-    sliderRecruitmentPosition = {
-        "slidesToShow": 1, dots: true, autoplay: true, arrows: true, slidesToScroll: 1, fadeSpeed: 1000,
-    }
     sliderContest = {
         "slidesToShow": 4, infinite: true, autoplay: true, arrows: true, prevArrow: '.prev-arrow', nextArrow: '.next-arrow', slidesToScroll: 1, fadeSpeed: 1000,
         responsive: [
@@ -194,7 +191,7 @@ export class HomeComponent implements OnInit {
     getAllCompany() {
         this.companyService.getAllCompany().subscribe(res => {
             if (res.status) {
-                this.companys = res.payload.data;
+                this.companies = res.payload.data;
             }
         })
     }

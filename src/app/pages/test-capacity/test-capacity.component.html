@@ -1,10 +1,6 @@
 <div class="test-capacity_wrapper">
-  <div class="container py-4">
+  <div class="container">
     <div class="">
-      <div class="pb-4">
-        <a routerLink="" class="router--home">Trang chủ</a>
-        <span class="router--index"> / Test năng lực</span>
-      </div>
       <div class="">
         <img
           class="banner"
@@ -18,7 +14,7 @@
         <h2 class="test-capacity_title-head">Danh Sách Test Năng Lực</h2>
       </div>
       <div class="">
-        <div class="container py-4">
+        <div class="container">
           <form
             class="recruitment-filter-box py-3 rounded row"
             [formGroup]="formFilter"
@@ -151,8 +147,7 @@
         </ul>
         <!-- skeleton -->
       </div>
-
-      <div class="test-capacity_list-item">
+      <div class="test-capacity_list">
         <div class="test-capacity__item" *ngFor="let capacity of listCapacity">
           <app-capacity-related-item
             [capacityItem]="capacity"
