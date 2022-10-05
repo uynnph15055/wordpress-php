@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post.model';
 import { ListPostService } from 'src/app/services/list-post.service';
@@ -17,7 +18,10 @@ export class PostsComponent implements OnInit {
   PostCapacityFirst : Post; 
   ListPostCapacity: Post[]
 
-  constructor(private postService : ListPostService) { }
+  constructor(
+    private postService : ListPostService,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
     this.getListPostRecruitment();
@@ -60,6 +64,10 @@ export class PostsComponent implements OnInit {
         });
        }
     })
+  }
+
+  clickChangeUrlToCategoryPost(data: string){
+    this.router.navigateByUrl(`danh-muc-bai-viet?cate=${data}`);
   }
 
 
