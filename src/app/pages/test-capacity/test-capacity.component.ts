@@ -211,24 +211,6 @@ export class TestCapacityComponent implements OnInit {
     }
   }
 
-  
-
-
-  getListMajor() {
-    let major_id: any  = this.route.snapshot.queryParamMap.get('major_id')
-    this.majorService.getAll().subscribe((res) => {
-      if (res.status) {
-        this.majors = res.payload;
-        let major_query
-        for (let index = 0; index < this.majors.length; index++) {
-          if(major_id == this.majors[index].id) {
-            major_query = this.majors[index].name
-          }
-        }
-        this.formFilter.controls['filterMajor'].setValue(major_query);
-      }
-    });
-  }
 
   // ScrollWin
   scrollWin() {
@@ -283,7 +265,7 @@ export class TestCapacityComponent implements OnInit {
   }
 
 
-  // // Get all skill
+  // // Get all skill và lấy param set lại value cho input
   getAllSkill() {
     let skill_id: any = this.route.snapshot.queryParamMap.get('skill_id')
     this.skillService.getAll().subscribe((res) => {
@@ -296,6 +278,23 @@ export class TestCapacityComponent implements OnInit {
           }
         }
         this.formFilter.controls['filterSkill'].setValue(skills_query);
+      }
+    });
+  }
+
+  // Get all Chuyên ngành và lấy param set lại value cho input
+  getListMajor() {
+    let major_id: any  = this.route.snapshot.queryParamMap.get('major_id')
+    this.majorService.getAll().subscribe((res) => {
+      if (res.status) {
+        this.majors = res.payload;
+        let major_query
+        for (let index = 0; index < this.majors.length; index++) {
+          if(major_id == this.majors[index].id) {
+            major_query = this.majors[index].name
+          }
+        }
+        this.formFilter.controls['filterMajor'].setValue(major_query);
       }
     });
   }
