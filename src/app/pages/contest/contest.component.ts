@@ -37,7 +37,7 @@ export class ContestComponent implements OnInit {
     private configFuntionService: ConfigFunctionService
   ) {}
 
-  formSearchMajor = new FormGroup({
+formSearchMajor = new FormGroup({
     keywordMajor: new FormControl(''),
   });
 
