@@ -142,7 +142,7 @@ export class ContestComponent implements OnInit {
         .subscribe((res) => {
          if(res.status){
           this.statusContest = true;
-          let contests  = res.payload.data;
+           let contests = res.payload.data;
           let today = new Date().getTime();
           if(this.statusCurrContest == 1){
              this.contests = [];

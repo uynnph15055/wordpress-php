@@ -34,7 +34,7 @@ export class TestCapacityComponent implements OnInit {
   listCapacity: Array<Capacity>;
   valueSearch: string | null;
   skills: Array<Skill>;
-  skill_id: number = 0;
+  skill_id: number | string = "";
   companys: Array<Enterprise>;
   cinfigData: TransmitToPost;
   majors: Array<Major>;
@@ -43,6 +43,9 @@ export class TestCapacityComponent implements OnInit {
   statusCapacity: boolean = false;
   statusKeywordTrending: boolean = false;
   statusSubmit: boolean = false;
+  statusMajor: boolean = false;
+  statusSkill: boolean = false;
+  
 
   constructor(
     private testCapacityService: TestCapacityService,
@@ -134,22 +137,27 @@ export class TestCapacityComponent implements OnInit {
   // Set filter value
   setValueFilterMajor(item: Major) {
     this.formFilter.controls['filterMajor'].setValue(item.name);
-    this.statusSubmit = true;
+    this.statusSubmit = true
+    this.statusMajor = true
   }
 
   // Set filter status
   setValueSkill(skill: Skill) {
     this.formFilter.controls['filterSkill'].setValue(skill.name);
-    this.statusSubmit = true;
+    this.statusSubmit = true
+    this.statusSkill = true
   }
 
   // Set keyword
   setValueKeyword(event: any) {
-    if (event.target.value == '') {
-      this.statusSubmit = false;
-    } else {
-      this.formFilter.controls['filterName'].setValue(event.target.value);
-      this.statusSubmit = true;
+    if(event.target.value == ''){
+      this.statusSubmit = false
+      if(this.statusSkill || this.statusMajor){
+        this.statusSubmit = true
+      }
+    }else{
+    this.formFilter.controls['filterName'].setValue(event.target.value);
+      this.statusSubmit = true
     }
   }
 
@@ -255,10 +263,11 @@ export class TestCapacityComponent implements OnInit {
       .filterCapacity(keyword, major_id, this.skill_id)
       .subscribe((res) => {
         if (res.status) {
-          if (res.payload.data.length <= 0) {
-            this.statusCapacity = true;
-            this.statusNotResultReturn = true;
-          } else {
+          this.statusSubmit = true
+          if(res.payload.data.length <= 0 ){
+            this.statusCapacity = true
+            this.statusNotResultReturn = true
+          }else{
             this.listCapacity = res.payload.data;
             this.statusCapacity = true;
             this.statusNotResultReturn = false;

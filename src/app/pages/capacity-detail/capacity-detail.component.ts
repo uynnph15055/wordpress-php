@@ -80,9 +80,22 @@ export class CapacityDetailComponent implements OnInit {
           this.isFetchingCapacity = false;
           this.capacity = res.payload;
           this.rounds = res.payload.rounds.map((round: Round) => {
-            const isFinished = new Date().getTime() > new Date(round.end_time).getTime(); //vòng thi đã kết thúc
+            // get trạng thái vòng thi
+            const today = new Date().getTime();
+            const timeDateStart = new Date(round.start_time).getTime();
+            const timeDateEnd = new Date(round.end_time).getTime();
 
-            round["isRoundFinish"] = isFinished;
+            if (today < timeDateStart) {
+              round["status"] = 0;
+              round["statusText"] = "Sắp diễn ra";
+            } else if (today >= timeDateStart && today <= timeDateEnd) {
+              round["status"] = 1;
+              round["statusText"] = "Đang diễn ra";
+            } else if (today > timeDateEnd) {
+              round["status"] = 2;
+              round["statusText"] = "Đã kết thúc";
+            }
+
             return round;
           });
 
@@ -236,5 +249,68 @@ export class CapacityDetailComponent implements OnInit {
       top: 0,
       behavior: "smooth",
     });
+  }
+
+  // get trạng thái vòng thi => ẩn hoặc hiện button vào thi
+  getStatusButtonJoinExam(statusRound?: number, statusUser?: any): any {
+    // statusRound (0 - sắp diễn ra, 1 - đang diễn ra, 2 - đã kết thúc)
+    // statusUser (1 - đã nộp bài, 0 - chưa nộp bài, false - chưa làm bài)
+    // nếu chưa đăng nhập và vòng thi đã kết thúc || đã đăng nhập và vòng thi đã kết thúc và chưa làm bài => ẩn button vào thi
+    if ((!this.isLogged && statusRound === 2) || (this.isLogged && statusRound === 2 && statusUser === false)) {
+      return {
+        isShowBtn: false,
+      };
+    }
+
+    // nếu chưa đăng nhập và vòng thi chưa kết thúc
+    if (!this.isLogged && statusRound !== 2) {
+      return {
+        isShowBtn: true,
+        buttonText: "Vào thi",
+      };
+    }
+
+    if (!this.isLogged) {
+      return {
+        isShowBtn: false,
+      };
+    }
+
+    let isShowBtn = true;
+    // nếu đã nộp bài
+    if (statusUser === 1) {
+      return {
+        isShowBtn,
+        buttonText: "Kết quả bài làm",
+      };
+    }
+
+    // chưa nộp bài và vòng thi đã kết thúc
+    if (statusUser === 0 && statusRound === 2) {
+      return {
+        isShowBtn,
+        buttonText: "Nộp bài",
+      };
+    }
+
+    // chưa nộp bài và vòng thi chưa kết thúc
+    if (statusUser === 0 && statusRound === 1) {
+      return {
+        isShowBtn,
+        buttonText: "Tiếp tục làm bài",
+      };
+    }
+
+    // chưa làm bài và vòng thi chưa kết thúc
+    if (statusUser === false && statusRound !== 2) {
+      return {
+        isShowBtn,
+        buttonText: "Vào thi",
+      };
+    }
+
+    return {
+      isShowBtn: false,
+    };
   }
 }
