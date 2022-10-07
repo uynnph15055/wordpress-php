@@ -107,13 +107,25 @@ export class RankCapacityComponent implements OnInit {
     this.majorService.getAll().subscribe((res) => {
       if (res.status) {
         this.majors = res.payload;
+        let major_query
+        for (let index = 0; index < this.majors.length; index++) {
+          if(this.slugMajor == this.majors[index].slug) {
+            major_query = this.majors[index].name
+          }
+        }
+        this.formFilter.controls['filterMajor'].setValue(major_query);
       }
     });
   }
 
   getRankByMajor(slugMajor: string){
     this.testCapacityService.getRankingbyMajor(slugMajor).subscribe((res) => {
-      this.listRanking = res.payload
+      if(!res.status) {
+        this.statusNotResultReturn = true
+        console.log(this.statusNotResultReturn);
+      }else{
+        this.listRanking = res.payload
+      }
     })
   }
 

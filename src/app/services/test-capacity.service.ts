@@ -22,7 +22,7 @@ export class TestCapacityService {
     }
 
     getRankingbyMajor(slugMajor: string): Observable<ResponsePayload> {
-      return this.http.get<ResponsePayload>(`${environment.RankCapacityUrl}/${slugMajor}`);
+        return this.http.get<ResponsePayload>(`${environment.RankCapacityUrl}/${slugMajor}`);
     }
 
     // Lọc Capacity
