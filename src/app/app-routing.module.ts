@@ -24,6 +24,7 @@ import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitme
 import { TestCapacityComponent } from './pages/test-capacity/test-capacity.component';
 
 import { PostCategoryComponent } from './pages/post-category/post-category.component';
+import { RankCapacityComponent } from "./pages/rank-capacity/rank-capacity.component";
 const routes: Routes = [
   {
     path: "",
@@ -117,6 +118,10 @@ const routes: Routes = [
       {
         path: "test-nang-luc/vao-thi/:capacity_id/bai-thi/:round_id",
         component: CapacityExamComponent,
+      },
+      {
+        path: "test-nang-luc/:slug_major/rankings",
+        component: RankCapacityComponent,
       },
     ],
   },

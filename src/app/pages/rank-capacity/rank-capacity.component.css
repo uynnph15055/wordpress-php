@@ -1,0 +1,16 @@
+.btn-search-rankingCapacity{
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    padding-top: 3px;
+  }
+  
+  .btn-search-rankingCapacity:hover{
+    opacity: 0.8;
+  }
+
+  .rankingCapacity-filter-box{
+    background-color: var(--gray-200);
+  }
