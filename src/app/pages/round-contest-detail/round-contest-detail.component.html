@@ -51,7 +51,7 @@
                                 <div class="modal-body" id="content-contest" [innerHTML]="roundDetail.description">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" mat-button (click)="modal.close('Close click')">Đóng</button>
+                                    <button type="button" mat-stroked-button (click)="modal.close('Close click')">Đóng</button>
                                 </div>
                             </ng-template>
                             <div class="d-flex mt-2 justify-content-between  align-items-end">
@@ -136,9 +136,6 @@
                             hạng</button>
                         <button (click)="scrollWin('#round' , 100)" mat-button class="example-button-item fw-bold">Các
                             đội</button>
-                        <button *ngIf="statusContest == true && contestDetail.post_new != null"
-                            (click)="scrollWin('#new-page' , 200)" mat-button class="example-button-item fw-bold">Tin
-                            tức</button>
                         <button (click)="scrollWin('#related-contest' , 200 )" mat-button
                             class="example-button-item fw-bold">Cuộc thi
                             liên
@@ -159,23 +156,21 @@
                     <p class="fw-bold fs-5 color-blue my-3">Cuộc thi liên quan</p>
                     <div class="title-line"></div>
                     <div class="related-contest-list row" *ngIf="statusContestRelated == true">
-                        <div *ngFor="let item of contestRelated" class="col-4">
+                        <div *ngFor="let item of contestRelated" class="col-12">
                             <app-contest-item [item]="item">
                             </app-contest-item>
                         </div>
                     </div>
                     <div class="related-contest-list row" *ngIf="!statusContestRelated">
-                        <div class="col-4">
-                            <app-contest-load-item>
-                            </app-contest-load-item>
-                        </div>
-                        <div class="col-4">
-                            <app-contest-load-item>
-                            </app-contest-load-item>
-                        </div>
-                        <div class="col-4">
-                            <app-contest-load-item>
-                            </app-contest-load-item>
+                        <div class="col-12">
+                            <ngx-skeleton-loader
+                            [theme]="{
+                              'height.px': '200',
+                              'margin-bottom': '20'
+                            }"
+                            count="6"
+                            animation="pulse"
+                          ></ngx-skeleton-loader>
                         </div>
                     </div>
                 </div>

@@ -53,6 +53,8 @@ img {
 }
 .post-hot-item .post-hot-item__img-section .post-hot-item__img {
     border-radius: 5px;
+    height: 80px;
+    width: 100%;
 }
 .post-hot-item .post-hot-item-content .post-hot-item-content__title {
     line-height: 1;

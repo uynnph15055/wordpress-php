@@ -10,51 +10,33 @@
             <h2 class="header-section__title">Bài viết tuyển dụng</h2>
             <a routerLink="/danh-muc-bai-viet" class="header-section__link">Tất cả</a>
         </div>
-        <div class="post-new-latest">
+        <div class="loading" *ngIf="!PostRecruitmentFirst">
+            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                appearance="line">
+            </ngx-skeleton-loader>
+        </div>
+        <div class="post-new-latest" *ngIf="PostRecruitmentFirst">
             <div class="post-new-latest__img-section">
                 <img src={{PostRecruitmentFirst.thumbnail_url}} alt="" class="post-new-latest__img">
             </div>
             <div class="post-new-latest-content">
-                <h3 class="post-new-latest__title">
-                    <a routerLink="/bai-viet/{{PostRecruitmentFirst.slug}}">{{PostRecruitmentFirst.title}}</a>
-                </h3>
-                <div class="post-new-latest__info">
-                    <div class="post-new-latest__info-item">
-                        <i class="fa-solid fa-user"></i>&ensp; {{PostRecruitmentFirst.user.name}}
-                    </div>
-                    <div class="post-new-latest__info-item">
-                        <i class="fa-solid fa-clock"></i>&ensp;{{PostRecruitmentFirst.published_at |
-                        formatDate }}
-                    </div>
-                </div>
-                <div class="post-new-latest__bottom">
-                    <p class="post-new-latest__short-desc" *ngIf="PostRecruitmentFirst.description "
-                        [innerHTML]="PostRecruitmentFirst.description"></p>
-                    <a routerLink="/bai-viet/{{PostRecruitmentFirst.slug}}" class="btn btn-detail">Chi tiết</a>
-                    <div class="post-new-latest__slider-list">
-                        <!-- <div class="prev-arrow arrow-list-post slick-arrow">
-                            <i class="fas fa-chevron-left"></i>
+                <div class="">
+                    <h3 class="post-new-latest__title">
+                        <a routerLink="/bai-viet/{{PostRecruitmentFirst.slug}}">{{PostRecruitmentFirst.title}}</a>
+                    </h3>
+                    <div class="post-new-latest__info">
+                        <div class="post-new-latest__info-item">
+                            <i class="fa-solid fa-user"></i>&ensp; {{PostRecruitmentFirst.user.name}}
                         </div>
-                        <ngx-slick-carousel class="carousel list-post-new-slick" [config]="sliderHeaderPost">
-                            <a ngxSlickItem class="col-5 post-new-latest__slider-item">
-                                <img class="post-new-latest__slider-item-img"
-                                    src="http://icdn.dantri.com.vn/zoom/1200_630/2020/11/10/fpt-polytechnic-10-nam-v-2-1-docx-1604981173950.png"
-                                    alt="">
-                            </a>
-                            <a ngxSlickItem class="col-5 post-new-latest__slider-item">
-                                <img class="post-new-latest__slider-item-img"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsN6tgdsxaOxevqRWX3mJWX6h_9AChRJd4tj5fM6lBv638bbXHmgcdDEBiTfFuYz8zgoE&usqp=CAU"
-                                    alt="">
-                            </a>
-                            <a ngxSlickItem class="col-5 post-new-latest__slider-item">
-                                <img class="post-new-latest__slider-item-img"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsN6tgdsxaOxevqRWX3mJWX6h_9AChRJd4tj5fM6lBv638bbXHmgcdDEBiTfFuYz8zgoE&usqp=CAU"
-                                    alt="">
-                            </a>
-                        </ngx-slick-carousel>
-                        <div class="next-arrow arrow-list-post slick-arrow">
-                            <i class="fas fa-chevron-right"></i>
-                        </div> -->
+                        <div class="post-new-latest__info-item">
+                            <i class="fa-solid fa-clock"></i>>&ensp;{{PostRecruitmentFirst.published_at |
+                                formatDatePost }}
+                        </div>
+                    </div>
+                    <div class="post-new-latest__bottom">
+                        <p class="post-new-latest__short-desc" *ngIf="PostRecruitmentFirst.description "
+                            [innerHTML]="PostRecruitmentFirst.description"></p>
+                        <a routerLink="/bai-viet/{{PostRecruitmentFirst.slug}}" class="btn btn-detail">Chi tiết</a>
                     </div>
                 </div>
             </div>
@@ -67,10 +49,20 @@
                         <a routerLink="/danh-muc-bai-viet" class="header-section__link">Tất cả</a>
                     </div>
                     <div class="main-section">
-                        <div class="post-item">
+                        <div class="" *ngIf="!PostCapacityFirst">
+                            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                                appearance="line">
+                            </ngx-skeleton-loader>
+                        </div>
+                        <div class="post-item" *ngIf="PostCapacityFirst">
                             <app-post-related-item [postItem]="PostCapacityFirst"></app-post-related-item>
                         </div>
-                        <div class="post-in-cate-list">
+                        <div class="" *ngIf="!ListPostCapacity">
+                            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                                appearance="line">
+                            </ngx-skeleton-loader>
+                        </div>
+                        <div class="post-in-cate-list">  
                             <div class="post-in-cate-item" *ngFor=" let postCapacity of ListPostCapacity">
                                 <div class="post-in-cate-item__img-section">
                                     <a routerLink="/bai-viet/{{postCapacity.slug}}">
@@ -85,7 +77,8 @@
                                     </h3>
                                     <div class="post-in-cate-item-content__info">
                                         <div class="post-in-cate-item-content__info-item">
-                                            <i class="fa-solid fa-clock"></i>&ensp;{{postCapacity.published_at | formatDate}}
+                                            <i class="fa-solid fa-clock"></i>&ensp;{{postCapacity.published_at |
+                                                formatDatePost}}
                                         </div>
                                     </div>
                                     <div class=""></div>
@@ -100,8 +93,18 @@
                         <a routerLink="/danh-muc-bai-viet" class="header-section__link">Tất cả</a>
                     </div>
                     <div class="main-section">
-                        <div class="post-item">
+                        <div class="" *ngIf="!PostContestFirst">
+                            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                                appearance="line">
+                            </ngx-skeleton-loader>
+                        </div>
+                        <div class="post-item" *ngIf="PostContestFirst">
                             <app-post-related-item [postItem]="PostContestFirst"></app-post-related-item>
+                        </div>
+                        <div class="" *ngIf="!ListPostContest">
+                            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                                appearance="line">
+                            </ngx-skeleton-loader>
                         </div>
                         <div class="post-in-cate-list">
                             <div class="post-in-cate-item " *ngFor=" let postContes of ListPostContest">
@@ -117,7 +120,8 @@
                                     </h3>
                                     <div class="post-in-cate-item-content__info">
                                         <div class="post-in-cate-item-content__info-item">
-                                            <i class="fa-solid fa-clock"></i>&ensp;{{postContes.published_at}}
+                                            <i class="fa-solid fa-clock"></i>&ensp;{{postContes.published_at |
+                                                formatDatePost}}
                                         </div>
                                     </div>
                                     <div class=""></div>
@@ -130,4 +134,5 @@
             <app-aside-post></app-aside-post>
         </div>
     </div>
+
 </div>

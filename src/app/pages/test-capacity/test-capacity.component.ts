@@ -7,7 +7,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { Capacity } from 'src/app/models/capacity';
 import { TestCapacityService } from 'src/app/services/test-capacity.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { Major } from 'src/app/models/major';
 import { Skill } from 'src/app/models/skill.models';
 import { Post } from 'src/app/models/post.model';
@@ -21,11 +26,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-test-capacity',
   templateUrl: './test-capacity.component.html',
-  styleUrls: ['./test-capacity.component.css']
+  styleUrls: ['./test-capacity.component.css'],
 })
 export class TestCapacityComponent implements OnInit {
-  keywordTrending: any
-  validateForm!: FormGroup; 
+  keywordTrending: any;
+  validateForm!: FormGroup;
   listCapacity: Array<Capacity>;
   valueSearch: string | null;
   skills: Array<Skill>;
@@ -53,9 +58,7 @@ export class TestCapacityComponent implements OnInit {
     public majorService: MajorService,
     public configService: ConfigFunctionService,
     public skillService: SkillServiceService
-  ) {
-   }
-
+  ) {}
 
   formFilter = new FormGroup({
     filterSkill: new FormControl(''),
@@ -65,69 +68,72 @@ export class TestCapacityComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    if(this.formFilter.controls['filterSkill'].value || this.formFilter.controls['filterName'].value || this.formFilter.controls['filterMajor'].value){
-      this.statusSubmit = true
-    }else{
-      this.statusSubmit = false
+    if (
+      this.formFilter.controls['filterSkill'].value ||
+      this.formFilter.controls['filterName'].value ||
+      this.formFilter.controls['filterMajor'].value
+    ) {
+      this.statusSubmit = true;
+    } else {
+      this.statusSubmit = false;
     }
-    this.getListKeywordTrending()
+    this.valueSearch = this.route.snapshot.queryParamMap.get('q');
+    let major_id = this.route.snapshot.queryParamMap.get('major_id');
+    let skill_id = this.route.snapshot.queryParamMap.get('skill_id');
+    this.formFilter.controls['filterName'].setValue(this.valueSearch);
+    if (this.valueSearch != null || major_id != null || skill_id != null) {
+      this.listCapacity = [];
+      this.statusCapacity = false;
+      this.testCapacityService
+        .filterCapacity(this.valueSearch, major_id, skill_id)
+        .subscribe((res) => {
+          if (res.status) {
+            if (res.payload.data.length <= 0) {
+              this.statusCapacity = true;
+              this.statusNotResultReturn = true;
+            } else {
+              this.listCapacity = res.payload.data;
+              this.statusCapacity = true;
+              this.scrollWin();
+            }
+          }
+        });
+    } else {
+      this.getListTestCapacity();
+    }
+
+    this.getListKeywordTrending();
     this.getListMajor();
     this.getAllSkill();
-    this.valueSearch = this.route.snapshot.queryParamMap.get('q')
-    let major_id= this.route.snapshot.queryParamMap.get('major_id')
-    let skill_id = this.route.snapshot.queryParamMap.get('skill_id')
-    this.formFilter.controls['filterName'].setValue(this.valueSearch);
+  }
 
-    
-    if(this.valueSearch != null || major_id != null || skill_id != null){
-      this.listCapacity = []
-      this.statusCapacity = false
-      this.testCapacityService
-      .filterCapacity(this.valueSearch, major_id,  skill_id)
+  getListTestCapacity() {
+    this.testCapacityService.getAllTestCapacity().subscribe((res) => {
+      if (res.status) {
+        this.listCapacity = res.payload.data;
+        this.listCapacity ? (this.statusCapacity = true) : this.statusCapacity;
+        this.scrollWin();
+      }
+    });
+  }
+
+  getListKeywordTrending() {
+    this.testCapacityService
+      .getAllKeywordTrendingCapacity()
       .subscribe((res) => {
         if (res.status) {
-          if(res.payload.data.length <= 0 ){
-            this.statusCapacity = true
-            this.statusNotResultReturn = true
-          }else{
-            this.listCapacity = res.payload.data;
-            this.statusCapacity = true;
-            this.scrollWin();
-          }
-        }
-      });
-    }else{
-      this.getListTestCapacity()
-    }
-  }
-
-  getListTestCapacity(){
-    this.testCapacityService.getAllTestCapacity().subscribe(res=>{
-        if (res.status) {
-          this.listCapacity = res.payload.data;
-          this.listCapacity
-            ? (this.statusCapacity = true)
-            : this.statusCapacity;
-            this.scrollWin();
-        }
-    })
-  }
-
-  getListKeywordTrending(){
-    this.testCapacityService.getAllKeywordTrendingCapacity().subscribe(res=>{
-        if (res.status) {
-          let arrResult= res.payload;
+          let arrResult = res.payload;
           // Chỉ lấy ra 5 phần tử đầu tiên trong mảng
-          this.keywordTrending = arrResult.filter((res: any , index: number) => {
+          this.keywordTrending = arrResult.filter((res: any, index: number) => {
             return index <= 4;
           });
           this.keywordTrending
             ? (this.statusKeywordTrending = true)
             : this.statusKeywordTrending;
         }
-    })
+      });
   }
-  
+
   // Set filter value
   setValueFilterMajor(item: Major) {
     this.formFilter.controls['filterMajor'].setValue(item.name);
@@ -142,7 +148,7 @@ export class TestCapacityComponent implements OnInit {
     this.statusSkill = true
   }
 
-  // Set keyword 
+  // Set keyword
   setValueKeyword(event: any) {
     if(event.target.value == ''){
       this.statusSubmit = false
@@ -155,21 +161,21 @@ export class TestCapacityComponent implements OnInit {
     }
   }
 
-  // Set keywordTrending to input search when click  
+  // Set keywordTrending to input search when click
   setValueKeywordTrending(keyword: string) {
     let major_id = 0;
-    let skill_id = 0
+    let skill_id = 0;
     this.formFilter.controls['filterName'].setValue(keyword);
     this.router.navigateByUrl(`test-nang-luc?q=${keyword}`);
     this.testCapacityService
-      .filterCapacity(keyword, major_id,  skill_id)
+      .filterCapacity(keyword, major_id, skill_id)
       .subscribe((res) => {
         if (res.status) {
-          if(res.payload.data.length <= 0 ){
-            this.statusCapacity = true
-            this.statusNotResultReturn = true
-            this.listCapacity = []
-          }else{
+          if (res.payload.data.length <= 0) {
+            this.statusCapacity = true;
+            this.statusNotResultReturn = true;
+            this.listCapacity = [];
+          } else {
             this.listCapacity = res.payload.data;
             this.statusCapacity = true;
             this.scrollWin();
@@ -178,13 +184,13 @@ export class TestCapacityComponent implements OnInit {
       });
   }
 
-  // Fillter 
+  // Fillter
   filterSelect(arr: Array<any>, value: string, input: string) {
     switch (input) {
       case 'major':
         if (!value) {
           this.getListMajor();
-          this.statusSubmit = false
+          this.statusSubmit = false;
         } else {
           this.majors = arr.filter((item) => {
             return this.configService
@@ -195,8 +201,8 @@ export class TestCapacityComponent implements OnInit {
         break;
       case 'skill':
         if (!value) {
-          this.getAllSkill()
-          this.statusSubmit = false
+          this.getAllSkill();
+          this.statusSubmit = false;
         } else {
           this.skills = arr.filter((item) => {
             return this.configService
@@ -211,21 +217,19 @@ export class TestCapacityComponent implements OnInit {
     }
   }
 
-
   // ScrollWin
   scrollWin() {
-    window.scrollTo({ top: 500, behavior: 'smooth'  });
+    window.scrollTo({ top: 500, behavior: 'smooth' });
   }
-
 
   // Filter Capacity
   filterCapacity() {
-    this.listCapacity = []
-    this.statusNotResultReturn = false
-    this.statusCapacity = false
+    this.listCapacity = [];
+    this.statusNotResultReturn = false;
+    this.statusCapacity = false;
     let major_id = 0;
     let keyword = '';
-  
+
     if (this.formFilter.controls['filterName'].value) {
       keyword = this.formFilter.controls['filterName'].value;
     }
@@ -241,13 +245,14 @@ export class TestCapacityComponent implements OnInit {
         (item) => item.name === this.formFilter.controls['filterSkill'].value
       )[0].id;
     }
-    
 
     // đẩy param search lên URL
-    this.router.navigateByUrl(`test-nang-luc?q=${keyword}&major_id=${major_id}&skill_id=${this.skill_id}`);
-   
+    this.router.navigateByUrl(
+      `test-nang-luc?q=${keyword}&major_id=${major_id}&skill_id=${this.skill_id}`
+    );
+
     this.testCapacityService
-      .filterCapacity(keyword, major_id,  this.skill_id)
+      .filterCapacity(keyword, major_id, this.skill_id)
       .subscribe((res) => {
         if (res.status) {
           this.statusSubmit = true
@@ -257,7 +262,7 @@ export class TestCapacityComponent implements OnInit {
           }else{
             this.listCapacity = res.payload.data;
             this.statusCapacity = true;
-            this.statusNotResultReturn = false
+            this.statusNotResultReturn = false;
             this.scrollWin();
           }
         }
@@ -298,6 +303,4 @@ export class TestCapacityComponent implements OnInit {
       }
     });
   }
-
-
 }

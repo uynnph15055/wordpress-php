@@ -7,32 +7,32 @@
             </ol>
         </nav>
         <div class="header-post-category">
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button (click)="onChangeDataPost('post-contest')" class="nav-link active" id="nav-home-tab"
-                        data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab"
-                        aria-controls="nav-home" aria-selected="true">Cuộc Thi</button>
-                    <button (click)="onChangeDataPost('post-capacity')" class="nav-link" id="nav-profile-tab"
-                        data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab"
-                        aria-controls="nav-profile" aria-selected="false">Test Năng
-                        Lực</button>
-                    <button (click)="onChangeDataPost('post-recruitment')" class="nav-link" id="nav-contact-tab"
-                        data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab"
-                        aria-controls="nav-contact" aria-selected="false">Tuyển Dụng</button>
-                </div>
-            </nav>
+            <ul class="post__nav-list">
+                <li (click)="onChangeDataPost($event,'post-contest')" class="post__nav-item contest  active">
+                  <a class="post__nav-link">Cuộc Thi</a>
+                </li>
+                <li (click)="onChangeDataPost($event, 'post-capacity')" class="post__nav-item capacity ">
+                  <a class="post__nav-link">Test Năng Lực</a>
+                </li>
+                <li (click)="onChangeDataPost($event, 'post-recruitment')" class="post__nav-item recruitment">
+                  <a class="post__nav-link">Tuyển Dụng</a>
+                </li>
+              </ul>
         </div>
         <div class="post-main">
             <div class="post-main-content">
                 <div class="post-main-content-section">
                     <div class="main-section" *ngIf="!ListPost">
-                        <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 350, 'border-radius': '10px' }"
                             appearance="line">
                         </ngx-skeleton-loader>
-                        <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 350, 'border-radius': '10px' }"
                             appearance="line">
                         </ngx-skeleton-loader>
-                        <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 350, 'border-radius': '10px' }"
+                            appearance="line">
+                        </ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 350, 'border-radius': '10px' }"
                             appearance="line">
                         </ngx-skeleton-loader>
                     </div>

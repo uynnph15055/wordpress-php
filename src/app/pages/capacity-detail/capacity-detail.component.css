@@ -274,6 +274,12 @@
   color: var(--primary);
 }
 
+.capacity__tab-skeleton {
+  height: 32px;
+  margin: 12px 0;
+  border-radius: 10px;
+}
+
 .capacity__test {
   background-color: #fff;
   border-radius: 10px;
@@ -328,6 +334,10 @@
 .capacity__test-list-item-stt {
   margin-left: auto;
   padding-left: 12px;
+  color: rgb(39, 174, 96);
+}
+
+.capacity__test-list-item-stt--end {
   color: red;
 }
 

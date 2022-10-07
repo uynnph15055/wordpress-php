@@ -1,6 +1,7 @@
-// https://admin.svpoly.breezecandles.vn/api
 // http://127.0.0.1:8000/api
+//  https://admin.svpoly.breezecandles.vn/api
 const baseApiUrl = "http://127.0.0.1:8000/api";
+// const baseApiUrl = "https://admin.svpoly.breezecandles.vn/api";
 const authApi = `${baseApiUrl}/auth`;
 export const jwtApiUrl = `${baseApiUrl}/v1`;
 export const publicApiUrl = `${baseApiUrl}/public`;
@@ -21,6 +22,7 @@ export const environment = {
   postListUrl: `${publicApiUrl}/posts`,
   candidateUrl: `${publicApiUrl}/candidate`,
   skillListUrl: `${publicApiUrl}/skill`,
+  keywordListUrl: `${publicApiUrl}/keywords`,
   keywordTrendingUrl: `${publicApiUrl}/keywords`,
   // Router API V1;
   userListUrl: `${jwtApiUrl}/users`,
