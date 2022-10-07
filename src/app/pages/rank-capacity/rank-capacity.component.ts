@@ -16,10 +16,18 @@ export class RankCapacityComponent implements OnInit {
   majors: Array<Major>;
   listRanking: any = []
   statusNotResultReturn: boolean = false;
+  majorsDataTable: string
 
   statusSubmit: boolean = false
   statusMajor: boolean = false
   statusRanking: boolean = false
+
+  first_page_url: string | null
+  next_page_url: string | null
+  prev_page_url: string | null  
+  last_page_url: string | null
+  last_page: number | string | null
+  links: any
 
   constructor(
     private testCapacityService: TestCapacityService,
@@ -41,8 +49,8 @@ export class RankCapacityComponent implements OnInit {
       this.statusSubmit = false;
     }
     this.slugMajor = this.route.snapshot.paramMap.get('slug_major')!;
-    this.getRankByMajor(this.slugMajor)
     this.getListMajor();
+    this.getRankByMajor(this.slugMajor)
   }
 
   filterRankingCapacity(){
@@ -65,11 +73,17 @@ export class RankCapacityComponent implements OnInit {
       .subscribe((res) => {
         if (res.status) {
           this.statusSubmit = true
-          if(res.payload.length <= 0 ){
+          if(res.payload.error || res.payload.data.length == 0){
             this.statusRanking = true
             this.statusNotResultReturn = true
           }else{
-            this.listRanking = res.payload;
+            this.listRanking = res.payload.data;
+            this.first_page_url = res.payload.first_page_url
+            this.next_page_url = res.payload.next_page_url
+            this.prev_page_url = res.payload.prev_page_url
+            this.last_page_url = res.payload.last_page_url
+            this.last_page = res.payload.last_page
+            this.links = res.payload.links
             this.statusRanking = true;
             this.statusNotResultReturn = false;
           }
@@ -107,25 +121,37 @@ export class RankCapacityComponent implements OnInit {
     this.majorService.getAll().subscribe((res) => {
       if (res.status) {
         this.majors = res.payload;
-        let major_query
+        let major_query: any
         for (let index = 0; index < this.majors.length; index++) {
           if(this.slugMajor == this.majors[index].slug) {
             major_query = this.majors[index].name
           }
         }
+        this.majorsDataTable = major_query!;
         this.formFilter.controls['filterMajor'].setValue(major_query);
       }
     });
   }
 
   getRankByMajor(slugMajor: string){
+    this.listRanking = [];
+    this.statusNotResultReturn = false;
+    this.statusRanking = false;
     this.testCapacityService.getRankingbyMajor(slugMajor).subscribe((res) => {
-      if(!res.status) {
-        this.statusNotResultReturn = true
-        console.log(this.statusNotResultReturn);
-      }else{
-        this.listRanking = res.payload
-      }
+        if(res.payload.error || res.payload.data.length == 0){
+          this.statusRanking = true
+          this.statusNotResultReturn = true
+        }else{
+          this.listRanking = res.payload.data;
+          this.first_page_url = res.payload.first_page_url
+          this.next_page_url = res.payload.next_page_url
+          this.prev_page_url = res.payload.prev_page_url
+          this.last_page_url = res.payload.last_page_url
+          this.last_page = res.payload.last_page
+          this.links = res.payload.links
+          this.statusRanking = true;
+          this.statusNotResultReturn = false;
+        }
     })
   }
 

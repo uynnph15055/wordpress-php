@@ -1,6 +1,17 @@
 
 <div class="container py-4">
-    <form [formGroup]="formFilter" (submit)="filterRankingCapacity()" class="rankingCapacity-filter-box py-3 rounded row">
+  <div class="">
+    <div class="">
+      <img
+        class="banner"
+        src="https://images.unsplash.com/photo-1649859398731-d3c4ebca53fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+        alt=""
+      />
+    </div>
+  </div>
+    <form [formGroup]="formFilter" (submit)="filterRankingCapacity()" class="rankingCapacity-filter-box py-4 rounded row">
+      <div class="col-3 rank_title" >Xếp Hạng</div>
+      <div class="col-4"></div>
         <div class="col-3">
           <div ngbDropdown class="d-inline-block w-100">
             <input
@@ -38,27 +49,45 @@
           </button>
         </div>
   </form>
-  <div class="no-results" *ngIf="statusNotResultReturn">
+  <div class="no-results" *ngIf="statusNotResultReturn " >
     Không tìm thấy kết quả nào
   </div>
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">TOP</th>
-        <th scope="col">Tên</th>
-        <th scope="col">Avatar</th>
-        <th scope="col">Email</th>
-        <th scope="col">Điểm</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let rank of listRanking, ,let i = index">
-        <th scope="row">{{i+1}}</th>
-        <td>{{rank.user.name}}</td>
-        <td><img src={{rank.user.avatar}} alt="" width="100"></td>
-        <td>{{rank.user.email}}</td>
-        <td>{{rank.total_scores}} Điểm</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="loading" *ngIf="!statusRanking">
+    <ngx-skeleton-loader
+      [theme]="{ margin: '0 0 4px', width: '30%', display: 'block' }"
+    ></ngx-skeleton-loader>
+  </div>
+  <div class="" *ngIf="!statusNotResultReturn ">
+    <table class="table table-striped" >
+      <thead>
+        <tr class="rank_head-table">
+          <th class="rank_title-table" scope="col">#</th>
+          <th class="rank_title-table" scope="col">Tên người dùng</th>
+          <th class="rank_title-table" scope="col">Email</th>
+          <th class="rank_title-table" scope="col">Chuyên ngành</th>
+          <th class="rank-table-none"></th>
+          <th class="rank_title-table-score" scope="col"><span class="score">Tổng kết</span></th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <tr *ngFor="let rank of listRanking, ,let i = index" class="rank_item-list">
+          <th class="rank_item" scope="row">{{i+1}}</th>
+          <td class="rank_item-name"><img class="rank_image" src={{rank.user.avatar}} alt="" width="70"><span class="rank_name">{{rank.user.name}}</span></td>
+          <td class="rank_item">{{rank.user.email}}</td>
+          <td class="rank_item">{{majorsDataTable}}</td>
+          <td class="rank-table-none"></td>
+          <td class="rank_item_scores">{{rank.scores}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <div class="pagination-list">
+        <div class="pagination-list_box pagination-list_first"><i class="fa-solid fa-arrow-left"></i></div>
+        <div class="pagination-list_box" >1</div>
+        <div class="pagination-list_box" *ngFor="let page of links">{{page.label}}</div>
+        <!-- <div class="pagination-list_dot">...</div> -->
+        <div class="pagination-list_box pagination-list_last"><i class="fa-solid fa-arrow-right"></i></div>
+      </div>
+    </div>
+  </div>
 </div>
