@@ -18,7 +18,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ContestComponent implements OnInit {
   majors: Array<Major>;
   major_id: any;
-  major_slug: string;
+  major_slug: any;
   contests: Array<Contest> = [];
   keyworkSearchContest: string;
   orderObj: any;
@@ -37,7 +37,7 @@ export class ContestComponent implements OnInit {
     private configFuntionService: ConfigFunctionService
   ) {}
 
-formSearchMajor = new FormGroup({
+  formSearchMajor = new FormGroup({
     keywordMajor: new FormControl(''),
   });
 
@@ -46,41 +46,45 @@ formSearchMajor = new FormGroup({
   });
 
   ngOnInit(): void {
-    // Load lên đầu trang 
+    // Load lên đầu trang
     this.configFuntionService.runTop();
-    
-    this.userService.getUserValue().id != undefined ? this.checkUserHasLogin = true : this.checkUserHasLogin;
+
+    this.userService.getUserValue().id != undefined
+      ? (this.checkUserHasLogin = true)
+      : this.checkUserHasLogin;
 
     this.route.queryParamMap.subscribe((params) => {
-      this.orderObj = {...params };
+      this.orderObj = { ...params };
     });
 
-    if(this.orderObj.params.status || this.orderObj.params.keyword){
+    if (this.orderObj.params.status || this.orderObj.params.keyword) {
       this.statusCurrContest = this.orderObj.params.status;
       this.keyworkSearchContest = this.orderObj.params.keyword;
-      this.formSearchContest.controls['keywordContest'].setValue(this.keyworkSearchContest);
+      this.formSearchContest.controls['keywordContest'].setValue(
+        this.keyworkSearchContest
+      );
     }
 
-    if(this.orderObj.params.major_id){
-      this.majorService.getMajorWhereSlug(this.orderObj.params.major).subscribe((res) => {
-        this.major_id = res.payload.id;
-      });
+    if (this.orderObj.params.major_id) {
+      this.majorService
+        .getMajorWhereSlug(this.orderObj.params.major)
+        .subscribe((res) => {
+          this.major_id = res.payload.id;
+        });
     }
 
     this.filterContest();
-  
-  
+
     this.titleService.setTitle('Cuộc thi');
 
     window.addEventListener('scroll', this.scrollNavSub);
-    console.log(this.statusCurrContest);
-    
+
     this.getAllMajor();
   }
 
   scrollNavSub() {
     let element = document.querySelector('.contest__nav');
-    if (window.scrollY > 600) {
+    if (window.scrollY > 250) {
       element?.classList.add('fixed-nav');
     } else {
       element?.classList.remove('fixed-nav');
@@ -104,7 +108,7 @@ formSearchMajor = new FormGroup({
   searchContest() {
     this.statusContest = false;
     this.keyworkSearchContest =
-    this.formSearchContest.controls['keywordContest'].value;
+      this.formSearchContest.controls['keywordContest'].value;
     this.filterContest();
   }
 
@@ -119,16 +123,15 @@ formSearchMajor = new FormGroup({
     });
   }
 
-
   // Reset Chuyên ngành
-  resetMajor(){
+  resetMajor() {
     this.major_id = null;
     this.formSearchMajor.controls['keywordMajor'].setValue(null);
+    this.major_slug = null;
     this.filterContest();
     this.getAllMajor();
   }
 
- 
   // Update status  contest
   updateStatusContest(event: any, status: number) {
     this.statusCurrContest = status;
@@ -144,78 +147,64 @@ formSearchMajor = new FormGroup({
   filterContest() {
     this.statusContest = false;
     this.router.navigate(['/cuoc-thi'], {
-      queryParams: { status: this.statusCurrContest, keyword: this.keyworkSearchContest, major: this.major_slug },
+      queryParams: {
+        status: this.statusCurrContest,
+        keyword: this.keyworkSearchContest,
+        major: this.major_slug,
+      },
       queryParamsHandling: 'merge',
     });
-    if (!this.checkUserHasLogin) {
-      this.contestService
-        .filterContest( this.keyworkSearchContest, this.major_id , this.statusCurrContest)
-        .subscribe((res) => {
-         if(res.status){
+    this.contestService
+      .filterContest(
+        this.keyworkSearchContest,
+        this.major_id,
+        this.statusCurrContest
+      )
+      .subscribe((res) => {
+        if (res.status) {
           this.statusContest = true;
-          let contests  = res.payload.data;
+          let contests = res.payload;
           let today = new Date().getTime();
-          if(this.statusCurrContest == 1){
-             this.contests = [];
-              this.contests = contests.filter((item : Contest) => {
-                let time = this.getTime(item);
-                return time.date_register_start > today;
+          if (this.statusCurrContest == 1) {
+            this.contests = [];
+            this.contests = contests.filter((item: Contest) => {
+              let time = this.getTime(item);
+              return time.date_register_start > today;
             });
-          }else if(this.statusCurrContest == 0){
-              this.contests = contests.filter((item : Contest) => {
-                let time = this.getTime(item);
-                return time.date_end > today && !(time.date_register_start > today);
+          } else if (this.statusCurrContest == 0) {
+            this.contests = contests.filter((item: Contest) => {
+              let time = this.getTime(item);
+              return (
+                time.date_end > today && !(time.date_register_start > today)
+              );
             });
-          }else{
+          } else {
             this.contests = contests;
           }
-         }      
-        });
-    } else {
-      this.userService
-        .filterContestHasLogin( this.keyworkSearchContest, this.major_id , this.statusCurrContest)
-        .subscribe((res) => {
-          if (res.status){
-            this.statusContest = true;
-          let contests  = res.payload.data;
-          let today = new Date().getTime();
-          if(this.statusCurrContest == 1){
-             this.contests = [];
-              this.contests = contests.filter((item : Contest) => {
-                let time = this.getTime(item);
-                return time.date_register_start > today;
-            });
-          }else if(this.statusCurrContest == 0){
-              this.contests = contests.filter((item : Contest) => {
-                let time = this.getTime(item);
-                return time.date_end > today && !(time.date_register_start > today);
-            });
-          }else{
-            this.contests = contests;
-          }
-
-          console.log(this.contests);
-          
-          }
-        });
-    }
+        }
+      });
   }
 
-  getTime(item: Contest){
-    let date_end = new Date(moment(item.register_deadline).format('lll')).getTime();
-    let date_register_start = new Date(moment(item.start_register_time).format('lll')).getTime();
+  getTime(item: Contest) {
+    let date_end = new Date(
+      moment(item.register_deadline).format('lll')
+    ).getTime();
+    let date_register_start = new Date(
+      moment(item.start_register_time).format('lll')
+    ).getTime();
 
     return {
       date_end: date_end,
-      date_register_start: date_register_start
-    }
+      date_register_start: date_register_start,
+    };
   }
 
-
   // Gọi các cuộc thi theo chuyên ngành
-  getWhereMajor(event: any , item: Major){
-     const majors = document.querySelectorAll('.contest__content-aside-major--item');
-     majors.forEach(element => {
+  getWhereMajor(event: any, item: Major) {
+    const majors = document.querySelectorAll(
+      '.contest__content-aside-major--item'
+    );
+    majors.forEach((element) => {
       element.classList.remove('active');
     });
 

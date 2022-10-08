@@ -56,7 +56,7 @@ export class RoundContestDetailComponent implements OnInit {
   dataResultRound: Array<ResultRound>;
   sliderContest: Array<Slider>;
   cinfigData: TransmitToPost;
-  listPostResult: Array<Post>;
+  listPostResult: Array<Post> = [];
   statusResultRound: boolean = false;
 
   roundEndTime: any;
@@ -68,6 +68,8 @@ export class RoundContestDetailComponent implements OnInit {
   statusUserHasJoinContest: boolean = false;
   teamIdMemberHasJoinTeam: number = 0;
   // ---------------------------
+
+  resultRank: Array<ResultRound> = [];
 
   days: number;
   hours: number;
@@ -104,14 +106,14 @@ export class RoundContestDetailComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('Chi tiết vòng thi');
     this.runTop();
-    // this.getListPost();
+    this.getListPost();
 
     this.routeStateRegister = history.state.registerNow;
 
     this.route.paramMap.subscribe((params) => {
       if (params.get('round_id')) {
         this.round_id = params.get('round_id');
-
+        this.getResultRank();
         this.slider
           .getListSlider('round', 'round_id', this.round_id)
           .subscribe((res) => {
@@ -119,6 +121,8 @@ export class RoundContestDetailComponent implements OnInit {
               this.sliderContest = res.payload;
             }
           });
+
+
 
         this.roundService.getRoundWhereId(this.round_id).subscribe((res) => {
           if (res.status) {
@@ -136,17 +140,16 @@ export class RoundContestDetailComponent implements OnInit {
 
     this.contest_id = this.route.snapshot.paramMap.get('contest_id');
     this.contestService.getWhereId(this.contest_id).subscribe((res) => {
-      if (res.status == true) {
+      if (res.status) {
         this.contestDetail = res.payload;
         this.contestDetail ? (this.statusContest = true) : false;
-        this.contestDetail.enterprise;
         this.contestDetail.judges !== undefined
           ? (this.statusJudges = true)
           : false;
-        if (this.contestDetail.rounds.length > 1)
-          this.getResultRoundBefore(this.contestDetail.rounds, this.round_id);
-        this.runTop();
       }
+
+      console.log(this.contestDetail);
+      
     });
 
     // Các cuộc thi liên quan
@@ -160,6 +163,8 @@ export class RoundContestDetailComponent implements OnInit {
         if (this.contestRelated) {
           this.statusContestRelated = true;
         }
+        console.log(this.contestRelated);
+        
       });
   }
 
@@ -177,6 +182,13 @@ export class RoundContestDetailComponent implements OnInit {
           return index <  3;
         });
       }
+    });
+  }
+
+   // Mở model thêm đội thi
+   getResultRank() {
+    this.roundService.getResultRound(this.round_id).subscribe((res) => {
+      res.status ? (this.resultRank = res.payload.data) : null;
     });
   }
 
@@ -266,37 +278,6 @@ export class RoundContestDetailComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
-  // Kết quả vòng thi trước đó
-  getResultRoundBefore(arrRound: Array<Round>, round_id: number) {
-    let roundId = 0;
-    arrRound.forEach((res) => {
-      if (res.id == round_id) roundId = arrRound.indexOf(res);
-    });
-
-    this.roundService
-      .getResultRound(arrRound[roundId - 1].id)
-      .subscribe((res) => {
-        if (res.status) {
-          this.resultRoundBefore = res.payload.data;
-          this.resultRoundBefore.length > 0
-            ? (this.statusResultRoundBefore = true)
-            : this.statusResultRoundBefore;
-        }
-      });
-  }
-
-  //Tìm kiếm sinh viên kết quả
-  searchTeamRank(event: any) {
-    let searchTeamRank = event.target.value;
-
-    if (searchTeamRank != '') {
-      this.resultRoundBefore = this.resultRoundBefore.filter((res) => {
-        return res.name.includes(searchTeamRank);
-      });
-    } else {
-      // this.getResultRoundBefore(this.contestDetail.rounds, 2);
-    }
-  }
 
   // Thông tin đội
   openInfoTeam() {

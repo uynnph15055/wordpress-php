@@ -161,7 +161,7 @@ h3 ,p{
   box-shadow: 0px 8px 15px rgba(14, 13, 13, 0.1);
   font-size: 25px;
   transition: all 0.3s ease 0s;
-  cursor: pointer;
+  cursor: poiter;
   outline: none;
 }
 

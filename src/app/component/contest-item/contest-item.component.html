@@ -14,7 +14,7 @@
             <h3 class="contest-item__title">
                 <a class="contest-item__title-link" [routerLink]="['/cuoc-thi/' , item.id]" data-toggle="tooltip"
                     data-placement="top" title={{item.name}}>
-                    {{item.name}}
+                    {{item.name}}  <span class="fw-normal" style="font-size: 15px;">({{item.status == 1 ? 'Thời gian bắt đầu : ' : 'Ngày kết thúc : '}}{{ checkDateContest(item) | formatDate}})</span>
                 </a>
             </h3>
             <ul class="my-countdown">

@@ -77,7 +77,7 @@ h1, h2 , h3 , h4 , h5 , h6 , p , ul{
   border-bottom-left-radius: 10px;
   margin: 0px -12px !important;
   object-fit: cover;
-  height: 250px;
+  height: 290px;
 }
 
 .contest-date-open-end {
@@ -114,11 +114,15 @@ h1, h2 , h3 , h4 , h5 , h6 , p , ul{
   z-index: -1;
 }
 
+.btn-join-exam-box{
+  margin-bottom: 10px;
+}
+
 .btn-join-exam{
   padding: 10px 20px;
   background-color: var(--primary);
   color: var(--white);
-  border-radius: 6px;
+  border-radius: 4px;
   transition: 0.5s;
   cursor: pointer;
 }

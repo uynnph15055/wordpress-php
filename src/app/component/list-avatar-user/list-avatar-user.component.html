@@ -1,6 +1,6 @@
 
 
-<div class="avatar-group" *ngIf="avatarTeam.length <= 5">
+<div style="margin-left: -10px;" class="avatar-group" *ngIf="avatarTeam.length <= 5">
   <div class="avatar" *ngFor="let item of avatarTeam">
     <span class="avatar-name">{{ item.name }}</span>
     <img
@@ -22,7 +22,7 @@
   </div>
 </div>
 
-<div class="avatar-group" *ngIf="avatarTeam.length > 5">
+<div style="margin-left: -10px;" class="avatar-group" *ngIf="avatarTeam.length > 5">
     <div class="avatar avatar-hover" *ngFor="let item of avatarTeam; let i = index">
       <div *ngIf="i < avatarTeam.length - 1; else elseBlock">
         <span class="avatar-name">{{ item.name }}</span>
@@ -53,4 +53,4 @@
           </div>
       </ng-template>
     </div>
-  </div>
+</div>

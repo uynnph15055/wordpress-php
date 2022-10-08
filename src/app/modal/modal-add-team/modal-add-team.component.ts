@@ -32,6 +32,7 @@ export class ModalAddTeamComponent implements OnInit {
   public message: string;
   user_id: any = 4;
   formEdit: boolean = false;
+  isEditData : boolean = false;
 
   // set up form control
   formRegister = new FormGroup({
@@ -84,6 +85,7 @@ export class ModalAddTeamComponent implements OnInit {
 
   // Render image after add
   preview(files: any) {
+    this.isEditData = true;
     if (files.length === 0) return;
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
@@ -105,7 +107,9 @@ export class ModalAddTeamComponent implements OnInit {
     let dataTeam = { ...this.formRegister.value };
     var formDataTeam = new FormData();
     formDataTeam.append('name', dataTeam.name);
-
+    if (this.imagePath != undefined) {
+      formDataTeam.append('image', this.imagePath);
+    }
     formDataTeam.append('contest_id', this.data.contest_id);
     formDataTeam.append('user_id', this.user_id);
     this.teamService.addTeam(formDataTeam).subscribe((res) => {
@@ -126,11 +130,16 @@ export class ModalAddTeamComponent implements OnInit {
     let dataTeam = { ...this.formRegister.value };
 
     var formDataTeam = new FormData();
-    formDataTeam.append('name', dataTeam.name);
-    if( dataTeam.name === this.teamDetail.name){
+
+    if( dataTeam.name === this.teamDetail.name &&  !this.isEditData){
       this.toast.warning({ summary: 'Bạn chưa chỉnh sửa gì ?', duration: 2000 });
       this.statusRegister = true;
     }else{
+      formDataTeam.append('name', dataTeam.name);
+      if (this.imagePath != undefined) {
+        formDataTeam.append('image', this.imagePath);
+      }
+      formDataTeam.append('contest_id', this.data.contest_id);
       formDataTeam.append('user_id', this.user_id);
       this.teamService
         .editTeam(formDataTeam, this.teamDetail.id)
