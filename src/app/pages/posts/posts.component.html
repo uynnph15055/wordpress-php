@@ -8,7 +8,7 @@
         </nav>
         <div class="header-section--first">
             <h2 class="header-section__title">Bài viết tuyển dụng</h2>
-            <a routerLink="/danh-muc-bai-viet?cate=post-recruitment" class="header-section__link">Tất cả</a>
+            <a (click)="clickChangeUrlToCategoryPost('post-recruitment')" class="header-section__link">Tất cả</a>
         </div>
         <div class="loading" *ngIf="!PostRecruitmentFirst">
             <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '10px' }"
@@ -46,7 +46,7 @@
                 <div class="post-main-content-section">
                     <div class="header-section">
                         <h2 class="header-section__title">Bài viết test năng lực</h2>
-                        <a routerLink="/danh-muc-bai-viet?cate=post-capacity" class="header-section__link">Tất cả</a>
+                        <a (click)="clickChangeUrlToCategoryPost('post-capacity')" class="header-section__link">Tất cả</a>
                     </div>
                     <div class="main-section">
                         <div class="" *ngIf="!PostCapacityFirst">
@@ -90,7 +90,7 @@
                 <div class="post-main-content-section">
                     <div class="header-section">
                         <h2 class="header-section__title">Bài viết cuộc thi</h2>
-                        <a [routerLink]="['/danh-muc-bai-viet?cate=post-contest']" class="header-section__link">Tất cả</a>
+                        <a (click)="clickChangeUrlToCategoryPost('post-contest')" class="header-section__link">Tất cả</a>
                     </div>
                     <div class="main-section">
                         <div class="" *ngIf="!PostContestFirst">
