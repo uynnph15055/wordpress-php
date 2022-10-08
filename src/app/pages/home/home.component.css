@@ -154,63 +154,6 @@
   color: var(--my-secondary);
 }
 
-/* -------------- countdown ---------- */
-.my-countdown {
-  display: flex;
-  /* flex-grow important */
-  flex-grow: 4;
-  justify-content: center;
-  margin-bottom: 0;
-  /* width: 100%; */
-  width: fit-content
-}
-
-.my-countdown-item {
-  color: var(--my-darkest-gray);
-}
-
-.my-countdown-item+.my-countdown-item {
-  padding-left: 4px;
-}
-
-.my-countdown-item-box {
-  background-color: transparent;
-  color: var(--primary);
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 16px;
-  margin-bottom: 0;
-}
-
-.my-countdown-item-text {
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 14px;
-}
-
-/* .my-countdown-item-box {
-  background-color: var(--primary);
-  color: #fff;
-  padding: 12px;
-  min-width: 50px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
-  margin-bottom: 2px;
-}
-
-.my-countdown-item-box {
-  background-color: transparent;
-  color: var(--primary);
-  padding: 4px 12px;
-  min-width: 30px;
-  font-size: 18px;
-} */
-
-.my-countdown {
-  margin-top: 0;
-}
-
 
 /*------------- POST EVENT ---------- */
 @media (min-width: 768px) {

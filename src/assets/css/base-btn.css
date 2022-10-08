@@ -126,7 +126,6 @@
 .my-btn-primary:active,
 .my-btn-secondary:active,
 .my-btn-tertiary:active {
-    box-sizing: border-box;
     box-shadow: 0 0 0 4px rgba(255, 103, 56, .3)
 }
 
