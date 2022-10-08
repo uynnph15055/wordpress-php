@@ -219,22 +219,22 @@ img {
  }
 .my-shadow-1-hover:hover {
   box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
-  border: 1px solid transparent;
+  border: 1px solid transparent !important;
   transform: translateY(-8px)
 }
 .my-shadow-2-hover:hover {
   box-shadow: 0px 4px 8px rgba(142, 141, 208, 0.16);
-  border: 1px solid transparent;
+  border: 1px solid transparent !important;
   transform: translateY(-8px)
 }
 .my-shadow-3-hover:hover {
     box-shadow: 0px 4px 16px rgba(142, 141, 208, 0.16);
-  border: 1px solid transparent;
+  border: 1px solid transparent !important;
   transform: translateY(-8px)
 }
 .my-shadow-4-hover:hover {
   box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
-  border: 1px solid transparent;
+  border: 1px solid transparent !important;
   transform: translateY(-8px)
 }
 
