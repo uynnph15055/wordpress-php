@@ -1,5 +1,7 @@
+.test-capacity_wrapper {
+  margin: 32px 0;
+}
 .banner {
-  margin-top: 32px;
   margin-bottom: 16px;
   width: 100%;
   height: 300px;

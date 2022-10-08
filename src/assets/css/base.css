@@ -167,12 +167,14 @@ img {
   padding: 16px;
   border-radius: var(--my-rounded);
 }
+
 .my-box-filter-3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
 }
+
 .my-input {
   padding: 12px 16px;
   outline: none;
@@ -180,13 +182,16 @@ img {
   border-radius: var(--my-rounded);
   width: 100%;
 }
+
 .my-input:focus {
   box-shadow: 0 0 0 2px rgba(255, 103, 56, .3)
 }
+
 .my-box-filter button {
   flex-grow: 1;
   width: 350px;
 }
+
 /* ------------------- box shadow ------------ */
 .my-shadow-1 {
   /* Elevation 1 */
@@ -206,6 +211,31 @@ img {
 .my-shadow-4 {
   /* Elevation 4 */
   box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
+}
+
+.my-shadow-1-hover, .my-shadow-2-hover,
+ .my-shadow-3-hover, .my-shadow-4-hover {
+  transition-duration: .3s;
+ }
+.my-shadow-1-hover:hover {
+  box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
+  border: 1px solid transparent;
+  transform: translateY(-8px)
+}
+.my-shadow-2-hover:hover {
+  box-shadow: 0px 4px 8px rgba(142, 141, 208, 0.16);
+  border: 1px solid transparent;
+  transform: translateY(-8px)
+}
+.my-shadow-3-hover:hover {
+    box-shadow: 0px 4px 16px rgba(142, 141, 208, 0.16);
+  border: 1px solid transparent;
+  transform: translateY(-8px)
+}
+.my-shadow-4-hover:hover {
+  box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
+  border: 1px solid transparent;
+  transform: translateY(-8px)
 }
 
 .fs-text {
@@ -300,6 +330,7 @@ img {
 .my-countdown {
   margin-top: 0;
 }
+
 /* ------------------- post item ------------ */
 .post-item {
   height: 450px;
