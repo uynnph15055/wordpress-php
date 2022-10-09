@@ -23,6 +23,8 @@
   border-radius: 100px;
   object-fit: cover;
   display: inline-block;
+  height: 50px;
+  width: 50px;
 }
 .rank_title{
   color: #0E0759;
@@ -40,6 +42,7 @@
 }
 .rank_item-list{
   width: 100%;
+  height: 75px;
 }
 .rank_item{
   color: #0E0759;
@@ -75,6 +78,11 @@
 
 .rank_head-table{
   width: 100%;
+  background: #F9F9F9;
+  border-radius: 4.76625px;
+}
+.rank-thead-table{
+  height: 75px;
 }
 
 .rank_title-table{
@@ -85,6 +93,7 @@
   font-size: 16px;
   line-height: 22.4px;
   font-weight: 400;
+  background-color: #F9F9F9;
 }
 .rank_title-table-score{
   height: 60px;
@@ -139,3 +148,14 @@
   height: 30px;
   padding: 5px 5px;
 }
+
+.rank-table{
+  width: 100%;
+  border-collapse: collapse; 
+  background: white; 
+}
+
+tr:nth-of-type(even) { 
+  background: #F9F9F9; 
+}
+
