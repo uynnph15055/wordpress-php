@@ -2,6 +2,11 @@
   padding: 64px 0;
 }
 
+.section:last-child{
+  padding-top: -64px;
+  padding-bottom: 64px;
+}
+
 .section-bg--1 {
   background: var(--my-bg-color);
 }
@@ -34,7 +39,7 @@
 .recruitment-position-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 24px;
 }
 
@@ -200,7 +205,7 @@
 }
 
 .advantage-show-container {
-  height: 485px;
+  box-shadow: 0px 0px 7px var(--gray);
   border-radius: 16px;
   overflow: hidden;
 }
@@ -210,20 +215,67 @@
   max-width: 100%;
   height: 32px;
   background: var(--my-primary);
+  display: flex;
+  justify-content: start;
+}
+
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+  opacity: 1;
+}
+
+
+@keyframes fade {
+  from {
+      opacity: 0.4
+  }
+  to {
+      opacity: 1
+  }
+}
+
+
+.advantage-show__dots-red{
+  background-color: red;
+}
+
+.advantage-show__dots-yellow{
+  background-color: yellow;
+}
+
+.advantage-show__dots-green{
+  background-color: green;
+}
+
+.advantage-show__dots-item{
+   width: 10px;
+   height: 10px;
+   border-radius: 50px;
+   margin-right: 10px;
+}
+
+.advantage-show-container .advantage-show__dots{
+  height: 100%;
+  align-items: center;
+  display: flex;
+  padding-left: 20px;
 }
 
 .advantage-show-container .advantage-show__content {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 380px;
   background: var(--my-white);
   padding: 20px;
 }
 
 .advantage-show__content .advantage-show__img {
   display: inline-block;
-  min-height: 445px;
+  height: 100%;
   object-fit: cover;
+  width: 100%;
   margin: auto;
   border-radius: var(--my-rounded-2);
 }
@@ -249,6 +301,7 @@
 }
 
 .advantage__tag--1.active {
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #FFC0C0;
   background-color: var(--my-white);
 }
@@ -258,6 +311,7 @@
 }
 
 .advantage__tag--2.active {
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #FFD9C0;
   background-color: var(--my-white);
 }
@@ -267,6 +321,7 @@
 }
 
 .advantage__tag--3.active {
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #FAF0D7;
   background-color: var(--my-white);
 
@@ -277,6 +332,7 @@
 }
 
 .advantage__tag--4.active {
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #8CC0DE;
   background-color: var(--my-white);
 
@@ -285,3 +341,5 @@
 .advantage__tag--4 i {
   color: #8CC0DE;
 }
+
+

@@ -149,30 +149,13 @@ export class ContestDeatailComponent implements OnInit {
 
   // Mở model thêm đội thi
   getResultRank() {
-    let rountIdEnd = this.getRoundId(this.contestDetail.rounds, 1);
-    this.roundService.getResultRound(rountIdEnd).subscribe((res) => {
+    this.roundService.getResultRound(this.contestDetail.rounds[this.contestDetail.rounds.length - 1].id).subscribe((res) => {
       res.status ? (this.resultRank = res.payload.data) : null;
     });
   }
 
-  // Kết quả vòng thi trước đó
-  getResultRoundBefore(arrRound: Array<Round>, index: number) {
-    this.roundService
-      .getResultRound(this.getRoundId(arrRound, index))
-      .subscribe((res) => {
-        if (res.status) {
-          this.resultRoundBefore = res.payload.data;
-          this.resultRoundBefore.length > 0
-            ? (this.statusResultRoundBefore = true)
-            : this.statusResultRoundBefore;
-        }
-      });
-  }
 
-  // Lấy ra id vòng thi cuối cùng của cuộc thi.
-  getRoundId(arr: Array<Round>, element: number) {
-    return arr[arr.length - element].id;
-  }
+
 
   scrollWin(elementString: any, distanceApart: number) {
     let element = document.querySelector(elementString);
@@ -189,18 +172,7 @@ export class ContestDeatailComponent implements OnInit {
     );
   }
 
-  //Tìm kiếm sinh viên kết quả
-  searchTeamRank(event: any) {
-    this.getResultRoundBefore(this.contestDetail.rounds, 2);
-    let searchTeamRank = event.target.value;
-    if (searchTeamRank != null) {
-      this.resultRoundBefore = this.resultRoundBefore.filter((res) => {
-        return res.name.includes(searchTeamRank);
-      });
-    } else {
-      this.getResultRoundBefore(this.contestDetail.rounds, 2);
-    }
-  }
+ 
 
   // Mở nộ dung vòng thi
   open(content: any) {
