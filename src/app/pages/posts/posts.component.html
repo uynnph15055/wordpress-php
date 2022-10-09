@@ -35,13 +35,15 @@
         </div>
         <div class="post-new-latest" *ngIf="postRecruitmentFirst">
             <div class="post-new-latest__img-section">
-                <a routerLink="/bai-viet/{{postRecruitmentFirst.slug}}">
+                <a routerLink="/bai-viet/{{postRecruitmentFirst.slug}}" data-toggle="tooltip"
+                                        data-placement="top" title={{postRecruitmentFirst.title}}>
                     <img src={{postRecruitmentFirst.thumbnail_url}} alt="" class="post-new-latest__img">
                 </a>
             </div>
             <div class="post-new-latest-content">
                 <div class="">
-                    <h3 class="post-new-latest__title">
+                    <h3 class="post-new-latest__title" data-toggle="tooltip"
+                                        data-placement="top" title={{postRecruitmentFirst.title}}>
                         <a routerLink="/bai-viet/{{postRecruitmentFirst.slug}}">{{postRecruitmentFirst.title}}</a>
                     </h3>
                     <div class="post-new-latest__info">
@@ -139,7 +141,8 @@
                         <div class="post-in-cate-list">
                             <div class="post-in-cate-item" *ngFor=" let postCapacity of listPostCapacity">
                                 <div class="post-in-cate-item__img-section">
-                                    <a routerLink="/bai-viet/{{postCapacity.slug}}">
+                                    <a routerLink="/bai-viet/{{postCapacity.slug}}" data-toggle="tooltip"
+                                        data-placement="top" title={{postCapacity.title}}>
                                         <img src={{postCapacity.thumbnail_url}} alt="" class="post-in-cate-item__img">
                                     </a>
                                 </div>
@@ -238,7 +241,8 @@
                         <div class="post-in-cate-list">
                             <div class="post-in-cate-item " *ngFor=" let postContes of listPostContest">
                                 <div class="post-in-cate-item__img-section">
-                                    <a routerLink="/bai-viet/{{postContes.slug}}">
+                                    <a routerLink="/bai-viet/{{postContes.slug}}" data-toggle="tooltip"
+                                        data-placement="top" title={{postContes.title}}>
                                         <img src={{postContes.thumbnail_url}} alt="" class="post-in-cate-item__img">
                                     </a>
                                 </div>

@@ -68,7 +68,8 @@
         <div class="post-hot-list" *ngIf="statusPost">
             <div class="post-hot-item" *ngFor="let item of listHotPost">
                 <div class="post-hot-item__img-section">
-                    <a routerLink="/bai-viet/{{item.slug}}">
+                    <a routerLink="/bai-viet/{{item.slug}}" data-toggle="tooltip"
+                                        data-placement="top" title={{item.title}}>
                         <img [src]="item.thumbnail_url" alt="" class="post-hot-item__img">
                     </a>
                 </div>
