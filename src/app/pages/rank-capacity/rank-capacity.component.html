@@ -9,45 +9,40 @@
       />
     </div>
   </div>
-    <form [formGroup]="formFilter" (submit)="filterRankingCapacity()" class="rankingCapacity-filter-box py-4 rounded row">
+    <form [formGroup]="formFilter"  class="rankingCapacity-filter-box py-4 rounded row">
       <div class="col-3 rank_title" >Xếp Hạng</div>
-      <div class="col-4"></div>
-        <div class="col-3">
-          <div ngbDropdown class="d-inline-block w-100">
-            <input
-              type="text"
-              (keyup)="
-                filterSelect(majors, $any($event.target).value, 'major')
-              "
-              formControlName="filterMajor"
-              class="form-control w-100"
-              placeholder="Chuyên ngành"
-              id="dropdownBasic1"
-              ngbDropdownToggle
-            />
-            <div
-              ngbDropdownMenu
-              class="w-100"
-              aria-labelledby="dropdownBasic1"
-            >
-              <div *ngIf="!majors" class="d-flex justify-content-center">
-                <app-loading-item class="py-2"></app-loading-item>
-              </div>
-              <a
-                *ngFor="let item of majors"
-                (click)="setValueFilterMajor(item)"
-                class="text-collapse"
-                ngbDropdownItem
-                >{{ item.name }}</a
-              >
+      <div class="col-6"></div>
+      <div class="col-3">
+        <div ngbDropdown class="d-inline-block w-100">
+          <input
+            type="text"
+            (keyup)="
+              filterSelect(majors, $any($event.target).value, 'major')
+            "
+            formControlName="filterMajor"
+            class="form-control w-100"
+            placeholder="Chuyên ngành"
+            id="dropdownBasic1"
+            ngbDropdownToggle
+          />
+          <div
+            ngbDropdownMenu
+            class="w-100"
+            aria-labelledby="dropdownBasic1"
+          >
+            <div *ngIf="!majors" class="d-flex justify-content-center">
+              <app-loading-item class="py-2"></app-loading-item>
             </div>
+            <a
+              *ngFor="let item of majors"
+              (click)="setValueFilterMajor(item)"
+              class="text-collapse"
+              ngbDropdownItem
+              >{{ item.name }}</a
+            >
           </div>
         </div>
-      <div class="col-2">
-          <button class="btn-search-rankingCapacity w-100 h-100">
-            Tìm kiếm
-          </button>
-        </div>
+      </div>
   </form>
   <div class="no-results" *ngIf="statusNotResultReturn " >
     Không tìm thấy kết quả nào

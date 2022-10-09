@@ -53,7 +53,13 @@ export class RankCapacityComponent implements OnInit {
     this.getRankByMajor(this.slugMajor)
   }
 
-  filterRankingCapacity(){
+
+
+  setValueFilterMajor(item: Major) {
+    this.formFilter.controls['filterMajor'].setValue(item.name);
+    this.statusSubmit = true
+    this.statusMajor = true
+
     this.listRanking = [];
     this.statusNotResultReturn = false;
     this.statusRanking = false;
@@ -89,12 +95,6 @@ export class RankCapacityComponent implements OnInit {
           }
         }
       });
-  }
-
-  setValueFilterMajor(item: Major) {
-    this.formFilter.controls['filterMajor'].setValue(item.name);
-    this.statusSubmit = true
-    this.statusMajor = true
   }
 
   filterSelect(arr: Array<any>, value: string, input: string) {
