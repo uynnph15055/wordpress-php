@@ -123,9 +123,6 @@
   color: var(--blue);
   position: relative;
   font-size: 16px;
-}
-
-.menu_login-box .nav-link-item {
   padding-bottom: 5px;
 }
 
@@ -135,7 +132,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 3px;
   background-color: var(--primary);
   transform-origin: bottom right;
   transform: scaleX(0);
@@ -146,6 +143,7 @@
 .nav-item.active > .nav-link-item::before {
   transform-origin: bottom left;
   transform: scaleX(1);
+  
 }
 
 .menu-res-item {
