@@ -151,7 +151,7 @@ h5 {
 .post-in-cate-item__img-section .post-in-cate-item__img {
     width: 100%;
     border-radius: 10px;
-    height: 125px;
+    height: 100px;
     object-fit: cover;
 }
 
@@ -170,21 +170,4 @@ h5 {
     color: #8E8E95;
     display: flex;
     margin-top: 20px;
-}
-
-/* ------------------- aside ---------- */
-.form-search {
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #E8EAEE
-}
-
-.form-search i {
-    color: var(--primary-color)
-}
-
-.form-search .form__input {
-    outline: none;
-    width: 100%;
 }

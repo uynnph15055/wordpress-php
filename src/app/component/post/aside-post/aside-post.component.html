@@ -13,12 +13,57 @@
             <h2 class="header-section__title">Bài viết nổi bật</h2>
         </div>
         <div class="post-hot-list" *ngIf="!statusPost">
-            <ngx-skeleton-loader class="post-hot-item" [theme]="{ 'height.px' : 100, 'border-radius': '10px' }" appearance="line">
-            </ngx-skeleton-loader>
-            <ngx-skeleton-loader [theme]="{ 'height.px' : 100, 'border-radius': '10px' }" appearance="line">
-            </ngx-skeleton-loader>
-            <ngx-skeleton-loader [theme]="{ 'height.px' : 100, 'border-radius': '10px' }" appearance="line">
-            </ngx-skeleton-loader>
+            <div class="post-hot-item">
+                <div class="post-hot-item__img-section">
+                    <ngx-skeleton-loader [theme]="{ 'height.px' : 80, 'border-radius': '8px' }" appearance="line">
+                    </ngx-skeleton-loader>
+                </div>
+                <div class="post-hot-item-content">
+                    <h3 class="post-hot-item-content__title text-collapse" data-toggle="tooltip" data-placement="top"
+                        title="Art is the way to express it to abc idw alsji">
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 15, 'border-radius': '8px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </h3>
+                    <div>
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 15, 'border-radius': '8px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
+            </div>
+            <div class="post-hot-item">
+                <div class="post-hot-item__img-section">
+                    <ngx-skeleton-loader [theme]="{ 'height.px' : 80, 'border-radius': '8px' }" appearance="line">
+                    </ngx-skeleton-loader>
+                </div>
+                <div class="post-hot-item-content">
+                    <h3 class="post-hot-item-content__title text-collapse" data-toggle="tooltip" data-placement="top"
+                        title="Art is the way to express it to abc idw alsji">
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 15, 'border-radius': '8px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </h3>
+                    <div>
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 15, 'border-radius': '8px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
+            </div>
+            <div class="post-hot-item">
+                <div class="post-hot-item__img-section">
+                    <ngx-skeleton-loader [theme]="{ 'height.px' : 80, 'border-radius': '8px' }" appearance="line">
+                    </ngx-skeleton-loader>
+                </div>
+                <div class="post-hot-item-content">
+                    <h3 class="post-hot-item-content__title text-collapse" data-toggle="tooltip" data-placement="top"
+                        title="Art is the way to express it to abc idw alsji">
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 15, 'border-radius': '8px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </h3>
+                    <div>
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 15, 'border-radius': '8px' }" appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="post-hot-list" *ngIf="statusPost">
             <div class="post-hot-item" *ngFor="let item of listHotPost">
@@ -29,7 +74,7 @@
                 </div>
                 <div class="post-hot-item-content">
                     <h3 class="post-hot-item-content__title text-collapse" data-toggle="tooltip" data-placement="top"
-                        title="Art is the way to express it to abc idw alsji">
+                        title={{item.title}}>
                         <a routerLink="/bai-viet/{{item.slug}}">
                             {{item.title}}
                         </a>
