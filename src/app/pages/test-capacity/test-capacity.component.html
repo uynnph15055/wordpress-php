@@ -24,7 +24,7 @@
             [formGroup]="formFilter"
             (submit)="filterCapacity()"
           >
-            <div class="col-4">
+            <div class="col-3">
               <input
                 type="text"
                 class="form-control"
@@ -57,7 +57,7 @@
                   <a
                     *ngFor="let item of majors"
                     (click)="setValueFilterMajor(item)"
-                    class="text-collapse"
+                    class="capacity-text-majors"
                     ngbDropdownItem
                     >{{ item.name }}</a
                   >
@@ -88,7 +88,7 @@
                   <a
                     *ngFor="let item of skills"
                     (click)="setValueSkill(item)"
-                    class="text-collapse"
+                    class="capacity-text-majors"
                     ngbDropdownItem
                     >{{ item.name }}</a
                   >
@@ -96,9 +96,14 @@
               </div>
             </div>
             <div class="col-2">
-              <button [disabled]="!statusSubmit" class="btn-search-recruitment w-100 h-100">
+              <button [disabled]="!statusSubmit" class="btn-search-capacity w-100 h-100">
                 Tìm kiếm
               </button>
+            </div>
+            <div class="col-1">
+              <div class="btn-reset-capacity w-100 h-100" (click)="resetFilterCapacity()">
+                Reset
+              </div>
             </div>
           </form>
           <ul class="d-flex flex-wrap filter-skill-box">
