@@ -92,6 +92,7 @@ import { PostItemComponent } from './component/post-item/post-item.component';
 import { RecruitmentPositionComponent } from './component/home/recruitment-position/recruitment-position.component';
 import { OutstandingAdvantagesComponent } from './component/home/outstanding-advantages/outstanding-advantages.component';
 import { RankCapacityComponent } from './pages/rank-capacity/rank-capacity.component';
+import { PostLoadItemComponent } from './loading/post-load-item/post-load-item.component';
 
 @NgModule({
   declarations: [
@@ -156,6 +157,7 @@ import { RankCapacityComponent } from './pages/rank-capacity/rank-capacity.compo
     RecruitmentPositionComponent,
     OutstandingAdvantagesComponent,
     RankCapacityComponent,
+    PostLoadItemComponent,
   ],
   imports: [
     BrowserModule,

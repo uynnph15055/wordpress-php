@@ -126,7 +126,6 @@
 .my-btn-primary:active,
 .my-btn-secondary:active,
 .my-btn-tertiary:active {
-    box-sizing: border-box;
     box-shadow: 0 0 0 4px rgba(255, 103, 56, .3)
 }
 
@@ -177,4 +176,10 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
+}
+.my-btn-ss {
+    padding: 8px 12px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 14px;
 }

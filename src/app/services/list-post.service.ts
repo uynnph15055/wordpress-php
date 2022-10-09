@@ -8,10 +8,7 @@ import { ResponsePayload } from "../models/response-payload";
   providedIn: "root",
 })
 export class ListPostService {
-  constructor(private http: HttpClient) {}
-
-  
-
+  constructor(private http: HttpClient) { }
 
   // Get Post Where Category
   getPostWhereCate(cate: string): Observable<ResponsePayload> {
@@ -24,7 +21,7 @@ export class ListPostService {
   }
   // Get all list post
 
-  getHotPost() : Observable<ResponsePayload>{
+  getHotPost(): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?postHot=hot`);
   }
 
@@ -59,17 +56,20 @@ export class ListPostService {
     return this.http.post<ResponsePayload>(`${environment.candidateUrl}/add`, data);
   }
 
+  filterPost(keyword: string, post: string | null = null, status: number | null | string = null): Observable<ResponsePayload> {
+    let keywordQuery = keyword == null ? '' : keyword;
+    let typePostChange = post == null ? '' : post;
+    let statusPostChange = status == null ? '' : status;
+    return this.http.get<ResponsePayload>(`${environment.postListUrl}?keyword=${keywordQuery}&post=${typePostChange}&postHot=${statusPostChange}`);
+  } 
   searchPostRecruitment(keyword: string): Observable<ResponsePayload> {
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-recruitment&keyword=${keyword}`);
   } 
-
 
   // Post  recruitment  page trang chủ.
   recruitmentPosition():Observable<ResponsePayload>{
     return this.http.get<ResponsePayload>(`${environment.postListUrl}?post=post-recruitment&limit=6`);
   } 
-
-
   
   // Post  recruitment  page trang chủ.
   paydingRecruitmentPosition(index: number):Observable<ResponsePayload>{

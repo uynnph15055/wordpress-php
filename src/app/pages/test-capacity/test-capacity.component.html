@@ -1,163 +1,85 @@
 <div class="test-capacity_wrapper">
-  <div class="container py-4">
+  <div class="container">
     <div class="">
-      <div class="pb-4">
-        <a routerLink="" class="router--home">Trang chủ</a>
-        <span class="router--index"> / Test năng lực</span>
-      </div>
       <div class="">
-        <img
-          class="banner"
-          src="https://images.unsplash.com/photo-1649859398731-d3c4ebca53fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-          alt=""
-        />
+        <img class="banner"
+          src="https://static.vecteezy.com/system/resources/previews/001/871/599/original/be-the-best-and-champion-trophy-for-number-one-prize-for-winner-illustration-concept-can-be-use-for-landing-page-template-ui-ux-web-mobile-app-poster-banner-website-free-vector.jpg"
+          alt="" />
       </div>
     </div>
     <div class="">
-      <div class="">
+      <!-- <div class="">
         <h2 class="test-capacity_title-head">Danh Sách Test Năng Lực</h2>
-      </div>
+      </div> -->
       <div class="">
-        <div class="container py-4">
-          <form
-            class="recruitment-filter-box py-3 rounded row"
-            [formGroup]="formFilter"
-            (submit)="filterCapacity()"
-          >
-            <div class="col-4">
-              <input
-                type="text"
-                class="form-control"
-                (keyup)="setValueKeyword($event)"
-                placeholder="Tìm kiếm ..."
-                formControlName="filterName"
-              />
-            </div>
-            <div class="col-3">
-              <div ngbDropdown class="d-inline-block w-100">
-                <input
-                  type="text"
-                  (keyup)="
+        <form class="my-box-filter my-box-filter-3" [formGroup]="formFilter" (submit)="filterCapacity()">
+          <input type="text" class="my-input" (keyup)="setValueKeyword($event)" placeholder="Tìm kiếm..."
+            formControlName="filterName" />
+          <div ngbDropdown class="d-inline-block w-100">
+            <input type="text" (keyup)="
                     filterSelect(majors, $any($event.target).value, 'major')
-                  "
-                  formControlName="filterMajor"
-                  class="form-control w-100"
-                  placeholder="Chuyên ngành"
-                  id="dropdownBasic1"
-                  ngbDropdownToggle
-                />
-                <div
-                  ngbDropdownMenu
-                  class="w-100"
-                  aria-labelledby="dropdownBasic1"
-                >
-                  <div *ngIf="!majors" class="d-flex justify-content-center">
-                    <app-loading-item class="py-2"></app-loading-item>
-                  </div>
-                  <a
-                    *ngFor="let item of majors"
-                    (click)="setValueFilterMajor(item)"
-                    class="text-collapse"
-                    ngbDropdownItem
-                    >{{ item.name }}</a
-                  >
-                </div>
+                  " formControlName="filterMajor" class="my-input" placeholder="Chuyên ngành" id="dropdownBasic1"
+              ngbDropdownToggle />
+            <div ngbDropdownMenu class="w-100" aria-labelledby="dropdownBasic1">
+              <div *ngIf="!majors" class="d-flex justify-content-center">
+                <app-loading-item class="py-2"></app-loading-item>
               </div>
+              <a *ngFor="let item of majors" (click)="setValueFilterMajor(item)" class="text-collapse"
+                ngbDropdownItem>{{ item.name }}</a>
             </div>
-            <div class="col-3">
-              <div ngbDropdown class="d-inline-block w-100">
-                <input
-                  type="text"
-                  (keyup)="
-                    filterSelect(skills, $any($event.target).value, 'skill')
-                  "
-                  formControlName="filterSkill"
-                  class="form-control w-100"
-                  placeholder="Kĩ năng"
-                  id="dropdownBasic1"
-                  ngbDropdownToggle
-                />
-                <div
-                  ngbDropdownMenu
-                  class="w-100"
-                  aria-labelledby="dropdownBasic1"
-                >
-                  <div *ngIf="!skills" class="d-flex justify-content-center">
-                    <app-loading-item class="py-2"></app-loading-item>
-                  </div>
-                  <a
-                    *ngFor="let item of skills"
-                    (click)="setValueSkill(item)"
-                    class="text-collapse"
-                    ngbDropdownItem
-                    >{{ item.name }}</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="col-2">
-              <button [disabled]="!statusSubmit" class="btn-search-recruitment w-100 h-100">
-                Tìm kiếm
-              </button>
-            </div>
-          </form>
-          <ul class="d-flex flex-wrap filter-skill-box">
-            <li class="test-capacity__keyword">Đề xuất cho bạn:</li>
-            <li
-              *ngFor="let item of keywordTrending"
-              (click)="setValueKeywordTrending(item.keyword)"
-              class="test-capacity__keyword-item"
-            >
-              <i class="fa-solid fa-fire test-capacity__keyword-icon"></i>
-              <span class="test-capacity__keyword-title">{{ item.keyword }}</span>
-            </li>
-          </ul>
-          <div class="no-results" *ngIf="statusNotResultReturn">
-            Không tìm thấy kết quả nào
           </div>
+          <div ngbDropdown class="d-inline-block w-100">
+            <input type="text" (keyup)="
+                    filterSelect(skills, $any($event.target).value, 'skill')
+                  " formControlName="filterSkill" class="my-input w-100" placeholder="Kĩ năng" id="dropdownBasic1"
+              ngbDropdownToggle />
+            <div ngbDropdownMenu class="w-100" aria-labelledby="dropdownBasic1">
+              <div *ngIf="!skills" class="d-flex justify-content-center">
+                <app-loading-item class="py-2"></app-loading-item>
+              </div>
+              <a *ngFor="let item of skills" (click)="setValueSkill(item)" class="text-collapse" ngbDropdownItem>{{
+                item.name }}</a>
+            </div>
+          </div>
+          <button [disabled]="!statusSubmit" class="my-btn-primary my-btn-s">
+            Tìm kiếm
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+        <ul class="d-flex flex-wrap filter-skill-box">
+          <li class="test-capacity__keyword my-h5">Đề xuất cho bạn:</li>
+          <li *ngFor="let item of keywordTrending" (click)="setValueKeywordTrending(item.keyword)"
+            class="test-capacity__keyword-item">
+            <i class="fa-solid fa-fire test-capacity__keyword-icon"></i>
+            <span class="test-capacity__keyword-title">{{ item.keyword }}</span>
+          </li>
+        </ul>
+        <div class="no-results" *ngIf="statusNotResultReturn">
+          Không tìm thấy kết quả nào
         </div>
       </div>
       <div class="">
         <!-- skeleton -->
         <ul class="capacity__related-list row" *ngIf="!statusCapacity">
-          <div
-            class="col col-lg-3 col-md-4 col-sm-12 col-12"
-            *ngFor="let _ of [].constructor(6)"
-          >
-            <div class="capacity__related-item">
-              <ngx-skeleton-loader
-                [theme]="{ height: '150px' }"
-              ></ngx-skeleton-loader>
+          <div class="col col-lg-3 col-md-4 col-sm-12 col-12" *ngFor="let _ of [].constructor(6)">
+            <div>
+              <ngx-skeleton-loader [theme]="{ height: '150px' }"></ngx-skeleton-loader>
 
-              <ngx-skeleton-loader
-                [theme]="{ margin: '0 0 4px' }"
-              ></ngx-skeleton-loader>
+              <ngx-skeleton-loader [theme]="{ margin: '0 0 4px' }"></ngx-skeleton-loader>
 
-              <ngx-skeleton-loader
-                [theme]="{ margin: '0 0 4px', width: '30%', display: 'block' }"
-              ></ngx-skeleton-loader>
-              <ngx-skeleton-loader
-                [theme]="{ margin: '0 0 4px', width: '50%', display: 'block' }"
-              ></ngx-skeleton-loader>
-              <ngx-skeleton-loader
-                [theme]="{ margin: '0 0 4px', width: '70%', display: 'block' }"
-              ></ngx-skeleton-loader>
+              <ngx-skeleton-loader [theme]="{ margin: '0 0 4px', width: '50%', display: 'block' }">
+              </ngx-skeleton-loader>
+              <ngx-skeleton-loader [theme]="{ margin: '0 0 4px', width: '70%', display: 'block' }">
+              </ngx-skeleton-loader>
 
-              <ngx-skeleton-loader
-                [theme]="{ height: '40px', margin: '6px 0 0' }"
-              ></ngx-skeleton-loader>
+              <ngx-skeleton-loader [theme]="{ height: '40px', margin: '6px 0 0' }"></ngx-skeleton-loader>
             </div>
           </div>
         </ul>
         <!-- skeleton -->
       </div>
-
-      <div class="test-capacity_list-item">
-        <div class="test-capacity__item" *ngFor="let capacity of listCapacity">
-          <app-capacity-related-item
-            [capacityItem]="capacity"
-          ></app-capacity-related-item>
-        </div>
+      <div class="test-capacity_list">
+          <app-capacity-related-item *ngFor="let capacity of listCapacity" [capacityItem]="capacity"></app-capacity-related-item>
       </div>
     </div>
   </div>

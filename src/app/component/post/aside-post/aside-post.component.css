@@ -1,6 +1,10 @@
-img {
-    max-width: 100%;
-    object-fit: cover;
+h3>a {
+    color: var(--my-black);
+    transition-duration: .3s;
+}
+
+h3:hover>a {
+    color: var(--my-primary)
 }
 
 .header-section {
@@ -12,7 +16,7 @@ img {
 }
 
 .header-section .header-section__title {
-    font-size: 16px;
+    color: var(--my-primary);
     margin: 0;
 }
 
@@ -24,9 +28,11 @@ img {
 .post-search {
     position: relative;
 }
-.post-search:hover .result-search{
+
+.post-search:hover .result-search {
     visibility: visible;
 }
+
 .result-search {
     position: absolute;
     top: 1;
@@ -41,9 +47,11 @@ img {
     /* visibility: hidden; */
     padding: 8px;
 }
+
 .post-item-search+.post-item-search {
     margin-top: 10px;
 }
+
 /* ------------------------------------- */
 .post-hot-item {
     display: grid;
@@ -51,14 +59,15 @@ img {
     grid-gap: 8px;
     margin-top: 12px;
 }
+
 .post-hot-item .post-hot-item__img-section .post-hot-item__img {
     border-radius: 5px;
     height: 80px;
     width: 100%;
 }
+
 .post-hot-item .post-hot-item-content .post-hot-item-content__title {
     line-height: 1;
-    font-size: 14px;
 }
 
 .post-hot-item-content__info {
@@ -67,7 +76,8 @@ img {
     margin-top: 20px;
     font-size: 12px
 }
-.post-hot-item-content__info-item{
+
+.post-hot-item-content__info-item {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -78,32 +88,4 @@ img {
 
 .post-hot-item-content__info-item+.post-hot-item-content__info-item {
     margin-left: 10px;
-}
-/* ------------------- aside ---------- */
-.form-search {
-    display: flex;
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #E8EAEE;
-    align-items: center;
-}
-.form-search button {
-    line-height: 1;
-}
-.form-search i {
-    color: #FC4C02;
-    font-size: 16px;
-    line-height: 1;
-}
-
-.form-search .form__input {
-    outline: none;
-    width: 100%;
-    border: none;
-    padding-left: 6px;
-    color: #111827;
-    border-radius: 0.25rem;
-    border-color: #D1D5DB;
-    outline: 0;
 }

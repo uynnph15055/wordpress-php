@@ -5,95 +5,64 @@
       <i class="section__title-icon fa-solid fa-clock-rotate-left"></i>
       Vị trí tuyển dụng gấp
     </h2>
-    <div *ngIf="statusListPostRecruitment">
+    <div>
       <div class="list-post-new-slick position-relative">
-        <button
-          (click)="prevRecruitmentPosition()"
-          class="list-post-control post-control-prev position-absolute top-50 start-0 translate-middle"
-        >
+        <button (click)="prevRecruitmentPosition()"
+          class="list-post-control post-control-prev position-absolute top-50 start-0 translate-middle">
           <i class="fa-solid fa-angle-left"></i>
         </button>
-        <div class="recruitment-position-list">
-          <app-recruitment-position
-            *ngFor="let item of listRecruitmentPosition"
-            [item]="item"
-          >
+        <div *ngIf="statusListPostRecruitment" class="recruitment-position-list">
+          <app-recruitment-position *ngFor="let item of listRecruitmentPosition" [item]="item">
           </app-recruitment-position>
         </div>
-        <button
-          (click)="nextRecruitmentPosition()"
-          class="list-post-control post-control-next position-absolute top-50 start-100 translate-middle"
-        >
+        <div *ngIf="!statusListPostRecruitment" class="row">
+          <div class="col-6">
+            <ngx-skeleton-loader [theme]="{
+                      'height.px': '130',
+                      'margin-bottom': '20'
+                    }" animation="pulse"></ngx-skeleton-loader>
+          </div>
+          <div class="col-6">
+            <ngx-skeleton-loader [theme]="{
+                      'height.px': '130',
+                      'margin-bottom': '20'
+                    }" animation="pulse"></ngx-skeleton-loader>
+          </div>
+          <div class="col-6">
+            <ngx-skeleton-loader [theme]="{
+                      'height.px': '130',
+                      'margin-bottom': '20'
+                    }" animation="pulse"></ngx-skeleton-loader>
+          </div>
+          <div class="col-6">
+            <ngx-skeleton-loader [theme]="{
+                      'height.px': '130',
+                      'margin-bottom': '20'
+                    }" animation="pulse"></ngx-skeleton-loader>
+          </div>
+          <div class="col-6">
+            <ngx-skeleton-loader [theme]="{
+                      'height.px': '130',
+                      'margin-bottom': '20'
+                    }" animation="pulse"></ngx-skeleton-loader>
+          </div>
+          <div class="col-6">
+            <ngx-skeleton-loader [theme]="{
+                      'height.px': '130',
+                      'margin-bottom': '20'
+                    }" animation="pulse"></ngx-skeleton-loader>
+          </div>
+        </div>
+        <button (click)="nextRecruitmentPosition()"
+          class="list-post-control post-control-next position-absolute top-50 start-100 translate-middle">
           <i class="fa-solid fa-angle-right"></i>
         </button>
       </div>
       <div class="d-flex justify-content-center algin-items-center">
-        <ul
-          class="post-link__list  mt-4 d-flex "
-        >
-          <li
-            *ngFor="let item of arrLinkPost; let i = index"
-            (click)="payingRecruitmentPosition(i + 1)"
-            class="post-link__item"
-            [ngClass]="item.active ? 'active' : ''"
-          ></li>
+        <ul class="post-link__list  mt-4 d-flex ">
+          <li *ngFor="let item of arrLinkPost; let i = index" (click)="payingRecruitmentPosition(i + 1)"
+            class="post-link__item" [ngClass]="item.active ? 'active' : ''"></li>
         </ul>
-      </div>
-    </div>
-    <div *ngIf="!statusListPostRecruitment" class="row">
-      <div class="col-6">
-        <ngx-skeleton-loader
-          [theme]="{
-            'height.px': '130',
-            'margin-bottom': '20'
-          }"
-          animation="pulse"
-        ></ngx-skeleton-loader>
-      </div>
-      <div class="col-6">
-        <ngx-skeleton-loader
-          [theme]="{
-            'height.px': '130',
-            'margin-bottom': '20'
-          }"
-          animation="pulse"
-        ></ngx-skeleton-loader>
-      </div>
-      <div class="col-6">
-        <ngx-skeleton-loader
-          [theme]="{
-            'height.px': '130',
-            'margin-bottom': '20'
-          }"
-          animation="pulse"
-        ></ngx-skeleton-loader>
-      </div>
-      <div class="col-6">
-        <ngx-skeleton-loader
-          [theme]="{
-            'height.px': '130',
-            'margin-bottom': '20'
-          }"
-          animation="pulse"
-        ></ngx-skeleton-loader>
-      </div>
-      <div class="col-6">
-        <ngx-skeleton-loader
-          [theme]="{
-            'height.px': '130',
-            'margin-bottom': '20'
-          }"
-          animation="pulse"
-        ></ngx-skeleton-loader>
-      </div>
-      <div class="col-6">
-        <ngx-skeleton-loader
-          [theme]="{
-            'height.px': '130',
-            'margin-bottom': '20'
-          }"
-          animation="pulse"
-        ></ngx-skeleton-loader>
       </div>
     </div>
   </div>
@@ -104,12 +73,9 @@
       <i class="section__title-icon fa-solid fa-ranking-star"></i>
       Các cuộc thi
     </h2>
-    <div class="section-content">
+    <div  *ngIf="contests" class="section-content">
       <div class="contest-list">
-        <app-contest-item
-          *ngFor="let item of contests"
-          [item]="item"
-        ></app-contest-item>
+        <app-contest-item *ngFor="let item of contests" [item]="item"></app-contest-item>
       </div>
       <div class="contest-view">
         <a class="contest-view-link" routerLink="/cuoc-thi">
@@ -119,45 +85,82 @@
         </a>
       </div>
     </div>
+    <div *ngIf="!contests" class="row">     
+      <div class="col-6">
+        <ngx-skeleton-loader
+          [theme]="{
+            'height.px': '150',
+            'margin-bottom': '20'
+          }"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+      </div>
+      <div class="col-6">
+        <ngx-skeleton-loader
+          [theme]="{
+            'height.px': '150',
+            'margin-bottom': '20'
+          }"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+      </div>
+      <div class="col-6">
+        <ngx-skeleton-loader
+          [theme]="{
+            'height.px': '150',
+            'margin-bottom': '20'
+          }"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+      </div>
+      <div class="col-6">
+        <ngx-skeleton-loader
+          [theme]="{
+            'height.px': '150',
+            'margin-bottom': '20'
+          }"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+      </div>
+    </div>
   </div>
 </div>
-<!-- <div class="section section-bg--2">
-    <div class="container">
-        <h2 class="section__title section__title--center my-h3">Sinh viên có thành thích xuất sắc tháng 10</h2>
-        <div class="section-content">
-        </div>
-    </div>
-</div> -->
+
 <div class="section section-bg--3">
   <div class="container">
-    <h2 class="section__title my-h3">Tính năng vượt trội khác</h2>
+    <h2 class="section__title section__title--center my-h3">Tính năng vượt trội khác</h2>
     <div class="section-content outstanding-advantages-section">
       <div class="advantage-show-container">
-        <div class="advantage-show__header"></div>
-        <ngx-slick-carousel
-          [config]="sliderFeature"
+        <div class="advantage-show__header">
+          <ul class="advantage-show__dots">
+            <li class="advantage-show__dots-item "></li>
+            <li class="advantage-show__dots-item advantage-show__dots-yellow"></li>
+            <li class="advantage-show__dots-item advantage-show__dots-green"></li>
+          </ul>
+        </div>
+        <div
           class="advantage-show__content"
         >
-          <img ngxSlickItem src="" alt="" class="advantage-show__img" />
+          <img src="https://media.istockphoto.com/vectors/young-programmer-coding-a-new-project-vector-id513544018?k=20&m=513544018&s=612x612&w=0&h=RGmXN_WJhDvq6Hiui1ypnCggPAokE_dDhFX0bmC6PsA=" alt="" class="advantage-show__img fade" />
           <img
-            ngxSlickItem
+          
             src="https://media.istockphoto.com/vectors/programming-code-application-window-vector-id1124838925?k=20&m=1124838925&s=612x612&w=0&h=lKkgavYLrbDtSnQivxMm3_4ThyovkQEFvbOb2Dv3O6g="
             alt=""
-            class="advantage-show__img"
+            class="advantage-show__img d-none fade"
           />
           <img
-            ngxSlickItem
+          
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhLRc0tR6qEXBCJe9xW1qAZajwJrZzZy4ekXuLN3-5-pD3YucvDmF5OZkePFvQuBtjEF4&usqp=CAU"
             alt=""
-            class="advantage-show__img"
+            class="advantage-show__img d-none fade"
           />
           <img
-            ngxSlickItem
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh2QAjDHF3tpZ7NVpX89eECZcg3NS-IaUXNA&usqp=CAU"
+          
+            src="https://img.freepik.com/premium-vector/person-programmer-working-pc-laptop_165488-2761.jpg?w=2000"
             alt=""
-            class="advantage-show__img"
+            class="advantage-show__img d-none  fade"
           />
-        </ngx-slick-carousel>
+        </div>
       </div>
       <div class="advantage-show-text">
         <div class="advantage-list">
@@ -189,32 +192,23 @@
     </h2>
     <div class="section-content">
       <div class="post-event-list grid gy-1" *ngIf="!listPostEvent">
-        <ngx-skeleton-loader
-          [theme]="{
+        <ngx-skeleton-loader [theme]="{
             'height.px': 450,
             'margin-bottom': '7px',
             'border-radius': '10px'
-          }"
-          appearance="line"
-        >
+          }" appearance="line">
         </ngx-skeleton-loader>
-        <ngx-skeleton-loader
-          [theme]="{
+        <ngx-skeleton-loader [theme]="{
             'height.px': 450,
             'margin-bottom': '7px',
             'border-radius': '10px'
-          }"
-          appearance="line"
-        >
+          }" appearance="line">
         </ngx-skeleton-loader>
-        <ngx-skeleton-loader
-          [theme]="{
+        <ngx-skeleton-loader [theme]="{
             'height.px': 450,
             'margin-bottom': '7px',
             'border-radius': '10px'
-          }"
-          appearance="line"
-        >
+          }" appearance="line">
         </ngx-skeleton-loader>
       </div>
       <div class="post-event-list">
@@ -222,7 +216,13 @@
           <app-post-related-item [postItem]="item"></app-post-related-item>
         </div>
       </div>
-      <div class="post-event-list grid gy-1"></div>
+      <div class="contest-view">
+        <a class="contest-view-link" routerLink="/bai-viet">
+          <button class="my-btn-secondary my-btn-m">
+            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -233,13 +233,9 @@
     </h2>
     <div class="section-content">
       <ngx-slick-carousel [config]="sliderCompany" class="recruitment-list">
-        <img
-          *ngFor="let item of companys"
-          ngxSlickItem
-          class="recruitment-item mx-3"
-          [src]="item.logo"
-          alt=""
-        />
+        <div ngxSlickItem class="recruitment-item mx-3" *ngFor="let item of companys" >
+          <img class="recruitment-item__img" [src]="item.logo" alt="" />
+        </div>
       </ngx-slick-carousel>
     </div>
   </div>

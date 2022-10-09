@@ -2,6 +2,11 @@
   padding: 64px 0;
 }
 
+.section:last-child{
+  padding-top: -64px;
+  padding-bottom: 64px;
+}
+
 .section-bg--1 {
   background: var(--my-bg-color);
 }
@@ -30,18 +35,15 @@
   -webkit-text-fill-color: transparent;
 }
 
-
-
-
 /* ---------------------------- recruitment-position ---------------------- */
 .recruitment-position-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 24px;
 }
 
-.post-link__item{
+.post-link__item {
   width: 12px;
   height: 12px;
   border-radius: 50px;
@@ -51,37 +53,31 @@
   transition: all ease-in-out 0.3s;
 }
 
-.post-control-prev{
+.post-control-prev {
   margin-left: -30px;
 }
 
-.post-control-next i{
+.post-control-next i {
   margin-right: -50px;
 }
 
 
-.list-post-control{
+.list-post-control {
   border: none;
   font-size: 2rem;
   color: var(--primary);
   opacity: 0.7;
 }
 
-.list-post-control:hover{
+.list-post-control:hover {
   opacity: 1;
 }
 
-.post-link__list .active{
+.post-link__list .active {
   background-color: var(--primary);
 }
 
-.post-link__list:hover .post-link__item{
-  width: 16px;
-  height: 16px;
-  transition: all ease-in-out 0.3s;
-}
-
-.list-post-new-slick{
+.list-post-new-slick {
   position: relative;
 }
 
@@ -163,63 +159,6 @@
   color: var(--my-secondary);
 }
 
-/* -------------- countdown ---------- */
-.my-countdown {
-  display: flex;
-  /* flex-grow important */
-  flex-grow: 4;
-  justify-content: center;
-  margin-bottom: 0;
-  /* width: 100%; */
-  width: fit-content
-}
-
-.my-countdown-item {
-  color: var(--my-darkest-gray);
-}
-
-.my-countdown-item+.my-countdown-item {
-  padding-left: 4px;
-}
-
-.my-countdown-item-box {
-  background-color: transparent;
-  color: var(--primary);
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 16px;
-  margin-bottom: 0;
-}
-
-.my-countdown-item-text {
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 14px;
-}
-
-/* .my-countdown-item-box {
-  background-color: var(--primary);
-  color: #fff;
-  padding: 12px;
-  min-width: 50px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
-  margin-bottom: 2px;
-}
-
-.my-countdown-item-box {
-  background-color: transparent;
-  color: var(--primary);
-  padding: 4px 12px;
-  min-width: 30px;
-  font-size: 18px;
-} */
-
-.my-countdown {
-  margin-top: 0;
-}
-
 
 /*------------- POST EVENT ---------- */
 @media (min-width: 768px) {
@@ -246,9 +185,15 @@
 }
 
 .recruitment-item {
-  width: 160px;
+  width: 150px;
+}
+
+.recruitment-item__img {
+  width: 100%;
   height: 100%;
-  max-height: 160px;
+  max-width: 150px;
+  max-height: 60px;
+  max-height: 100px;
   object-fit: cover;
 }
 
@@ -260,7 +205,7 @@
 }
 
 .advantage-show-container {
-  height: 485px;
+  box-shadow: 0px 0px 7px var(--gray);
   border-radius: 16px;
   overflow: hidden;
 }
@@ -270,20 +215,67 @@
   max-width: 100%;
   height: 32px;
   background: var(--my-primary);
+  display: flex;
+  justify-content: start;
+}
+
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+  opacity: 1;
+}
+
+
+@keyframes fade {
+  from {
+      opacity: 0.4
+  }
+  to {
+      opacity: 1
+  }
+}
+
+
+.advantage-show__dots-red{
+  background-color: red;
+}
+
+.advantage-show__dots-yellow{
+  background-color: yellow;
+}
+
+.advantage-show__dots-green{
+  background-color: green;
+}
+
+.advantage-show__dots-item{
+   width: 10px;
+   height: 10px;
+   border-radius: 50px;
+   margin-right: 10px;
+}
+
+.advantage-show-container .advantage-show__dots{
+  height: 100%;
+  align-items: center;
+  display: flex;
+  padding-left: 20px;
 }
 
 .advantage-show-container .advantage-show__content {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 380px;
   background: var(--my-white);
   padding: 20px;
 }
 
 .advantage-show__content .advantage-show__img {
   display: inline-block;
-  min-height: 445px;
+  height: 100%;
   object-fit: cover;
+  width: 100%;
   margin: auto;
   border-radius: var(--my-rounded-2);
 }
@@ -309,6 +301,7 @@
 }
 
 .advantage__tag--1.active {
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #FFC0C0;
   background-color: var(--my-white);
 }
@@ -318,6 +311,7 @@
 }
 
 .advantage__tag--2.active {
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #FFD9C0;
   background-color: var(--my-white);
 }
@@ -327,6 +321,7 @@
 }
 
 .advantage__tag--3.active {
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #FAF0D7;
   background-color: var(--my-white);
 
@@ -337,6 +332,7 @@
 }
 
 .advantage__tag--4.active {
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #8CC0DE;
   background-color: var(--my-white);
 
@@ -345,3 +341,5 @@
 .advantage__tag--4 i {
   color: #8CC0DE;
 }
+
+
