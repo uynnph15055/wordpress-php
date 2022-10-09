@@ -72,7 +72,15 @@ h3:hover>a {
 .post-new-latest__info-item+.post-new-latest__info-item {
     margin-left: 20px;
 }
-
+.post-new-latest__bottom .post-new-latest__btn {
+    background: transparent;
+    border: 1px solid var(--my-secondary);
+    color: var(--my-secondary);
+}
+.post-new-latest__bottom .post-new-latest__btn:hover {
+    background-color: var(--my-secondary);
+    color: var(--white);
+}
 .post-new-latest__bottom .post-new-latest__short-desc {
     color: #8E8E95
 }

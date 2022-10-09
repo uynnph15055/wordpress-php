@@ -59,7 +59,11 @@
                     <div class="post-new-latest__bottom">
                         <p class="post-new-latest__short-desc" *ngIf="postRecruitmentFirst.description "
                             [innerHTML]="postRecruitmentFirst.description"></p>
-                        <a routerLink="/bai-viet/{{postRecruitmentFirst.slug}}" class="btn btn-detail">Chi tiết</a>
+                        <a routerLink="/bai-viet/{{postRecruitmentFirst.slug}}" >
+                            <button class="post-new-latest__btn my-btn-secondary my-btn-ss">
+                                Chi tiết
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

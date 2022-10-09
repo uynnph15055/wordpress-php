@@ -197,3 +197,14 @@ h5 {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.post-item-bottom button {
+    background: transparent;
+    margin-top: 8px;
+    border: 1px solid var(--my-secondary);
+    color: var(--my-secondary);
+}
+
+.post-item-bottom button:hover {
+    background-color: var(--my-secondary);
+    color: var(--white);
+}
