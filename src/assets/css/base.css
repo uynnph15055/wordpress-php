@@ -125,7 +125,7 @@ li,
 span,
 strong {
   font-family: 'Nunito Sans', sans-serif !important;
-  margin: 0 !important;
+ 
 }
 
 body {
@@ -138,7 +138,9 @@ body {
   font-size: var(--fs);
   line-height: var(--lh);
 }
-
+.mat-typography p {
+  margin: 0;
+}
 ::-webkit-scrollbar {
   width: 10px;
   background-color: rgb(235, 232, 232);

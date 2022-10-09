@@ -72,15 +72,19 @@ h3:hover>a {
 .post-new-latest__info-item+.post-new-latest__info-item {
     margin-left: 20px;
 }
+
 .post-new-latest__bottom .post-new-latest__btn {
     background: transparent;
+    margin-top: 8px;
     border: 1px solid var(--my-secondary);
     color: var(--my-secondary);
 }
+
 .post-new-latest__bottom .post-new-latest__btn:hover {
     background-color: var(--my-secondary);
     color: var(--white);
 }
+
 .post-new-latest__bottom .post-new-latest__short-desc {
     color: #8E8E95
 }
@@ -143,9 +147,11 @@ h3:hover>a {
     border: none;
     margin-bottom: 8px;
 }
+
 .header-section__title {
     color: var(--my-secondary);
 }
+
 .header-section .header-section__link,
 .header-section--first .header-section__link {
     color: var(--my-darkest-gray);
@@ -184,17 +190,6 @@ h3:hover>a {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-
-.btn-detail {
-    background-color: white;
-    border: solid 1px #8E8E95
-}
-
-.btn-detail:hover {
-    background-color: #0E0759;
-    color: white
 }
 
 .post-in-cate-item-content__info {
