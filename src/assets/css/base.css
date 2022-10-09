@@ -125,6 +125,7 @@ li,
 span,
 strong {
   font-family: 'Nunito Sans', sans-serif !important;
+  margin: 0 !important;
 }
 
 body {
