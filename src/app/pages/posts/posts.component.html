@@ -35,7 +35,9 @@
         </div>
         <div class="post-new-latest" *ngIf="postRecruitmentFirst">
             <div class="post-new-latest__img-section">
-                <img src={{postRecruitmentFirst.thumbnail_url}} alt="" class="post-new-latest__img">
+                <a routerLink="/bai-viet/{{postRecruitmentFirst.slug}}">
+                    <img src={{postRecruitmentFirst.thumbnail_url}} alt="" class="post-new-latest__img">
+                </a>
             </div>
             <div class="post-new-latest-content">
                 <div class="">
