@@ -3,6 +3,7 @@
   border-radius: var(--my-rounded);
   overflow: hidden;
   border: 1px solid var(--my-dark-gray);
+  z-index: -1;
 }
 
 .contest-view {
@@ -46,7 +47,7 @@
 
 .contest-item__title {
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -76,47 +77,4 @@
 .info-item__number {
   font-weight: bold;
   color: var(--my-secondary);
-}
-
-/* -------------- countdown ---------- */
-.my-countdown {
-  display: flex;
-  /* flex-grow important */
-  flex-grow: 1;
-  justify-content: flex-end;
-  margin-bottom: 0;
-  /* width: 100%; */
-  width: fit-content
-}
-
-.my-countdown-item {
-  color: var(--my-darkest-gray);
-}
-
-.my-countdown-item+.my-countdown-item {
-  padding-left: 4px;
-}
-
-.my-countdown-item-box {
-  background-color: transparent;
-  color: var(--primary);
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 16px;
-  margin-bottom: 0;
-}
-
-.my-countdown-item-text {
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 14px;
-}
-
-
-.contest-item{
-  margin-bottom: 20px;
-}
-
-.my-countdown {
-  margin-top: 0;
 }
