@@ -35,23 +35,24 @@
         </div>
         <div class="post-new-latest" *ngIf="postRecruitmentFirst">
             <div class="post-new-latest__img-section">
-                <a routerLink="/bai-viet/{{postRecruitmentFirst.slug}}" data-toggle="tooltip"
-                                        data-placement="top" title={{postRecruitmentFirst.title}}>
+                <a routerLink="/bai-viet/{{postRecruitmentFirst.slug}}" data-toggle="tooltip" data-placement="top"
+                    title={{postRecruitmentFirst.title}}>
                     <img src={{postRecruitmentFirst.thumbnail_url}} alt="" class="post-new-latest__img">
                 </a>
             </div>
             <div class="post-new-latest-content">
                 <div class="">
-                    <h3 class="post-new-latest__title" data-toggle="tooltip"
-                                        data-placement="top" title={{postRecruitmentFirst.title}}>
-                        <a routerLink="/bai-viet/{{postRecruitmentFirst.slug}}">{{postRecruitmentFirst.title}}</a>
+                    <h3 class="post-new-latest__title my-h3" data-toggle="tooltip" data-placement="top"
+                        title={{postRecruitmentFirst.title}}>
+                        <a routerLink="/bai-viet/{{postRecruitmentFirst.slug}}">{{postRecruitmentFirst.title}} abc
+                            askdwj asdijw asdakjds ádksak</a>
                     </h3>
                     <div class="post-new-latest__info">
                         <div class="post-new-latest__info-item">
-                            <i class="fa-solid fa-user"></i>&ensp; {{postRecruitmentFirst.user.name}}
+                            <i class="fa-solid fa-user"></i>&ensp;{{postRecruitmentFirst.user.name}}
                         </div>
                         <div class="post-new-latest__info-item">
-                            <i class="fa-solid fa-clock"></i>>&ensp;{{postRecruitmentFirst.published_at |
+                            <i class="fa-solid fa-clock"></i>&ensp;{{postRecruitmentFirst.published_at |
                             formatDatePost }}
                         </div>
                     </div>
@@ -63,6 +64,7 @@
                 </div>
             </div>
         </div>
+
         <div class="post-main">
             <div class="post-main-content">
                 <div class="post-main-content-section">
@@ -71,12 +73,10 @@
                         <a (click)="clickChangeUrlToCategoryPost('post-capacity')" class="header-section__link">Tất
                             cả</a>
                     </div>
+                    <!------------------------------- loading test capacity  -->
                     <div class="main-section">
-                        <!------------------------------- loading test capacity  -->
                         <div class="" *ngIf="!postCapacityFirst">
-                            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '8px' }"
-                                appearance="line">
-                            </ngx-skeleton-loader>
+                            <app-post-load-item></app-post-load-item>
                         </div>
                         <div class="post-item" *ngIf="postCapacityFirst">
                             <app-post-related-item [postItem]="postCapacityFirst"></app-post-related-item>
@@ -89,7 +89,7 @@
                                     </ngx-skeleton-loader>
                                 </div>
                                 <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse">
+                                    <h3 class="post-in-cate-item-content__title">
                                         <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'border-radius': '8px' }"
                                             appearance="line">
                                         </ngx-skeleton-loader>
@@ -107,7 +107,7 @@
                                     </ngx-skeleton-loader>
                                 </div>
                                 <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse">
+                                    <h3 class="post-in-cate-item-content__title">
                                         <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'border-radius': '8px' }"
                                             appearance="line">
                                         </ngx-skeleton-loader>
@@ -125,7 +125,7 @@
                                     </ngx-skeleton-loader>
                                 </div>
                                 <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse">
+                                    <h3 class="post-in-cate-item-content__title">
                                         <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'border-radius': '8px' }"
                                             appearance="line">
                                         </ngx-skeleton-loader>
@@ -147,7 +147,7 @@
                                     </a>
                                 </div>
                                 <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse" data-toggle="tooltip"
+                                    <h3 class="post-in-cate-item-content__title" data-toggle="tooltip"
                                         data-placement="top" title={{postCapacity.title}}>
                                         <a routerLink="/bai-viet/{{postCapacity.slug}}">
                                             {{postCapacity.title}}
@@ -165,6 +165,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="post-main-content-section">
                     <div class="header-section">
                         <h2 class="header-section__title">Bài viết cuộc thi</h2>
@@ -173,9 +174,7 @@
                     </div>
                     <div class="main-section">
                         <div class="" *ngIf="!postContestFirst">
-                            <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'border-radius': '8px' }"
-                                appearance="line">
-                            </ngx-skeleton-loader>
+                            <app-post-load-item></app-post-load-item>
                         </div>
                         <div class="post-item" *ngIf="postContestFirst">
                             <app-post-related-item [postItem]="postContestFirst"></app-post-related-item>
@@ -189,7 +188,7 @@
                                     </ngx-skeleton-loader>
                                 </div>
                                 <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse">
+                                    <h3 class="post-in-cate-item-content__title">
                                         <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'border-radius': '8px' }"
                                             appearance="line">
                                         </ngx-skeleton-loader>
@@ -207,7 +206,7 @@
                                     </ngx-skeleton-loader>
                                 </div>
                                 <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse">
+                                    <h3 class="post-in-cate-item-content__title">
                                         <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'border-radius': '8px' }"
                                             appearance="line">
                                         </ngx-skeleton-loader>
@@ -225,7 +224,7 @@
                                     </ngx-skeleton-loader>
                                 </div>
                                 <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse">
+                                    <h3 class="post-in-cate-item-content__title">
                                         <ngx-skeleton-loader [theme]="{ 'height.px' : 20, 'border-radius': '8px' }"
                                             appearance="line">
                                         </ngx-skeleton-loader>
@@ -247,7 +246,7 @@
                                     </a>
                                 </div>
                                 <div class="post-in-cate-item-content">
-                                    <h3 class="post-in-cate-item-content__title text-collapse" data-toggle="tooltip"
+                                    <h3 class="post-in-cate-item-content__title" data-toggle="tooltip"
                                         title={{postContes.title}}> <a
                                             routerLink="/bai-viet/{{postContes.slug}}">{{postContes.title}}</a>
                                     </h3>

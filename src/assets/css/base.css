@@ -175,6 +175,27 @@ img {
   gap: 16px;
 }
 
+.my-form-search {
+  background: var(--white);
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  border: 1px solid var(--my-gray);
+  border-radius: var(--my-rounded);
+  overflow: hidden;
+}
+
+.my-form-search:focus-within {
+  box-shadow: 0 0 0 3px var(--my-primary-300);
+}
+
+.my-input-search {
+  padding: 12px 16px;
+  outline: none;
+  width: 100%;
+  border: none;
+}
 .my-input {
   padding: 12px 16px;
   outline: none;
@@ -190,6 +211,20 @@ img {
 .my-box-filter button {
   flex-grow: 1;
   width: 350px;
+}
+
+.my-btn-search-inside {
+  background: var(--my-primary);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 30px;
+  color: white;
+  margin: 4px;
+  border: none;
+  border-radius: var(--my-rounded);
 }
 
 /* ------------------- box shadow ------------ */
@@ -213,25 +248,31 @@ img {
   box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
 }
 
-.my-shadow-1-hover, .my-shadow-2-hover,
- .my-shadow-3-hover, .my-shadow-4-hover {
+.my-shadow-1-hover,
+.my-shadow-2-hover,
+.my-shadow-3-hover,
+.my-shadow-4-hover {
   transition-duration: .3s;
- }
+}
+
 .my-shadow-1-hover:hover {
   box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
   border: 1px solid transparent !important;
   transform: translateY(-8px)
 }
+
 .my-shadow-2-hover:hover {
   box-shadow: 0px 4px 8px rgba(142, 141, 208, 0.16);
   border: 1px solid transparent !important;
   transform: translateY(-8px)
 }
+
 .my-shadow-3-hover:hover {
-    box-shadow: 0px 4px 16px rgba(142, 141, 208, 0.16);
+  box-shadow: 0px 4px 16px rgba(142, 141, 208, 0.16);
   border: 1px solid transparent !important;
   transform: translateY(-8px)
 }
+
 .my-shadow-4-hover:hover {
   box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
   border: 1px solid transparent !important;

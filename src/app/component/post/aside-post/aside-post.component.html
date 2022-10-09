@@ -1,16 +1,16 @@
 <aside>
     <div class="post-search">
-        <form action="" class="form-search" [formGroup]="validateForm" (ngSubmit)="searchPost()">
-            <input type="text" class="form__input" [(ngModel)]="inputKeyword" name="keyword" formControlName="keyword"
+        <form action="" class="my-form-search" [formGroup]="validateForm" (ngSubmit)="searchPost()">
+            <input type="text" class="my-input-search" [(ngModel)]="inputKeyword" name="keyword" formControlName="keyword"
                 placeholder="Tìm kiếm tag, tên bài viết...">
-            <button>
+            <button class="my-btn-search-inside">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
     </div>
     <div class="post-hot">
         <div class="header-section">
-            <h2 class="header-section__title">Bài viết nổi bật</h2>
+            <h2 class="header-section__title my-h5">Bài viết nổi bật</h2>
         </div>
         <div class="post-hot-list" *ngIf="!statusPost">
             <div class="post-hot-item">
