@@ -187,7 +187,7 @@ export class RoundContestDetailComponent implements OnInit {
 
    // Mở model thêm đội thi
    getResultRank() {
-    this.roundService.getResultRound(this.round_id).subscribe((res) => {
+    this.roundService.getResultRound(this.round_id ,  'desc').subscribe((res) => {
       res.status ? (this.resultRank = res.payload.data) : null;
     });
   }

@@ -12,64 +12,34 @@ import { RoundService } from 'src/app/services/round.service';
 })
 export class ListResultRoundComponent implements OnInit {
   @Input() roundResult: Array<ResultRound>;
+  @Input() links: Array<any>;
+  @Input() next: string;
+  @Input() prev: string;
+  @Input() statusLinks: boolean;
 
-  dataResultRound: Array<ResultRound>;
-  statusResultRound: boolean = false;
-  payingLinks: Array<any>;
-  pages: number = 1;
-  checkTeamPoint: boolean = false;
-  resPayLoad: any;
-  titleResult: string = 'Kết quả chung cuộc';
+  @Output() payingResult = new EventEmitter<string>();
+  @Output() payingResultSort = new EventEmitter<boolean>();
+
+
+  statusSort : boolean = true;  
+
+  
   constructor(
-    private roundService: RoundService,
     private configFunctionService: ConfigFunctionService,
-    private contestService: ContestService
   ) {}
 
   ngOnInit(): void {
-    console.log(this.roundResult);
+ 
   }
 
-  sortRankTeam(result_id: number): number {
-    return this.configFunctionService.indexTable(
-      result_id,
-      this.dataResultRound,
-      this.pages,
-      10
-    );
+  payingResultEvent(url : string){
+    if(url){
+      this.payingResult.emit(url);
+    }
   }
 
-  displayedColumns: string[] = ['rank', 'avatar', 'name', 'total-point'];
-
-  // Phân trang theo link
-  payingPage(link: any, pages: any) {
-    this.statusResultRound = false;
-    this.pages = pages;
-
-    this.contestService.getContestWherePage(link).subscribe((res) => {
-      if (res.status) {
-        this.dataResultRound = res.payload.data;
-        this.payingLinks = this.editLink(res.payload.links);
-        this.dataResultRound
-          ? (this.statusResultRound = true)
-          : this.statusResultRound;
-      }
-    });
-  }
-
-  //Sửa mảng link payingLink
-  editLink(arr: any) {
-    return arr.filter((item: any, index: any) => {
-      return index != 0 && index != arr.length - 1;
-    });
-  }
-
-  // Kiểm tra xem đã có kế quả cho tường đọi chưa
-  checkPointTeamNotNull(data: Array<ResultRound>) {
-    data.forEach((item) => {
-      item.result.point != null
-        ? (this.checkTeamPoint = true)
-        : this.checkTeamPoint;
-    });
+  payingResultEventSort(status: boolean){
+    this.statusSort = status;
+    this.payingResultSort.emit(status);
   }
 }

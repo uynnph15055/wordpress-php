@@ -104,6 +104,7 @@
                 </p>
                 <div class="" *ngIf="contestDetail.teams.length > 0">
                   <app-list-avatar-user
+                  
                     [listTeam]="contestDetail.teams"
                     [titleModelName]="'Danh sách các đội'"
                   >
@@ -266,7 +267,13 @@
         <app-list-result-round
           id="contest-result"
           *ngIf="resultRank.length > 0"
+          [next] = "payLinkNextResult"
+          [prev] = "payLinkPrevResult"
+          (payingResult)="getUrlPaying($event)"
+          [links]="payLinkArrayResult"
+          [statusLinks]="statusLinks"
           [roundResult]="resultRank"
+          (payingResultSort)="sortResult($event)"
           class="mt-3"
         >
         </app-list-result-round>

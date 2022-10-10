@@ -34,13 +34,7 @@ export class ContestDeatailComponent implements OnInit {
   infoUser: User;
   closeResult: string;
   contest_id: any;
-  teamIdMemberHasJoinTeam: number = 0;
   contestRelateTo: Array<Contest> = [];
-  resultRoundBefore: Array<ResultRound>;
-  sliderContest: Array<Slider>;
-  contestCompanySuppor: Enterprise;
-  contentItem: Array<Contest> = [];
-  forwardComponent: Array<any> = [];
   resultRank: Array<ResultRound> = [];
   listPost: TransmitToPost = {
     id: 0,
@@ -48,6 +42,9 @@ export class ContestDeatailComponent implements OnInit {
     numberColumn: 4,
   };
   // ---------------------------
+  payLinkArrayResult :  Array<any>;
+  payLinkNextResult : string = '';
+  payLinkPrevResult :  string = '';
 
   contestDetail: Contest;
   contestRelated: Array<any>;
@@ -60,10 +57,8 @@ export class ContestDeatailComponent implements OnInit {
   routeStateRegister: boolean = false;
   statusResultRound: boolean = false;
   statusCheckDate: boolean = true;
-  statusPage: boolean = false;
-  statusResultRoundBefore: boolean = false;
   statusUserLogin: boolean = false;
-
+  statusLinks: boolean = false;
   listPostResult: Array<Post> = [];
 
   sliderSupporter = {
@@ -91,12 +86,9 @@ export class ContestDeatailComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Chi tiết cuộc thi');
-    this.getListPost();
+  
     // Check user đã đăng nhập hay chưa
-    this.infoUser = this.userService.getUserValue();
-    this.infoUser ? (this.statusUserLogin = true) : this.statusUserLogin;
-
-    this.statusPage = true;
+    this.userService.getUserValue() ? (this.statusUserLogin = true) : this.statusUserLogin;
     this.runTop();
     this.routeStateRegister = history.state.registerNow;
 
@@ -104,12 +96,11 @@ export class ContestDeatailComponent implements OnInit {
     this.contestService.getWhereId(this.contest_id).subscribe((res) => {
       if (res.status) {
         this.contestDetail = res.payload;
-        this.contestDetail.rounds.length > 0 && this.getResultRank();
+        this.contestDetail.rounds.length > 0 && this.getResultRank('desc');
         this.contestDetail ? (this.statusContest = true) : this.statusContest;
-        this.statusPage = false;
-        this.contestDetail.enterprise;
       }
     });
+    
 
     // Các cuộc thi liên quan
     this.contestService
@@ -128,7 +119,8 @@ export class ContestDeatailComponent implements OnInit {
             : this.countContestRelated;
         }
       });
-    
+  
+      this.getListPost();
   }
 
   //Cac bai post
@@ -147,14 +139,40 @@ export class ContestDeatailComponent implements OnInit {
     });
   }
 
-  // Mở model thêm đội thi
-  getResultRank() {
-    this.roundService.getResultRound(this.contestDetail.rounds[this.contestDetail.rounds.length - 1].id).subscribe((res) => {
-      res.status ? (this.resultRank = res.payload.data) : null;
-    });
+  getUrlPaying(url: string){
+    this.statusLinks = false;
+    this.roundService.getResultRoundUrl(url).subscribe((res) => {
+      if(res.status){
+       this.resultRank = res.payload.data;
+       this.payLinkArrayResult = res.payload.links;
+       this.payLinkNextResult = res.payload.next_page_url;
+       this.payLinkPrevResult = res.payload.prev_page_url;
+       this.payLinkArrayResult.pop();
+       this.payLinkArrayResult.shift();
+       this.statusLinks = true;
+      }
+   });
   }
 
+  sortResult(status: boolean){
+    this.statusLinks = false;
+    status ? this.getResultRank('asc') : this.getResultRank('desc');
+  }
 
+  // Mở model thêm đội thi
+  getResultRank(sort : string) {
+    this.roundService.getResultRound(this.contestDetail.rounds[this.contestDetail.rounds.length - 1].id ,  sort).subscribe((res) => {
+       if(res.status){
+        this.resultRank = res.payload.data;
+        this.payLinkArrayResult = res.payload.links;
+        this.payLinkNextResult = res.payload.next_page_url;
+        this.payLinkPrevResult = res.payload.prev_page_url;
+        this.payLinkArrayResult.pop();
+        this.payLinkArrayResult.shift();
+        this.statusLinks = true;
+       }
+    });
+  }
 
 
   scrollWin(elementString: any, distanceApart: number) {
@@ -171,8 +189,6 @@ export class ContestDeatailComponent implements OnInit {
       1000
     );
   }
-
- 
 
   // Mở nộ dung vòng thi
   open(content: any) {
