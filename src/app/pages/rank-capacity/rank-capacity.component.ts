@@ -22,11 +22,11 @@ export class RankCapacityComponent implements OnInit {
   statusMajor: boolean = false
   statusRanking: boolean = false
 
-  first_page_url: string | null
-  next_page_url: string | null
-  prev_page_url: string | null  
-  last_page_url: string | null
-  last_page: number | string | null
+  first_page_url: string 
+  next_page_url: string
+  prev_page_url: string  
+  last_page_url: string
+  last_page: string 
   links: any
 
   constructor(
@@ -43,6 +43,18 @@ export class RankCapacityComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    let pageActive = this.route.snapshot.queryParamMap.get('page')
+    let listTab = document.querySelectorAll('.pagination-item')
+      for (let i = 0; i < listTab.length; i++) {
+        listTab[i]?.classList.remove('active');
+      }
+      for (let i = 0; i < listTab.length; i++) {
+        console.log(listTab[i]);
+        
+        // listTab[i]?.classList.add('active');
+      }
+
+
     if(this.formFilter.controls['filterMajor'].value){
       this.statusSubmit = true;
     }else{
@@ -83,13 +95,14 @@ export class RankCapacityComponent implements OnInit {
             this.statusRanking = true
             this.statusNotResultReturn = true
           }else{
+            let totalItemPages = res.payload.links.length
             this.listRanking = res.payload.data;
             this.first_page_url = res.payload.first_page_url
             this.next_page_url = res.payload.next_page_url
             this.prev_page_url = res.payload.prev_page_url
             this.last_page_url = res.payload.last_page_url
             this.last_page = res.payload.last_page
-            this.links = res.payload.links
+            this.links = res.payload.links.slice(1, totalItemPages-1)
             this.statusRanking = true;
             this.statusNotResultReturn = false;
           }
@@ -142,17 +155,51 @@ export class RankCapacityComponent implements OnInit {
           this.statusRanking = true
           this.statusNotResultReturn = true
         }else{
+          let totalItemPages = res.payload.links.length
           this.listRanking = res.payload.data;
           this.first_page_url = res.payload.first_page_url
           this.next_page_url = res.payload.next_page_url
           this.prev_page_url = res.payload.prev_page_url
           this.last_page_url = res.payload.last_page_url
           this.last_page = res.payload.last_page
-          this.links = res.payload.links
+          this.links = res.payload.links.slice(1, totalItemPages-1)
           this.statusRanking = true;
           this.statusNotResultReturn = false;
         }
     })
+  }
+
+  paginationPages(url:string , active: boolean, pageNumber: string ,event: any){
+      this.listRanking = [];
+      this.statusNotResultReturn = false;
+      this.statusRanking = false;
+      let listTab = document.querySelectorAll('.pagination-item')
+      for (let i = 0; i < listTab.length; i++) {
+        listTab[i]?.classList.remove('active');
+      }
+      event.currentTarget.classList.add('active');
+
+      this.router.navigateByUrl(
+        `test-nang-luc/${this.slugMajor}/rankings?page=${pageNumber}`
+      );
+      
+      this.testCapacityService.paginationCapacity(url).subscribe((res) => {
+        if(res.payload.error || res.payload.data.length == 0){
+          this.statusRanking = true
+          this.statusNotResultReturn = true
+        }else{
+          let totalItemPages = res.payload.links.length
+          this.listRanking = res.payload.data;
+          this.first_page_url = res.payload.first_page_url
+          this.next_page_url = res.payload.next_page_url
+          this.prev_page_url = res.payload.prev_page_url
+          this.last_page_url = res.payload.last_page_url
+          this.last_page = res.payload.last_page
+          this.links = res.payload.links.slice(1, totalItemPages-1)
+          this.statusRanking = true;
+          this.statusNotResultReturn = false;
+        }
+      })
   }
 
 }

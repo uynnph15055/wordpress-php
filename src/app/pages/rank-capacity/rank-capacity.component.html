@@ -47,11 +47,7 @@
   <div class="no-results" *ngIf="statusNotResultReturn " >
     Không tìm thấy kết quả nào
   </div>
-  <div class="loading" *ngIf="!statusRanking">
-    <ngx-skeleton-loader
-      [theme]="{ margin: '0 0 4px', width: '30%', display: 'block' }"
-    ></ngx-skeleton-loader>
-  </div>
+ 
   <div class="" *ngIf="!statusNotResultReturn ">
     <table class="rank-table" >
       <thead class=rank-thead-table>
@@ -64,8 +60,160 @@
           <th class="rank_title-table-score" scope="col"><span class="score">Tổng kết</span></th>
         </tr>
       </thead>
-      <tbody class="tbody">
-        <tr *ngFor="let rank of listRanking, ,let i = index" class="rank_item-list">
+      <tbody class="tbody" >
+        <!-- Skeleton-Loadingg -->
+        <tr  class="rank_item-list loading" *ngIf="!statusRanking" >
+          <td class="rank_item" scope="row"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '50px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item-name">
+            <div class="row">
+                <ngx-skeleton-loader  class="col-3"
+                [theme]="{ margin: '2px 0px 0px 0px' ,width: '70px', display: 'inline-block', height: '70px', 'border-radius': '100px' }"
+              ></ngx-skeleton-loader>
+                <ngx-skeleton-loader  class="col-9"
+                [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank-table-none"></td>
+          <td class="rank_item_scores"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+        </tr>
+        <tr  class="rank_item-list loading" *ngIf="!statusRanking" >
+          <td class="rank_item" scope="row"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '50px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item-name">
+            <div class="row">
+                <ngx-skeleton-loader  class="col-3"
+                [theme]="{ margin: '2px 0px 0px 0px' ,width: '70px', display: 'inline-block', height: '70px', 'border-radius': '100px' }"
+              ></ngx-skeleton-loader>
+                <ngx-skeleton-loader  class="col-9"
+                [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank-table-none"></td>
+          <td class="rank_item_scores"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+        </tr>
+        <tr  class="rank_item-list loading" *ngIf="!statusRanking" >
+          <td class="rank_item" scope="row"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '50px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item-name">
+            <div class="row">
+                <ngx-skeleton-loader  class="col-3"
+                [theme]="{ margin: '2px 0px 0px 0px' ,width: '70px', display: 'inline-block', height: '70px', 'border-radius': '100px' }"
+              ></ngx-skeleton-loader>
+                <ngx-skeleton-loader  class="col-9"
+                [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank-table-none"></td>
+          <td class="rank_item_scores"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+        </tr>
+        <tr  class="rank_item-list loading" *ngIf="!statusRanking" >
+          <td class="rank_item" scope="row"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '50px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item-name">
+            <div class="row">
+                <ngx-skeleton-loader  class="col-3"
+                [theme]="{ margin: '2px 0px 0px 0px' ,width: '70px', display: 'inline-block', height: '70px', 'border-radius': '100px' }"
+              ></ngx-skeleton-loader>
+                <ngx-skeleton-loader  class="col-9"
+                [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank-table-none"></td>
+          <td class="rank_item_scores"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+        </tr>
+        <tr  class="rank_item-list loading" *ngIf="!statusRanking" >
+          <td class="rank_item" scope="row"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '50px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item-name">
+            <div class="row">
+                <ngx-skeleton-loader  class="col-3"
+                [theme]="{ margin: '2px 0px 0px 0px' ,width: '70px', display: 'inline-block', height: '70px', 'border-radius': '100px' }"
+              ></ngx-skeleton-loader>
+                <ngx-skeleton-loader  class="col-9"
+                [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank-table-none"></td>
+          <td class="rank_item_scores"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+        </tr>
+        <tr  class="rank_item-list loading" *ngIf="!statusRanking" >
+          <td class="rank_item" scope="row"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '50px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item-name">
+            <div class="row">
+                <ngx-skeleton-loader  class="col-3"
+                [theme]="{ margin: '2px 0px 0px 0px' ,width: '70px', display: 'inline-block', height: '70px', 'border-radius': '100px' }"
+              ></ngx-skeleton-loader>
+                <ngx-skeleton-loader  class="col-9"
+                [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank_item"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+          <td class="rank-table-none"></td>
+          <td class="rank_item_scores"><ngx-skeleton-loader 
+            [theme]="{  width: '100%', display: 'inline-block', height: '75px' }"
+          ></ngx-skeleton-loader></td>
+        </tr>
+        <!-- End Skeleton-Loadingg -->
+        <tr *ngFor="let rank of listRanking, ,let i = index" class="rank_item-list" >
           <th class="rank_item" scope="row">{{i+1}}</th>
           <td class="rank_item-name"><img class="rank_image" src={{rank.user.avatar}} alt="" width="70"><span class="rank_name">{{rank.user.name}}</span></td>
           <td class="rank_item">{{rank.user.email}}</td>
@@ -75,13 +223,11 @@
         </tr>
       </tbody>
     </table>
-    <div class="pagination">
+    <div class="pagination" *ngIf="statusRanking">
       <div class="pagination-list">
-        <div class="pagination-list_box pagination-list_first"><i class="fa-solid fa-arrow-left"></i></div>
-        <div class="pagination-list_box" >1</div>
-        <div class="pagination-list_box" *ngFor="let page of links">{{page.label}}</div>
-        <!-- <div class="pagination-list_dot">...</div> -->
-        <div class="pagination-list_box pagination-list_last"><i class="fa-solid fa-arrow-right"></i></div>
+        <a class="pagination-list_box pagination-list_first" (click)="paginationPages(first_page_url, false, '1', $event)"><i class="fa-solid fa-arrow-left"></i></a>
+        <a class="pagination-list_box pagination-item" *ngFor="let page of links" (click)="paginationPages(page.url, page.active, page.label ,$event)">{{page.label}}</a>
+        <a class="pagination-list_box pagination-list_last" (click)="paginationPages(last_page_url, false,last_page, $event)"><i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
   </div>

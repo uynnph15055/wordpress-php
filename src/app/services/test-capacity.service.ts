@@ -32,4 +32,8 @@ export class TestCapacityService {
       let skillChange = skill == null ? '' : skill;
       return this.http.get<ResponsePayload>(`${environment.capacityListUrl}?q=${keyword}&major_id=${majorChange}&skill_id=${skillChange}`);
     }
+
+    paginationCapacity(url: string ):Observable<ResponsePayload>{
+      return this.http.get<ResponsePayload>(url);
+    }
 }

@@ -115,7 +115,7 @@
 }
 
 .pagination-list{
-  
+  text-align: center;
 }
 .pagination-list_box{
   background: #F4F4F4;
@@ -129,6 +129,7 @@
   width: 30px;
   height: 30px;
   padding: 5px 5px;
+  color: black
 }
 
 .pagination-list_box:hover{
@@ -159,3 +160,7 @@ tr:nth-of-type(even) {
   background: #F9F9F9; 
 }
 
+.pagination-item .active{
+  background: #FF6638;
+  color: #FFFFFF;
+}
