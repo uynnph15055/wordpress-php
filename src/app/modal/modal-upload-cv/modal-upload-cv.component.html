@@ -2,18 +2,48 @@
     <h2 class="fw-bold">Ứng tuyển vị trí: </h2>
     <form [formGroup]="formUploadCv" (ngSubmit)="onSubmit()">
         <div class="mb-3 col">
-            <label for="exampleInputEmail1" class="form-label">Tên của bạn <span class="input-required">*</span></label>
-            <input  type="text" placeholder="Vd: Nguyễn Văn Anh" formControlName="name" class="form-control">
+            <label  class="form-label">Tên của bạn <span class="input-required">*</span></label>
+            <input  type="text" placeholder="Vd: Nguyễn Văn Anh" formControlName="name" class="my-input" minlength="2">
         </div>
+        <!-- Validate Name -->
+        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+            <div *ngIf="name?.errors?.['required']">
+                Bỏ trống name
+            </div>
+            <div *ngIf="name?.errors?.['minlength']">
+                Tối thiểu 2 ký tự
+            </div>
+        </div>
+        <!-- End Validate Name -->
         <div class="row">
             <div class="mb-3 col">
                 <label for="exampleInputEmail1" class="form-label">Email <span class="input-required">*</span></label>
-                <input formControlName="email" type="email" placeholder="Vd: anhnv@gmail.com" class="form-control">
+                <input formControlName="email"  type="email" placeholder="Vd: anhnv@gmail.com" class="my-input">
             </div>
+                <!-- Validate Email -->
+                <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                    <div *ngIf="email?.errors?.['required']">
+                        Bỏ trống Email
+                    </div>
+                    <div *ngIf="email?.errors?.['email']">
+                        viết đúng định dạng email.
+                    </div>                                               
+                </div> 
+                <!-- End Validate Email -->
             <div class="mb-3 col">
-                <label for="exampleInputEmail1" class="form-label">Số điện thoại <span class="input-required">*</span></label>
-                <input formControlName="phone" type="phone" placeholder="Vd: 0912345678" class="form-control">
+                <label  class="form-label">Số điện thoại <span class="input-required">*</span></label>
+                <input formControlName="phone" type="phone" placeholder="Vd: 0912345678" class="my-input">
             </div>
+                <!-- Validate Phone -->
+                <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+                    <div *ngIf="phone?.errors?.['required']">
+                        Không bỏ trống phone
+                    </div>
+                    <div *ngIf="phone?.errors?.['pattern']">
+                        Nhập đúng định dạng sđt
+                    </div>                                               
+                </div> 
+                <!-- End Validate Phone -->
         </div>
         <div class="mb-3">
             <label for="modalUploadCv" class="form-label">Upload CV <span class="input-required">*</span></label>
