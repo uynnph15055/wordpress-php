@@ -41,7 +41,6 @@ export class ModalUploadCvComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.formUploadCv);
     
   }
   closeDialog() {
@@ -71,12 +70,13 @@ export class ModalUploadCvComponent implements OnInit {
     if (this.dataPostDetail.postDetail) formDataInput.append('post_id', this.dataPostDetail.postDetail.id)
 
     setTimeout(() => {
-      this.postService.uploadCV(formDataInput).subscribe((res : ResponsePayload) => {
+      this.postService.uploadCV(formDataInput).subscribe((res : any) => {
         if (res.status == false) {
-          this.toast.warning({ summary: res.payload, duration: 2000 });
+          this.toast.warning({ summary: res.message.file_link[0], duration: 2000 });
         } else {
           this.statusRegister = true;
           this.dialogRef.close();
+          this.toast.success({ summary: "Upload CV thành công", duration: 2000 });
         }
         return "Ok"
       });
