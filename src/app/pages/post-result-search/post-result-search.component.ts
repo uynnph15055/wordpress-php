@@ -103,7 +103,7 @@ export class PostResultSearchComponent implements OnInit {
     // set value on param into input value
     this.keywordQuery = this.route.snapshot.queryParamMap.get('keyword')
     let typePost: any = ""
-    let statusHotPost: any = "" 
+    let statusHotPost: any = ""
     this.inputKeyword = this.keywordQuery;
 
     typePost = this.typePosts.filter((item) => {
@@ -114,7 +114,7 @@ export class PostResultSearchComponent implements OnInit {
     })
 
     this.formFilter.controls['filterName'].setValue(this.keywordQuery);
-    
+
     if (typePost.length > 0) this.formFilter.controls['filterTypePost'].setValue(typePost[0].name);
     if (statusHotPost.length > 0) this.formFilter.controls['filterTypePost'].setValue(statusHotPost[0].name);
 
@@ -141,14 +141,6 @@ export class PostResultSearchComponent implements OnInit {
 
   }
 
-  // tìm kiếm
-  // search() {
-  //   this.router.navigateByUrl(`/tim-kiem/bai-viet?keyword=${this.inputKeyword}`);
-  //   this.postService.searchPost(this.inputKeyword).subscribe(res => {
-  //     this.results = res.payload.data;
-  //   })
-  // }
-
   getListPost() {
     this.postService.getAllListPost().subscribe(res => {
       if (res.status) {
@@ -160,17 +152,18 @@ export class PostResultSearchComponent implements OnInit {
     })
   }
 
-
   // ---------------------- filter ----------------------
-  // Set filter value
+  // Set filter value major
   setValueFilterPost(item: Major) {
     this.formFilter.controls['filterTypePost'].setValue(item.name);
+    this.statusPostFilter = true
     this.statusSubmit = true
   }
-
-  // Set filter status
+  
+  // Set filter status hot post
   setValueStatus(status: string) {
     this.formFilter.controls['filterStatus'].setValue(status);
+    this.statusPostHot = true
     this.statusSubmit = true
   }
 
