@@ -28,7 +28,7 @@ export class ContestItemComponent implements OnInit {
   seconds: number;
 
   constructor(private userService: UserService) {}
-
+ 
   ngOnInit(): void {
     this.userService.getUserValue().id != undefined
       ? (this.checkUserHasLogin = true)
@@ -57,7 +57,8 @@ export class ContestItemComponent implements OnInit {
       if (
         distance < 0 ||
         this.item.status == 2 ||
-        this.date_register_start > this.today
+        this.date_register_start > this.today ||
+        this.today > this.date_end
       ) {
         this.statusCountDown = false;
         this.days = 0;
@@ -75,9 +76,29 @@ export class ContestItemComponent implements OnInit {
     }, 1000);
   }
 
+
+
+  checkDateContest(item: Contest): any {
+    let result;
+    if (item.status <= 1) {
+      if (this.date_register_start > this.today) {
+        result = item.date_start;
+      } else if (this.date_start > this.today) {
+        result =  item.date_start;
+      } else if (this.date_end > this.today) {
+        result =  item.register_deadline;
+      } else {
+        result = item.register_deadline;
+      }
+    } else {
+      result =  item.register_deadline;
+    }
+    return result;
+  }
+
+
   checkStatusContest(item: Contest): any {
     let result;
-    let status;
     if (item.status <= 1) {
       if (this.date_register_start > this.today) {
         result = 'Sắp diễn ra';
@@ -95,4 +116,6 @@ export class ContestItemComponent implements OnInit {
     }
     return result;
   }
+
+ 
 }

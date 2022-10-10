@@ -3,16 +3,10 @@ h1,
 h2,
 h3,
 h4,
-h5, 
-
-h3>a {
-    color: var(--my-black);
-    transition-duration: .3s;
+h5 {
+    margin: 0;
 }
 
-h3:hover>a {
-    color: var(--my-primary)
-}
 .text-collapse-post {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -202,19 +196,4 @@ h3:hover>a {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 0;
-}
-.short-desc p {
-    margin: 0 !important;
-}
-.post-item-bottom button {
-    background: transparent;
-    margin-top: 8px;
-    border: 1px solid var(--my-secondary);
-    color: var(--my-secondary);
-}
-
-.post-item-bottom button:hover {
-    background-color: var(--my-secondary);
-    color: var(--white);
 }

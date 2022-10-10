@@ -1,11 +1,13 @@
 <div class="post-item">
     <div class="post-item-img-section">
-        <a routerLink="/bai-viet/{{postItem.slug}}">
+        <a routerLink="/bai-viet/{{postItem.slug}}" data-toggle="tooltip"
+                                        data-placement="top" title={{postItem.title}}>
             <img class="post-item__img" src={{postItem.thumbnail_url}} alt="">
         </a>
         <div class="post-item-content post-item-content--new-in-cate my-shadow-2">
             <h3 class="post-item__title">
-                <a class="post-item__title-link" routerLink="/bai-viet/{{postItem.slug}}">{{postItem.title}}</a>
+                <a data-toggle="tooltip" data-placement="top" title={{postItem.title}}
+                class="post-item__title-link" routerLink="/bai-viet/{{postItem.slug}}">{{postItem.title}}</a>
             </h3>
             <div class="post-item__info">
                 <div class="post-item__info-item" data-toggle="tooltip" data-placement="bottom"
@@ -19,7 +21,11 @@
             </div>
             <div class="post-item-bottom">
                 <div class="short-desc" *ngIf="postItem.description" [innerHTML]="postItem.description"></div>
-                <a class="btn btn-detail" routerLink="/bai-viet/{{postItem.slug}}">Chi tiết</a>
+                <a routerLink="/bai-viet/{{postItem.slug}}">
+                    <button class="my-btn-secondary my-btn-ss">
+                        Chi tiết
+                    </button>
+                </a>
             </div>
         </div>
     </div>

@@ -14,9 +14,10 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./contest-aside.component.css'],
 })
 export class ContestAsideComponent implements OnInit {
-  @Input() contestDetail: any;
+  @Input() contestDetail: Contest;
+  @Input() statusContest: boolean;
   roundEndTime: any;
-  statusCheckDate: boolean = true;
+statusCheckDate: boolean = true;
   statusUserHasJoinContest: boolean = false;
   routeStateRegister: boolean = false;
   nameBtnRegister: string = 'Đăng ký';
@@ -42,22 +43,10 @@ export class ContestAsideComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      if (
-        this.routeStateRegister == true &&
-        this.getUserLocal.getValueLocalUser('user') &&
-        this.statusCheckDate == true
-      ) {
-        this.openAddTeam();
-      }
-    }, 3000);
-
 
   }
 
-  // Run status
-
-  runStatus() {
+   runTime(){
     this.date_start = new Date(
       moment(this.contestDetail.date_start).format('lll')
     ).getTime();
@@ -98,7 +87,9 @@ export class ContestAsideComponent implements OnInit {
         this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
       }
     }, 1000);
-  }
+   }
+
+ 
 
   // Check trạng thái
   checkStatusContest(item: Contest): any {

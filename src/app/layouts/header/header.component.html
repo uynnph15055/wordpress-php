@@ -41,14 +41,14 @@
     <div class="d-flex" id="menu_login-box">
       <ul class="nav menu_login-box d-flex align-items-center mr-auto home-nav pr-2">
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="fw-bold text-decoration-none nav-link-item" routerLink="/">Trang chủ</a>
+          <a class="text-decoration-none nav-link-item" routerLink="/">Trang chủ</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="fw-bold nav-link-item text-decoration-none" [routerLink]="['/cuoc-thi']"> Cuộc thi </a>
+          <a class="nav-link-item text-decoration-none" [routerLink]="['/cuoc-thi']"> Cuộc thi </a>
         </li>
 
         <li class="nav-item" routerLinkActive="active">
-          <div class="position-relative fw-bold nav-link-item text-decoration-none d-flex align-items-center">
+          <div class="position-relative nav-link-item text-decoration-none d-flex align-items-center">
             <span [routerLink]="['/tuyen-dung']">Tuyển dụng</span>
             <div class="nav-item__icon">
               <i class="fa-solid fa-caret-down"></i>
@@ -56,12 +56,12 @@
 
             <ul class="sub-menu position-absolute">
               <li class="sub-menu__item">
-                <a class="sub-menu__link fw-bold nav-link-item text-decoration-none" [routerLink]="['/tuyen-dung']">
+                <a class="sub-menu__link nav-link-item text-decoration-none" [routerLink]="['/tuyen-dung']">
                   Tin tuyển dụng
                 </a>
               </li>
               <li class="sub-menu__item">
-                <a class="sub-menu__link fw-bold nav-link-item text-decoration-none" routerLink="/test-nang-luc">
+                <a class="sub-menu__link nav-link-item text-decoration-none" routerLink="/test-nang-luc">
                   Test năng lực
                 </a>
               </li>
@@ -69,7 +69,7 @@
           </div>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="fw-bold nav-link-item text-decoration-none" routerLink="/bai-viet"> Bài viết </a>
+          <a class="nav-link-item text-decoration-none" routerLink="/bai-viet"> Bài viết </a>
         </li>
 
         <li *ngIf="user">

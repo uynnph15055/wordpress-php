@@ -32,6 +32,7 @@ export class ModalAddTeamComponent implements OnInit {
   public message: string;
   user_id: any = 4;
   formEdit: boolean = false;
+  isEditData : boolean = false;
 
   // set up form control
   formRegister = new FormGroup({
@@ -84,6 +85,7 @@ export class ModalAddTeamComponent implements OnInit {
 
   // Render image after add
   preview(files: any) {
+    this.isEditData = true;
     if (files.length === 0) return;
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
@@ -110,30 +112,35 @@ export class ModalAddTeamComponent implements OnInit {
     }
     formDataTeam.append('contest_id', this.data.contest_id);
     formDataTeam.append('user_id', this.user_id);
-      this.teamService.addTeam(formDataTeam).subscribe((res) => {
-        if (!res.status) {
-          this.toast.warning({ summary: res.payload, duration: 2000 });
-          this.dialogRef.close();
-        } else {
-          this.statusRegister = true;
-          this.onNoClick();
-          this.openInfoTeam(res.id_team, this.data.contest_id);
-          this.toast.success({ summary: 'Thêm thành công', duration: 2000 });
-        }
-      });
+    this.teamService.addTeam(formDataTeam).subscribe((res) => {
+      if (!res.status) {
+        this.toast.warning({ summary: res.payload, duration: 2000 });
+        this.dialogRef.close();
+      } else {
+        this.statusRegister = true;
+        this.onNoClick();
+        this.openInfoTeam(res.id_team, this.data.contest_id);
+        this.toast.success({ summary: 'Thêm thành công', duration: 2000 });
+      }
+    });
   }
 
   editTeam() {
-    
     this.statusRegister = false;
     let dataTeam = { ...this.formRegister.value };
 
     var formDataTeam = new FormData();
-    formDataTeam.append('name', dataTeam.name);
-    if (this.imagePath != undefined) {
-      formDataTeam.append('image', this.imagePath);
-    }
-    formDataTeam.append('user_id', this.user_id);
+
+    if( dataTeam.name === this.teamDetail.name &&  !this.isEditData){
+      this.toast.warning({ summary: 'Bạn chưa chỉnh sửa gì ?', duration: 2000 });
+      this.statusRegister = true;
+    }else{
+      formDataTeam.append('name', dataTeam.name);
+      if (this.imagePath != undefined) {
+        formDataTeam.append('image', this.imagePath);
+      }
+      formDataTeam.append('contest_id', this.data.contest_id);
+      formDataTeam.append('user_id', this.user_id);
       this.teamService
         .editTeam(formDataTeam, this.teamDetail.id)
         .subscribe((res) => {
@@ -147,10 +154,16 @@ export class ModalAddTeamComponent implements OnInit {
             this.toast.success({ summary: 'Sửa thành công', duration: 2000 });
           }
         });
+    }
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    if (this.data.teams) {
+      this.dialogRef.close();
+      this.openInfoTeam(this.teamDetail.id, this.data.contest_id);
+    } else {
+      this.dialogRef.close();
+    }
   }
 
   // Thông tin đội

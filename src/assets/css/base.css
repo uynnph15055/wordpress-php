@@ -125,6 +125,7 @@ li,
 span,
 strong {
   font-family: 'Nunito Sans', sans-serif !important;
+ 
 }
 
 body {
@@ -137,7 +138,9 @@ body {
   font-size: var(--fs);
   line-height: var(--lh);
 }
-
+.mat-typography p {
+  margin: 0;
+}
 ::-webkit-scrollbar {
   width: 10px;
   background-color: rgb(235, 232, 232);
@@ -160,7 +163,76 @@ ul {
 img {
   max-width: 100%;
 }
+.my-error {
+  color: var(--error) !important;
+}
+/* ------------------- field form ------------ */
+.my-box-filter {
+  background: var(--my-primary-50);
+  padding: 16px;
+  border-radius: var(--my-rounded);
+}
 
+.my-box-filter-3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.my-form-search {
+  background: var(--white);
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--my-gray);
+  border-radius: var(--my-rounded);
+  overflow: hidden;
+}
+
+.my-form-search:focus-within {
+  box-shadow: 0 0 0 2px rgba(255, 103, 56, .3)
+}
+
+.my-input-search {
+  padding: 12px 16px;
+  outline: none;
+  width: 100%;
+  border: none;
+}
+.my-input {
+  padding: 12px 16px;
+  outline: none;
+  border: 1px solid var(--my-gray);
+  border-radius: var(--my-rounded);
+  width: 100%;
+}
+
+.my-input:focus {
+  box-shadow: 0 0 0 2px rgba(255, 103, 56, .3)
+}
+
+.my-box-filter button {
+  flex-grow: 1;
+  width: 350px;
+}
+
+.my-btn-search-inside {
+  background: var(--my-primary);
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 30px;
+  color: white;
+  margin: 4px;
+  border: none;
+  border-radius: var(--my-rounded);
+}
+
+/* ------------------- box shadow ------------ */
 .my-shadow-1 {
   /* Elevation 1 */
   box-shadow: 0px 4px 4px rgba(142, 141, 208, 0.16);
@@ -179,6 +251,37 @@ img {
 .my-shadow-4 {
   /* Elevation 4 */
   box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
+}
+
+.my-shadow-1-hover,
+.my-shadow-2-hover,
+.my-shadow-3-hover,
+.my-shadow-4-hover {
+  transition-duration: .3s;
+}
+
+.my-shadow-1-hover:hover {
+  box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
+  border: 1px solid transparent !important;
+  transform: translateY(-8px)
+}
+
+.my-shadow-2-hover:hover {
+  box-shadow: 0px 4px 8px rgba(142, 141, 208, 0.16);
+  border: 1px solid transparent !important;
+  transform: translateY(-8px)
+}
+
+.my-shadow-3-hover:hover {
+  box-shadow: 0px 4px 16px rgba(142, 141, 208, 0.16);
+  border: 1px solid transparent !important;
+  transform: translateY(-8px)
+}
+
+.my-shadow-4-hover:hover {
+  box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
+  border: 1px solid transparent !important;
+  transform: translateY(-8px)
 }
 
 .fs-text {
@@ -231,7 +334,50 @@ img {
   color: var(--my-darkest-gray);
 }
 
+/* -------------- countdown ---------- */
+.my-countdown {
+  display: inline-flex;
+  /* flex-grow important */
+  flex-grow: 1;
+  justify-content: flex-end;
+  margin-bottom: 0;
+  /* width: 100%; */
+  width: fit-content
+}
+
+.my-countdown-item {
+  color: var(--my-darkest-gray);
+}
+
+.my-countdown-item+.my-countdown-item {
+  padding-left: 4px;
+}
+
+.my-countdown-item-box {
+  background-color: transparent;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  margin-bottom: 0;
+}
+
+.my-countdown-item-text {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+
+.contest-item {
+  margin-bottom: 20px;
+}
+
+.my-countdown {
+  margin-top: 0;
+}
+
 /* ------------------- post item ------------ */
 .post-item {
-  height: 450px;
+  height: 400px;
 }

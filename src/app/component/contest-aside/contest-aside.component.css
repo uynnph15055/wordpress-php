@@ -30,7 +30,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
+  text-align: center;
   }
   
   .contest-detail-right-countdown-item {
