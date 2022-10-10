@@ -163,7 +163,9 @@ ul {
 img {
   max-width: 100%;
 }
-
+.my-error {
+  color: var(--error) !important;
+}
 /* ------------------- field form ------------ */
 .my-box-filter {
   background: var(--my-primary-50);
