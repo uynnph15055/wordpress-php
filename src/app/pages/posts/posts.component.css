@@ -197,3 +197,7 @@ h3:hover>a {
     display: flex;
     margin-top: 20px;
 }
+
+.post-new-latest_img{
+    border-radius: var(--my-rounded-2);
+}
