@@ -163,7 +163,9 @@ ul {
 img {
   max-width: 100%;
 }
-
+.my-error {
+  color: var(--error) !important;
+}
 /* ------------------- field form ------------ */
 .my-box-filter {
   background: var(--my-primary-50);
@@ -182,7 +184,7 @@ img {
   background: var(--white);
   position: relative;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   width: 100%;
   border: 1px solid var(--my-gray);
   border-radius: var(--my-rounded);
@@ -190,7 +192,7 @@ img {
 }
 
 .my-form-search:focus-within {
-  box-shadow: 0 0 0 3px var(--my-primary-300);
+  box-shadow: 0 0 0 2px rgba(255, 103, 56, .3)
 }
 
 .my-input-search {
@@ -218,7 +220,7 @@ img {
 
 .my-btn-search-inside {
   background: var(--my-primary);
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;

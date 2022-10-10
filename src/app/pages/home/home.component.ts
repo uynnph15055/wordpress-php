@@ -258,12 +258,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  //  Danh sách các bài viết
+  //-----------------------  Danh sách các 3 bài viết
   getListPost() {
-    this.postService.getPostWhereCate('post-recruitment').subscribe((res) => {
-      if (res.status) {
-        this.listPostEvent = res.payload.data;
+    this.postService.getAllListPost().subscribe(res => {
+      if (res.status == true) {
+        let arrResult = res.payload.data;
+        this.listPostEvent = arrResult.filter((res: Post, index: number) => {
+          return index < 3;
+        });
       }
-    });
+    })
   }
 }

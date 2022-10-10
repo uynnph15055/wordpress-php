@@ -36,7 +36,7 @@ export class PostsComponent implements OnInit {
         let arrResult= res.payload.data;
          this.postRecruitmentFirst = arrResult[0];
          this.listPostRecruitment = arrResult.filter((res: Post , index: number) => {
-          return index <= 2;
+          return index <= 1;
         });
        }
     })
