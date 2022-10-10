@@ -24,9 +24,8 @@
               <div *ngIf="!majors" class="d-flex justify-content-center">
                 <app-loading-item class="py-2"></app-loading-item>
               </div>
-              <a *ngFor="let item of majors" (click)="setValueFilterMajor(item)" class="text-collapse" ngbDropdownItem>
-                {{ item.name }}
-              </a>
+              <a *ngFor="let item of majors" (click)="setValueFilterMajor(item)" class="capacity-text-majors"
+                ngbDropdownItem>{{ item.name }}</a>
             </div>
           </div>
           <div ngbDropdown class="d-inline-block w-100">
@@ -38,14 +37,19 @@
               <div *ngIf="!skills" class="d-flex justify-content-center">
                 <app-loading-item class="py-2"></app-loading-item>
               </div>
-              <a *ngFor="let item of skills" (click)="setValueSkill(item)" class="text-collapse" ngbDropdownItem>{{
+              <a *ngFor="let item of skills" (click)="setValueSkill(item)" class="capacity-text-majors" ngbDropdownItem>{{
                 item.name }}</a>
             </div>
           </div>
-          <button [disabled]="!statusSubmit" class="my-btn-primary my-btn-s">
-            Tìm kiếm
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
+          <div class="btn-wrapper">
+            <button type="button" class="my-btn-secondary my-btn-s" (click)="resetFilterCapacity()">
+              Làm mới
+            </button>
+            <button [disabled]="!statusSubmit" class="my-btn-primary my-btn-s">
+              Tìm kiếm
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
         </form>
         <ul class="d-flex flex-wrap filter-skill-box">
           <li class="test-capacity__keyword my-h5">Đề xuất cho bạn:</li>
