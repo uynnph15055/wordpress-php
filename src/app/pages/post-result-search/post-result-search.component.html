@@ -39,15 +39,7 @@
             </div>
 
             <div class="result-post-list" *ngIf="!statusResultPost">
-                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
-                    appearance="line">
-                </ngx-skeleton-loader>
-                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
-                    appearance="line">
-                </ngx-skeleton-loader>
-                <ngx-skeleton-loader [theme]="{ 'height.px' : 450, 'margin-bottom' : '7px' , 'border-radius': '10px' }"
-                    appearance="line">
-                </ngx-skeleton-loader>
+                <app-post-load-item *ngFor="let item of [].constructor(6); let i = index"></app-post-load-item>
             </div>
             <div class="result-post-list">
                 <div class="post-item" *ngFor="let item of results">
