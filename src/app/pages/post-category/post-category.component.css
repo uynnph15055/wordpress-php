@@ -81,7 +81,6 @@ h5 {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 44px;
-    margin-top: 32px;
 }
 
 .post-main-content-section:first-child {

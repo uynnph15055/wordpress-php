@@ -21,11 +21,16 @@ export class ModalUploadCvComponent implements OnInit {
 
   // set up form control
   formUploadCv = new FormGroup({
-    name: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', Validators.required),
+    phone: new FormControl('', [Validators.required, Validators.pattern("[0-9]{10}")]),
     file_link: new FormControl('')
   });
+
+  get name() { return this.formUploadCv.get('name'); }
+  get email() { return this.formUploadCv.get('email'); }  
+  get phone() { return this.formUploadCv.get('phone'); }  
+  get file_link() { return this.formUploadCv.get('file_link'); }  
 
   constructor(
     public dialogRef: MatDialogRef<ModalUploadCvComponent>,
@@ -36,6 +41,8 @@ export class ModalUploadCvComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.formUploadCv);
+    
   }
   closeDialog() {
     this.dialogRef.close('Pizza!');

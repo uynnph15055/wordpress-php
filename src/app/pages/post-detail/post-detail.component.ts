@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class PostDetailComponent implements OnInit {
   postDetail!: Post;
   statusPost: boolean = false;
+  routeCategoryPost: string = ""
 
   constructor(
     private postService: ListPostService,
@@ -29,9 +30,12 @@ export class PostDetailComponent implements OnInit {
     ).subscribe(res => {
       if (res.status) {
         this.postDetail = res.payload;
-        (this.postDetail.postable_type === "App\\Models\\Contest") ? this.postDetail.postable_type = "Cuộc thi" :
-          (this.postDetail.postable_type === "App\\Models\\Recruitment") ? this.postDetail.postable_type = "Tuyển dụng" :
-            this.postDetail.postable_type = "Test năng lực"
+        (this.postDetail.postable_type === "App\\Models\\Contest") ?
+          (this.postDetail.postable_type = "Cuộc thi",
+            this.routeCategoryPost = "post-contest") :
+          (this.postDetail.postable_type === "App\\Models\\Recruitment") ?
+            (this.postDetail.postable_type = "Tuyển dụng", this.routeCategoryPost = "post-recruitment") :
+            (this.postDetail.postable_type = "Test năng lực", this.routeCategoryPost = "post-capacity")
         this.postDetail ? (this.statusPost = true) : this.statusPost;
       }
     })
@@ -48,6 +52,9 @@ export class PostDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log("result", result)
-     });
+    });
+  }
+  clickChangeUrlToCategoryPost(data: string) {
+    this.router.navigateByUrl(`danh-muc-bai-viet?cate=${data}`);
   }
 }
