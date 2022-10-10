@@ -182,7 +182,7 @@ img {
   background: var(--white);
   position: relative;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   width: 100%;
   border: 1px solid var(--my-gray);
   border-radius: var(--my-rounded);
@@ -190,7 +190,7 @@ img {
 }
 
 .my-form-search:focus-within {
-  box-shadow: 0 0 0 3px var(--my-primary-300);
+  box-shadow: 0 0 0 2px rgba(255, 103, 56, .3)
 }
 
 .my-input-search {
