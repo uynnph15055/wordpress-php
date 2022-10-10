@@ -174,9 +174,11 @@ img {
 }
 
 .my-box-filter-3 {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
   gap: 16px;
 }
 
@@ -211,11 +213,6 @@ img {
 
 .my-input:focus {
   box-shadow: 0 0 0 2px rgba(255, 103, 56, .3)
-}
-
-.my-box-filter button {
-  flex-grow: 1;
-  width: 350px;
 }
 
 .my-btn-search-inside {
