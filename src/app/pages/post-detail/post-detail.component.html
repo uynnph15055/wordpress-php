@@ -20,8 +20,10 @@
           <div *ngIf="statusPost" class="post-detail__head-info-item">
             <span class="post-detail__head-info-item-cate">
               Bài viết thuộc:
-              <a routerLink="/danh-muc-bai-viet"></a>
-              {{ postDetail?.postable_type }}</span>
+              <a (click)="clickChangeUrlToCategoryPost(routeCategoryPost)" class="post-detail__router-category">
+                {{ postDetail?.postable_type }}
+              </a>
+            </span>
             <app-list-social></app-list-social>
           </div>
           <div *ngIf="statusPost" class="post-detail__head-info-item">
@@ -38,7 +40,7 @@
         </ngx-skeleton-loader>
         <div class="post-detail__short-desc" [innerHTML]="postDetail?.description"></div>
         <!-- Upload cv -->
-        <div class="post_upload-cv text-center">
+        <div class="post_upload-cv text-center" *ngIf="postDetail?.postable_type == 'Tuyển dụng'">
           <button class="my-btn-primary my-btn-m" (click)="openModal()">
             Ứng tuyển ngay
           </button>
@@ -53,7 +55,7 @@
         </div>
         <div class="post-detail__content-text" [innerHTML]="postDetail?.content"></div>
         <!-- Upload cv -->
-        <div class="post_upload-cv text-center">
+        <div class="post_upload-cv text-center" *ngIf="postDetail?.postable_type == 'Tuyển dụng'">
           <button class="my-btn-primary my-btn-m" (click)="openModal()">
             Ứng tuyển ngay
           </button>
