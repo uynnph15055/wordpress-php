@@ -25,8 +25,8 @@ export class RecruitmentsService {
   }
 
   // Chi tiết một đợt tuyển dụng
-  getRecruitmentDetail(rescruitment_id: any): Observable<ResponsePayload> {
-    return this.http.get<ResponsePayload>(`${environment.recruitment}/${rescruitment_id}`);
+  getRecruitmentDetail(recruitment_id: any): Observable<ResponsePayload> {
+    return this.http.get<ResponsePayload>(`${environment.recruitment}/${recruitment_id}`);
   }
 
   //  Filter recruitment

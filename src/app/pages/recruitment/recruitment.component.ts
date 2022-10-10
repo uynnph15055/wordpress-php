@@ -293,10 +293,8 @@ export class RecruitmentComponent implements OnInit {
         queryParamsHandling: 'merge',
       });
     }
-    
 
     this.listPostService.searchPostRecruitment(this.keyword).subscribe(res => {
-      
       if(res.status && res.payload.data.length > 0 ){      
         this.statusPostSearch = true;
         this.listPostResult = res.payload.data;

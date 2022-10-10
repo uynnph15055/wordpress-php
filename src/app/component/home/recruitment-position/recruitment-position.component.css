@@ -16,12 +16,6 @@
     transition-duration: .3s;
 }
 
-.recruitment-position-item:hover {
-    box-shadow: 0px 16px 24px rgba(142, 141, 208, 0.12);
-    border: 1px solid transparent;
-    transform: translateY(-8px)
-}
-
 .recruitment-position__img {
     border-radius: var(--my-rounded);
     width: 100%;
