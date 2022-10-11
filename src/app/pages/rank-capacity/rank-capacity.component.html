@@ -103,9 +103,9 @@
     </table>
     <div class="pagination" *ngIf="statusRanking">
       <div class="pagination-list">
-        <a class="pagination-list_box pagination-list_first" (click)="paginationPages(first_page_url, false, '1', $event)"><i class="fa-solid fa-arrow-left"></i></a>
-        <a class="pagination-list_box pagination-item" *ngFor="let page of links" (click)="paginationPages(page.url, page.active, page.label ,$event)">{{page.label}}</a>
-        <a class="pagination-list_box pagination-list_last" (click)="paginationPages(last_page_url, false,last_page, $event)"><i class="fa-solid fa-arrow-right"></i></a>
+        <a class="pagination-list_box pagination-list_first" (click)="paginationPages(first_page_url, false, '1', $event)"><i class="fa-solid fa-backward"></i></a>
+        <a class="pagination-list_box pagination-item" *ngFor="let page of links" [ngClass]="page.active ? 'active' : ''"  (click)="paginationPages(page.url, page.active, page.label ,$event)">{{page.label}}</a>
+        <a class="pagination-list_box pagination-list_last" (click)="paginationPages(last_page_url, false,last_page, $event)"><i class="fa-sharp fa-solid fa-forward"></i></a>
       </div>
     </div>
   </div>

@@ -17,6 +17,7 @@ export class RankCapacityComponent implements OnInit {
   listRanking: any = []
   statusNotResultReturn: boolean = false;
   majorsDataTable: string
+  currentPage: string | null 
 
   statusSubmit: boolean = false
   statusMajor: boolean = false
@@ -43,17 +44,32 @@ export class RankCapacityComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    let pageActive = this.route.snapshot.queryParamMap.get('page')
-    let listTab = document.querySelectorAll('.pagination-item')
-      for (let i = 0; i < listTab.length; i++) {
-        listTab[i]?.classList.remove('active');
-      }
-      for (let i = 0; i < listTab.length; i++) {
-        console.log(listTab[i]);
-        
-        // listTab[i]?.classList.add('active');
-      }
-
+    // Lấy param page xuống active vào trang
+    this.currentPage = this.route.snapshot.queryParamMap.get('page')
+    this.testCapacityService
+      .getRankingbyMajor(this.slugMajor, this.currentPage) 
+      .subscribe((res) => {
+        if (res.status) {
+          this.statusSubmit = true
+          if(res.payload.error || res.payload.data.length == 0){
+            this.statusRanking = true
+            this.statusNotResultReturn = true
+          }else{
+            let totalItemPages = res.payload.links.length
+            this.listRanking = res.payload.data;
+            this.first_page_url = res.payload.first_page_url
+            this.next_page_url = res.payload.next_page_url
+            this.prev_page_url = res.payload.prev_page_url
+            this.last_page_url = res.payload.last_page_url
+            this.last_page = res.payload.last_page
+            this.links = res.payload.links.slice(1, totalItemPages-1)
+            this.statusRanking = true;
+            this.statusNotResultReturn = false;
+          }
+        }
+      })
+    
+    
 
     if(this.formFilter.controls['filterMajor'].value){
       this.statusSubmit = true;
@@ -87,7 +103,7 @@ export class RankCapacityComponent implements OnInit {
     );
 
     this.testCapacityService
-      .getRankingbyMajor(this.slugMajor)
+      .getRankingbyMajor(this.slugMajor, this.currentPage)
       .subscribe((res) => {
         if (res.status) {
           this.statusSubmit = true
@@ -150,7 +166,7 @@ export class RankCapacityComponent implements OnInit {
     this.listRanking = [];
     this.statusNotResultReturn = false;
     this.statusRanking = false;
-    this.testCapacityService.getRankingbyMajor(slugMajor).subscribe((res) => {
+    this.testCapacityService.getRankingbyMajor(slugMajor, this.currentPage).subscribe((res) => {
         if(res.payload.error || res.payload.data.length == 0){
           this.statusRanking = true
           this.statusNotResultReturn = true
