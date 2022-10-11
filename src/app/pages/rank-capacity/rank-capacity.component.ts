@@ -13,7 +13,7 @@ import { TestCapacityService } from 'src/app/services/test-capacity.service';
   styleUrls: ['./rank-capacity.component.css']
 })
 export class RankCapacityComponent implements OnInit {
-  slugMajor: string = "lap-trinh-web"
+  slugMajor: string 
   majors: Array<Major>;
   listRanking: any = []
   statusNotResultReturn: boolean = false;
@@ -47,12 +47,15 @@ export class RankCapacityComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    // khi không có param trên web thì sẽ lấy chuyên ngành lập trình web
+    this.slugMajor = this.route.snapshot.queryParamMap.get('major')!
+    this.slugMajor == null ? this.slugMajor = "lap-trinh-web" : this.slugMajor
     this.getListMajor();
-    // Lấy param page xuống active vào trang
-    this.slugMajor = this.route.snapshot.paramMap.get('slug_major')!;
-    this.currentPage = this.route.snapshot.queryParamMap.get('page')
-    this.testCapacityService
-      .getRankingbyMajor(this.slugMajor, this.currentPage) 
+     
+    if(this.slugMajor != null){
+      this.currentPage = this.route.snapshot.queryParamMap.get('page')
+      this.testCapacityService
+      .getRankingByMajor(this.slugMajor, this.currentPage) 
       .subscribe((res) => {
         if (res.status) {
           this.statusSubmit = true
@@ -75,8 +78,7 @@ export class RankCapacityComponent implements OnInit {
       })
     
       this.getListTestCapacity()
-
-    
+    }
   }
 
   // lấy danh sách test năng lực trả về 8 bài bài test mới nhất
@@ -107,14 +109,18 @@ export class RankCapacityComponent implements OnInit {
       this.slugMajor = this.majors.filter(
         (item) => item.name === this.formFilter.controls['filterMajor'].value
       )[0].slug;
+
+      this.majorsDataTable = this.majors.filter(
+        (item) => item.name === this.formFilter.controls['filterMajor'].value
+      )[0].name;
     }
 
     this.router.navigateByUrl(
-      `test-nang-luc/${this.slugMajor}/rankings`
+      `test-nang-luc?major=${this.slugMajor}`
     );
 
     this.testCapacityService
-      .getRankingbyMajor(this.slugMajor, this.currentPage)
+      .getRankingByMajor(this.slugMajor, this.currentPage)
       .subscribe((res) => {
         if (res.status) {
           this.statusSubmit = true
@@ -167,7 +173,9 @@ export class RankCapacityComponent implements OnInit {
             major_query = this.majors[index].name
           }
         }
+        
         this.majorsDataTable = major_query!;
+        
         this.formFilter.controls['filterMajor'].setValue(major_query);
       }
     });
@@ -177,7 +185,7 @@ export class RankCapacityComponent implements OnInit {
     this.listRanking = [];
     this.statusNotResultReturn = false;
     this.statusRanking = false;
-    this.testCapacityService.getRankingbyMajor(slugMajor, this.currentPage).subscribe((res) => {
+    this.testCapacityService.getRankingByMajor(slugMajor, this.currentPage).subscribe((res) => {
         if(res.payload.error || res.payload.data.length == 0){
           this.statusRanking = true
           this.statusNotResultReturn = true
@@ -197,7 +205,10 @@ export class RankCapacityComponent implements OnInit {
   }
 
   paginationPages(url:string , active: boolean, pageNumber: string ,event: any){
-      this.listRanking = [];
+      if(pageNumber == "..."){
+        // nếu người dùng bấm vào ... ở phân trang thì chả làm gì hết
+      }else{
+        this.listRanking = [];
       this.statusNotResultReturn = false;
       this.statusRanking = false;
       let listTab = document.querySelectorAll('.pagination-item')
@@ -207,7 +218,7 @@ export class RankCapacityComponent implements OnInit {
       event.currentTarget.classList.add('active');
 
       this.router.navigateByUrl(
-        `test-nang-luc/${this.slugMajor}/rankings?page=${pageNumber}`
+        `test-nang-luc?major=${this.slugMajor}&page=${pageNumber}`
       );
       
       this.testCapacityService.paginationCapacity(url).subscribe((res) => {
@@ -227,6 +238,7 @@ export class RankCapacityComponent implements OnInit {
           this.statusNotResultReturn = false;
         }
       })
+      }
   }
 
 }
