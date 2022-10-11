@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Capacity } from 'src/app/models/capacity';
 import { Major } from 'src/app/models/major';
 import { ConfigFunctionService } from 'src/app/services/config-function.service';
 import { MajorService } from 'src/app/services/major.service';
@@ -17,11 +18,13 @@ export class RankCapacityComponent implements OnInit {
   listRanking: any = []
   statusNotResultReturn: boolean = false;
   majorsDataTable: string
+  listCapacity: Array<Capacity>;
   currentPage: string | null 
 
   statusSubmit: boolean = false
   statusMajor: boolean = false
   statusRanking: boolean = false
+  statusCapacity: boolean = false
 
   first_page_url: string 
   next_page_url: string
@@ -44,7 +47,9 @@ export class RankCapacityComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.getListMajor();
     // Lấy param page xuống active vào trang
+    this.slugMajor = this.route.snapshot.paramMap.get('slug_major')!;
     this.currentPage = this.route.snapshot.queryParamMap.get('page')
     this.testCapacityService
       .getRankingbyMajor(this.slugMajor, this.currentPage) 
@@ -69,20 +74,26 @@ export class RankCapacityComponent implements OnInit {
         }
       })
     
-    
+      this.getListTestCapacity()
 
-    if(this.formFilter.controls['filterMajor'].value){
-      this.statusSubmit = true;
-    }else{
-      this.statusSubmit = false;
-    }
-    this.slugMajor = this.route.snapshot.paramMap.get('slug_major')!;
-    this.getListMajor();
-    this.getRankByMajor(this.slugMajor)
+    
+  }
+
+  // lấy danh sách test năng lực trả về 8 bài bài test mới nhất
+  getListTestCapacity() {
+    this.testCapacityService.getAllTestCapacity().subscribe((res) => {
+      if (res.status) {
+        let arrResult= res.payload.data;
+        this.listCapacity = arrResult.filter((res : any , index: number) => {
+          return index <= 7;
+        });
+        this.listCapacity.length > 0 ? (this.statusCapacity = true) : this.statusCapacity;
+      }
+    });
   }
 
 
-
+  // set lại giá trị cho form Chuyên ngành và lấy data render lại page
   setValueFilterMajor(item: Major) {
     this.formFilter.controls['filterMajor'].setValue(item.name);
     this.statusSubmit = true
