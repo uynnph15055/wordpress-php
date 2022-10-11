@@ -17,38 +17,11 @@
             <div class="post-main-content">
                 <div class="post-main-content-section">
                     <div class="main-section" *ngIf="!ListPost">
-                        <div>
-                            <ngx-skeleton-loader
-                            [theme]="{ height: '260px' }"
-                            ></ngx-skeleton-loader>
-                            <ngx-skeleton-loader
-                            [theme]="{ margin: '0px 30px 0px 30px', width: '80%', height: '100px' }"
-                        ></ngx-skeleton-loader>
-                        </div>
-                        <div>
-                            <ngx-skeleton-loader
-                            [theme]="{ height: '260px' }"
-                            ></ngx-skeleton-loader>
-                            <ngx-skeleton-loader
-                            [theme]="{ margin: '0px 30px 0px 30px', width: '80%', height: '100px' }"
-                        ></ngx-skeleton-loader>
-                        </div>
-                        <div>
-                            <ngx-skeleton-loader
-                            [theme]="{ height: '260px' }"
-                            ></ngx-skeleton-loader>
-                            <ngx-skeleton-loader
-                            [theme]="{ margin: '0px 30px 0px 30px', width: '80%', height: '100px' }"
-                        ></ngx-skeleton-loader>
-                        </div>
-                        <div>
-                            <ngx-skeleton-loader
-                            [theme]="{ height: '260px' }"
-                            ></ngx-skeleton-loader>
-                            <ngx-skeleton-loader
-                            [theme]="{ margin: '0px 30px 0px 30px', width: '80%', height: '100px' }"
-                        ></ngx-skeleton-loader>
-                        </div>
+                      <app-post-load-item></app-post-load-item>
+                      <app-post-load-item></app-post-load-item>
+                      <app-post-load-item></app-post-load-item>
+                      <app-post-load-item></app-post-load-item>
+                      <app-post-load-item></app-post-load-item>
                     </div>
                     <div class="main-section">
                         <div class="post-item" *ngFor="let post of ListPost">

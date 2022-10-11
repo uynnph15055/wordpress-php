@@ -341,7 +341,7 @@
 }
 
 .advantage__tag--1.active {
-  transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #FFC0C0;
   background-color: var(--my-white);
 }
@@ -351,7 +351,7 @@
 }
 
 .advantage__tag--2.active {
-  transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #FFD9C0;
   background-color: var(--my-white);
 }
@@ -361,7 +361,7 @@
 }
 
 .advantage__tag--3.active {
-  transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #FAF0D7;
   background-color: var(--my-white);
 
@@ -372,7 +372,7 @@
 }
 
 .advantage__tag--4.active {
-  transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.5s;
   box-shadow: 0px 8px 16px #8CC0DE;
   background-color: var(--my-white);
 

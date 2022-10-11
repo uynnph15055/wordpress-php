@@ -19,7 +19,6 @@ export class PostCategoryComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.getListPost()
     let typePost= this.route.snapshot.queryParamMap.get('cate')
     if(typePost == 'post-recruitment'){
       let listTab = document.querySelectorAll('.post__nav-item')
@@ -29,6 +28,37 @@ export class PostCategoryComponent implements OnInit {
         item.classList.remove('active')
       })
       type?.classList.add('active')
+      this.postService.getPostByCategory(typePost).subscribe(res => {
+        if(res.status){
+          this.ListPost = res.payload.data
+        }
+      })
+    }else if(typePost == 'post-capacity'){
+      let listTab = document.querySelectorAll('.post__nav-item')
+      let type = document.querySelector('.capacity')
+
+      listTab.forEach(item =>{
+        item.classList.remove('active')
+      })
+      type?.classList.add('active')
+      this.postService.getPostByCategory(typePost).subscribe(res => {
+        if(res.status){
+          this.ListPost = res.payload.data
+        }
+      })
+    }else if(typePost == 'post-contest'){
+      let listTab = document.querySelectorAll('.post__nav-item')
+      let type = document.querySelector('.contest')
+
+      listTab.forEach(item =>{
+        item.classList.remove('active')
+      })
+      type?.classList.add('active')
+      this.postService.getPostByCategory(typePost).subscribe(res => {
+        if(res.status){
+          this.ListPost = res.payload.data
+        }
+      })
     }
     
   }
@@ -51,7 +81,7 @@ export class PostCategoryComponent implements OnInit {
     this.router.navigateByUrl(`danh-muc-bai-viet?cate=${data}`);
 
     this.ListPost = null
-        this.postService.getPostByCategory(data).subscribe(res => {
+      this.postService.getPostByCategory(data).subscribe(res => {
         if(res.status){
           this.ListPost = res.payload.data
         }

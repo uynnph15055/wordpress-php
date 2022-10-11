@@ -107,6 +107,20 @@ export class TestCapacityComponent implements OnInit {
     this.getAllSkill();
   }
 
+  resetFilterCapacity(){
+    this.formFilter.controls['filterMajor'].setValue("");
+    this.formFilter.controls['filterSkill'].setValue("");
+    this.formFilter.controls['filterName'].setValue("");
+    this.router.navigateByUrl(`test-nang-luc`);
+    this.statusSubmit = false
+    this.statusMajor = false
+    this.statusSkill = false
+    this.listCapacity = [];
+    this.statusNotResultReturn = false;
+    this.statusCapacity = false;
+    this.getListTestCapacity();
+  }
+
   getListTestCapacity() {
     this.testCapacityService.getAllTestCapacity().subscribe((res) => {
       if (res.status) {
@@ -156,7 +170,7 @@ export class TestCapacityComponent implements OnInit {
         this.statusSubmit = true
       }
     }else{
-    this.formFilter.controls['filterName'].setValue(event.target.value);
+      this.formFilter.controls['filterName'].setValue(event.target.value);
       this.statusSubmit = true
     }
   }
@@ -227,7 +241,7 @@ export class TestCapacityComponent implements OnInit {
     this.listCapacity = [];
     this.statusNotResultReturn = false;
     this.statusCapacity = false;
-    let major_id = 0;
+    let major_id: number | string =  "";
     let keyword = '';
 
     if (this.formFilter.controls['filterName'].value) {
@@ -303,4 +317,5 @@ export class TestCapacityComponent implements OnInit {
       }
     });
   }
+
 }

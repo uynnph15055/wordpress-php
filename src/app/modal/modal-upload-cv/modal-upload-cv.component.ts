@@ -21,11 +21,16 @@ export class ModalUploadCvComponent implements OnInit {
 
   // set up form control
   formUploadCv = new FormGroup({
-    name: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', Validators.required),
+    phone: new FormControl('', [Validators.required, Validators.pattern("[0-9]{10}")]),
     file_link: new FormControl('')
   });
+
+  get name() { return this.formUploadCv.get('name'); }
+  get email() { return this.formUploadCv.get('email'); }  
+  get phone() { return this.formUploadCv.get('phone'); }  
+  get file_link() { return this.formUploadCv.get('file_link'); }  
 
   constructor(
     public dialogRef: MatDialogRef<ModalUploadCvComponent>,
@@ -36,6 +41,7 @@ export class ModalUploadCvComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
   }
   closeDialog() {
     this.dialogRef.close('Pizza!');
@@ -64,12 +70,13 @@ export class ModalUploadCvComponent implements OnInit {
     if (this.dataPostDetail.postDetail) formDataInput.append('post_id', this.dataPostDetail.postDetail.id)
 
     setTimeout(() => {
-      this.postService.uploadCV(formDataInput).subscribe((res : ResponsePayload) => {
+      this.postService.uploadCV(formDataInput).subscribe((res : any) => {
         if (res.status == false) {
-          this.toast.warning({ summary: res.payload, duration: 2000 });
+          this.toast.warning({ summary: res.message.file_link[0], duration: 2000 });
         } else {
           this.statusRegister = true;
           this.dialogRef.close();
+          this.toast.success({ summary: "Upload CV thành công", duration: 2000 });
         }
         return "Ok"
       });

@@ -9,14 +9,14 @@ import { ListPostService } from 'src/app/services/list-post.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  PostRecruitmentFirst : Post; 
-  ListPostRecruitment: Post[]
+  postRecruitmentFirst : Post; 
+  listPostRecruitment: Post[]
 
-  PostContestFirst : Post; 
-  ListPostContest: Post[]
+  postContestFirst : Post; 
+  listPostContest: Post[]
 
-  PostCapacityFirst : Post; 
-  ListPostCapacity: Post[]
+  postCapacityFirst : Post; 
+  listPostCapacity: Post[]
 
   constructor(
     private postService : ListPostService,
@@ -34,9 +34,9 @@ export class PostsComponent implements OnInit {
     this.postService.getPostByCategory("post-recruitment").subscribe(res => {
        if(res.status){
         let arrResult= res.payload.data;
-        this.PostRecruitmentFirst = arrResult[0];
-        this.ListPostRecruitment = arrResult.filter((res: Post , index: number) => {
-          return index <= 2;
+         this.postRecruitmentFirst = arrResult[0];
+         this.listPostRecruitment = arrResult.filter((res: Post , index: number) => {
+          return index <= 1;
         });
        }
     })
@@ -46,8 +46,8 @@ export class PostsComponent implements OnInit {
     this.postService.getPostByCategory("post-contest").subscribe(res => {
        if(res.status){
         let arrResult= res.payload.data;
-        this.PostContestFirst = arrResult[0];
-        this.ListPostContest = arrResult.filter((res: Post , index: number) => {
+         this.postContestFirst = arrResult[0];
+         this.listPostContest = arrResult.filter((res: Post , index: number) => {
           return index <= 2;
         });
        }
@@ -58,8 +58,8 @@ export class PostsComponent implements OnInit {
     this.postService.getPostByCategory("post-capacity").subscribe(res => {
        if(res.status){
         let arrResult= res.payload.data;
-        this.PostCapacityFirst = arrResult[0];
-        this.ListPostCapacity = arrResult.filter((res: Post , index: number) => {
+         this.postCapacityFirst = arrResult[0];
+         this.listPostCapacity = arrResult.filter((res: Post , index: number) => {
            return  index <= 2;
         });
        }

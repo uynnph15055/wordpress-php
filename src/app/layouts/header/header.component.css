@@ -123,9 +123,6 @@
   color: var(--blue);
   position: relative;
   font-size: 16px;
-}
-
-.menu_login-box .nav-link-item {
   padding-bottom: 5px;
 }
 
