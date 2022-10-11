@@ -31,6 +31,13 @@
                         </ngx-skeleton-loader>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-6" *ngFor="let _ of [].constructor(2)">
+                        <ngx-skeleton-loader [theme]="{ 'height.px' : 132,  'border-radius': '8px' }"
+                            appearance="line">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="post-new-latest" *ngIf="postRecruitmentFirst">
@@ -66,8 +73,17 @@
                         </a>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-6" *ngFor="let post of listPostRecruitment">
+                        <a routerLink="/bai-viet/{{post.slug}}" data-toggle="tooltip"
+                        data-placement="top" title={{post.title}}>
+                            <img src={{post.thumbnail_url}} alt="" class="post-new-latest_img">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+        
 
         <div class="post-main">
             <div class="post-main-content">
