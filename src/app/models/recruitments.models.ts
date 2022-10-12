@@ -19,4 +19,5 @@ export class Recruitments {
     short_description: string;
     count_user: number;
     contest_count: number;
+    rounds_count: number;
 }

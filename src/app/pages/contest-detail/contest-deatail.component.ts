@@ -59,9 +59,10 @@ export class ContestDeatailComponent implements OnInit {
   statusCheckDate: boolean = true;
   statusUserLogin: boolean = false;
   statusLinks: boolean = false;
+  total : number;
   listPostResult: Array<Post> = [];
 
-  sliderSupporter = {
+   sliderSupporter = {
     slidesToShow: 3,
     infinite: true,
     autoplay: true,
@@ -96,11 +97,12 @@ export class ContestDeatailComponent implements OnInit {
     this.contestService.getWhereId(this.contest_id).subscribe((res) => {
       if (res.status) {
         this.contestDetail = res.payload;
-        this.contestDetail.rounds.length > 0 && this.getResultRank('desc');
+        // this.contestDetail.rounds.length > 0 && this.getResultRank('desc');
         this.contestDetail ? (this.statusContest = true) : this.statusContest;
       }
     });
     
+    this.getResultRank('desc')
 
     // Các cuộc thi liên quan
     this.contestService
@@ -156,17 +158,18 @@ export class ContestDeatailComponent implements OnInit {
 
   sortResult(status: boolean){
     this.statusLinks = false;
-    status ? this.getResultRank('asc') : this.getResultRank('desc');
+    status ? this.getResultRank('desc') : this.getResultRank('asc');
   }
 
   // Mở model thêm đội thi
   getResultRank(sort : string) {
-    this.roundService.getResultRound(this.contestDetail.rounds[this.contestDetail.rounds.length - 1].id ,  sort).subscribe((res) => {
+    this.roundService.getResultRound(334,  sort , 6).subscribe((res) => {
        if(res.status){
         this.resultRank = res.payload.data;
         this.payLinkArrayResult = res.payload.links;
         this.payLinkNextResult = res.payload.next_page_url;
         this.payLinkPrevResult = res.payload.prev_page_url;
+        this.total =  res.payload.total;
         this.payLinkArrayResult.pop();
         this.payLinkArrayResult.shift();
         this.statusLinks = true;

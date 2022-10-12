@@ -4,6 +4,7 @@ import { User } from "./user";
 export class ResultRound {
     id: number;
     point : number;
+    round_id: number;
     team: {
         name: string;
         image: string;

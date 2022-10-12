@@ -189,7 +189,7 @@ export class HomeComponent implements OnInit {
         advantage[0].classList.add('active');
         advantageEleImage[0].classList.remove('d-none');
       }
-    }, 2000);
+    }, 4000);
   }
 
   // Get api list contest after login

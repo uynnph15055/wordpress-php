@@ -126,7 +126,7 @@ statusCheckDate: boolean = true;
           ? 'btn btn-success'
           : 'btn-main btn';
       } else if (this.date_start > this.today) {
-        result = 'btn btn-danger border-2 border-danger text-white';
+        result = 'my-btn-disabled my-btn-s';
       } else if (this.date_end > this.today) {
         result = item.status_user_has_join_contest
           ? 'btn btn-success'
@@ -135,40 +135,12 @@ statusCheckDate: boolean = true;
         result = 'btn-main btn';
       }
     } else {
-      result = 'btn btn-danger border-2 border-danger text-white';
+      result = 'my-btn-disabled my-btn-s';
     }
     return result;
   }
 
-  // runCountDownTime(){
-  //   if(this.contestDetail){
-  //     setInterval(() => {
-  //       this.roundEndTime = moment(this.contestDetail.end_register_time).format(
-  //         'lll'
-  //       );
-
-  //       let futureDate = new Date(this.roundEndTime).getTime();
-  //       let today = new Date().getTime();
-  //       let distance = futureDate - today;
-  //       if (distance < 0) {
-  //         this.days = 0;
-  //         this.hours = 0;
-  //         this.minutes = 0;
-  //         this.seconds = 0;
-  //         this.nameBtnRegister = 'Đã hết hạn';
-  //       } else {
-  //         this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  //         this.hours = Math.floor(
-  //           (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  //         );
-  //         this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  //         this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  //       }
-  //     }, 1000);
-
-  //   }
-  // }
-
+ 
   // Mở model thêm đội thi
   openFormRegister(): void {
     if (

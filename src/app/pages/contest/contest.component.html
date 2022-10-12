@@ -34,12 +34,13 @@
           <input
             formControlName="keywordContest"
             type="text"
-            class="form-control input-search"
+            class="form-control"
+            [attr.disabled]="!statusContest ? true : null"
             placeholder="Tìm kiếm cuộc thi ..."
             aria-label="Username"
             aria-describedby="addon-wrapping"
           />
-          <button class="input-group-text primary-color bg-white border-none">
+          <button [attr.disabled]="!statusContest ? true : null" class="input-group-text primary-color bg-white border-none">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </form>
@@ -66,12 +67,13 @@
             (submit)="searchMajor()"
           >
             <input
+            [attr.disabled]="!statusContest ? true : null"
               type="text"
               placeholder="Tìm kiếm chuyên ngành..."
-              class="input-search form-control"
+              class="form-control"
               formControlName="keywordMajor"
             />
-            <button class="input-group-text btn__search-major">
+            <button    [attr.disabled]="!statusContest ? true : null" class="input-group-text btn__search-major">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>

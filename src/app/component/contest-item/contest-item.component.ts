@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ContestItemComponent implements OnInit {
   @Input() item: Contest;
+  @Input() isRelate: boolean;
   @Input() major_slug: any;
   @Input() pageContestByUser: boolean;
   date_end: number;
@@ -76,7 +77,14 @@ export class ContestItemComponent implements OnInit {
     }, 1000);
   }
 
-
+  runTop() {
+    $('html , body').animate(
+      {
+        scrollTop: 0,
+      },
+      1000
+    );
+  }
 
   checkDateContest(item: Contest): any {
     let result;

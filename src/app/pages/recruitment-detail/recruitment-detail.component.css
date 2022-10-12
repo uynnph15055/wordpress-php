@@ -77,7 +77,6 @@ ul {
 .recruitment-detail-img {
     position: absolute;
     top: 25%;
-    left: 8%;
     height: 200px;
     width: 250px;
     object-fit: cover;
@@ -99,4 +98,8 @@ ul {
     object-fit: cover;
     border-radius: 50px;
     cursor: pointer;
+}
+
+.recruitment__detail-info{
+    background-color: var(--white);
 }
