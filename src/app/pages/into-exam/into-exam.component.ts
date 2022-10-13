@@ -18,6 +18,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalInfoTeamComponent } from 'src/app/modal/modal-info-team/modal-info-team.component';
 import { environment } from 'src/environments/environment';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
+import { AlertErrorIntroExamComponent } from 'src/app/component/alert-error-intro-exam/alert-error-intro-exam.component';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-into-exam',
@@ -43,9 +45,7 @@ export class IntoExamComponent implements OnInit {
   infoExam: TakeExam;
   statusPage: boolean = false;
   assignment: Object;
-
   validFileExtensions: string[] = ['zip', 'rar'];
-
   statusClickSubmit: boolean = false;
   assignmentFiles: boolean = false;
   assignmentLinks: boolean = false;
@@ -59,7 +59,8 @@ export class IntoExamComponent implements OnInit {
     private toast: NgToastService,
     public dialog: MatDialog,
     private router: Router,
-    private getUserLocal: GetValueLocalService
+    private getUserLocal: GetValueLocalService,
+    private _location: Location
   ) {}
 
   submitAss = new FormGroup({
@@ -73,9 +74,6 @@ export class IntoExamComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    if (!this.getUserLocal.getValueLocalUser('user')) {
-      this.router.navigate(['./login']);
-    }
 
     // Chi tiết cuộc thi
     this.route.paramMap
@@ -128,12 +126,8 @@ export class IntoExamComponent implements OnInit {
             }
           });
       });
-    });
-
-    // thông tin đề thi thoe vòng thi
-    if (this.roundId) {
       this.getInfoExam(round);
-    }
+    });
   }
 
   // dowload đề bài
@@ -170,8 +164,22 @@ export class IntoExamComponent implements OnInit {
   getInfoExam(round: object) {
     this.roundService.getInfoExamRound(round).subscribe((res) => {
       if (res.status) this.infoExam = res.payload;
+      if(res.status && res.payload.error){
+        let dialogRef =   this.dialog.open(AlertErrorIntroExamComponent, {
+          width: '300px',
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if(!result){
+            this._location.back();
+          }
+        });
+        
+      }
+      
+      console.log(this.infoExam.status);
+      
       if (this.infoExam) this.checkStatusExam(this.infoExam.status);
-      // if(!this.infoExam.exam.external_url)
     });
   }
 
@@ -234,7 +242,6 @@ export class IntoExamComponent implements OnInit {
 
   removeAssLink() {
     this.statusSubmitExam = false;
-
     setTimeout(() => {
       this.resetAllStatus();
     }, 3000);
@@ -297,7 +304,11 @@ export class IntoExamComponent implements OnInit {
 
   // Check team has  submit ass
   checkStatusExam(status: number) {
-    status == 1 ? (this.statusTakeExam = false) : (this.statusTakeExam = true);
+    if(!status){
+      this.statusTakeExam = false
+    }else{
+      status == 1 ? (this.statusTakeExam = false) : (this.statusTakeExam = true);
+    }
   }
 
   // reset All Status

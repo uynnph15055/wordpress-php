@@ -115,11 +115,10 @@ export class ModalAddTeamComponent implements OnInit {
     this.teamService.addTeam(formDataTeam).subscribe((res) => {
       if (!res.status) {
         this.toast.warning({ summary: res.payload, duration: 2000 });
-        this.dialogRef.close();
+        this.dialogRef.close(true);
       } else {
         this.statusRegister = true;
         this.onNoClick();
-        this.openInfoTeam(res.id_team, this.data.contest_id);
         this.toast.success({ summary: 'Thêm thành công', duration: 2000 });
       }
     });
@@ -146,11 +145,10 @@ export class ModalAddTeamComponent implements OnInit {
         .subscribe((res) => {
           if (!res.status) {
             this.toast.warning({ summary: res.payload, duration: 2000 });
-            this.dialogRef.close();
+            this.dialogRef.close(true);
           } else {
             this.statusRegister = true;
             this.onNoClick();
-            this.openInfoTeam(this.teamDetail.id, this.data.contest_id);
             this.toast.success({ summary: 'Sửa thành công', duration: 2000 });
           }
         });
@@ -162,18 +160,22 @@ export class ModalAddTeamComponent implements OnInit {
       this.dialogRef.close();
       this.openInfoTeam(this.teamDetail.id, this.data.contest_id);
     } else {
-      this.dialogRef.close();
+      this.dialogRef.close(true);
     }
   }
 
   // Thông tin đội
   openInfoTeam(team_new_id: number, contest_id: string) {
-    this.dialog.open(ModalInfoTeamComponent, {
+    const dialogRef = this.dialog.open(ModalInfoTeamComponent, {
       width: '900px',
       data: {
         contest_id: contest_id,
         team_id: team_new_id,
       },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result); // Pizza!
     });
   }
 }

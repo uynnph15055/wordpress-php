@@ -97,13 +97,13 @@ export class ContestDeatailComponent implements OnInit {
     this.contestService.getWhereId(this.contest_id).subscribe((res) => {
       if (res.status) {
         this.contestDetail = res.payload;
-        // this.contestDetail.rounds.length > 0 && this.getResultRank('desc');
+        this.contestDetail.rounds.length > 0 && this.getResultRank('desc');
         this.contestDetail ? (this.statusContest = true) : this.statusContest;
       }
     });
-    
-    this.getResultRank('desc')
 
+    this.getListPost();
+    
     // Các cuộc thi liên quan
     this.contestService
       .getContestWhereMajor( this.contest_id)
@@ -122,7 +122,7 @@ export class ContestDeatailComponent implements OnInit {
         }
       });
   
-      this.getListPost();
+    
   }
 
   //Cac bai post
@@ -163,7 +163,9 @@ export class ContestDeatailComponent implements OnInit {
 
   // Mở model thêm đội thi
   getResultRank(sort : string) {
-    this.roundService.getResultRound(334,  sort , 6).subscribe((res) => {
+    console.log(this.contestDetail.rounds[this.contestDetail.rounds.length - 1].id);
+    
+    this.roundService.getResultRound(this.contestDetail.rounds[this.contestDetail.rounds.length - 1].id,  sort , 6).subscribe((res) => {
        if(res.status){
         this.resultRank = res.payload.data;
         this.payLinkArrayResult = res.payload.links;

@@ -1,9 +1,9 @@
 .contest-aside-box {
-  border: 1px solid var(--my-dark-gray);
+  border-radius: 4px;
 }
 
 .h3 {
-  font-size: 25px;
+  font-size: 22px;
   margin: 0px 10px;
 }
 

@@ -62,7 +62,7 @@
             </div>
           </div>
           <form
-            class="input-group contest__content-form--search"
+            class="my-form-search my-2"
             [formGroup]="formSearchMajor"
             (submit)="searchMajor()"
           >
@@ -70,10 +70,10 @@
             [attr.disabled]="!statusContest ? true : null"
               type="text"
               placeholder="Tìm kiếm chuyên ngành..."
-              class="form-control"
+              class="my-input-search"
               formControlName="keywordMajor"
             />
-            <button    [attr.disabled]="!statusContest ? true : null" class="input-group-text btn__search-major">
+            <button    [attr.disabled]="!statusContest ? true : null" class="my-btn-search-inside">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
