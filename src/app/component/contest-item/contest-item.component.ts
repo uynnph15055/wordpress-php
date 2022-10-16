@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Contest } from 'src/app/models/contest';
 import { Team } from 'src/app/models/team';
 import * as moment from 'moment/moment';
@@ -14,6 +14,8 @@ export class ContestItemComponent implements OnInit {
   @Input() isRelate: boolean;
   @Input() major_slug: any;
   @Input() pageContestByUser: boolean;
+  @Output() contestRelated = new EventEmitter<boolean>();
+
   date_end: number;
   date_start: number;
   date_register_start: number;
@@ -104,7 +106,6 @@ export class ContestItemComponent implements OnInit {
     return result;
   }
 
-
   checkStatusContest(item: Contest): any {
     let result;
     if (item.status <= 1) {
@@ -125,5 +126,7 @@ export class ContestItemComponent implements OnInit {
     return result;
   }
 
- 
+  isContestRelate(event : boolean){
+    this.contestRelated.emit(event);
+  }
 }
