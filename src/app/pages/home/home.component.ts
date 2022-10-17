@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
     slidesToScroll: 1,
     fadeSpeed: 1000,
   };
+
   sliderContest = {
     slidesToShow: 4,
     infinite: true,
@@ -91,6 +92,7 @@ export class HomeComponent implements OnInit {
     slidesToShow: 5,
     infinite: true,
     autoplay: true,
+    arrows: false,
     slidesToScroll: 1,
     fadeSpeed: 1000,
     responsive: [
