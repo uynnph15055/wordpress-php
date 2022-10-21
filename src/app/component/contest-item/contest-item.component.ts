@@ -3,6 +3,9 @@ import { Contest } from 'src/app/models/contest';
 import { Team } from 'src/app/models/team';
 import * as moment from 'moment/moment';
 import { UserService } from 'src/app/services/user.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
+import { Post } from 'src/app/models/post.model';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-contest-item',
@@ -15,6 +18,8 @@ export class ContestItemComponent implements OnInit {
   @Input() major_slug: any;
   @Input() pageContestByUser: boolean;
   @Output() contestRelated = new EventEmitter<boolean>();
+  @Output() requestFavorite = new EventEmitter<Contest>();
+  @Output() addFavorite = new EventEmitter<number>();
 
   date_end: number;
   date_start: number;
@@ -30,7 +35,7 @@ export class ContestItemComponent implements OnInit {
   minutes: number;
   seconds: number;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService ,   private toast: NgToastService ,  private wishlist : WishlistService) {}
  
   ngOnInit(): void {
     this.userService.getUserValue().id != undefined
@@ -105,6 +110,36 @@ export class ContestItemComponent implements OnInit {
     }
     return result;
   }
+
+  favoriteEvent(event: any , item: Contest){
+    const data = {
+      type : 'contest',
+      id: item.id,
+    }
+
+    this.requestFavorite.emit(item);
+    if(item.user_wishlist){
+      event.currentTarget.classList.remove('primary-color');
+      event.currentTarget.parentElement.classList.remove('opacity-100');
+      event.currentTarget.parentElement.classList.add('my-add-favorite__icon');
+      this.wishlist.wishListRemove(data).subscribe(res => {
+        if(res.status){
+          this.toast.success({ summary: res.payload, duration: 2000 });
+        }
+      });
+    }else{
+      event.currentTarget.classList.add('primary-color');
+      event.currentTarget.parentElement.classList.add('opacity-100');
+      event.currentTarget.parentElement.classList.remove('my-add-favorite__icon');
+      this.wishlist.wishListAdd(data).subscribe(res => {
+        if(res.status){
+          this.toast.success({ summary: res.payload, duration: 2000 });
+        }
+      });
+    }
+  }
+
+
 
   checkStatusContest(item: Contest): any {
     let result;

@@ -4,9 +4,9 @@
             <img class="contest-item__img"[src]="item.img" alt="">
         </a>
         <div class="contest-item__btn-favorite">
-            <button  class="my-btn my-add-favorite__btn">
-                <i class="my-add-favorite__icon fa-solid fa-bookmark"></i>
-        </button>
+            <button class="my-btn my-add-favorite__btn " [ngClass]="item.user_wishlist ? 'opacity-100' : ''">
+                <i  (click)="favoriteEvent($event , item)" class=" fa-solid fa-bookmark" [ngClass]="item.user_wishlist ? 'primary-color' : 'my-add-favorite__icon'"></i>
+            </button>
         </div>
     </div>
     <div class="contest-item-content">

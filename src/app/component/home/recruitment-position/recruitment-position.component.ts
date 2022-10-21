@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgToastService } from 'ng-angular-popup';
+import { Contest } from 'src/app/models/contest';
 import { Post } from 'src/app/models/post.model';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-recruitment-position',
@@ -8,9 +11,36 @@ import { Post } from 'src/app/models/post.model';
 })
 export class RecruitmentPositionComponent implements OnInit {
   @Input() item: Post;
-  constructor() { }
+  @Output() requestFavorite = new EventEmitter<Post>();
+  constructor(private wishlist: WishlistService ,  private toast: NgToastService) { }
 
   ngOnInit(): void {
   }
 
+  favoriteEvent(event: any , item: Post){
+    const data = {
+      type : 'post',
+      id: item.id,
+    }
+    this.requestFavorite.emit(item);
+    if(item.user_wishlist){
+      event.currentTarget.classList.remove('primary-color');
+      event.currentTarget.parentElement.classList.remove('opacity-100');
+      event.currentTarget.parentElement.classList.add('my-add-favorite__icon');
+      this.wishlist.wishListRemove(data).subscribe(res => {
+        if(res.status){
+          this.toast.success({ summary: res.payload, duration: 2000 });
+        }
+      });
+    }else{
+      event.currentTarget.classList.add('primary-color');
+      event.currentTarget.parentElement.classList.add('opacity-100');
+      event.currentTarget.parentElement.classList.remove('my-add-favorite__icon');
+      this.wishlist.wishListAdd(data).subscribe(res => {
+        if(res.status){
+          this.toast.success({ summary: res.payload, duration: 2000 });
+        }
+      });
+    }
+  }
 }
