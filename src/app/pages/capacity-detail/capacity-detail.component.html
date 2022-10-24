@@ -227,8 +227,8 @@
             *ngIf="!isFetchingCapacityRelated"
             [ngClass]="{ 'm-0': !capacityRelated.length }"
           >
-            <div class="mb-4 mb-lg-0 col col-lg-4 col-md-6 col-sm-12 col-12" *ngFor="let capacity of capacityRelated">
-              <app-capacity-related-item [capacityItem]="capacity"></app-capacity-related-item>
+            <div class="mb-4 mb-lg-0 col col-lg-4 col-md-6 col-sm-12 col-12 d-flex" *ngFor="let capacity of capacityRelated">
+              <app-capacity-related-item class="d-flex flex-1" [capacityItem]="capacity"></app-capacity-related-item>
             </div>
           </ul>
 
@@ -247,6 +247,9 @@
                 ></ngx-skeleton-loader>
                 <ngx-skeleton-loader
                   [theme]="{ margin: '0 0 4px', width: '70%', display: 'block' }"
+                ></ngx-skeleton-loader>
+                <ngx-skeleton-loader
+                  [theme]="{ margin: '0 0 4px', width: '85%', display: 'block' }"
                 ></ngx-skeleton-loader>
 
                 <ngx-skeleton-loader [theme]="{ height: '40px', margin: '6px 0 0' }"></ngx-skeleton-loader>
