@@ -100,7 +100,7 @@ export class CapacityDetailComponent implements OnInit {
           });
 
           // get ds doanh nghiệp, xóa DN trùng lặp
-          this.enterprises = res.payload.recruitment_enterprise.reduce((result: Enterprise[], item: Enterprise) => {
+          this.enterprises = res.payload.recruitmentEnterprise.reduce((result: Enterprise[], item: Enterprise) => {
             const exitsEnterprise = result.some((enterprice) => enterprice.id === item.id);
 
             if (!exitsEnterprise) result.push(item);
