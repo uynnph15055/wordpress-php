@@ -1,0 +1,137 @@
+.capacity__search-btn {
+  color: white;
+  background-color: var(--primary);
+  transition: all 0.25s linear;
+  border: none;
+  outline: none;
+}
+
+.capacity__search-btn:not(:disabled):hover {
+  box-shadow: inset 0 0 0 100px rgba(0, 0, 0, 0.2);
+}
+
+.capacity__search-btn:disabled {
+  background-color: #ccc;
+}
+
+.capacity__title {
+  margin-top: 12px;
+}
+
+.capacity__item {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: var(--my-rounded-2);
+  border: 1px solid var(--my-dark-gray);
+  margin-bottom: 24px;
+}
+
+.capacity__item-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 65%;
+  border-radius: 8px;
+  display: block;
+}
+
+.capacity__content-time {
+  color: var(--my-darkest-gray);
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+.capacity__content-title {
+  color: var(--my-black);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  margin: 4px 0;
+  transition: all 0.25s linear;
+}
+
+.capacity__content-title:hover {
+  color: var(--my-primary);
+}
+
+.capacity__content-btn {
+  margin: 6px 0 0;
+  padding: 6px 0;
+}
+
+.capacity__content-list {
+  margin-left: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.capacity__content-btn {
+  width: 100%;
+}
+
+.capacity__content-list-item {
+  display: flex;
+  padding-bottom: 2px;
+  font-size: 14px;
+}
+
+.capacity__content-list-item-icon {
+  min-width: 24px;
+}
+
+.capacity__content-list-item-icon-text > * {
+  font-size: 14px;
+}
+
+.capacity__content-list-item b {
+  padding-right: 4px;
+}
+
+.sidebar__content-list-item-time {
+  padding-left: 2px;
+}
+
+.capacity__content-btn {
+  width: 100%;
+}
+
+.capacity__content-list-item-skill {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.capacity__content-list-item-skill-name {
+  padding-left: 4px;
+}
+
+/* pagination */
+::ng-deep .ant-pagination-item-active a,
+::ng-deep .ant-pagination-item:hover a,
+::ng-deep .ant-pagination-item-active:hover a,
+::ng-deep .ant-pagination-prev:not([ng-reflect-disabled="true"]):hover .ant-pagination-item-link,
+::ng-deep .ant-pagination-next:not([ng-reflect-disabled="true"]):hover .ant-pagination-item-link,
+::ng-deep .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-link-icon,
+::ng-deep .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-link-icon {
+  color: var(--primary);
+}
+
+::ng-deep .ant-pagination-item-active:hover,
+::ng-deep .ant-pagination-item:hover,
+::ng-deep .ant-pagination-prev:not([ng-reflect-disabled="true"]):hover .ant-pagination-item-link,
+::ng-deep .ant-pagination-next:not([ng-reflect-disabled="true"]):hover .ant-pagination-item-link,
+::ng-deep .ant-pagination-item-active {
+  border-color: var(--primary);
+}
+
+::ng-deep button.ant-pagination-item-link.ng-star-inserted {
+  line-height: normal;
+}
+
+.no-data-image {
+  display: block;
+  margin: 0 auto;
+}

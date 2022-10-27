@@ -1,114 +1,85 @@
-<div class="tw-bg-[#F8F8F8]">
-    <div class="container py-4">
-        <div class="">
-            <div class="pb-4">
-                <a routerLink="" class="router--home">Trang chủ</a> <span class="router--index"> / Test năng lực</span>
+<div class="test-capacity_wrapper">
+  <div class="container">
+    <div class="">
+      <!-- <div class="">
+        <h2 class="test-capacity_title-head">Danh Sách Test Năng Lực</h2>
+      </div> -->
+      <div class="">
+        <form class="my-box-filter my-box-filter-3" [formGroup]="formFilter" (submit)="filterCapacity()">
+          <input type="text" class="my-input" (keyup)="setValueKeyword($event)" placeholder="Tìm kiếm..."
+            formControlName="filterName" />
+          <div ngbDropdown class="d-inline-block w-100">
+            <input type="text" (keyup)="
+                    filterSelect(majors, $any($event.target).value, 'major')
+                  " formControlName="filterMajor" class="my-input" placeholder="Chuyên ngành" id="dropdownBasic1"
+              ngbDropdownToggle />
+            <div ngbDropdownMenu class="w-100" aria-labelledby="dropdownBasic1">
+              <div *ngIf="!majors" class="d-flex justify-content-center">
+                <app-loading-item class="py-2"></app-loading-item>
+              </div>
+              <a *ngFor="let item of majors" (click)="setValueFilterMajor(item)" class="capacity-text-majors"
+                ngbDropdownItem>{{ item.name }}</a>
             </div>
-            <div class="">
-                <img class="banner"
-                    src="https://images.unsplash.com/photo-1649859398731-d3c4ebca53fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-                    alt="">
+          </div>
+          <div ngbDropdown class="d-inline-block w-100">
+            <input type="text" (keyup)="
+                    filterSelect(skills, $any($event.target).value, 'skill')
+                  " formControlName="filterSkill" class="my-input w-100" placeholder="Kĩ năng" id="dropdownBasic1"
+              ngbDropdownToggle />
+            <div ngbDropdownMenu class="w-100" aria-labelledby="dropdownBasic1">
+              <div *ngIf="!skills" class="d-flex justify-content-center">
+                <app-loading-item class="py-2"></app-loading-item>
+              </div>
+              <a *ngFor="let item of skills" (click)="setValueSkill(item)" class="capacity-text-majors" ngbDropdownItem>{{
+                item.name }}</a>
             </div>
+          </div>
+          <div class="btn-wrapper">
+            <button type="button" class="my-btn-secondary my-btn-s" (click)="resetFilterCapacity()">
+              Làm mới
+            </button>
+            <button [disabled]="!statusSubmit" class="my-btn-primary my-btn-s">
+              Tìm kiếm
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
+        <ul class="d-flex flex-wrap filter-skill-box">
+          <li class="test-capacity__keyword my-h5">Đề xuất cho bạn:</li>
+          <li *ngFor="let item of keywordTrending" (click)="setValueKeywordTrending(item.keyword)"
+            class="test-capacity__keyword-item">
+            <i class="fa-solid fa-fire test-capacity__keyword-icon"></i>
+            <span class="test-capacity__keyword-title">{{ item.keyword }}</span>
+          </li>
+        </ul>
+        <div class="no-results" *ngIf="statusNotResultReturn">
+          Không tìm thấy kết quả nào
         </div>
-        <div class="">
-            <div class="">
-                <h2 class="!tw-font-bold tw-text-lg !tw-my-4">Test năng lực</h2>
+      </div>
+      <div class="">
+        <!-- skeleton -->
+        <ul class="capacity__related-list row" *ngIf="!statusCapacity">
+          <div class="col col-lg-3 col-md-4 col-sm-12 col-12" *ngFor="let _ of [].constructor(8)">
+            <div>
+              <ngx-skeleton-loader [theme]="{ height: '150px' }"></ngx-skeleton-loader>
+
+              <ngx-skeleton-loader [theme]="{ margin: '0 0 4px' }"></ngx-skeleton-loader>
+
+              <ngx-skeleton-loader [theme]="{ margin: '0 0 4px', width: '50%', display: 'block' }">
+              </ngx-skeleton-loader>
+              <ngx-skeleton-loader [theme]="{ margin: '0 0 4px', width: '70%', display: 'block' }">
+              </ngx-skeleton-loader>
+
+              <ngx-skeleton-loader [theme]="{ height: '40px', margin: '6px 0 0' }"></ngx-skeleton-loader>
             </div>
-            <div class="tw-grid tw-grid-cols-4 tw-justify-between tw-items-center tw-mb-5">
-                <div class="tw-col-span-3 tw-space-x-2 tw-space-y-4">
-                    <span>Đã chọn</span>
-                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
-                                class="bi bi-x"></i></button></span>
-                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
-                                class="bi bi-x"></i></button></span>
-                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
-                                class="bi bi-x"></i></button></span>
-                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
-                                class="bi bi-x"></i></button></span>
-                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
-                                class="bi bi-x"></i></button></span>
-                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
-                                class="bi bi-x"></i></button></span>
-                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
-                                class="bi bi-x"></i></button></span>
-                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
-                                class="bi bi-x"></i></button></span>
-                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
-                                class="bi bi-x"></i></button></span>
-                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
-                                class="bi bi-x"></i></button></span>
-                    <span class="test-capacity__tag"><span>Javascript</span> <button class="test-capacity__del-tag"><i
-                                class="bi bi-x"></i></button></span>
-                    <button class="test-capacity__action action--del">Xóa tất cả</button>
-                    <button class="test-capacity__action action--hidden">Thu gọn <i class="bi bi-arrow-up"></i></button>
-                    <button class="test-capacity__action action--show-all">Xem thêm <i
-                            class="bi bi-arrow-down"></i></button>
-                </div>
-                <div class="">
-                    <form class="tw-flex tw-items-center">
-                        <label for="simple-search" class="tw-sr-only">Search</label>
-                        <div class="tw-relative tw-w-full">
-                            <button
-                                class="tw-flex tw-absolute tw-inset-y-0 tw-left-0 tw-items-center tw-pl-3 tw-pointer-events-none tw-text-gray-400">
-                                <i class="bi bi-search tw-text-xl tw-text-gray-400"></i>
-                            </button>
-                            <input type="text" id="simple-search"
-                                class="tw-outline-none tw-bg-gray-50 tw-border tw-border-gray-300 tw-text-gray-900 tw-text-sm tw-rounded tw-block tw-w-full tw-pl-10 tw-p-2.5  dark:tw-bg-gray-700 dark:tw-border-gray-600 dark:tw-placeholder-gray-400 dark:tw-text-white dark:focus:tw-ring-blue-500 dark:focus:tw-border-blue-500"
-                                placeholder="Tìm kiếm tag, tên bài test,..." required>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="tw-grid tw-grid-cols-4  tw-gap-7">
-                <!-- <div class="test-capacity__item" *ngFor="let capacity of listCapacity">
-                    <app-capacity-related-item [capacityItem]="capacity"></app-capacity-related-item>
-                </div> -->
-                <!-- <div class="test-capacity__item" *ngFor="let capacity of listCapacity">
-                    <div class="tw-relative">
-                        <a href="">
-                            <img class="tw-w-full tw-h-[160px] tw-object-cover tw-rounded-xl" src={{capacity.img}}
-                                alt="">
-                        </a>
-                        <button class="btn-save"><i class="bi bi-bookmark-fill icon-save"></i></button>
-                    </div>
-                    <div class="">
-                        <span class="test-capacity__time">{{capacity.start_register_time}} -
-                            {{capacity.date_start}}</span>
-                        <h3 class="test-capacity__title">
-                            <a routerLink="/{{capacity.slug_name}}"
-                                class="tw-inline-block tw-w-full tw-truncate tw-font-bold">{{capacity.name}}</a>
-                        </h3>
-                    </div>
-                    <div class="tw-flex tw-space-x-1">
-                        <span class="tw-flex tw-space-x-1"><i class="bi bi-gear"></i>Skill: </span>
-                        <span class="tw-inline-block tw-font-bold tw-text-sm tw-uppercase tw-w-full tw-truncate">PHP,
-                            JAVA JAVA, NODEJS, REACT</span>
-                    </div>
-                    <div class="">
-                        <div class="">
-                            <ul class="capacity__related-countdown">
-                                <li class="capacity__related-countdown-item text-center">
-                                    <div class="capacity__related-countdown-item-box">0</div>
-                                    <span class="capacity__related-countdown-item-text">Ngày</span>
-                                </li>
-                                <li class="capacity__related-countdown-item text-center">
-                                    <div class="capacity__related-countdown-item-box">10</div>
-                                    <span class="capacity__related-countdown-item-text">Giờ</span>
-                                </li>
-                                <li class="capacity__related-countdown-item text-center">
-                                    <div class="capacity__related-countdown-item-box">15</div>
-                                    <span class="capacity__related-countdown-item-text">Phút</span>
-                                </li>
-                                <li class="capacity__related-countdown-item text-center">
-                                    <div class="capacity__related-countdown-item-box">05</div>
-                                    <span class="capacity__related-countdown-item-text">Giây</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <button class="btn-register tw-w-full tw-rounded tw-p-1.5">Đăng ký</button>
-                    </div>
-                </div> -->
-            </div>
-        </div>
+          </div>
+        </ul>
+        <!-- skeleton -->
+      </div>
+      <div class="test-capacity_list">
+        <app-capacity-related-item *ngFor="let capacity of listCapacity" [capacityItem]="capacity">
+        </app-capacity-related-item>
+      </div>
     </div>
+  </div>
 </div>

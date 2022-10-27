@@ -1,0 +1,27 @@
+.social-list {
+    display: inline-flex;
+    align-items: center;
+}
+
+.social-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    border: 1px solid #ccc;
+    color: #8E8E95;
+    transition: 0.7s;
+    cursor: pointer;
+}
+
+.social-item:hover {
+    color: #ff6638;
+    border: 1px solid #ff6638;
+}
+
+.social-item+.social-item {
+    margin-left: 8px;
+}

@@ -27,8 +27,8 @@ h3 ,p{
 .info-contest-header,
 .team-detail-box {
   background-color: #ffff;
-  border-radius: 6px;
-  box-shadow: 0px 0px 6px #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 0px 3px var(--gray-200);
 }
 
 .warper-info-contest::-webkit-scrollbar {
@@ -55,16 +55,15 @@ h3 ,p{
 
 /* Ô nộp bài làm */
 .warper-submit-assignment {
-  box-shadow: 0px 0px 10px #ccc;
+  box-shadow: 0px 0px 3px var(--gray-200);
   height: 270px;
   background-color: #ffff;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 .contest-detail-right-countdown {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .contest-detail-right-countdown-box {
@@ -82,7 +81,7 @@ h3 ,p{
   background-color: var(--primary);
   width: 100%;
   margin: 0px 5px;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 17px;
   font-weight: 500;
   color: white;
@@ -94,8 +93,8 @@ h3 ,p{
 }
 
 .node-submit-assignment {
-  box-shadow: 0px 0px 4px #ccc;
-  border-radius: 5px;
+  box-shadow: 0px 0px 3px var(--gray-200);
+  border-radius: 4px;
 }
 
 .node-submit-assignment p {
@@ -118,7 +117,7 @@ h3 ,p{
   background-color: var(--primary);
   font-size: 14px;
   display: inline-block;
-  border-radius: 5px;
+  border-radius: 4px;
   color: var(--white);
 }
 
@@ -130,7 +129,6 @@ h3 ,p{
   cursor: pointer;
 }
 
-
 .info-your-team-avatar {
   width: 100px;
   height: 100px;
@@ -139,11 +137,11 @@ h3 ,p{
   margin: auto;
 }
 
-
 /* Nút bấm upload file*/
 .submit-assignment-box {
   height: 200px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -160,7 +158,7 @@ h3 ,p{
   box-shadow: 0px 8px 15px rgba(14, 13, 13, 0.1);
   font-size: 25px;
   transition: all 0.3s ease 0s;
-  cursor: pointer;
+  cursor: poiter;
   outline: none;
 }
 

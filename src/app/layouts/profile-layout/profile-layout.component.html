@@ -1,0 +1,38 @@
+<div class="container-fluid box-info-team">
+  <div class="container">
+    <div class="row pb-4">
+      <div class="col-12 col-md-3 nav-bar-info-user mb-3 mb-md-0">
+        <div class="d-flex justify-content-start align-items-center border-bottom">
+          <img
+            [src]="
+              user.avatar ||
+              'https://external-preview.redd.it/ES-_Tef0O9gSzMsBXPxGEoY0rfB6pOI-7F4LyMJyrXY.jpg?width=640&crop=smart&auto=webp&s=175552a2af7529197a98caf4e4e8c5100afad01f'
+            "
+            class="info-team-user"
+            alt=""
+          />
+          <div class="mx-2 mt-3">
+            <h4 class="info-name-user color-blue fw-bold">{{ user.name }}</h4>
+            <p class="color-gray mt-2 profile-action" routerLink="/tai-khoan" style="cursor: pointer">
+              <i class="fas fa-pen"></i>
+              <span class="mx-2">Sửa thông tin</span>
+            </p>
+          </div>
+        </div>
+        <div class="info-team-tab-list">
+          <a routerLink="/tai-khoan/cuoc-thi-da-tham-gia" class="info-team-tab-item" routerLinkActive="active">
+            <i class="fas fa-pager"></i>
+            <span>Cuộc thi đã tham gia</span>
+          </a>
+          <a routerLink="/tai-khoan/bai-test-da-lam" class="info-team-tab-item" routerLinkActive="active">
+            <i class="fa-solid fa-list-check"></i>
+            <span>Bài test năng lực đã làm</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-12 col-md-9 box-component-right mb-2">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

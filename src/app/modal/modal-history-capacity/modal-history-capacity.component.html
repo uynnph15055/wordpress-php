@@ -1,0 +1,96 @@
+<h2 mat-dialog-title="" class="mat-dialog-title" id="mat-dialog-title-4">Lịch sử làm bài</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="capacity__exam-heading">
+    <div class="capacity__exam-heading-inner d-flex align-items-center justify-content-center">
+      <span class="capacity__exam-heading-line"></span>
+      <h1 class="capacity__exam-heading-title text-center">
+        Bài test năng lực:
+        <a class="text-body" [routerLink]="['/test-nang-luc', data.capacity.id]">{{ data.capacity.name }}</a>
+      </h1>
+      <span class="capacity__exam-heading-line"></span>
+    </div>
+
+    <div class="text-center">
+      <div>
+        <span>Phần thi: {{ data.round.name }}</span
+        >, bắt đầu: <span class="text-red">{{ data.round.start_time | formatDate }}</span
+        >, hạn chót:
+        <span class="text-red">{{ data.round.end_time | formatDate }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-12 col-md-3">
+      <div class="sidebar">
+        <h2 class="sidebar__title">{{ data.exam.name }}</h2>
+
+        <ul class="sidebar__list p-0">
+          <li class="sidebar__list-item d-flex align-items-center">
+            <div class="sidebar__list-item-icon">
+              <i class="fa-solid fa-list"></i>
+            </div>
+
+            <div class="sidebar__list-item-text">
+              <strong>{{ data.exam.questions.length }}</strong> câu hỏi
+            </div>
+          </li>
+
+          <li class="sidebar__list-item d-flex align-items-center">
+            <div class="sidebar__list-item-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+
+            <div class="sidebar__list-item-text">
+              <strong>{{ data.exam.time_exam }}</strong> phút làm bài
+            </div>
+          </li>
+        </ul>
+
+        <section class="question">
+          <span class="question__title">Câu hỏi</span>
+
+          <div class="question__list">
+            <!-- active câu hỏi đã làm -->
+            <div
+              class="question__list-item"
+              *ngFor="let question of questions; let i = index"
+              (click)="scrollToQuestion(i)"
+              [ngClass]="{ active: !question.isNotAnswer }"
+            >
+              <div class="question__list-item-inner">{{ i + 1 }}</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="col col-12 col-md-9 question__content">
+      <ul class="question__content-list m-0 p-0">
+        <li class="question__content-item px-0" *ngFor="let question of questions; let i = index" #questions>
+          <span class="question__content-item-num d-block">Câu {{ i + 1 }}:</span>
+          <p class="question__content-item-content" [innerHTML]="question.content"></p>
+
+          <ul class="answers m-0 p-0">
+            <!-- type 0 ? câu hỏi có 1 đáp án -->
+            <li
+              class="answers__item"
+              *ngFor="let answer of question.answers; let j = index"
+              [ngClass]="{ 'border-square': question.type === 1 }"
+            >
+              <label class="answer answer-hover-none d-flex align-items-center" [ngClass]="{ active: answer.isChoose }">
+                <span class="answer__num d-flex justify-content-center align-items-center">{{
+                  (j + 10).toString(36).toUpperCase()
+                }}</span>
+                <p class="answer__content m-0">{{ answer.content }}</p>
+              </label>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Đóng</button>
+</mat-dialog-actions>

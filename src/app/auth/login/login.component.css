@@ -1,13 +1,17 @@
 .container-fluid {
   background-image: url("../../../assets/img/login-bg.jpg");
+  background-repeat: no-repeat;
 }
 
 .login-box {
-  width: 400px;
-  height: 50%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 
 .btn_login-google {
+  border: none;
   padding: 10px 150px;
   background-color: var(--primary);
   color: #ffff;
@@ -29,6 +33,8 @@
 
   .logo_go-img {
     width: 55%;
+    display: block;
+    margin: 0 auto;
   }
 
   .btn_login-google {

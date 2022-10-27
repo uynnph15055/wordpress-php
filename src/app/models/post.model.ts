@@ -1,6 +1,7 @@
 import { User } from "./user";
 
 export class Post {
+    id?: any;
     thumbnail_url: string
     slug?: string
     title: string;
@@ -8,4 +9,7 @@ export class Post {
     published_at: Date;
     description: string;
     content: string;
+    postable_type: string;
+    postable?: any;
+    user_wishlist: boolean;
 }

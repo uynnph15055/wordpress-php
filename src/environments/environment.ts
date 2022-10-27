@@ -1,6 +1,4 @@
-// https://admin.svpoly.breezecandles.vn/api
-// http://127.0.0.1:8000/api
-export const baseApiUrl = "http://127.0.0.1:8000/api";
+const baseApiUrl = "http://127.0.0.1:8000/api";
 const authApi = `${baseApiUrl}/auth`;
 export const jwtApiUrl = `${baseApiUrl}/v1`;
 export const publicApiUrl = `${baseApiUrl}/public`;
@@ -19,21 +17,18 @@ export const environment = {
   recruitment: `${publicApiUrl}/recruitments`,
   capacityListUrl: `${publicApiUrl}/capacity`,
   postListUrl: `${publicApiUrl}/posts`,
+  candidateUrl: `${publicApiUrl}/candidate`,
   skillListUrl: `${publicApiUrl}/skill`,
+  keywordListUrl: `${publicApiUrl}/keywords`,
+  keywordTrendingUrl: `${publicApiUrl}/keywords`,
+  RankCapacityUrl: `${publicApiUrl}/rating/major-capacity`,
   // Router API V1;
   userListUrl: `${jwtApiUrl}/users`,
   roundV1Url: `${jwtApiUrl}/round`,
   contestV1Url: `${jwtApiUrl}/contest`,
   teamListUrl: `${jwtApiUrl}/teams`,
   takeExamUrl: `${jwtApiUrl}/take-exam`,
-  userV1Url: `${jwtApiUrl}/user`
+  userV1Url: `${jwtApiUrl}/user`,
+  wishListV1Url: `${jwtApiUrl}/wishlist`,
 };
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

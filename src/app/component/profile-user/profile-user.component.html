@@ -1,55 +1,37 @@
 <div class="p-2">
-    <div class="border-bottom">
-        <h3 class=" fs-5 primary-color">Hồ sơ của tôi</h3>
-        <p style="margin-top: -12px;" class="color-gray">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+  <div class="border-bottom">
+    <h3 class="fs-5 primary-color">Hồ sơ của tôi</h3>
+    <p style="margin-top: -12px" class="color-gray">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+  </div>
+  <mat-progress-bar color="warn" *ngIf="statusEditUser == true" class="loading-page" mode="indeterminate">
+  </mat-progress-bar>
+  <form class="profile-user-body my-4 text-center">
+    <div class="avatar-upload d-flex justify-content-center">
+      <div class="avatar-edit">
+        <input
+          #file
+          type="file"
+          accept="image/*"
+          (change)="preview(file.files)"
+          id="imageUpload"
+          accept=".png, .jpg, .jpeg"
+        />
+        <label for="imageUpload"></label>
+      </div>
+      <div class="avatar-preview">
+        <img [src]="imgURL || this.userInfo.avatar" id="imagePreview" class="register-avatar-team" alt="" />
+      </div>
     </div>
-    <mat-progress-bar color="warn" *ngIf="statusEditUser == true" class="loading-page" mode="indeterminate">
-    </mat-progress-bar>
-    <form class="profile-user-body my-4 text-center">
-        <div class="avatar-upload d-flex justify-content-center">
-            <div class="avatar-edit">
-                <input #file type='file' accept='image/*' (change)="preview(file.files)" id="imageUpload"
-                    accept=".png, .jpg, .jpeg" />
-                <label for="imageUpload"></label>
-            </div>
-            <div class="avatar-preview">
-                <img [src]="imgURL" id="imagePreview" class="register-avatar-team" *ngIf="imgURL" alt="">
-            </div>
-        </div>
-        <h5 class="text-center fs-6 fw-bold">Ảnh nhóm</h5>
-        <p class="color-gray text-center">Dụng lượng file tối đa 1 MB
-            Định dạng:.JPEG, .PNG</p>
-        <div class="pt-4 d-flex justify-content-center">
-            <div class="register-input-box">
-                <input type="text" (keyup)="setNameUser($event)" [value]=" userInfo.name" class="register-input-text">
-                <label for="" class="register-label">Tên của bạn</label>
-            </div>
-        </div>
-        <button class="mt-4 btn btn-base-type-bg" (click)="EditInFoUser()">Sửa thông
-            tin</button>
-    </form>
-    <mat-accordion>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    This is the expansion title
-                </mat-panel-title>
-                <mat-panel-description>
-                    This is a summary of the content
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>This is the primary content of the panel.</p>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Self aware panel
-                </mat-panel-title>
-                <mat-panel-description>
-                    
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>I'm visible because I am open</p>
-        </mat-expansion-panel>
-    </mat-accordion>
+    <h5 class="text-center fs-6 fw-bold">Ảnh đại diện</h5>
+    <p class="color-gray text-center">Dung lượng file tối đa 1 MB định dạng: .JPEG, .PNG</p>
+    <div class="pt-4 d-flex justify-content-center">
+      <div class="register-input-box">
+        <input type="text" (keyup)="setNameUser($event)" [value]="userInfo.name" class="register-input-text" />
+        <label for="" class="register-label">Tên của bạn</label>
+      </div>
+    </div>
+    <button class="mt-4 btn btn-update-profile" [disabled]="statusEditUser" (click)="handleUpdateInfo()">
+      Sửa thông tin
+    </button>
+  </form>
 </div>
