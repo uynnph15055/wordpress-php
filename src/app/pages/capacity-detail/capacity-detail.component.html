@@ -227,7 +227,10 @@
             *ngIf="!isFetchingCapacityRelated"
             [ngClass]="{ 'm-0': !capacityRelated.length }"
           >
-            <div class="mb-4 mb-lg-0 col col-lg-4 col-md-6 col-sm-12 col-12 d-flex" *ngFor="let capacity of capacityRelated">
+            <div
+              class="mb-4 mb-lg-0 col col-lg-4 col-md-6 col-sm-12 col-12 d-flex"
+              *ngFor="let capacity of capacityRelated"
+            >
               <app-capacity-related-item class="d-flex flex-1" [capacityItem]="capacity"></app-capacity-related-item>
             </div>
           </ul>
@@ -332,7 +335,7 @@
                 <i class="fa-solid fa-user-group"></i>
               </div>
 
-              {{ this.capacity.user_capacity_done.length }} lượt làm bài
+              {{ this.capacity.user_capacity_done_count }} lượt làm bài
             </li>
           </ul>
 
@@ -345,9 +348,7 @@
             {{ statusExam.status === 1 ? "Tham gia ngay" : statusExam.statustext }}
           </button>
 
-          <button *ngIf="isDoneExam" class="sidebar__content-btn my-btn my-btn-disabled my-btn-s">
-            Đã hoàn thành
-          </button>
+          <button *ngIf="isDoneExam" class="sidebar__content-btn my-btn my-btn-disabled my-btn-s">Đã hoàn thành</button>
         </div>
 
         <!-- skeleton -->
