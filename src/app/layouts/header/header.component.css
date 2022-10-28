@@ -9,6 +9,10 @@ h3, p , h2 , h4 , h5 , h6{
   background: transparent;
 }
 
+.avatar-user-desktop{
+  display: none;
+}
+
 @keyframes slideDown {
   from {
     transform: translateY(-100%);
@@ -443,3 +447,16 @@ h3, p , h2 , h4 , h5 , h6{
   background-color: var(--primary);
 }
 
+@media only screen and (max-width: 740px){
+  .btn-login-desktop {
+    visibility: hidden; 
+  }
+
+  .menu-desktop{
+    display: none;
+  }
+
+  .logo-nav-bar-res{
+    margin-left: 100px;
+  }
+}

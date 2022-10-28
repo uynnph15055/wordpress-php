@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import { Router } from '@angular/router';
@@ -21,23 +21,39 @@ export class HeaderComponent implements OnInit {
   posts: Array<Post> = [];
   statusPage: boolean = false;
   typeTab: number = 0;
+  @Input() countContest : number ;
+  @Input() countPost : number;
+  totalSave: number = 0;
   constructor(
-    private contestservice: ContestService,
     private userInfo: GetValueLocalService,
-    private router: Router,
     private userService: UserService,
-    private postService: ListPostService,
     private wishlist: WishlistService
   ) {}
 
   ngOnInit(): void {
+
+    
     this.userService.user.subscribe((data) => {
       this.user = data!;
     });
+    
+   
 
     this.user = this.userInfo.getValueLocalUser('user');
     this.saveUrlCurrent();
   }
+
+
+  getCountAll(){
+    let result;
+    if(this.countContest &&  this.countPost){
+      result = this.countContest + this.countPost;
+    }else{
+      result = 0
+    }
+    return result;
+  }
+
 
   getContest() {
     this.wishlist.getlistWish('contest').subscribe((res) => {
@@ -110,9 +126,7 @@ export class HeaderComponent implements OnInit {
     this.statusPage = false;
     this.getContest();
     document.querySelector('.sidepanel')?.classList.add('save-info-acive');
-    document.querySelector('.overlay')?.classList.remove('d-none');
-    console.log(document.querySelector('.overlay'));
-    
+    document.querySelector('.overlay')?.classList.remove('d-none');    
   }
 
   closeSaveInfo() {

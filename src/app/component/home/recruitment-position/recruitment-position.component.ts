@@ -38,22 +38,14 @@ export class RecruitmentPositionComponent implements OnInit {
         event.currentTarget.parentElement.classList.add(
           'my-add-favorite__icon'
         );
-        this.wishlist.wishListRemove(data).subscribe((res) => {
-          if (res.status) {
-            this.toast.success({ summary: res.payload, duration: 2000 , detail:"Cảnh báo" });
-          }
-        });
+        this.wishlist.wishListRemove(data);
       } else {
         event.currentTarget.classList.add('primary-color');
         event.currentTarget.parentElement.classList.add('opacity-100');
         event.currentTarget.parentElement.classList.remove(
           'my-add-favorite__icon'
         );
-        this.wishlist.wishListAdd(data).subscribe((res) => {
-          if (res.status) {
-            this.toast.success({ summary: res.payload, detail:"Thông báo" , duration: 2000 });
-          }
-        });
+        this.wishlist.wishListAdd(data);
       }
     }
   }

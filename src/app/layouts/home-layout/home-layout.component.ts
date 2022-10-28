@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user';
 import { ConfigViewService } from 'src/app/services/config-view.service';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import * as $ from 'jquery';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-home-layout',
@@ -16,14 +17,16 @@ export class HomeLayoutComponent implements OnInit {
   user: User;
   statusWindow: boolean = false;
   statusLogin: boolean = false;
+  countContest: number;
+  countPost: number;
   constructor(
-    private userInfo: GetValueLocalService,
-    private configView: ConfigViewService
+    private wishlist: WishlistService,
   ) {}
 
   ngOnInit(): void {
     this.backTop();
     this.winBackTop();
+    this.getListCount();
     window.addEventListener('scroll', () => {
       this.winBackTop();
       this.headerBlockScroll();
@@ -37,6 +40,15 @@ export class HomeLayoutComponent implements OnInit {
     } else {
       this.statusWindow = false;
     }
+  }
+
+  getListCount(){
+    this.wishlist.wishListCount().subscribe((res) => {      
+      if(res.status){
+        this.countContest = res.payload.count_post;
+        this.countPost = res.payload.count_contest;
+      }
+    })
   }
 
   headerBlockScroll() {
