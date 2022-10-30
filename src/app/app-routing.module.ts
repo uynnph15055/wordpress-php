@@ -12,8 +12,6 @@ import { PostResultSearchComponent } from './pages/post-result-search/post-resul
 import { ProfileLayoutComponent } from "./layouts/profile-layout/profile-layout.component";
 import { MyCapacityTestComponent } from "./pages/my-capacity-test/my-capacity-test.component";
 import { AuthGuard } from "./guard/auth.guard";
-import { RoundDetailComponent } from './component/round-detail/round-detail.component';
-import { RoundComponent } from './component/round/round.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
