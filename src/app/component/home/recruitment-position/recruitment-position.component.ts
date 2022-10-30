@@ -38,14 +38,18 @@ export class RecruitmentPositionComponent implements OnInit {
         event.currentTarget.parentElement.classList.add(
           'my-add-favorite__icon'
         );
-        this.wishlist.wishListRemove(data);
+        this.wishlist.wishListRemove(data).subscribe((res) => {
+          console.log(res);
+        });
       } else {
         event.currentTarget.classList.add('primary-color');
         event.currentTarget.parentElement.classList.add('opacity-100');
         event.currentTarget.parentElement.classList.remove(
           'my-add-favorite__icon'
         );
-        this.wishlist.wishListAdd(data);
+        this.wishlist.wishListAdd(data).subscribe((res) => {
+          console.log(res);
+        });;
       }
     }
   }

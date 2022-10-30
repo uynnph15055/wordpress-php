@@ -131,11 +131,9 @@ export class ContestItemComponent implements OnInit {
         event.currentTarget.classList.add('primary-color');
         event.currentTarget.parentElement.classList.add('opacity-100');
         event.currentTarget.parentElement.classList.remove('my-add-favorite__icon');
-        this.wishlist.wishListAdd(data).subscribe();
+        this.wishlist.wishListAdd(data).subscribe( );
       }
     }
-
-   
   }
 
 

@@ -452,6 +452,10 @@ h3, p , h2 , h4 , h5 , h6{
     visibility: hidden; 
   }
 
+  .avatar-user-desktop{
+    display: block;
+  }
+
   .menu-desktop{
     display: none;
   }
