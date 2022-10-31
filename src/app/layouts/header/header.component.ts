@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { GetValueLocalService } from 'src/app/services/get-value-local.service';
 import { Router } from '@angular/router';
@@ -21,23 +21,39 @@ export class HeaderComponent implements OnInit {
   posts: Array<Post> = [];
   statusPage: boolean = false;
   typeTab: number = 0;
+  @Input() countContest : number ;
+  @Input() countPost : number;
+  totalSave: number = 0;
   constructor(
-    private contestservice: ContestService,
     private userInfo: GetValueLocalService,
-    private router: Router,
     private userService: UserService,
-    private postService: ListPostService,
     private wishlist: WishlistService
   ) {}
 
   ngOnInit(): void {
+
+    
     this.userService.user.subscribe((data) => {
       this.user = data!;
     });
+    
+   
 
     this.user = this.userInfo.getValueLocalUser('user');
     this.saveUrlCurrent();
   }
+
+
+  getCountAll(){
+    let result;
+    if(this.countContest &&  this.countPost){
+      result = this.countContest + this.countPost;
+    }else{
+      result = 0
+    }
+    return result;
+  }
+
 
   getContest() {
     this.wishlist.getlistWish('contest').subscribe((res) => {
@@ -49,6 +65,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getPost() {
+    this.statusPage = false;
     this.wishlist.getlistWish('post').subscribe((res) => {
       if (res.status) {
         this.posts = res.payload;
@@ -60,6 +77,7 @@ export class HeaderComponent implements OnInit {
   getContestStatus(event: any) {
     if (this.posts) {
       document.querySelector('.post')?.classList.remove('active');
+  
       event.currentTarget.classList.add('active');
       this.getContest();
       this.typeTab = 0;
@@ -91,7 +109,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getPostStatus(event: any) {
-    if (this.contests) {
+    if (this.statusPage) {
       this.statusPage = false;
       this.getPost();
       document.querySelector('.contest')?.classList.remove('active');
@@ -105,14 +123,15 @@ export class HeaderComponent implements OnInit {
   }
 
   openSaveInfo() {
+    this.statusPage = false;
     this.getContest();
     document.querySelector('.sidepanel')?.classList.add('save-info-acive');
-    document.querySelector('.overlay')?.classList.add('overlay-active');
+    document.querySelector('.overlay')?.classList.remove('d-none');    
   }
 
   closeSaveInfo() {
     document.querySelector('.sidepanel')?.classList.remove('save-info-acive');
-    document.querySelector('.overlay')?.classList.remove('overlay-active');
+    document.querySelector('.overlay')?.classList.add('d-none');
   }
 
   // LogOut

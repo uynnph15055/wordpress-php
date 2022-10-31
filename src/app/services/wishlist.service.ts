@@ -22,6 +22,10 @@ export class WishlistService {
     });
   }
 
+  wishListCount(){
+    return this.http.get<ResponsePayload>(`${environment.wishListV1Url}/count`);
+  }
+
   wishListRemove(data : Object){
     const headers = new HttpHeaders();
     return this.http.post<ResponsePayload>(`${environment.wishListV1Url}/remove` ,  data ,{

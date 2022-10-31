@@ -39,9 +39,7 @@ export class RecruitmentPositionComponent implements OnInit {
           'my-add-favorite__icon'
         );
         this.wishlist.wishListRemove(data).subscribe((res) => {
-          if (res.status) {
-            this.toast.success({ summary: res.payload, duration: 2000 });
-          }
+          console.log(res);
         });
       } else {
         event.currentTarget.classList.add('primary-color');
@@ -50,10 +48,8 @@ export class RecruitmentPositionComponent implements OnInit {
           'my-add-favorite__icon'
         );
         this.wishlist.wishListAdd(data).subscribe((res) => {
-          if (res.status) {
-            this.toast.success({ summary: res.payload, duration: 2000 });
-          }
-        });
+          console.log(res);
+        });;
       }
     }
   }
