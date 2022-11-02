@@ -17,7 +17,16 @@ export class PostsComponent implements OnInit {
   listPostContest: Post[]
 
   postCapacityFirst : Post; 
-  listPostCapacity: Post[]
+  listPostCapacity: Post[];
+
+  sliderPost = {
+    slidesToShow: 2,
+    autoplay: true,
+    slidesToScroll: 1,
+    fadeSpeed: 3000,
+    arrows: false,
+    cssEase: 'linear',
+  };
 
   constructor(
     private postService : ListPostService,
@@ -39,7 +48,7 @@ export class PostsComponent implements OnInit {
         let arrResult= res.payload.data;
          this.postRecruitmentFirst = arrResult[0];
          this.listPostRecruitment = arrResult.filter((res: Post , index: number) => {
-          return index <= 1;
+          return index <= 10 && res.id !== arrResult[0].id;
         });
        }
     })

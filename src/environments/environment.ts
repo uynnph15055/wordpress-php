@@ -1,7 +1,4 @@
-// http://127.0.0.1:8000/api
-//  http://127.0.0.1:8000/api
 const baseApiUrl = "http://127.0.0.1:8000/api";
-// const baseApiUrl = "http://127.0.0.1:8000/api";
 const authApi = `${baseApiUrl}/auth`;
 export const jwtApiUrl = `${baseApiUrl}/v1`;
 export const publicApiUrl = `${baseApiUrl}/public`;
@@ -24,12 +21,14 @@ export const environment = {
   skillListUrl: `${publicApiUrl}/skill`,
   keywordListUrl: `${publicApiUrl}/keywords`,
   keywordTrendingUrl: `${publicApiUrl}/keywords`,
+  RankCapacityUrl: `${publicApiUrl}/rating/major-capacity`,
   // Router API V1;
   userListUrl: `${jwtApiUrl}/users`,
   roundV1Url: `${jwtApiUrl}/round`,
   contestV1Url: `${jwtApiUrl}/contest`,
   teamListUrl: `${jwtApiUrl}/teams`,
   takeExamUrl: `${jwtApiUrl}/take-exam`,
-  userV1Url: `${jwtApiUrl}/user`
+  userV1Url: `${jwtApiUrl}/user`,
+  wishListV1Url: `${jwtApiUrl}/wishlist`,
 };
 

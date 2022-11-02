@@ -12,8 +12,6 @@ import { PostResultSearchComponent } from './pages/post-result-search/post-resul
 import { ProfileLayoutComponent } from "./layouts/profile-layout/profile-layout.component";
 import { MyCapacityTestComponent } from "./pages/my-capacity-test/my-capacity-test.component";
 import { AuthGuard } from "./guard/auth.guard";
-import { RoundDetailComponent } from './component/round-detail/round-detail.component';
-import { RoundComponent } from './component/round/round.component';
 import { IntoExamComponent } from './pages/into-exam/into-exam.component';
 import { RoundContestDetailComponent } from './pages/round-contest-detail/round-contest-detail.component';
 import { RecruitmentComponent } from './pages/recruitment/recruitment.component';
@@ -24,6 +22,7 @@ import { RecruitmentDetailComponent } from './pages/recruitment-detail/recruitme
 import { TestCapacityComponent } from './pages/test-capacity/test-capacity.component';
 
 import { PostCategoryComponent } from './pages/post-category/post-category.component';
+import { RankCapacityComponent } from "./pages/rank-capacity/rank-capacity.component";
 const routes: Routes = [
   {
     path: "",
@@ -99,7 +98,7 @@ const routes: Routes = [
         component: RecruitmentComponent,
       },
       {
-        path: "test-nang-luc",
+        path: "test-nang-luc/list",
         component: TestCapacityComponent,
       },
       {
@@ -117,6 +116,10 @@ const routes: Routes = [
       {
         path: "test-nang-luc/vao-thi/:capacity_id/bai-thi/:round_id",
         component: CapacityExamComponent,
+      },
+      {
+        path: "test-nang-luc",
+        component: RankCapacityComponent,
       },
     ],
   },
