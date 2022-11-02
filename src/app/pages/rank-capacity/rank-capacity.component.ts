@@ -73,6 +73,7 @@ export class RankCapacityComponent implements OnInit {
             this.links = res.payload.links.slice(1, totalItemPages-1)
             this.statusRanking = true;
             this.statusNotResultReturn = false;
+            console.log(this.listRanking)
           }
         }
       })
