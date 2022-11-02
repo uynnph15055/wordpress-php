@@ -158,6 +158,7 @@
 
 .my-btn--no-bg:hover {
     background-color: var(--my-primary);
+    border-color: var(--my-primary);
 }
 
 /* size button */

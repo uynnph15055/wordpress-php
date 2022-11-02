@@ -121,9 +121,8 @@
 }
 
 .sidebar__countdown-btn {
-  width: 100%;
-  padding: 4px 12px;
   margin-bottom: 12px;
+  width: 100%;
 }
 
 .question {
