@@ -209,7 +209,13 @@
               </div>
             </li>
 
-            <li *ngIf="!rounds.length">Chưa có bài thi nào!</li>
+            <li *ngIf="!rounds.length">
+              <img
+                src="../../../assets/img/no-result.png"
+                alt="No data"
+                class="capacity__related-no-result d-block mx-auto"
+              />
+            </li>
           </ul>
 
           <!-- skeleton -->
@@ -235,7 +241,13 @@
             </div>
           </ul>
 
-          <p *ngIf="!isFetchingCapacityRelated && !capacityRelated.length">Không có bài test liên quan nào!</p>
+          <div *ngIf="!isFetchingCapacityRelated && !capacityRelated.length">
+            <img
+              src="../../../assets/img/no-result.png"
+              alt="No data"
+              class="capacity__related-no-result d-block mx-auto"
+            />
+          </div>
 
           <!-- skeleton -->
           <ul class="capacity__related-list row" *ngIf="isFetchingCapacityRelated">
@@ -272,7 +284,13 @@
             </div>
           </ul>
 
-          <p *ngIf="!isFetchingPost && !posts.length">Không có bài viết liên quan nào!</p>
+          <div *ngIf="!isFetchingPost && !posts.length">
+            <img
+              src="../../../assets/img/no-result.png"
+              alt="No data"
+              class="capacity__related-no-result d-block mx-auto"
+            />
+          </div>
 
           <!-- skeleton -->
           <ul class="capacity__related-list row" *ngIf="isFetchingPost">
