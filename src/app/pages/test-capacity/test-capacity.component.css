@@ -155,6 +155,10 @@
     display: none;
   }
   
+  .test-capacity_item{
+    display: flex;
+    flex: 1
+  }
 
 .filter-skill-item {
   padding: 10px 20px;
@@ -188,6 +192,7 @@
     width: 309px; 
     overflow: hidden;
   }
+
 .test-capacity__keyword-item {
   margin: 20px 0px 0px 0px;
   font-size: 16px;
