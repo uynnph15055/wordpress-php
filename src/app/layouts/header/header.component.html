@@ -178,7 +178,7 @@
           <i class="primary-color fa-solid fs-5 fa-bookmark"></i> Nội dung được
           lưu 
         </h2>
-        <button (click)="closeSaveInfo()" class="btn-save-close">
+        <button (click)="closeSaveInfo(true)" class="btn-save-close">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </header>
@@ -199,6 +199,7 @@
             *ngFor="let item of contests"
             [item]="item"
             (requestFavorite)="filterContest($event)"
+            (contestRelated)="closeSaveInfo($event)"
           ></app-contest-item>
         </div>
         <div class="" *ngIf="typeTab == 1 && posts.length > 0">
@@ -229,4 +230,4 @@
     </div>
   </div>
 </div>
-<div (click)="closeSaveInfo()" class="overlay d-none"></div>
+<div (click)="closeSaveInfo(true)" class="overlay d-none"></div>

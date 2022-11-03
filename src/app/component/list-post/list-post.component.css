@@ -8,7 +8,6 @@ h5 {
 }
 
 .post-item {
-  height: 370px;
   background-color: var(--white);
   border-radius: 10px;
   transition: all ease-in 0.3s;
@@ -51,4 +50,29 @@ h5 {
   width: 100%;
   text-overflow: ellipsis;
   margin-bottom: 0;
+}
+
+.list-post-more{
+  position: relative;
+}
+
+.list-post-more .control{
+  font-size: 30px;
+  color: var(--primary);
+  border: none;
+  background-color: transparent;
+  top: 50%;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.prev-post-arrow{
+  left: -30px;
+  transform: translateY(-50%);
+}
+
+.next-post-arrow{
+  right: -30px;
+  transform: translateY(-50%);
 }
