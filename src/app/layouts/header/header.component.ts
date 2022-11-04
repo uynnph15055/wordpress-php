@@ -31,14 +31,10 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    
     this.userService.user.subscribe((data) => {
       this.user = data!;
     });
     
-   
-
     this.user = this.userInfo.getValueLocalUser('user');
     this.saveUrlCurrent();
   }

@@ -52,12 +52,11 @@ export class HomeComponent implements OnInit {
     fadeSpeed: 1000,
   };
 
-
   sliderCompany = {
     slidesToShow: 5,
     infinite: true,
     autoplay: true,
-    arrows: false,
+    arrows: true,
     slidesToScroll: 1,
     fadeSpeed: 1000,
     responsive: [
@@ -150,10 +149,12 @@ export class HomeComponent implements OnInit {
         }
       });
 
-      if (this.advanIndex == advantage.length + 1) {
-        this.advanIndex = 0;
-        advantage[0].classList.add('active');
-        advantageEleImage[0].classList.remove('d-none');
+      if(advantage){
+        if (this.advanIndex == advantage.length + 1) {
+          this.advanIndex = 0;
+          advantage[0].classList.add('active');
+          advantageEleImage[0].classList.remove('d-none');
+        }
       }
 
       // Slider đợt tuyển dụng.

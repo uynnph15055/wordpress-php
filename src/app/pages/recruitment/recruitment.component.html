@@ -42,7 +42,7 @@
       <div ngbDropdown class="d-inline-block w-100">
         <input
           type="text"
-          class="form-control"
+          class="my-input"
           formControlName="filterName"
           placeholder="Tìm kiếm ..."
           id="exampleInputEmail1"
@@ -73,7 +73,7 @@
           type="text"
           (keyup)="filterSelect(majors, $any($event.target).value, 'major')"
           formControlName="filterMajor"
-          class="form-control w-100"
+          class="my-input w-100"
           placeholder="Chuyên ngành"
           id="dropdownBasic1"
           ngbDropdownToggle
@@ -100,7 +100,7 @@
         <input
           type="text"
           formControlName="filterStatus"
-          class="form-control"
+          class="my-input"
           placeholder="Trạng thái"
           id="dropdownBasic1"
           ngbDropdownToggle
@@ -205,7 +205,7 @@
                   />
                 </div>
                 <h3 class="post-item__title mt-2">
-                  <a routerLink="/bai-viet/{{ item.slug }}">{{ item.title }}</a>
+                  <a class="text-dark" routerLink="/bai-viet/{{ item.slug }}">{{ item.title }}</a>
                 </h3>
                 <div class="post-item__info">
                   <div
@@ -304,30 +304,6 @@
                   class="mt-2 text-collapse-row-3"
                   [innerHTML]="item.short_description"
                 ></div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="d-flex justify-content-start align-items-center">
-                    <p class="fw-bold color-blue">Doanh nghiệp :</p>
-                    <ul class="list-company-support d-flex align-items-center">
-                      <li
-                        *ngFor="
-                          let enterpriseItem of item.enterprise;
-                          let i = index
-                        "
-                      >
-                        <img
-                          *ngIf="i < 3"
-                          [src]="enterpriseItem.logo"
-                          alt=""
-                          [ngbTooltip]="enterpriseItem.name"
-                        />
-                      </li>
-                    </ul>
-                  </div>
-                  <p class="color-text number-test">
-                    Bài test :
-                    {{ item.contest_count }}
-                  </p>
-                </div>
               </div>
             </div>
             <div class="px-3 pb-3 recruitment-list-item align-items-center">
@@ -345,6 +321,30 @@
               >
                 Đã hết hạn
               </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-start align-items-center">
+                  <p class="fw-bold color-blue">Doanh nghiệp :</p>
+                  <ul class="list-company-support d-flex align-items-center">
+                    <li
+                      *ngFor="
+                        let enterpriseItem of item.enterprise;
+                        let i = index
+                      "
+                    >
+                      <img
+                        *ngIf="i < 3"
+                        [src]="enterpriseItem.logo"
+                        alt=""
+                        [ngbTooltip]="enterpriseItem.name"
+                      />
+                    </li>
+                  </ul>
+                </div>
+                <p class="color-text number-test">
+                  Bài test :
+                  {{ item.contest_count }}
+                </p>
+              </div>
             </div>
           </div>
           <ul

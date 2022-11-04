@@ -13,6 +13,7 @@ h5 {
   transition: all ease-in 0.3s;
   border: 1px solid var(--my-dark-gray);
   transform: translateY(0px);
+  height: 390px;
 }
 
 .post-item:hover {
@@ -41,15 +42,7 @@ h5 {
 }
 
 .post-new-content {
-  margin: -5px 0px;
   text-align: justify;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  width: 100%;
-  text-overflow: ellipsis;
-  margin-bottom: 0;
 }
 
 .list-post-more{
