@@ -96,6 +96,7 @@ import { PostLoadItemComponent } from './loading/post-load-item/post-load-item.c
 import { AlertErrorIntroExamComponent } from './component/alert-error-intro-exam/alert-error-intro-exam.component';
 import { CountDatePipe } from './helper/pipe/count-date.pipe';
 import { PaginationComponent } from './component/pagination/pagination.component';
+import { LoadingOverlayComponent } from './component/loading-overlay/loading-overlay.component';
 
 @NgModule({
   declarations: [
@@ -164,6 +165,7 @@ import { PaginationComponent } from './component/pagination/pagination.component
     AlertErrorIntroExamComponent,
     CountDatePipe,
     PaginationComponent,
+    LoadingOverlayComponent,
   ],
   imports: [
     BrowserModule,
