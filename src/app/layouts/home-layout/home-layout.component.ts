@@ -58,7 +58,7 @@ export class HomeLayoutComponent implements OnInit {
 
   headerBlockScroll() {
     let header = document.querySelector('.header');
-    if (window.scrollY > 200) {
+  if (window.scrollY > 200) {
       header?.classList.add('fixed');
       document.querySelector('.overlay')?.classList.add('d-none');
       document.querySelector('.sidepanel')?.classList.remove('save-info-acive');

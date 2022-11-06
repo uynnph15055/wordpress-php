@@ -82,26 +82,22 @@ export class HeaderComponent implements OnInit {
 
   filterContest(item: Contest) {
     this.statusPage = false;
-    setTimeout(() => {
       this.statusPage = true;
       if (item.user_wishlist) {
         this.contests = this.contests.filter((res: Contest) => {
           return res.id !== item.id;
         });
       }
-    }, 3000);
   }
 
   filterPost(item: Post) {
     this.statusPage = false;
-    setTimeout(() => {
       this.statusPage = true;
       if (item.user_wishlist) {
         this.posts = this.posts.filter((res: Post) => {
           return res.id !== item.id;
         });
       } 
-    }, 3000);
   }
 
   getPostStatus(event: any) {
