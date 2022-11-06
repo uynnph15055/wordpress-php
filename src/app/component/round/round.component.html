@@ -71,7 +71,6 @@
               Chưa có ban giám khảo nào !
             </p>
             <div class="my-2" *ngIf="item.judges.length > 0"  style="margin-left: 10px;">
-              {{item.judges | json}}
               <app-list-avatar-user
                 [titleModelName]="'Danh sách ban giám khảo'"
                 [listTeam]="getImageJudges(item.judges)"
