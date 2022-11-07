@@ -1,0 +1,13 @@
+/*
+Theme Name: Jpan web
+Text Domain: japan-web
+Version: 2.0
+Tested up to: 6.0
+Requires at least: 4.7
+Requires PHP: 5.2.4
+Description: Website sửa dụng scss push lên wordpress để  chạy
+*/
+
+body{
+    background-color: aqua !important;
+}

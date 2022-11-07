@@ -1,0 +1,138 @@
+2022-11-04T09:50:00+00:00 CRITICAL Allowed memory size of 536870912 bytes exhausted (tried to allocate 236994560 bytes) in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 63
+
+2022-11-04T09:50:40+00:00 CRITICAL Allowed memory size of 536870912 bytes exhausted (tried to allocate 236994560 bytes) in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 64
+
+2022-11-04T09:51:03+00:00 CRITICAL Allowed memory size of 536870912 bytes exhausted (tried to allocate 234897408 bytes) in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 63
+
+2022-11-04T09:52:30+00:00 CRITICAL Uncaught Error: Call to undefined function the_posts() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php:60
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\index.php(5): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 60
+
+2022-11-04T09:52:37+00:00 CRITICAL Uncaught Error: Call to undefined function the_posts() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php:60
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\index.php(5): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 60
+
+2022-11-04T09:54:19+00:00 CRITICAL Uncaught Error: Call to undefined function the_posts() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php:60
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\index.php(5): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 60
+
+2022-11-04T10:02:51+00:00 CRITICAL Uncaught Error: Call to undefined function the_posts() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php:60
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\index.php(5): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 60
+
+2022-11-04T10:03:21+00:00 CRITICAL Uncaught Error: Call to undefined function the_posts() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php:60
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\index.php(5): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 60
+
+2022-11-04T10:03:38+00:00 CRITICAL Uncaught Error: Call to undefined function the_posts() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php:60
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\index.php(5): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 60
+
+2022-11-04T10:34:20+00:00 CRITICAL Uncaught Error: Call to undefined function the_categorys() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php:60
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\index.php(5): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 60
+
+2022-11-04T10:38:51+00:00 CRITICAL Uncaught Error: Call to undefined function the_categoris() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php:67
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\index.php(5): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 67
+
+2022-11-04T10:38:56+00:00 CRITICAL Uncaught Error: Call to undefined function the_categoris() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php:67
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\index.php(5): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 67
+
+2022-11-04T10:39:36+00:00 CRITICAL Uncaught Error: Call to undefined function get_categoris() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php:67
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\index.php(5): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 67
+
+2022-11-04T10:54:40+00:00 CRITICAL Uncaught Error: Call to undefined function dd() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php:67
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\index.php(5): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\japan-web\template-parts\content-feature.php on line 67
+
