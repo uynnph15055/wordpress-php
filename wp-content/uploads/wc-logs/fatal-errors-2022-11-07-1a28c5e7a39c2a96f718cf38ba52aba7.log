@@ -1,0 +1,51 @@
+2022-11-07T06:51:34+00:00 CRITICAL Uncaught Error: Call to undefined function get_aside() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\post-list.php:110
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(2): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\post-list.php on line 110
+
+2022-11-07T06:54:57+00:00 CRITICAL Uncaught Error: Call to undefined function have_post() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\post-list.php:3
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(2): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\post-list.php on line 3
+
+2022-11-07T07:49:38+00:00 CRITICAL Cannot redeclare get_category() (previously declared in C:\xampp\htdocs\Intern-php\wordpress\wp-includes\category.php:91) in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\functions.php on line 33
+
+2022-11-07T07:49:50+00:00 CRITICAL Cannot redeclare get_category() (previously declared in C:\xampp\htdocs\Intern-php\wordpress\wp-includes\category.php:91) in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\functions.php on line 33
+
+2022-11-07T07:49:53+00:00 CRITICAL Cannot redeclare get_category() (previously declared in C:\xampp\htdocs\Intern-php\wordpress\wp-includes\category.php:91) in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\functions.php on line 33
+
+2022-11-07T08:52:53+00:00 CRITICAL Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, function "register_menu" not found or invalid function name in C:\xampp\htdocs\Intern-php\wordpress\wp-includes\class-wp-hook.php:308
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-settings.php(617): do_action('init')
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-includes\class-wp-hook.php on line 308
+
+2022-11-07T09:49:06+00:00 CRITICAL Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\Intern-php\wordpress\wp-includes\plugin.php on line 173
+
+2022-11-07T10:30:43+00:00 CRITICAL Uncaught Error: Call to undefined function have_post() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\templates\post-list.php:10
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\templates\post-list.php on line 10
+
