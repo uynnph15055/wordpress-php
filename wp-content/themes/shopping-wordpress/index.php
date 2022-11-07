@@ -3,21 +3,23 @@
 <div class="banner">
     <img class="w-100" src="https://theme.hstatic.net/1000409762/1000752712/14/slideshow_2.jpg?v=10" alt="">
     <div class="banner-sub_box  padding-container">
+        <?php 
+            $args = array(
+                'posts_per_page' => 3,
+                'post_type'      => 'slider',
+            );
+            $the_query = new WP_Query( $args );
+            ?>
+        <?php if( $the_query->have_posts() ): ?>
+        <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
         <div class="banner-sub_img-box">
-            <img class="w-100 h-100 "
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHs7OsnVT6x9iButRu0vQSYpPduxbYvL-SgQ&usqp=CAU"
+            <img class="w-100 h-100"
+                src="<?=get_the_post_thumbnail_url(get_the_ID(),'full' , array('class' => 'w-100 h-100'));?>"
                 alt="">
         </div>
-        <div class="banner-sub_img-box">
-            <img class="w-100 h-100 "
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTz2C42dNn5C8YQ017fuWtsrP8Vofp3yUnFw&usqp=CAU"
-                alt="">
-        </div>
-        <div class="banner-sub_img-box">
-            <img class="w-100 h-100 "
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa02xpSPRyVb93rXm0jd9yQrZwH7LF_0jVOw&usqp=CAU"
-                alt="">
-        </div>
+        <?php endwhile; ?>
+        <?php endif; ?>
+        <?php wp_reset_query(); ?>
     </div>
 </div>
 <div class="content-home">
