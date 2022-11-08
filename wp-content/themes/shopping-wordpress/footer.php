@@ -99,6 +99,7 @@
 <script src="<?php bloginfo('template_directory')?>/assets/js/room-image.js"></script>
 <script src="<?php bloginfo('template_directory')?>/assets/js/tab-component"></script>
 <script src="<?php bloginfo('template_directory')?>/assets/js/tab.js"></script>
+<script src="<?php bloginfo('template_directory')?>/assets/js/slider.js"></script>
 
 <script src="./assets/js/back-top.js">
 </script>

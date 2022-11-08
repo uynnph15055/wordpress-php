@@ -1,0 +1,10 @@
+2022-11-08T16:30:41+00:00 CRITICAL Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\Intern-php\wordpress\wp-includes\class-wp-object-cache.php on line 364
+
+2022-11-08T16:30:51+00:00 CRITICAL Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\Intern-php\wordpress\wp-includes\media.php on line 213
+
+2022-11-08T16:31:08+00:00 CRITICAL Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\Intern-php\wordpress\wp-includes\functions.php on line 688
+
+2022-11-08T16:31:41+00:00 CRITICAL Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\Intern-php\wordpress\wp-includes\class-wp-tax-query.php on line 147
+
+2022-11-08T16:32:22+00:00 CRITICAL Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\Intern-php\wordpress\wp-includes\class-wp-meta-query.php on line 370
+

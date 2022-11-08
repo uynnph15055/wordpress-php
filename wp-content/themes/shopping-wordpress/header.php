@@ -25,7 +25,7 @@
 
 <body>
     <div id="fb-root"></div>
-    <div class="container">
+    <div class="wrapper">
         <header class="header">
             <div class="header-top">
                 <p>Trang mua hàng nội thất trực tuyến chính hãng!</p>

@@ -10,12 +10,12 @@ get_header();
         <?php  foreach(get_post_asc() as $post) : ?>
         <div class="post__item">
             <div class="post__item-image--box">
-                <a href=""><img src="<?=get_the_post_thumbnail_url(get_the_ID(),'medium');?>" alt=""
+                <a href="<?=the_permalink()?>"><img src="<?=get_the_post_thumbnail_url(get_the_ID(),'medium');?>" alt=""
                         class="post__item-image" /></a>
             </div>
             <div class="post__item--info">
                 <h3 class="post__item--title">
-                    <a href=""> <?= the_title()?> </a>
+                    <a  href="<?=the_permalink()?>"> <?= the_title()?> </a>
                 </h3>
                 <p class="post__item--intro text-collapse-row-2">
                     <?=  the_excerpt(); ?>
