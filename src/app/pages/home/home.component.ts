@@ -149,7 +149,7 @@ export class HomeComponent implements OnInit {
         }
       });
 
-      if(advantage){
+      if(advantage.length > 0){
         if (this.advanIndex == advantage.length + 1) {
           this.advanIndex = 0;
           advantage[0].classList.add('active');
@@ -157,7 +157,6 @@ export class HomeComponent implements OnInit {
         }
       }
 
-      // Slider đợt tuyển dụng.
     }, 6000);
 
       setInterval(() => {
