@@ -73,7 +73,7 @@
             <div class="my-2" *ngIf="item.judges.length > 0"  style="margin-left: 10px;">
               <app-list-avatar-user
                 [titleModelName]="'Danh sách ban giám khảo'"
-                [listTeam]="getImageJudges(item.judges)"
+                [listTeam]="item.judges"
               >
               </app-list-avatar-user>
             </div>

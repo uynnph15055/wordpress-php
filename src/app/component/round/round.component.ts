@@ -25,23 +25,6 @@ export class RoundComponent implements OnInit {
     this.step = index;
   }
 
-  // Lấy image ban giám khảo
-  getImageJudges(judges: any): Array<any> {
-    
-    let arrayImage: any = [];
-    let imageItem = {
-      avatar: '',
-      name: '', 
-      email: '',
-    }
-    judges.forEach((res: any) => {
-      imageItem.avatar = res.user.avatar;
-      imageItem.name = res.user.name;
-      imageItem.email = res.user.email;
-      arrayImage.push(imageItem);
-    })
-    return arrayImage;
-  }
 
   //  Điếm số thành viên tham gia vòng thi 
   getMembers(teams: Array<Team> = []): number {
