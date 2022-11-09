@@ -1,13 +1,20 @@
 <?php
 
-
 function initTheme(){
+    // Add css 
+    wp_enqueue_style( 'base-style', get_template_directory_uri() . '/assets/css/base.css' );
+    wp_enqueue_style( 'home-style', get_template_directory_uri() . '/assets/css/Home.css' );
+    wp_enqueue_style( 'post-style', get_template_directory_uri() . '/assets/css/post.css' );
+
+    // Add javascript
+    wp_enqueue_script( 'jquery-script', 'https://code.jquery.com/jquery-3.6.0.js' );
+    wp_enqueue_script( 'back-top-script', get_template_directory_uri() . '/assets/js/back-top.js' );
+
     // Hàm thay đổi theme editor về phiên bản cũ
     add_filter('use_block_editor_for_post' , '__return_false');
 
     // Hàm đăng ký menu wordpress
     register_nav_menu('header_menu' , __('shopping-menu'));
-
 
     // Custom slider
     $label = array(

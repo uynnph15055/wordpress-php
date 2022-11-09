@@ -5,8 +5,10 @@
 
 .header-content-box {
     display: grid;
+   
     grid-template-columns: repeat(3, 1fr);
 }
+
 
 .selected-box {
     text-align: right;

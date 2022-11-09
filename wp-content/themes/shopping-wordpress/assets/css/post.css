@@ -93,6 +93,10 @@
     object-fit: cover;
 }
 
+.post__relate--item-info{
+    color: black;
+}
+
 .post__relate--item-info  p{
    font-size: 15px;
    display: -webkit-box;
@@ -119,4 +123,13 @@
 
 .post__category--list .post__category--item a{
     color: var(--color-black);
+}
+
+.post__title{
+    font-size: 25px;
+    margin: 30px 0px;
+}
+
+.box{
+    padding-right: 70px;
 }

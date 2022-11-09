@@ -498,6 +498,7 @@ a{
     background-color: #ffff;
     padding: 15px;
     cursor: pointer;
+    position: relative;
  }
  
  .product-item_name a:hover  {
@@ -507,7 +508,10 @@ a{
  .product-item_name a{
     margin: 4px 0px;
     text-decoration: none;
-    color: var(--color-text);
+    color: var(--color-black);
+    font-size: 18px;
+    justify-content:space-between;
+    font-weight: bold;
  }
  
  .product-item_price-wraper{
@@ -515,9 +519,10 @@ a{
     justify-content: start;
     margin-top: 10px;
  }
- 
- .product-item_img-box{
-    position: relative;
+
+
+ .product-item_img-box img{
+    height: 250px;
  }
  
  .product-item_price-wraper .product-price-main{
@@ -548,7 +553,7 @@ a{
     position: absolute;
     top: 40%;
     left: 37%;
-    background-color: var(--color-white);
+    background-color: var(--color-black);
     height: 50px;
     width: 50px;
     text-align: center;
@@ -573,22 +578,20 @@ a{
  .product-item_img-box:hover .product-item_icon{
     transform: scale(1);
     transition: all ease 0.3s;
+    color: var(--color-white);
  }
  
  .product-item_icon:hover{
-    background-color: var(--color-black);
-    color: var(--color-white);
+    background-color: #8E0007;
  }
 
  ul.breadcrumb {
-    padding: 10px 16px;
     list-style: none;
-    background-color: #eee;
   }
   
   ul.breadcrumb li {
     display: inline;
-    font-size: 18px;
+    font-size: 16px;
   }
   
   ul.breadcrumb li+li:before {
@@ -597,13 +600,35 @@ a{
     content: "/\00a0";
   }
   
-  ul.breadcrumb li a {
-    color: #0275d8;
+  ul.breadcrumb li .breadcrumb__normal {
+    color: var(--color-primary);
     text-decoration: none;
   }
   
-  ul.breadcrumb li a:hover {
+  ul.breadcrumb li .breadcrumb__normal:hover {
     color: #01447e;
     text-decoration: underline;
   }
+
+  .breadcrumb__current{
+    color: var(--color-black);
+  }
+
+  .page-numbers{
+    padding: 7px 10px;
+    margin: 0px 5px;
+    border-radius:6px;
+}
+
+.page-numbers.current{
+    background-color: var(--color-primary);
+    color: white !important;
+}
+
+.post__paginate .next:hover,
+.post__paginate .prev:hover{
+    transition: all ease-in 0.3s;
+    background-color: var(--color-primary);
+    color: white !important;
+}
  

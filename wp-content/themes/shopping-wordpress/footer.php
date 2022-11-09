@@ -90,18 +90,9 @@
 <div id="backTop">
     <i class="fa-solid fa-caret-up"></i>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"></script>
-<script src="<?php bloginfo('template_directory')?>/assets/js/back-top.js"></script>
-<script src="<?php bloginfo('template_directory')?>/assets/js/click-dropdown.js"></script>
-<script src="<?php bloginfo('template_directory')?>/assets/js/filter-product.js"></script>
-<script src="<?php bloginfo('template_directory')?>/assets/js/list-cart.js"></script>
-<script src="<?php bloginfo('template_directory')?>/assets/js/room-image.js"></script>
-<script src="<?php bloginfo('template_directory')?>/assets/js/tab-component"></script>
-<script src="<?php bloginfo('template_directory')?>/assets/js/tab.js"></script>
+
 <script src="<?php bloginfo('template_directory')?>/assets/js/slider.js"></script>
 
-<script src="./assets/js/back-top.js">
 </script>
 <?php wp_footer(); ?>
 </body>

@@ -2,13 +2,14 @@ const images = document.querySelectorAll(".container__image");
 const dots = document.querySelectorAll(".container__dots--item");
 const btnPrev = document.querySelector(".container__btn-prev");
 const btnNext = document.querySelector(".container__btn-next");
+
 let currentIndex = 0;
 
-dots.forEach((item , index) => {
-    item.addEventListener('click' , () => {
-        currentIndex = index;
-        updateStatusImage(currentIndex);
-    })
+dots.forEach((item, index) => {
+  item.addEventListener("click", () => {
+    currentIndex = index;
+    updateStatusImage(currentIndex);
+  });
 });
 
 images[currentIndex].classList.add("active");
@@ -22,7 +23,7 @@ function updateStatusImage(index) {
         currentIndex = 0;
         images[currentIndex].classList.add("active");
         dots[currentIndex].classList.add("active");
-      }else{
+      } else {
         item.classList.remove("active");
       }
     }
@@ -45,10 +46,10 @@ btnNext.addEventListener("click", () => {
 });
 
 btnPrev.addEventListener("click", () => {
-    if (currentIndex == 0) {
-      currentIndex = images.length-1;
-    } else {
-      currentIndex--;
-    }
-    updateStatusImage(currentIndex);
-  });
+  if (currentIndex == 0) {
+    currentIndex = images.length - 1;
+  } else {
+    currentIndex--;
+  }
+  updateStatusImage(currentIndex);
+});

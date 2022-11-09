@@ -1,0 +1,125 @@
+2022-11-09T03:33:33+00:00 CRITICAL Uncaught Error: Call to undefined function have_post() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single.php:3
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single.php on line 3
+
+2022-11-09T03:33:39+00:00 CRITICAL Uncaught Error: Call to undefined function have_post() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single.php:3
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single.php on line 3
+
+2022-11-09T04:31:44+00:00 CRITICAL Uncaught Error: Call to undefined function have_post() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\category.php:5
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\category.php on line 5
+
+2022-11-09T05:36:31+00:00 CRITICAL Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\category.php:7
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\category.php on line 7
+
+2022-11-09T05:37:07+00:00 CRITICAL Uncaught Error: Call to undefined function the_posts() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\category.php:7
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\category.php on line 7
+
+2022-11-09T07:53:47+00:00 CRITICAL Uncaught Error: Call to a member function the_post() on null in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php:8
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(10): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php on line 8
+
+2022-11-09T08:05:25+00:00 CRITICAL Uncaught Error: Call to undefined function get_price() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php:30
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(10): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php on line 30
+
+2022-11-09T08:14:23+00:00 CRITICAL Uncaught TypeError: number_format(): Argument #2 ($decimals) must be of type int, string given in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php:31
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php(31): number_format('3500000', ',', '.')
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(10): get_template_part('template-parts/...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php on line 31
+
+2022-11-09T10:58:11+00:00 CRITICAL Uncaught TypeError: Unsupported operand types: string - string in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php:19
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(10): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php on line 19
+
+2022-11-09T10:58:33+00:00 CRITICAL Uncaught TypeError: Unsupported operand types: string - string in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php:19
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(10): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php on line 19
+
+2022-11-09T11:00:34+00:00 CRITICAL Uncaught TypeError: Unsupported operand types: string - string in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php:19
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(10): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php on line 19
+
+2022-11-09T11:00:55+00:00 CRITICAL Uncaught TypeError: Unsupported operand types: string - string in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php:19
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(10): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php on line 19
+

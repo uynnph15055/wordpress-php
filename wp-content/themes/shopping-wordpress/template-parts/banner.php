@@ -12,8 +12,12 @@
           );
            ?>
         <div class="container__image--box">
-            <?php foreach(get_posts($argsByCate)  as $post) : ?>
-            <img src="<?=get_the_post_thumbnail_url(get_the_ID(),'full');?>" alt="" class="fade container__image 1" />
+            <?php
+            $index =0; 
+            foreach(get_posts($argsByCate)  as $post) : $index++ ?>
+            <img    src="<?=get_the_post_thumbnail_url(get_the_ID(),'full');?>" alt="" class="fade container__image 1 <?php if($index ==  1){
+                echo 'active';
+            } ?>" />
             <?php endforeach; ?>
         </div>
         <button class="container__btn-commom container__btn-next">

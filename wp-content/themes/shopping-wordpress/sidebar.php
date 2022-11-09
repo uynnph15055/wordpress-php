@@ -3,7 +3,7 @@
      <ul class="post__category--list">
         <?php foreach(get_category_list() as $category): ?>
         <li class="post__category--item">
-             <a href=""><i class="fa-solid fa-caret-right"></i>&nbsp;&nbsp; <?=$category->name?></a>
+             <a href="<?=get_category_link($category)?>"><i class="fa-solid fa-caret-right"></i>&nbsp;&nbsp; <?=$category->name?></a>
         </li>
         <?php endforeach; ?>
      </ul>
@@ -11,12 +11,12 @@
     <div class="post__relate--list">
         <?php foreach(get_post_desc() as $post): ?>
         <div class="post__relate--item">
-            <a href="" class="w-100"><img class="w-100"
+            <a href="<?=the_permalink()?>" class="w-100"><img class="w-100"
                     src="<?=get_the_post_thumbnail_url(get_the_ID());?>"
                     alt=""></a>
-            <div class="post__relate--item-info ">
+            <a style="color: black" href="<?=the_permalink()?>" class="post__relate--item-info ">
                 <p class="text-collapse-row-2"><?= the_title(); ?></p>
-            </div>
+            </a>
         </div>
         <?php endforeach; ?>
     </div>
