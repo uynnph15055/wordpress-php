@@ -1,11 +1,7 @@
 <?php  get_header(); ?>
 
 <div class="main padding-container">
-  <?php
-    $my_query = new WP_Query();
-    $count = $my_query->post_count;
-    dd($count);
-   ?>
+ 
   <div class="post__list">
       <?php  while(have_posts()): the_post() ?>
       <div class="post__item">

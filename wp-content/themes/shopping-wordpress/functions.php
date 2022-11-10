@@ -5,10 +5,14 @@ function initTheme(){
     wp_enqueue_style( 'base-style', get_template_directory_uri() . '/assets/css/base.css' );
     wp_enqueue_style( 'home-style', get_template_directory_uri() . '/assets/css/Home.css' );
     wp_enqueue_style( 'post-style', get_template_directory_uri() . '/assets/css/post.css' );
+    wp_enqueue_style( 'product-style', get_template_directory_uri() . '/assets/css/Product.css' );
+    wp_enqueue_style( 'product-detail-style', get_template_directory_uri() . '/assets/css/Product-detail.css' );
 
     // Add javascript
     wp_enqueue_script( 'jquery-script', 'https://code.jquery.com/jquery-3.6.0.js' );
     wp_enqueue_script( 'back-top-script', get_template_directory_uri() . '/assets/js/back-top.js' );
+    wp_enqueue_script( 'tab-script', get_template_directory_uri() . '/assets/js/tab.js' );
+    wp_enqueue_script( 'tab-slider-script', get_template_directory_uri() . '/assets/js/tab-slider.js' );
 
     // Hàm thay đổi theme editor về phiên bản cũ
     add_filter('use_block_editor_for_post' , '__return_false');
@@ -50,6 +54,9 @@ function initTheme(){
 }
 add_action('init' ,'initTheme');
 
+function get_short_description( $context = 'view' ) {
+    return $this->get_prop( 'short_description', $context );
+}
 
 // Hàm dể check dữ liệu 
 if (!function_exists('dd')) {

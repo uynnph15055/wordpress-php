@@ -1,5 +1,6 @@
 function openNav() {
   document.getElementById("myNav").style.width = "300px";
+
   var acc = document.getElementsByClassName("accordion");
 
   var i;

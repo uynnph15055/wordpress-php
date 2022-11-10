@@ -412,7 +412,7 @@ a{
     background-color: #3AB0FF;
 }
 
-.container {
+.container-slider {
     height: 600px;
     position: relative;
 }
@@ -488,7 +488,6 @@ a{
 
 .product-list_box {
     display: grid;
-    margin-top: 50px;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 30px;
  }
@@ -498,6 +497,7 @@ a{
     background-color: #ffff;
     padding: 15px;
     cursor: pointer;
+  
     position: relative;
  }
  
@@ -510,7 +510,7 @@ a{
     text-decoration: none;
     color: var(--color-black);
     font-size: 18px;
-    justify-content:space-between;
+    
     font-weight: bold;
  }
  
@@ -630,5 +630,14 @@ a{
     transition: all ease-in 0.3s;
     background-color: var(--color-primary);
     color: white !important;
+}
+
+.sizeActive {
+    background-color: #000;
+    color: #ffff;
+}
+
+.colorActive {
+    border: 4px solid #319DA0;
 }
  

@@ -1,5 +1,5 @@
 <div class="banner">
-    <div class="container">
+    <div class="container-slider">
         <button class="container__btn-commom container__btn-prev">
             <i class="fa-solid fa-chevron-left"></i>
         </button>

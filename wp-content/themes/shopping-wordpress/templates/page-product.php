@@ -3,21 +3,16 @@
 /*
  Template Name: Page product
  */
+
 get_header();
+while (have_posts()) : the_post();
+$product =  wc_get_product();
 ?>
 <div class="banner">
     <img class="w-100" src="https://theme.hstatic.net/1000409762/1000752712/14/collection_banner.jpg?v=10" alt="">
 </div>
 
 <div class="content padding-container">
-    <style>
-    .header-product-box {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 50px;
-        align-items: center;
-    }
-    </style>
     <header class="header-product-box">
         <div class="icon-open-filer-all" style="cursor: pointer;" onclick="openNav()">
             <i class="fa-solid fa-arrow-down-short-wide"></i>
@@ -34,15 +29,10 @@ get_header();
             </select>
         </div>
     </header>
-    <div id="myNav" class="overlay">
-
-        <!-- Button to close the overlay navigation -->
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-        <!-- Overlay content -->
+    <div class="product-box">
         <div class="overlay-content">
             <button class="accordion">Loai hinh sản phẩm</button>
-            <div class="panel">
+            <div class="panel-product">
                 <ul>
                     <li><a href=""><i class="fa-solid fa-caret-right"></i> Tất cả sản phẩm</a></li>
                     <li><a href=""><i class="fa-solid fa-caret-right"></i> Sản phẩm khuyến mãi</a></li>
@@ -50,17 +40,16 @@ get_header();
                 </ul>
             </div>
 
-            <button class="accordion">Thương hiệu</button>
-            <div class="panel">
+            <button class="accordion">Loại sản phẩm</button>
+            <div class="panel-product">
+                <?php dd($product->get_categories()) ?>
                 <ul>
-                    <li><a href=""><i class="fa-solid fa-registered"></i> Tất cả sản phẩm</a></li>
-                    <li><a href=""><i class="fa-solid fa-registered"></i> Sản phẩm khuyến mãi</a></li>
-                    <li><a href=""><i class="fa-solid fa-registered"></i> Sản phẩm nổi bật</a></li>
+                    <li><a href=""><i class="fa-solid fa-registered"></i>  </a></li>
                 </ul>
             </div>
 
             <button class="accordion">GIÁ SẢN PHẨM</button>
-            <div class="panel">
+            <div class="panel-product">
                 <ul>
                     <li><a href=""><i class="fa-solid fa-dollar-sign"></i> Dưới 500,000₫</a></li>
                     <li><a href=""><i class="fa-solid fa-dollar-sign"></i> 500,000₫ - 1,000,000₫</a></li>
@@ -70,7 +59,7 @@ get_header();
                 </ul>
             </div>
             <button class="accordion">MÀU SẮC</button>
-            <div class="panel">
+            <div class="panel-product">
                 <ul class="filter-list-color">
                     <li><a class="color-blue" href=""></a></li>
                     <li><a class="color-red" href=""></a></li>
@@ -80,151 +69,12 @@ get_header();
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="product-list_box ">
-        <div class="product-item">
-            <div class="product-item_img-box">
-                <img class="w-100"
-                    src="https://product.hstatic.net/1000409762/product/sp12-1_5316e032a8b0403b8fe26c4cd6bef167_large.jpg"
-                    alt="">
-                <div class="product-item_percent">25%</div>
-                <div class="product-item_icon">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i>
-                </div>
-            </div>
-            <p class="product-item_name"><a href="">Ấm trà inox không ghỉ</a></p>
-            <div class="product-item_price-wraper">
-                <div class="product-price-main">
-                    890,000₫
-                </div>
-                <div class="product-price_sale">
-                    1,250,000₫
-                </div>
-            </div>
+        <div class="page-product_box">
+            <?=get_template_part( 'template-parts/product-list')?>
         </div>
-        <div class="product-item">
-            <div class="product-item_img-box">
-                <img class="w-100"
-                    src="https://product.hstatic.net/1000409762/product/sp12-1_5316e032a8b0403b8fe26c4cd6bef167_large.jpg"
-                    alt="">
-                <div class="product-item_percent">25%</div>
-                <div class="product-item_icon">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i>
-                </div>
-            </div>
-            <p class="product-item_name"><a href="">Ấm trà inox không ghỉ</a></p>
-            <div class="product-item_price-wraper">
-                <div class="product-price-main">
-                    890,000₫
-                </div>
-                <div class="product-price_sale">
-                    1,250,000₫
-                </div>
-            </div>
-        </div>
-        <div class="product-item">
-            <div class="product-item_img-box">
-                <img class="w-100"
-                    src="https://product.hstatic.net/1000409762/product/sp12-1_5316e032a8b0403b8fe26c4cd6bef167_large.jpg"
-                    alt="">
-                <div class="product-item_percent">25%</div>
-                <div class="product-item_icon">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i>
-                </div>
-            </div>
-            <p class="product-item_name"><a href="">Ấm trà inox không ghỉ</a></p>
-            <div class="product-item_price-wraper">
-                <div class="product-price-main">
-                    890,000₫
-                </div>
-                <div class="product-price_sale">
-                    1,250,000₫
-                </div>
-            </div>
-        </div>
-        <div class="product-item">
-            <div class="product-item_img-box">
-                <img class="w-100"
-                    src="https://product.hstatic.net/1000409762/product/sp12-1_5316e032a8b0403b8fe26c4cd6bef167_large.jpg"
-                    alt="">
-                <div class="product-item_percent">25%</div>
-                <div class="product-item_icon">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i>
-                </div>
-            </div>
-            <p class="product-item_name"><a href="">Ấm trà inox không ghỉ</a></p>
-            <div class="product-item_price-wraper">
-                <div class="product-price-main">
-                    890,000₫
-                </div>
-                <div class="product-price_sale">
-                    1,250,000₫
-                </div>
-            </div>
-        </div>
-        <div class="product-item">
-            <div class="product-item_img-box">
-                <img class="w-100"
-                    src="https://product.hstatic.net/1000409762/product/sp12-1_5316e032a8b0403b8fe26c4cd6bef167_large.jpg"
-                    alt="">
-                <div class="product-item_percent">25%</div>
-                <div class="product-item_icon">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i>
-                </div>
-            </div>
-            <p class="product-item_name"><a href="">Ấm trà inox không ghỉ</a></p>
-            <div class="product-item_price-wraper">
-                <div class="product-price-main">
-                    890,000₫
-                </div>
-                <div class="product-price_sale">
-                    1,250,000₫
-                </div>
-            </div>
-        </div>
-        <div class="product-item">
-            <div class="product-item_img-box">
-                <img class="w-100"
-                    src="https://product.hstatic.net/1000409762/product/sp12-1_5316e032a8b0403b8fe26c4cd6bef167_large.jpg"
-                    alt="">
-                <div class="product-item_percent">25%</div>
-                <div class="product-item_icon">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i>
-                </div>
-            </div>
-            <p class="product-item_name"><a href="">Ấm trà inox không ghỉ</a></p>
-            <div class="product-item_price-wraper">
-                <div class="product-price-main">
-                    890,000₫
-                </div>
-                <div class="product-price_sale">
-                    1,250,000₫
-                </div>
-            </div>
-        </div>
-        <div class="product-item">
-            <div class="product-item_img-box">
-                <img class="w-100"
-                    src="https://product.hstatic.net/1000409762/product/sp12-1_5316e032a8b0403b8fe26c4cd6bef167_large.jpg"
-                    alt="">
-                <div class="product-item_percent">25%</div>
-                <div class="product-item_icon">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i>
-                </div>
-            </div>
-            <p class="product-item_name"><a href="">Ấm trà inox không ghỉ</a></p>
-            <div class="product-item_price-wraper">
-                <div class="product-price-main">
-                    890,000₫
-                </div>
-                <div class="product-price_sale">
-                    1,250,000₫
-                </div>
-            </div>
-        </div>
-
-
     </div>
 
 </div>
-<?php get_footer(); ?>
+<?php
+endwhile; 
+get_footer(); ?>

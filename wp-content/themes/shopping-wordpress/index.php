@@ -3,11 +3,16 @@ get_header();
 get_template_part('template-parts/banner');
  ?>
 <div class="content-home">
-    <h3 class="header-footer-title commom-title text-center" style="margin-top:30px">
-        Sản phẩm mới nhất
-    </h3>
-    <p class="text-center color-text">Cập nhật những sản phẩm mới nhật</p>
-     <?php get_template_part('template-parts/product-list'); ?>
+    <div class="" style="margin:30px 0px">
+        <h3 class="header-footer-title commom-title text-center">
+            Sản phẩm mới nhất
+        </h3>
+        <p class="text-center color-text">Cập nhật những sản phẩm mới nhật</p>
+    </div>
+
+    <div class="product-list_box padding-container">
+        <?=get_template_part( 'template-parts/product-list')?>
+    </div>
     <div class="category_image-box padding-container">
         <div class="category_image-above-box ">
             <div class="category_image-above-left">

@@ -1,11 +1,10 @@
 .content {
     background-color: var(--color-container);
-    padding: 30px 80px;
+    padding: 10px 80px;
 }
 
 .header-content-box {
     display: grid;
-   
     grid-template-columns: repeat(3, 1fr);
 }
 
@@ -31,29 +30,8 @@
 }
 
 /* ------- */
-.overlay {
-    /* Height & width depends on how you want to reveal the overlay (see JS below) */
-    height: 100%;
-    width: 0;
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    left: 0;
-    top: 0;
-    box-shadow: 5px 0 5px -5px #333;
-    background-color: var(--color-white);
-    /* Black fallback color */
-    /* Black w/opacity */
-    overflow-x: hidden;
-    /* Disable horizontal scroll */
-    transition: 0.2s;
-    /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
-}
 
-.overlay-content {
-    margin-top: 40px;
-}
+
 
 /* Position the content inside the overlay */
 
@@ -72,11 +50,9 @@
     font-size: 36px;
     color: #818181;
     display: block;
-    /* Display block instead of inline */
     transition: 0.3s;
 }
 
-/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
 
 .accordion {
     color: #555;
@@ -96,10 +72,9 @@
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 
-/* Style the accordion panel. Note: hidden by default */
-.panel {
+/* Style the accordion panel-product. Note: hidden by default */
+.panel-product {
     padding: 0 18px;
-    /* display: none; */
     font-weight: normal;
     max-height: 200px;
     overflow: hidden;
@@ -107,37 +82,59 @@
     margin: 0px 0px 0px 20px;
 }
 
-.panel ul {
-    list-style-type: none;
+.header-product-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0px;
 }
 
-.panel ul a {
+.product-box {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 30px;
+}
+
+.page-product_box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.product-item{
+    height: 370px;
+}
+
+.filter-list-color{
+    margin-top: 20px;
+}
+
+.panel-product ul {
+    list-style-type: none;
+    margin: 10px 0px;
+}
+
+.panel-product ul a {
     text-decoration: none;
     color: var(--color-text);
     margin-bottom: 15px;
 }
 
-.panel ul li {
+.panel-product ul li {
     margin-bottom: 15px;
 }
 
-.panel ul a i {
+.panel-product ul a i {
     margin-right: 10px;
 }
 
 .accordion:after {
     content: '\02795';
-    /* Unicode character for "plus" sign (+) */
     font-size: 0.5rem;
     color: #777;
     float: right;
     margin: 3px 10px 0px 0px;
 }
-
-.active:after {
-    content: "\2796";
-}
-
 
 /* -----Colors */
 .color-blue {

@@ -1,0 +1,197 @@
+2022-11-10T04:38:19+00:00 CRITICAL Uncaught TypeError: Unsupported operand types: string - string in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php:19
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(10): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php on line 19
+
+2022-11-10T04:40:24+00:00 CRITICAL Uncaught Error: Call to undefined function get_id() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php:34
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(10): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php on line 34
+
+2022-11-10T04:43:13+00:00 CRITICAL Uncaught Error: Call to undefined function get_id() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php:33
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(785): require()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template.php(718): load_template('C:\\xampp\\htdocs...', false, Array)
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\general-template.php(204): locate_template(Array, true, false, Array)
+#3 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php(10): get_template_part('template-parts/...')
+#4 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\template-parts\product-list.php on line 33
+
+2022-11-10T04:45:51+00:00 CRITICAL Uncaught Error: Call to undefined function get_id() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php:42
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php on line 42
+
+2022-11-10T04:54:38+00:00 CRITICAL Uncaught Error: Call to undefined function get_id() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php:43
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php on line 43
+
+2022-11-10T04:55:36+00:00 CRITICAL Uncaught Error: Call to undefined method WC_Product_Simple::get_sale() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php:49
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php on line 49
+
+2022-11-10T05:31:16+00:00 CRITICAL Uncaught Error: Call to undefined function int() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php:29
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php on line 29
+
+2022-11-10T05:33:14+00:00 CRITICAL Uncaught Error: Call to undefined function int() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php:19
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php on line 19
+
+2022-11-10T05:33:36+00:00 CRITICAL Uncaught Error: Call to undefined function int() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php:19
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php on line 19
+
+2022-11-10T05:34:05+00:00 CRITICAL Uncaught Error: Call to undefined function int() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php:19
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php on line 19
+
+2022-11-10T05:35:51+00:00 CRITICAL Uncaught Error: Call to undefined function int() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php:19
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\index.php on line 19
+
+2022-11-10T07:36:45+00:00 CRITICAL Uncaught Error: Call to undefined function wp_header() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php:2
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php on line 2
+
+2022-11-10T07:36:54+00:00 CRITICAL Uncaught Error: Call to undefined function wp_header() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php:2
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php on line 2
+
+2022-11-10T08:34:02+00:00 CRITICAL Uncaught Error: Call to undefined function get_short_description() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php:91
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php on line 91
+
+2022-11-10T08:35:32+00:00 CRITICAL Uncaught Error: Using $this when not in object context in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\functions.php:58
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php(91): get_short_description()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\functions.php on line 58
+
+2022-11-10T08:45:30+00:00 CRITICAL Uncaught Error: Call to undefined function get_sub_field() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php:10
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php on line 10
+
+2022-11-10T08:47:23+00:00 CRITICAL Uncaught Error: Call to undefined function get_sub_field() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php:10
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php on line 10
+
+2022-11-10T08:47:28+00:00 CRITICAL Uncaught Error: Call to undefined function get_sub_field() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php:10
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php on line 10
+
+2022-11-10T09:22:45+00:00 CRITICAL Uncaught Error: Call to undefined function get_stock_quantity() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php:72
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php on line 72
+
+2022-11-10T09:26:23+00:00 CRITICAL Uncaught Error: Call to undefined function get_stock_quantity() in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php:72
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\single-product.php on line 72
+
+2022-11-10T10:27:34+00:00 CRITICAL Uncaught Error: Call to a member function get_categories() on null in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\templates\page-product.php:42
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\templates\page-product.php on line 42
+
+2022-11-10T10:30:28+00:00 CRITICAL Uncaught Error: Call to a member function get_categories() on null in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\templates\page-product.php:44
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\templates\page-product.php on line 44
+
+2022-11-10T10:31:52+00:00 CRITICAL Uncaught Error: Call to a member function get_categories() on bool in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\templates\page-product.php:45
+Stack trace:
+#0 C:\xampp\htdocs\Intern-php\wordpress\wp-includes\template-loader.php(106): include()
+#1 C:\xampp\htdocs\Intern-php\wordpress\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\Intern-php\wordpress\index.php(17): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\Intern-php\wordpress\wp-content\themes\shopping-wordpress\templates\page-product.php on line 45
+
